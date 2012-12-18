@@ -1,0 +1,90 @@
+#+TITLE: spatio-angular microscopy
+
+#+LaTeX_HEADER: \newcommand{\vect}[1]{\mathbf{#1}}
+#+LaTeX_HEADER: \renewcommand{\r}{\vect r}
+#+LaTeX_HEADER: \renewcommand{\a}{\vect a}
+#+LaTeX_HEADER: \newcommand{\s}{\vect s}
+#+LaTeX_HEADER: \def\k{\vect k}
+#+LaTeX_HEADER: \def\d{\vect d}
+#+LaTeX_HEADER: \def\dV{\textrm{d} V}
+#+LaTeX_HEADER: \def\e{\vect e}
+#+LaTeX_HEADER: \def\f{\vect f}
+#+LaTeX_HEADER: \def\c{\vect c}
+#+LaTeX_HEADER: \def\x{\vect x}
+#+LaTeX_HEADER: \def\y{\vect y}
+#+LaTeX_HEADER: \def\z{\vect z}
+#+LaTeX_HEADER: \def\q{\vect q}
+#+LaTeX_HEADER: \def\p{\vect p}
+#+LaTeX_HEADER: \def\l{\vect l}
+
+#+LaTeX_HEADER: \newcommand{\nvect}[1]{\vect{\hat{#1}}}
+#+LaTeX_HEADER: %\renewcommand{\i}{\nvect i}
+#+LaTeX_HEADER: \newcommand{\vi}{\nvect \i}
+#+LaTeX_HEADER: \def\hc{\nvect c}
+#+LaTeX_HEADER: \def\hs{\nvect s}
+#+LaTeX_HEADER: \def\hd{\nvect d}
+#+LaTeX_HEADER: \def\hx{\nvect x}
+#+LaTeX_HEADER: \def\hy{\nvect y}
+
+#+LaTeX_HEADER: \def\hz{\nvect z}
+#+LaTeX_HEADER: \def\n{\nvect n}
+#+LaTeX_HEADER: \def\t{\nvect t}
+#+LaTeX_HEADER: \def\m{\nvect m}
+#+LaTeX_HEADER: \def\vrho{\boldsymbol\rho}
+#+LaTeX_HEADER: \def\abs#1{\mathopen| #1 \mathclose|}
+
+
+* introduction
+** motivation
+** fluorescence and phototoxicity
+*** absorption and emission of light
+*** depopulation pathways of excited states
+    - $I_{em}(\r) = Q_E \frac{\sigma I_{ill}(\r)}{1+\sigma \tau I_{ill}(\r)} S(\r)$
+*** photobleaching and phototoxicity
+** conventional microscopes
+*** image formation in widefield microscope and the missing cone
+   - for low excitation intensities $I_{ill}<<\sigma\tau$: $I_{em}(\r)
+     \propto I_{ill}(\r) S(\r)$
+   - $E(\r) = [S\otimes h_{det}](\r)$
+   - $\tilde E(\k) = \tilde S(\k) \tilde h_{det}(\k)$
+   - otf h_{det}(\k) acts as a fourier filter and has no support in
+     the missing cone
+   - impossible to determine z-position of low-spatial frequency
+     sample (e.g. fluorescent plane)
+
+*** image formation in confocal microscope
+*** image formation with structured illumination
+*** deconvolution
+** structured illumination
+** image detectors
+*** characterization of read noise
+*** em-ccd
+*** scmos
+* methods of controlling illumination patterns
+* mma as an intensity modulator
+** approach using a fourier filter
+*** theory
+    - point to sheppard
+    - point to fraunhofer publications
+** approach using a shearing interferometer
+*** theory
+    - point to sheppard
+*** experiment
+* device 1: prototype for spatio-angular illumination
+** overview
+ - dvi and usb lcos
+** optical components
+** electronics
+** a protocol for spatio-angular illumination control
+** mapping
+** robust structured illumination reconstruction
+** raytracin
+** optimization of the illumination pattern
+* device 2: holographic approach
+  - what about sectioning by structured illumination?
+* experimental results
+** angular acceptance for different immersion media
+** sectioning by structured illumination with the focal plane SLM
+* discussion
+* outlook
+* appendix

@@ -126,34 +126,18 @@
   - explain on the example of an embryo or neuron how an experiment
     might be conducted
 ** initial step: sectioning through structured illumination
+   - describe non-robustness of the typical max-min method
 *** hilo
+    - refer to appendix for a thorough description, comparison and
+      discussion of the different methods
 ** optimization using raytracer
-* angular illumination optimization
-** more on the raytracer
-
-* device 1: prototype for spatio-angular illumination
-** overview
- - dvi and usb lcos
-** optical components
-** electronics
-** a protocol for spatio-angular illumination control
-** mapping
-** robust structured illumination reconstruction
-*** sectioning through structured illumination
-    - describe non-robustness of the typical max-min method
-*** hilo 
-**** local variance estimation (not mine, maybe into appendix?)
-**** single side-band demodulation (not mine, maybe into appendix?)
-**** TODO subtraction method (is this mine)
-   - advantage: linear
-   - how to calculate the fudge factor eta?
-     - can we make an argument with the OTF at the grating period?
-   - they expect more formulas (how can i add more formulas)
-   - i think i should modify the examples, to also show the sectioning
-     performance
-** raytracing
    - skew rays and realtime feedback are necessary to make the
      raytracer useful during image acquisition
+   - braucht man um die offenen winkel zu bestimmen
+   - aplanatic model for microscope objective
+
+* angular illumination optimization
+** more on the raytracer
    - aplanatic model for microscope objective
      - exact design parameters of objectives are often not available
      - aplanatic correction:
@@ -171,9 +155,24 @@
            only defined for infinitesimal small rays)
        - spherical aberration correction
 	 - coma completely corrected
+    - method of treating non-index matched specimen with unknown
+      objective design parameters
+
+* device 1: prototype for spatio-angular illumination
+** overview
+ - dvi and usb lcos
+** optical components
+** electronics
+** a protocol for spatio-angular illumination control
+** mapping
+   ** raytracing
+   
 ** optimization of the illumination pattern
 
 * mma as an intensity modulator
+  - we want intensity modulator
+  - give an estimate of the ettendue that the system can cope with
+
   - description of the mma device
     - consists of 256x256 mirrors with a pitch of 16um
     - each mirror hangs on two thin hinges and can be tilted by up to
@@ -198,15 +197,12 @@
     - fourier aperture makes response non-linear
     - intensity for single laser $\propto \sinc^2(\textrm{deflection})$
     - point to mehta, sheppard for treatment of partial coherent case
-      (extended illumination source), perhaps i can put a primitive
-      simulation in my appendix
+      (extended illumination source)
     - point to fraunhofer publications
-
 ** approach using a shearing interferometer
 *** theory
     - point to sheppard
-*** experiment
-
+    - refer to experiment in appendix
 
 * device 2: holographic approach
   - what about sectioning by structured illumination? will this method
@@ -223,6 +219,16 @@
 ** raytracer
 ** mapping camera coordinates onto LCoS coordinates (if additional code is necessary)
 ** contrast generation by fourier filtering the mma with incoherent illumination
+** hilo
+**** local variance estimation (not mine, maybe into appendix?)
+**** single side-band demodulation (not mine, maybe into appendix?)
+**** TODO subtraction method (is this mine)
+   - how to calculate the fudge factor eta?
+   - can we make an argument with the OTF at the grating period?
+   - they expect more formulas (how can i add more formulas)
+   - i think i should modify the examples, to also show the sectioning
+     performance
+
 
 
 * zeitplan

@@ -1,4 +1,9 @@
+#+OPTIONS: LaTeX:dvipng
 #+TITLE: spatio-angular microscopy
+
+
+#+LaTeX_HEADER: \usepackage{amsmath}
+#+LaTeX_HEADER: \usepackage{amssymb}
 
 #+LaTeX_HEADER: \newcommand{\vect}[1]{\mathbf{#1}}
 #+LaTeX_HEADER: \renewcommand{\r}{\vect r}
@@ -20,6 +25,10 @@
 #+LaTeX_HEADER: \newcommand{\nvect}[1]{\vect{\hat{#1}}}
 #+LaTeX_HEADER: %\renewcommand{\i}{\nvect i}
 #+LaTeX_HEADER: \newcommand{\vi}{\nvect \i}
+#+LaTeX_HEADER: \renewcommand{\[}{\left[}
+#+LaTeX_HEADER: \renewcommand{\]}{\right]}
+#+LaTeX_HEADER: \renewcommand{\(}{\left(}
+#+LaTeX_HEADER: \renewcommand{\)}{\right)}
 #+LaTeX_HEADER: \def\hc{\nvect c}
 #+LaTeX_HEADER: \def\hs{\nvect s}
 #+LaTeX_HEADER: \def\hd{\nvect d}
@@ -33,8 +42,22 @@
 #+LaTeX_HEADER: \def\vrho{\boldsymbol\rho}
 #+LaTeX_HEADER: \def\abs#1{\mathopen| #1 \mathclose|}
 
+#+LaTeX_HEADER: \DeclareMathOperator{\sign}{sign}
+#+LaTeX_HEADER: \DeclareMathOperator*{\sinc}{sinc}
+#+LaTeX_HEADER: \DeclareMathOperator*{\rect}{rect}
+
+
+- preface
+  - describe my place in project "A preface or foreword deals with the genesis,
+  purpose, limitations, and scope of the book and may include
+  acknowledgments of indebtedness;
 
 * introduction
+  - an introduction deals with the
+  subject of the book, supplementing and introducing the text and
+  indicating a point of view to be adopted by the reader. The
+  introduction usually forms a part of the text [and the text
+  numbering system]; the preface does not."
 ** motivation
 ** fluorescence and phototoxicity
 *** absorption and emission of light
@@ -47,25 +70,118 @@
      \propto I_{ill}(\r) S(\r)$
    - $E(\r) = [S\otimes h_{det}](\r)$
    - $\tilde E(\k) = \tilde S(\k) \tilde h_{det}(\k)$
-   - otf h_{det}(\k) acts as a fourier filter and has no support in
+   - otf $h_{det}(\k)$ acts as a fourier filter and has no support in
      the missing cone
    - impossible to determine z-position of low-spatial frequency
      sample (e.g. fluorescent plane)
 
 *** image formation in confocal microscope
+   - source position $s\in R^3$, pinhole position $r\in R^3, r_z=0$
+   - $h_{em}(r-s)$
+   - multiply with pinhole $p(r)$
+     $h_{em}(r-s) p(r) = h'_{em}(s-r) p(r)$
+     with $h'_{em}(r)=h_{em}(-r)$
+   - integration over this gives a convolution
+     $h_{det}(s) = \int h'_{em}(s-r) p(r) dr = (h' \otimes p)(s)$
+   - $h_{conf}(s)=h_{ill}(s) [h'_{em} \otimes p](s)$       
+   - approximate small pinhole with delta distribution: $h_{conf}(\r)
+     = h_{ill}(\r)h_{det}(\r)$
+   - detection and emission wavelength lead approximately to the same
+     psf h_{ill}: $h_{conf}(s) \approx h_{ill}(s)^2$
+   - product of two point spread functions in real space
+      results in convolution of the two otfs in k-space
+      $psf(r) = psf_{ex}(r) psf_{det}(r)$
+      $otf(k) = otf_{ex}(k) \otimes otf_{det}(k)$
+    - psf is always real valued
+    - lateral and axial support increased
+    - in real life the confocal doesn't improve resolution so much
+      - values of the otf drop off quite a lot
+      - you convolve a triangle with a triangle
+      - but compared to widefield the lower resolution frequencies are
+        transmitted better
+   - the missing cone gets filled
 *** image formation with structured illumination
+   - raw image $E(\r) = [I S\otimes h](\r)$
+   - $\tilde h_{sim}(\k) = [|\tilde I| \otimes \tilde h_{det}](\k)$
+   - $|\tilde I|$ 3 points
+
+   - $h_{ill}$ and $|\tilde I|$ are diffraction limit $\rightarrow$
+     only factor two possible
+   - illumination wavelength is smaller, so you can get a little bit
+     better than a factor of two
+
+   - cosinusoidal illumination pattern:
+     $I(r)=\cos(\k_0(\r-\r_0))=1+\frac{1}{2}(e^{i\k_0(\r-\r_0)}+e^{-i\k_0(\r-\r_0)})$
+   - three delta functions in fourier space: $\tilde I(\k) =
+     \frac{1}{2}e^{-i\phi_0}\delta(\k+\k_g)+\delta(\k)+\frac{1}{2}e^{i\phi_0}\delta(\k-\k_g)$
+   - an image with structured illumination: $D(\r)=h(\r)\otimes(S(\r)
+     I(\r))$
+   - its fourier transform: $\tilde D(\k)=\tilde h(\k)\[\tilde I(\k)\otimes\tilde S(\k)\]=\tilde S(\k)\tilde h(\k)+\frac{1}{2}e^{-i\phi_0}\tilde S(\k+\k_g)\tilde h(\k)+\frac{1}{2}e^{i\phi_0}\tilde S(\k-\k_g)\tilde h(\tilde k)$
+   - the fourier transforms of the images $D_n$ with different phases
+     contain a mixture of three orders (in case of two beam
+     illumination)
+
+     - $\vect{\tilde C} = (\tilde C_{-1},\tilde C_0, \tilde C_1)^T$, $\vect{\tilde D}=(\tilde D_1,\tilde D_2,\tilde D_3)^T$ 
+     - $\vect D=M\vect C$
+     - with $M=\begin{pmatrix}  e^{i\phi_1}/2 & 1 &  e^{i\phi_1}/2 \\ e^{i\phi_2}/2 & 1 &  e^{i\phi_2}/2 \\ e^{i\phi_3}/2 & 1 &  e^{i\phi_3}/2  \end{pmatrix}$ 
+
+   - choose the phases such, that determinant of mixing matrix $M$ isn't zero
+     - $\vect{\tilde C} = M^{-1} \vect{\tilde D}$
+
+   - obtain an unmixed image of the minus first order
+ 
+     - $\tilde C_{-1} = M^{-1}_{11} \tilde D_1 + M^{-1}_{12} \tilde D_2 + M^{-1}_{13}
+       \tilde D_3$
+ 
 *** deconvolution
 ** structured illumination
 ** image detectors
 *** characterization of read noise
 *** em-ccd
+    - maximum 37 MHz, clock induced charge, dark current not so
+      important
+    - quantum efficiency
 *** scmos
+    - global exposure and noise
+    - flash 2.8 vs. 4.0
+      - 2.8 doesn't have enough physical trigger outputs
+    - scientific not backside illuminated
+    - spatial gain variations
+    - kink in transfer function
+    - big field of view, fast
+    - check for dutch chip
+   
+    - go through hamamatsu information vs. andor
 * methods of controlling illumination patterns
 * mma as an intensity modulator
+  - description of the mma device
+    - consists of 256x256 mirrors with a pitch of 16um
+    - each mirror hangs on two thin hinges and can be tilted by up to
+      2 degree by electrostatic fields, corresponding to out-of-plane
+      deflections of pm 250nm
+    - cmos circuitry below each mirror are able to maintain a constant
+      tilt for hundreds of milliseconds, while a control board can set
+      new analogue voltages for each mirror with an accuracy of
+      lambda/100 of the mirror actuation
+    - can achieve frame rates of up to 1kHz and duty cylces of up to
+      50% (but not at this high framerate)
 ** approach using a fourier filter
 *** theory
-    - point to sheppard
+    - phase distribution in mma plane: $\sum_\p [(\exp(i \k(p_x,p_y)
+      \x) \rect(x,y))\otimes \delta(x-p_x\Delta x, y-p_y\Delta y)]$
+    - its fourier transform: $\sinc(k_x-k(p_x,p_y)) \exp(i\k(p_x\Delta
+      x,p_y \Delta y))$
+    - every other line is tilted in the opposite direction:
+       - $I_1(x,y)=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x)$
+       - $I_2(x,y)=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x)$
+    - $I_1(x,y) (\rect(y)\otimes\sum\textrm{every second row})+I_2(x,y) (\rect(y)\otimes\sum\textrm{every second row, shifted by one})$
+    - fourier aperture makes response non-linear
+    - intensity for single laser $\propto \sinc^2(\textrm{deflection})$
+    - point to mehta, sheppard for treatment of partial coherent case
+      (extended illumination source), perhaps i can put a primitive
+      simulation in my appendix
     - point to fraunhofer publications
+
 ** approach using a shearing interferometer
 *** theory
     - point to sheppard
@@ -78,13 +194,80 @@
 ** a protocol for spatio-angular illumination control
 ** mapping
 ** robust structured illumination reconstruction
-** raytracin
+*** sectioning through structured illumination
+    - describe non-robustness of the typical max-min method
+*** hilo 
+**** local variance estimation (not mine, maybe into appendix?)
+**** single side-band demodulation (not mine, maybe into appendix?)
+**** TODO subtraction method (is this mine)
+   - advantage: linear
+   - how to calculate the fudge factor eta?
+     - can we make an argument with the OTF at the grating period?
+   - they expect more formulas (how can i add more formulas)
+   - i think i should modify the examples, to also show the sectioning
+     performance
+** raytracing
+   - skew rays and realtime feedback are necessary to make the
+     raytracer useful during image acquisition
+   - aplanatic model for microscope objective
+     - exact design parameters of objectives are often not available
+     - aplanatic correction:
+       - find prof gross reference
+       - one optimization goal for a microscope objective is to
+         minimize offence against sine condition
+       - typical grid distortions are in the range of 1e-3
+       - sine condition:
+	 - pupil has spherical shape
+	 - imaging of small isoplanatic field patches around the axis
+           without linear sagittal coma
+         - conservation of energy
+         - linear representation of spatial frequencies in the pupil
+         - same focal length for all angles (focal length normally is
+           only defined for infinitesimal small rays)
+       - spherical aberration correction
+	 - coma completely corrected
 ** optimization of the illumination pattern
 * device 2: holographic approach
-  - what about sectioning by structured illumination?
+  - what about sectioning by structured illumination? will this method
+    still work? according to rainer: yes
 * experimental results
 ** angular acceptance for different immersion media
 ** sectioning by structured illumination with the focal plane SLM
+** illuminating a single bead within 3d distribution with various angles ;; data might be flawed
+** bleaching fluorescent gel
 * discussion
 * outlook
 * appendix
+** camera characterization
+** raytracer
+** mapping camera coordinates onto LCoS coordinates (if additional code is necessary)
+** contrast generation by fourier filtering the mma with incoherent illumination
+
+
+* zeitplan
+  - abgabe spaetestens am 21. maerz, deadline: 1 woche vorher: 14. maerz
+  - rainer und kai werden 1-2 wochen fuer korrektur brauchen
+  - bis 14. februar text an rainer und kai geben
+** aufgaben
+   - stichpunktliste verbessern
+   - ordentliche titel schreiben und unter jedem hinschreiben, was in
+     dem kapitel gesagt werden soll
+   - alle ergebnisse, die in der diskussion erwaehnt werden sollen
+     auflisten
+   - sektionen nach und nach abarbeiten
+   - folgende reihenfolge (nach wichtigkeit)
+     - motivation
+     - geraetebeschreibung
+     - optimierung
+     - mma
+     - results
+     - holographie
+
+     - structured illumination (ehemals appendix)
+
+** generelle bemerkung
+   - am anfang jeder sektion sollte der leser ein die story
+     eingefuehrt werden, die ich dort rueberbringen will
+
+
+

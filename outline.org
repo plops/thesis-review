@@ -51,49 +51,89 @@
   - describe my place in project "A preface or foreword deals with the
     genesis, purpose, limitations, and scope of the book and may
     include acknowledgments of indebtedness;
-
+  - stelle zusammenhang mit memi projekt klar
+    - erklaert die verwendung des graustufen mikrodisplays
+    - vielleicht kann ich hier die vorteile des graustufendisplays
+      erwaehen (verminderte gibbs ueberschwinger), obwohl ich den
+      tatsaechlichen effekt ja weder vernuenftig theoretisch simuliert
+      habe, noch in einer messung nachgewiesen
+    - darauf hinweisen, dass ich die holographische methode
+      experimentell untersucht habe und auch den dic ansatz fuer
+      intensitaetskontrasterzeugung
+  - jedes kapitel erklaeren
+  - erklaerung das der source code frei verfuegbar ist und
+    dokumentieren, was er beinhaltet
+  - danksagung
 * introduction
   - an introduction deals with the subject of the book, supplementing
     and introducing the text and indicating a point of view to be
     adopted by the reader. The introduction usually forms a part of
     the text [and the text numbering system]; the preface does not."
 ** motivation
+- levoys plastiksoldat hat den pruefern nicht gefallen, also auf
+  mikroskopie konzentrieren
+- motivation fuer fluoreszenzmikroskopie
+  - spezifisch label, lebende organismen
+  - nachteil: ueberschussenergie der fluoreszenzanregung fuehrt zur
+    bildung von giftstoffen und damit phototoxizitaet
+  - bleaching
+- 3 bilder mit c. elegans embryonalentwicklung bei verschiedenen
+  anregungsleistungen gegenueberstellen
+- moeglicherweise auch optogenetik erwaehnen
+  - bin mir nicht sicher ob ich das gegenueber 2photonen gut verkaufen kann
+  - m. booth: 2photonen hat breiteres anregungsspektrum,
+    einzelphotonenanregung (mit spatio-angular) koennten deshalb
+    vorteilhaft fuer multicolor optogenetik experimente sein
+
 ** fluorescence and phototoxicity
+- molekuelorbitale und viel photophysik (born-oppenheimer, franck-condon) weglassen
 *** absorption and emission of light
+- stokes shift, triplet state und photobleaching muessen eingefuehrt werden34
+- die interessanten sachen aus sauer buch wuerde ich drin lassen
+  (erklaerung warum es nur fluorophore von 200 bis 700 nm gibt)
 *** depopulation pathways of excited states
-    - $I_{em}(\r) = Q_E \frac{\sigma I_{ill}(\r)}{1+\sigma \tau I_{ill}(\r)} S(\r)$
+- diese formel ist zu komplex: $I_{em}(\r) = Q_E \frac{\sigma I_{ill}(\r)}{1+\sigma \tau I_{ill}(\r)} S(\r)$
+- kasha's rule und energy level diagram mit zeiten
 *** photobleaching and phototoxicity
+- sauerstoffradikalproduktion durch triplett-triplett annihilation am
+  chlorophyll beispiel
+- wege wie man bleaching chemisch verhindern kann -- keine dieser
+  methoden geht vernuenftig mit lebenden organismen
 ** conventional microscopes
 *** image formation in widefield microscope and the missing cone
-   - for low excitation intensities $I_{ill}<<\sigma\tau$: $I_{em}(\r)
-     \propto I_{ill}(\r) S(\r)$
+   - tubuslaenge und objektiv erklaeren
+   - signal haengt linear mit fluorophorkonzentration zusammen
+     $I_{em}(\r) \propto I_{ill}(\r) S(\r)$
    - $E(\r) = [S\otimes h_{det}](\r)$
    - $\tilde E(\k) = \tilde S(\k) \tilde h_{det}(\k)$
+   - missing cone erwaehnen (bild davon zeigen, nicht herleiten)
    - perhaps cite jerome mertz "introduction to optical microscopy"
    - otf $h_{det}(\k)$ acts as a fourier filter and has no support in
      the missing cone
    - impossible to determine z-position of low-spatial frequency
      sample (e.g. fluorescent plane)
-
+   
 *** the confocal microscope
+   - strahlengang dem widefield mikroskop gegenueberstellen
    - out of focus light is rejected
    - the missing cone gets filled
    - detectors generally have low quantum efficiency, scanning
      technique
+   - keine formeln
 *** image formation with structured illumination
    - out of focus light can be computationally removed
-   - better quantum efficiency then confocal
+   - better quantum efficiency than confocal
    - widefield technique
    - wegen poisson rauschen nur fuer duenne samples gegenueber
      konfokaler mikroskopie vorzuziehen
 *** deconvolution
     - man kennt die eigenschaften des abbildenden systems und kann sie
-      innerhalb gewisser grenzen normalisieren
+      innerhalb gewisser grenzen (rauschen) rausrechnen
 ** image detectors
 *** characterization of read noise
 *** em-ccd
     - maximum 37 MHz, clock induced charge, dark current not so
-      important
+      important (weil ich kurze integrationszeiten brauche)
     - quantum efficiency
 *** scmos
     - global exposure and noise
@@ -108,23 +148,74 @@
     - go through hamamatsu information vs. andor
     - 5 vs. 4 transistoren pro chip
 * methods of controlling illumination patterns
+- ueberblick ueber aktuelle literatur: methoden um unnuetze anregung
+  im mikroskop zu verringern
 ** light sheet fluorescence microscopy
 *** light sheet generation with cylindrical lens
+- hauptprobleme:
+  - schichtdicke haengt mit field of view zusammen
+  - sample mount ist eine qual und verhindert es experimente zu
+    skalieren (z.b. 96 well plates)
 *** light sheet generation using the detection objective
+- dunsby oblique plane erwaehnen um die abbildungsprobleme zu erwaehen
+- bei index mismatch HILO (denn zum akzeptanzwinkel habe ich ja ein
+  experiment)
 ** scanning techniques for improving light utilization
 *** controlled light exposure microscopy
+- erklaere, wie sie bei CLEM entscheiden wo wieviel licht hinsoll
+- kann nicht so einfach auf widefield uebertragen werden, weil dann
+  out of focus beitraege variieren
 *** acousto-optic deflectors for fast beam steering
+- random access
+- sollte das aberration correction paper erwaehen (das ist
+  schliesslich viel cooler und martin booth steht drauf, leider haben
+  die da nur galvos benutzt)
 ** non-scanning techniques
 *** direct illumination
+- micro leds: haben schlechten fill factor und ettendue mismatch
 *** intensity modulation
+**** programmable array microscope
+- erwaehne, dass die technik mit dmd im detektionspfad mit schnellen
+  rauscharmen kameras obsolet geworden ist
+**** light field microscope
+- erklaere phasenraumsampling
+- hauptproblem: 
+  - teure NA des objektivs kann nicht fuer hohe aufloesung genutzt
+    werden
+  - daher nur fuer beleuchtung sinnvoll einsetzbar
+  - unsere methode ist besser als prototyp, wenn man noch nicht weiss,
+    wieviel aufloesung man im sample haben will (z.b. kann ich
+    strukturierte beleuchtung machen, wenn ich will)
+  - je nach anwendungsfall kann LFM vorteile bringen, weil es teile
+    des samples gleichzeitig aus verschiedenen richtungen anleuchten
+    kann
+  - unsere methode kann prinzipiell schneller sein (weil zwei displays
+    mit geringerer aufloesung)
 *** temporal focussing
+- grating in intermediate image sendet regenbogen in bfp der im sample
+  zu einer duennen lichtschicht zusammenlaeuft
 *** phase modulation
+**** digital holography
+**** generalized phase contrast
+**** generalized phase contrast with temporal focusing 
 * the concept of spatio-angular microscopy
 ** motivation
   - describe how our microscope is supposed to work
+  - an einfachen beispiel zeigen, wie spatio angular illumination
+    funktioniert
+  - pupil plane slm gefolgt von focal plane slm (weil FP-SLM hohe
+    aufloesung bringen soll)
+  - beides intensitaetsmodulatoren
+  - PP-SLM kann grauwerte
+
 ** a protocol for spatio-angular illumination control
   - explain on the example of an embryo or neuron how an experiment
-    might be conducted
+    might be conducted 
+  - erster stack strukturiert beleuchten
+  - nuklei finden
+  - irgendwelche masken fuer focal plane SLM und pupil plane SLM
+    finden um bilder von in-focus nuklei zu machen
+
 ** initial step: sectioning through structured illumination
    - describe non-robustness of the typical max-min method
 *** hilo
@@ -134,7 +225,9 @@
    - skew rays and realtime feedback are necessary to make the
      raytracer useful during image acquisition
    - braucht man um die offenen winkel zu bestimmen
-   - aplanatic model for microscope objective
+   - aplanatic model for microscope objective, weil hersteller ja
+     nicht ihre design parameter freigeben und ich trotzdem den
+     einfluss von non-index matched embedding kennen muss
 
 * angular illumination optimization
 ** more on the raytracer
@@ -168,7 +261,7 @@
    ** raytracing
    
 ** optimization of the illumination pattern
-
+   
 * mma as an intensity modulator
   - we want intensity modulator
   - give an estimate of the ettendue that the system can cope with

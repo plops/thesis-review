@@ -476,7 +476,65 @@
 ** bleaching fluorescent gel
 - zumindest das experiment hat funktioniert
 * discussion
+- zuerst habe ich dvi lcos mit mma verbaut, das hat leider nur
+  gelegntlich funktioniert
+- dann habe ich usb lcos eingesetzt, damit geht es immer, ist aber
+  langsamer und deutlich weniger nuetzlich zum experimentieren
+- ausserdem ist die ettendue des beleuchtungssystems arg
+  eingeschraenkt mit einem 63x objektiv (NA=1.47) wird nur ein feld
+  mit 40 um durchmesser beleuchtet
+- deshalb untersuchten wir einen anderen weg zur kontrasterzeugung und
+  lernten dabei dass ein interferometrischer ansatz sehr wohl geeignet
+  ist, die ettendue zu erhoehen
+  - einschraenkungen in der realisierbaren optik (freier durchmesser
+    der nomarski prismen) fuehrte zu nicht ganz ueberzeugenden bildern
+  - ein piston mma wuerde zu deutlich besseren ergebnisse fuehren
+- ein weiterer ansatz fuer spatio-angular beleuchtung wurde mit einer
+  holographischen methode verfolgt
+  - dabei lernten wir dass die qualitaet des verwendeten
+    phasenmodulators zu wuenschen uebrig laesst
+  - einfacherer ansatz mit nur einem display, erfordert daher weniger
+    optik und elektronik
+  - loest jedoch nicht das problem geringer ettendue (die moegliche
+    ettendue muss ich mir genauer ueberlegen, sie haengt mit der
+    anzahl der pixel des displays und den grating konstanten zusammen,
+    die dargestellt werden koennen, da das system off-axis betrieben
+    werden muss, wird die ettendue geviertelt)
+- kameras sind zur zeit an einem wendepunkt. vermutlich wuerde man
+  heutzutage eine sCMOS benutzen, dann sollte man aber auf die
+  triggereigenschaften achten
+- arduino war nuetzlich um die elektronische triggerung ohne grossen
+  aufwand umzusetzen (der hauptaufwand war oft nicht die
+  zeitsteuerung, sondern eine ordentliche galvanische entkopplung der
+  displays, die ist auch wichtig)
+  - da unterscheiden sich die hersteller ohnehin sehr stark, bei dem
+    dvi display war es erforderlich, testpunkte vom board abzugreifen
+    und ueber adum zu entkoppeln, bei neueren varianten des usb boards
+    kann man mittlerweile einfach einen stecker anstecken
+- man kann relativ viel aufwand bei der rekonstruktion von optisch
+  geschnittenen bildern betreiben, fuer das reale problem ist die
+  vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
+  oder nuklei lokalisieren)
 * outlook
+- den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
+  verbessern
+  - gleichzeitige beleuchtung mehrerer nuklei
+  - andere objektstrukturen (z.b. zylinder, axone)
+    - 2010 hermann cuntz: One Rule to Grow Them All: A General Theory
+      of Neuronal Branching and Its Practical Application
+      - modell wie neuronen wachsen um axon oder dendritendichte
+        vorherzusagen
+- eine genaue analyse einiger probleme mit wellenoptischer partiell
+  kohaerenter theorie steht noch aus und waere interessant (nach
+  wichtigkeit)
+  - partiell kohaerente simulation des mma im schlierenoptischen system
+    - sind graulevel vorteilhaft?
+    - wuerde ein mma, bei dem alle spiegel in dieselbe richtung kippen
+      die ettendue verdoppeln?
+  - partiell kohaerente simulation des mma im shearing
+    interferometrischen system
+    - was ist die maximale ettendue eines wollaston prismas?
+  - holographie methode mit extended source
 * appendix
 ** camera characterization
 - andor basic code zur datenaufnahme

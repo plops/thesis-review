@@ -92,7 +92,9 @@
 - die interessanten sachen aus sauer buch wuerde ich drin lassen
   (erklaerung warum es nur fluorophore von 200 bis 700 nm gibt)
 *** depopulation pathways of excited states
-- diese formel ist zu komplex: $I_{em}(\r) = Q_E \frac{\sigma I_{ill}(\r)}{1+\sigma \tau I_{ill}(\r)} S(\r)$
+- diese formel ist zu komplex: $I_{em}(\r) = Q_E \frac{\sigma
+  I_{ill}(\r)}{1+\sigma \tau I_{ill}(\r)} S(\r)$, ich erwaehne sie
+  daher nicht
 - kasha's rule und energy level diagram mit zeiten
 *** photobleaching and phototoxicity
 - sauerstoffradikalproduktion durch triplett-triplett annihilation am
@@ -126,20 +128,50 @@
    - widefield technique
    - wegen poisson rauschen nur fuer duenne samples gegenueber
      konfokaler mikroskopie vorzuziehen
+      - aber: ondrejs spim sim zitieren
 *** deconvolution
     - man kennt die eigenschaften des abbildenden systems und kann sie
-      innerhalb gewisser grenzen (rauschen) rausrechnen
+      innerhalb gewisser grenzen (rauschen) wieder aus dem bild
+      rausrechnen
 ** image detectors
 *** characterization of read noise
+    - beschreibe mein experiment, wo ich zwei em ccd kameras verglichen habe
+    - ich zeige nur die ergebnisse fuer die handelsuebliche kamera,
+      weil ich nicht weiss, ob ich daten der ixon ultra verwenden darf
+      (ausserdem wuerde das nicht viel helfen)
+    - ich erklaere, wie ich vollautomatisch die kameras fuer viele
+      verschiedene em gains charakterisiert habe
+    - andor basic code kommt in den appendix, falls das selbst jemand
+      mit seiner kamera machen will
+    - probleme mit dem experiment:
+      - im nachhinein hat sich herausgestellt, dass ich zwischen den
+        aufnahmen nicht genug gewartet habe, damit sich eine stabile
+        em spannung einstellt
+      - ausserdem ist bleaching des samples aufgetreten (das macht es
+        ein bisschen schwierig, genaue aussagen ueber den excessive
+        noise faktor zu geben)
+    - code fuer die auswertung habe ich in python geschrieben, damit
+      kann jemand, der python/numpy mag einfacher einsteigen (braucht
+      kein matlab/dipimage)
+    - [Scientific images are more than just pictures]
+      - graph snr gegen photonenzahl
+      - SNR = (QE S)/sqrt(F_n^2 QE (S + I_b) + (N_r/M)^2)
+      - diese formel erklaert, besser als ich es bisher gemacht habe,
+        den excessive noise factor F_n
+      - S signal, I_b background, QE quantum efficiency, N_r camera
+        noise, M em-gain
+      - EM gain has a statistical distribution and associated
+        variance, which is accounted for by F_n. in a typical EM CCD
+        camera F_n=sqrt(2)=1.4
 *** em-ccd
     - maximum 37 MHz, clock induced charge, dark current not so
       important (weil ich kurze integrationszeiten brauche)
-    - quantum efficiency
+    - vorteil: hohe quantum efficiency
 *** scmos
     - global exposure and noise
     - flash 2.8 vs. 4.0
       - 2.8 doesn't have enough physical trigger outputs
-    - scientific not backside illuminated
+    - up to now: scientific not backside illuminated
     - spatial gain variations
     - kink in transfer function
     - big field of view, fast
@@ -147,6 +179,10 @@
    
     - go through hamamatsu information vs. andor
     - 5 vs. 4 transistoren pro chip
+
+    - sony produziert seit 2007 back illuminated cmos fuer smart
+      phones; vorhersagen, dass die auch irgendwann fuer scientific
+      applications kommen
 * methods of controlling illumination patterns
 - ueberblick ueber aktuelle literatur: methoden um unnuetze anregung
   im mikroskop zu verringern
@@ -178,7 +214,7 @@
 - erwaehne, dass die technik mit dmd im detektionspfad mit schnellen
   rauscharmen kameras obsolet geworden ist
 **** light field microscope
-- erklaere phasenraumsampling
+- erklaere problem mit phasenraumsampling
 - hauptproblem: 
   - teure NA des objektivs kann nicht fuer hohe aufloesung genutzt
     werden
@@ -196,8 +232,19 @@
   zu einer duennen lichtschicht zusammenlaeuft
 *** phase modulation
 **** digital holography
+- v. emilianis ansatz mit IFTA algorithmus
+- 3d lichtfeld generierung
+- bei 2 photonen treten staerkere speckle auf
+- bisherigen text besser von unserer holographie methode abgrenzen
+  (emiliani kontrolliert phase in pupillen ebene, wir in intermediate
+  image)
 **** generalized phase contrast
-**** generalized phase contrast with temporal focusing 
+- beschreibe technik, braucht konstanten fill factor
+- hat besseren durchsatz als andere intensity modulationsmethoden
+**** generalized phase contrast with temporal focusing
+- sehr vorteilhafte kombination, weil speckle verschmiert werden und
+  nur eine ebene aktiviert wird
+- bloederweise braucht man einen teuren laser
 * the concept of spatio-angular microscopy
 ** motivation
   - describe how our microscope is supposed to work
@@ -218,19 +265,57 @@
 
 ** initial step: sectioning through structured illumination
    - describe non-robustness of the typical max-min method
+   - wir haben artefakte in der max-min rekonstruktion beobachtet,
+     wenn wir ein grobes streifenmuster (8 forthdd slm pixel periode)
+     mit laser beleuchtet haben
+     - irgendwann hat rainer das erklaert aber ich kann mich nicht
+       mehr dran erinnern aber es waere cool, wenn ich die story
+       bringen koennte
+     - grobes gitter heisst im amplitudenbild: einige ordnungen (nicht
+       nur 3) gehen durch die bfp
+     - irgendwie kam es dadurch im intensitaetsbild zu einigen hoehere
+       ordnungstermen
+     - bei LED (extended source) werden die weggemittelt, bei laser
+       nicht
+   - bei verwendung von LED beleuchtung und groben gittern sind keine
+     artefakte sichtbar
 *** hilo
+    - hilo braucht zum einen nur zwei bilder und ist damit schneller
+    - zum anderen treten auch bei laserbeleuchtung keine artefakte auf
+      (obwohl man fuer hilo schon besser mit nur 3 ordnungen
+      beleuchtet, um den crosstalk zu minimieren)
     - refer to appendix for a thorough description, comparison and
       discussion of the different methods
+    - ein bisschen kopfzerbrechen bereitet mir noch der bias
+      - im paper habe ich das nicht verstanden [2011 mertz Optically
+        sectioned in vivo imaging with speckle illumination HiLo
+        microscopy]
+      - aber ich habe ihr java imagej plugin decompiliert bekommen und
+        koennte versuchen ihre implementierung zu verstehen
+        (andererseits ist mir das jetzt ziemlich egal)
+      - unter equation 10: The first two terms are variance
+        contributions of shot noise. Filtering has the effect of
+        reducing noise variance and is taken into account with the
+        integral term. This bias must thus be subtracted from sigma^2
+        prior to the evaluation of C. We have also not considered the
+        effects of pixelation in the CCD camera. If the pixel size is
+        non-negligible ...
 ** optimization using raytracer
+   - erklaere warum raytracing (statt wellenoptik) als modell reicht
    - skew rays and realtime feedback are necessary to make the
      raytracer useful during image acquisition
    - braucht man um die offenen winkel zu bestimmen
    - aplanatic model for microscope objective, weil hersteller ja
      nicht ihre design parameter freigeben und ich trotzdem den
      einfluss von non-index matched embedding kennen muss
-
+     
 * angular illumination optimization
 ** more on the raytracer
+   - ein problem mit meinem text war, dass ich die sinus bedingung
+     nicht richtig verstanden und beschrieben hatte, hier sind die
+     wichtigsten dinge aus prof. gross vorlesung (nur wenig davon kann
+     ich einbauen, ich glaube das beste ist die energieerhaltung und
+     dass feldpunkte scharf abgebildet werden)
    - aplanatic model for microscope objective
      - exact design parameters of objectives are often not available
      - aplanatic correction:
@@ -248,25 +333,66 @@
            only defined for infinitesimal small rays)
        - spherical aberration correction
 	 - coma completely corrected
-    - method of treating non-index matched specimen with unknown
-      objective design parameters
+    - an dem raytracer ist wichtig, dass ich damit den einfluss von
+      non-index matched embedding auf den strahlenverlauf auch ohne
+      genaue kenntnis der designparameter des objektivs bestimmen kann
+      - das wird wichtig, wenn man unser system praktisch fuer hilo
+        (highly inclined ...)  einsetzen will (z.b. embryo in agarose
+        mit oelobjektiv), obwohl ich der mittlerweile der meinung bin,
+        dass man dann ein wasserobjektiv nehmen sollte
 
 * device 1: prototype for spatio-angular illumination
 ** overview
- - dvi and usb lcos
+ - beschreibe alles mit usb forthdd display, erwaehne vorteile von
+   graphikkarte+ dvi lcos und schreibe details in appendix
 ** optical components
+- variable tubuslinse 
+- schematic mit lichttunnel
 ** electronics
-** a protocol for spatio-angular illumination control
+- z-stage, camera, die zwei displays und laser muessen aufeinander
+  abgestimmt werden
 ** mapping
-   ** raytracing
+- beschreibe vermessung der koordinatensysteme zwischen focal plane
+  slm und kamera
+- fuer pupil plane slm habe ich leider keine vollstaendige methode,
+  ich zentriere den pupil plane slm auf den ring eines
+  phasenobjektivs, kann aber die azimuthale rotation nicht vermessen
+  - in erster naeherung sind ja beide displays ziemlich genau aliniert
+  - aber ich hatte immer gehofft, eine praezise vermessung ginge mit
+    spiegel als sample und einer bertrand linse -- da bin ich aber nie
+    dazu gekommen (hauptsaechlich weil ich nie einen
+    halbdurchlaessigen spiegel statt dichroic hatte, wenn mal alles
+    funktioniert hat)
    
-** optimization of the illumination pattern
-   
-* mma as an intensity modulator
-  - we want intensity modulator
-  - give an estimate of the ettendue that the system can cope with
+* optimization of the spatio-angular illumination patterns   
+- erklaere wie ich schrittweise zu meiner optimierungsmethode gekommen
+  bin
+- erst raytracing von bfp ins sample (weil die strahlablenkung am
+  objektiv dann einfacher auszurechnen geht)
+- dann hat man aber shot noise bekommen, deshalb habe ich dann
+  rueckwaerts vom sample in die backfocal plane getraced
+- weil ich als sample kugeln angenommen habe, konnte ich die anzahl
+  der strahlen erheblich vermindern (pro nukleus einen von strahl von
+  der mitte und 7 von der peripherie oder so)
+- spaeter habe ich das modell dann soweit erweitert, dass auch der
+  einfluss von nicht index-matched embedding beruecksichtigt wird
 
-  - description of the mma device
+- als diskussion bleibt, dass die optimierungsmoeglichkeiten noch
+  lange nicht ausgereizt sind. wenn zwei nuklei nahe beieinander
+  liegen, macht es vielleicht sinn, sie gleichzeitig zu beleuchten
+  - wenn man sowas auch mit beruecksichtigen will, wird der suchraum
+    ziemlich gross
+  - ich habe zwar angefangen mich mit A*-search und so zu
+    beschaeftigen aber habe da nie weitergemacht, weil das geraet ja
+    erstmal laufen musste
+
+* mma as an intensity modulator
+  - mma kontrolliert nur die phasen, wir wollen aber die intensitaet
+    modulieren
+  - give an estimate of the ettendue that the microscope system can
+    cope with
+
+  - description of the mma device (von florians spie paper)
     - consists of 256x256 mirrors with a pitch of 16um
     - each mirror hangs on two thin hinges and can be tilted by up to
       2 degree by electrostatic fields, corresponding to out-of-plane
@@ -279,6 +405,14 @@
       50% (but not at this high framerate)
 ** approach using a fourier filter
 *** theory
+    - ich will die formeln hinschreiben und ein bild zeigen, wie die
+      spiegel klappen
+    - anhand der formeln kann man dann das fourierbild diskutieren
+      - hier waere es gut wenn ich verstehen wuerde warum fraunhofer
+        damals das symmetrische fourier pattern einem ordentlichen
+        balzed grating vorgezogen hat (das entsprechende patent "1995
+        Digital micro-mirror based image simulation system" war aber
+        so umfangreich, dass ich den punkt nicht gefunden habe)
     - phase distribution in mma plane: $\sum_\p [(\exp(i \k(p_x,p_y)
       \x) \rect(x,y))\otimes \delta(x-p_x\Delta x, y-p_y\Delta y)]$
     - its fourier transform: $\sinc(k_x-k(p_x,p_y)) \exp(i\k(p_x\Delta
@@ -293,25 +427,75 @@
       (extended illumination source)
     - point to fraunhofer publications
 ** approach using a shearing interferometer
+- erklaere dass man bei verwendung des interferometers eine hoehere
+  ettendue erwarten kann
 *** theory
+    - am besten waere, wenn ich eine referenz auf das betroffene
+      patent habe (rainer oder kai fragen)
     - point to sheppard
     - refer to experiment in appendix
+*** conclusion
+- beschreibe resultate des experiments
+- grauwerte waren sichtbar, jedoch nicht so gut, wie erhofft
+- piston spiegel bewegung ist notwendig fuer guten kontrast, bedarf
+  kleinere nomarski prismen und kann deshalb hoehere ettendue
+  erreichen (als torsion mirrors)
 
 * device 2: holographic approach
-  - what about sectioning by structured illumination? will this method
-    still work? according to rainer: yes
-* experimental results
+  - beschreibung der methode: stelle phasen gitter in intermediate
+    image dar. gitterkonstante und richtung steuert den
+    beleuchtungswinkel. gitterkontrast die intensitaet
+  - erlaeutere, dass auch strukturierte beleuchtung moeglich sein sollte
+  - vorteile:
+    - nur ein display, keine triggerung und weniger optik notwendig
+      (wenn das display gut ist, bei holoeye braucht man fuer gut
+      performance vermutlich schon auf einem kurzen puls, wenn
+      fluessigkristalle sich stabilisiert haben)
+  - nachteile: 
+    - erlaubt nur kleine ettendue (laser beleuchtung oder wirklich
+      kleine extended source ist notwendig)
+    - holoeye phasendisplay hat schlechte qualitaet (zum an und
+      ausschalten funktioniert es aber an graustufen glaube ich nicht
+      so recht)
+* experimental results with spatio-angular microscope (device 1)
 ** angular acceptance for different immersion media
+- volles feld beleuchtet mit kleinen fenster vom pupil plane slm
+- damit kann ein bild der pupillenebene des oelobjektivs ermittelt werden
+- oder ein bild des akzeptanzwinkels, wenn embeddingmedium kleine
+  brechzahl als immersion
 ** sectioning by structured illumination with the focal plane SLM
+- zeige bead images mit strukturierter beleuchtung und max-min
+  rekonstruktion (meine bilder haben die streifenartefakte, um die
+  position der beads zu finden ist das okay)
 ** illuminating a single bead within 3d distribution with various angles ;; data might be flawed
+- nachdem ich die dreidimensionale position der beads bestimmt habe,
+  wollte ich sie beleuchten -- vermutlich hat sich der mma da manchmal
+  abgeschalten, anders kann ich mir nicht erklaeren, dass die
+  differenz der bilder nicht unterschiedliche background fluorescence
+  zeigt
 ** bleaching fluorescent gel
+- zumindest das experiment hat funktioniert
 * discussion
 * outlook
 * appendix
 ** camera characterization
+- andor basic code zur datenaufnahme
+- python code fuer auswertung
 ** raytracer
-** mapping camera coordinates onto LCoS coordinates (if additional code is necessary)
-** contrast generation by fourier filtering the mma with incoherent illumination
+- eigentlich sollte ich die formeln in den haupttext uebernehmen, ich
+  weiss noch nicht so richtig, ob ich ueberhaupt einen appendix fuer
+  den raytracer brauche
+** mapping camera coordinates onto LCoS coordinates
+- bilder und die formel beschreibe ich im haupttext, falls noch mehr
+  notwendig ist, kommt das hier rein
+** (contrast generation by fourier filtering the mma with incoherent illumination)
+- das lasse ich weg
+- eigentlich wollte ich wellenoptische simulation des
+  schlierenoptischen systems zeigen, aber das finde ich nicht
+  sonderlich interessant und ich kann es vermutlich nicht so gut
+  machen wie mehta, sheppard (schliesslich ist eine partiell
+  koheraente simulation notwendig und da muss man dann mit dem
+  sampling im phase space aufpassen)
 ** hilo
 **** local variance estimation (not mine, maybe into appendix?)
 **** single side-band demodulation (not mine, maybe into appendix?)
@@ -321,8 +505,12 @@
    - they expect more formulas (how can i add more formulas)
    - i think i should modify the examples, to also show the sectioning
      performance
+** forthdd dvi display connected to graphics card
+- zeige meine messungen mit dem dvi anschluss
+- erklaere aufbau und seine probleme
 
-
+** intensity contrast generation by shearing interference
+- beschreibe mma experimente
 
 * zeitplan
   - abgabe spaetestens am 21. maerz, deadline: 1 woche vorher: 14. maerz

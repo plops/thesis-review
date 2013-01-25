@@ -60,6 +60,8 @@
     - darauf hinweisen, dass ich die holographische methode
       experimentell untersucht habe und auch den dic ansatz fuer
       intensitaetskontrasterzeugung
+    - in-vision hat die optische hardware gebaut, fraunhofer das mma,
+      die wurmexperimente und das gel wurden in pasteuer entwickelt
   - jedes kapitel erklaeren
   - erklaerung das der source code frei verfuegbar ist und
     dokumentieren, was er beinhaltet
@@ -255,6 +257,53 @@
   - beides intensitaetsmodulatoren
   - PP-SLM kann grauwerte
 
+  - erforschen einen aehnlichen ansatz wie levoy
+  - focal plane slm und pupil plane slm modulieren die intensitaet des
+  - damit kontrollieren wir gleichzeitig die oertliche
+    beleuchtungsverteilung im feld als auch die winkelverteilung
+  - hourglass-all zeigt an zwei einfachen, exemplarischen
+    fluorphorverteilungen, was damit gemeint ist
+    - in (a) wird ein einzelner bead mit allen winkeln beleuchtet,
+      d.h. das feld wird nur dort beleuchtet, wo sich der in-focus
+      bead befindet
+      - im zwischenbild sieht man das scharfe bild des in-focus beads
+	ueberlagert mit einem unscharfen hintergrund, der vom out of
+	focus bead stammt
+      - dieser fall entspricht der verteilung des anregungslichts im
+	konfokalem mikroskop und die clem technik koennte eingesetzt
+	werden, um die unnoetige beleuchtung des samples signifikant zu
+	reduzieren
+      - hier kann man auch sehen, dass die out of focus sample
+	informationen durch die clem steuerung mit moduliert wird. das
+	fuehrt zu vernachlaessigbaren artefakten im konfokalen clem bild
+	(dessen pinhole detektiert ja nur licht in unmittelbarer
+	nachbarschaft des scharfen in-focus beads)
+      - genau dieser effekt kann jedoch zu erheblich staerkeren
+	artefakten fuehren, wenn clem in einem widefield mikroskop
+	eingesetzt werden soll. das erklaert vermutlich auch, warum es
+	kein publikation mit widefield clem gibt
+    - (b) zeigt, wie die einschraenkung der beleuchtungswinkel die
+      anregung des out of focus beads verhindert
+      - je nach struktur des samples koennte die winkelkontrolle der
+        beleuchtung clem auch im widefield mikroskop ermoeglichen
+      - denkbar waere beispielsweise mehrere aufnahmen derselben
+        feldverteilung mit unterschiedlichen
+        winkelverteilungen. etwaige aenderungen im detektierten
+        widefield bild wuerden dann den schluss auf out of fokus
+        information und damit die korrektur von artefakten zulassen
+  - wir beherrschen damit in gewisser weise das lichtfeld
+    - verglichen mit levoy koennen wir volle aufloesung erreichen
+      (falls keine aberrationen auftreten)
+    - polarisation wird nicht kontrolliert
+    - wir koennen nicht verschiedene punkte im feld gleichzeitig aus
+      verschiedenen winkeln beleuchten
+      - das ist aber fuer viele anwendungen nicht unbedingt
+        erforderlich
+      - ich argumentiere, dass es wichtig ist, hohe aufloesung
+        erreichen zu koennen, denn das laesst den weg offen, auch
+        hochaufloesende bilder mit unserem mikroskop zu erzeugen
+      - vermutlich interessant aber bisher auch noch nicht untersucht
+        ist die moeglichkeit hohe aufloesung in der bfp zur erreichen
 ** a protocol for spatio-angular illumination control
   - explain on the example of an embryo or neuron how an experiment
     might be conducted 

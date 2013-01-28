@@ -136,8 +136,42 @@
       innerhalb gewisser grenzen (rauschen) wieder aus dem bild
       rausrechnen
 ** image detectors
+  - fruehe ccd kameras besassen nur einen vorverstaerker und adc und
+    liefen mit einer hohen taktrate um gesamte frames auszulesen
+    (1-40MHz)
+  - dadurch bestimmt der schritt der vorverstaerkung das rauschen (bei
+    den in der mikroskopie ueblichen lichtarmen bildern)
+  - readnoise wird angegeben in elektronen pro pixel und war bei guten
+    ccd mit (1MHz ausgelesen) etwa 6 elektronen pro pixel, d.h. ein
+    signal von 100/60*6=10 photonen ginge im rauschen unter
+  - durch die einfuehrung von em ccd um die jahrtausendwende gelang es
+    die vorverstaerkung erheblich zu verbessern und das readnoise
+    deutlich unter einem elektron pro pixel zu druecken
+    - 512 register, hohe spannung, wsk elektronen aus lattice zu
+      schlagen, jedes pixel geringe verstaerkung insgesamt wird bis zu
+      300 gain, multiplikatives rauschen
+    - eindruck als ob quanteneffizienz durch em verringert wird
+    - fuer viele experimente dennoch besser
+    - man kann gain noch mehr erhoehen, dann aber nur noch
+      einzelphotonen detektieren, das geht ohne verminderte
+      quanteneffizienz
+  - in den letzten jahren ist ein weiteres konzept verwirklicht wurden:
+    - in scientific cmos hat jede spalte ihren eigenen vorverstaerker
+      und adc
+    - dadurch kann die taktrate dieser elemente um 3 groessenordnungen
+      vermindert werden und man erreicht auch ohne em gain
+      ausleserauschen von etwa 1 elektron pro pixel
 *** characterization of read noise
     - beschreibe mein experiment, wo ich zwei em ccd kameras verglichen habe
+    - es reichen wenige bilder einer inhomogenen (aber glatten) lichtverteilung
+      - beleuchtungsintensitaet (oder irradianz?) muss konstant sein
+        und poissonverteilt (anti-bunching vermeiden)
+        - ich benutze fluoreszenzfarbstoff
+	- waere es nicht besser, eine led zu benutzen? 
+        - halogenlampe macht laut rainer bunching (aber ich habe keine
+          referenz dazu gefunden)
+      - rand sollte dunkel sein, damit drift keine grossen aenderungen
+        hervorruft
     - ich zeige nur die ergebnisse fuer die handelsuebliche kamera,
       weil ich nicht weiss, ob ich daten der ixon ultra verwenden darf
       (ausserdem wuerde das nicht viel helfen)
@@ -185,6 +219,11 @@
     - sony produziert seit 2007 back illuminated cmos fuer smart
       phones; vorhersagen, dass die auch irgendwann fuer scientific
       applications kommen
+    - charakterizierung wird deutlich schwieriger, weil man gain jedes
+      pixels messen muss
+      - statt ein inhomogenes muster ueber den gesamten chip zu
+        senden, muss man viele homogene unterschiedliche intensitaeten
+        aufnehmen
 * methods of controlling illumination patterns
 - ueberblick ueber aktuelle literatur: methoden um unnuetze anregung
   im mikroskop zu verringern
@@ -215,6 +254,13 @@
 **** programmable array microscope
 - erwaehne, dass die technik mit dmd im detektionspfad mit schnellen
   rauscharmen kameras obsolet geworden ist
+  - nachteile: 
+    - interpolation zwischen beiden kameras notwendig (zerstoert
+      poissonannahme der daten, verringert aufloesung)
+    - streuung des anregungslichts am slm kann kontrast vermindern
+    - ebenso etwaig auftretende fluoreszenz
+    - da slm black/white ist, entsteht ein sehr breites pattern in der
+      back focal plane
 **** light field microscope
 - erklaere problem mit phasenraumsampling
 - hauptproblem: 
@@ -304,6 +350,22 @@
         hochaufloesende bilder mit unserem mikroskop zu erzeugen
       - vermutlich interessant aber bisher auch noch nicht untersucht
         ist die moeglichkeit hohe aufloesung in der bfp zur erreichen
+  - c) zeigt eine sample konfiguration, bei der angular control
+    alleine kaum zu einer verminderung des out of focus lichtes fuehrt
+    - eine derartige anordnung der fluorophore tritt haeufig in proben
+      auf
+    - so lange ein grosser in focus bereich in der probe beleuchtet
+      wird, haben winkelaenderungen keine auswirkung auf die
+      lichtdosis, die der out of focus bead bekommt
+    - mit dem focal plane slm sind wir in der lage, den in focus
+      bereich in kleinere bereiche zu teilen und nacheinander mit
+      entsprechend optimierten winkeln zu beleuchten, die den out of
+      focus bead nicht anregen
+    - selbst bei finitem ausleserauschen macht dieser ansatz sinn, man
+      kann ja einfach die unbeleuchteten stellen im bild null setzen
+      und vermindert somit nicht das SNR wenn mehrere bilder
+      zusammengefuegt werden (erst dachte ich das geht nur mit
+      modernen kameras)
 ** a protocol for spatio-angular illumination control
   - explain on the example of an embryo or neuron how an experiment
     might be conducted 
@@ -312,7 +374,7 @@
   - irgendwelche masken fuer focal plane SLM und pupil plane SLM
     finden um bilder von in-focus nuklei zu machen
 
-** initial step: sectioning through structured illumination
+b** initial step: sectioning through structured illumination
    - describe non-robustness of the typical max-min method
    - wir haben artefakte in der max-min rekonstruktion beobachtet,
      wenn wir ein grobes streifenmuster (8 forthdd slm pixel periode)
@@ -516,12 +578,13 @@
 - zeige bead images mit strukturierter beleuchtung und max-min
   rekonstruktion (meine bilder haben die streifenartefakte, um die
   position der beads zu finden ist das okay)
-** illuminating a single bead within 3d distribution with various angles ;; data might be flawed
+** illuminating a single bead within 3d distribution with various angles 
 - nachdem ich die dreidimensionale position der beads bestimmt habe,
   wollte ich sie beleuchten -- vermutlich hat sich der mma da manchmal
   abgeschalten, anders kann ich mir nicht erklaeren, dass die
   differenz der bilder nicht unterschiedliche background fluorescence
   zeigt
+- ich habe aufnahmen, die ich waehrend der viva gezeigt habe
 ** bleaching fluorescent gel
 - zumindest das experiment hat funktioniert
 * discussion

@@ -358,7 +358,7 @@
       wird, haben winkelaenderungen keine auswirkung auf die
       lichtdosis, die der out of focus bead bekommt
     - mit dem focal plane slm sind wir in der lage, den in focus
-      bereich in kleinere bereiche zu teilen und nacheinander mit
+      bereich in kleinere bereiche zu teilen (d) und nacheinander mit
       entsprechend optimierten winkeln zu beleuchten, die den out of
       focus bead nicht anregen
     - selbst bei finitem ausleserauschen macht dieser ansatz sinn, man
@@ -366,6 +366,16 @@
       und vermindert somit nicht das SNR wenn mehrere bilder
       zusammengefuegt werden (erst dachte ich das geht nur mit
       modernen kameras)
+  - strukurierte beleuchtung in unserem system weitet die genutzten
+    winkel erheblich auf
+    - bei groben gittern kommt es zu vielen hoeheren ordnungen, weil
+      der focal plane slm nur schwarz/weiss darstellt
+    - die darstellung eines gitters erfolgt nur in einer orientierung
+      mit optimalen kontrast (weil polarisation in unserem prototypen
+      nicht gedreht werden kann)
+    - d.h. es gibt eine ideale konfiguration fuer strukturierte
+      beleuchtung, die fuer optisches scheiden verwendet werden kann
+      aber nicht sonderlich fuer aufloesungserhoehung taugt
 ** a protocol for spatio-angular illumination control
   - explain on the example of an embryo or neuron how an experiment
     might be conducted 
@@ -374,7 +384,7 @@
   - irgendwelche masken fuer focal plane SLM und pupil plane SLM
     finden um bilder von in-focus nuklei zu machen
 
-b** initial step: sectioning through structured illumination
+*** initial step: sectioning through structured illumination
    - describe non-robustness of the typical max-min method
    - wir haben artefakte in der max-min rekonstruktion beobachtet,
      wenn wir ein grobes streifenmuster (8 forthdd slm pixel periode)
@@ -412,10 +422,25 @@ b** initial step: sectioning through structured illumination
         effects of pixelation in the CCD camera. If the pixel size is
         non-negligible ...
 ** optimization using raytracer
-   - erklaere warum raytracing (statt wellenoptik) als modell reicht
+   - das modell der strahlenoptik ist ausreichend:
+     - der focal plane slm fungiert als fourier filter fuer den pupil
+       slm
+     - wenn der focal plane slm licht nur durch einen kleinen bereich
+       hindurchlaesst (wenige pixel) funktioniert zum einen die
+       winkelbeleuchtung kaum mehr, weil das licht durch beugung an
+       den scharfkantigen focal plane slm features ueber die gesamte
+       back focal plane verteilt wird 
+     - zum anderen wird sehr wenig licht durch das gesamtsystem
+       hindurchgelassen. man koennte auch nur kleine punkte im objekt
+       beleuchten und braeuchte viele einzelne teilbilder um ein
+       gesamtbild zusammenzusetzen (aber: neuron schnitt)
+     - angenommen uns reichen eine scheibe mit 3 um aufloesung im
+       objekt, das entspricht beim verwendeten objektiv einem anteil
+       von ...% der pupille
+   - braucht man um die offenen winkel zu bestimmen
    - skew rays and realtime feedback are necessary to make the
      raytracer useful during image acquisition
-   - braucht man um die offenen winkel zu bestimmen
+
    - aplanatic model for microscope objective, weil hersteller ja
      nicht ihre design parameter freigeben und ich trotzdem den
      einfluss von non-index matched embedding kennen muss
@@ -514,6 +539,8 @@ b** initial step: sectioning through structured illumination
       lambda/100 of the mirror actuation
     - can achieve frame rates of up to 1kHz and duty cylces of up to
       50% (but not at this high framerate)
+
+    - erklaere, die elektroden
 ** approach using a fourier filter
 *** theory
     - ich will die formeln hinschreiben und ein bild zeigen, wie die

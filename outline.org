@@ -294,6 +294,27 @@
   nur eine ebene aktiviert wird
 - bloederweise braucht man einen teuren laser
 * the concept of spatio-angular microscopy
+  - hier zeigen wir, wie unser spatio-angulares mikroskop funktioniert
+  - zunaechst motivieren wir diese beleuchtungsart anhand zweier
+    generischen, in gewoehnlichen samples oft vorkommenden beispielen.
+  - dann beschreiben wir entscheidungen bezueglich der anordnung der
+    optischen komponenten, die wir bereits frueh in der design phase
+    treffen mussten. von allen bisher veroeffentlichten ansaetzen der
+    beleuchtungssteuerung in der mikroskopie kommt unserem ansatz das
+    lichtfeldmikroskop (levoy) am naechsten. wir erklaeren die
+    unterschiede zwischen beiden techniken und argumentieren, warum
+    unser ansatz dem lichtfeldmikroskop nicht nachsteht und in der
+    praxis auch einige vorzuege bietet.
+  - es stellt sich heraus, das eine effektive (FIXME effiziente?), die
+    phototoxizitaet mindernde, nutzung des spatio-angularen mikroskops
+    recht viel wissen ueber die probe bedarf (fluorophor- und
+    brechzahlverteilung). die auswahl passender beleuchtungsmuster
+    erfordert eine vorhersage, oder zumindest das verstaendnis, der
+    dreidimensionalen lichtverteilung im objektraum. im letzten
+    abschnitt dieses kapitels beruehren wir themen der
+    bildverarbeitung und ziehen auch die parallele zur medizinischen
+    tumortherapie.
+
 ** motivation
   - describe how our microscope is supposed to work
   - an einfachen beispiel zeigen, wie spatio angular illumination
@@ -438,6 +459,10 @@
      - angenommen uns reichen eine scheibe mit 3 um aufloesung im
        objekt, das entspricht beim verwendeten objektiv einem anteil
        von ...% der pupille
+     - die optimierung aehnelt grundsaetzlich der aufgabe der
+       bestrahlungsberechnung (FIXME was ist das richtige wort) in der
+       medizinischen tumortherapie mit ionisierender strahlung (gamma
+       oder roentgen)
    - braucht man um die offenen winkel zu bestimmen
    - skew rays and realtime feedback are necessary to make the
      raytracer useful during image acquisition

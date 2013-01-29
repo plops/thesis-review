@@ -306,14 +306,16 @@
     unser ansatz dem lichtfeldmikroskop nicht nachsteht und in der
     praxis auch einige vorzuege bietet.
   - es stellt sich heraus, das eine effektive (FIXME effiziente?), die
-    phototoxizitaet mindernde, nutzung des spatio-angularen mikroskops
-    recht viel wissen ueber die probe bedarf (fluorophor- und
-    brechzahlverteilung). die auswahl passender beleuchtungsmuster
-    erfordert eine vorhersage, oder zumindest das verstaendnis, der
-    dreidimensionalen lichtverteilung im objektraum. im letzten
-    abschnitt dieses kapitels beruehren wir themen der
-    bildverarbeitung und ziehen auch die parallele zur medizinischen
-    tumortherapie.
+    phototoxizitaet mindernde nutzung des spatio-angularen mikroskops
+    mehr wissen ueber die probe bedarf (fluorophor- und
+    brechzahlverteilung) als herkoemmliche mikroskopiemethoden oder
+    ein spim mikroskop (ref spim). die computergesteuerte auswahl
+    passender beleuchtungsmasks erfordert eine vorhersage, oder
+    zumindest das verstaendnis, der dreidimensionalen lichtverteilung
+    im objektraum. im teil dieses kapitels beschreiben wir, wie wir
+    unser spatio-angulares mikroskop prakisch umsetzen. dabei
+    beruehren wir themen der bildverarbeitung und ziehen auch die
+    parallele zur medizinischen tumortherapie.
 
 ** motivation
   - describe how our microscope is supposed to work

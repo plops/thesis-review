@@ -305,6 +305,7 @@
 
   - erforschen einen aehnlichen ansatz wie levoy
   - focal plane slm und pupil plane slm modulieren die intensitaet des
+    anregungslichts
   - damit kontrollieren wir gleichzeitig die oertliche
     beleuchtungsverteilung im feld als auch die winkelverteilung
   - hourglass-all zeigt an zwei einfachen, exemplarischen

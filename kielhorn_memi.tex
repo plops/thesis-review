@@ -1,4 +1,3 @@
-
 %\documentclass[DIV19]{scrartcl}
 %\usepackage[paper size={90mm, 120mm},left=2mm,right=2mm,top=2mm,bottom=2mm,nohead]{geometry}
 % FIXME try prettyref
@@ -35,7 +34,7 @@
                                            % line breaks
 \usepackage{units}
 \usepackage[disable]{todonotes} % for draft, disable for final
-%\usepackage{refcheck} % for draft, uncomment for final
+\usepackage{refcheck} % for draft, uncomment for final
 \usepackage{lineno}
 \usepackage{nomencl}
 %\special{background Black}\special{color Green}
@@ -93,6 +92,8 @@
 \def\abs#1{\mathopen| #1 \mathclose|}
 
 \newcommand{\bild}[1]{\includegraphics[width=12cm]{#1}}
+
+\newcommand{\svginput}[2]{{\def\svgscale{#1}\input{#2.eps_tex}}}
 
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator*{\sinc}{sinc}

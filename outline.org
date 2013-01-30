@@ -302,7 +302,9 @@
     fluorophore verteilungen.
   - dann beschreiben wir entscheidungen bezueglich der anordnung der
     optischen komponenten, die wir bereits frueh in der design phase
-    treffen mussten. von allen bisher veroeffentlichten ansaetzen der
+    treffen mussten. Ausserdem positionieren wir unsere Methode im
+    aktuellen Forschungsfeld zur Beleuchtungskontrolle in
+    Mikroskopen. Von allen bisher veroeffentlichten ansaetzen der
     beleuchtungssteuerung in der mikroskopie kommt unserem ansatz das
     lichtfeldmikroskop (levoy) am naechsten. wir erklaeren die
     unterschiede zwischen beiden techniken und gehen auf ihre

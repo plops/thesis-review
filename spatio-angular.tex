@@ -2,33 +2,58 @@
 \label{sec:concept}
 \begin{summary}
   Here we introduce our spatio-angular microscope. First we motivate
-  the concept of this illumination system using 
-  exemplary fluorophore distributions, that occur
-  in typical specimen.
+  the concept of its illumination system using exemplary fluorophore
+  distributions, that occur in typical specimen.
 
   Then we describe some decisions we faced during the initial design
-  phase concerning the arrangement of optical components. Of all published
-  techniques for excitation illumination control, the light field
-  microscope \ref{levoy} comes closest to our approach.
-  We explain differences between both techniques and discuss their
-  respective pros and cons. 
-  We discuss the peculiarities and limitations of the hardware components
-  only in later chapters (\ref{sec:dev1}, \ref{sec:mma}).
-  Initially, the details would be detrimental to clarity.
+  phase concerning the arrangement of optical components. Furthermore,
+  we position our method within known approaches of light control for
+  microscopy. Of all published techniques for excitation illumination
+  control, the light field microscope \ref{levoy} comes closest to our
+  approach.  We explain differences between both techniques and
+  discuss their respective pros and cons.  We (FIXME verschieben)
+  discuss the peculiarities and limitations of the hardware components
+  only in later chapters (\ref{sec:dev1}, \ref{sec:mma}).  Initially,
+  the details would be detrimental to clarity.
 
-  It turns out, that effective use of the
-  spatio-angular microscope, which results in a
-  reduction of phototoxicity, requires more knowledge (distribution of refractive index and fluorophores)
-  about the specimen than a conventional or a SPIM microscope
-  (\ref{spim}). 
-  The computer-based selection of suitable illumination masks requires the
-  prediction, or at least an understanding, of the three-dimensional
-  distribution of light within the specimen.
-  In the last part of this
-  chapter, we describe how we practically implement our spatio-angular
-  microscope. Here we touch topics of image processing and we also draw
-  parallels to treatment planning for radiotherapie of tumors.
+  It turns out, that the effective use of the spatio-angular
+  microscope, requires more knowledge about the specimen than a
+  conventional or a SPIM microscope (\ref{spim}). Ideally the
+  distribution of refractive index and fluorophores within the
+  specimen should be known. If these parameters were known perfectly,
+  there wouldn't be any (FIXME) necessity for an image in the first
+  place. However, while imaging a known specimen, predictions (FIXME
+  gute) of these parameters can often be made. The higher the
+  precision of these predictions, the greater the reduction in
+  phototoxicity will be.
+
+  The computer-based selection of appropriate illumination masks
+  requires the prediction (FIXME), or at least an estimate (FIXME
+  understanding), of the three-dimensional distribution of light within
+  the specimen.
+
+  In the last part of this chapter, we describe how we practically
+  implement the computational control loop in our spatio-angular
+  microscope. Here we touch topics of image processing and we also
+  draw parallels to treatment planning for radiotherapie of tumors.
 \end{summary}
 \section{Motivation}
+
+
+\begin{figure}[!hbt]
+  \centering
+  \svginput{1.5}{memi-simple}
+  \caption{Simplified schematic of the illumination system in our
+    spatio-angular microscope. A homogeneous extended light source
+    illuminates from the left. It is imaged by $L_1$ and $L_2$ into
+    the intermediate image $F'$. Then the tubelens $L_3$ and the
+    objective $L_4$ form an image of $F'$ in the sample plane $F$. The
+    first spatial light modulator SLM1 is in the plane P', which is
+    conjugate to the pupil (BFP) P of the objective. Using SLM1 we can
+    control illumination angles in the sample. SLM2 is directly imaged
+    into the sample and allows spatial illumination
+    control.} 
+  \label{fig:memi-simple}
+\end{figure}
 \section{A protocol for spatio-angular illumination control}
 \section{Finding optimal illuminationOptimization using a raytracer}

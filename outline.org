@@ -294,17 +294,22 @@
   nur eine ebene aktiviert wird
 - bloederweise braucht man einen teuren laser
 * the concept of spatio-angular microscopy
-  - hier zeigen wir, wie unser spatio-angulares mikroskop funktioniert
+** summary
+  - hier zeigen wir, wie unser spatio-angulares mikroskop im prinzip
+    funktioniert
   - zunaechst motivieren wir diese beleuchtungsart anhand zweier
-    generischen, in gewoehnlichen samples oft vorkommenden beispielen.
+    beispielhaften, in gewoehnlichen samples oft vorkommenden
+    fluorophore verteilungen.
   - dann beschreiben wir entscheidungen bezueglich der anordnung der
     optischen komponenten, die wir bereits frueh in der design phase
     treffen mussten. von allen bisher veroeffentlichten ansaetzen der
     beleuchtungssteuerung in der mikroskopie kommt unserem ansatz das
     lichtfeldmikroskop (levoy) am naechsten. wir erklaeren die
-    unterschiede zwischen beiden techniken und argumentieren, warum
-    unser ansatz dem lichtfeldmikroskop nicht nachsteht und in der
-    praxis auch einige vorzuege bietet.
+    unterschiede zwischen beiden techniken und gehen auf ihre
+    jeweiligen vor und nachteile ein.  auf eigenheiten und
+    beschraenkungen der eingesetzten hardware komponenten gehen wir
+    erst in einem spaeteren kapitel ein (ref sec:dev1, sec:mma), weil
+    die details der verstaendlichkeit zunaechst abtraeglich waeren.
   - es stellt sich heraus, das eine effektive (FIXME effiziente?), die
     phototoxizitaet mindernde nutzung des spatio-angularen mikroskops
     mehr wissen ueber die probe bedarf (fluorophor- und
@@ -312,12 +317,13 @@
     ein spim mikroskop (ref spim). die computergesteuerte auswahl
     passender beleuchtungsmasks erfordert eine vorhersage, oder
     zumindest das verstaendnis, der dreidimensionalen lichtverteilung
-    im objektraum. im teil dieses kapitels beschreiben wir, wie wir
+    im objektraum. im letzten teil dieses kapitels beschreiben wir, wie wir
     unser spatio-angulares mikroskop prakisch umsetzen. dabei
     beruehren wir themen der bildverarbeitung und ziehen auch die
     parallele zur medizinischen tumortherapie.
 
 ** motivation
+  - zunaechst 
   - describe how our microscope is supposed to work
   - an einfachen beispiel zeigen, wie spatio angular illumination
     funktioniert
@@ -473,37 +479,6 @@
      nicht ihre design parameter freigeben und ich trotzdem den
      einfluss von non-index matched embedding kennen muss
      
-* angular illumination optimization
-** more on the raytracer
-   - ein problem mit meinem text war, dass ich die sinus bedingung
-     nicht richtig verstanden und beschrieben hatte, hier sind die
-     wichtigsten dinge aus prof. gross vorlesung (nur wenig davon kann
-     ich einbauen, ich glaube das beste ist die energieerhaltung und
-     dass feldpunkte scharf abgebildet werden)
-   - aplanatic model for microscope objective
-     - exact design parameters of objectives are often not available
-     - aplanatic correction:
-       - find prof gross reference
-       - one optimization goal for a microscope objective is to
-         minimize offence against sine condition
-       - typical grid distortions are in the range of 1e-3
-       - sine condition:
-	 - pupil has spherical shape
-	 - imaging of small isoplanatic field patches around the axis
-           without linear sagittal coma
-         - conservation of energy
-         - linear representation of spatial frequencies in the pupil
-         - same focal length for all angles (focal length normally is
-           only defined for infinitesimal small rays)
-       - spherical aberration correction
-	 - coma completely corrected
-    - an dem raytracer ist wichtig, dass ich damit den einfluss von
-      non-index matched embedding auf den strahlenverlauf auch ohne
-      genaue kenntnis der designparameter des objektivs bestimmen kann
-      - das wird wichtig, wenn man unser system praktisch fuer hilo
-        (highly inclined ...)  einsetzen will (z.b. embryo in agarose
-        mit oelobjektiv), obwohl ich der mittlerweile der meinung bin,
-        dass man dann ein wasserobjektiv nehmen sollte
 
 * device 1: prototype for spatio-angular illumination
 ** overview
@@ -549,6 +524,37 @@
   - ich habe zwar angefangen mich mit A*-search und so zu
     beschaeftigen aber habe da nie weitergemacht, weil das geraet ja
     erstmal laufen musste
+
+** more on the raytracer
+   - ein problem mit meinem text war, dass ich die sinus bedingung
+     nicht richtig verstanden und beschrieben hatte, hier sind die
+     wichtigsten dinge aus prof. gross vorlesung (nur wenig davon kann
+     ich einbauen, ich glaube das beste ist die energieerhaltung und
+     dass feldpunkte scharf abgebildet werden)
+   - aplanatic model for microscope objective
+     - exact design parameters of objectives are often not available
+     - aplanatic correction:
+       - find prof gross reference
+       - one optimization goal for a microscope objective is to
+         minimize offence against sine condition
+       - typical grid distortions are in the range of 1e-3
+       - sine condition:
+	 - pupil has spherical shape
+	 - imaging of small isoplanatic field patches around the axis
+           without linear sagittal coma
+         - conservation of energy
+         - linear representation of spatial frequencies in the pupil
+         - same focal length for all angles (focal length normally is
+           only defined for infinitesimal small rays)
+       - spherical aberration correction
+	 - coma completely corrected
+    - an dem raytracer ist wichtig, dass ich damit den einfluss von
+      non-index matched embedding auf den strahlenverlauf auch ohne
+      genaue kenntnis der designparameter des objektivs bestimmen kann
+      - das wird wichtig, wenn man unser system praktisch fuer hilo
+        (highly inclined ...)  einsetzen will (z.b. embryo in agarose
+        mit oelobjektiv), obwohl ich der mittlerweile der meinung bin,
+        dass man dann ein wasserobjektiv nehmen sollte
 
 * mma as an intensity modulator
   - mma kontrolliert nur die phasen, wir wollen aber die intensitaet

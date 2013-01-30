@@ -35,3 +35,4 @@ build/kielhorn_memi.pdf: build/$(latexfile) build/$(chapters) build/objective-tr
 
 build/kielhorn_memi.dvi: build/$(latexfile) build/$(chapters) build/objective-trace.eps_tex build/hourglass-all.eps_tex build/memi-simple.eps_tex
 	rubber --inplace build/$(latexfile)
+

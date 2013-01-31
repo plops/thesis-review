@@ -11,26 +11,24 @@
   microscopy. Of all published techniques for excitation illumination
   control, the light field microscope \ref{levoy} comes closest to our
   approach.  We explain differences between both techniques and
-  discuss their respective pros and cons.  We (FIXME verschieben)
-  discuss the peculiarities and limitations of the hardware components
-  only in later chapters (\ref{sec:dev1}, \ref{sec:mma}).  Initially,
-  the details would be detrimental to clarity.
+  discuss their respective pros and cons.  We address the
+  peculiarities and limitations of the hardware components in later
+  chapters (\ref{sec:dev1}, \ref{sec:mma}).  Initially, the details
+  would be detrimental to clarity.
 
   It turns out, that the effective use of the spatio-angular
   microscope, requires more knowledge about the specimen than a
   conventional or a SPIM microscope (\ref{spim}). Ideally the
   distribution of refractive index and fluorophores in the specimen
-  should be known. If these parameters were known perfectly, there
-  wouldn't be any (FIXME) necessity for an image in the first
-  place. However, while imaging a known specimen, predictions (FIXME
-  gute) of these parameters can often be made. The higher the
-  precision of these predictions, the greater the reduction in
-  phototoxicity will be.
+  should be known. If these parameters were precisely known, there
+  would be no need for an image in the first place. However, while
+  imaging a known specimen, sufficiently good predictions of these
+  parameters can often be made. The higher the accuracy of these
+  prognoses, the greater the reduction in phototoxicity will be.
 
   The computer-based selection of appropriate illumination masks
-  requires the prediction (FIXME), or at least an estimate (FIXME
-  understanding), of the three-dimensional distribution of light in
-  the specimen.
+  requires the prediction, or at least an approximate estimation, of
+  the three-dimensional distribution of light in the specimen.
 
   In the last part of this chapter, we describe how we practically
   implement the computational control loop in our spatio-angular
@@ -38,14 +36,14 @@
   draw parallels to treatment planning for radiotherapie of tumors.
 \end{summary}
 \section{Motivation}
-In order to introduce the basic idea, underlying our spatio-angular microscope,
-first we consider the distribution of excitation light in the object
-of a conventional fluorescence microscope: Figure fig:hourglass-all-a
-schematically illustrates the side view of objective lens, object and
-beam path of the excitation light in a confocal microscope. A parallel
-beam with a circular cross-section (this cross-section is not shown in
-the illustration) passes through the lens. The lens focuses the light
-in its focal plane.
+In order to introduce the basic idea, underlying our spatio-angular
+microscope, first we consider the distribution of excitation light in
+the object of a conventional fluorescence microscope:
+\figref{fig:hourglass-all}~a) schematically illustrates the side view
+of objective lens, object and beam path of the excitation light in a
+confocal microscope. A parallel beam with a circular cross-section
+(this cross-section is not shown in the illustration) passes through
+the lens. The lens focuses the light in its focal plane.
 
 Between lens and focal plane the light rays form a convergent circular
 cone. If refractive index variations in the object are negligible, the
@@ -55,19 +53,19 @@ of the light in the circular cross-sections of the cone remains
 constant. The intensity inside of the cone is proportional to the
 density of light rays in each circular cross-section and therefore
 increases quadratically \footnote{The ray-model is valid in large
-  parts of Figure fig: hourglass-all-a, but not everywhere. The Law of
-  Malus--Lupin states that rays and wavefronts are equivalent as long
-  as rays do not intersect (caustic) or (FIXME formulas) a strong
-  intensity gradient occurs. Thus the ray-model is valid almost
+  parts of \figref{fig:hourglass-all}~a), but not everywhere. The Law
+  of Malus--Lupin states that rays and wavefronts are equivalent as
+  long as rays do not intersect (caustic) or (FIXME formulas?) a
+  strong intensity gradient occurs. Thus the ray-model is valid almost
   everywhere in the cone, except for a region with a distance of a few
   wavelengths to the edge and the focus itself. While the wave-optical
   treatment of these areas is possible, it is computationally much
   more expensive than ray tracing. Wave-optical effects either lead to
-  blurring at the scale of a few (FIXME distance scale) wavelengths or
-  intensity fluctuations due to interference. If necessary, heuristics
-  could be employed, to find upper bounds for the radiance from ray
-  tracing results. For this reason we exclusively employ the ray-model
-  in this work.}.
+  blurring in a length scale of a few wavelengths or intensity
+  fluctuations due to interference. If necessary, heuristics could be
+  employed, to find upper bounds for the radiance from ray tracing
+  results. For this reason we exclusively employ the ray-model in this
+  work.}.
 
 
 The fluorescent bead (1) in the focus would therefore be excited
@@ -76,11 +74,11 @@ confocal fluorescence microscope, the fluorescence light of the two
 beads is imaged by the objective lens and the detection tube lens into
 the intermediate image plane.
 
-The image of the in-focus bead (1) is sharp, i.\ e.\ its emanating fluorescence
-light is concentrated on an area as small as possible and positioned
-exactly on the detection pinhole. Conversely, the out-of-focus
-bead (2) gives rise to a blurred image. Its fluorescence light is
-distributed over a large area.
+The image of the in-focus bead (1) is sharp, i.e.\ its emanating
+fluorescence light is concentrated on an area as small as possible and
+positioned exactly on the detection pinhole. Conversely, the
+out-of-focus bead (2) gives rise to a blurred image. Its fluorescence
+light is distributed over a large area.
 
 While only a tiny proportion of the light emitted by the out-of-focus
 bead contributes to the detection signal of the confocal microscope,
@@ -92,18 +90,53 @@ to prevent the excitation of the out-of-focus bead in the first place.
   \centering
   \svginput{.43}{hourglass-all}
   \caption{{\bf (a)} Two fluorescent beads are illuminated by all
-    angles that an objective can (FIXME) deliver. The sharp image of the
-    in-focus bead is deteriorated by blurry fluorescence of the
-    out-of-focus bead. {\bf (b)} Angular control allows selective
-    illumination of the in-focus bead and results in a better image on
-    the camera. {\bf (c)} Angular control is insufficient, when an
-    extended in-focus area is illuminated. {\bf (d)} However,
-    simultaneous spatial and angular control allows sequential
-    excitation of the in-focus beads while excluding the out-of-focus
-    bead.}
+    angles that the objective can (FIXME ich mag deliver nicht,
+    accept?) deliver. The sharp image of the in-focus bead is
+    deteriorated by blurry fluorescence of the out-of-focus bead. {\bf
+      (b)} Angular control allows selective illumination of the
+    in-focus bead and results in a better image on the camera. {\bf
+      (c)} Angular control is insufficient, when an extended in-focus
+    area is illuminated. {\bf (d)} However, simultaneous spatial and
+    angular control allows sequential excitation of the in-focus beads
+    while excluding the out-of-focus bead.}
   \label{fig:hourglass-all}
 \end{figure}
 
+The scheme in \figref{fig:hourglass-all}~b) demonstrates how
+the Light cone would have to be manipulated so that the out-of-focus
+bead is not illuminated. The expected fluorescence image in the
+intermediate image plane then contains only information from the
+in-focus bead (3).
+
+Viewed from the in-focus bead (3) the change in illumination
+corresponds to a restriction of the light angles. Such control can be
+exerted well through a mask in the other focal plane of the objective
+lens (also denoted pupil plane or back focal plane (BFP)).
+
+Thus we have shown that it is useful and possible to equip a confocal
+microscope with angular control. However, in our project we set out to
+to build a wide field microscope, in order to benefit from the speed
+and quantum efficiency of modern cameras.  Nonetheless, a confocal
+microscope with angular illumination control seems to have potential
+and this subject is worthy further investigation.  See ref
+sec:conclusion on page pageref sec:conclusion for a discussion of a
+combination of techniques that would lead to a promising system.
+
+We now turn to the task of bringing angular control to the wide field
+microscope. \figref{fig:hourglass-all}~c) shows a configuration
+of the specimen with two in-focus beads (5) and (6), and one
+out-of-focus bead (7).  If both (5) and (6) should be illuminated
+simultaneously, i.e.\ the entire field is to be exposed by an extended
+light source, there is no way to avoid exposure of the out-of-focus
+bead (7) with just angular control of the illumination.
+
+Only by a sequential, selective illumination of the in-focus beads (8)
+and (9), as shown in \figref{fig:hourglass-all}~d), angular control
+regains its function. For this reason a wide field system with angular
+control using a mask in the pupil requires an additional mask in the
+field.  Therefore, we call our method spatio-angular
+microscopy. "Spatial" refers to the illumination control in the field
+and "angular" refers to the control in the pupil plane.
 
 
 \begin{figure}[!hbt]
@@ -113,14 +146,46 @@ to prevent the excitation of the out-of-focus bead in the first place.
     spatio-angular microscope. A homogeneous extended light source
     illuminates from the left. It is imaged by $L_1$ and $L_2$ into
     the intermediate image $F'$. Then the tubelens $L_3$ and the
-    objective $L_4$ form an image of $F'$ in the sample plane $F$. The
-    first spatial light modulator SLM1 is in the plane P', which is
-    conjugate to the pupil (BFP) P of the objective. Using SLM1 we can
-    control illumination angles in the sample. SLM2 is directly imaged
-    into the sample and allows spatial illumination
-    control.} 
+    objective $L_4$ form an image of $F'$ in the sample plane $F$. We
+    use two spatial light modulators. The pupil plane SLM (PP-SLM) in
+    P' and the focal plane SLM (FP-SLM) in F'.}
   \label{fig:memi-simple}
 \end{figure}
+
+\figref{fig:memi-simple} shows the optical path through our prototype
+in a greatly simplified form.  From the left side, an extended light
+source illuminates the system. A sequence of telecentric lenses $L_1$,
+$L_2$, $L_3$ and the objective lens $L_4$ image the light source from
+F'' into the front focal plane (indicated by F, for field). The
+etendue (also called space-bandwidth product (FIXME check
+definitions)) of the light source must be large enough, so that both
+the pupil P as well as the field F are fully illuminated.
+
+In each of the two planes P' and F' we place a spatial light modulator
+that allows to control the intensity of the transmitted light.
+
+Looking at the scheme in \figref{fig:memi-simple}, one could argue
+that we could save a lens, if we placed the pupil plane SLM into P
+instead of P'. There are three reasons why this is neither possible,
+nor beneficial: First, the pupil of modern high-performance objective
+lenses is not accessible\footnote{This is due to historical reasons.
+  The length of objective lenses was defined, such that no refucusing
+  would be necessary, when changing the objectives. In the case of
+  Zeiss lenses, their length is \unit[45]{mm}. Nowadays, it would be
+  easy to compensate different objective lengths using the ubiquitous
+  motorized focus control.  Rather than continuing to be restricted by
+  an antiquated standard, Manufacturers should produce longer
+  high-performance lenses with accessible pupil plane.}  Second, the
+detection path for fluorescent light should contain as few optical
+components as possible and we can definitely not afford it to be
+blocked by a SLM.  Thirdly, the two masks induce non-linear and
+therefore difficult to predict filtering of spatial frequencies. An
+analysis requires consideration of partial spatial coherence.
+
+Considering the fact that the image of the focal plane SLM is most
+important to us, we decided to place it downstream of the pupil plane
+SLM. So possibly the image in the pupil is disturbed, but we can
+always produce a very fine, high-contrast structures in the sample.
 
 \section{A protocol for spatio-angular illumination control}
 \section{Finding optimal illuminationOptimization using a raytracer}

@@ -359,18 +359,86 @@
     staerker angeregt werden, als der Bead (2) ausserhalb der
     Fokusebene. Im konfokalem Fluoreszensmikroskop wird das
     Fluoreszenslicht beider Beads vom Objektiv und
-    Detektionstubuslinse in die Zwischenbildebene abgebildet.
-    Das Bild des in-focus Beads (1) ist dabei scharf, von ihm
-    ausgehendes Fluoreszenslicht wird auf einer moeglichst kleinen
-    Flaeche konzentriert --- genau auf dem Zentrum des
-    Detektionspinholes.  Der out-of-focus Bead (2) erzeugt hingegen
-    nur ein unscharfes Bild. Sein Licht wird ueber eine grosse Flaeche
-    verteilt. Zum detektierten Signal des konfokalen Mikroskops traegt
-    zwar nur ein verschwindend geringer Anteil des vom Out-of-fokus
-    Beads emittierten Lichts bei, mit Blick auf die Phototoxizitaet
-    des Systems kann man jedoch sagen, dass es besser waere, die
-    Anregung des out-of-fokus Beads von vornherein zu unterbinden.
-  - 
+    Detektionstubuslinse in die Zwischenbildebene abgebildet.  Das
+    Bild (FIXME Zahlen und Beschriftung ins Bild) des in-focus Beads
+    (1) ist dabei scharf, von ihm ausgehendes Fluoreszenslicht wird
+    auf einer moeglichst kleinen Flaeche konzentriert --- genau auf
+    dem Zentrum des Detektionspinholes.  Der out-of-focus Bead (2)
+    erzeugt hingegen nur ein unscharfes Bild. Sein Licht wird ueber
+    eine grosse Flaeche verteilt. Zum detektierten Signal des
+    konfokalen Mikroskops traegt zwar nur ein verschwindend geringer
+    Anteil des vom Out-of-fokus Beads emittierten Lichts bei, mit
+    Blick auf die Phototoxizitaet des Systems kann man jedoch sagen,
+    dass es besser waere, die Anregung des out-of-fokus Beads von
+    vornherein zu unterbinden.
+  
+  - Das Schema in fig:hourglass-all-b demonstriert, wie der
+    Beleuchtungskegel manipuliert werden muesste, damit keine Strahlen
+    den out-of-focus Bead treffen. Das zu erwartende Fluoreszensbild
+    im Zwischenbild enthaelt nur noch Information vom in-focus Bead.
+  - Vom in-focus Bead aus gesehen entspricht die Beleuchtungsaenderung
+    einer Einschraenkung der Winkel. Eine derartige Kontrolle kann man
+    gut durch eine Maske in der anderen Brennebene des Objektivs (BFP,
+    Pupille) ausueben.
+  - Damit haben wir gezeigt, dass es sinnvoll und moeglich ist ein
+    konfokales Mikroskop mit einer Winkelkontrolle auszustatten. In
+    unserem Projekt wollten wir jedoch ein widefield Mikroskop bauen,
+    um von der Geschwindigkeit und Quanteneffizienz moderner Kameras
+    zu profitieren. Nichtsdestrotz ist ein konfokales Mikroskop mit
+    Winkelkontrolle der Beleuchtung ein Ansatz mit Potential und einer
+    weiterfuehrenden Untersuchung wuerdig. Siehe \ref{sec:conclusion}
+    auf Seite \pageref{sec:conclusion} fuer eine Diskussion, welche
+    Methoden man gewinnbringend zu einem derartigen System kombinieren
+    koennte.
+  - Wir widmen uns nun der Aufgabe, die Winkelkontrolle der
+    Beleuchtung in ein widefield Mikroskop zu bringen. Abbildung
+    fig:hourglass-all-c zeigt eine Konfiguration des Spezimen
+    mit zwei in-focus Beads (5) und (6). Wenn beide gleichzeitig, also
+    das gesamte Feld durch eine ausgedehnte Lichtquelle, beleuchtet
+    werden, gibt es keine Moeglichkeit die Beleuchtung des
+    out-of-focus Beads (7) zu vermeiden. Erst durch eine selektive
+    Beleuchtung der in-focus Beads, wie in fig:hourglass-all-d
+    dargestellt, hat die Winkelkontrolle wieder einen Einfluss. Ein
+    widefield System mit Winkelkontrolle bedarf also gleichzeitig einer
+    Maske im Feld. Daher nennen wir unsere Methode spatio-angulare
+    Mikroskopie. "Spatial" bezieht sich auf die Beleuchtungskontrolle
+    im Feld und "angular" auf die Kontrolle in der Pupille.
+  - In Abbildung fig:memi-simple ist der Strahlengang durch
+    unseren Prototyp stark vereinfacht dargestellt. Auf der linken
+    Seite befindet sich eine ausgedehnte Lichtquelle. Durch die
+    telezentrisch angeordneten Linsen $L_1$, $L_2$, $L_3$ und die
+    Objektivlinse wird die Lichtquelle in die vordere Fokusebene (F
+    fuer Feld) des Objektivs, also in die Probe, abgebildet. Die
+    Ettendue (auch Space-Bandwidth product (FIXME check definitions))
+    der Lichtquelle muss gross genug sein, sowohl die Pupille P als
+    auch das Feld F auszuleuchten.
+  - In den Ebenen P' und F' platzieren wir jeweils einen spatialen
+    Lichtmodulator, der die Intensitaet des hindurchgelassenen Lichts
+    veraendert.
+  - Vom Schema in fig:memi-simple koennte man meinen, man koennte eine
+    Linse einsparen, wenn der pupil plane SLM in P statt in P'
+    platziert werden wuerde. Es gibt drei Gruende warum dies nicht
+    moeglich ist oder keine Vorteil bringt:
+    - Erstens ist die Pupille in modernen Hochleistungsobjektiven
+      nicht zugaenglich\footnote{Dies ist historisch bedingt. Um
+      Kompatibilitaet verschiedener Objektive im Objektivrevolver zu
+      garantieren, so dass sich Nachfokussieren beim Objektivwechsel
+      eruebrigt, wurde die Baulaenge der Objektive festgelegt (bei
+      Zeiss sind das 45mm). Heutzutage kann man die Baulaenge ohne
+      weiteres mit dem motorisierten Fokus korrigieren und man wuerde
+      meinen, dass die Hersteller endlich groessere
+      Hochleistungsobjektive produzieren koennten, so dass die Pupille
+      zugaenglich wird.}.
+    - Zweitens sollte der Detektionspfad fuer das Fluoreszenslicht
+      moeglichst wenige optische Komponenten enthalten.
+    - Drittens rufen die zwei Masken eine nicht-lineare und daher
+      schwer vorhersehbare Filterung der Ortsfrequenzen hervor. Eine
+      genaue Betrachtung bedarf die Beruecksichtigung partieller
+      spatialer Kohaerenz.
+  - Daher haben wir uns entschieden, den focal plane SLM downstream
+    vom pupil plane SLM zu platzieren um die beste Qualitaet des focal
+    plane SLM im Spezimen zu gewaehrleisten.
+
 
 
   - pupil plane slm gefolgt von focal plane slm (weil FP-SLM hohe
@@ -720,6 +788,19 @@
     anzahl der pixel des displays und den grating konstanten zusammen,
     die dargestellt werden koennen, da das system off-axis betrieben
     werden muss, wird die ettendue geviertelt)
+- Im Nachhinein muss man sagen, dass es Zielfuehrender gewesen
+    waere, und unsere Aufgabe erheblich vereinfacht haette, wenn wir
+    beide SLM vom gleichen Typ verwendet haetten. Es handelte sich
+    aber um einen Prototypen und er war in den ersten Jahr des
+    Projektes noch nicht verfuegbar. Das Projekt wird von Pasteur und
+    Fraunhofer, diesmal unter Verwendung zweier ihrere SLM,
+    weitergefuehrt. 
+  - Leider wird dieser Ansatz unsereserachtens nicht das wesentliche
+    Problem der kleinen Ettendue bereinigen und der neue Prototyp wird
+    noch immer nicht die interessantesten Experimente erlauben. Es ist
+    ganz einfach so, dass es einfacher waere, ein biologisch
+    Relevantes Experiment zu designen, wenn das Beleuchtungssystem
+    auch die volle Ettendue heutiger Mikroskopobjektive ausschoepft.
 - kameras sind zur zeit an einem wendepunkt. vermutlich wuerde man
   heutzutage eine sCMOS benutzen, dann sollte man aber auf die
   triggereigenschaften achten
@@ -735,6 +816,7 @@
   geschnittenen bildern betreiben, fuer das reale problem ist die
   vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
   oder nuklei lokalisieren)
+
 * outlook
 - den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
   verbessern

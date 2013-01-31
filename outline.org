@@ -370,10 +370,9 @@
     Beads emittierten Lichts bei, mit Blick auf die Phototoxizitaet
     des Systems kann man jedoch sagen, dass es besser waere, die
     Anregung des out-of-fokus Beads von vornherein zu unterbinden.
+  - 
 
-  - describe how our microscope is supposed to work
-  - an einfachen beispiel zeigen, wie spatio angular illumination
-    funktioniert
+
   - pupil plane slm gefolgt von focal plane slm (weil FP-SLM hohe
     aufloesung bringen soll)
   - beides intensitaetsmodulatoren
@@ -453,6 +452,7 @@
     - d.h. es gibt eine ideale konfiguration fuer strukturierte
       beleuchtung, die fuer optisches scheiden verwendet werden kann
       aber nicht sonderlich fuer aufloesungserhoehung taugt
+ 
 ** a protocol for spatio-angular illumination control
   - explain on the example of an embryo or neuron how an experiment
     might be conducted 
@@ -755,6 +755,16 @@
     interferometrischen system
     - was ist die maximale ettendue eines wollaston prismas?
   - holographie methode mit extended source
+  - Denkbar waere auch ein scannendes konfokales Mikroskop, dass an
+    die Beleuchtungswinkel an jedem Punkt kontrolliert (siehe
+    fig:hourglass-all-b).  Bisher wurden in der Literatur nur Systeme
+    beschrieben, die die Phase des Beleuchtungslicht in der Pupille
+    aendern (FIXME ref). Eine Adaption dieser Systeme zu einem
+    spatio-angularen ist naheliegend und ich schlage vor, derartige
+    Systeme auch untersucht werden sollten. Die Kombination von CLEM,
+    einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
+    Inneren lebender Organe (z.B. Gehirn) verbessern.
+
 * appendix
 ** camera characterization
 - andor basic code zur datenaufnahme

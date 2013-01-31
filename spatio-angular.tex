@@ -7,7 +7,7 @@
 
   Then we describe some decisions we faced during the initial design
   phase concerning the arrangement of optical components. Furthermore,
-  we position our method within known approaches of light control for
+  we position our method among known approaches of light control for
   microscopy. Of all published techniques for excitation illumination
   control, the light field microscope \ref{levoy} comes closest to our
   approach.  We explain differences between both techniques and
@@ -19,9 +19,9 @@
   It turns out, that the effective use of the spatio-angular
   microscope, requires more knowledge about the specimen than a
   conventional or a SPIM microscope (\ref{spim}). Ideally the
-  distribution of refractive index and fluorophores within the
-  specimen should be known. If these parameters were known perfectly,
-  there wouldn't be any (FIXME) necessity for an image in the first
+  distribution of refractive index and fluorophores in the specimen
+  should be known. If these parameters were known perfectly, there
+  wouldn't be any (FIXME) necessity for an image in the first
   place. However, while imaging a known specimen, predictions (FIXME
   gute) of these parameters can often be made. The higher the
   precision of these predictions, the greater the reduction in
@@ -29,7 +29,7 @@
 
   The computer-based selection of appropriate illumination masks
   requires the prediction (FIXME), or at least an estimate (FIXME
-  understanding), of the three-dimensional distribution of light within
+  understanding), of the three-dimensional distribution of light in
   the specimen.
 
   In the last part of this chapter, we describe how we practically
@@ -39,55 +39,60 @@
 \end{summary}
 \section{Motivation}
 To understand the basic idea behind our spatio-angular microscope,
-first we consider the distribution of light within the object of a
-conventional microscope: Figure fig:hourglass-all-a schematically
-illustrates the side view of objective lens, object and beam path of
-the excitation light in a confocal microscope. A parallel beam with a
-circular cross-section (not visible in the illustration) passes
-through the lens. The lens focuses the light in its focal plane.
+first we consider the distribution of excitation light in the object
+of a conventional fluorescence microscope: Figure fig:hourglass-all-a
+schematically illustrates the side view of objective lens, object and
+beam path of the excitation light in a confocal microscope. A parallel
+beam with a circular cross-section (this cross-section is not shown in
+the illustration) passes through the lens. The lens focuses the light
+in its focal plane.
 
 Between lens and focal plane the light rays form a convergent circular
 cone. If refractive index variations in the object are negligible, the
 light distribution below the plane of focus forms a cone as well, due
-to symmetry.  Assuming a non- or weakly absorbing specimen the energy
-of the light within the circular cross-sections of the cone remains
-constant. The intensity within the cone is proportional to the density
-of light rays in each circular cross-section and therefore increases
-quadratically \footnote{ The ray-model is valid in large parts of
-  Figure fig: hourglass-all-a, but not everywhere. The Law of Malus
-  Lupin states that rays and wavefronts are equivalent as long as rays
-  do not intersect (caustic) or (FIXME formulas) a strong intensity
-  gradient occurs. Thus the ray-model is valid almost everywhere in
-  the cone, except for a region with a distance of a few wavelengths
-  to the edge and the focus itself. While the wave-optical treatment
-  of these areas is possible, it is computationally much more
-  expensive than ray tracing. For this reason we exclusively employ
-  the ray optical model in this work.}.
+to symmetry.  Assuming a non- or weakly absorbing specimen, the energy
+of the light in the circular cross-sections of the cone remains
+constant. The intensity inside of the cone is proportional to the
+density of light rays in each circular cross-section and therefore
+increases quadratically \footnote{The ray-model is valid in large
+  parts of Figure fig: hourglass-all-a, but not everywhere. The Law of
+  Malus--Lupin states that rays and wavefronts are equivalent as long
+  as rays do not intersect (caustic) or (FIXME formulas) a strong
+  intensity gradient occurs. Thus the ray-model is valid almost
+  everywhere in the cone, except for a region with a distance of a few
+  wavelengths to the edge and the focus itself. While the wave-optical
+  treatment of these areas is possible, it is computationally much
+  more expensive than ray tracing. Wave-optical effects either lead to
+  blurring at the scale of a few (FIXME distance scale) wavelengths or
+  intensity fluctuations due to interference. If necessary, heuristics
+  could be employed, to find upper bounds for the radiance from ray
+  tracing results. For this reason we exclusively employ the ray-model
+  in this work.}.
 
 
 The fluorescent bead (1) in the focus would therefore be excited
 significantly more than the bead (2) outside the focal plane. In the
-confocal fluorescence microscope, the fluorescent light of the two
+confocal fluorescence microscope, the fluorescence light of the two
 beads is imaged by the objective lens and the detection tube lens into
 the intermediate image plane.
 
-The image of the in-focus bead (1) is sharp, its emanating fluorescent
+The image of the in-focus bead (1) is sharp, i.\ e.\ its emanating fluorescence
 light is concentrated on an area as small as possible and positioned
-exactly on the detection pinhole.  On the other hand, the out-of-focus
+exactly on the detection pinhole. Conversely, the out-of-focus
 bead (2) gives rise to a blurred image. Its fluorescence light is
 distributed over a large area.
 
 While only a tiny proportion of the light emitted by the out-of-focus
 bead contributes to the detection signal of the confocal microscope,
-but with respect to overall phototoxicity of the full confocal system,
-it would be better to prevent the excitation of the out-of-focus bead
-from the outset.
+and therefore hardly affects the image quality, with respect to
+overall phototoxicity of the full confocal system, it would be better
+to prevent the excitation of the out-of-focus bead in the first place.
 
 \begin{figure}[!hbt]
   \centering
   \svginput{.43}{hourglass-all}
   \caption{{\bf (a)} Two fluorescent beads are illuminated by all
-    angles that an objective can deliver. The sharp image of the
+    angles that an objective can (FIXME) deliver. The sharp image of the
     in-focus bead is deteriorated by blurry fluorescence of the
     out-of-focus bead. {\bf (b)} Angular control allows selective
     illumination of the in-focus bead and results in a better image on

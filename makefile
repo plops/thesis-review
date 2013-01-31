@@ -18,6 +18,7 @@ CHAPTERS_IN_BUILD=$(CHAPTERS:%=build/%.tex)
 
 # use the sed command from above to find which images need to be processed
 SVGFIGURES = $(shell sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPTERS_TEX))
+SVGFIGURES_SVG=$(SVGFIGURES:%=svg/%.svg)
 SVGFIGURES_PDF=$(SVGFIGURES:%=build/%.pdf_tex)
 SVGFIGURES_EPS=$(SVGFIGURES:%=build/%.eps_tex)
 
@@ -41,8 +42,8 @@ build/%.pdf_tex: svg/%.svg
 
 # rubber runs the latex process until finished, --inplace makes sure
 # that clutter stays in build/ directory
-build/kielhorn_memi.pdf: $(MAINDOC_IN_BUILD) $(CHAPTERS_IN_BUILD) $(SVGFIGURES_PDF)
+build/kielhorn_memi.pdf: $(MAINDOC_IN_BUILD) $(CHAPTERS_IN_BUILD) $(SVGFIGURES_PDF) $(SVGFIGURES_SVG)
 	rubber --pdf --inplace $(MAINDOC_IN_BUILD)
 
-build/kielhorn_memi.dvi: $(MAINDOC_IN_BUILD) $(CHAPTERS_IN_BUILD) $(SVGFIGURES_EPS)
+build/kielhorn_memi.dvi: $(MAINDOC_IN_BUILD) $(CHAPTERS_IN_BUILD) $(SVGFIGURES_EPS) $(SVGFIGURES_SVG)
 	rubber --inplace $(MAINDOC_IN_BUILD)

@@ -1,3 +1,4 @@
+
 #+OPTIONS: LaTeX:dvipng
 #+TITLE: spatio-angular microscopy
 
@@ -161,7 +162,9 @@
     - dadurch kann die taktrate dieser elemente um 3 groessenordnungen
       vermindert werden und man erreicht auch ohne em gain
       ausleserauschen von etwa 1 elektron pro pixel
+   
 *** characterization of read noise
+    - um daten zwischen verschiedenen geraeten zu vergleichen
     - beschreibe mein experiment, wo ich zwei em ccd kameras verglichen habe
     - es reichen wenige bilder einer inhomogenen (aber glatten) lichtverteilung
       - beleuchtungsintensitaet (oder irradianz?) muss konstant sein
@@ -263,6 +266,8 @@
       back focal plane
 **** light field microscope
 - erklaere problem mit phasenraumsampling
+- microlenses undo directional integration
+- history: 1908 patent lippmann
 - hauptproblem: 
   - teure NA des objektivs kann nicht fuer hohe aufloesung genutzt
     werden
@@ -275,6 +280,9 @@
     kann
   - unsere methode kann prinzipiell schneller sein (weil zwei displays
     mit geringerer aufloesung)
+  - in cameras: commercial sensor resolution often exceed aberration
+    limited resolution, plenoptic camera uses excess sensor resolution
+    for extra information about the incoming light
 *** temporal focussing
 - grating in intermediate image sendet regenbogen in bfp der im sample
   zu einer duennen lichtschicht zusammenlaeuft
@@ -308,11 +316,11 @@
     beleuchtungssteuerung in der mikroskopie kommt unserem ansatz das
     lichtfeldmikroskop (levoy) am naechsten. wir erklaeren die
     unterschiede zwischen beiden techniken und gehen auf ihre
-    jeweiligen vor und nachteile ein.  auf eigenheiten und
+    jeweiligen vor- und nachteile ein.  auf eigenheiten und
     beschraenkungen der eingesetzten hardware komponenten gehen wir
     erst in einem spaeteren kapitel ein (ref sec:dev1, sec:mma), weil
     die details der verstaendlichkeit zunaechst abtraeglich waeren.
-  - es stellt sich heraus, das eine effektive (FIXME effiziente?), die
+  - es stellt sich heraus, das eine effektive, die
     phototoxizitaet mindernde nutzung des spatio-angularen mikroskops
     mehr wissen ueber die probe bedarf (fluorophor- und
     brechzahlverteilung) als herkoemmliche mikroskopiemethoden oder
@@ -439,39 +447,29 @@
     vom pupil plane SLM zu platzieren um die beste Qualitaet des focal
     plane SLM im Spezimen zu gewaehrleisten.
 
+  - Diese Aufloesung, mit der wir die Beleuchtung im Feld steuern
+    koennen, ist das wesentliche Kriterium, in der sich unser Ansatz
+    von Levoy's Lichtfeldmikroskop unterscheidet. Im
+    Lichtfeldmikroskop beschraenkt die Dichte der Mikrolinsen die
+    Aufloesung erheblich. Zwar ist es im Lichtfeldmikroskop moeglich,
+    die Einfallswinkel in allen Feldpositionen unabhaengig zu aendern,
+    diesen Vorteil koennen wir jedoch kompensieren, dies erfordert
+    jedoch einen einzelnen SLM mit sehr vielen Pixeln, der vermutlich
+    nur langsam angesteuert werden kann. Wir setzen zwei deutlich
+    kleinere SLM ein, die wir sehr viel schneller--mit etwa 1kHz
+    Bildwiederholrate--ansteuern koennen. Die Anzeige von
+    hochaufgeloesten Mustern (Strukturierte Beleuchtung) im Feld gibt
+    uns die Moeglichkeit, optische Schnitte der Probe zu berechnen und
+    mit unserem Widefield Mikroskop Bilder zu erzeugen, die sonst
+    eines konfokalen Mikroskops beduerften. Wir werden zeigen, dass
+    die optischen Schnitte besser sind, wenn die strukturierte
+    Beleuchtung hohe Aufloesung aufweist.
 
+    
 
-  - pupil plane slm gefolgt von focal plane slm (weil FP-SLM hohe
-    aufloesung bringen soll)
-  - beides intensitaetsmodulatoren
   - PP-SLM kann grauwerte
 
   - erforschen einen aehnlichen ansatz wie levoy
-  - focal plane slm und pupil plane slm modulieren die intensitaet des
-    anregungslichts
-  - damit kontrollieren wir gleichzeitig die oertliche
-    beleuchtungsverteilung im feld als auch die winkelverteilung
-  - hourglass-all zeigt an zwei einfachen, exemplarischen
-    fluorphorverteilungen, was damit gemeint ist
-    - in (a) wird ein einzelner bead mit allen winkeln beleuchtet,
-      d.h. das feld wird nur dort beleuchtet, wo sich der in-focus
-      bead befindet
-      - im zwischenbild sieht man das scharfe bild des in-focus beads
-	ueberlagert mit einem unscharfen hintergrund, der vom out of
-	focus bead stammt
-      - dieser fall entspricht der verteilung des anregungslichts im
-	konfokalem mikroskop und die clem technik koennte eingesetzt
-	werden, um die unnoetige beleuchtung des samples signifikant zu
-	reduzieren
-      - hier kann man auch sehen, dass die out of focus sample
-	informationen durch die clem steuerung mit moduliert wird. das
-	fuehrt zu vernachlaessigbaren artefakten im konfokalen clem bild
-	(dessen pinhole detektiert ja nur licht in unmittelbarer
-	nachbarschaft des scharfen in-focus beads)
-      - genau dieser effekt kann jedoch zu erheblich staerkeren
-	artefakten fuehren, wenn clem in einem widefield mikroskop
-	eingesetzt werden soll. das erklaert vermutlich auch, warum es
-	kein publikation mit widefield clem gibt
     - (b) zeigt, wie die einschraenkung der beleuchtungswinkel die
       anregung des out of focus beads verhindert
       - je nach struktur des samples koennte die winkelkontrolle der
@@ -816,7 +814,7 @@
   geschnittenen bildern betreiben, fuer das reale problem ist die
   vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
   oder nuklei lokalisieren)
-
+- transmission ist nicht ausreichend um wuermer zu untersuchen  
 * outlook
 - den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
   verbessern
@@ -849,6 +847,10 @@
 
 * appendix
 ** camera characterization
+- Das ist wichtig, um Bilder vergleichen zu koennen, die mit
+  verschiedenen Kameras (oder sogar mit PMT) aufgenommen wurden.
+- get rid of grid lines
+- give units
 - andor basic code zur datenaufnahme
 - python code fuer auswertung
 ** raytracer

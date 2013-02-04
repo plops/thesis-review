@@ -453,17 +453,16 @@
     Lichtfeldmikroskop beschraenkt die Dichte der Mikrolinsen die
     Aufloesung erheblich. Zwar ist es im Lichtfeldmikroskop moeglich,
     die Einfallswinkel in allen Feldpositionen unabhaengig zu aendern,
-    diesen Vorteil koennen wir jedoch kompensieren, dies erfordert
-    jedoch einen einzelnen SLM mit sehr vielen Pixeln, der vermutlich
-    nur langsam angesteuert werden kann. Wir setzen zwei deutlich
-    kleinere SLM ein, die wir sehr viel schneller--mit etwa 1kHz
-    Bildwiederholrate--ansteuern koennen. Die Anzeige von
-    hochaufgeloesten Mustern (Strukturierte Beleuchtung) im Feld gibt
-    uns die Moeglichkeit, optische Schnitte der Probe zu berechnen und
-    mit unserem Widefield Mikroskop Bilder zu erzeugen, die sonst
-    eines konfokalen Mikroskops beduerften. Wir werden zeigen, dass
-    die optischen Schnitte besser sind, wenn die strukturierte
-    Beleuchtung hohe Aufloesung aufweist.
+    dies erfordert jedoch einen einzelnen SLM mit sehr vielen Pixeln,
+    der nur vergleichsweise langsam angesteuert werden kann. Wir
+    setzen zwei deutlich kleinere SLM ein, die wir sehr viel
+    schneller--mit etwa 1kHz Bildwiederholrate--ansteuern koennen. Die
+    Anzeige von hochaufgeloesten Mustern (Strukturierte Beleuchtung)
+    im Feld gibt uns die Moeglichkeit, optische Schnitte der Probe zu
+    berechnen und mit unserem Widefield Mikroskop Bilder zu erzeugen,
+    die sonst eines konfokalen Mikroskops beduerften. Wir werden
+    zeigen, dass die optischen Schnitte besser sind, wenn die
+    strukturierte Beleuchtung hohe Aufloesung aufweist.
 
     
 

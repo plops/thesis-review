@@ -540,8 +540,8 @@
   konstanten Volumen seines ovalen Ei's mit Achsen zwischen 40 bis
   60um, kann also kontinuierlich bei gleicher Vergroesserung
   untersucht werden. Zellteilungen erfolgen alle paar Minuten. Es
-  reicht aus, jede Minute einen Stack mit 20 Schichten aufzunehmen, um
-  das Schicksal der Zellen verfolgen zu koennen.-
+  reicht aus, jede Minute einen Stack mit 20 Schichten im Abstand von
+  1 um aufzunehmen, um das Schicksal der Zellen verfolgen zu koennen.-
 *** Preparation des Samples
 - Fuer eine Beobachtung, wird ein Wurm aufgeschnitten und die Embryos
   auf eine Agaroseplatte gelegt. Von diesen waehlt der Experimentator
@@ -627,7 +627,7 @@
         integral term. This bias must thus be subtracted from sigma^2
         prior to the evaluation of C. We have also not considered the
         effects of pixelation in the CCD camera. If the pixel size is
-        non-negligible ...
+        non-negligible ..
 
 *** Computermodell zur Integration von a-priori Wissen ueber die biologischen Begebenheiten  
 - Fuer unser biologisches Beispielsystem, dem C. elegans Embryo,
@@ -655,13 +655,27 @@
   der Wachstumsgeschwindigkeiten und einer Texturanalyse der
   Bildinformationen innerhalb der Nuklei eine Prognose fuer die
   naechste Belichtung abgeben.
-- Ein derartiges Computerprogramm wurde noch nicht entwickelt. Wir
+- Ein derartiges Computerprogramm wurde noch nicht entwickelt, wir
   gehen im Folgenden aber davon aus, dass eine Prognose fuer die
   naechste Aufnahme zur Verfuegung steht und untersuchen wie wir
   daraus Masken fuer focal plane und pupil plane SLM ermitteln
-  koennen.
-
+  koennen. In unseren Experimenten haben wir den Embryo durch eine
+  dreidimensionale Verteilung von 2 um grossen Beads in Agarose
+  simuliert.
 *** Beleuchtungsoptimierung mittels Raytracer
+- Wie wir bereits zu Beginn des Kapitels erlaeutert haben, genuegt uns
+  eine strahlenoptische Betrachtung der Lichtverteilung innerhalb des
+  Samples. 
+- Laut Protokoll wollen wir die Fluorophorverteilung in 20
+  unterschiedlichen Z-Positionen ermitteln. Uns steht eine Prognose
+  der dreidimensionalen Fluorophorverteilung zur Verfuegung. Im
+  Computer schneiden wir die Kugelverteilung der Prognose mit der
+  aktuell beobachteten Ebene (Einstellung des motorisierten
+  z-stages). Das gibt uns einige Kreise, die angeben wo sich in-fokus
+  Nuklei befinden. Fuer jeden dieser Kreise stellen wir an der
+  entsprechenden Position auf dem focal plane SLM eine Scheibe (mit
+  mindestens 4 um Durchmesser, um Winkelkontrolle nicht zu
+  untergraben) dar.
 
    - das modell der strahlenoptik ist ausreichend:
      - der focal plane slm fungiert als fourier filter fuer den pupil

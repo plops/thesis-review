@@ -176,7 +176,7 @@ lenses is not accessible\footnote{This is due to historical reasons.
   easy to compensate different objective lengths using the ubiquitous
   motorized focus control.  Rather than continuing to be restricted by
   an antiquated standard, Manufacturers should produce longer
-  high-performance lenses with accessible pupil plane.}  Second, the
+  High-Performance Lenses with accessible pupil plane.}  Second, the
 detection path for fluorescent light should contain as few optical
 components as possible and we can definitely not afford it to be
 blocked by a SLM.  Thirdly, the two masks induce non-linear and
@@ -200,5 +200,164 @@ patterns allows us to circumvent the missing cone problem of the
 widefield microscope. We use them to compute optical sections. Later
 we will show that depth discrimination improves with higher resolution
 patterns.
-\section{A protocol for spatio-angular illumination control}
+\section{An imaging protocol for spatio-angular illumination control}
+\subsection{Description of an exemplary biological specimen}
+Now we describe time-lapse imaging with low phototoxicity on the
+example of developing C. elegans embryos. Ultimately, we did not reach
+the point of being able to image the development of a real embryo. Key
+problems are currently the low light throughput of the illumination
+system and the length of time necessary to update images on the focal
+plane display. Nevertheless, we always kept this example in mind,
+while we were developing the control software for our microscope.
+
+The embryos have the WormBase ID AZ212 and were genetically modified
+to include eGFP tagged histones (enhanced green fluorescent protein,
+excitation maximum \unit[488]{nm}, emission maximum
+\unit[509]{nm}). The mother worm passes a sufficient amount of these
+proteins into the cytoplasm of the embryo, because the small embryo
+will start forming its own histones only after an advanced stage of
+development. Histones are incorporated into the chromatin during cell
+divisions, i.e.\ the nuclei of our embryos fluoresce green.
+
+During the first few hours, the embryo develops confined to the
+constant volume of its egg. The egg has an ellipsoidal shape and is
+extended 40 to 60 microns---it can be observed very well using a
+$63\times$ objective lens. Cell divisions occur every few minutes. In
+later stages of the development, the nuclei get smaller and get more
+dense. To enable tracking the fate of cells it is sufficient, to
+capture one stack per minute with 20 layers at a distance of 1~micron.
+\subsection{Preparation of living embryo samples}
+For an observation a worm is cut and the embryos are placed on an
+agarose pad, so that they stay immobile during imaging. Of these
+embryos, the experimenter chooses a young specimen, that has not yet
+divided. We do not use fluorescence excitation for this step but use
+the less phototoxic DIC imaging mode of our microscope (differential
+interfernce contrast).
+
+\subsection{Sectioning through structured illumination}
+The very first stack, we obtain using structured illumination.  This
+method is a useful tool to avoid the missing cone problem of the
+widefield microscope. Perhaps for our particular problem of finding
+the position of the nucleus within the egg, widefield images would be
+just sufficient.  However, for our spatio-angular method, knowledge
+about the fluorophore distribution is very important and therefore we
+built our microscope such that we can obtain optical sections.
+
+We compared conventional structured illumination using max$-$min
+(FIXME) reconstruction with laser and LED illumination. Although LED
+illumination led to excellent optical sections, the reconstruction of
+laser illuminated images, however, contained artifacts.
+
+{\color{red}
+- (FIXME muss das vielleicht in appendix?) In einem ersten
+Entwicklungsschritt, bevor InVision uns den Prototyp fuer das
+spatio-angulare Mikroskop zur Verfuegung stellte, setzten wir einen
+SLM in die Zwischenbildebene. Auf dem SLM wurden vier Streifenmuster
+angezeigt und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm LED
+Beleuchtung (CoolLED).}
+
+Therefore, we decided to implement HiLo (see Appendix FIXME). With
+this algorithm, we obtain artifact-free optical sections, regardless
+of the illumination source. As another advantage the HiLo method
+increases acquisition speed, as only two raw images per slice are
+necessary.
+
+
+{\color{red} wir haben artefakte in der max-min rekonstruktion
+  beobachtet, wenn wir ein grobes streifenmuster (8 forthdd slm pixel
+  periode) mit laser beleuchtet haben
+
+     - irgendwann hat rainer das erklaert aber ich kann mich nicht
+       mehr dran erinnern aber es waere cool, wenn ich die story
+       bringen koennte
+     
+- grobes gitter heisst im amplitudenbild: einige ordnungen (nicht
+       nur 3) gehen durch die bfp
+
+     - irgendwie kam es dadurch im intensitaetsbild zu einigen hoehere
+       ordnungstermen
+
+     - bei LED (extended source) werden die weggemittelt, bei laser
+       nicht
+
+       - ein bisschen kopfzerbrechen bereitet mir noch der bias 
+
+       - im paper habe ich das nicht verstanden [2011 mertz Optically
+       sectioned in vivo imaging with speckle illumination HiLo
+       microscopy]
+
+       - aber ich habe ihr java imagej plugin decompiliert bekommen
+       und koennte versuchen ihre implementierung zu verstehen
+       (andererseits ist mir das jetzt ziemlich egal)
+
+       - unter equation 10: The first two terms are variance
+       contributions of shot noise. Filtering has the effect of
+       reducing noise variance and is taken into account with the
+       integral term. This bias must thus be subtracted from
+       $\sigma^2$ prior to the evaluation of C. We have also not
+       considered the effects of pixelation in the CCD camera. If the
+       pixel size is non-negligible ..  }
+\newcommand{\celegans}{\emph{C.~elegans}}
+\subsection{Computer model for the integration of a priori knowledge
+  about the biological events}
+For our test system, the \celegans\ embryo, it is a promising approach
+to represent its threedimensional fluorophore distribution by a simple
+model: Spheres on the locations of nuclei, with sizes corresponding to
+the extends of the nuclei, indicate regions with fluorophores. The
+spheres are expected to be the source of useful fluorescence signal,
+when in-focus but should be protected against exposure when out of
+focus. During observation, the centers of the spheres would move
+slowly within the embryo. For small periods of time we can describe
+this movement using a vector field of growth velocities.  A cell
+division announces itself by a change of the fluorophore distribution
+due to chromatin condensation and spindle formation. In the next time
+step one more sphere should be introduced, to encompass the new
+daughter cell.
+
+So far we have only implemented a simple algorithm, to convert a time
+series of image volumes from a confocal microscope into a sphere model
+(FIXME difference of Gaussians and radius determination blob paper).
+One of our project partners (Jean-Yves,
+http://fiji.sc/wiki/index.php/TrackMate) developed a more
+sophisticated plug-in for ImageJ, that provides the lineage tree and
+snapshots of the developing cells (see \figref{fig:trackmate}).
+\begin{figure}[!hbt]
+  \centering
+  \includegraphics[width=8cm]{TrackMate_Celegans_lineage_detail.png}
+  \caption{ A detail of a lineage tree visualized in
+    TrackScheme. (FIXME ask jean-yves if i can use this)}
+  \label{fig:trackmate}
+\end{figure}
+Before our microscope can be used for our biological problem, the
+computer model has to be extended so that it reliably tracks the
+movement of nuclei.  Overlooking a nucleus results in it not being
+imaged and would be a setback for any experiment.  Estimating the
+vector field of growth velocities helps to track nuclei more robustly
+and allows to predict their positions for the next exposure.
+
+
+Unfortunately, currently we have not improved our program to this
+point. However, in the following text we assume that the described
+predictions are available and we discuss how we determine masks for
+the focal plane and pupil plane SLM.  In our experiments, we
+substituted the embryo by three-dimensional distributions of beads
+(with 2 microns diameter) in agarose.
+
+\subsection{Illumination optimization by means of raytracing}
+As we explained at the beginning of the chapter (FIXME pageref),
+ray-optical theory suffices to describe the light distribution within
+the sample.
+
+The task for the imaging protocol is to estimate the fluorophore
+distribution in 20 different z positions. In order to image one slice,
+we intersect this slice with the predicted arrangement of spheres. We
+decided to image each of the intersected in-focus nuclei in sequence
+and individually. This defines the mask on the focal plane SLM to
+contain a single disk centered on the respective nucleus, with a
+diameter of at least 4 microns\footnote{Restricting the illumination
+  to a smaller area on the focal plane SLM would result unfavorably
+  widen the range of illumination angles, due to diffraction.} in
+image space.
+
+
 \section{Finding optimal illuminationOptimization using a raytracer}

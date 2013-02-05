@@ -518,7 +518,7 @@
       beleuchtung, die fuer optisches scheiden verwendet werden kann
       aber nicht sonderlich fuer aufloesungserhoehung taugt
  
-** A protocol for spatio-angular illumination control 
+** An imaging protocol for spatio-angular illumination control 
 *** Beschreibung eines biologischen Samples
 - Jetzt stellen wir dar, wie man mit dem spatio-angularen Mikroskop
   eine schonende, kaum phototoxische Zeitrafferaufnahme eines sich
@@ -527,13 +527,13 @@
   aufzunehmen. Problematisch ist die Transmission des Gesamtsystems
   und die Zeit mit der neue Bilder in ein Display geladen werden
   koennen. Trotzdem hielten wir stets dieses Beispiel bei unseren
-  Untersuchungen und Methodenentwicklung in Betracht.
+  Untersuchungen und Methodenentwicklung im Auge.
 - Die Embryos sind vom Strain AZ212. Sie sind genetisch veraendert, so
   dass die Mutter Histone mit eGFP (enhanced green fluorescent
   protein, lambda_ex=490nm) bildet (FIXME references paris). Die
   Mutter hinterlaesst eine ausreichende Menge dieser Histone im
   Zellinneren des Embryo, denn dieser kann bis zu einem spaeteren
-  Entwicklungsstadium keine eigenen Bilden. Histone werden waehrend
+  Entwicklungsstadium keine eigenen bilden. Histone werden waehrend
   der Zellteilungen in das Chromatin eingebaut. D.h. die Zellkerne
   dieses Strains fluoreszieren gruen.
 - Der Embryo entwickelt sich in den ersten Stunden innerhalb des
@@ -541,8 +541,8 @@
   60um, kann also kontinuierlich bei gleicher Vergroesserung
   untersucht werden. Zellteilungen erfolgen alle paar Minuten. Es
   reicht aus, jede Minute einen Stack mit 20 Schichten im Abstand von
-  1 um aufzunehmen, um das Schicksal der Zellen verfolgen zu koennen.-
-*** Preparation des Samples
+  1 um aufzunehmen, um das Schicksal der Zellen verfolgen zu koennen.
+*** Preparation des Embryo samples
 - Fuer eine Beobachtung, wird ein Wurm aufgeschnitten und die Embryos
   auf eine Agaroseplatte gelegt. Von diesen waehlt der Experimentator
   einen jungen Embryo aus, der sich noch nicht geteilt hat. Dies kann
@@ -573,7 +573,7 @@
   verhindern. Moeglicherweise sind normale, ungeschnittene
   Weitfeldbilder gerade noch ausreichend, um die Ausgangsposition im
   Embryo zu bestimmen. Fuer unsere spatio-angulare Methode ist das
-  Wissen ueber die genaue Fluorphorverteilung jedoch sehr wichtig und
+  Wissen ueber die genaue Fluorophorverteilung jedoch sehr wichtig und
   haben unser Mikroskop so gebaut, dass wir optische Schnitte
   anfertigen koennen.
 - Wir verglichen Strukturierte Beleuchtung mit konventioneller

@@ -518,7 +518,8 @@
       beleuchtung, die fuer optisches scheiden verwendet werden kann
       aber nicht sonderlich fuer aufloesungserhoehung taugt
  
-** Beschreibung eines biologischen Samples
+** A protocol for spatio-angular illumination control 
+*** Beschreibung eines biologischen Samples
 - Jetzt stellen wir dar, wie man mit dem spatio-angularen Mikroskop
   eine schonende, kaum phototoxische Zeitrafferaufnahme eines sich
   entwickelnden C. elegans Embryo herstellen koennte. Letztendlich
@@ -541,7 +542,7 @@
   untersucht werden. Zellteilungen erfolgen alle paar Minuten. Es
   reicht aus, jede Minute einen Stack mit 20 Schichten aufzunehmen, um
   das Schicksal der Zellen verfolgen zu koennen.-
-** A protocol for spatio-angular illumination control 
+*** Preparation des Samples
 - Fuer eine Beobachtung, wird ein Wurm aufgeschnitten und die Embryos
   auf eine Agaroseplatte gelegt. Von diesen waehlt der Experimentator
   einen jungen Embryo aus, der sich noch nicht geteilt hat. Dies kann
@@ -553,10 +554,11 @@
   Nukleusposition zum naechsten Zeitpunkt mit einer geringeren Dosis
   bestimmt werden, indem ein Bereich um die urspruengliche Position
   des Nukleus beleuchtet wird. Auf diese Weise kann die Entwicklung
-  ueber einige Zellteilungen schonend verfolgt werden. Nach einer
-  Weile wird es dann vorteilhaft, angulare Beleuchtung zu nutzen um
-  die Anregung von Nuklei, die Ausserhalb des Fokus liegen, zu
-  vermeiden.
+  ueber einige Zellteilungen schonend verfolgt werden. Die Nuklei
+  werden waehrend der Embryonalentwicklung kleiner und ordnen sich
+  dichter aneinander. Nach einer Weile wird es dann vorteilhaft,
+  angulare Beleuchtung zu nutzen um die Anregung von Nuklei, die
+  Ausserhalb des Fokus liegen, zu vermeiden.
 
   - explain on the example of an embryo or neuron how an experiment
     might be conducted 
@@ -565,7 +567,31 @@
   - irgendwelche masken fuer focal plane SLM und pupil plane SLM
     finden um bilder von in-focus nuklei zu machen
 
-*** initial step: sectioning through structured illumination
+***  Sectioning through structured illumination
+- Strukturierte Beleuchtung ist eine hilfreiche Methode, um das
+  Missing Cone Problem im Weitfeld Mikroskop zu
+  verhindern. Moeglicherweise sind normale, ungeschnittene
+  Weitfeldbilder gerade noch ausreichend, um die Ausgangsposition im
+  Embryo zu bestimmen. Fuer unsere spatio-angulare Methode ist das
+  Wissen ueber die genaue Fluorphorverteilung jedoch sehr wichtig und
+  haben unser Mikroskop so gebaut, dass wir optische Schnitte
+  anfertigen koennen.
+- Wir verglichen Strukturierte Beleuchtung mit konventioneller
+  max--min Rekonstruktion bei LED- und Laserbeleuchtung. Die LED
+  Beleuchtung fuehrte zu guten optischen Schnitten, die Rekonstruktion
+  mit Laserbeleuchtung enthielt jedoch Rekonstruktionsartefakte.
+- (FIXME in appendix) In einem ersten Entwicklungsschritt, bevor
+  InVision uns den Prototyp fuer das spatio-angulare Mikroskop zur
+  Verfuegung stellte, setzten wir einen SLM in die
+  Zwischenbildebene. Auf dem SLM wurden vier Streifenmuster angezeigt
+  und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm
+  LED Beleuchtung (CoolLED).
+- Deshalb entschieden wir uns HiLo zu implementieren (siehe Appendix
+  FIXME). Mit diesem Algorithmus gelingen uns artefaktfreie optische
+  Schnitte, unabhaengig von der Beleuchtungskonfiguration. Ein
+  weiterer Vorteil von HiLo ist, dass nur zwei Bilder pro Slice
+  benoetigt werden.
+
    - describe non-robustness of the typical max-min method
    - wir haben artefakte in der max-min rekonstruktion beobachtet,
      wenn wir ein grobes streifenmuster (8 forthdd slm pixel periode)
@@ -581,7 +607,7 @@
        nicht
    - bei verwendung von LED beleuchtung und groben gittern sind keine
      artefakte sichtbar
-*** hilo
+
     - hilo braucht zum einen nur zwei bilder und ist damit schneller
     - zum anderen treten auch bei laserbeleuchtung keine artefakte auf
       (obwohl man fuer hilo schon besser mit nur 3 ordnungen
@@ -603,7 +629,40 @@
         effects of pixelation in the CCD camera. If the pixel size is
         non-negligible ...
 
-** optimization using raytracer
+*** Computermodell zur Integration von a-priori Wissen ueber die biologischen Begebenheiten  
+- Fuer unser biologisches Beispielsystem, dem C. elegans Embryo,
+  entschieden wir uns, die einzelnen Nuklei in einem Stack durch
+  Kugeln zu repraesentieren. Eine einzelne Zeitrafferaufnahme der
+  Fluorophorkonzentration koennte als in eine Menge von Kugelzentren
+  und Radii repraesentiert werden. Waehrend der Beobachtung wuerden
+  sich die Mittelpunkte der Kugeln langsam, mit Geschwindigkeiten
+  entlang eines Wachstumsvektorfeldes verschieben. Eine Zellteilung
+  kuendigt sich durch Aenderung der Fluorophorverteilung innerhalb der
+  Kugel an. Dann koennten im naechsten Zeitschritt zwei Kugeln an die
+  Bilddaten gefittet werden.
+- Wir haben nur einen einfachen Algorithmus implementiert (FIXME
+  difference of gaussians und radiusermittlung blob paper), um
+  Testdaten aus Zeitrafferaufnahmen aus einem konfokalem Mikroskop zu
+  gewinnen. Einer unserer Projektpartner (FIXME ref Jean-Yves) hat ein
+  umfangreiches Plugin fuer ImageJ entwickelt, dass aus konfokalen
+  Zeitrafferaufnahmen den Baum der Zellteilungen rekonstruiert (FIXME
+  Teilungsbaum klingt komisch get screenshot).
+- Bevor unser Mikroskop fuer das biologische Problem eingesetzt werden
+  kann, muss das Computermodell so erweitert werden, dass es robust
+  die Bewegung der Nuklei verfolgen kann und beispielsweise nicht
+  einen Nukleus uebersieht. Die Kugelzentren und Radii einer
+  Zeitrafferaufnahme koennen zusammen mit dem geschaetzten Vektorfeld
+  der Wachstumsgeschwindigkeiten und einer Texturanalyse der
+  Bildinformationen innerhalb der Nuklei eine Prognose fuer die
+  naechste Belichtung abgeben.
+- Ein derartiges Computerprogramm wurde noch nicht entwickelt. Wir
+  gehen im Folgenden aber davon aus, dass eine Prognose fuer die
+  naechste Aufnahme zur Verfuegung steht und untersuchen wie wir
+  daraus Masken fuer focal plane und pupil plane SLM ermitteln
+  koennen.
+
+*** Beleuchtungsoptimierung mittels Raytracer
+
    - das modell der strahlenoptik ist ausreichend:
      - der focal plane slm fungiert als fourier filter fuer den pupil
        slm

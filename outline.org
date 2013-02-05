@@ -518,7 +518,46 @@
       beleuchtung, die fuer optisches scheiden verwendet werden kann
       aber nicht sonderlich fuer aufloesungserhoehung taugt
  
-** a protocol for spatio-angular illumination control
+** Beschreibung eines biologischen Samples
+- Jetzt stellen wir dar, wie man mit dem spatio-angularen Mikroskop
+  eine schonende, kaum phototoxische Zeitrafferaufnahme eines sich
+  entwickelnden C. elegans Embryo herstellen koennte. Letztendlich
+  gelang waehrend dieser Arbeit nicht, die Entwicklung eines Embryos
+  aufzunehmen. Problematisch ist die Transmission des Gesamtsystems
+  und die Zeit mit der neue Bilder in ein Display geladen werden
+  koennen. Trotzdem hielten wir stets dieses Beispiel bei unseren
+  Untersuchungen und Methodenentwicklung in Betracht.
+- Die Embryos sind vom Strain AZ212. Sie sind genetisch veraendert, so
+  dass die Mutter Histone mit eGFP (enhanced green fluorescent
+  protein, lambda_ex=490nm) bildet (FIXME references paris). Die
+  Mutter hinterlaesst eine ausreichende Menge dieser Histone im
+  Zellinneren des Embryo, denn dieser kann bis zu einem spaeteren
+  Entwicklungsstadium keine eigenen Bilden. Histone werden waehrend
+  der Zellteilungen in das Chromatin eingebaut. D.h. die Zellkerne
+  dieses Strains fluoreszieren gruen.
+- Der Embryo entwickelt sich in den ersten Stunden innerhalb des
+  konstanten Volumen seines ovalen Ei's mit Achsen zwischen 40 bis
+  60um, kann also kontinuierlich bei gleicher Vergroesserung
+  untersucht werden. Zellteilungen erfolgen alle paar Minuten. Es
+  reicht aus, jede Minute einen Stack mit 20 Schichten aufzunehmen, um
+  das Schicksal der Zellen verfolgen zu koennen.-
+** A protocol for spatio-angular illumination control 
+- Fuer eine Beobachtung, wird ein Wurm aufgeschnitten und die Embryos
+  auf eine Agaroseplatte gelegt. Von diesen waehlt der Experimentator
+  einen jungen Embryo aus, der sich noch nicht geteilt hat. Dies kann
+  man schonend mit einem DIC (differential interfernce contrast) oder
+  Mikroskop feststellen.
+- Ein erster Stack mit strukturierter Beleuchtung dient dazu, den
+  Nukleus und das Ei zu lokalisieren. Da das Ei in der Agarose fixiert
+  ist und sich die Zellen nur langsam im Embryo bewegen, kann die
+  Nukleusposition zum naechsten Zeitpunkt mit einer geringeren Dosis
+  bestimmt werden, indem ein Bereich um die urspruengliche Position
+  des Nukleus beleuchtet wird. Auf diese Weise kann die Entwicklung
+  ueber einige Zellteilungen schonend verfolgt werden. Nach einer
+  Weile wird es dann vorteilhaft, angulare Beleuchtung zu nutzen um
+  die Anregung von Nuklei, die Ausserhalb des Fokus liegen, zu
+  vermeiden.
+
   - explain on the example of an embryo or neuron how an experiment
     might be conducted 
   - erster stack strukturiert beleuchten
@@ -563,6 +602,7 @@
         prior to the evaluation of C. We have also not considered the
         effects of pixelation in the CCD camera. If the pixel size is
         non-negligible ...
+
 ** optimization using raytracer
    - das modell der strahlenoptik ist ausreichend:
      - der focal plane slm fungiert als fourier filter fuer den pupil

@@ -329,8 +329,7 @@
     zumindest das verstaendnis, der dreidimensionalen lichtverteilung
     im objektraum. im letzten teil dieses kapitels beschreiben wir, wie wir
     unser spatio-angulares mikroskop prakisch umsetzen. dabei
-    beruehren wir themen der bildverarbeitung und ziehen auch die
-    parallele zur medizinischen tumortherapie.
+    beruehren wir themen der bildverarbeitung.
 
 ** motivation
   - Um die grundlegende Idee hinter dem Spatio-Angularen Mikroskop zu
@@ -727,8 +726,26 @@
    - aplanatic model for microscope objective, weil hersteller ja
      nicht ihre design parameter freigeben und ich trotzdem den
      einfluss von non-index matched embedding kennen muss
-     
-
+*** Ausblick und vergleich mit Radiotherapie     
+- Unser Ansatz ist noch ausbaufaehig. Bei der Auswahl, der Maske fuer
+  das focal plane SLM sollte deutlich mehr Information ueber das
+  Sample beruecksichtigt werden. Beispielsweise koennten nahe
+  beieinander liegende Nuclei gleichzeitig beleuchtet werden. Im
+  Extremfall koennte ein highly inclined beam (HILO) eine Schicht des
+  gesamten Embryos schneiden. Diese Verbesserung vergroessern jedoch
+  den Suchraum erheblich und die Algorithmen wuerden vermutlich
+  deutlich aufwaendiger zu Programmieren sein. 
+- Weiterhin gibt es interessante Spezimen, die man nicht gut durch
+  Kugeln repraesentieren kann (z.B. Neuronen). Fuer diesen Fall haben
+  wir einen Raytracing Algorithmus begonnen, der ohne ein auf
+  analytischen Formen basierenden Modell auskommt. Dabei wird die
+  dreidimensionale Fluorphorverteilung direkt als dreidimensionales
+  Volumen gespeichert. Dieses Verfahren ist sehr rechenintensiv, kann
+  aber gut auf modernen GPUs implementiert werden. In (FIXME ref
+  hauptteil und appendix) erklaeren wir den entsprechenden Code.
+- Das von uns bearbeitete Problem hat viele ueberschneidungen mit
+  medizinischer Tumortherapie. Es waere sicher hilfreich, deren
+  Algorithmen in unserem System zu implementieren.
 * device 1: prototype for spatio-angular illumination
 ** overview
  - beschreibe alles mit usb forthdd display, erwaehne vorteile von
@@ -804,7 +821,7 @@
         (highly inclined ...)  einsetzen will (z.b. embryo in agarose
         mit oelobjektiv), obwohl ich der mittlerweile der meinung bin,
         dass man dann ein wasserobjektiv nehmen sollte
-
+** opencl ansatz
 * mma as an intensity modulator
   - mma kontrolliert nur die phasen, wir wollen aber die intensitaet
     modulieren

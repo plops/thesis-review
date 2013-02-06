@@ -18,6 +18,19 @@ CHAPTERS_IN_BUILD=$(CHAPTERS:%=build/%.tex)
 
 # use the sed command from above to find which images need to be processed
 SVGFIGURES = $(shell sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPTERS_TEX))
+
+# damit ich nicht jedesmal beim make aufrufen sed aufrufen muss
+# - sorgt dafuer das es keinen fehler gibt
+-include make.dep
+make.dep: $(INCLUDE_FILES)
+	grep something $(INCLUDE_FILES) > $@
+
+# noch besser waere
+#%.tex.dep: %.tex
+#	grep something $< > $@
+
+# watch make
+
 SVGFIGURES_SVG=$(SVGFIGURES:%=svg/%.svg)
 SVGFIGURES_PDF=$(SVGFIGURES:%=build/%.pdf_tex)
 SVGFIGURES_EPS=$(SVGFIGURES:%=build/%.eps_tex)

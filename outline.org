@@ -663,19 +663,27 @@
   dreidimensionale Verteilung von 2 um grossen Beads in Agarose
   simuliert.
 *** Beleuchtungsoptimierung mittels Raytracer
+- Wir beschreiben nun eine naheliegende Methode, um beide
+  Beleuchtungsmasken zu ermitteln. Zunaechst ermitteln wir Masken fuer
+  den focal plane SLM. 
+- Wir koennen aus der vorhergesagten Kugelverteilung ermitteln, welche
+  Nuclei nahe der aktuellen Fokusposition sitzen, indem wir das
+  Kugelmodell mit einer der fokusebene entsprechenden, ebenen Flaeche
+  schneiden. Mit dem focal plane SLM wollen wir die angeschnittenen
+  in-focus Nuklei einzeln und nacheinander beleuchten. D.h. jede der
+  Masken fuer den focal plane SLM enthaelt zunaechst nur eine Scheibe,
+  die einen Nukleus abdeckt.
+- Ausgehend von einer derartigen Maske, koennen wir ermitteln, welche
+  Winkel den entsprechenden Zielnukleus beleuchten koennen, ohne die
+  Nuklei ausserhalb der Fokusebene zu treffen.
 - Wie wir bereits zu Beginn des Kapitels erlaeutert haben, genuegt uns
   eine strahlenoptische Betrachtung der Lichtverteilung innerhalb des
   Samples. 
-- Laut Protokoll wollen wir die Fluorophorverteilung in 20
-  unterschiedlichen Z-Positionen ermitteln. Uns steht eine Prognose
-  der dreidimensionalen Fluorophorverteilung zur Verfuegung. Im
-  Computer schneiden wir die Kugelverteilung der Prognose mit der
-  aktuell beobachteten Ebene (Einstellung des motorisierten
-  z-stages). Das gibt uns einige Kreise, die angeben wo sich in-fokus
-  Nuklei befinden. Fuer jeden dieser Kreise stellen wir an der
-  entsprechenden Position auf dem focal plane SLM eine Scheibe (mit
-  mindestens 4 um Durchmesser, um Winkelkontrolle nicht zu
-  untergraben) dar.
+- Wir haben zwei Ansaetze---die Strahlverfolgung von der Pupillenebene
+  in den Objektraum und in umgekehrter Richtung---probiert und
+  festgestellt, dass die Projektion der out of focus Nuklei durch die
+  Punkte des Zielnukleus vom Objektraum in die Pupille des Objektivs
+  geringeren Rechenaufwand aufweist (siehe spaeteres Kapitel FIXME).
 
    - das modell der strahlenoptik ist ausreichend:
      - der focal plane slm fungiert als fourier filter fuer den pupil

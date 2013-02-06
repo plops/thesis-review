@@ -679,11 +679,27 @@
 - Wie wir bereits zu Beginn des Kapitels erlaeutert haben, genuegt uns
   eine strahlenoptische Betrachtung der Lichtverteilung innerhalb des
   Samples. 
-- Wir haben zwei Ansaetze---die Strahlverfolgung von der Pupillenebene
-  in den Objektraum und in umgekehrter Richtung---probiert und
-  festgestellt, dass die Projektion der out of focus Nuklei durch die
-  Punkte des Zielnukleus vom Objektraum in die Pupille des Objektivs
-  geringeren Rechenaufwand aufweist (siehe spaeteres Kapitel FIXME).
+- Wir verbinden Strahlen Von der Peripherie eines out of focus Nukleus
+  mit dem in-focus Zielpunkt. Die Strahlen bilden einen
+  Kreiskegel. Wir berechnen die Brechung dieser Strahlen durch die
+  Objektivlinse und bestimmen ihre Schnittpunkte mit der Pupille. Die
+  entstehende Figure ist immer ein geringfuegig deformierter Kreis und
+  sieben Strahlen koennen das Gebilde gut repraesentieren. Wir fuehren
+  diese Projektion fuer jeden out of focus Nukleus und auch fuer
+  einige in-focus Zielpunkte aus. Dies ergibt eine Maske in der
+  Pupille, die wir mit dem pupil plane SLM anzeigen koennen.
+- Leider sind die exakten Konstruktionsparameter von Hochleisungs
+  Objektivlinsen nicht oeffentlich zugaenglich. In (FIXME ref appendix
+  und hauptteil) zeigen wir, wie wir die Strahlen trotzdem durch das
+  Objektiv verfolgen koennen. Wir verwenden ein einfaches Modell, dass
+  nur Fokuslaenge, Immersionsbrechzahl und numerischer Apertur
+  verwendet. Weiterhin haben wir dieses Modell weiterentwickelt, um
+  den Einfluss einer nicht brechzahlangepassten Einbettung zu
+  beruecksichtigen. Hier wollen wir jedoch gleich klarstellen, dass
+  fuer die Bildgebung von Embryos auf jeden Fall kein Oelobjektiv,
+  sondern eins mit passender Immersion angewendet werden sollte. Nur
+  damit kann gute Bildqualitaet bis 20 um tief in das Sample
+  gewaehrleistet werden.
 
    - das modell der strahlenoptik ist ausreichend:
      - der focal plane slm fungiert als fourier filter fuer den pupil

@@ -747,9 +747,23 @@
   medizinischer Tumortherapie. In einem weiteren Schritt sollten
   entsprechende Algorithmen in unserem System getestet werden.
 * device 1: prototype for spatio-angular illumination
+** summary 
+   - Im vorhergehende Kapitel haben wir das dem spatio-angularen
+     Mikroskop zugrundliegende Konzept dargestellt. Hier gehen wir auf
+     zusaetzliche Details ein, die fuer die praktische Implementierung
+     wichtig sind: Unter anderem die Eigenschaften der beiden
+     verwendeten Displays, elektronische Synchronisation der
+     verschiedenen Komponenten und einem Algorithmus, um das
+     Koordinatensystem der Kamerapixel und der Pixel des focal plane
+     SLM ineinander zu transformieren.
+   - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
+     waehrend des Projekts neu entwickelt. Wir widmen uns diesem
+     Subsystem im Kapitel (FIXME).
 ** overview
+ 
  - beschreibe alles mit usb forthdd display, erwaehne vorteile von
-   graphikkarte+ dvi lcos und schreibe details in appendix
+   graphikkarte+ dvi lcos und schreibe details in appendix (zum
+   beispiel die exakten Brennweiten der Linsen)
 ** optical components
 - variable tubuslinse 
 - schematic mit lichttunnel
@@ -764,7 +778,8 @@
      - rhs/f^2 = 17.43*13.95*%pi/4 = 190.97
      - f = sqrt(190.97/18.6) = 3.2
      - in microscope: eps = pi/4 * (D * NA)^2
-       - example for my objective eps=0.27 mm^2/sr:
+       - example for my objective with 400um field of view eps=0.27
+         mm^2/sr:
 #+begin_example
 eps:%pi/4 * (D * NA)^2;
 D:25/63;

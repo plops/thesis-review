@@ -32,8 +32,7 @@
 
   In the last part of this chapter, we describe how we practically
   implement the computational control loop in our spatio-angular
-  microscope. Here we touch topics of image processing and we also
-  draw parallels to treatment planning for radiotherapie of tumors.
+  microscope. Here we touch topics of image processing.
 \end{summary}
 \section{Motivation}
 In order to introduce the basic idea, underlying our spatio-angular
@@ -345,20 +344,43 @@ the embryo by three-dimensional distributions of beads (with 2 microns
 diameter) in agarose.
 
 \subsection{Illumination optimization by means of raytracing}
-As we explained at the beginning of the chapter (FIXME pageref),
-ray-optical theory suffices to describe the light distribution within
-the sample.
+We now discuss a method to define both illumination masks. First we
+define a mask for the focal plane SLM:
 
-The task for the imaging protocol is to estimate the fluorophore
-distribution in 20 different z positions. In order to image one slice,
-we intersect this slice with the predicted arrangement of spheres. We
-decided to image each of the intersected in-focus nuclei in sequence
-and individually. This defines the mask on the focal plane SLM to
-contain a single disk centered on the respective nucleus, with a
-diameter of at least 4 microns\footnote{Restricting the illumination
-  to a smaller area on the focal plane SLM would result unfavorably
-  widen the range of illumination angles, due to diffraction.} in
-image space.
+From the predicted arrangement of spheres we can find in-focus nuclei
+by intersecting the model with a planar surface. We then define focal
+plane SLM masks to selectively illuminate each of the in-focus nuclei,
+by drawing a bright disk in the appropriate position.
 
+Based on such a mask, we can determine which angles can illuminate the
+in-focus target nucleus, without exposing out of focus nuclei.
 
-\section{Finding optimal illuminationOptimization using a raytracer}
+As we already explained at the beginning of the chapter (FIXME
+pageref), ray-optical theory suffices to describe the light
+distribution within the sample.
+
+We connect the periphery of an out of focus nucleus with a point
+inside the in-focus target. This defines a circular cone of rays, for
+which we calculate the refraction by the objective lens. Their
+intersection with the pupil plane results in a figure that still very
+much resembles a circle---already seven rays lead to good
+representation of its perimeter.  We compute these figures for every
+out of focus nucleus and for a few in-focus targets points within the
+bright areas of the focal plane pattern. In this manner we construct
+the desired mask for the pupil plane SLM.
+
+In order to trace the rays into the pupil, the design parameters of
+the objective lens (vertex position, curvature and material for all
+surfaces), Unfortunately, these design parameters rarely are publicly
+available for high performance objective lenses. Nevertheless, in
+chapter (FIXME) we use a simpler model of the objective lens, that
+requires only three parameters: focal length, refractive index of the
+immersion medium and numerical aperture. These are always known.
+
+Additionally, we have adapted the model for non-index-matched
+embedding of the specimen. This problem occurs, when the embryo is
+illuminated with an oil immersion objective, using HILO (FIXME
+ref). It should be noted, however, that good image quality of the
+embryo can only be achieved with an objective lens that has the same
+immersion index as the embryo. Otherwise data from 20 microns within
+the sample will be severely deteriorated by spherical aberrations.

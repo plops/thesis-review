@@ -17,13 +17,15 @@ CHAPTERS_IN_BUILD=$(CHAPTERS:%=build/%.tex)
 # sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' *.tex
 
 # use the sed command from above to find which images need to be processed
-SVGFIGURES = $(shell sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPTERS_TEX))
 
 # damit ich nicht jedesmal beim make aufrufen sed aufrufen muss
 # - sorgt dafuer das es keinen fehler gibt
--include make.dep
-make.dep: $(INCLUDE_FILES)
-	grep something $(INCLUDE_FILES) > $@
+#-include build/make.dep
+#build/make.dep: $(INCLUDE_FILES)
+#	sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPT#ERS_TEX) > $@
+
+SVGFIGURES = $(shell sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPTERS_TEX))
+
 
 # noch besser waere
 #%.tex.dep: %.tex

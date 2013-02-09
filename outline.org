@@ -757,8 +757,8 @@
      Koordinatensystem der Kamerapixel und der Pixel des focal plane
      SLM ineinander zu transformieren.
    - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
-     waehrend des Projekts neu entwickelt. Wir widmen uns diesem
-     Subsystem im Kapitel (FIXME).
+     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem
+     Subsystem im Kapitel (FIXME) naeher.
 ** overview
  
  - beschreibe alles mit usb forthdd display, erwaehne vorteile von
@@ -1000,6 +1000,17 @@ eps,numer;
   vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
   oder nuklei lokalisieren)
 - transmission ist nicht ausreichend um wuermer zu untersuchen  
+- vergleiche die folgenden displays:
+  - holoeye (erwaehne triggerversuche, kalibrationsmessungen von
+    uebertragungsfunktion und interpixel cross talk, hamamatsu)
+  - forthdd (frage sie vielleicht, ob sie mir im nachhinein doch noch
+    information geben)
+  - ti dmd (sehr gute dokumentation, sehr viele funktionen; gut waere,
+    wenn ich ein programm auf dem lokalen arm prozessor laufen lassen
+    koennte, was die vollen 4000fps aus runlength (oder irgendwie
+    komprimierten) daten vom usb aus erzeugen koennte
+  - mma (naja)
+
 * outlook
 - den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
   verbessern

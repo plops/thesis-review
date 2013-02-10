@@ -6,9 +6,12 @@ MAINDOC = kielhorn_memi
 MAINDOC_TEX=$(MAINDOC:%=%.tex)
 MAINDOC_IN_BUILD=$(MAINDOC:%=build/%.tex)
 
-CHAPTERS = spatio-angular
+CHAPTERS = spatio-angular device1
 CHAPTERS_TEX=$(CHAPTERS:%=%.tex)
 CHAPTERS_IN_BUILD=$(CHAPTERS:%=build/%.tex)
+
+TEX_FILES = $(MAINDOC_TEX) $(CHAPTERS_TEX)
+
 
 # the following sed command searches for occurances of \svginput{23.}{imagefile}
 # and outputs imagefile
@@ -20,22 +23,23 @@ CHAPTERS_IN_BUILD=$(CHAPTERS:%=build/%.tex)
 
 # damit ich nicht jedesmal beim make aufrufen sed aufrufen muss
 # - sorgt dafuer das es keinen fehler gibt
-#-include build/make.dep
-#build/make.dep: $(INCLUDE_FILES)
-#	sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPT#ERS_TEX) > $@
+-include build/make-pdf_tex.dep
 
-SVGFIGURES = $(shell sed -n 's/^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}/\1/p' $(MAINDOC_TEX) $(CHAPTERS_TEX))
+# create a file with dependencies in the form
+# file.tex: build/image1.pdf_tex build/image2.pdf_tex
+# where image1 and image2 were included using \svginput in file.tex
+build/make-pdf_tex.dep: $(TEX_FILES)
+	for i in $^; do \
+		echo -n build/$$i": "; \
+		sed -n 's+^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}+\1.pdf_tex+p' $$i|tr '\12' ' '; \
+		echo ; \
+	done > $@
 
 
 # noch besser waere
 #%.tex.dep: %.tex
 #	grep something $< > $@
 
-# watch make
-
-SVGFIGURES_SVG=$(SVGFIGURES:%=svg/%.svg)
-SVGFIGURES_PDF=$(SVGFIGURES:%=build/%.pdf_tex)
-SVGFIGURES_EPS=$(SVGFIGURES:%=build/%.eps_tex)
 
 clean:
 	rm build/*

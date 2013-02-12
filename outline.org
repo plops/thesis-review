@@ -499,7 +499,7 @@
       bereich in kleinere bereiche zu teilen (d) und nacheinander mit
       entsprechend optimierten winkeln zu beleuchten, die den out of
       focus bead nicht anregen
-    - selbst bei finitem ausleserauschen macht dieser ansatz sinn, man
+    - selbst bei finitem ausleserauschen macht dieser ansatz sinn, man   /fehlt noch/
       kann ja einfach die unbeleuchteten stellen im bild null setzen
       und vermindert somit nicht das SNR wenn mehrere bilder
       zusammengefuegt werden (erst dachte ich das geht nur mit
@@ -512,7 +512,7 @@
       mit optimalen kontrast (weil polarisation in unserem prototypen
       nicht gedreht werden kann)
     - d.h. es gibt eine ideale konfiguration fuer strukturierte
-      beleuchtung, die fuer optisches scheiden verwendet werden kann
+      beleuchtung, die fuer optisches scheiden verwendet werden kann      /fehlt noch/
       aber nicht sonderlich fuer aufloesungserhoehung taugt
  
 ** An imaging protocol for spatio-angular illumination control 
@@ -520,14 +520,14 @@
 - Jetzt stellen wir dar, wie man mit dem spatio-angularen Mikroskop
   eine schonende, kaum phototoxische Zeitrafferaufnahme eines sich
   entwickelnden C. elegans Embryo herstellen koennte. Letztendlich
-  gelang waehrend dieser Arbeit nicht, die Entwicklung eines Embryos
+  gelang waehrend dieser Arbeit nicht, die Entwicklung eines Embryos       /Einleitung/
   aufzunehmen. Problematisch ist die Transmission des Gesamtsystems
   und die Zeit mit der neue Bilder in ein Display geladen werden
   koennen. Trotzdem hielten wir stets dieses Beispiel bei unseren
   Untersuchungen und Methodenentwicklung im Auge.
 - Die Embryos sind vom Strain AZ212. Sie sind genetisch veraendert, so
   dass die Mutter Histone mit eGFP (enhanced green fluorescent
-  protein, lambda_ex=490nm) bildet (FIXME references paris). Die
+  protein, lambda_ex=490nm) bildet (FIXME references paris). Die          /Beschreibung Bio/
   Mutter hinterlaesst eine ausreichende Menge dieser Histone im
   Zellinneren des Embryo, denn dieser kann bis zu einem spaeteren
   Entwicklungsstadium keine eigenen bilden. Histone werden waehrend
@@ -542,7 +542,7 @@
 *** Preparation des Embryo samples
 - Fuer eine Beobachtung, wird ein Wurm aufgeschnitten und die Embryos
   auf eine Agaroseplatte gelegt. Von diesen waehlt der Experimentator
-  einen jungen Embryo aus, der sich noch nicht geteilt hat. Dies kann
+  einen jungen Embryo aus, der sich noch nicht geteilt hat. Dies kann    /Ungeteiltes Embryo finden/
   man schonend mit einem DIC (differential interfernce contrast) oder
   Mikroskop feststellen.
 - Ein erster Stack mit strukturierter Beleuchtung dient dazu, den
@@ -552,7 +552,7 @@
   bestimmt werden, indem ein Bereich um die urspruengliche Position
   des Nukleus beleuchtet wird. Auf diese Weise kann die Entwicklung
   ueber einige Zellteilungen schonend verfolgt werden. Die Nuklei
-  werden waehrend der Embryonalentwicklung kleiner und ordnen sich
+  werden waehrend der Embryonalentwicklung kleiner und ordnen sich     /Erst strukturiert Beleuchten/
   dichter aneinander. Nach einer Weile wird es dann vorteilhaft,
   angulare Beleuchtung zu nutzen um die Anregung von Nuklei, die
   Ausserhalb des Fokus liegen, zu vermeiden.
@@ -570,20 +570,20 @@
   verhindern. Moeglicherweise sind normale, ungeschnittene
   Weitfeldbilder gerade noch ausreichend, um die Ausgangsposition im
   Embryo zu bestimmen. Fuer unsere spatio-angulare Methode ist das
-  Wissen ueber die genaue Fluorophorverteilung jedoch sehr wichtig und
+  Wissen ueber die genaue Fluorophorverteilung jedoch sehr wichtig und              /Erster Stack mit sectioning/
   haben unser Mikroskop so gebaut, dass wir optische Schnitte
   anfertigen koennen.
 - Wir verglichen Strukturierte Beleuchtung mit konventioneller
   max--min Rekonstruktion bei LED- und Laserbeleuchtung. Die LED
-  Beleuchtung fuehrte zu guten optischen Schnitten, die Rekonstruktion
+  Beleuchtung fuehrte zu guten optischen Schnitten, die Rekonstruktion              /Rekonstruktionsartefakte/
   mit Laserbeleuchtung enthielt jedoch Rekonstruktionsartefakte.
 - (FIXME in appendix) In einem ersten Entwicklungsschritt, bevor
-  In-Vision uns den Prototyp fuer das spatio-angulare Mikroskop zur
+  In-Vision Digital Imaging GmbH uns den Prototyp fuer das spatio-angulare Mikroskop zur
   Verfuegung stellte, setzten wir einen SLM in die
   Zwischenbildebene. Auf dem SLM wurden vier Streifenmuster angezeigt
   und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm
   LED Beleuchtung (CoolLED).
-- Deshalb entschieden wir uns HiLo zu implementieren (siehe Appendix
+- Deshalb entschieden wir uns HiLo zu implementieren (siehe Appendix               /HiLo zeigt keine Artefakte/
   FIXME). Mit diesem Algorithmus gelingen uns artefaktfreie optische
   Schnitte, unabhaengig von der Beleuchtungskonfiguration. Ein
   weiterer Vorteil von HiLo ist, dass nur zwei Bilder pro Slice
@@ -632,7 +632,7 @@
   Kugeln zu repraesentieren. Eine einzelne Zeitrafferaufnahme der
   Fluorophorkonzentration koennte als in eine Menge von Kugelzentren
   und Radii repraesentiert werden. Waehrend der Beobachtung wuerden
-  sich die Mittelpunkte der Kugeln langsam, mit Geschwindigkeiten
+  sich die Mittelpunkte der Kugeln langsam, mit Geschwindigkeiten            /Das Kugelmodell vom Embryo/
   entlang eines Wachstumsvektorfeldes verschieben. Eine Zellteilung
   kuendigt sich durch Aenderung der Fluorophorverteilung innerhalb der
   Kugel an. Dann koennten im naechsten Zeitschritt zwei Kugeln an die
@@ -640,7 +640,7 @@
 - Wir haben nur einen einfachen Algorithmus implementiert (FIXME
   difference of gaussians und radiusermittlung blob paper), um
   Testdaten aus Zeitrafferaufnahmen aus einem konfokalem Mikroskop zu
-  gewinnen. Einer unserer Projektpartner (FIXME ref Jean-Yves) hat ein
+  gewinnen. Einer unserer Projektpartner (FIXME ref Jean-Yves) hat ein       /Cell Tracking waere eine eigene Arbeit/
   umfangreiches Plugin fuer ImageJ entwickelt, dass aus konfokalen
   Zeitrafferaufnahmen den Baum der Zellteilungen rekonstruiert (FIXME
   Teilungsbaum klingt komisch get screenshot).
@@ -654,7 +654,7 @@
   naechste Belichtung abgeben.
 - Ein derartiges Computerprogramm wurde noch nicht entwickelt, wir
   gehen im Folgenden aber davon aus, dass eine Prognose fuer die
-  naechste Aufnahme zur Verfuegung steht und untersuchen wie wir
+  naechste Aufnahme zur Verfuegung steht und untersuchen wie wir            /Es waere toll, cell tracking zu haben/
   daraus Masken fuer focal plane und pupil plane SLM ermitteln
   koennen. In unseren Experimenten haben wir den Embryo durch eine
   dreidimensionale Verteilung von 2 um grossen Beads in Agarose
@@ -668,7 +668,7 @@
   Kugelmodell mit einer der fokusebene entsprechenden, ebenen Flaeche
   schneiden. Mit dem focal plane SLM wollen wir die angeschnittenen
   in-focus Nuklei einzeln und nacheinander beleuchten. D.h. jede der
-  Masken fuer den focal plane SLM enthaelt zunaechst nur eine Scheibe,
+  Masken fuer den focal plane SLM enthaelt zunaechst nur eine Scheibe,     /Beleuchte jeden Nukleus einzeln/
   die einen Nukleus abdeckt.
 - Ausgehend von einer derartigen Maske, koennen wir ermitteln, welche
   Winkel den entsprechenden Zielnukleus beleuchten koennen, ohne die
@@ -684,13 +684,13 @@
   bereits sieben Strahlen koennen das Gebilde gut repraesentieren. Wir
   fuehren diese Projektion fuer jeden out of focus Nukleus und auch
   fuer einige in-focus Zielpunkte aus. Dies ergibt eine Maske in der
-  Pupille, die wir mit dem pupil plane SLM anzeigen koennen.
+  Pupille, die wir mit dem pupil plane SLM anzeigen koennen.                /Bestimme Pupillenmaske/
 - Leider sind die exakten Konstruktionsparameter von
   Hochleistungsobjektivlinsen nicht oeffentlich zugaenglich. In (FIXME
   ref appendix und hauptteil) zeigen wir, wie wir die Strahlen
   trotzdem durch das Objektiv verfolgen koennen. Wir verwenden ein
   einfaches Modell, dass nur Fokuslaenge, Immersionsbrechzahl und
-  numerischer Apertur verwendet. Zusaetzlich haben wir dieses Modell
+  numerischer Apertur verwendet. Zusaetzlich haben wir dieses Modell       /Simulation von Objektiven geht nur ungefaehr/
   weiterentwickelt, um den Einfluss einer nicht brechzahlangepassten
   Einbettung zu beruecksichtigen. Hier wollen wir jedoch gleich
   klarstellen, dass fuer die Bildgebung von Embryos auf jeden Fall
@@ -731,7 +731,7 @@
   koennten nahe beieinander liegende Nuclei gleichzeitig beleuchtet
   werden. Im Extremfall koennte ein highly inclined beam (HILO) eine
   Schicht des gesamten Embryos schneiden. Diese Verbesserung
-  vergroessern jedoch den Suchraum erheblich und die Algorithmen
+  vergroessern jedoch den Suchraum erheblich und die Algorithmen          /nicht im englischen Text/
   wuerden vermutlich deutlich aufwaendiger zu Programmieren sein.
 - Weiterhin gibt es interessante Spezimen, die man nicht gut durch
   Kugeln repraesentieren kann (z.B. Neuronen). Fuer diesen Fall haben
@@ -751,25 +751,25 @@
      zusaetzliche Details ein, die fuer die praktische Implementierung
      wichtig sind. Unter anderem die Eigenschaften der beiden
      verwendeten Displays, elektronische Synchronisation der
-     verschiedenen Komponenten und einem Algorithmus, um das
+     verschiedenen Komponenten und einem Algorithmus, um das              /Hier mehr spezifische Probleme/
      Koordinatensystem der Kamerapixel und der Pixel des focal plane
      SLM ineinander zu transformieren.
 
    - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
-     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem
+     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem   /MMA kommt spaeter extra/
      Subsystem im Kapitel (FIXME) naeher.
 
 ** optical components
  - Bisher haben wir den Strahlengang nur fuer Transmissionsdisplays
-   gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur
+   gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur      /Transmissionsdisplays gehen gar nicht/
    sehr geringe Transmission und deshalb verwenden wir in unserem
    System reflektive Displays. 
 
  - fig:memi-real zeigt schematisch den entsprechend angepassten
    Strahlengang.  Unten links strahlt die Lichtquelle in das
-   System. Die Optik ist farbkorrigiert fuer Wellenlaengen im Bereich von 400 bis 700nm.
-   Das System beleuchtet nacheinander den pupil plane
-   SLM---den vom Fraunhofer entwickelten
+   System. Die Optik ist farbkorrigiert fuer Wellenlaengen im Bereich
+   von 400 bis 700nm.  Das System beleuchtet nacheinander den pupil      /Was ist nacheinander im Bild zu sehen/
+   plane SLM---den vom Fraunhofer entwickelten
    Graustufen-Mikrospiegelarray---und den focal plane SLM, ein
    kommerzielles liquid crystal on silicon Display.
   
@@ -787,14 +787,16 @@
   
 *** The illumination system
  - Wenn wir einen Laser benutzen, dann senden wir den parallelen
-   Strahl zunaechst durch ein Mikrolinsenarray. In der Fokusebene nach
-   dem Array befindet sich hinter jeder Linse ein Spot. Das
-   Mikrolinsenarray rotiert, so dass diese Spots waehrend einer
-   Belichtungszeit der Kamera moeglichst viele Positionen abdecken.
-   Durch diese Vorgehensweise koennen wir das Laserlicht, das generell
-   hohe oertliche Kohaerenz---also eine geringe Etendue---aufweist, an
-   die Etendue der nachfolgenden Optik anpassen. Mikrolinsen mit
-   kuerzerer Fokuslaenge fuehren zu groesserer Etendue.
+   Strahl zunaechst in ein Buendel statistisch verteilter
+   Fasern. Dieses wandelt das runde Strahlprofil in ein rechteckiges
+   und randomisiert die Intensitaetsverteilung.
+   
+   Ein rotierendes Mikrolinsenarray mischt das Licht, so dass waehrend
+   einer Belichtungszeit der Kamera moeglichst viele Modenprofile das
+   Spezimen beleuchten.  Durch diese Vorgehensweise koennen wir das
+   Laserlicht, das generell hohe oertliche Kohaerenz---also eine
+   geringe Etendue---aufweist, an die Etendue der nachfolgenden Optik
+   anpassen. 
 
  - Durch mehrfache Reflexion in einem Lichttunnel\footnote{Der Tunnel
    (rod integration system, light pipe, D8_2_v2 is a good document)
@@ -803,8 +805,6 @@
    kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
    erzeugen wir eine homogene Lichtverteilung in F'''.
    
-   (FIXME warum hat invision nicht zwei mikrolinsenarrays
-   hintereinander gesetzt?, wieviel licht wird im tunnel absorbiert?)
  
  - druecke winkel in seconds of arc aus? (FIXME einheit nachschauen)
 
@@ -822,6 +822,8 @@
    lassen sich dann besser Kuehlen und bei hoeheren Strom betreiben.
 
 
+ - transistoren auf glassubstrat kann nicht die si technologie und
+   geraete nutzen
  - beschreibe alles mit usb forthdd display, erwaehne vorteile von
    graphikkarte+ dvi lcos und schreibe details in appendix (zum
    beispiel die exakten Brennweiten der Linsen)
@@ -959,6 +961,10 @@ eps,numer;
     - point to mehta, sheppard for treatment of partial coherent case
       (extended illumination source)
     - point to fraunhofer publications
+
+   - erste simulationen haben gezeigt, dass ein grauwertdisplay nicht
+     unbedingt erforderlich zu sein scheint. eine erklaerung hierfuer
+     koennte die tiefpasswirkung des focal plane arrays sein.
 ** approach using a shearing interferometer
 - erklaere dass man bei verwendung des interferometers eine hoehere
   ettendue erwarten kann
@@ -1076,6 +1082,8 @@ eps,numer;
       therefore etendue, for good contrast f/# shouldn't be smaller
       than f/2.8
   - mma (naja)
+- hilo ist nicht unbedingt notwendig, ziemlich kompliziert und brauch
+  fudge factor
 * outlook
 - den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
   verbessern

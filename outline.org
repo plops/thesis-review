@@ -580,7 +580,7 @@
   Beleuchtung fuehrte zu guten optischen Schnitten, die Rekonstruktion
   mit Laserbeleuchtung enthielt jedoch Rekonstruktionsartefakte.
 - (FIXME in appendix) In einem ersten Entwicklungsschritt, bevor
-  InVision uns den Prototyp fuer das spatio-angulare Mikroskop zur
+  In-Vision uns den Prototyp fuer das spatio-angulare Mikroskop zur
   Verfuegung stellte, setzten wir einen SLM in die
   Zwischenbildebene. Auf dem SLM wurden vier Streifenmuster angezeigt
   und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm
@@ -756,6 +756,7 @@
      verschiedenen Komponenten und einem Algorithmus, um das
      Koordinatensystem der Kamerapixel und der Pixel des focal plane
      SLM ineinander zu transformieren.
+
    - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
      waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem
      Subsystem im Kapitel (FIXME) naeher.
@@ -765,14 +766,16 @@
    gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur
    sehr geringe Transmission und deshalb verwenden wir in unserem
    System reflektive Displays. 
+
  - fig:memi-real zeigt schematisch den entsprechend angepassten
    Strahlengang.  Unten links strahlt die Lichtquelle in das
-   System. Die Optik ist farbkorrigiert von 400 bis 700nm
-   Wellenlaenge. Das System beleuchtet nacheinander den pupil plane
+   System. Die Optik ist farbkorrigiert fuer Wellenlaengen im Bereich von 400 bis 700nm.
+   Das System beleuchtet nacheinander den pupil plane
    SLM---den vom Fraunhofer entwickelten
    Graustufen-Mikrospiegelarray---und den focal plane SLM, ein
    kommerzielles liquid crystal on silicon Display.
   
+*** The illumination system
  - Wenn wir einen Laser benutzen, dann senden wir den parallelen
    Strahl zunaechst durch ein Mikrolinsenarray. In der Fokusebene nach
    dem Array befindet sich hinter jeder Linse ein Spot. Das
@@ -784,13 +787,16 @@
    kuerzerer Fokuslaenge fuehren zu groesserer Etendue.
 
  - Durch mehrfache Reflexion in einem Lichttunnel\footnote{Der Tunnel
+   (rod integration system, light pipe, D8_2_v2 is a good document)
    hat einen quadratischen Querschnitt. priv. comm. mit Prof. Herbert
    Gross: "Wenn mit dem Querschnitt die Flaeche parkettiert werden
    kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
-   erzeugen wir eine homogene Lichtverteilung in F'''. 
+   erzeugen wir eine homogene Lichtverteilung in F'''.
    
    (FIXME warum hat invision nicht zwei mikrolinsenarrays
    hintereinander gesetzt?, wieviel licht wird im tunnel absorbiert?)
+ 
+ - druecke winkel in seconds of arc aus? (FIXME einheit nachschauen)
 
  - Fuer Experimente mit einer LED Lichtquelle, haben wir diese immer
    in der Naehe von F''' platziert. Wir platzieren die Oberflaeche der
@@ -806,8 +812,6 @@
    lassen sich dann besser Kuehlen und bei hoeheren Strom betreiben.
 
 
- - Diese Beleuchtet 
-
  - beschreibe alles mit usb forthdd display, erwaehne vorteile von
    graphikkarte+ dvi lcos und schreibe details in appendix (zum
    beispiel die exakten Brennweiten der Linsen)
@@ -820,9 +824,12 @@
    - pixel pitch 13.62 um (FIXME check) 
    - fill factor 92%
    - size of sxga display 17.43 mm *13.95 mm = 243.15 mm^2 
-   - etendue eps= pi A/(4 F^2)= 18.6mm^2/sr at F/3.2  (FIXME figure this out)
+   - etendue eps= pi A/(4 F^2)= 18.6mm^2/sr at F/3.2  (FIX1ME figure this out)
      - rhs/f^2 = 17.43*13.95*%pi/4 = 190.97
      - f = sqrt(190.97/18.6) = 3.2
+     - mccullum 2008 SID_ME_Jena slide talks about 33.15mm^2/sr
+       - they also talk about polarization recycling gaining 40% light
+         efficiency
      - in microscope: eps = pi/4 * (D * NA)^2
        - example for my objective with 400um field of view eps=0.27
          mm^2/sr:
@@ -1055,8 +1062,10 @@ eps,numer;
     wenn ich ein programm auf dem lokalen arm prozessor laufen lassen
     koennte, was die vollen 4000fps aus runlength (oder irgendwie
     komprimierten) daten vom usb aus erzeugen koennte
+    - deflection angle defines f/# number of projection lens and
+      therefore etendue, for good contrast f/# shouldn't be smaller
+      than f/2.8
   - mma (naja)
-
 * outlook
 - den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
   verbessern

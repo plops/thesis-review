@@ -1,4 +1,63 @@
 \chapter{Device 1: prototype for spatio-angular illumination}
+\begin{summary}
+   - Im vorhergehende Kapitel haben wir das dem spatio-angularen
+     Mikroskop zugrundliegende Konzept dargestellt. Hier gehen wir auf
+     zusaetzliche Details ein, die fuer die praktische Implementierung
+     wichtig sind. Unter anderem die Eigenschaften der beiden
+     verwendeten Displays, elektronische Synchronisation der
+     verschiedenen Komponenten und einem Algorithmus, um das
+     Koordinatensystem der Kamerapixel und der Pixel des focal plane
+     SLM ineinander zu transformieren.
+
+   - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
+     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem
+     Subsystem im Kapitel (FIXME) naeher.
+\end{summary}
+\section{Description of the optical system with reflective displays}
+ - Bisher haben wir den Strahlengang nur fuer Transmissionsdisplays
+   gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur
+   sehr geringe Transmission und deshalb verwenden wir in unserem
+   System reflektive Displays. 
+
+ - fig:memi-real zeigt schematisch den entsprechend angepassten
+   Strahlengang.  Unten links strahlt die Lichtquelle in das
+   System. Die Optik ist farbkorrigiert von 400 bis 700nm
+   Wellenlaenge. Das System beleuchtet nacheinander den pupil plane
+   SLM---den vom Fraunhofer entwickelten
+   Graustufen-Mikrospiegelarray---und den focal plane SLM, ein
+   kommerzielles liquid crystal on silicon Display.
+  
+ - Wenn wir einen Laser benutzen, dann senden wir den parallelen
+   Strahl zunaechst durch ein Mikrolinsenarray. In der Fokusebene nach
+   dem Array befindet sich hinter jeder Linse ein Spot. Das
+   Mikrolinsenarray rotiert, so dass diese Spots waehrend einer
+   Belichtungszeit der Kamera moeglichst viele Positionen abdecken.
+   Durch diese Vorgehensweise koennen wir das Laserlicht, das generell
+   hohe oertliche Kohaerenz---also eine geringe Etendue---aufweist, an
+   die Etendue der nachfolgenden Optik anpassen. Mikrolinsen mit
+   kuerzerer Fokuslaenge fuehren zu groesserer Etendue.
+
+ - Durch mehrfache Reflexion in einem Lichttunnel\footnote{Der Tunnel
+   hat einen quadratischen Querschnitt. priv. comm. mit Prof. Herbert
+   Gross: "Wenn mit dem Querschnitt die Flaeche parkettiert werden
+   kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
+   erzeugen wir eine homogene Lichtverteilung in F'''. 
+   
+   (FIXME warum hat invision nicht zwei mikrolinsenarrays
+   hintereinander gesetzt?, wieviel licht wird im tunnel absorbiert?)
+
+ - Fuer Experimente mit einer LED Lichtquelle, haben wir diese immer
+   in der Naehe von F''' platziert. Wir platzieren die Oberflaeche der
+   LED absichtlich ausserhalb von F''', so dass ihre Details nicht im
+   Sample sichtbar sind. LEDs sind Lambertstrahler und strahlen Licht
+   in den vollen Halbraum. Eine Lichtemittierende Flaeche mit einigen
+   10um reichen demnach aus um die Etendue von Mikroobjektiven zu
+   fuellen. Die Auswahl brauchbarer LEDs ist schwierig, den die
+   Datenblaetter enthalten selten Angaben ueber die strahlende
+   Flaeche. Bei 3W LEDs haben wir einige mm gemessen. Fuer hoechste
+   Intensitaet im Sample ist es daher besser, LEDs mit geringer
+   Gesamtleistung und kleiner strahlender Flaeche zu verwenden. Diese
+   lassen sich dann besser Kuehlen und bei hoeheren Strom betreiben.
 
 
 \begin{figure}[!htbp]

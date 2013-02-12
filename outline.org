@@ -775,6 +775,18 @@
    Graustufen-Mikrospiegelarray---und den focal plane SLM, ein
    kommerzielles liquid crystal on silicon Display.
   
+   (Notiz: Ich habe mit Prof fuer Mustererkennung gesprochen und bin
+   jetzt motiviert, einen Raytracer zu schreiben, um die Qualitaet der
+   beiden Erzeugten masken zu evaluieren. Prinzipiell muss ich von
+   jeden durchlaessigen Punkt der Pupille alle beleuchteten Punkte im
+   Feld durchtracen. Als Ergebnis waere die Anzahl Strahlen innerhalb
+   von in-fokus Objekten geteilt durch die Anzahl Strahlen, die
+   Out-of-focus Objekte treffen nuetzlich.  D.h. ich brauche
+   ueberhaupt nichts neues Programmieren. Der Code existiert bereits.
+   Fuer jeden in-focus Punkt erzeuge ich eine Maske. Ich brauche eine
+   gute Heuristik, um Punkte mit aehnlichen Masken zusammenzufassen. )
+
+  
 *** The illumination system
  - Wenn wir einen Laser benutzen, dann senden wir den parallelen
    Strahl zunaechst durch ein Mikrolinsenarray. In der Fokusebene nach

@@ -309,14 +309,14 @@
     beispielhaften, in gewoehnlichen samples oft vorkommenden
     fluorophore verteilungen.
   - dann beschreiben wir entscheidungen bezueglich der anordnung der
-    optischen komponenten, die wir bereits frueh in der design phase
+    optischen komponenten, die wir bereits frueh in der design phase          /Designentscheidungen/
     treffen mussten. Ausserdem positionieren wir unsere Methode im
-    aktuellen Forschungsfeld zur Beleuchtungskontrolle in
+    aktuellen Forschungsfeld zur Beleuchtungskontrolle in                   
     Mikroskopen. Von allen bisher veroeffentlichten ansaetzen der
     beleuchtungssteuerung in der mikroskopie kommt unserem ansatz das
     lichtfeldmikroskop (levoy) am naechsten. wir erklaeren die
     unterschiede zwischen beiden techniken und gehen auf ihre
-    jeweiligen vor- und nachteile ein.  auf eigenheiten und
+    jeweiligen vor- und nachteile ein.  auf eigenheiten und                  /Vergleich Levoy/
     beschraenkungen der eingesetzten hardware komponenten gehen wir
     erst in einem spaeteren kapitel ein (ref sec:dev1, sec:mma), weil
     die details der verstaendlichkeit zunaechst abtraeglich waeren.
@@ -325,7 +325,7 @@
     mehr wissen ueber die probe bedarf (fluorophor- und
     brechzahlverteilung) als herkoemmliche mikroskopiemethoden oder
     ein spim mikroskop (ref spim). die computergesteuerte auswahl
-    passender beleuchtungsmasks erfordert eine vorhersage, oder
+    passender beleuchtungsmasks erfordert eine vorhersage, oder             /Die Schwierigkeit/
     zumindest das verstaendnis, der dreidimensionalen lichtverteilung
     im objektraum. im letzten teil dieses kapitels beschreiben wir, wie wir
     unser spatio-angulares mikroskop prakisch umsetzen. dabei
@@ -341,15 +341,13 @@
     Querschnitt (in der Darstellung nicht sichtbar) trifft auf die
     Objektivlinse. Die Linse fokussiert das Licht in ihrer Brennebene.
   - Zwischen Linse und Brennebene bilden die Lichtstrahlen einen
-    konvergenten Kreiskegel. Wenn Brechzahlvariationen im Objekt
+    konvergenten Kreiskegel. Wenn Brechzahlvariationen im Objekt             /Einfaches Schema/
     vernachlaessigbar sind, ist die Lichtverteilung unter der
     Fokusebene aus Symmetriegruenden wieder ein Kegel.  Angenommen,
     wir haben eine schwach absorbierende Probe, die Energie des
     Lichtes entlang der kreisfoermigen Querschnitte innerhalb des
-    Kegels bleibt dann konstant. Die Intensitaet innerhalb des Kegels
-    ist proportional zur Dichte der Lichtstrahlen in jedem
-    kreisfoermigen Querschnitt und steigt daher quadratisch
-    an\footnote{Das strahlenoptische Modell gilt in grossen Teilen der
+    Kegels bleibt dann konstant                                              /Strahlen reichen aus/
+    \footnote{Das strahlenoptische Modell gilt in grossen Teilen der
     Darstellung in fig:hourglass-all-a, jedoch nicht ueberall.  Das
     Gesetz von Malus-Lupin besagt, dass die Beschreibung mit
     Lichtstrahlen oder Wellenfronten equivalent sind, solange sich
@@ -364,7 +362,7 @@
     strahlentheoretische Modell}.
   - Der fluoreszente Bead (1) im Fokus wuerde demnach deutlich
     staerker angeregt werden, als der Bead (2) ausserhalb der
-    Fokusebene. Im konfokalem Fluoreszensmikroskop wird das
+    Fokusebene. Im konfokalem Fluoreszensmikroskop wird das                   /Was sind Winkel/
     Fluoreszenslicht beider Beads vom Objektiv und
     Detektionstubuslinse in die Zwischenbildebene abgebildet.  Das
     Bild (FIXME Zahlen und Beschriftung ins Bild) des in-focus Beads
@@ -391,7 +389,7 @@
     konfokales Mikroskop mit einer Winkelkontrolle auszustatten. In
     unserem Projekt wollten wir jedoch ein widefield Mikroskop bauen,
     um von der Geschwindigkeit und Quanteneffizienz moderner Kameras
-    zu profitieren. Nichtsdestrotz ist ein konfokales Mikroskop mit
+    zu profitieren. Nichtsdestrotz ist ein konfokales Mikroskop mit      /Anwendung im konfokalem Mikroskop/
     Winkelkontrolle der Beleuchtung ein Ansatz mit Potential und einer
     weiterfuehrenden Untersuchung wuerdig. Siehe \ref{sec:conclusion}
     auf Seite \pageref{sec:conclusion} fuer eine Diskussion, welche
@@ -402,7 +400,7 @@
     fig:hourglass-all-c zeigt eine Konfiguration des Spezimen
     mit zwei in-focus Beads (5) und (6). Wenn beide gleichzeitig, also
     das gesamte Feld durch eine ausgedehnte Lichtquelle, beleuchtet
-    werden, gibt es keine Moeglichkeit die Beleuchtung des
+    werden, gibt es keine Moeglichkeit die Beleuchtung des              /Winkel im Weitfeldmikroskop/
     out-of-focus Beads (7) zu vermeiden. Erst durch eine selektive
     Beleuchtung der in-focus Beads, wie in fig:hourglass-all-d
     dargestellt, hat die Winkelkontrolle wieder einen Einfluss. Ein
@@ -415,8 +413,8 @@
     Seite befindet sich eine ausgedehnte Lichtquelle. Durch die
     telezentrisch angeordneten Linsen $L_1$, $L_2$, $L_3$ und die
     Objektivlinse wird die Lichtquelle in die vordere Fokusebene (F
-    fuer Feld) des Objektivs, also in die Probe, abgebildet. Die
-    Ettendue (auch Space-Bandwidth product (FIXME check definitions))
+    fuer Feld) des Objektivs, also in die Probe, abgebildet. Die             /Etendue/
+    Etendue (auch Space-Bandwidth product (FIXME check definitions))
     der Lichtquelle muss gross genug sein, sowohl die Pupille P als
     auch das Feld F auszuleuchten.
   - In den Ebenen P' und F' platzieren wir jeweils einen spatialen
@@ -429,7 +427,7 @@
     - Erstens ist die Pupille in modernen Hochleistungsobjektiven
       nicht zugaenglich\footnote{Dies ist historisch bedingt. Um
       Kompatibilitaet verschiedener Objektive im Objektivrevolver zu
-      garantieren, so dass sich Nachfokussieren beim Objektivwechsel
+      garantieren, so dass sich Nachfokussieren beim Objektivwechsel      /Anordnung der Displays/
       eruebrigt, wurde die Baulaenge der Objektive festgelegt (bei
       Zeiss sind das 45mm). Heutzutage kann man die Baulaenge ohne
       weiteres mit dem motorisierten Fokus korrigieren und man wuerde
@@ -453,8 +451,8 @@
     Aufloesung erheblich. Zwar ist es im Lichtfeldmikroskop moeglich,
     die Einfallswinkel in allen Feldpositionen unabhaengig zu aendern,
     dies erfordert jedoch einen einzelnen SLM mit sehr vielen Pixeln,
-    der nur vergleichsweise langsam angesteuert werden kann. Wir
-    setzen zwei deutlich kleinere SLM ein, die wir sehr viel
+    der nur vergleichsweise langsam angesteuert werden kann. Wir            /Levoy steuert mehr Winkel/
+    setzen zwei deutlich kleinere SLM ein, die wir sehr viel                /Wir haben mehr Aufloesung/
     schneller--mit etwa 1kHz Bildwiederholrate--ansteuern koennen. Die
     Anzeige von hochaufgeloesten Mustern (Strukturierte Beleuchtung)
     im Feld gibt uns die Moeglichkeit, optische Schnitte der Probe zu

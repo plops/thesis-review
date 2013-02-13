@@ -938,6 +938,8 @@ eps,numer;
       50% (but not at this high framerate)
 
     - erklaere, die elektroden
+  - dickenschwankung im material gehe kubisch in die deflektion ein
+    (sampsell patent 1993)
 ** approach using a fourier filter
 *** theory
     - ich will die formeln hinschreiben und ein bild zeigen, wie die
@@ -1018,6 +1020,8 @@ eps,numer;
 * discussion
 - zuerst habe ich dvi lcos mit mma verbaut, das hat leider nur
   gelegntlich funktioniert
+- urspruenglich war geplant folgendes system einzusetzen: Biological
+  applications of an LCoS-based programmable array microscope (PAM)
 - dann habe ich usb lcos eingesetzt, damit geht es immer, ist aber
   langsamer und deutlich weniger nuetzlich zum experimentieren
 - ausserdem ist die ettendue des beleuchtungssystems arg

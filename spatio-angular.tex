@@ -1,17 +1,17 @@
 \chapter{The concept of spatio-angular microscopy}
 \label{sec:concept}
 \begin{summary}
-  Here we introduce our spatio-angular microscope. First we motivate
+  Here I introduce the spatio-angular microscope. First I motivate
   the concept of its illumination system using exemplary fluorophore
   distributions, that occur in typical specimen.
 
-  Then we describe some decisions we faced during the initial design
+  Then I describe some decisions we faced during the initial design
   phase concerning the arrangement of optical components. Furthermore,
-  we position our method among known approaches of light control for
+  I position our method among known approaches of light control for
   microscopy. Of all published techniques for excitation illumination
   control, the light field microscope \ref{levoy} (FIXME ref levoy)
-  comes closest to our approach.  We explain differences between both
-  techniques and discuss their respective pros and cons.  We address
+  comes closest to our approach.  I explain differences between both
+  techniques and discuss their respective pros and cons.  I address
   the peculiarities and limitations of the hardware components in
   later chapters (\ref{sec:dev1}, \ref{sec:mma} FIXME sec:dev1
   sec:mma).  Initially, the details would be detrimental to clarity.
@@ -30,13 +30,13 @@
   requires the prediction, or at least an approximate estimation, of
   the three-dimensional distribution of light in the specimen.
 
-  In the last part of this chapter, we describe how we practically
-  implement the computational control loop in our spatio-angular
-  microscope. Here we touch topics of image processing.
+  In the last part of this chapter, I describe the computational
+  control loop in our spatio-angular
+  microscope and touch topics of image processing.
 \end{summary}
 \section{Motivation}
-In order to introduce the basic idea, underlying our spatio-angular
-microscope, first we consider the distribution of excitation light in
+In order to introduce the basic idea, underlying the spatio-angular
+microscope, first I consider the distribution of excitation light in
 the object of a conventional fluorescence microscope:
 \figref{fig:hourglass-all}~a) schematically illustrates the side view
 of the excitation beam path through objective lens and object in a
@@ -59,16 +59,15 @@ constant\footnote{The ray-model is valid in large
   treatment of these areas is possible, it is computationally much
   more expensive than ray tracing. Wave-optical effects either lead to
   blurring in a length scale of a few wavelengths or intensity
-  fluctuations due to interference. If necessary, heuristics could be
-  chosen, to find an upper bound for the local intensity from ray tracing
+  fluctuations due to interference. If necessary, we can use heuristics
+  to find an upper bound for the local intensity from ray tracing
   results. For this reason we exclusively employ the ray-model in this
   work.}.
 
 
 The fluorescent bead (1), in the focus, would therefore be excited
-significantly more than the bead (2) outside the focal plane. In the
-confocal fluorescence microscope, the fluorescence light of the two
-beads is imaged into the intermediate image plane by the objective lens and the detection tube lens.
+significantly more than the bead (2) outside the focal plane. Also
+shown is the light distribution in the intermediate image plane.
 
 The image of the in-focus bead (1) is sharp, i.e.\ its emanating
 fluorescence light is concentrated on an area as small as possible and
@@ -109,22 +108,22 @@ corresponds to a restriction of the light angles. Such control can be
 exerted well through a mask in the other focal plane of the objective
 lens (also denoted back focal plane or pupil plane).
 
-Thus we have shown that it is useful and possible to equip a confocal
+Thus I have shown that it is useful and possible to equip a confocal
 microscope with angular control. However, in our project we set out to
 to build a wide field microscope in order to benefit from the speed
 and quantum efficiency of modern cameras.  Nonetheless, a confocal
 microscope with angular illumination control seems to have potential
 and this subject is worthy further investigation.  See (FIXME) ref
-sec:conclusion on page pageref sec:conclusion where we discuss a
+sec:conclusion on page pageref sec:conclusion where I discuss a
 combination of techniques that would lead to a system with promising capabilities.
 
-We now turn to the task of bringing angular control to the wide field
+I now turn to the task of bringing angular control to the wide field
 microscope. \figref{fig:hourglass-all}~c) shows a configuration of the
 specimen with two in-focus beads (5) and (6), and one out-of-focus
 bead (7).  The angular illumination control is ineffective for this
 arrangement of beads.  If both in-focus beads, (5) and (6), are exposed
 simultaneously, i.e.\ an extended light source illuminates the entire field,
-then the out-of-focus bead (7) always receives some excitation dosage.
+then the out-of-focus bead (7) is always excited.
 
 Only by separate illumination of the in-focus beads (8)
 and (9), as shown in \figref{fig:hourglass-all}~d), angular control
@@ -203,17 +202,17 @@ e.g.\ optogenetic control of neuron activities.
 
 Furthermore, structured illumination with high resolution patterns allows us to
 circumvent the missing cone problem of the widefield microscope.
-Later we will show that depth
+Later I will show that depth
 discrimination improves with higher resolution patterns (FIXME ref).
 \section{An imaging protocol with spatio-angular illumination control}
 \subsection{Description of an exemplary biological specimen}
-Now we describe time-lapse imaging with low phototoxicity using the
+Now I describe time-lapse imaging with low phototoxicity using the
 example of developing \celegans\ embryos. As we will discuss in later chapters, so far we did not reach
 the point of being able to image the development of a real embryo. Key
 problems are  the low light throughput of the illumination
 system and the length of time necessary to update images on the focal
-plane display. Nevertheless, we always kept this example in mind,
-while we were developing the control software for our microscope.
+plane display. Nevertheless, I always kept this example in mind,
+while I was developing the control software for our microscope.
 
 We use embryos which  were genetically modified\footnote{Our strain has WormBase ID AZ212.}
 to include eGFP tagged histones (enhanced green fluorescent protein,
@@ -233,7 +232,7 @@ During development the nuclei get smaller and more
 dense. In order to track the fate of all individual cells it is sufficient, to
 capture one stack per minute with 20 layers at a distance of 1~micron.
 \subsection{Preparation of living embryo samples}
-For an observation a worm is cut and the embryos are placed on an
+For an observation a worm is cut and the embryos are placed on an (FIXME wormbook procedure)
 agarose pad, so that they stay immobile during imaging. Of these
 embryos, the experimenter chooses a young specimen, that has not yet
 divided. We avoid to use fluorescence excitation for this step.
@@ -254,7 +253,7 @@ built our microscope such that we can obtain optical sections.
 
 We compared conventional structured illumination using max$-$min
 (FIXME) reconstruction with laser and LED illumination. Although LED
-illumination led to excellent optical sections, the reconstruction of
+illumination resulted in excellent optical sections, the reconstruction of
 laser illuminated images contained artifacts.
 
 {\color{red}
@@ -310,7 +309,7 @@ necessary.
 \subsection{Computer model for the integration of a priori knowledge
   about the biological events}
 Given an initial measurement of the fluorophore distribution of the
-embryo, we employ a computational algorithm to find good illumination
+embryo, I employ a computational algorithm to find good illumination
 conditions for subsequent stack acquisitions. An important
 requirement is that the computer can estimate, which areas of the
 sample should be protected from illumination. 
@@ -318,16 +317,18 @@ sample should be protected from illumination.
 For our test system, the \celegans\ embryo, it is a promising approach
 to represent its three-dimensional fluorophore distribution by a simple
 model: Spheres encompassing the nuclei, indicate regions with fluorophores. When in focus, the
-spheres are expected to be the source of useful, informative fluorescence signal,
+spheres are the source of useful, informative fluorescence signal,
 but should be protected from (FIXME from or against) exposure when out of
 focus.
 
-As we mentioned earlier, there are also unused histones with
+As I mentioned earlier, there are also unused histones with
 fluorophores outside of the nuclei. The images reveal that they occur
 in the cytoplasm at a much lower concentration than in the
 nuclei. Fluorophores in the cytoplasm have a smaller phototoxic
 effect, because any radicals they produce are much less likely to
 reach the DNA and therefore inflict substantially less damage.
+In the following my goal is to protect only out-of-focus nuclei from
+exposure. The regions in between are used to bring the light in.
 
 
 During observation, the nuclei, i.e.\ the centers of the spheres, move
@@ -341,7 +342,7 @@ detects such changes in the images, in one of the following time
 steps an additional sphere should be introduced to account for the new
 daughter cell.
 
-So far we have only implemented a simple algorithm, to convert a time
+So far I have only implemented a simple algorithm, to convert a time
 series of image volumes from a confocal microscope into a sphere model
 (FIXME difference of Gaussians and radius determination blob paper).
 One of our project partners (Jean-Yves Tinevez,
@@ -359,25 +360,25 @@ snapshots of the developing cells (see \figref{fig:trackmate}).
 \end{figure}
 Before our microscope can be used for our biological problem, the
 computer model has to be extended so that it reliably tracks the
-movement of nuclei.  Overlooking any nucleus would prevent it from being 
-imaged and would be a setback for the experiment.  Estimating the
+movement of nuclei.  Overlooking any nucleus would prevent this nucleus from being 
+imaged in later acquisitions and would be a setback for the experiment.  Estimating the
 vector field of growth velocities helps to track nuclei more robustly
 and allows to predict their positions for the next exposure.
 
 
 Unfortunately, currently we have not implemented programs that would
 fulfill the requirements for imaging a developing embryo.  However, in
-the following text we assume that the described position predictions
-were available and we discuss how we determine masks for the focal
+the following text I assume that the described position predictions
+were available and I discuss how I determine masks for the focal
 plane and pupil plane SLM.  
 
 \subsection{Illumination optimization by means of raytracing}
-We now discuss a method to find both SLM masks for image acquisitions
-with minimal phototoxicity. First we define a mask for the focal plane
+I now discuss a method to find both SLM masks for image acquisitions
+with minimal phototoxicity. First I define a mask for the focal plane
 SLM:
 
-From the predicted arrangement of spheres we can find in-focus nuclei
-by intersecting the model with a planar surface. We then define focal
+From the predicted arrangement of spheres we select in-focus nuclei
+by intersecting the model with a planar surface. I then define focal
 plane SLM masks to selectively illuminate each of the in-focus nuclei,
 by drawing a bright disk in the appropriate position.
 
@@ -388,25 +389,25 @@ As we already explained at the beginning of the chapter (FIXME
 pageref), ray-optical theory suffices to describe the light
 distribution within the sample.
 
-We connect the periphery of an out-of-focus nucleus with a point
-inside the in-focus target. This defines a circular cone of rays, for
-which we calculate the refraction by the objective lens. Their
+I connect the periphery of an out-of-focus nucleus with a point
+inside the in-focus target. This defines a circular cone of rays, that
+are propagated through the objective lens. Their
 intersection with the pupil plane results in a figure that still very
-much resembles a circle---we found that already seven rays lead to good
-representation of its perimeter.  We compute these figures for every
+much resembles a circle---I found that already seven rays lead to good
+representation of its perimeter.  I compute these figures for every
 out-of-focus nucleus and for a few in-focus targets points within the
-bright areas of the focal plane pattern. In this manner we construct
+bright areas of the focal plane pattern. In this manner I construct
 the desired mask for the pupil plane SLM.
 
-In order to trace the rays into the pupil, we need the design parameters of
+In order to trace the rays into the pupil, I need the design parameters of
 the objective lens (vertex position, curvature and material for all
 surfaces). Unfortunately, these rarely are publicly
 available for high-performance objective lenses. Nevertheless, in
-chapter (FIXME) we use a simpler model of the objective lens, that
+chapter (FIXME) I use a simpler model of the objective lens, that
 requires only three parameters: focal length, refractive index of the
 immersion medium and numerical aperture. These are always known.
 
-Additionally, we have adapted the model for non-index-matched
+Additionally, I have adapted the model for non-index-matched
 embedding of the specimen. This problem occurs, when the embryo is
 illuminated with an oil immersion objective, using HILO (FIXME
 ref). It should be noted, however, that good image quality of the

@@ -136,6 +136,15 @@
     - man kennt die eigenschaften des abbildenden systems und kann sie
       innerhalb gewisser grenzen (rauschen) wieder aus dem bild
       rausrechnen
+** radiometrische beschreibung optischer systeme
+- etendue
+- etendue von laser
+- radiance/n^2
+- limitations of led
+- man kann nicht einfach zwei leds kaufen und damit mehr licht im
+  mikroskop haben
+
+
 ** image detectors
   - fruehe ccd kameras besassen nur einen vorverstaerker und adc und
     liefen mit einer hohen taktrate um gesamte frames auszulesen
@@ -162,7 +171,8 @@
     - dadurch kann die taktrate dieser elemente um 3 groessenordnungen
       vermindert werden und man erreicht auch ohne em gain
       ausleserauschen von etwa 1 elektron pro pixel
-   
+
+
 *** characterization of read noise
     - um daten zwischen verschiedenen geraeten zu vergleichen
     - beschreibe mein experiment, wo ich zwei em ccd kameras verglichen habe
@@ -763,16 +773,20 @@
  - Bisher haben wir den Strahlengang nur fuer Transmissionsdisplays
    gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur      /Transmissionsdisplays gehen gar nicht/
    sehr geringe Transmission und deshalb verwenden wir in unserem
-   System reflektive Displays. 
+   System reflektive Displays.
 
  - fig:memi-real zeigt schematisch den entsprechend angepassten
    Strahlengang.  Unten links strahlt die Lichtquelle in das
-   System. Die Optik ist farbkorrigiert fuer Wellenlaengen im Bereich
+   System. Die Optik ist farbkorrigiert und antireflexbeschichtet 
+   fuer Wellenlaengen im Bereich
    von 400 bis 700nm.  Das System beleuchtet nacheinander den pupil      /Was ist nacheinander im Bild zu sehen/
    plane SLM---den vom Fraunhofer entwickelten
    Graustufen-Mikrospiegelarray---und den focal plane SLM, ein
    kommerzielles liquid crystal on silicon Display.
-  
+ 
+   (einige der folgenden details aus deliverables entnommen, die vom
+   projekt consortium als confidential eingestuft wurden.)
+
    (Notiz: Ich habe mit Prof fuer Mustererkennung gesprochen und bin
    jetzt motiviert, einen Raytracer zu schreiben, um die Qualitaet der
    beiden Erzeugten masken zu evaluieren. Prinzipiell muss ich von
@@ -786,40 +800,104 @@
 
   
 *** The illumination system
- - Wenn wir einen Laser benutzen, dann senden wir den parallelen
-   Strahl zunaechst in ein Buendel statistisch verteilter
-   Fasern. Dieses wandelt das runde Strahlprofil in ein rechteckiges
-   und randomisiert die Intensitaetsverteilung.
-   
-   Ein rotierendes Mikrolinsenarray mischt das Licht, so dass waehrend
-   einer Belichtungszeit der Kamera moeglichst viele Modenprofile das
-   Spezimen beleuchten.  Durch diese Vorgehensweise koennen wir das
-   Laserlicht, das generell hohe oertliche Kohaerenz---also eine
-   geringe Etendue---aufweist, an die Etendue der nachfolgenden Optik
-   anpassen. 
+ - Als Beleuchtung in unseren Experimenten nutzen wir entweder einen
+   Laser\footnote{Lasever LSR473H 600mW 473nm diode-pumped solid
+   state} oder eine LED.
 
- - Durch mehrfache Reflexion in einem Lichttunnel\footnote{Der Tunnel
-   (rod integration system, light pipe, D8_2_v2 is a good document)
-   hat einen quadratischen Querschnitt. priv. comm. mit Prof. Herbert
-   Gross: "Wenn mit dem Querschnitt die Flaeche parkettiert werden
-   kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
-   erzeugen wir eine homogene Lichtverteilung in F'''.
-   
- 
- - druecke winkel in seconds of arc aus? (FIXME einheit nachschauen)
+ - Quantitative Experimente erfordern eine homogene Ausleuchtung von
+   sowohl pupil plane als auch focal plane SLM.
 
- - Fuer Experimente mit einer LED Lichtquelle, haben wir diese immer
-   in der Naehe von F''' platziert. Wir platzieren die Oberflaeche der
-   LED absichtlich ausserhalb von F''', so dass ihre Details nicht im
-   Sample sichtbar sind. LEDs sind Lambertstrahler und strahlen Licht
-   in den vollen Halbraum. Eine Lichtemittierende Flaeche mit einigen
-   10um reichen demnach aus um die Etendue von Mikroobjektiven zu
-   fuellen. Die Auswahl brauchbarer LEDs ist schwierig, den die
+ - Fuer Experimente mit einer LED Lichtquelle, positionieren wir diese
+   vor dem Ausgang des Lichttunnels. Die LED ist ein Lambertstrahler
+   und emittiert Licht in den vollen Halbraum. Wenn all dieses Licht
+   genutzt werden wuerde, waere eine lichtemittierende Flaeche mit
+   einigen 10um Durchmesser ausreichend um die Etendue des
+   Mikroobjektivs zu fuellen.
+
+ - Die Auswahl optimaler LEDs ist jedoch schwierig, denn die
    Datenblaetter enthalten selten Angaben ueber die strahlende
    Flaeche. Bei 3W LEDs haben wir einige mm gemessen. Fuer hoechste
-   Intensitaet im Sample ist es daher besser, LEDs mit geringer
-   Gesamtleistung und kleiner strahlender Flaeche zu verwenden. Diese
-   lassen sich dann besser Kuehlen und bei hoeheren Strom betreiben.
+   irradiance (W/m^2) im Sample ist es daher besser, LEDs mit geringem
+   radiant flux (W) und kleiner strahlender Flaeche zu
+   verwenden. Diese lassen sich dann besser Kuehlen\footnote{Die
+   Kuehlung der lichtemittierenden Flaeche begrenzt letztendlich die
+   erreichbare spectral radiance (W/(sr m^2 m)) der LED. Die spectral
+   radiance geteilt durch das Quadrat der Brechzahl
+   (http://en.wikipedia.org/wiki/Radiance) ist eine Erhaltungsgroesse
+   in der passiven Optik. In einem Laser kann sie erhoeht werden.} und
+   bei hoeheren Strom betreiben.
+
+ - Die von uns verwendete LED \footnote{gekauft von Reichelt
+   Bestellnummer: LED~H1WED~BL, A500_LED-H1W.pdf, 462..465nm, 35lm,
+   120 grad abstrahlwinkel, Hersteller: Huey Jann HPB8-48KBD, TODO:
+   Flaeche messen} hat eine zu grosse leuchtende Flaeche. Das heisst,
+   wir verlieren zwar Licht, andererseits ist es Leicht eine homogene
+   Ausleuchtung zu erreichen. Ausserdem kann die LED schnell
+   elektronisch ein- und ausgeschalten werden\footnote{Der DPSS Laser
+   kann nicht schnell elektronisch geschalten werden, sondern wird mit
+   einem Akusto-optischem Modulator geschaltet (FIXME siehe spaetere
+   ref section).}.
+
+ - Die LED ist jedoch 
+ 
+ - Wenn wir einen Laser benutzen, dann senden wir den parallelen
+   Strahl zunaechst in ein Buendel (FIXME Loptec 1.1mm Durchmesser, 2m
+   Laenge, beam broadening 3.18 grad, ref D8_4) statistisch verteilter
+   Fasern um die gaussfoermige Intensitaetsverteilung zu
+   randomisieren.  (FIXME ich vermute mal, dass das faserbuendel nicht
+   mehr quadratisch auf einer seite ist, ist das richtig?)
+   
+ - Ein rotierendes Mikrolinsenarray (.5x.5 mm grosse Linsen, 23.5mm
+   focal length (FIXME ist das auch im letzten prototypen noch
+   korrekt, eine der zwischenergebnisse war, die fokuslaenge der
+   mikrolinsen zu verkuerzen, um mikrochipping im tunnel zu
+   kompensieren , \pm0.23 grad beam broadening) mischt das Licht, so
+   dass waehrend einer Belichtungszeit der Kamera moeglichst viele
+   Modenprofile das Spezimen beleuchten.  Durch diese Vorgehensweise
+   koennen wir das Laserlicht, das zunaechst hohe oertliche
+   Kohaerenz---also eine geringe Etendue---aufweist, an die Etendue
+   der nachfolgenden Optik (durch das MMA begrenzt) anpassen.
+
+ - Durch mehrfache Reflexion in einem Lichttunnel (quadratische
+   2.5mmx2.5mm cross section, 250mm laenge) \footnote{Der Tunnel (rod
+   integration system, light pipe, D8_2_v2 is a good document) hat
+   einen quadratischen Querschnitt. priv. comm. mit Prof. Herbert
+   Gross: "Wenn mit dem Querschnitt die Flaeche parkettiert werden
+   kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
+   erzeugen wir eine homogene Lichtverteilung in F'''.  Eine
+   Relais-Optik vergroessert den Tunnelausgang des Tunnels auf 4x4mm^2
+   in die Ebene F'''.
+ 
+
+
+ - erfahrungen beim bau der beleuchtungshomogenisierung
+   - buendelende sollte den integrator rod eintritt deutlich
+     ueberdecken
+   - mikrolinsen homogenizer sollte eher kuerzere brennweite haben, um
+     mikrochipping an den ecken der zementierten glasspiegel zu
+     kompensieren
+   - faserbuendel muss zentriert und im winkel justiert werden
+ - schlierenoptik 
+   - zwei aufgaben:
+     - 1:1 bild von feld maske in feld stop
+     - abbildung von mma nach unendlich
+   - fokus laenge so gewaehlt, dass 700nm licht nicht durch feldstop
+     kommt (TODO FIXME vignitiert die linse oder ihre mechanik?)
+   - hat lateralen fehler (TODO was wuerde passieren, wenn ich die
+     lampe wechsle?)
+ - double telecentric relay with magnification 2
+ - tubelens telescope braucht 3 bewegliche gruppen, um stationaeres
+   bild des mma zu gewaehrleisten
+ - moxtek soll in tranmission genutzt werden
+   - das macht das system jedoch asymmetrisch und fuehrt zu
+     hauptsaechlich astigmatismus und lateral color (D8.9)
+   - 0.7mm duenne platte
+
+ - TODO warum haben wir das relay system? 
+   - vermutlich weil wir den mma kontrast vom lcos entkoppeln wollen
+   - es ist natuerlich fuer sammelnde system, dass axial color sich
+     aufaddiert und nicht kompensiert wird
+
 
 
  - transistoren auf glassubstrat kann nicht die si technologie und
@@ -827,8 +905,15 @@
  - beschreibe alles mit usb forthdd display, erwaehne vorteile von
    graphikkarte+ dvi lcos und schreibe details in appendix (zum
    beispiel die exakten Brennweiten der Linsen)
-- variable tubuslinse 
-- schematic mit lichttunnel
+ - variable tubuslinse 
+ - schematic mit lichttunnel
+ - druecke winkel in seconds of arc aus? (FIXME einheit nachschauen,
+   lieber nicht, das sind grad/3600, die si einheit ebener winkel ist
+   rad, fuer raumwinkel sr, 1995: namely the radian and the steradian,
+   as dimensionless derived units, the names and symbols of which may,
+   but need not, be used in expressions for other SI derived units, as
+   is convenient)
+
 ** electronics
 - z-stage, camera, die zwei displays und laser muessen aufeinander
   abgestimmt werden

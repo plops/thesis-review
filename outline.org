@@ -144,6 +144,25 @@
 - man kann nicht einfach zwei leds kaufen und damit mehr licht im
   mikroskop haben
 
+ - Die Auswahl optimaler LEDs ist jedoch schwierig, denn die
+   Datenblaetter enthalten selten Angaben ueber die strahlende
+   Flaeche. Bei 3W LEDs haben wir einige mm gemessen. Fuer hoechste
+   irradiance (W/m^2) im Sample ist es daher besser, LEDs mit geringem
+   radiant flux (W) und kleiner strahlender Flaeche zu
+   verwenden. Diese lassen sich dann besser Kuehlen\footnote{Die
+   Kuehlung der lichtemittierenden Flaeche begrenzt letztendlich die
+   erreichbare spectral radiance (W/(sr m^2 m)) der LED. Die spectral
+   radiance geteilt durch das Quadrat der Brechzahl
+   (http://en.wikipedia.org/wiki/Radiance) ist eine Erhaltungsgroesse
+   in der passiven Optik. In einem Laser kann sie erhoeht werden.} und
+   bei hoeheren Strom betreiben.
+  - Fuer Experimente mit einer LED Lichtquelle, positionieren wir diese
+   vor dem Ausgang des Lichttunnels. Die LED ist ein Lambertstrahler
+   und emittiert Licht in den vollen Halbraum. Wenn all dieses Licht
+   genutzt werden wuerde, waere eine lichtemittierende Flaeche mit
+   einigen 10um Durchmesser ausreichend um die Etendue des
+   Mikroobjektivs zu fuellen.
+
 
 ** image detectors
   - fruehe ccd kameras besassen nur einen vorverstaerker und adc und
@@ -800,83 +819,84 @@
 
   
 *** The illumination system
+ - Quantitative Experimente mit unserem System erfordern eine homogene
+   Ausleuchtung von sowohl pupil plane als auch focal plane
+   SLM. (FIXME mehr)
+
+
  - Als Beleuchtung in unseren Experimenten nutzen wir entweder einen
    Laser\footnote{Lasever LSR473H 600mW 473nm diode-pumped solid
-   state} oder eine LED.
+   state} oder eine LED. Im folgenden gehen wir darauf ein, wie wir
+   die uniformitaet der Beleuchtung von beiden Displays erreichen.
 
- - Quantitative Experimente erfordern eine homogene Ausleuchtung von
-   sowohl pupil plane als auch focal plane SLM.
-
- - Fuer Experimente mit einer LED Lichtquelle, positionieren wir diese
-   vor dem Ausgang des Lichttunnels. Die LED ist ein Lambertstrahler
-   und emittiert Licht in den vollen Halbraum. Wenn all dieses Licht
-   genutzt werden wuerde, waere eine lichtemittierende Flaeche mit
-   einigen 10um Durchmesser ausreichend um die Etendue des
-   Mikroobjektivs zu fuellen.
-
- - Die Auswahl optimaler LEDs ist jedoch schwierig, denn die
-   Datenblaetter enthalten selten Angaben ueber die strahlende
-   Flaeche. Bei 3W LEDs haben wir einige mm gemessen. Fuer hoechste
-   irradiance (W/m^2) im Sample ist es daher besser, LEDs mit geringem
-   radiant flux (W) und kleiner strahlender Flaeche zu
-   verwenden. Diese lassen sich dann besser Kuehlen\footnote{Die
-   Kuehlung der lichtemittierenden Flaeche begrenzt letztendlich die
-   erreichbare spectral radiance (W/(sr m^2 m)) der LED. Die spectral
-   radiance geteilt durch das Quadrat der Brechzahl
-   (http://en.wikipedia.org/wiki/Radiance) ist eine Erhaltungsgroesse
-   in der passiven Optik. In einem Laser kann sie erhoeht werden.} und
-   bei hoeheren Strom betreiben.
 
  - Die von uns verwendete LED \footnote{gekauft von Reichelt
    Bestellnummer: LED~H1WED~BL, A500_LED-H1W.pdf, 462..465nm, 35lm,
    120 grad abstrahlwinkel, Hersteller: Huey Jann HPB8-48KBD, TODO:
-   Flaeche messen} hat eine zu grosse leuchtende Flaeche. Das heisst,
-   wir verlieren zwar Licht, andererseits ist es Leicht eine homogene
-   Ausleuchtung zu erreichen. Ausserdem kann die LED schnell
-   elektronisch ein- und ausgeschalten werden\footnote{Der DPSS Laser
-   kann nicht schnell elektronisch geschalten werden, sondern wird mit
-   einem Akusto-optischem Modulator geschaltet (FIXME siehe spaetere
-   ref section).}.
-
- - Die LED ist jedoch 
+   Flaeche messen} hat eine grosse leuchtende Flaeche.  Das heisst,
+   relativ viel des von ihr produzierten Lichts kommt nicht im sample
+   an. Andererseits ist es leicht, eine homogene Ausleuchtung zu
+   erreichen. Ausserdem kann die LED schnell elektronisch ein- und
+   ausgeschalten werden\footnote{Der DPSS Laser kann nicht schnell
+   elektronisch geschalten werden, sondern wird mit einem
+   Akusto-optischem Modulator geschaltet (FIXME siehe spaetere ref
+   section).}.
  
+ - Im Gegensatz zur LED liefert ein Laser Licht mit erheblich
+   groesserer Brillanz (spectral radiance W/(sr m^2 m)). Damit ist es
+   prinzipiell moeglich, dass Laserlicht mit hoher Effizienz zu
+   Ausleuchtung unseres System zu benutzen. Leider fuehrt die hohe
+   spektrale und oertliche Kohaerenz eines Lasers oft zu
+   kontrastreichen Fluktuationen der irradiance.
+
  - Wenn wir einen Laser benutzen, dann senden wir den parallelen
-   Strahl zunaechst in ein Buendel (FIXME Loptec 1.1mm Durchmesser, 2m
-   Laenge, beam broadening 3.18 grad, ref D8_4) statistisch verteilter
-   Fasern um die gaussfoermige Intensitaetsverteilung zu
-   randomisieren.  (FIXME ich vermute mal, dass das faserbuendel nicht
-   mehr quadratisch auf einer seite ist, ist das richtig?)
+   Gaussstrahl zunaechst in ein Buendel (FIXME welche firma? Loptec,
+   kreisfoermiger Querschnitt 1.1mm Durchmesser, 2m Laenge, beam
+   broadening 3.18 grad, ref D8_4) statistisch verteilter Fasern um
+   die Intensitaetsverteilung zu randomisieren.  (FIXME ich vermute
+   mal, dass das Faserbuendel nicht mehr quadratisch auf einer seite
+   ist, ist das richtig?)
    
- - Ein rotierendes Mikrolinsenarray (.5x.5 mm grosse Linsen, 23.5mm
-   focal length (FIXME ist das auch im letzten prototypen noch
+ - Ein Relais-System bildet den runden Ausgang des Faserbuendels auf
+   den rechteckigen Eingang eines Lichttunnels ab. Gleichzeitig mischt
+   hier ein rotierendes Mikrolinsenarray (.5x.5 mm grosse Linsen,
+   23.5mm focal length (FIXME ist das auch im letzten prototypen noch
    korrekt, eine der zwischenergebnisse war, die fokuslaenge der
    mikrolinsen zu verkuerzen, um mikrochipping im tunnel zu
-   kompensieren , \pm0.23 grad beam broadening) mischt das Licht, so
-   dass waehrend einer Belichtungszeit der Kamera moeglichst viele
-   Modenprofile das Spezimen beleuchten.  Durch diese Vorgehensweise
-   koennen wir das Laserlicht, das zunaechst hohe oertliche
-   Kohaerenz---also eine geringe Etendue---aufweist, an die Etendue
-   der nachfolgenden Optik (durch das MMA begrenzt) anpassen.
+   kompensieren , \pm0.23 grad beam broadening) das Licht, so dass
+   waehrend einer Belichtungszeit der Kamera moeglichst viele
+   Modenprofile das Spezimen beleuchten.
 
- - Durch mehrfache Reflexion in einem Lichttunnel (quadratische
-   2.5mmx2.5mm cross section, 250mm laenge) \footnote{Der Tunnel (rod
+ - Durch mehrfache Reflexion im Lichttunnel (quadratische 2.5mmx2.5mm
+   cross section, 250mm laenge, siehe Bild 4.2) \footnote{Der Tunnel (rod
    integration system, light pipe, D8_2_v2 is a good document) hat
    einen quadratischen Querschnitt. priv. comm. mit Prof. Herbert
    Gross: "Wenn mit dem Querschnitt die Flaeche parkettiert werden
    kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
    erzeugen wir eine homogene Lichtverteilung in F'''.  Eine
-   Relais-Optik vergroessert den Tunnelausgang des Tunnels auf 4x4mm^2
-   in die Ebene F'''.
+   Relais-Optik vergroessert\footnote{Ein Tunnel mit 4x4mm^2
+   Querschnitt beduerfte nicht dieser Optik, wuerde jedoch unhandlich
+   lange werden.} den Tunnelausgang des Tunnels auf 4x4mm^2 in die
+   Ebene F'''.
  
+ - Waehrend der Konzeption war auch ein Homogenisator basierend auf zwei
+   Mikrolinsenarrays im Gespraech. In-Visions Planung zufolge, waere
+   dieser jedoch schwieriger zu justieren als der Tunnel und zudem
+   nicht fuer den vollen Wellenlaengenbereich von 400 bis 700nm
+   verwendbar gewesen.
 
+*** Schlierenoptics
+ - Um eine homogene Ausleuchtung mit dem Tunnel zu erreichen sind
+   folgende Punkte wichtig:
+   - Das Buendelende sollte den Tunneleingang deutlich ueberdecken. Es
+     muss vermieden werden, dass die Tunnelecken dunkler als die Mitte
+     des Tunnels sind.
+   - Die Brennweite der Mikrolinsen sollte kuerzer gewaehlt werden,
+     als die Rechnung vorhersagt. Damit kann unweigerlich auftretendes
+     Mikrochipping der zementierten Glasspiegel kompensiert werden.
+   - Das Ende des Faserbuendels muss in vier Achsen justiert werden
+     koennen (Zentrierung von Position und Winkel).
 
- - erfahrungen beim bau der beleuchtungshomogenisierung
-   - buendelende sollte den integrator rod eintritt deutlich
-     ueberdecken
-   - mikrolinsen homogenizer sollte eher kuerzere brennweite haben, um
-     mikrochipping an den ecken der zementierten glasspiegel zu
-     kompensieren
-   - faserbuendel muss zentriert und im winkel justiert werden
  - schlierenoptik 
    - zwei aufgaben:
      - 1:1 bild von feld maske in feld stop

@@ -858,8 +858,8 @@
    Modenprofile das Spezimen beleuchten.
 
  - Durch mehrfache Reflexion im Lichttunnel (hollow
-   mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section, %
-   /Laser homogenisieren/ 250mm laenge, siehe Bild 4.2) \footnote{Der
+   mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section, % /Laser homogenisieren/ 
+   250mm laenge, siehe Bild 4.2) \footnote{Der
    Tunnel (rod integration system, light pipe, D8_2_v2 is a good
    document) hat einen quadratischen Querschnitt. priv. comm. mit
    Prof. Herbert Gross: "Wenn mit dem Querschnitt die Flaeche
@@ -951,6 +951,12 @@
     jedoch fuer dieses zusaetzliche Relais-System entschieden, um den
     Kontrast beider SLM voneinander zu entkoppeln.
 
+   - TODO warum haben wir das relay system? 
+     - vermutlich weil wir den mma kontrast vom lcos entkoppeln wollen
+     - es ist natuerlich fuer sammelnde system, dass axial color sich
+       aufaddiert und nicht kompensiert wird
+
+
 *** Polarisationsbasierte Kontrasterzeugung am focal plane SLM
   - Der von uns verwendete focal plane SLM ist ein liquid crystal on
     silicon Geraet, dass die Polarisation des reflektierten Lichts
@@ -976,10 +982,27 @@
     Abbildungsqualitaet vom focal plane SLM. Deshalb nutzen wir den
     Strahlteiler in Tranmission.
 
-  - Die duenne Platte (<2mm) des Strahlteilers macht das System
+  - Die duenne Platte (<2mm) des Strahlteilers macht das System leicht
     asymmetrisch und fuehrt damit hauptsaechlich zu Astigmatismus und
     lateral color (ref D8.9 FIXME), das Optikdesign bleibt aber
     beugungsbegrenzt.
+
+*** Variables Teleskop als Tubuslinse
+  - Die groesse der Pupille von Mikroskopobjektiven haengt von deren
+    Bildfeld und numerischer Apertur ab. Die letzt Linse
+    TL${}_\textrm{ill}$ in unserem Beleuchtungssystem ist daher so
+    konzipiert, dass sie P'' mit variabler Vergroesserung nach P
+    abbildet. 
+
+  - Die Linse besteht aus drei beweglichen Gruppen und kann somit
+    garantieren, dass der pupil plane SLM bei Vergroesserungsaenderung
+    stationaer auf der pupil plane des Objektivs abgebildet bleibt und
+    gleichfalls der focal plane SLM immer im unendlichen abgebildet
+    bleibt (FIXME gibt es ein paper mit begruendung?).
+
+
+
+
 
  - tubelens telescope braucht 3 bewegliche gruppen, um stationaeres
    bild des mma zu gewaehrleisten
@@ -988,10 +1011,6 @@
      hauptsaechlich astigmatismus und lateral color (D8.9)
    - 0.7mm duenne platte
 
- - TODO warum haben wir das relay system? 
-   - vermutlich weil wir den mma kontrast vom lcos entkoppeln wollen
-   - es ist natuerlich fuer sammelnde system, dass axial color sich
-     aufaddiert und nicht kompensiert wird
 
 
 

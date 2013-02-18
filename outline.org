@@ -866,20 +866,20 @@
    parkettiert werden kann, dann eignet sich der Tunnel zum
    Homogenisieren des Lichts". (FIXME quelle finden)} wird das Licht
    zu einer homogenen Lichtverteilung gemischt, ohne die numerische
-   Apertur zu aendern (FIXME ref dlpa022.pdf).  Eine Relais-Optik
-   vergroessert\footnote{Ein Tunnel mit 4x4mm^2 Querschnitt beduerfte
-   nicht dieser Optik, dann waeren die Winkel der Strahlen im System
-   jedoch noch kleiner und der Tunnel muesste unhandlich lange
-   werden.} den Tunnelausgang des Tunnels auf 4x4mm^2 in die Ebene
-   F'''.
+   Apertur zu aendern (FIXME ref dlpa022.pdf).  Eine Relais-Optik (A1
+   und A2 in Fig 4.1) vergroessert\footnote{Ein Tunnel mit 4x4mm^2
+   Querschnitt beduerfte nicht dieser Optik, dann waeren die Winkel
+   der Strahlen im System jedoch noch kleiner und der Tunnel muesste
+   unhandlich lange werden.} den Tunnelausgang des Tunnels auf 4x4mm^2
+   in die Ebene F'''.
 
  - Zu den zwei Relais-Systemen hat der Optikdesigner kommentiert
    (FIXME ref D8.9), dass diese nicht fuer eine perfekte Abbildung,
    sondern fuer einen guten Transport der homogenenen Lichtverteilung    % /Interessantes zu Relais-Systemen an Tunnelenden/
-   optimiert wurden. Beim System am Tunneleingang werden drei Elemente
+   optimiert wurden. Beim System A1 am Tunneleingang werden drei Elemente
    (FIXME oder 2?, und wo ist das Mikrolinsenarray) eingesetzt, um das
    Licht vom runden Faserende in den quadratischen Tunneleingang zu
-   transportieren. Am anderen Ende transportieren fuenf Elemente das
+   transportieren. Am anderen Ende (A2 Fig 4.1) transportieren fuenf Elemente das
    Licht vom Tunnelausgang in die Ebene F''' mit der
    Beleuchtungsapertur.
 
@@ -892,27 +892,95 @@
 
   - Um eine homogene Ausleuchtung mit dem Tunnel zu erreichen sind       % /Erfahrungen/
     folgende Punkte wichtig (FIXME ref D8.5):
+
    - Das Buendelende sollte den Tunneleingang deutlich ueberdecken. Es
      muss vermieden werden, dass die Tunnelecken dunkler als die Mitte
      des Tunnels sind. Ein inhomogen ausgeleuchteter Buendeleingang
      fuehrt zu inhomogener Beleuchtung des pupil plane SLM.
+
    - Das Ende des Faserbuendels muss in vier Achsen justiert werden
      koennen (Zentrierung von Position und Winkel).
+
    - Die Brennweite der Mikrolinsen sollte kuerzer gewaehlt werden,
      als die Rechnung vorhersagt. Damit kann unweigerlich auftretendes
      Mikrochipping der zementierten Glasspiegel kompensiert werden.
 
 *** Fourier-optischer Filter zur Kontrasterzeugung am pupil plane SLM
+  - Der micro-mirror array, den wir als pupil plane SLM einsetzen,        % /MMA torsion spiegel/
+    besteht aus Torsionsspiegeln, die die Phase des Lichts modulieren
+    (fuer eine genauere Beschreibung siehe spaeteres Kapitel               
+    FIXME). Um damit eine Intensitaetsmodulation zu bewirken, nutzen
+    wir den in Fig 4.2 B gezeigten Fourier filter. 
 
- - schlierenoptik 
-   - zwei aufgaben:
-     - 1:1 bild von feld maske in feld stop
-     - abildung von mma nach unendlich
+  - Die Linse L1 hat zwei Aufgaben: Zum einen bildet sie die Feldmaske   % /Schlierenoptiklinse/
+    B0 in den Feldstopp B1 ab. Zum anderen wird die Ebene P'' mit dem
+    SLM nach unendlich abgebildet.
+
+  - Bei ungekippten Spiegeln, wird somit F''' nach F'' abgebildet und    % /MMA Kontrasterzeugung/
+    gleichzeitig gibt es ein scharfes Bild von P'' nach P'. Beide
+    Ebenen F'' und P' sind dann homogen ausgeleuchtet.
+
+  - Werden die Spiegel auf der linken Haelfte in P'' gekippt, dann
+    lenken sie das Licht entlang der gestrichelten Linie (in Fig 4.1)
+    ab. Dieses Licht wird von der Apertur B1 absorbiert und steht dann
+    nicht in P' zur verfuegung. D.h. die rechte Seite in P' ist
+    dunkel. Der gesamte radiant flux (\unit[]{W}) durch die Apertur in
+    F'' nimmt ab, die irradiance (\unit[]{W/m^2}) ueber die Apertur
+    bleibt aber homogen.
+
+  - Im realen System besteht die Linse L1 aus 4 Elementen. Aufgrund
+    der Symmetrie weist sie keinen axialen Farbfehler auf. Es bleibt
+    jedoch ein kleiner lateraler Farbfehler (FIXME genauer ergruenden
+    was das bedeutet).
+ 
+  - schlierenoptik 
    - fokus laenge so gewaehlt, dass 700nm licht nicht durch feldstop
-     kommt (TODO FIXME vignitiert die linse oder ihre mechanik?)
+     kommt (TODO FIXME vignettiert die linse oder ihre mechanik?)
    - hat lateralen fehler (TODO was wuerde passieren, wenn ich die
-     lampe wechsle?)
- - double telecentric relay with magnification 2
+     beleuchtungswellenlaenge wechsle?)
+
+
+*** Relais-System zwischen pupil plane und focal plane SLM
+  - Die Linsen L2 und L3 bilden ein doppelt telezentrisches             % /Relais-System/
+    Relais-System mit Vergroesserung 2 und bilden F'' auf der Ebene
+    des focal plane SLM in F' ab. Gleichzeitig bildet dieses
+    Relais-System den pupil plane SLM von P'' nach unendlich ab.
+ 
+  - Prinzipiell koennte man auch den focal plane SLM in F'' an Stelle
+    der Apertur B1 platzieren. In unserem Prototypen haben wir uns
+    jedoch fuer dieses zusaetzliche Relais-System entschieden, um den
+    Kontrast beider SLM voneinander zu entkoppeln.
+
+*** Polarisationsbasierte Kontrasterzeugung am focal plane SLM
+  - Der von uns verwendete focal plane SLM ist ein liquid crystal on
+    silicon Geraet, dass die Polarisation des reflektierten Lichts
+    entweder um 90 grad dreht oder konstant laesst.
+ 
+  - Ein Polarisationsstrahlteiler erzeugt daraus einen binaeren
+    Intensitaetskontrast (siehe Fig 4.1 C).
+
+  - Wir haben uns fuer einen wire-grid Polarizer (Moxtek PBF02C, Orem,
+    UT, US) entschieden, weil die Platte weniger Rueckreflexe
+    verursacht als ein Strahlteilerwuerfel.
+
+  - Die s-Polarisation des eingehenden Lichts wird in Richtung des SLM
+    reflektiert. Aktive Pixel des SLM rotieren die Polarisation des
+    Lichts um 90 Grad und passiert dann den Strahlteiler als
+    p-Polarisation in Tranmission in richtung Mikroskop. Dort befindet
+    sich ein zusaetzlicher Cleanup-Analysator im Strahlengang.
+ 
+  - Es waere auch denkbar, SLM und Strahlteiler anders anzuordnen, so
+    dass das vom SLM kommende Licht in das Mikroskop
+    \emph{reflektiert} wird. In diesem Fall verschlechtert jedoch eine
+    ungewollte Oberflaechendurchbiegung des Strahlteilers die
+    Abbildungsqualitaet vom focal plane SLM. Deshalb nutzen wir den
+    Strahlteiler in Tranmission.
+
+  - Die duenne Platte (<2mm) des Strahlteilers macht das System
+    asymmetrisch und fuehrt damit hauptsaechlich zu Astigmatismus und
+    lateral color (ref D8.9 FIXME), das Optikdesign bleibt aber
+    beugungsbegrenzt.
+
  - tubelens telescope braucht 3 bewegliche gruppen, um stationaeres
    bild des mma zu gewaehrleisten
  - moxtek soll in tranmission genutzt werden
@@ -933,13 +1001,7 @@
    graphikkarte+ dvi lcos und schreibe details in appendix (zum
    beispiel die exakten Brennweiten der Linsen)
  - variable tubuslinse 
- - schematic mit lichttunnel
- - druecke winkel in seconds of arc aus? (FIXME einheit nachschauen,
-   lieber nicht, das sind grad/3600, die si einheit ebener winkel ist
-   rad, fuer raumwinkel sr, 1995: namely the radian and the steradian,
-   as dimensionless derived units, the names and symbols of which may,
-   but need not, be used in expressions for other SI derived units, as
-   is convenient)
+
  - email mit erhard ipp
   - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
   - Ja. Der Laser wird an zwei Metall-Spiegeln M1 und M2)

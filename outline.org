@@ -780,17 +780,17 @@
      zusaetzliche Details ein, die fuer die praktische Implementierung
      wichtig sind. Unter anderem die Eigenschaften der beiden
      verwendeten Displays, elektronische Synchronisation der
-     verschiedenen Komponenten und einem Algorithmus, um das              /Hier mehr spezifische Probleme/
+     verschiedenen Komponenten und einem Algorithmus, um das             % /Hier mehr spezifische Probleme/
      Koordinatensystem der Kamerapixel und der Pixel des focal plane
      SLM ineinander zu transformieren.
 
    - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
-     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem   /MMA kommt spaeter extra/
+     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem   % /MMA kommt spaeter extra/
      Subsystem im Kapitel (FIXME) naeher.
 
-** optical components
+** Beschreibung der optischen Komponenten
  - Bisher haben wir den Strahlengang nur fuer Transmissionsdisplays
-   gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur      /Transmissionsdisplays gehen gar nicht/
+   gezeigt (in fig:memi-simple). Solche SLM haben in Praxis aber nur     % /Transmissionsdisplays gehen gar nicht/
    sehr geringe Transmission und deshalb verwenden wir in unserem
    System reflektive Displays.
 
@@ -798,44 +798,36 @@
    Strahlengang.  Unten links strahlt die Lichtquelle in das
    System. Die Optik ist farbkorrigiert und antireflexbeschichtet 
    fuer Wellenlaengen im Bereich
-   von 400 bis 700nm.  Das System beleuchtet nacheinander den pupil      /Was ist nacheinander im Bild zu sehen/
+   von 400 bis 700nm.  Das System beleuchtet nacheinander den pupil     % /Was ist nacheinander im Bild zu sehen/
    plane SLM---den vom Fraunhofer entwickelten
    Graustufen-Mikrospiegelarray---und den focal plane SLM, ein
    kommerzielles liquid crystal on silicon Display.
  
-   (einige der folgenden details aus deliverables entnommen, die vom
-   projekt consortium als confidential eingestuft wurden.)
-
-   (Notiz: Ich habe mit Prof fuer Mustererkennung gesprochen und bin
-   jetzt motiviert, einen Raytracer zu schreiben, um die Qualitaet der
-   beiden Erzeugten masken zu evaluieren. Prinzipiell muss ich von
-   jeden durchlaessigen Punkt der Pupille alle beleuchteten Punkte im
-   Feld durchtracen. Als Ergebnis waere die Anzahl Strahlen innerhalb
-   von in-fokus Objekten geteilt durch die Anzahl Strahlen, die
-   Out-of-focus Objekte treffen nuetzlich.  D.h. ich brauche
-   ueberhaupt nichts neues Programmieren. Der Code existiert bereits.
-   Fuer jeden in-focus Punkt erzeuge ich eine Maske. Ich brauche eine
-   gute Heuristik, um Punkte mit aehnlichen Masken zusammenzufassen. )
-
+ - Einige der folgenden Details habe ich aus Deliverables entnommen,
+   die waehrend der Entwicklung entstanden sind und vom Projekt
+   Konsortium als confidential eingestuft wurden. Ich habe wesentliche  % /Confidentiality/
+   Entscheidungen hier zusammengefasst. Die betreffenden
+   Projektpartner haben der Veroeffentlichung zugestimmt. (FIXME noch
+   nicht passiert)
   
-*** The illumination system
- - Quantitative Experimente mit unserem System erfordern eine homogene
-   Ausleuchtung von sowohl pupil plane als auch focal plane
-   SLM. (FIXME mehr)
+*** Gewaehrleistung einer homogenen Ausleuchtung
+ - Quantitative Experimente mit unserem System lassen sich besser
+   durchfuehren, wenn sowohl pupil plane als auch focal plane SLM       % /Wir brauchen homogene Beleuchtung/
+   homogen ausgeleuchtet werden. (FIXME mehr)
 
 
  - Als Beleuchtung in unseren Experimenten nutzen wir entweder einen
    Laser\footnote{Lasever LSR473H 600mW 473nm diode-pumped solid
-   state} oder eine LED. Im folgenden gehen wir darauf ein, wie wir
-   die uniformitaet der Beleuchtung von beiden Displays erreichen.
-
+   state} oder eine LED. Im Folgenden gehen wir auf Massnahmen ein,     % /Laser oder LED zur Auswahl/
+   mit denen die Homogenitaet der Beleuchtung von beiden Displays
+   erreichen.
 
  - Die von uns verwendete LED \footnote{gekauft von Reichelt
    Bestellnummer: LED~H1WED~BL, A500_LED-H1W.pdf, 462..465nm, 35lm,
    120 grad abstrahlwinkel, Hersteller: Huey Jann HPB8-48KBD, TODO:
    Flaeche messen} hat eine grosse leuchtende Flaeche.  Das heisst,
    relativ viel des von ihr produzierten Lichts kommt nicht im sample
-   an. Andererseits ist es leicht, eine homogene Ausleuchtung zu
+   an. Andererseits ist es leicht, eine homogene Ausleuchtung zu        % /Vor- und Nachteile der LED/
    erreichen. Ausserdem kann die LED schnell elektronisch ein- und
    ausgeschalten werden\footnote{Der DPSS Laser kann nicht schnell
    elektronisch geschalten werden, sondern wird mit einem
@@ -844,18 +836,16 @@
  
  - Im Gegensatz zur LED liefert ein Laser Licht mit erheblich
    groesserer Brillanz (spectral radiance W/(sr m^2 m)). Damit ist es
-   prinzipiell moeglich, dass Laserlicht mit hoher Effizienz zu
+   prinzipiell moeglich, dass Laserlicht mit hoher Effizienz zu         % /Vor- und Nachteile vom Laser/
    Ausleuchtung unseres System zu benutzen. Leider fuehrt die hohe
    spektrale und oertliche Kohaerenz eines Lasers oft zu
    kontrastreichen Fluktuationen der irradiance.
 
- - Wenn wir einen Laser benutzen, dann senden wir den parallelen
+ - Wenn wir den Laser benutzen, dann senden wir den parallelen
    Gaussstrahl zunaechst in ein Buendel (FIXME welche firma? Loptec,
-   kreisfoermiger Querschnitt 1.1mm Durchmesser, 2m Laenge, beam
+   kreisfoermiger Querschnitt 1.1mm Durchmesser, 2m Laenge, beam        % /Laser mischen/
    broadening 3.18 grad, ref D8_4) statistisch verteilter Fasern um
-   die Intensitaetsverteilung zu randomisieren.  (FIXME ich vermute
-   mal, dass das Faserbuendel nicht mehr quadratisch auf einer seite
-   ist, ist das richtig?)
+   die Intensitaetsverteilung zu randomisieren.
    
  - Ein Relais-System bildet den runden Ausgang des Faserbuendels auf
    den rechteckigen Eingang eines Lichttunnels ab. Gleichzeitig mischt
@@ -867,40 +857,57 @@
    waehrend einer Belichtungszeit der Kamera moeglichst viele
    Modenprofile das Spezimen beleuchten.
 
- - Durch mehrfache Reflexion im Lichttunnel (quadratische 2.5mmx2.5mm
-   cross section, 250mm laenge, siehe Bild 4.2) \footnote{Der Tunnel (rod
-   integration system, light pipe, D8_2_v2 is a good document) hat
-   einen quadratischen Querschnitt. priv. comm. mit Prof. Herbert
-   Gross: "Wenn mit dem Querschnitt die Flaeche parkettiert werden
-   kann, dann eignet sich der Tunnel zum Homogenisieren des Lichts".}
-   erzeugen wir eine homogene Lichtverteilung in F'''.  Eine
-   Relais-Optik vergroessert\footnote{Ein Tunnel mit 4x4mm^2
-   Querschnitt beduerfte nicht dieser Optik, wuerde jedoch unhandlich
-   lange werden.} den Tunnelausgang des Tunnels auf 4x4mm^2 in die
-   Ebene F'''.
- 
- - Waehrend der Konzeption war auch ein Homogenisator basierend auf zwei
-   Mikrolinsenarrays im Gespraech. In-Visions Planung zufolge, waere
-   dieser jedoch schwieriger zu justieren als der Tunnel und zudem
-   nicht fuer den vollen Wellenlaengenbereich von 400 bis 700nm
+ - Durch mehrfache Reflexion im Lichttunnel (hollow
+   mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section, %
+   /Laser homogenisieren/ 250mm laenge, siehe Bild 4.2) \footnote{Der
+   Tunnel (rod integration system, light pipe, D8_2_v2 is a good
+   document) hat einen quadratischen Querschnitt. priv. comm. mit
+   Prof. Herbert Gross: "Wenn mit dem Querschnitt die Flaeche
+   parkettiert werden kann, dann eignet sich der Tunnel zum
+   Homogenisieren des Lichts". (FIXME quelle finden)} wird das Licht
+   zu einer homogenen Lichtverteilung gemischt, ohne die numerische
+   Apertur zu aendern (FIXME ref dlpa022.pdf).  Eine Relais-Optik
+   vergroessert\footnote{Ein Tunnel mit 4x4mm^2 Querschnitt beduerfte
+   nicht dieser Optik, dann waeren die Winkel der Strahlen im System
+   jedoch noch kleiner und der Tunnel muesste unhandlich lange
+   werden.} den Tunnelausgang des Tunnels auf 4x4mm^2 in die Ebene
+   F'''.
+
+ - Zu den zwei Relais-Systemen hat der Optikdesigner kommentiert
+   (FIXME ref D8.9), dass diese nicht fuer eine perfekte Abbildung,
+   sondern fuer einen guten Transport der homogenenen Lichtverteilung    % /Interessantes zu Relais-Systemen an Tunnelenden/
+   optimiert wurden. Beim System am Tunneleingang werden drei Elemente
+   (FIXME oder 2?, und wo ist das Mikrolinsenarray) eingesetzt, um das
+   Licht vom runden Faserende in den quadratischen Tunneleingang zu
+   transportieren. Am anderen Ende transportieren fuenf Elemente das
+   Licht vom Tunnelausgang in die Ebene F''' mit der
+   Beleuchtungsapertur.
+
+ - Waehrend der Konzeption wurde auch eine auf zwei Mikrolinsenarrays    % /Nicht benutzt alternative/
+   (fly-eye) basierende Optik fuer die Homogenisierung des Lasers in
+   Betracht gezogen (FIXME ref D8.2). In-Visions Planung zufolge,
+   waere dieser jedoch schwieriger zu justieren als der Tunnel und
+   zudem nicht fuer den vollen Wellenlaengenbereich von 400 bis 700nm
    verwendbar gewesen.
 
-*** Schlierenoptics
- - Um eine homogene Ausleuchtung mit dem Tunnel zu erreichen sind
-   folgende Punkte wichtig:
+  - Um eine homogene Ausleuchtung mit dem Tunnel zu erreichen sind       % /Erfahrungen/
+    folgende Punkte wichtig (FIXME ref D8.5):
    - Das Buendelende sollte den Tunneleingang deutlich ueberdecken. Es
      muss vermieden werden, dass die Tunnelecken dunkler als die Mitte
-     des Tunnels sind.
+     des Tunnels sind. Ein inhomogen ausgeleuchteter Buendeleingang
+     fuehrt zu inhomogener Beleuchtung des pupil plane SLM.
+   - Das Ende des Faserbuendels muss in vier Achsen justiert werden
+     koennen (Zentrierung von Position und Winkel).
    - Die Brennweite der Mikrolinsen sollte kuerzer gewaehlt werden,
      als die Rechnung vorhersagt. Damit kann unweigerlich auftretendes
      Mikrochipping der zementierten Glasspiegel kompensiert werden.
-   - Das Ende des Faserbuendels muss in vier Achsen justiert werden
-     koennen (Zentrierung von Position und Winkel).
+
+*** Fourier-optischer Filter zur Kontrasterzeugung am pupil plane SLM
 
  - schlierenoptik 
    - zwei aufgaben:
      - 1:1 bild von feld maske in feld stop
-     - abbildung von mma nach unendlich
+     - abildung von mma nach unendlich
    - fokus laenge so gewaehlt, dass 700nm licht nicht durch feldstop
      kommt (TODO FIXME vignitiert die linse oder ihre mechanik?)
    - hat lateralen fehler (TODO was wuerde passieren, wenn ich die
@@ -933,7 +940,14 @@
    as dimensionless derived units, the names and symbols of which may,
    but need not, be used in expressions for other SI derived units, as
    is convenient)
-
+ - email mit erhard ipp
+  - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
+  - Ja. Der Laser wird an zwei Metall-Spiegeln M1 und M2)
+    reflektiert. Vor dem Mikrolinsenarray messe ich
+   - (1.885+/-0.005) mW ohne Polarisator, (1.580+/-0.001) mW mit
+     Polarisator in Maximalstellung und
+   - (27.26+/-0.01) uW mit Polarisator in Minimumstellung.  Der
+     Kontrast ist 1.8e-3/27e-6=70:1.
 ** electronics
 - z-stage, camera, die zwei displays und laser muessen aufeinander
   abgestimmt werden
@@ -1223,6 +1237,18 @@ eps,numer;
     Systeme auch untersucht werden sollten. Die Kombination von CLEM,
     einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
     Inneren lebender Organe (z.B. Gehirn) verbessern.
+
+   (Notiz: Ich habe mit Prof fuer Mustererkennung gesprochen und bin
+   jetzt motiviert, einen Raytracer zu schreiben, um die Qualitaet der
+   beiden Erzeugten masken zu evaluieren. Prinzipiell muss ich von
+   jeden durchlaessigen Punkt der Pupille alle beleuchteten Punkte im
+   Feld durchtracen. Als Ergebnis waere die Anzahl Strahlen innerhalb
+   von in-fokus Objekten geteilt durch die Anzahl Strahlen, die
+   Out-of-focus Objekte treffen nuetzlich.  D.h. ich brauche
+   ueberhaupt nichts neues Programmieren. Der Code existiert bereits.
+   Fuer jeden in-focus Punkt erzeuge ich eine Maske. Ich brauche eine
+   gute Heuristik, um Punkte mit aehnlichen Masken zusammenzufassen. )
+
 
 * appendix
 ** camera characterization

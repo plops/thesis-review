@@ -49,59 +49,56 @@ finished).
     beam splitter. DBS is a dichromatic beam splitter.  The red boxes
     deliminate subsystems of the illumination system: {\bf A:} light
     scrambling and homogenization, {\bf B:} Fourier-optical filter to
-    provide intensity modulating pupil plane SLM. {\bf C:} Polarization
-    based intensity modulator as focal plane SLM. {\bf D:} Wide-field
-    fluorescence microscope with detection path.}
+    provide intensity modulating pupil plane SLM. {\bf C:}
+    Polarization based intensity modulator as focal plane SLM. {\bf
+      D:} Wide-field fluorescence microscope with detection
+    path. (FIXME finish diagram, don't use B twice)}
   \label{fig:memi-real}
 \end{figure}
 
+\subsection{Ensuring homogeneous illumination}
+A quantitative evaluation of our experiments (FIXME ref sec:results)
+with different illumination patterns is simplified when both pupil
+plane SLM and focal plane SLM are uniformly illuminated.
 
-\subsection{ Gewaehrleistung einer homogenen Ausleuchtung}
- - Quantitative Experimente mit unserem System lassen sich besser
-   durchfuehren, wenn sowohl pupil plane als auch focal plane SLM       % /Wir brauchen homogene Beleuchtung/
-   homogen ausgeleuchtet werden. (FIXME mehr)
+We use either a laser\footnote{Lasever LSR473H, diode-pumped solid
+  state laser, output power 600mW, $\lambda=\unit[473]{nm}$} or an
+light emitting diode (LED) \nomenclature{LED}{light emitting diode} as
+the light source in our experiments. Below we discuss optical measures
+that attain homogeneity of the illumination of both displays.
 
+The LED\footnote{Huey Jann HPB8-48KBD, wavelength
+  $\unit[(463\pm1)]{nm}$, brightness \unit[35]{lm}, view angle
+  $120{}^\circ$, FIXME TODO: Flaeche messen} we use has a large active
+area. Due to etendue mismatch a relatively large amount of its
+produced light will never reach the sample. But it is easy to achieve
+a homogeneous illumination. Moreover, the LED can be quickly switched
+on and off electronically \footnote{The DPSS Laser doesn't allow fast
+  direct electronic switching at full power. We have to use an
+  acousto-optic modulator connected with the additional expense of its
+  optical alignment (FIXME siehe spaetere ref section).}.
 
- - Als Beleuchtung in unseren Experimenten nutzen wir entweder einen
-   Laser\footnote{Lasever LSR473H 600mW 473nm diode-pumped solid
-   state} oder eine LED. Im Folgenden gehen wir auf Massnahmen ein,     % /Laser oder LED zur Auswahl/
-   mit denen die Homogenitaet der Beleuchtung von beiden Displays
-   erreichen.
+Unlike an LED, a laser delivers light of considerably higher spectral
+radiance ($\unit[]{W/(sr\, m^2 m)}$). Thus it is in principle possible
+to use the laser as a highly efficient light source for our
+system. Unfortunately, the high spectral and spatial coherence of a
+laser often lead to high-contrast fluctuations of the irradiance and
+we have to compensate for this by time averaging.
 
- - Die von uns verwendete LED \footnote{gekauft von Reichelt
-   Bestellnummer: LED~H1WED~BL, A500\_LED-H1W.pdf, 462..465nm, 35lm,
-   120 grad abstrahlwinkel, Hersteller: Huey Jann HPB8-48KBD, TODO:
-   Flaeche messen} hat eine grosse leuchtende Flaeche.  Das heisst,
-   relativ viel des von ihr produzierten Lichts kommt nicht im sample
-   an. Andererseits ist es leicht, eine homogene Ausleuchtung zu        % /Vor- und Nachteile der LED/
-   erreichen. Ausserdem kann die LED schnell elektronisch ein- und
-   ausgeschalten werden\footnote{Der DPSS Laser kann nicht schnell
-   elektronisch geschalten werden, sondern wird mit einem
-   Akusto-optischem Modulator geschaltet (FIXME siehe spaetere ref
-   section).}.
- 
- - Im Gegensatz zur LED liefert ein Laser Licht mit erheblich
-   groesserer Brillanz (spectral radiance \unit[]{$W/(sr m^2 m)$}). Damit ist es
-   prinzipiell moeglich, dass Laserlicht mit hoher Effizienz zu         % /Vor- und Nachteile vom Laser/
-   Ausleuchtung unseres System zu benutzen. Leider fuehrt die hohe
-   spektrale und oertliche Kohaerenz eines Lasers oft zu
-   kontrastreichen Fluktuationen der irradiance.
+When using the Laser, we send its parallel Gaussian beam into a
+bundle\footnote{FIXME welche firma? Loptec, circular cross-section
+  with \unit[1.1]{mm} diameter, \unit[2]{m} length, beam broadening
+  $3.18{}^\circ$, ref D8.4} of randomly distributed fibers. This gives
+a randomized light distribution at the bundle output.
 
- - Wenn wir den Laser benutzen, dann senden wir den parallelen
-   Gaussstrahl zunaechst in ein Buendel (FIXME welche firma? Loptec,
-   kreisfoermiger Querschnitt 1.1mm Durchmesser, 2m Laenge, beam        % /Laser mischen/
-   broadening 3.18 grad, ref D8.4) statistisch verteilter Fasern um
-   die Intensitaetsverteilung zu randomisieren.
+A relay system (A1) images the circular output of the fiber bundle
+onto the entrance of a light pipe. This relay system contains a
+rotating microlens array\footnote{pitch \unit[0.5]{mm}, focal length
+  \unit[23.5]{mm}, beam broadening $\pm 0.23^\circ$ (FIXME erhard
+  fragen)}. It mixes the light by illuminating the specimen with many
+different mode profiles during one exposure of the camera.
    
- - Ein Relais-System bildet den runden Ausgang des Faserbuendels auf
-   den rechteckigen Eingang eines Lichttunnels ab. Gleichzeitig mischt
-   hier ein rotierendes Mikrolinsenarray (.5x.5 mm grosse Linsen,
-   23.5mm focal length (FIXME ist das auch im letzten prototypen noch
-   korrekt, eine der zwischenergebnisse war, die fokuslaenge der
-   mikrolinsen zu verkuerzen, um mikrochipping im tunnel zu
-   kompensieren , $\pm0.23$ grad beam broadening) das Licht, so dass
-   waehrend einer Belichtungszeit der Kamera moeglichst viele
-   Modenprofile das Spezimen beleuchten.
+
 
  - Durch mehrfache Reflexion im Lichttunnel (hollow
    mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section,  % /Laser homogenisieren/ 
@@ -135,7 +132,7 @@ finished).
    Beleuchtungsapertur.
 
  - Waehrend der Konzeption wurde auch eine auf zwei Mikrolinsenarrays    % /Nicht benutzt alternative/
-   (fly-eye) basierende Optik fuer die Homogenisierung des Lasers in
+   (fly's eye condensor) basierende Optik fuer die Homogenisierung des Lasers in
    Betracht gezogen (FIXME ref D8.2). In-Visions Planung zufolge,
    waere dieser jedoch schwieriger zu justieren als der Tunnel und
    zudem nicht fuer den vollen Wellenlaengenbereich von 400 bis 700nm

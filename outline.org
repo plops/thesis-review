@@ -1049,6 +1049,13 @@
 	 - 40um   m=.5 lambda=473nm
          - 80.5um m=1  lambda=473nm
          - 119um  m=1  lambda=700nm
+      - moxtek allows +/- 10 degree
+	- 35deg @ 450nm Tp=87%
+        - 55deg @ 450nm Tp=81%
+	- %pi/4 * (25 * sin(10*%pi/180))^2,numer;
+	  - 14.8mm diameter gives G=14.8mm^2/sr
+          - 20mm diameter gives G=9.5mm^2/sr
+	  - 10mm diameter gives G=2.47mm^2/sr
 #+begin_example
 D:25/63;
 NA:1.47;

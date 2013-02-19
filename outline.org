@@ -1001,26 +1001,6 @@
     bleibt (FIXME gibt es ein paper mit begruendung?).
 
 
-
-
-
- - tubelens telescope braucht 3 bewegliche gruppen, um stationaeres
-   bild des mma zu gewaehrleisten
- - moxtek soll in tranmission genutzt werden
-   - das macht das system jedoch asymmetrisch und fuehrt zu
-     hauptsaechlich astigmatismus und lateral color (D8.9)
-   - 0.7mm duenne platte
-
-
-
-
- - transistoren auf glassubstrat kann nicht die si technologie und
-   geraete nutzen
- - beschreibe alles mit usb forthdd display, erwaehne vorteile von
-   graphikkarte+ dvi lcos und schreibe details in appendix (zum
-   beispiel die exakten Brennweiten der Linsen)
- - variable tubuslinse 
-
  - email mit erhard ipp
   - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
   - Ja. Der Laser wird an zwei Metall-Spiegeln M1 und M2)
@@ -1029,9 +1009,25 @@
      Polarisator in Maximalstellung und
    - (27.26+/-0.01) uW mit Polarisator in Minimumstellung.  Der
      Kontrast ist 1.8e-3/27e-6=70:1.
-** electronics
+
+
+** Elektronische Steuerung der Komponenten
+
 - z-stage, camera, die zwei displays und laser muessen aufeinander
   abgestimmt werden
+
+
+
+ - tubelens telescope braucht 3 bewegliche gruppen, um stationaeres
+   bild des mma zu gewaehrleisten
+
+
+ - transistoren auf glassubstrat kann nicht die si technologie und
+   geraete nutzen
+ - beschreibe alles mit usb forthdd display, erwaehne vorteile von
+   graphikkarte+ dvi lcos und schreibe details in appendix (zum
+   beispiel die exakten Brennweiten der Linsen)
+
 ** lcos
    - pixel pitch 13.62 um (FIXME check) 
    - fill factor 92%
@@ -1045,11 +1041,31 @@
      - in microscope: eps = pi/4 * (D * NA)^2
        - example for my objective with 400um field of view eps=0.27
          mm^2/sr:
+     - mma has etendue
+       - 0.0027 mm^2/sr (for small angles with m=1/2, lambda=473nm), or
+       - 0.011 mm^2/sr with m=1, lambda=473nm
+       - 0.024 mm^2/sr with m=1, lambda=700nm
+       - this corresponds to this field diameter D:sqrt(eps/(NA^2*pi/4))
+	 - 40um   m=.5 lambda=473nm
+         - 80.5um m=1  lambda=473nm
+         - 119um  m=1  lambda=700nm
 #+begin_example
-eps:%pi/4 * (D * NA)^2;
 D:25/63;
 NA:1.47;
 eps,numer;
+
+eps:%pi/4 * (D * NA)^2;
+
+/* mma  G=0.0027 mm^2/sr*/
+D:4;
+m:1;
+lambd:.700;
+NA:1*sin(asin(m*lambd/16)),numer;
+eps,numer; 
+/* field diameter */
+NA:1.47;
+eps:.0027;
+sqrt(eps/(NA^2*%pi/4)),numer;
 #+end_example 
 
    - charge balancing maintenance routine (ref The use of LCoS microdisplay)
@@ -1392,7 +1408,7 @@ eps,numer;
      - structured illumination (ehemals appendix)
 
 ** generelle bemerkung
-   - am anfang jeder sektion sollte der leser ein die story
+   - am anfang jeder sektion sollte der leser in die story
      eingefuehrt werden, die ich dort rueberbringen will
 
    - list of recommended corrections

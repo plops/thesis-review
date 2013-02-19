@@ -929,7 +929,7 @@
     bleibt aber homogen.
 
   - Im realen System besteht die Linse L1 aus 4 Elementen. Aufgrund
-    der Symmetrie weist sie keinen axialen Farbfehler auf. Es bleibt
+    der Symmetrie weist sie keinen axialen Farbfehler auf. Es bleibt     % /Beschreibung realer Schlierenoptik/
     jedoch ein kleiner lateraler Farbfehler (FIXME genauer ergruenden
     was das bedeutet).
  
@@ -959,8 +959,9 @@
 
 *** Polarisationsbasierte Kontrasterzeugung am focal plane SLM
   - Der von uns verwendete focal plane SLM ist ein liquid crystal on
-    silicon Geraet, dass die Polarisation des reflektierten Lichts
-    entweder um 90 grad dreht oder konstant laesst.
+    silicon Geraet (ForthDD WXGA-R3, UK), dass die Polarisation des
+    reflektierten Lichts entweder um 90 grad dreht oder konstant
+    laesst.
  
   - Ein Polarisationsstrahlteiler erzeugt daraus einen binaeren
     Intensitaetskontrast (siehe Fig 4.1 C).
@@ -1054,8 +1055,8 @@
         - 55deg @ 450nm Tp=81%
 	- %pi/4 * (25 * sin(10*%pi/180))^2,numer;
 	  - 25mm diameter gives G=14.8mm^2/sr
-          - 20mm diameter gives G=9.5mm^2/sr
-	  - 10mm diameter gives G=2.47mm^2/sr
+          - 20mm diameter gives G= 9.5mm^2/sr
+	  - 10mm diameter gives G= 2.5mm^2/sr
 #+begin_example
 D:25/63;
 NA:1.47;

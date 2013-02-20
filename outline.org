@@ -1014,6 +1014,39 @@
 
 ** Elektronische Steuerung der Komponenten
 
+Both spatial light modulators can run at most with $50\%$ duty
+cycle. Therefore it is necessary to synchronize the displays. Their
+controllers allow to upload several hundred frames of image data
+before an experiment and keep them in local storage. Images can then
+be selected by fast function calls over USB (LCoS) or Ethernet (MMA).
+
+The camera (Clara, Andor PLC, Belfast, Northern Ireland) as the
+slowest device is chosen as the master. The camera provides two TTL
+outputs. The output ``fire'' is high while the camera is
+integrating. The output ``shutter'' goes high \unit[1]{ms} before
+``fire'' and provides enough time (\unit[$>850$]{$\mu$s}) for the MMA
+controller to tilt and let the mirrors settle.
+
+The LCoS controller can display its images only for certain discrete
+times (\unit[20]{ms}, \unit[10]{ms}, \unit[5]{ms}, \unit[200]{$\mu$s})
+and it is not straight forward to change this via USB
+interface. Therefore we always work with a fixed LCoS display time of
+\unit[20]{ms}. The ``fire'' output of the camera also switches the
+laser on using an acousto-optic modulator (AOM).
+
+When the z-stage is used, the camera is stopped until the stage has
+reached its target position.
+
+\begin{figure}[H]
+  \centering
+  \svginput{memi-electronics}
+  \caption{The camera triggers both spatial light modulators with its
+    TTL outputs. The acousto-optic modulator sends light into the
+    system during camera integration.}
+  \label{fig:memi-electronics}
+\end{figure}
+
+
 - z-stage, camera, die zwei displays und laser muessen aufeinander
   abgestimmt werden
 
@@ -1077,7 +1110,54 @@ sqrt(eps/(NA^2*%pi/4)),numer;
 #+end_example 
 
    - charge balancing maintenance routine (ref The use of LCoS microdisplay)
-** mapping
+** Koordinatentransformation zwischen den SLMs und ihrer konjugierten Ebenen
+
+- It is very important that sample positions, which were obtained by
+   analyzing the camera images at specific $z-$stage positions, can be
+   fed back to both spatial light modulators. If the mapping between
+   sample plane and SLM2 (LCoS) is wrong, then the illumination will
+   be wrong. Then the whole illumination concept will break down
+   because camera images with the wrong illumination may not show
+   anything.
+
+- The alignment of the SLM1 (MMA) is not as crucial. If the mapping
+   between SLM1 and the back focal plane is wrong, the sample will
+   still be illuminated just with the wrong angles.
+
+*** Koordinatentransformation zwischen focal plane SLM und Kamera
+In order to be able to predict which position on the camera will be
+illuminated by a particular pixel of the LCoS a calibration procedure
+is run. For this a fluorescent plane is used as a sample. Then single
+spots are scanned through a grid of $10\times10$ positions over the
+LCoS. The resulting spots on the camera are located and four
+parameters defining the rigid transform between camera and LCoS are
+estimated (scale, rotation angle, translation in x and y, see
+Appendix~\ref{sec:rigid}).
+
+Using these parameters one can then convert between camera and LCoS
+coordinates (see \figref{fig:screen_lcos-calib}). Changing the focal
+length of the illumination tube lens or a change on the camera position
+generally requires a new calibration.
+
+\jpginput{7cm}{screen_lcos-calib}{Example of a perfectly fitting rigid
+  transform between LCoS and camera. {\bf left:} Mask that is
+  displayed on the LCoS. {\bf right:} Camera image of fluorescent
+  plane illuminated by mask. The orange lines indicate the borders of
+  the original pattern.}
+
+*** Koordinatentransformation zwischen pupil plane SLM und Pupille des Mikroskopobjektivs
+
+First the MMA is aligned to the center of the back focal plane by
+displaying an annular ring on the MMA and matching it to the ring of a
+phase objective.
+
+The magnification can be measured by placing a camera on the objective
+revolver into the back focal plane. It is also possible to scan a
+small window over the MMA while imaging a fluorescent plane as in
+\figref{fig:immersion-bfp-scan}. Assuming the image of the MMA isn't
+too small, then the periphery of the back focal plane can be located.
+
+
 - beschreibe vermessung der koordinatensysteme zwischen focal plane
   slm und kamera
 - fuer pupil plane slm habe ich leider keine vollstaendige methode,

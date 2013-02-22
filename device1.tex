@@ -90,38 +90,49 @@ When using the Laser, we send its parallel Gaussian beam into a
 bundle\footnote{Fiber bundle with circular cross-section,
   \unit[1.1]{mm} diameter and \unit[2]{m} length. The beam broadening
   is $3{}^\circ$ and increases, when the bundle is bended
-  (\cite{D8.4}).} of randomly distributed fibers (Loptec, Berlin,
-DE). This gives a randomized light distribution at the bundle output.
+  (\cite{D8.4}).} of randomly distributed fibers (Loptek, Berlin,
+DE). This randomizes the light distribution at the bundle output and
+the bundle also broadens the illumination angles. The broadening
+increases, when the bundle is bended stronger.
 
 A relay system (A1) images the circular output of the fiber bundle
 onto the entrance of a light pipe. This relay system contains a
-rotating microlens array\footnote{pitch \unit[0.5]{mm}, focal length
-  \unit[23.5]{mm}, beam broadening $\pm 0.23^\circ$ (FIXME erhard
-  fragen)}. It mixes the light by illuminating the specimen with many
-different mode profiles during one exposure of the camera.
+rotating microlens array\footnote{Array of cross-oriented cylindrical
+  lenses on both sides with a pitch of \unit[0.5]{mm} resulting in an
+  effective focal length of \unit[6.9]{mm} (LIMO, Dortmund, DE).}. It
+is driven by a motor and the axis of rotation is diplaced from the
+optical axis. This time-varying element allows to reduce speckle. 
 
-Inside of the hollow mirror-integrator tunnel (see
-\figref{fig:integrator-rod}) of quadratic cross-section
-\footnote{priv. comm.  Herbert Gross: ``A light guide homogenizes the
-  light when its cross section can be put together to cover a plane.''}
-the light is mixed by multiple reflections. The light distribution at
-the tunnels output is made more uniform without altering its numerical
-aperture.
+The light  pipe is  a hollow  mirror-integrator tunnel  with quadratic
+cross-section and depicted  in \figref{fig:integrator-rod}. The mixing
+effect of the  tunnel can be understood by  considering the irradiance
+in the plane of the tunnel output as it would occur without tunnel.
+
+Drawing the outline of the square cross-section into this irradiance
+map selects the light that directly reaches this plane.  Surrounding
+this outline with the four squares that touch its edges selects the
+light that will reach the output plane after one reflection. The
+irradiance maps from neighbouring squares are mirrored and added to
+the direct illumination. Depending on the numerical aperture of the
+input light, more reflections may occur --- resulting in the addition
+of irradiance from next-nearest-neighbours and so forth.
+
+This improves the uniformity of the light distribution in the output
+plane without altering the numerical aperture.  According to the
+central limit theorem the standard deviation is proportional to
+$1/\sqrt{N}$, with $N$ counting the number of superimposed sub-regions
+\citep{Koshel2012}.
 
 
+Eine Relais-Optik (A1
+   und A2 in Fig 4.1) vergroessert
+   den Tunnelausgang des Tunnels auf $\unit[4\times4]{mm^2}$
+   in die Ebene F'''.
 
-
- - Durch mehrfache Reflexion im Lichttunnel (hollow
-   mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section,  % /Laser homogenisieren/ 
-   250mm laenge, siehe Bild 4.2)  wird das Licht
-   zu einer homogenen Lichtverteilung gemischt, ohne die numerische
-   Apertur zu aendern (FIXME ref dlpa022.pdf).  Eine Relais-Optik (A1
-   und A2 in Fig 4.1) vergroessert\footnote{Ein Tunnel mit $\unit[4\times4]{mm^2}$
+\footnote{Ein Tunnel mit $\unit[4\times4]{mm^2}$
    Querschnitt beduerfte nicht dieser Optik, dann waeren die Winkel
    der Strahlen im System jedoch noch kleiner und der Tunnel muesste
    unhandlich lange werden.} 
-   den Tunnelausgang des Tunnels auf $\unit[4\times4]{mm^2}$
-   in die Ebene F'''.
 
    \jpginput{8cm}{integrator-rod}{Hollow mirror-integrator tunnel with
      a quadratic cross section of \unit[2.5]{mm}

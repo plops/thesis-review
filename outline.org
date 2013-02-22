@@ -861,20 +861,20 @@
    Modenprofile das Spezimen beleuchten.
 
  - Durch mehrfache Reflexion im Lichttunnel (hollow
-   mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section, % /Laser homogenisieren/ 
+   mirror-integratortunnel, quadratische 2.5mmx2.5mm cross section,     % /Laser homogenisieren/
    250mm laenge, siehe Bild 4.2) \footnote{Der
    Tunnel (rod integration system, light pipe, D8_2_v2 is a good
    document) hat einen quadratischen Querschnitt. priv. comm. mit
    Prof. Herbert Gross: "Wenn mit dem Querschnitt die Flaeche
    parkettiert werden kann, dann eignet sich der Tunnel zum
-   Homogenisieren des Lichts". (FIXME quelle finden)} wird das Licht
-   zu einer homogenen Lichtverteilung gemischt, ohne die numerische
-   Apertur zu aendern (FIXME ref dlpa022.pdf).  Eine Relais-Optik (A1
-   und A2 in Fig 4.1) vergroessert\footnote{Ein Tunnel mit 4x4mm^2
-   Querschnitt beduerfte nicht dieser Optik, dann waeren die Winkel
-   der Strahlen im System jedoch noch kleiner und der Tunnel muesste
-   unhandlich lange werden.} den Tunnelausgang des Tunnels auf 4x4mm^2
-   in die Ebene F'''.
+   Homogenisieren des Lichts". (koshel: illumination engineering
+   2012)} wird das Licht zu einer homogenen Lichtverteilung gemischt,
+   ohne die numerische Apertur zu aendern (FIXME ref dlpa022.pdf).
+   Eine Relais-Optik (A1 und A2 in Fig 4.1) vergroessert\footnote{Ein
+   Tunnel mit 4x4mm^2 Querschnitt beduerfte nicht dieser Optik, dann
+   waeren die Winkel der Strahlen im System jedoch noch kleiner und
+   der Tunnel muesste unhandlich lange werden.} den Tunnelausgang des
+   Tunnels auf 4x4mm^2 in die Ebene F'''.
 
  - Zu den zwei Relais-Systemen hat der Optikdesigner kommentiert
    (FIXME ref D8.9), dass diese nicht fuer eine perfekte Abbildung,

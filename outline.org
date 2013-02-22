@@ -104,6 +104,9 @@
   chlorophyll beispiel
 - wege wie man bleaching chemisch verhindern kann -- keine dieser
   methoden geht vernuenftig mit lebenden organismen
+
+- ich brauche artikel/referenzen zur arbeit in institut pasteur und
+  wuerde gern bilder verwenden
 ** conventional microscopes
 *** image formation in widefield microscope and the missing cone
    - tubuslaenge und objektiv erklaeren
@@ -883,8 +886,8 @@
    Licht vom Tunnelausgang in die Ebene F''' mit der
    Beleuchtungsapertur.
 
- - Waehrend der Konzeption wurde auch eine auf zwei Mikrolinsenarrays    % /Nicht benutzt alternative/
-   (fly-eye) basierende Optik fuer die Homogenisierung des Lasers in
+ - Waehrend der Konzeption wurde auch eine auf zwei Mikrolinsenarrays    % /Nicht benutzte Alternative/
+   (fly's eye) basierende Optik fuer die Homogenisierung des Lasers in
    Betracht gezogen (FIXME ref D8.2). In-Visions Planung zufolge,
    waere dieser jedoch schwieriger zu justieren als der Tunnel und
    zudem nicht fuer den vollen Wellenlaengenbereich von 400 bis 700nm
@@ -948,13 +951,14 @@
  
   - Prinzipiell koennte man auch den focal plane SLM in F'' an Stelle
     der Apertur B1 platzieren. In unserem Prototypen haben wir uns
-    jedoch fuer dieses zusaetzliche Relais-System entschieden, um den
-    Kontrast beider SLM voneinander zu entkoppeln.
-
-   - TODO warum haben wir das relay system? 
-     - vermutlich weil wir den mma kontrast vom lcos entkoppeln wollen
-     - es ist natuerlich fuer sammelnde system, dass axial color sich
-       aufaddiert und nicht kompensiert wird
+    jedoch fuer dieses zusaetzliche Relais-System entschieden, um zu
+    gewaehrleisten, dass die Pixel des focal plane SLM an der
+    Aufloesungsgrenze des Mikroskopobjektivs sind. Ausserdem
+    ermoeglicht das Relais-System eine einfachere mechanische
+    Realisierung des Systems und guten Kontrast. Es waere bereits
+    schwierig den focal plane SLM samt Polarisationsstrahlteiler in
+    F'' unterzubringen --- eine justierbare Apertur B1 nahe am SLM
+    waere vermutlich ueberhaupt nicht realisierbar.
 
 
 *** Polarisationsbasierte Kontrasterzeugung am focal plane SLM
@@ -967,8 +971,11 @@
     Intensitaetskontrast (siehe Fig 4.1 C).
 
   - Wir haben uns fuer einen wire-grid Polarizer (Moxtek PBF02C, Orem,
-    UT, US) entschieden, weil die Platte weniger Rueckreflexe
-    verursacht als ein Strahlteilerwuerfel.
+    UT, US) entschieden, weil diese eine ausreichend hohe Qualitaet
+    gewaehrleisten und die Platte weniger Rueckreflexe verursacht als
+    ein Strahlteilerwuerfel.
+
+ - ignacio moreno 2009 operational modes of a ferroelectric lcos
 
   - Die s-Polarisation des eingehenden Lichts wird in Richtung des SLM
     reflektiert. Aktive Pixel des SLM rotieren die Polarisation des
@@ -1229,6 +1236,11 @@ too small, then the periphery of the back focal plane can be located.
         mit oelobjektiv), obwohl ich der mittlerweile der meinung bin,
         dass man dann ein wasserobjektiv nehmen sollte
 ** opencl ansatz
+** outlook
+   -beliebige objekte mit implicit surface und distance function, sphere tracing
+   - distance_fields_prefinal.pdf
+   - erlaubt csg objekte
+
 * mma as an intensity modulator
   - mma kontrolliert nur die phasen, wir wollen aber die intensitaet
     modulieren

@@ -123,6 +123,7 @@
       microscopy pawley
     
   - diaspro: nanoscopy p. 8-1
+    - he is where sheppard is now (italian institute of technology)
     - photobleaching/damage in fluo microscope mainly due to reaction
       with oxygen
       - NOACCESS 1987 mang dougherty potter photochem photobiol
@@ -166,11 +167,30 @@
       - GOT 1998 eggeling seidel photobleaching of fluorescent dyes under
         conditions
       - 40um circle has 1.25e-5cm^2 area, 400mW on this area are
-        32kW/cm^2
+        32kW/cm^2 (this is the maximum i could do in my system, maybe
+        a bit more with 600mW laser but there are losses)
     - GOT 2002 deschenes, vanden Bout avoiding two-photon photochemistry
       chem phys lett
-       - the version i have is called: single molecule photobleaching
-       - rhodamine 6G in PMA from 0.1 to 10kW/cm^2, vacuum  
+      - the version i have is called: single molecule photobleaching
+      - rhodamine 6G in PMA from 0.1 to 10kW/cm^2, vacuum  
+    - conclusion: low irradiance for gfp is good because it can reduce
+      probability of exciting T1 further to Tn
+  - GOT 1981 schneider measurement of submicron laser beam radii
+    - 1mW incident on a spot of 250nm radius with 488nm wavelength
+      corresponds to 1e23..1e24 photons/(cm^2 s)
+    - i don't understand why he doesn't give the exact value?
+    - energy per photon: 614 THz * h = 4.07e-19J = 2.54eV
+    - photon flux: 1mW/(2.54 eV) = 2.46e16 photons/s
+    - area: pi(250e-9m)^2=1.9e-9 cm^2
+    - photons per area and second: 1.3e25 photons/(cm^2 s)
+  - diaspro discusses how bad the in-focus bleaching of two-photon is
+    - you shouldn't use it in thin samples
+  - somehow they want to use a depletion pulse now, to bring molecules
+    down from T1 (i wonder how this works, isn't that forbidden?)
+    - need 10MW/cm^2 triplet depletion power
+  - i don't like reading this chapter in diaspro's book, i think it
+    needs to be edited to make it more readable
+  - a section on clem
 ** conventional microscopes
 *** image formation in widefield microscope and the missing cone
    - tubuslaenge und objektiv erklaeren

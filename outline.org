@@ -107,6 +107,52 @@
 
 - ich brauche artikel/referenzen zur arbeit in institut pasteur und
   wuerde gern bilder verwenden
+
+
+  - jean-yves cites:
+    - phototoxicity: catch-all to describe how exogenous light
+      interacts with tissue/cell metabolism
+      - light induced free radical generation from fluorescent labels
+        or light sensitive metabolites
+      - ionizing, polarizing, trapping
+      - activation of membrane-conductance
+      - heating effects
+      - behaviours which are easy to detect vs. subtle effects
+	- subverting of function of tissue instead of direct kill
+    - diaspro 2006 photobleaching in handbook of biol confocal
+      microscopy pawley
+    
+  - diaspro: nanoscopy p. 8-1
+    - photobleaching/damage in fluo microscope mainly due to reaction
+      with oxygen
+      - 1987 mang dougherty potter photochem photobiol
+      - 2002 deschenes bout avoiding two-photon photochemistry to
+        extend the life of single molecules, chem phys letts
+    - well below saturation, bleaching is linearly propto excitation
+    - from photophysical prospective of single- and multi-photon
+      microcopy, probably the most disheartening reality is the
+      occurrence of photobleaching and photodamage
+    - TODO send to florian: on page 8-7: immobile fluorescent sample
+      built by ionic cross-linking of poly(allylamine hydrochloride)
+      (PAH , Sigma-Aldrich), a positively charged polyelectrolyte,
+      covalently labeled with alexa fluor 555 (invitrogen)
+    - at 10^17.5 MW/cm^2 half of the S0 state is depleted in GFP and
+      fluorescein
+    - main cause for photobleaching is interaction of excited
+      fluorophore with molecular oxygen in its triplet ground state
+      - T1 permits molecules to interact with environment a much
+        longer time (ms instead of ns)
+    - it can also undergo reactions with other intracellular organic
+      molecules
+    - depends on oxygen concentration, distance between dye and other
+      molecules
+    - GFP is naturally protected from reaction with environmental
+      molecular oxygen
+      - 2004 bernas cook minimizing photobleaching during confocal
+        microscopy
+      - 1998 tsien the green fluorescent protein
+
+
 ** conventional microscopes
 *** image formation in widefield microscope and the missing cone
    - tubuslaenge und objektiv erklaeren
@@ -128,6 +174,22 @@
    - detectors generally have low quantum efficiency, scanning
      technique
    - keine formeln
+
+    - confocal
+    - 1989 egger the development of the confocal microscope
+      - first laser illuminated confocal built by egger in early 1970s
+      - sheppard choudhury 1977 image formation 
+    - sheppard gannaway walsh wilson 1978
+    - wilson gannaway johnson 1980
+    
+    - first biological applications
+      - 1983 slund phoibos microscope scanner
+      - 1987  slund slund wahlsten  liljeborg
+      - 1987 amos white fordham biological structures appl optics
+      - 1987 white amos fordham evaluation of confocal versus j cell
+        biol
+
+
 *** image formation with structured illumination
    - out of focus light can be computationally removed
    - better quantum efficiency than confocal

@@ -125,8 +125,8 @@
   - diaspro: nanoscopy p. 8-1
     - photobleaching/damage in fluo microscope mainly due to reaction
       with oxygen
-      - 1987 mang dougherty potter photochem photobiol
-      - 2002 deschenes bout avoiding two-photon photochemistry to
+      - NOACCESS 1987 mang dougherty potter photochem photobiol
+      - CANTFIND 2002 deschenes bout avoiding two-photon photochemistry to
         extend the life of single molecules, chem phys letts
     - well below saturation, bleaching is linearly propto excitation
     - from photophysical prospective of single- and multi-photon
@@ -148,11 +148,29 @@
       molecules
     - GFP is naturally protected from reaction with environmental
       molecular oxygen
-      - 2004 bernas cook minimizing photobleaching during confocal
+      - GOT 2004 bernas cook minimizing photobleaching during confocal
         microscopy
-      - 1998 tsien the green fluorescent protein
-
-
+      - GOT 1998 tsien the green fluorescent protein
+	- GOT 1995 cubitt heim adams tsien trends biochem science
+	  - encapsulated inside the protein, where it is protected
+            from collisional quenching by oxygen and water
+	  - GOT 1980 rao prendergast proton nuclear magnetic resonance and
+            fluorescence gfp
+	    - the gfp is essentially insensitive to the quenching
+              effects of oxygen k_bm<0.004 1/(M s)
+	- GOT 1997 swaminathan hoang
+	  - crystal structure (ormo 1996) indicates that chromophore
+            is completely shielded from bulk solvent by a dense
+            11-stranded beta-barrel
+    - low irradiance is better to prevent further excitation of T1
+      - GOT 1998 eggeling seidel photobleaching of fluorescent dyes under
+        conditions
+      - 40um circle has 1.25e-5cm^2 area, 400mW on this area are
+        32kW/cm^2
+    - GOT 2002 deschenes, vanden Bout avoiding two-photon photochemistry
+      chem phys lett
+       - the version i have is called: single molecule photobleaching
+       - rhodamine 6G in PMA from 0.1 to 10kW/cm^2, vacuum  
 ** conventional microscopes
 *** image formation in widefield microscope and the missing cone
    - tubuslaenge und objektiv erklaeren
@@ -176,14 +194,16 @@
    - keine formeln
 
     - confocal
-    - 1989 egger the development of the confocal microscope
+    - GOT 1989 egger the development of the confocal microscope
+      - he gives a very short comment that scanning confocal isn't 3
+        years old
       - first laser illuminated confocal built by egger in early 1970s
-      - sheppard choudhury 1977 image formation 
+      - GOT sheppard choudhury 1977 image formation 
     - sheppard gannaway walsh wilson 1978
     - wilson gannaway johnson 1980
     
     - first biological applications
-      - 1983 slund phoibos microscope scanner
+      - NOT 1983 slund phoibos microscope scanner
       - 1987  slund slund wahlsten  liljeborg
       - 1987 amos white fordham biological structures appl optics
       - 1987 white amos fordham evaluation of confocal versus j cell

@@ -87,24 +87,27 @@ laser often lead to high-contrast fluctuations of the irradiance and
 we have to compensate for this by time averaging.
 
 When using the Laser, we send its parallel Gaussian beam into a
-bundle\footnote{Fiber bundle with circular cross-section,
-  \unit[1.1]{mm} diameter and \unit[2]{m} length. The beam broadening
-  is $3{}^\circ$ and increases, when the bundle is bended
-  (\cite{D8.4}).} of randomly distributed fibers (Loptek, Berlin,
-DE). This randomizes the light distribution at the bundle output and
-the bundle also broadens the illumination angles. The broadening
-increases, when the bundle is bended stronger.
+bundle\footnote{Fiber bundle with circular cross-section (Loptek,
+  Berlin, DE), \unit[1.1]{mm} diameter and \unit[2]{m} length. The
+  beam broadening is $3{}^\circ$ and increases, when the bundle is
+  bent \citep{D8.4}.}  of randomly distributed fibers. This randomizes
+the light distribution at the bundle output and also broadens the
+illumination angles.
 
 A relay system (A1) images the circular output of the fiber bundle
 onto the entrance of a light pipe. This relay system contains a
 rotating microlens array\footnote{Array of cross-oriented cylindrical
   lenses on both sides with a pitch of \unit[0.5]{mm} resulting in an
   effective focal length of \unit[6.9]{mm} (LIMO, Dortmund, DE).}. It
-is driven by a motor and the axis of rotation is diplaced from the
-optical axis. This time-varying element allows to reduce speckle. 
+is driven by a motor with the axis of rotation being diplaced from the
+optical axis. This time-varying element allows to reduce speckle.
+
+Both, the fiber bundle and microlens array, increase the etendue of
+the laser illumination to the optimum value, which is given by one of
+our SLM as discussed below in \ref{sec:etendue} (FIXME ref). 
 
 The light  pipe is  a hollow  mirror-integrator tunnel  with quadratic
-cross-section and depicted  in \figref{fig:integrator-rod}. The mixing
+cross-section and depicted in \figref{fig:integrator-rod}. The mixing
 effect of the  tunnel can be understood by  considering the irradiance
 in the plane of the tunnel output as it would occur without tunnel.
 
@@ -118,13 +121,23 @@ input light, more reflections may occur --- resulting in the addition
 of irradiance from next-nearest-neighbours and so forth.
 
 This improves the uniformity of the light distribution in the output
-plane without altering the numerical aperture.  According to the
-central limit theorem the standard deviation is proportional to
-$1/\sqrt{N}$, with $N$ counting the number of superimposed sub-regions
-\citep{Koshel2012}.
+plane without altering the numerical aperture of the light.  The more
+subregions are superimposed, the better will be the uniformity.
+Assuming $N$ subregions were overlaid and their contributions were
+statistically independent, then according to the central limit theorem
+the standard deviation of the irradiance is proportional to
+$1/\sqrt{N}$ \citep{Koshel2012}.
+
+However, we also align the source distribution to be rotationally
+symmetric about the optical axis and obtain an even more uniform
+output than this prediction because positive and negative slopes from
+different subregions compensate in the superposition (also
+\cite{Koshel2012}).
 
 In our system the side length 
 
+ueberaus
+prohibitively 
 
 Eine Relais-Optik (A1
    und A2 in Fig 4.1) vergroessert

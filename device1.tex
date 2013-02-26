@@ -43,17 +43,17 @@ finished).
   \svginput{2}{memi-real}
   \caption{Schematic of the light path through our microscope. Laser
     light enters from the lower left, is scrambled and homogenized to
-    illuminate the pupil plane SLM in P'' and the focal plane SLM in
-    F'. $F$ is the field plane in the sample and its primed versions
-    are conjugated planes. $P$ is the pupil of the objective. $B_0$
-    and $B_1$ are adjustable circular apertures. PBS is a polarizing
-    beam splitter. DBS is a dichromatic beam splitter.  The red boxes
-    deliminate subsystems of the illumination system: {\bf A:} light
-    scrambling and homogenization, {\bf B:} Fourier-optical filter to
-    provide intensity modulating pupil plane SLM. {\bf C:}
-    Polarization based intensity modulator as focal plane SLM. {\bf
-      D:} Wide-field fluorescence microscope with detection
-    path. (FIXME finish diagram, don't use B twice)}
+    illuminate the pupil plane SLM in $\textrm{P}''$ and the focal
+    plane SLM in F'. $F$ is the field plane in the sample and its
+    primed versions are conjugated planes. $P$ is the pupil of the
+    objective. $B_0$ and $B_1$ are adjustable circular apertures. PBS
+    is a polarizing beam splitter. DBS is a dichromatic beam splitter.
+    The red boxes deliminate subsystems of the illumination system:
+    {\bf A:} light scrambling and homogenization, {\bf B:}
+    Fourier-optical filter to provide intensity modulating pupil plane
+    SLM. {\bf C:} Polarization based intensity modulator as focal
+    plane SLM. {\bf D:} Wide-field fluorescence microscope with
+    detection path. (FIXME finish diagram, don't use B twice)}
   \label{fig:memi-real}
 \end{figure}
 
@@ -134,58 +134,51 @@ output than this prediction because positive and negative slopes from
 different subregions compensate in the superposition (also
 \cite{Koshel2012}).
 
-In our system the side length 
+In our system the side length of the cross-section of the tunnel is
+\unit[2.5]{mm} and its length of \unit[250]{mm} ensures enough
+reflections for homogeneous illumination. A relay system magnifies the
+tunnel output to $\unit[4]{mm}\times\unit[4]{mm}$ in the plane
+$\textrm{F}'''$.
 
-ueberaus
-prohibitively 
+We thought about using the output of the tunnel directly, without the
+additional relais system, but then the length of the tunnel would have
+been prohibitively long.
 
-Eine Relais-Optik (A1
-   und A2 in Fig 4.1) vergroessert
-   den Tunnelausgang des Tunnels auf $\unit[4\times4]{mm^2}$
-   in die Ebene F'''.
+\jpginput{8cm}{integrator-rod}{Hollow mirror-integrator tunnel with a
+  quadratic cross section of \unit[2.5]{mm} side length and
+  \unit[250]{mm} length.}
 
-\footnote{Ein Tunnel mit $\unit[4\times4]{mm^2}$
-   Querschnitt beduerfte nicht dieser Optik, dann waeren die Winkel
-   der Strahlen im System jedoch noch kleiner und der Tunnel muesste
-   unhandlich lange werden.} 
+Regarding the two relay systems the optical designer at In-Vision
+commented (FIXME ref D8.9) that these have not been optimized for
+prefect imaging but for the transport of the homogeneous light
+distribution. The system A1 at the tunnel entrance has to transfer the
+illumination from the round fiber end to the square tunnel
+entrance. The engineer designed a good quality system with only two
+lenses (and the microlens array). At the other end (A2 in
+\figref{fig:memi-real}) five elements carry the light from the tunnel
+exit into $\textrm{F}'''$.
 
-   \jpginput{8cm}{integrator-rod}{Hollow mirror-integrator tunnel with
-     a quadratic cross section of \unit[2.5]{mm}
-     side length and \unit[250]{mm} length.}
+During the planning phase we also considered a homogenization design
+based on a fly's eye condensor (two consecutive microlens
+arrays). According to simulations performed by In-Vision, this,
+however, would have been more difficult to adjust than the tunnel. In
+particular the system would have been more dependent on illumination
+wavelength.
 
-
-
- - Zu den zwei Relais-Systemen hat der Optikdesigner kommentiert
-   (FIXME ref D8.9), dass diese nicht fuer eine perfekte Abbildung,
-   sondern fuer einen guten Transport der homogenenen Lichtverteilung    % /Interessantes zu Relais-Systemen an Tunnelenden/
-   optimiert wurden. Beim System A1 am Tunneleingang werden drei Elemente
-   (FIXME oder 2?, und wo ist das Mikrolinsenarray) eingesetzt, um das
-   Licht vom runden Faserende in den quadratischen Tunneleingang zu
-   transportieren. Am anderen Ende (A2 Fig 4.1) transportieren fuenf Elemente das
-   Licht vom Tunnelausgang in die Ebene F''' mit der
-   Beleuchtungsapertur.
-
- - Waehrend der Konzeption wurde auch eine auf zwei Mikrolinsenarrays    % /Nicht benutzt alternative/
-   (fly's eye condensor) basierende Optik fuer die Homogenisierung des Lasers in
-   Betracht gezogen (FIXME ref D8.2). In-Visions Planung zufolge,
-   waere dieser jedoch schwieriger zu justieren als der Tunnel und
-   zudem nicht fuer den vollen Wellenlaengenbereich von 400 bis 700nm
-   verwendbar gewesen.
-
-  - Um eine homogene Ausleuchtung mit dem Tunnel zu erreichen sind       % /Erfahrungen/
-    folgende Punkte wichtig (FIXME ref D8.5):
-
-   - Das Buendelende sollte den Tunneleingang deutlich ueberdecken. Es
-     muss vermieden werden, dass die Tunnelecken dunkler als die Mitte
-     des Tunnels sind. Ein inhomogen ausgeleuchteter Buendeleingang
-     fuehrt zu inhomogener Beleuchtung des pupil plane SLM.
-
-   - Das Ende des Faserbuendels muss in vier Achsen justiert werden
-     koennen (Zentrierung von Position und Winkel).
-
-   - Die Brennweite der Mikrolinsen sollte kuerzer gewaehlt werden,
-     als die Rechnung vorhersagt. Damit kann unweigerlich auftretendes
-     Mikrochipping der zementierten Glasspiegel kompensiert werden.
+In summary the following points are important in order to achieve
+homogeneous illumination of focal and pupil plane with the tunnel:
+\begin{itemize}
+\item The image of the end of the bundle should properly cover the
+  tunnel entrance. Especially the corners of the tunnel should not be
+  darker than the center. Inhomogeneous illumination at the tunnel
+  entrance leads to inhomogeneous illumination of the pupil plane SLM.
+\item The end of the fibre bundle must be adjusted in four axes
+  (centering and angle).
+\item The focal length of the microlenses should be chosen shorter
+  than predicted by pure etendue calculation. In order to compensate
+  inevitably occuring microchipping on the edges of the cemented glass
+  mirrors.
+\end{itemize}
 
 \subsection{ Fourier-optischer Filter zur Kontrasterzeugung am pupil plane SLM}
   - Der micro-mirror array, den wir als pupil plane SLM einsetzen,        % /MMA torsion spiegel/

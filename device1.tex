@@ -180,63 +180,62 @@ homogeneous illumination of focal and pupil plane with the tunnel:
   mirrors.
 \end{itemize}
 
-\subsection{ Fourier-optischer Filter zur Kontrasterzeugung am pupil plane SLM}
-  - Der micro-mirror array, den wir als pupil plane SLM einsetzen,        % /MMA torsion spiegel/
-    besteht aus Torsionsspiegeln, die die Phase des Lichts modulieren
-    (fuer eine genauere Beschreibung siehe spaeteres Kapitel               
-    FIXME). Um damit eine Intensitaetsmodulation zu bewirken, nutzen
-    wir den in Fig 4.2 B gezeigten Fourier filter. 
+\subsection{Fourier optical filter for contrast generation on pupil
+  plane SLM}
 
-  - Die Linse L1 hat zwei Aufgaben: Zum einen bildet sie die Feldmaske   % /Schlierenoptiklinse/
-    B0 in den Feldstopp B1 ab. Zum anderen wird die Ebene P'' mit dem
-    SLM nach unendlich abgebildet.
+The micromirror array, which we use as a pupil plane SLM consists of
+torsion mirrors that modulate the phase of the light (for a more
+detailed description see ref FIXME). In order to modulate the
+intensity we use the Fourier filter shown in \figref{fig:memi-real}~B.
 
-  - Bei ungekippten Spiegeln, wird somit F''' nach F'' abgebildet und    % /MMA Kontrasterzeugung/
-    gleichzeitig gibt es ein scharfes Bild von P'' nach P'. Beide
-    Ebenen F'' und P' sind dann homogen ausgeleuchtet.
+The lens L1 has two purposes: First, it images the field mask B0 into
+the field stop B1. Second, the plane $\textrm{P}''$ with the phase SLM
+is imaged to infinity.
 
-  - Werden die Spiegel auf der linken Haelfte in P'' gekippt, dann
-    lenken sie das Licht entlang der gestrichelten Linie (in Fig 4.1)
-    ab. Dieses Licht wird von der Apertur B1 absorbiert und steht dann
-    nicht in P' zur verfuegung. D.h. die rechte Seite in P' ist
-    dunkel. Der gesamte radiant flux ($\unit[]{W}$) durch die Apertur in
-    F'' nimmt ab, die irradiance ($\unit[]{W/m^2}$) ueber die Apertur
-    bleibt aber homogen.
+With undeflected micromirrors, the SLM has no signifcant effect and
+works like a plane mirror. Both planes $\textrm{F}''$ and
+$\textrm{P}'$ are then homogeneously illuminated.
 
-  - Im realen System besteht die Linse L1 aus 4 Elementen. Aufgrund
-    der Symmetrie weist sie keinen axialen Farbfehler auf. Es bleibt
-    jedoch ein kleiner lateraler Farbfehler (FIXME genauer ergruenden
-    was das bedeutet).
+If the left half of the micromirrors are tilted, then they direct the
+light along the dashed line in \figref{fig:memi-real}. This light is
+absorbed by the field stop B1 and therefore missing in $\textrm{P}'$,
+i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
+($\unit[]{W}$) through the beam stop in $\textrm{F}''$ decreases while
+the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.
+
+In the real system, the lens L1 consists of four elements.
+
+\subsection{Relay optics between pupil plane and focal plane SLM}
+The lenses L2 and L3 form a double-telecentric relay system with
+magnification 2 and image $\textrm{F}''$ onto the focal plane SLM in
+$\textrm{F}'$. At the same time these lenses make sure that the pupil
+plane SLM is imaged to infinity.
  
+The relay system ensures that the pixels of the focal plane SLM are at
+the resolution limit, while the pupil plane SLM fills the pupil.
 
-\subsection{ Relais-System zwischen pupil plane und focal plane SLM}
-  - Die Linsen L2 und L3 bilden ein doppelt telezentrisches             % /Relais-System/
-    Relais-System mit Vergroesserung 2 und bilden F'' auf der Ebene
-    des focal plane SLM in F' ab. Gleichzeitig bildet dieses
-    Relais-System den pupil plane SLM von P'' nach unendlich ab.
- 
-  - Prinzipiell koennte man auch den focal plane SLM in F'' an Stelle
-    der Apertur B1 platzieren. In unserem Prototypen haben wir uns
-    jedoch fuer dieses zusaetzliche Relais-System entschieden, um den
-    Kontrast beider SLM voneinander zu entkoppeln.
-
-   - TODO warum haben wir das relay system? 
-     - vermutlich weil wir den mma kontrast vom lcos entkoppeln wollen
-     - es ist natuerlich fuer sammelnde system, dass axial color sich
-       aufaddiert und nicht kompensiert wird
+In addition, the relay system enables a simpler mechanical realization
+and good contrast. It would already be difficult to accommodate the
+focal plane SLM and polarization beam splitter in $\textrm{F}''$ ---
+including an adjustable aperture would probably not be feasible at
+all.
 
 
 \subsection{ Polarisationsbasierte Kontrasterzeugung am focal plane SLM}
   - Der von uns verwendete focal plane SLM ist ein liquid crystal on
-    silicon Geraet, dass die Polarisation des reflektierten Lichts
-    entweder um 90 grad dreht oder konstant laesst.
+    silicon Geraet (ForthDD WXGA-R3, UK), dass die Polarisation des
+    reflektierten Lichts entweder um 90 grad dreht oder konstant
+    laesst.
  
   - Ein Polarisationsstrahlteiler erzeugt daraus einen binaeren
     Intensitaetskontrast (siehe Fig 4.1 C).
 
   - Wir haben uns fuer einen wire-grid Polarizer (Moxtek PBF02C, Orem,
-    UT, US) entschieden, weil die Platte weniger Rueckreflexe
-    verursacht als ein Strahlteilerwuerfel.
+    UT, US) entschieden, weil diese eine ausreichend hohe Qualitaet
+    gewaehrleisten und die Platte weniger Rueckreflexe verursacht als
+    ein Strahlteilerwuerfel.
+
+ - ignacio moreno 2009 operational modes of a ferroelectric lcos
 
   - Die s-Polarisation des eingehenden Lichts wird in Richtung des SLM
     reflektiert. Aktive Pixel des SLM rotieren die Polarisation des
@@ -256,16 +255,6 @@ homogeneous illumination of focal and pupil plane with the tunnel:
     lateral color (ref D8.9 FIXME), das Optikdesign bleibt aber
     beugungsbegrenzt.
 
-
-\jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
-  microscope with attached illumination head. The positions of the two
-  spatial light modulators (Micro mirror array (MMA) and liquid
-  crystal on silicon display (LCoS)) are indicated. Drawing by Josef
-  Wenisch (In-Vision, Austria).}
-
-
-\jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
-
 \subsection{ Variables Teleskop als Tubuslinse}
   - Die groesse der Pupille von Mikroskopobjektiven haengt von deren
     Bildfeld und numerischer Apertur ab. Die letzt Linse
@@ -278,6 +267,64 @@ homogeneous illumination of focal and pupil plane with the tunnel:
     stationaer auf der pupil plane des Objektivs abgebildet bleibt und
     gleichfalls der focal plane SLM immer im unendlichen abgebildet
     bleibt (FIXME gibt es ein paper mit begruendung?).
+
+
+ - email mit erhard ipp
+  - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
+  - Ja. Der Laser wird an zwei Metall-Spiegeln M1 und M2)
+     reflektiert. Vor dem Mikrolinsenarray messe ich
+   - (1.885+/-0.005) mW ohne Polarisator, (1.580+/-0.001) mW mit
+     Polarisator in Maximalstellung und
+   - (27.26+/-0.01) uW mit Polarisator in Minimumstellung.  Der
+     Kontrast ist 1.8e-3/27e-6=70:1.
+
+
+\section{Elektronische Steuerung der Komponenten}
+
+Both spatial light modulators can run at most with $50\%$ duty
+cycle. Therefore it is necessary to synchronize the displays. Their
+controllers allow to upload several hundred frames of image data
+before an experiment and keep them in local storage. Images can then
+be selected by fast function calls over USB (LCoS) or Ethernet (MMA).
+
+The camera (Clara, Andor PLC, Belfast, Northern Ireland) as the
+slowest device is chosen as the master. The camera provides two TTL
+outputs. The output ``fire'' is high while the camera is
+integrating. The output ``shutter'' goes high \unit[1]{ms} before
+``fire'' and provides enough time (\unit[$>850$]{$\mu$s}) for the MMA
+controller to tilt and let the mirrors settle.
+
+The LCoS controller can display its images only for certain discrete
+times (\unit[20]{ms}, \unit[10]{ms}, \unit[5]{ms}, \unit[200]{$\mu$s})
+and it is not straight forward to change this via USB
+interface. Therefore we always work with a fixed LCoS display time of
+\unit[20]{ms}. The ``fire'' output of the camera also switches the
+laser on using an acousto-optic modulator (AOM).
+
+When the z-stage is used, the camera is stopped until the stage has
+reached its target position.
+
+\begin{figure}[H]
+  \centering
+  \svginput{memi-electronics}
+  \caption{The camera triggers both spatial light modulators with its
+    TTL outputs. The acousto-optic modulator sends light into the
+    system during camera integration.}
+  \label{fig:memi-electronics}
+\end{figure}
+
+
+
+
+\jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
+  microscope with attached illumination head. The positions of the two
+  spatial light modulators (Micro mirror array (MMA) and liquid
+  crystal on silicon display (LCoS)) are indicated. Drawing by Josef
+  Wenisch (In-Vision, Austria).}
+
+
+\jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
+
 
 
 

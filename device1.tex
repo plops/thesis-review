@@ -269,19 +269,16 @@ the design remains diffraction limited.
 \jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
 
 
-\subsection{ Variables Teleskop als Tubuslinse}
-  - Die groesse der Pupille von Mikroskopobjektiven haengt von deren
-    Bildfeld und numerischer Apertur ab. Die letzt Linse
-    TL${}_\textrm{ill}$ in unserem Beleuchtungssystem ist daher so
-    konzipiert, dass sie P'' mit variabler Vergroesserung nach P
-    abbildet. 
+\subsection{ Variable telescope as tube lens}
+Microscope objectives come with various pupil diameters. The last lens
+$\textrm{TL}_\textrm{ill}$ in our illumination system has been
+designed as a variable zoom objective, that maps the pupil plane SLM
+from $\textrm{P}''$ with variable magnification to $\textrm{P}$.
 
-  - Die Linse besteht aus drei beweglichen Gruppen und kann somit
-    garantieren, dass der pupil plane SLM bei Vergroesserungsaenderung
-    stationaer auf der pupil plane des Objektivs abgebildet bleibt und
-    gleichfalls der focal plane SLM immer im unendlichen abgebildet
-    bleibt (FIXME gibt es ein paper mit begruendung?).
-
+Unlike conventional zoom telescopes we use three movable lens groups
+to guarantee that the image of the pupil plane SLM remains stationary
+and simultaneously focal plane SLM stays imaged into infinity while
+changing the magnification.
 
  - email mit erhard ipp
   - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
@@ -293,7 +290,7 @@ the design remains diffraction limited.
      Kontrast ist 1.8e-3/27e-6=70:1.
 
 
-\section{Elektronische Steuerung der Komponenten}
+\section{Electronic control of the component}
 
 Both spatial light modulators can run at most with $50\%$ duty
 cycle. Therefore it is necessary to synchronize the displays. Their

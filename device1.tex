@@ -221,39 +221,53 @@ including an adjustable aperture would probably not be feasible at
 all.
 
 
-\subsection{ Polarisationsbasierte Kontrasterzeugung am focal plane SLM}
-  - Der von uns verwendete focal plane SLM ist ein liquid crystal on
-    silicon Geraet (ForthDD WXGA-R3, UK), dass die Polarisation des
-    reflektierten Lichts entweder um 90 grad dreht oder konstant
-    laesst.
- 
-  - Ein Polarisationsstrahlteiler erzeugt daraus einen binaeren
-    Intensitaetskontrast (siehe Fig 4.1 C).
+\subsection{ Contrast generation on focal plane SLM using
+  polarization}
+The SLM we use to control the focal plane illumination is a
+ferroelectric liquid crystal on silicon device (ForthDD WXGA R3,
+UK). Depending on if a pixel is off or om, the returning light either
+retains the polarization of the input light or rotates it by 90
+degrees.
 
-  - Wir haben uns fuer einen wire-grid Polarizer (Moxtek PBF02C, Orem,
-    UT, US) entschieden, weil diese eine ausreichend hohe Qualitaet
-    gewaehrleisten und die Platte weniger Rueckreflexe verursacht als
-    ein Strahlteilerwuerfel.
+From this, a polarization beam splitter generates a binary intensity
+contrast (see \figref{fig:memi-real}~C). 
 
- - ignacio moreno 2009 operational modes of a ferroelectric lcos
+We opted for a wire-grid polarization beam splitter (Moxtek PBF02C,
+Orem, UT, US) because they ensure a high enough optical quality, good
+contrast and the plate causess less back reflections than a beam
+splitter cube.
 
-  - Die s-Polarisation des eingehenden Lichts wird in Richtung des SLM
-    reflektiert. Aktive Pixel des SLM rotieren die Polarisation des
-    Lichts um 90 Grad und passiert dann den Strahlteiler als
-    p-Polarisation in Tranmission in richtung Mikroskop. Dort befindet
-    sich ein zusaetzlicher Cleanup-Analysator im Strahlengang.
- 
-  - Es waere auch denkbar, SLM und Strahlteiler anders anzuordnen, so
-    dass das vom SLM kommende Licht in das Mikroskop
-    \emph{reflektiert} wird. In diesem Fall verschlechtert jedoch eine
-    ungewollte Oberflaechendurchbiegung des Strahlteilers die
-    Abbildungsqualitaet vom focal plane SLM. Deshalb nutzen wir den
-    Strahlteiler in Tranmission.
 
-  - Die duenne Platte (<2mm) des Strahlteilers macht das System leicht
-    asymmetrisch und fuehrt damit hauptsaechlich zu Astigmatismus und
-    lateral color (ref D8.9 FIXME), das Optikdesign bleibt aber
-    beugungsbegrenzt.
+- ignacio moreno 2009 operational modes of a ferroelectric lcos
+(FIXME)
+
+The s-polarized component of the incoming light is reflected towards
+the SLM. Active pixels of the SLM rotate the polarization of light by
+90 degrees and then passes through the beam splitter as p-polarization
+in the direction of the microscope. There is a supplementary cleanup
+analyzer in the beam path. 
+
+It would also be conceivable to arrange SLM and beam splitter
+differently, so that the light coming from the SLM is \emph{reflected}
+towards microscope. In this case, however, unwanted bending of the
+beam splitter's surface will deteriorate the image quality of the
+focal plane SLM. Therefore, we use the beam splitter in transmission.
+
+
+The beam splitter plate makes the overall optics slightly assymmetric
+and thus induces mainly astigmatism and lateral color (ref FIXME
+D8.9). The plate is thin enough (thickness \unit[0.7]{mm}), so that
+the design remains diffraction limited.
+
+ 	
+\jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
+  microscope with attached illumination head. The positions of the two
+  spatial light modulators (pupil plane SLM: micromirror array (MMA)
+  and focal plane SLM: liquid crystal on silicon display (LCoS)) are
+  indicated. Drawing by Josef Wenisch (In-Vision, Austria).}
+	  	
+\jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
+
 
 \subsection{ Variables Teleskop als Tubuslinse}
   - Die groesse der Pupille von Mikroskopobjektiven haengt von deren
@@ -304,26 +318,16 @@ laser on using an acousto-optic modulator (AOM).
 When the z-stage is used, the camera is stopped until the stage has
 reached its target position.
 
-\begin{figure}[H]
-  \centering
-  \svginput{memi-electronics}
-  \caption{The camera triggers both spatial light modulators with its
-    TTL outputs. The acousto-optic modulator sends light into the
-    system during camera integration.}
-  \label{fig:memi-electronics}
-\end{figure}
+%\begin{figure}[H]
+%  \centering
+%  \svginput{memi-electronics}
+%  \caption{The camera triggers both spatial light modulators with its
+%    TTL outputs. The acousto-optic modulator sends light into the
+%    system during camera integration.}
+%  \label{fig:memi-electronics}
+%\end{figure}
 
 
-
-
-\jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
-  microscope with attached illumination head. The positions of the two
-  spatial light modulators (Micro mirror array (MMA) and liquid
-  crystal on silicon display (LCoS)) are indicated. Drawing by Josef
-  Wenisch (In-Vision, Austria).}
-
-
-\jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
 
 
 
@@ -331,15 +335,15 @@ reached its target position.
 
 
 \begin{figure}[!htbp]
-   \centering
-   \svginput{2}{memi-sketch}
-   \caption{Schematic of the lenses in the MEMI system and their focal
-     lengths. The focal length $f_\textrm{TL}$ of the tube lens can be
-     varied. This allows to scale the second intermediate image
-     $r''_\textrm{MMA}$ of the micro mirror array to fit the back
-     focal plane of different objectives. Dimensions in mm.}
-   \label{fig:memi-sketch}
- \end{figure}
+  \centering
+  \svginput{2}{memi-sketch}
+  \caption{Schematic of the lenses in the MEMI system and their focal
+    lengths. The focal length $f_\textrm{TL}$ of the tube lens can be
+    varied. This allows to scale the second intermediate image
+    $r''_\textrm{MMA}$ of the micro mirror array to fit the back
+    focal plane of different objectives. Dimensions in mm.}
+  \label{fig:memi-sketch}
+\end{figure}
 
 
 

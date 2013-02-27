@@ -1533,15 +1533,6 @@ too small, then the periphery of the back focal plane can be located.
     interferometrischen system
     - was ist die maximale ettendue eines wollaston prismas?
   - holographie methode mit extended source
-  - Denkbar waere auch ein scannendes konfokales Mikroskop, dass an
-    die Beleuchtungswinkel an jedem Punkt kontrolliert (siehe
-    fig:hourglass-all-b).  Bisher wurden in der Literatur nur Systeme
-    beschrieben, die die Phase des Beleuchtungslicht in der Pupille
-    aendern (FIXME ref). Eine Adaption dieser Systeme zu einem
-    spatio-angularen ist naheliegend und ich schlage vor, derartige
-    Systeme auch untersucht werden sollten. Die Kombination von CLEM,
-    einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
-    Inneren lebender Organe (z.B. Gehirn) verbessern.
 
    (Notiz: Ich habe mit Prof fuer Mustererkennung gesprochen und bin
    jetzt motiviert, einen Raytracer zu schreiben, um die Qualitaet der

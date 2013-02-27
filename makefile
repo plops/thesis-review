@@ -70,12 +70,14 @@ clean:
 # cluttering my working directory with all the tex log files
 build/%.tex: %.tex
 	cp $< $@
+build/%.bib: %.bib
+	cp $< $@
 
 
 
 # rubber runs the latex process until finished, --inplace makes sure
 # that clutter stays in build/ directory
-build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD)
+build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib
 	rubber --pdf --inplace $<
 
 build/kielhorn_memi.dvi: $(TEX_FILES_IN_BUILD)

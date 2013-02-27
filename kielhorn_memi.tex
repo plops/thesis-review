@@ -194,9 +194,160 @@ July 2012
 \chapter{Methods of controlling illumination patterns}
 \include{spatio-angular}
 \include{device1}
+\chapter{optimization of the spatio-angular illumination patterns}
+\label{sec:optimization}
+\chapter{mma as an intensity modulator}
+\label{sec:mma}
+\chapter{device 2: holographic approach}
+\label{sec:holographic}
+\chapter{experimental results with spatio-angular microscope (device 1)}
+\label{sec:results}
+\chapter{discussion}
+\label{sec:discussion}
+- zuerst habe ich dvi lcos mit mma verbaut, das hat leider nur
+  gelegntlich funktioniert
+
+- urspruenglich war geplant folgendes system einzusetzen: Biological
+  applications of an LCoS-based programmable array microscope (PAM)
+
+- dann habe ich usb lcos eingesetzt, damit geht es immer, ist aber
+  langsamer und deutlich weniger nuetzlich zum experimentieren
+
+- ausserdem ist die ettendue des beleuchtungssystems arg
+  eingeschraenkt mit einem 63x objektiv (NA=1.47) wird nur ein feld
+  mit 40 um durchmesser beleuchtet
+
+- deshalb untersuchten wir einen anderen weg zur kontrasterzeugung und
+  lernten dabei dass ein interferometrischer ansatz sehr wohl geeignet
+  ist, die ettendue zu erhoehen
+
+  - einschraenkungen in der realisierbaren optik (freier durchmesser
+    der nomarski prismen) fuehrte zu nicht ganz ueberzeugenden bildern
+
+  - ein piston mma wuerde zu deutlich besseren ergebnisse fuehren
+
+- ein weiterer ansatz fuer spatio-angular beleuchtung wurde mit einer
+  holographischen methode verfolgt
+
+  - dabei lernten wir dass die qualitaet des verwendeten
+    phasenmodulators zu wuenschen uebrig laesst
+
+  - einfacherer ansatz mit nur einem display, erfordert daher weniger
+    optik und elektronik
+
+  - loest jedoch nicht das problem geringer ettendue (die moegliche
+    ettendue muss ich mir genauer ueberlegen, sie haengt mit der
+    anzahl der pixel des displays und den grating konstanten zusammen,
+    die dargestellt werden koennen, da das system off-axis betrieben
+    werden muss, wird die ettendue geviertelt)
+
+- Im Nachhinein muss man sagen, dass es Zielfuehrender gewesen
+    waere, und unsere Aufgabe erheblich vereinfacht haette, wenn wir
+    beide SLM vom gleichen Typ verwendet haetten. Es handelte sich
+    aber um einen Prototypen und er war in den ersten Jahr des
+    Projektes noch nicht verfuegbar. Das Projekt wird von Pasteur und
+    Fraunhofer, diesmal unter Verwendung zweier ihrere SLM,
+    weitergefuehrt. 
+
+  - Leider wird dieser Ansatz unsereserachtens nicht das wesentliche
+    Problem der kleinen Ettendue bereinigen und der neue Prototyp wird
+    noch immer nicht die interessantesten Experimente erlauben. Es ist
+    ganz einfach so, dass es einfacher waere, ein biologisch
+    Relevantes Experiment zu designen, wenn das Beleuchtungssystem
+    auch die volle Ettendue heutiger Mikroskopobjektive ausschoepft.
+
+- kameras sind zur zeit an einem wendepunkt. vermutlich wuerde man
+  heutzutage eine sCMOS benutzen, dann sollte man aber auf die
+  triggereigenschaften achten
+
+- arduino war nuetzlich um die elektronische triggerung ohne grossen
+  aufwand umzusetzen (der hauptaufwand war oft nicht die
+  zeitsteuerung, sondern eine ordentliche galvanische entkopplung der
+  displays, die ist auch wichtig)
+
+  - da unterscheiden sich die hersteller ohnehin sehr stark, bei dem
+    dvi display war es erforderlich, testpunkte vom board abzugreifen
+    und ueber adum zu entkoppeln, bei neueren varianten des usb boards
+    kann man mittlerweile einfach einen stecker anstecken
+
+- man kann relativ viel aufwand bei der rekonstruktion von optisch
+  geschnittenen bildern betreiben, fuer das reale problem ist die
+  vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
+  oder nuklei lokalisieren)
+
+- transmission ist nicht ausreichend um wuermer zu untersuchen  
+
+- vergleiche die folgenden displays:
+
+  - holoeye (erwaehne triggerversuche, kalibrationsmessungen von
+    uebertragungsfunktion und interpixel cross talk, hamamatsu)
+
+  - forthdd (frage sie vielleicht, ob sie mir im nachhinein doch noch
+    information geben)
+
+  - ti dmd (sehr gute dokumentation, sehr viele funktionen; gut waere,
+    wenn ich ein programm auf dem lokalen arm prozessor laufen lassen
+    koennte, was die vollen 4000fps aus runlength (oder irgendwie
+    komprimierten) daten vom usb aus erzeugen koennte
+
+    - deflection angle defines f/\# number of projection lens and
+      therefore etendue, for good contrast f/\# shouldn't be smaller
+      than f/2.8
+
+  - mma (naja)
+
+- hilo ist nicht unbedingt notwendig, ziemlich kompliziert und brauch
+  fudge factor
+
+\chapter{outlook}
+\label{sec:outlook}
+- den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
+  verbessern
+
+  - gleichzeitige beleuchtung mehrerer nuklei
+
+  - andere objektstrukturen (z.b. zylinder, axone)
+
+    - 2010 hermann cuntz: One Rule to Grow Them All: A General Theory
+      of Neuronal Branching and Its Practical Application
+
+      - modell wie neuronen wachsen um axon oder dendritendichte
+        vorherzusagen
+
+  - voxels05\_final
+
+- eine genaue analyse einiger probleme mit wellenoptischer partiell
+  kohaerenter theorie steht noch aus und waere interessant (nach
+  wichtigkeit)
+
+  - partiell kohaerente simulation des mma im schlierenoptischen system
+
+    - sind graulevel vorteilhaft?
+
+    - wuerde ein mma, bei dem alle spiegel in dieselbe richtung kippen
+      die ettendue verdoppeln?
+
+  - partiell kohaerente simulation des mma im shearing
+    interferometrischen system
+
+    - was ist die maximale ettendue eines wollaston prismas?
+
+  - holographie methode mit extended source
+
+  - Denkbar waere auch ein scannendes konfokales Mikroskop, dass an
+    die Beleuchtungswinkel an jedem Punkt kontrolliert (siehe
+    fig:hourglass-all-b).  Bisher wurden in der Literatur nur Systeme
+    beschrieben, die die Phase des Beleuchtungslicht in der Pupille
+    aendern (FIXME ref). Eine Adaption dieser Systeme zu einem
+    spatio-angularen ist naheliegend und ich schlage vor, derartige
+    Systeme auch untersucht werden sollten. Die Kombination von CLEM,
+    einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
+    Inneren lebender Organe (z.B. Gehirn) verbessern.
+
+
 %\include{app_term}
 \bibliographystyle{abbrvnat}
-%\bibliography{../state-of-art}
+\bibliography{literature}
 %\bibliography{../All}
 \end{document}
 

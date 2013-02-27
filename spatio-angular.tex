@@ -9,16 +9,16 @@
   phase concerning the arrangement of optical components. Furthermore,
   I position our method among known approaches of light control for
   microscopy. Of all published techniques for excitation illumination
-  control, the light field microscope \ref{levoy} (FIXME ref levoy)
-  comes closest to our approach.  I explain differences between both
-  techniques and discuss their respective pros and cons.  I address
-  the peculiarities and limitations of the hardware components in
-  later chapters (\ref{sec:dev1}, \ref{sec:mma} FIXME sec:dev1
-  sec:mma).  Initially, the details would be detrimental to clarity.
+  control, the light field microscope \citep{levoy2006} comes closest
+  to our approach.  I explain differences between both techniques and
+  discuss their respective pros and cons.  I address the peculiarities
+  and limitations of the hardware components in chapters
+  \ref{sec:dev1} (optics) and \ref{sec:mma} (micromirror based pupil
+  plane SLM).  Initially, the details would be detrimental to clarity.
 
   It turns out, that the effective use of the spatio-angular
   microscope, requires more knowledge about the specimen than a
-  conventional or a SPIM microscope (\ref{spim} FIXME spim). Ideally
+  conventional or a SPIM microscope \citep{Huisken2004}. Ideally
   the distribution of refractive index and fluorophores in the
   specimen should be known. If these parameters were precisely known,
   there would be no need for an image in the first place. However,
@@ -62,7 +62,7 @@ blurring in a length scale of a few wavelengths or intensity
 fluctuations due to interference. If necessary, we can use heuristics
 to find an upper bound for the local intensity from ray tracing
 results. For this reason we exclusively employ the ray-model in this
-work.}.
+work.}\label{sec:ray-valid}.
 
 
 The fluorescent bead (1), in the focus, would therefore be excited
@@ -84,7 +84,7 @@ the first place.
 
 \begin{figure}[!hbt] \centering \svginput{.43}{hourglass-all}
   \caption{{\bf (a)} Two fluorescent beads are illuminated by all
-angles that the objective can (FIXME ich mag deliver nicht, accept?)
+angles that the objective can 
 deliver. The sharp image of the in-focus bead is deteriorated by
 blurry fluorescence of the out-of-focus bead (2). {\bf (b)} Angular
 control allows selective illumination of the in-focus bead (3), and
@@ -111,10 +111,10 @@ microscope with angular control. However, in our project we set out to
 to build a wide field microscope in order to benefit from the speed
 and quantum efficiency of modern cameras.  Nonetheless, a confocal
 microscope with angular illumination control seems to have potential
-and this subject is worthy further investigation.  See (FIXME) ref
-sec:conclusion on page pageref sec:conclusion where I discuss a
-combination of techniques that would lead to a system with promising
-capabilities.
+and this subject is worthy further investigation.  See chapter
+``\ref{sec:outlook} Outlook'' on page \pageref{sec:outlook} where I
+discuss a combination of techniques that would lead to a system with
+promising capabilities.
 
 I now turn to the task of bringing angular control to the wide field
 microscope. \figref{fig:hourglass-all}~c) shows a configuration of the
@@ -128,8 +128,8 @@ Only by separate illumination of the in-focus beads (8) and (9), as
 shown in \figref{fig:hourglass-all}~d), angular control regains its
 function. For this reason a wide field system with angular control,
 using a mask in the pupil, requires an additional mask in the field.
-Therefore, we call our method spatio-angular microscopy. "Spatial"
-refers to the illumination control in the field and "angular" refers
+Therefore, we call our method spatio-angular microscopy. ``Spatial''
+refers to the illumination control in the field and ``angular'' refers
 to the control in the pupil plane.
 
 % FIXME 2012 khodjakov schilling
@@ -179,7 +179,7 @@ components as possible and we can definitely not afford it to be
 blocked by a SLM.  Third, the two masks induce non-linear, and
 therefore difficult to predict, filtering of spatial frequencies. An
 analysis requires consideration of partial spatial coherence, but it
-should be clear (FIXME) that only the final SLM always delivers a good
+should be clear (FIXME) that only the downstream SLM will always deliver a good
 image, mostly independent of the state of the SLM upstream.
 
 Considering the fact that the image of the focal plane SLM is most
@@ -221,7 +221,7 @@ maximum \unit[509]{nm}). Histones are incorporated into the chromatin
 during cell divisions, i.e.\ the nuclei of our worms fluoresce green.
 The mother worm passes a sufficient amount of these proteins into the
 cytoplasm of the embryo. In the beginning of its development the
-embryo entirely relies on this supply (FIXME vorrat) of histones. Only
+embryo entirely relies on this reserve of histones. Only
 in a much later stage, it will form its own histones.
 
 During the first few hours, the embryo develops confined within the
@@ -315,8 +315,8 @@ For our test system, the \celegans\ embryo, it is a promising approach
 to represent its three-dimensional fluorophore distribution by a
 simple model: Spheres encompassing the nuclei, indicate regions with
 fluorophores. When in focus, the spheres are the source of useful,
-informative fluorescence signal, but should be protected from (FIXME
-from or against) exposure when out of focus.
+informative fluorescence signal, but should be protected against
+exposure when out of focus.
 
 As I mentioned earlier, there are also unused histones with
 fluorophores outside of the nuclei. The images reveal that they occur
@@ -360,7 +360,6 @@ setback for the experiment.  Estimating the vector field of growth
 velocities helps to track nuclei more robustly and allows to predict
 their positions for the next exposure.
 
-
 Unfortunately, currently we have not implemented programs that would
 fulfill the requirements for imaging a developing embryo.  However, in
 the following text I assume that the described position predictions
@@ -375,6 +374,9 @@ A Discrete Chain Graph Model for
   3d+t Cell Tracking with High
     Misdetection Robustness
 
+(FIXME read this)
+
+
 \subsection{Illumination optimization by means of raytracing} 
 I now discuss a method to find both SLM masks for image acquisitions
 with minimal phototoxicity. First I define a mask for the focal plane
@@ -388,9 +390,9 @@ by drawing a bright disk in the appropriate position.
 Based on such a mask, we can determine which angles can illuminate the
 in-focus target nucleus, without exposing out-of-focus nuclei.
 
-As we already explained at the beginning of the chapter (FIXME
-pageref), ray-optical theory suffices to describe the light
-distribution within the sample.
+As we already explained at the beginning of this chapter on page
+\pageref{sec:ray-valid}, ray-optical theory suffices to describe the
+light distribution within the sample.
 
 I connect the periphery of an out-of-focus nucleus with a point inside
 the in-focus target. This defines a circular cone of rays, that are

@@ -1,5 +1,6 @@
 set terminal postscript eps size 3.5,2.62 enhanced color font 'Helvetica,14'
-set output 'worm-survival.eps'
+#set output 'worm-survival.eps'
+set output '| epstopdf --filter --outfile=worm-survival.pdf'
 set border linewidth 2
 set style line 1 linecolor rgb '#9ACD32' linetype 1 linewidth 5
 set style line 2 linecolor rgb '#1E90FF' linetype 1 linewidth 5

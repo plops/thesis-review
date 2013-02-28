@@ -112,7 +112,7 @@ scaling in x:
 .309 .304 corresponds to blue dot with intensity 1e-2 J/(cm^2 stack)   0.30963324 0.30642925
 .395 .371 corresponds to green dot with 6e-1                           0.39489311 0.3718455
 .404 .396 corresponds to green dot with 5e-1                           0.4045111 0.39641131
-
+9e-0      0.46520516 0.41273065
 
 figure out how to transform svg back into number of cells
 y' = a*y+b
@@ -134,11 +134,16 @@ solve([20 = a*0.34733177+b,50 = a*0.22464158+b],[a,b]),numer;
 
 figure out how to transform svg x-coordinates back into log of intensity
 x' = something with log
-1e-3 = f(0.18722082)
-1e-2 = f(0.30963324)
-6e-1 = f(0.39489311)
-5e-1 = f(0.4045111)
+log(1e-3)/log(10) = c*0.18722082+d
+log(1e-2)/log(10) = c*0.30963324+d
+log(6e-1)/log(10) = c*0.39489311+d
+log(5e-1)/log(10) = c*0.4045111+d
+log(9e-0)/log(10) = c*0.46520516+d
+
 #+end_example
+
+ - this is too complicated, i used g3data to extract all data points
+   and also points along the fitted functions
 
 ** fluorescence and phototoxicity
 - molekuelorbitale und viel photophysik (born-oppenheimer, franck-condon) weglassen

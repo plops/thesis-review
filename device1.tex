@@ -2,18 +2,18 @@
 \chapter{Device 1: prototype for spatio-angular illumination}
 \label{sec:dev1}
 \begin{summary}
-   - Im vorhergehende Kapitel haben wir das dem spatio-angularen
-     Mikroskop zugrundliegende Konzept dargestellt. Hier gehen wir auf
-     zusaetzliche Details ein, die fuer die praktische Implementierung
-     wichtig sind. Unter anderem die Eigenschaften der beiden
-     verwendeten Displays, elektronische Synchronisation der
-     verschiedenen Komponenten und einem Algorithmus, um das             % /Hier mehr spezifische Probleme/
-     Koordinatensystem der Kamerapixel und der Pixel des focal plane
-     SLM ineinander zu transformieren.
+  In the preceding chapter I showed the underlying concept of our        \cm{more specific problems}
+  spatio-angular microscope. Here I discuss additional details that
+  are important for the practical implementation.
 
-   - Das pupil plane SLM wurde durch unseren Partner Fraunhofer IPMS
-     waehrend des Projekts neu entwickelt.  Daher widmen wir uns diesem   % /MMA kommt spaeter extra/
-     Subsystem im Kapitel (FIXME) naeher.
+  I explain the beam path, electronic synchronization of the displays
+  with other components and an algorithm to transform the coordinate
+  system of the camera pixels into the coordinate system of the focal
+  plane SLM.
+  
+  The pupil plane SLM was specifically developed for our project by    \cm{MMA details later}
+  our partner Fraunhofer IPMS (Dresden, DE). Therefore I dedicate
+  chapter \ref{sec:mma} on page \pageref{sec:mma} to this device.
 \end{summary}
 \section{Description of the optical components}
 So far we have only shown the beam path for transmissive displays (in

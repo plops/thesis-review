@@ -1442,6 +1442,31 @@ too small, then the periphery of the back focal plane can be located.
 ** bleaching fluorescent gel
 - zumindest das experiment hat funktioniert
 * discussion
+- what is in the discussion
+#+begin_example
+The conclusion chapter should be able to stand on its own, almost like
+an essay on the study. It should have a beginning, a middle, and an
+end.
+
+The conclusion chapter should include the following:
+
+A restatement of your subject, your thesis, hypothesis, or what can be
+called "the central mission" of your study.  A presentation of your
+findings, a summary. Be careful to avoid making a chapter by chapter
+list of the contents of your main text. It should sound like a
+discussion.  Discuss and interpret findings. Give answers. Draw
+inferences from your study and discuss the relevance of your data.
+Point to areas of further research. No doubt while you were
+researching your topic, in some areas, you found more questions than
+answers.  Graceful exit. Make sure your ending has an ending. The
+final two or three paragraphs are as important as any others. You
+could talk about the overall significance of the study, of the subject
+in general, and how it is important to know about it, how it can
+"change the world", or maybe world view. Make the reader feel that it
+has been worth his or her time to read this paper and that the world
+will be a better place with you in it as an academic.
+#+end_example
+
 - zuerst habe ich dvi lcos mit mma verbaut, das hat leider nur
   gelegntlich funktioniert
 - urspruenglich war geplant folgendes system einzusetzen: Biological

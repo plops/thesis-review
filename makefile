@@ -73,11 +73,19 @@ build/%.tex: %.tex
 build/%.bib: %.bib
 	cp $< $@
 
+gnuplot/worm-survival/worm-survival.pdf: gnuplot/worm-survival/worm-survival.gp
+	cd gnuplot/worm-survival; gnuplot worm-survival.gp
+build/worm-survival.pdf: gnuplot/worm-survival/worm-survival.pdf
+	cp $< $@
+gnuplot/worm-integration-time/worm-integration-time.pdf: gnuplot/worm-integration-time/worm-integration-time.gp
+	cd gnuplot/worm-integration-time; gnuplot worm-integration-time.gp
+build/worm-integration-time.pdf: gnuplot/worm-integration-time/worm-integration-time.pdf
+	cp $< $@
 
 
 # rubber runs the latex process until finished, --inplace makes sure
 # that clutter stays in build/ directory
-build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib
+build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib build/worm-survival.pdf build/worm-integration-time.pdf
 	rubber --pdf --inplace $<
 
 build/kielhorn_memi.dvi: $(TEX_FILES_IN_BUILD)

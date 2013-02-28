@@ -45,7 +45,7 @@ development are comparatively simple and have been well characterized
 The lineage tree of two developing \emph{C. elegans} embryos is the     \cm{reproducible development}
 same.  Even the number of somatic cells is constant in the organism
 (959). With all other factors being equal, particularly the
-temperature constant at room temperature (21\pm1 FIXME), two different
+temperature constant at room temperature ($21\pm 1$ FIXME), two different
 embryos will develop at the same speed from egg to fertile adult in
 three and a half days. This makes the following experiment possible,
 which has been conducted by Jean-Yves Tinevez at Institut Pasteur.
@@ -98,18 +98,14 @@ components of the chromatin. Therefore the images in
 It is useful that the egg stays at constant size within a diameter   \cm{size constant}
 of approximately $\unit[60]{\mu m}$.
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=12cm]{celegans-devel}
-  \caption{Phototoxic effects while imaging the embryonal development
-    of three \emph{C.~elegans} embryos (strain AZ212, histone-2B
-    tagged with eGFP) with different excitation intensities. The
-    embryo with lowest excitation dosage (left) develops fastest. The
-    embryo with the highest dosage (right) ceases development and
-    nearly all fluorophores are bleached after the experiment. Images by
-    J.-Y. Tinevez (Institut Pasteur, Paris).}
-  \label{fig:celegans-devel}
-\end{figure}
+\jpginput{12cm}{celegans-devel}{Phototoxic effects while imaging the
+  embryonal development of three \emph{C.~elegans} embryos (strain
+  AZ212, histone-2B tagged with eGFP) with different excitation
+  intensities. The embryo with lowest excitation dosage (left)
+  develops fastest. The embryo with the highest dosage (right) ceases
+  development and nearly all fluorophores are bleached after the
+  experiment. Images by J.-Y. Tinevez (Institut Pasteur, Paris).}
+  
 
 
 In the rest of this chapter we give an overview of the photophysics of
@@ -120,10 +116,33 @@ sources of CCD cameras.
 
 \begin{figure}[!htb]
   \centering
-  \pdfinput{3.5in}{worm-survival}
-  \caption{dfakj}
+  \includegraphics{worm-integration-time}
+  \caption{Longer exposure times are less phototoxic. Each data point
+    corresponds to one embryo that developed under a particular
+    excitation dose for two hours. The solid lines are sigmoidal fits
+    to the data. Also indicated are the two phototoxicity thresholds
+    given by the inflection point of the sigmoid and their $95\%$
+    confidence intervals. This data was provided by J.-Y. Tinevez
+    (Institut Pasteur, Paris) and is also published in
+    \cite{Tinevez2012}.}
+
+  \label{fig:worm-integration-time}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics{worm-survival}
+  \caption{Phototoxicity curves of two different microscopes. Each
+    data point corresponds to one embryo that developed under a
+    particular excitation dose for two hours. The solid lines are
+    sigmoidal fits to the data. Also indicated are the two
+    phototoxicity thresholds and their $95\%$ confidence
+    intervals. This data was provided by J.-Y. Tinevez (Institut
+    Pasteur, Paris) and is also published in \cite{Tinevez2012}.} 
+
   \label{fig:worm-survival}
 \end{figure}
+
 
 \section{Fundamentals of fluorescence}
 \begin{summary}
@@ -131,39 +150,7 @@ sources of CCD cameras.
   molecules in order to introduce the terms Stokes' shift, triplet
   state and photobleaching.
 \end{summary}
-\subsection{Construction of molecular orbitals}
-First we consider a very simple molecule: We move the nuclei of two
-hydrogen atoms and move them slowly together. When the nuclei have a
-big distance, the atoms exist as two separate entities without
-influence on each other.
-\begin{figure}[!hbt]
-  \centering
-  \input{flu-potential_my.eps_tex}
-  \caption{Schematic electron density maps and potential curves for
-    ground state $\H_2$ and excited state $\H_2^*$ of molecular
-    hydrogen and the cation $\H_2^+$ of molecular hydrogen
-    \citep[inspired from][p.~258]{Haken2006}.}
-  \label{fig:flu-potential_my}
-\end{figure}
 
-For internuclear distances in between these two extremes, we express
-molecular orbitals as a linear combination of atomic orbitals and
-calculate their potential energy in dependence of the distance between
-the nuclei (see \figref{fig:flu-potential_my}). The curve for
-$\sigma_g\sigma_g^1\Sigma_g^+$ is minimal at a internuclear distance
-$R$ of approximately 1.3 Bohr radii
-($a_H=\unit[0.529\cdot10^{-8}]{cm}$). The compound of two protons and
-two electrons is particularly stable for this distance. We call it the
-hydrogen molecule $\H_2$.
-
-Likewise a linear combination of the atomic orbitals of a ground state
-hydrogen atom $\H$ with an excited hydrogen atom $\H^*$ lead to the
-molecular orbital $\sigma_g\pi_u^1\Pi_u$. There, a minimum in the
-potential occurs at an increased internuclear distance (bond
-length). The excited atomic orbital has a reduced probability density
-close to the nucleus but similar electron--electron
-repulsion. Therefore the strength of the molecular bond (order of the
-bond) is reduced.
 \newcommand{\vmu}{\mbox{\boldmath{$\mu$}}}
 \subsection{Absorption and emission of light}
 A transition between a ground state $S_0$ to an excited state $S_1$
@@ -206,18 +193,7 @@ rigid. The nuclei can oscillate around their position of equilibrium
 at quantized frequencies. The vibration frequencies depend on the
 order of the bond and the mass of the two nuclei. When a molecule is
 electronically excited, its vibration frequencies decrease.
-\begin{figure}[!hbt]
-  \centering
-  % (423-120)/423*7 = 4.77 ,trim=0 0 135 0,clip
-  \input{flu-condon_my.eps_tex}
-  \caption{Illustration of the Franck-Condon principle. Potential
-    curves for either the same bond length in the
-    excited state ({\bf left}) or a larger bond length in the
-    excited state ({\bf right}). Electronic transition occurs
-    instantaneously and excites higher vibro-rotational states in the
-    right diagram. \citep[inspired from][p.~276]{Haken2006}.}
-  \label{fig:flu-condon}
-\end{figure}
+
 
 \figref{fig:flu-condon} schematically shows potential curves for the
 ground state $S_0$ and the first excited state $S_1$ of two different
@@ -247,7 +223,8 @@ vibrational wavefunctions).
   \centering
   \def\svgscale{.8}
   {\small
-  \input{flu-level_my.eps_tex}}
+  %\input{flu-level_my.eps_tex}
+}
   \caption{A typical energy level diagram. The boxes depict orbitals,
     up and down arrows symbolize the spin of the outer electrons. Fat
     lines represent electronic states. Thinner lines indicate
@@ -355,7 +332,7 @@ react.
 
 \begin{figure}[!hbt]
   \centering
-  \input{oxygen.eps_tex}
+%  \input{oxygen.eps_tex}
   \caption{{\bf left:} Molecular orbitals of the oxygen molecule. {\bf
       right:} Molecular oxygen has the lowest energy in its triplet
     state ${}^3\Sigma$. Then the spins of the two $\pi^*-$electrons
@@ -435,7 +412,7 @@ plane. The distance between focal plane and the region where the rays
 start to converge is called focal length and denoted by $f$.
 \begin{figure}[!hbt]
   \centering
-  \input{widefield-microscope.eps_tex}
+ % \input{widefield-microscope.eps_tex}
   \caption{{\bf a)} Schematic of a modern microscope. The sample is in
     the front focal plane of the objective. The detection tube lens
     TL1 forms a magnified image on the camera. {\bf b)} Parallel laser
@@ -580,7 +557,7 @@ frequencies within the transfer function attenuate with defocus
 
 \begin{figure}[!hbt]
   \centering
-  \input{missing-cone.eps_tex}
+%  \input{missing-cone.eps_tex}
   \caption{Schematic depicting $k_xk_z-$cross sections of the support
     of optical transfer function (see Appendix~\ref{sec:app_hilo}) for
     microscope objectives with different collection angles. {\bf

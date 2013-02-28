@@ -35,5 +35,5 @@ set object rect from 1.57e-2,graph(0,0) to 2.13e-2,graph(1,1)
 set label "0.019" at .015,8 right textcolor linestyle 2 front
 
 set xrange [9e-4:2]
-plot "../worm-survival/green.dat" u 1:2 w p linestyle 1 pointsize 1.5, "../worm-survival/green_fit.dat" u 1:2 w l linestyle 1, "orange.dat" u 1:2 w p linestyle 2 pointsize 1.5, "orange_fit.dat" u 1:2 w l linestyle 2
+plot "green.dat" u 1:2 w p linestyle 1 pointsize 1.5, "green_fit.dat" u 1:2 w l linestyle 1, "orange.dat" u 1:2 w p linestyle 2 pointsize 1.5, "orange_fit.dat" u 1:2 w l linestyle 2
 

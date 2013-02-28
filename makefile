@@ -40,7 +40,7 @@ build/%.eps_tex: vector/%.svg
 build/make.vector.pdf.dep: $(TEX_FILES)
 	for i in $^; do \
 		echo -n build/$$i": "; \
-		sed -n 's+^[^%].*\\pdfinput{[^\}]*}{\([^\}]*\)}+build/\1.vector.pdf+p' $$i|tr '\12' ' '; \
+		sed -n 's+^[^%].*\pdfinput{[^\}]*}{\([^\}]*\)}+build/\1.vector.pdf+p' $$i|tr '\12' ' '; \
 		echo ; \
 	done > $@
 build/%.vector.pdf: vector/%.pdf
@@ -56,6 +56,20 @@ build/make.raster.jpg.dep: $(TEX_FILES)
 	done > $@
 build/%.jpg: raster/%.jpg
 	cp $< $@
+
+
+# find all gnuplot files, that need to be generated
+-include build/make.gnuplot.dep
+build/make.gnuplot.dep: $(TEX_FILES)
+	for i in $^; do \
+		echo -n build/$$i": "; \
+		sed -n 's+^[^%].*\gnuplotinput{\([^\}]*\)}{.*+build/\1_gnuplot.pdf+p' $$i|tr '\12' ' '; \
+		echo ; \
+	done > $@
+build/%_gnuplot.pdf: gnuplot/%.gp
+	cd gnuplot; gnuplot $(<F)
+	mv gnuplot/`basename $< .gp`.pdf $@
+
 
 # this would only run per file, but i don't know how to include the
 # dependencies
@@ -73,19 +87,11 @@ build/%.tex: %.tex
 build/%.bib: %.bib
 	cp $< $@
 
-gnuplot/worm-survival/worm-survival.pdf: gnuplot/worm-survival/worm-survival.gp
-	cd gnuplot/worm-survival; gnuplot worm-survival.gp
-build/worm-survival.pdf: gnuplot/worm-survival/worm-survival.pdf
-	cp $< $@
-gnuplot/worm-integration-time/worm-integration-time.pdf: gnuplot/worm-integration-time/worm-integration-time.gp
-	cd gnuplot/worm-integration-time; gnuplot worm-integration-time.gp
-build/worm-integration-time.pdf: gnuplot/worm-integration-time/worm-integration-time.pdf
-	cp $< $@
 
 
 # rubber runs the latex process until finished, --inplace makes sure
 # that clutter stays in build/ directory
-build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib build/worm-survival.pdf build/worm-integration-time.pdf
+build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib
 	rubber --pdf --inplace $<
 
 build/kielhorn_memi.dvi: $(TEX_FILES_IN_BUILD)

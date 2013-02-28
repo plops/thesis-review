@@ -88,6 +88,58 @@
     einzelphotonenanregung (mit spatio-angular) koennten deshalb
     vorteilhaft fuer multicolor optogenetik experimente sein
 
+- i don't feel comfortable using the pdf from jean-yves elsevier
+  book. extract data from jean-yves pdf:
+#+begin_example
+from xpdf store single page 14 into ps 
+pstoedit page14.ps o.svg
+use inkscape to delete all things in the svg, which are not dots
+cat o2.svg|grep 'd="m '|sed 's/d=\"m \([^,]*,[^ ]*\) .*/
+\1/p'|uniq|tr ',' ' ' > d1
+
+do this for the green and blue points separately
+the y axis is upside-down
+the 3rd green from the top left in the plot corresponds to 50 cells 
+this is 0.187 0.22 in svg coordinates
+
+scaling in y:
+.310   .346                    blue          20               0.31067489 0.34733177
+0.310 0.306 corresponds to the blue dot with 30 cells  exact: 0.30963324 0.30642925
+0.286 0.265 corresponds to the blue dot with 40 cells  exact: 0.28520631 0.2655441
+                               green         50               0.18722082 0.22464158
+
+scaling in x:
+.309 .304 corresponds to blue dot with intensity 1e-2 J/(cm^2 stack)   0.30963324 0.30642925
+.395 .371 corresponds to green dot with 6e-1                           0.39489311 0.3718455
+.404 .396 corresponds to green dot with 5e-1                           0.4045111 0.39641131
+
+
+figure out how to transform svg back into number of cells
+y' = a*y+b
+
+20 = a*0.34733177+b
+30 = a*0.30642925+b
+40 = a*0.2655441+b
+50 = a*0.22464158+b
+try three different combinations
+solve([20 = a*0.34733177+b,30 = a*0.30642925+b],[a,b]),numer;
+solve([30 = a*0.30642925+b,40 = a*0.2655441+b],[a,b]),numer;
+solve([20 = a*0.34733177+b,40 = a*0.2655441+b],[a,b]),numer;
+solve([20 = a*0.34733177+b,50 = a*0.22464158+b],[a,b]),numer;
+
+(%o5)         [[a = - 244.4837139618782, b = 104.9169611065528]]
+(%o6)         [[a = - 244.5875825330224, b = 104.9487894749071]]
+(%o7)         [[a = - 244.5356372176882, b = 104.9349957028975]]
+(%o11)        [[a = - 244.5183270153873, b = 104.9289833196933]]
+
+figure out how to transform svg x-coordinates back into log of intensity
+x' = something with log
+1e-3 = f(0.18722082)
+1e-2 = f(0.30963324)
+6e-1 = f(0.39489311)
+5e-1 = f(0.4045111)
+#+end_example
+
 ** fluorescence and phototoxicity
 - molekuelorbitale und viel photophysik (born-oppenheimer, franck-condon) weglassen
 *** absorption and emission of light

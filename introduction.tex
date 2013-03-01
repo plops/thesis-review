@@ -21,6 +21,8 @@ compounds that locally release chemicals when illuminated by light or
 even ion pumps that can be switched by light promise novel interesting
 research.
 
+\section{Phototoxicity in life sciences}
+
 All these techniques have in common, that excitation light has to       \cm{phototoxicity}
 reach a focal point, line or plane within the sample. For this the
 light has to traverse a more or less dense distribution of
@@ -124,16 +126,17 @@ CCD cameras.
   published in \cite{Tinevez2012}.}
 
 
-\gnuplotinput{worm-survival}{Phototoxicity curves of two different
-  microscopes. Each data point corresponds to one embryo that
-  developed under a particular excitation dose for two hours. The
-  solid lines are sigmoidal fits to the data. Also indicated are the
-  two phototoxicity thresholds and their $95\%$ confidence
-  intervals. This data was provided by J.-Y. Tinevez (Institut
-  Pasteur, Paris) and is also published in \cite{Tinevez2012}.}
+% i'm not convinced the intensity was measured good enough to allow
+% this comparison:
+% \gnuplotinput{worm-survival}{Phototoxicity curves of two different
+%   microscopes. Each data point corresponds to one embryo that
+%   developed under a particular excitation dose for two hours. The
+%   solid lines are sigmoidal fits to the data. Also indicated are the
+%   two phototoxicity thresholds and their $95\%$ confidence
+%   intervals. This data was provided by J.-Y. Tinevez (Institut
+%   Pasteur, Paris) and is also published in \cite{Tinevez2012}.}
 
-
-\section{Fundamentals of fluorescence}
+\section{Basic photophysical principles of phototoxicity}
 \begin{summary}
   Here I give a short overview of fluorescence of molecules in order
   to introduce the terms photobleaching and phototoxicity.
@@ -193,7 +196,7 @@ therefore the transition $S_0\rightarrow T_1$ into the triplet state
 $T_1$ only occurs with very low probability.
 
 \subsubsection{Kasha's rule}
-As described above, electronic excitation in general also leads to the
+As described above, electronic excitation in general also leads to the   \cm{solution rapidly damps vibrations}
 excitation of a vibro-rotational nonequilibrium state (Franck-Condon
 state). In microscopy, fluorophores are often in solution, where they
 experience at least $10^{12}$ collisions per second. Inter- and
@@ -205,7 +208,7 @@ nanoseconds). Therefore spontaneous emission of a photon will occur
 from the vibrational ground state $S_{1,v_1=0}$ (\emph{Kasha's rule}).
 
 \subsubsection{Stokes' shift}
-During emission of a fluorescence photon a Franck-Condon state of the
+During emission of a fluorescence photon a Franck-Condon state of the  \cm{energy-loss = color change}
 singlet ground state $S_0$ is excited and returns into thermal
 equilibrium by vibro-rotational relaxation. Thus, some of the energy
 of the original excitation photon is lost as heat. The emitted
@@ -215,19 +218,8 @@ difference of the wavenumbers of the fluorescence maximum and
 absorption maximum.
 
 
-
-
-\subsubsection{Fluorescence quantum yield}
-The \emph{fluorescence quantum yield} $\eta$ of a fluorophore is
-defined as the quotient of the number of emitted (fluorescence)
-photons and the number of absorbed photons. In dyes like rhodamine~6G
-(in ethanol $\eta=0.94$ \cite{Fischer1996}) or anthracene
-(9,10-diphenyl anthracene in cyclohexane $\eta=0.90$ \cite{Hamai1983})
-its value can be nearly 1 in an appropriate solvent.
-
-
 \subsubsection{Intersystem crossing}
-There is a small probability that the HOMO electron doesn't relax by
+There is a small probability that the HOMO electron doesn't relax by   \cm{spin flip forbidden}
 internal conversion or emission of a fluorescence photon. Instead it
 flips its spin (due to spin-orbit coupling\footnote{The probability of
   a spin flip is increased if heavier atoms are part of the
@@ -242,7 +234,7 @@ radiative decay is called phosphorescence.
   
 
 \subsection{Photobleaching and phototoxicity}
-The prolonged lifetime of the triplet state $T_1$ increases the
+The prolonged lifetime of the triplet state $T_1$ increases the      \cm{triplet reactive for long time}
 probability for the excited molecule to collide with a partner and
 react.
 
@@ -257,7 +249,7 @@ react.
 \end{figure}
 
 
-The ground state of the oxygen molecule is a triplet state ${}^3\O_2$,
+The ground state of the oxygen molecule is a triplet state ${}^3\O_2$,   \cm{oxygen likely reaction partner}
 with two unpaired electrons of parallel spin in its
 $\pi^*-$orbitals\footnote{The antibonding molecular orbital $\pi^*$ of
   molecular oxygen is constructed by linear combination of two atomic
@@ -281,28 +273,29 @@ depicted on the right of \figref{fig:oxygen}. During the transition
 ${}^1\Sigma\rightarrow{}^1\Delta$ an infra-red photon with
 \unit[1268]{nm} wavelength is emitted \citep[p.~20]{Linde2011a}.
 
-The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a
+The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a       \cm{effect of free radical}
 typical specimen it diffuses only a few tens of nanometre until it
 reacts with another molecule \citep{Sauer2011}. When it reacts with
 the fluorophore, it can destroy it (photobleaching) also the singlet
-oxygen can damage the DNA of living creatures. Plants have developed
-several protection mechanisms against being exposed to too much
-light. Within the cells they reorient and shift their chloroplasts in
-order to expose them to less light \citep{Reshak2009}.  However, they
-even have a molecular protection mechanism: They transfer the energy
-of the chlorophyll onto carotenoid molecules and can prevent the
-hazardous \emph{phototoxicity} effects of singlet oxygen
-\citep{Krieger-Liszkay2005}.
+oxygen can damage the DNA of living creatures. 
 
-Nowadays many methods are known to reduce photobleaching. Substitute
+Plants have developed several protection mechanisms against being      \cm{nature protects itself}
+exposed to too much light. Within the cells they reorient and shift
+their chloroplasts in order to expose them to less light
+\citep{Reshak2009}.  However, they even have a molecular protection
+mechanism: They transfer the energy of the chlorophyll onto carotenoid
+molecules and can prevent the hazardous \emph{phototoxicity} effects
+of singlet oxygen \citep{Krieger-Liszkay2005}.
+
+Nowadays many methods are known to reduce photobleaching. Substitute  \cm{methods preventing photobleaching}
 oxygen with noble gases or remove it enzymatically
 \citep[p.~89]{Sauer2011}. Depopulate the triplet state by adding
 reducing as well as oxidizing agents to the solvent
 \citep{Vogelsang2008} or couple a triplet quencher directly to the
 fluorophore \citep[p.~19]{Sauer2011}. For fixed samples it helps to
 change the solvent or polymer.
-
-In living specimen these techniques may reduce photobleaching, but
+ 
+In living specimen these techniques may reduce photobleaching, but      \cm{hard to protect living sample}
 they can also have an effect on the biological system itself. Removing
 oxygen will quite certainly have a negative effect. In order to reduce
 phototoxicity it makes sense to think about the light management in

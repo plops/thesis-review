@@ -294,10 +294,12 @@ log(9e-0)/log(10) = c*0.46520516+d
    - wegen poisson rauschen nur fuer duenne samples gegenueber
      konfokaler mikroskopie vorzuziehen
       - aber: ondrejs spim sim zitieren
+
 *** deconvolution
     - man kennt die eigenschaften des abbildenden systems und kann sie
       innerhalb gewisser grenzen (rauschen) wieder aus dem bild
       rausrechnen
+
 ** radiometrische beschreibung optischer systeme
 - etendue
 - etendue von laser

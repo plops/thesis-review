@@ -161,21 +161,14 @@ Looking at the scheme in \figref{fig:memi-simple}, one might argue
 that we could save a lens, if we placed the pupil plane SLM into P
 instead of P'. There are three reasons why this is neither possible,
 nor beneficial: First, the pupil of modern high-performance objective
-lenses is not accessible\footnote{This is due to historical reasons.
-The length of objective lenses was defined, such that no refucusing
-would be necessary, when changing the objectives. In the case of Zeiss
-lenses, their length is \unit[45]{mm}. Nowadays, it would be easy to
-compensate different objective lengths using the ubiquitous motorized
-focus control.  Rather than continuing to be restricted by an
-antiquated standard, Manufacturers should produce longer
-High-Performance Lenses with accessible pupil plane.}  Second, the
-detection path for fluorescent light should contain as few optical
-components as possible and we can definitely not afford it to be
-blocked by a SLM.  Third, the two masks induce non-linear, and
-therefore difficult to predict, filtering of spatial frequencies. An
-analysis requires consideration of partial spatial coherence, but it
-should be clear (FIXME) that only the downstream SLM will always deliver a good
-image, mostly independent of the state of the SLM upstream.
+lenses is typically not accessible. Second, the detection path for
+fluorescent light should contain as few optical components as possible
+and we can definitely not afford it to be blocked by a SLM.  Third,
+the two masks induce non-linear, and therefore difficult to predict,
+filtering of spatial frequencies. An analysis requires consideration
+of partial spatial coherence, but it should be clear (FIXME) that only
+the downstream SLM will always deliver a good image, mostly
+independent of the state of the SLM upstream.
 
 Considering the fact that the image of the focal plane SLM is most
 important to us, we decided to place it downstream of the pupil plane

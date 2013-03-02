@@ -262,6 +262,29 @@ log(9e-0)/log(10) = c*0.46520516+d
    - impossible to determine z-position of low-spatial frequency
      sample (e.g. fluorescent plane)
    
+- herbert gross: handbook of optical systems physical image formation
+  vol 2 page 320-352
+  - 1969 wolf 3d structure determination of semi-transparent objects
+    from holographic data
+  - 1970 daendliker weiss reconstruction of 3d refractive index of
+    scattered waves
+  - 1978 lohmann 3d properties of wave-fields
+  - 1984 streibl fundamental restrictions for 3d light distributions
+  - 1984 streibl depth transfer by an imaging system
+  - 1985 streibl 3d imaging by a microscope
+  - 1986 sheppard spatial freq cutoff in 3d imaging
+  - 1994 gu sheppard 3d transfer functions in 4pi confocal microscopes
+  - 1996 kawata juskaitis differential phase constrast microscope with
+    a split detector for readout system of a multilayered optical
+    memory
+  - 1926 berek ueber kohaerenz und konsonanz des lichtes IV die
+    optische abbildung nichtselbstleuchtender objekte
+  - 1966 b roy frieden longitudinal image formation
+  - 1967 b roy frieden optical transfer of the 3d object
+  - 1964 mccutchen generalized aperture and 3d diffraction image
+  - 1986 bille schmitt beckk reconstruction of 3d light microscopic
+    images comparing freq and spat domain methods
+  - 1986 stamnes
 *** the confocal microscope
    - strahlengang dem widefield mikroskop gegenueberstellen
    - out of focus light is rejected

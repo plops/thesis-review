@@ -264,27 +264,75 @@ log(9e-0)/log(10) = c*0.46520516+d
    
 - herbert gross: handbook of optical systems physical image formation
   vol 2 page 320-352
+- initiation:
   - 1969 wolf 3d structure determination of semi-transparent objects
     from holographic data
   - 1970 daendliker weiss reconstruction of 3d refractive index of
     scattered waves
   - 1978 lohmann 3d properties of wave-fields
+- final introduction:
   - 1984 streibl fundamental restrictions for 3d light distributions
   - 1984 streibl depth transfer by an imaging system
+- became popular for microscopy
   - 1985 streibl 3d imaging by a microscope
   - 1986 sheppard spatial freq cutoff in 3d imaging
   - 1994 gu sheppard 3d transfer functions in 4pi confocal microscopes
   - 1996 kawata juskaitis differential phase constrast microscope with
     a split detector for readout system of a multilayered optical
     memory
+- contestant of abbe theory for coherent illumination
   - 1926 berek ueber kohaerenz und konsonanz des lichtes IV die
     optische abbildung nichtselbstleuchtender objekte
+- longitudinal image
   - 1966 b roy frieden longitudinal image formation
   - 1967 b roy frieden optical transfer of the 3d object
+- incoherent image, segment of ewald sphere as gen pupil
   - 1964 mccutchen generalized aperture and 3d diffraction image
+- 3d transfer function by variing incidence angles
   - 1986 bille schmitt beckk reconstruction of 3d light microscopic
     images comparing freq and spat domain methods
-  - 1986 stamnes
+- phase anomaly in focus
+  - 1986 stamnes waves in focal regions
+
+- expand stationary field amplitude distribution u(x,y,z) into spatial
+  frequency spectrum U(\nu_x,\nu_y,\nu_z):
+  u(x,y,z)=\int\int\int U(\nu_x,\nu_y,\nu_z) exp(2\pi i (x \nu_x+y\nu_y+z\nu_z)) d \nu_x d \nu_y d \nu_z
+- neglect evanescent waves, solutions of above equation aare given by spatial periodical field:
+  u(x,y,z) = A exp(- 2 pi i (x \nu_x+y\nu_y+z\nu_z))
+- relationship between optical direction cosine \vec p, spatial
+  frequency vector \vec\nu, tangential vector to the light ray \vec s and wave front W:
+  \vec p = \lambda\vec\nu = n \vec s = \grad W
+- all vectors \nu have the same length and lie on the ewald sphere,
+  which is transfer function of free space
+- note that \nu_z can be expressed in terms of the other components,
+  replacing in the exponential inside the integral acoordingly gives
+  with = U(\nu_x,\nu_y,\nu_z)/cos(\alpha)
+
+ u(x,y,z)=\int\int U_\textrm{2D}(\nu_x,\nu_y)|_{z=0}  exp(2\pi i (x \nu_x+y\nu_y+z\sqrt{(n/\lambda)^2-\nu_x^2-\nu_y^2})) d \nu_x d \nu_y
+
+- the aperture angle \alpha defines the maximum transversal freq of
+  the spectrum of a 3d scalar point response function
+- the 3d freq spectrum is given by a segment of the ewald sphere
+  (which mccutchen calls generalized aperture)
+- based on this, one can estimate the transversal distribution of the
+  psf I(r,z=0) and the axial psf I(r=0,z)
+- first order born approximation:
+    - light is deflected only by a single interaction 
+    - diffraction is linear in frequency space: diffracted spectrum U_s is
+      given by the convolution of the incident spectrum U_i with object
+      spectrum f
+
+U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)
+
+    - if U_i is a planar wave, then the scattered wave is just the
+      object spectrum shifted by the frequency of the incoming wave
+
+    -single moment transfer: only those frequencies \vec\gamma are
+     transferred forr which the laue equation is satisfied
+
+\nu_s-\nu_i=\vec\gamma
+
+
 *** the confocal microscope
    - strahlengang dem widefield mikroskop gegenueberstellen
    - out of focus light is rejected
@@ -309,7 +357,7 @@ log(9e-0)/log(10) = c*0.46520516+d
       - 1987 white amos fordham evaluation of confocal versus j cell
         biol
 
-
+	
 *** image formation with structured illumination
    - out of focus light can be computationally removed
    - better quantum efficiency than confocal

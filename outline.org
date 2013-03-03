@@ -357,6 +357,8 @@ U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)
       - 1987 white amos fordham evaluation of confocal versus j cell
         biol
 
+   - the thing, that daniel worked on in his first year is just the
+     siedentopf illumination principle
 	
 *** image formation with structured illumination
    - out of focus light can be computationally removed

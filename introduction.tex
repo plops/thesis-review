@@ -42,13 +42,12 @@ labels that report membrane potentials or viscosity inside of cells.
 
 Finally, it is even possible to exert a controlling function with the
 excitation light: There are compounds that locally release chemicals
-when illuminated or even genetically encoded ion channels that can be
+when illuminated and there are  genetically encoded ion channels that can be
 switched by light \citep{Boyden2005}.
 
 However, the excitation light introduces unnatural and potentially
-deleterious energy into the specimen. If the observed organism is
-harmed in any way by the exogenous light this effect is called
-phototoxicity.
+deleterious energy into the specimen. If the exogenous light harms the
+observed organism in any way, this effect is called phototoxicity.
 
 % dennoch: from photophysical prospective of single- and multi-photon
 % microcopy, probably the most disheartening reality is the occurrence
@@ -59,16 +58,16 @@ There are a number of techniques that can reduce phototoxicity: Two
 photon excitation, controlled light exposure, selective plane
 illumination, highly inclined and laminated optical sheet, and oblique
 plane microscopy. I introduce them in
-chapter \label{sec:illum-patterns}. These techniques have different
+chapter \ref{sec:illum-patterns}. These techniques have different
 pros and cons and not all are equally suited for a specific problem,
 e.g.\ selective plane illumination is very effective, but it needs two
 perpendicular lenses and can not be used for multiwell plates or to
-observe the liver of a live mouse.
+observe the liver of a living, adult mouse.
 
 In this work I present an approach that makes use of modern display
 and camera technology. We only modify the microscope's illumination
 path, the space around objective lens and specimen remains as
-accessible as in a conventional wide-field microscope.
+accessible as in any conventional wide-field microscope.
 
 
 \section{Phototoxicity in life sciences}
@@ -76,91 +75,74 @@ The partner in our project who is responsible for decisions related to
 life sciences and biology is Institut Pasteur (Paris, FR). They work
 on infectious diseases. 
 
-I would like to portray an elegant drug screening experiment which I
-have seen on one of my visits there and in which phototoxicity can
-play an important role: An automatic microscope continuously images a
-cell culture in multiwell plates. These cells carry a pathogen. The
+In order to motivate the importance of phototoxicity, I would like to
+portray an elegant drug screening experiment which I have seen on one
+of my visits there: An automatic microscope continuously images a cell
+culture in multiwell plates. These cells carry a pathogen. The
 pathogen, the nuclei of the cultured cells and the membranes of the
-cells are each stained with a different fluorophore. The cell culture
-in each well of the plates is exposed to a different
-chemical.
+cells are each stained with a different fluorophore. The cells in each
+well of the plates are exposed to a different chemical.
 
-A chemical is considered a hit and will be investigated in further
-trials, when the culture cells stay healthy and the number of
-pathogens decrease. As neither people nor animals come to harm, this
-screening experiment is an impeccable method to systematically
-understand and hopefully heal certain diseases. However, if the 
-
-
-eine elegante und zugleich ethisch einwandfreie methode bei der weder
-menschen noch tiere zu schaden kommen mit der wir systematisch
-krankheiten verstehen und hoffentlich heilen koennen
-
-
-grosses problem wenn man nach wirkstoffen gegen krankheitserreger
-sucht, denn das anregungslicht der beobachtung selbst kann
-krankheitserreger toeten und damit die erfolgreiche suche nach einem
-medikament verhindern.
-
+A chemical is considered a hit and will be investigated during further
+trials, when the time lapse images show that the culture cells stay
+healthy and the number of pathogens decrease. As neither people nor
+animals come to harm, this screening experiment is an impeccable
+method to systematically understand and hopefully heal certain
+diseases. However, this experiment doesn't work very well, if the
+excitation light --- and not the drug --- kills the pathogens. The
+effect of phototoxicity should therefore be minimized.
 
 
 
 nun kann man nicht erwarten, dass jemand der ein mikroskop entwickelt,
 dieses an gefaehrlichen krankheitserregern testet. im rahmen unserer
-zusammenarbeit hat das institut pasteur daher ein relativ einfach zu
-benutzendes und ungefaehrliches biologisches testsystem entwickelt,
-dass es erlaubt die phototoxicitaet verschiedener mikroskope zu testen
-\citep{Tinevez2012}.
-
-sie verwenden den eine genetisch modifizierte variante des
-ungefaehrlichen organismus \emph{Caenorhabditis elegans}.
-
-alss biologisches testobjekt c. elegans
+zusammenarbeit hat das institut pasteur daher ein vergleichsweise
+einfach zu benutzendes und ungefaehrliches biologisches testsystem
+entwickelt, dass es erlaubt die phototoxicitaet verschiedener
+mikroskope zu testen \citep{Tinevez2012}.
 
 
+die grundlage des systems bildet das embryo einer genetisch
+modifizierte variante des organismus \emph{Caenorhabditis elegans}.
 
-\figref{fig:celegans-devel} compares time lapse experiments on three    \cm{embryo example}
-different \emph{Caenorhabditis elegans} embryos with varying
-illumination intensities. These are small invertebrates. The adult
+These are small invertebrates. The adult
 form is approximately \unit[1]{mm} long . Their anatomy and normal
 development are comparatively simple and have been well characterized
 \citep{Durbin1987}.
 
+
+\figref{fig:celegans-devel} compares time lapse experiments on three    \cm{embryo example}
+different \emph{Caenorhabditis elegans} embryos with varying
+illumination intensities. 
+
 The lineage tree of two developing \emph{C. elegans} embryos is the     \cm{reproducible development}
 same.  Even the number of somatic cells is constant in the organism
 (959). With all other factors being equal, particularly the
-temperature constant at room temperature ($21\pm 1$ FIXME), two different
+temperature constant at room temperature ($\unit[21\pm 1]{{}^\circ\textrm{C}}$), two different
 embryos will develop at the same speed from egg to fertile adult in
 three and a half days. This makes the following experiment possible,
 which has been conducted by Jean-Yves Tinevez at Institut Pasteur.
 
 Embryos are removed from their mothers at an identical stage, before    \cm{description of experiment}
 any cellular divisions have occured. A $z-$stack of the egg with 41
-slices and $\unit[1]{\mu m}$ $z-$sampling is obtained every 2 minutes
-of the egg.
+slices and $\unit[1]{\mu m}$ $z-$sampling is obtained every two minutes.
 
-Each column in \figref{fig:celegans-devel} shows an embryo at the     \cm{effect of different intensitites}
-beginning, after one hour and after two hours and 38 minutes of
-development. The left embryo was illuminated with only 0.5\% of the
-maximum illumination intensity possible (controlled by AOTF). The
-middle embryo was illuminated with 5\% and for the right embryo an
-excitation power of 20\% was used.
+The rows in \figref{fig:celegans-devel} depict three different embryos      \cm{effect of different intensitites}
+whose development was imaged for two hours and 38 minutes with different
+excitation powers.
 
-The images show maximum intensity projections of the $z-$stacks and     \cm{description of images}
-each image was normalized so that its darkest pixel is black and its
-brightest pixel is white. Comparing the images in the top row from the
-start of the development the left image\footnote{Note, that the left
-  image in \figref{fig:celegans-devel} is the noisiest in the top
-  row. This is due to the photon shot noise, which is Poisson
-  distributed.} contains the least amount of fluorescence photons and
-the right image the most.
+The figure contains the maximum intensity projections of the $z-$stacks.     \cm{description of images}
+All images were normalized to the same range. The top left image
+contains the least amount of fluorescence photons, and
+the top right the most.
 
-One hour into the experiment, we observe that the right embryo with
-the highest excitation dosage died and its fluorophores were bleached.
-Some cells even turned apoptotic and went into programmed cell death.
+One hour into the experiment, the embryo with the highest excitation
+dose (right) stopped developing and its fluorophores are considerably
+bleached.  Some cells even turned apoptotic and went into programmed
+cell death.
 
-After two hours and 38 minutes the left embryo, that received the
-lowest dosage, has developed the most cells. The middle embryo ceased
+After two hours and 38 minutes the embryo with the lowest dose (left),
+has developed the most cells. The middle embryo ceased
 developing. Reactive oxygen species created by Cells in presence of
 reactive oxygen species under oxidative stress activate a DNA damage
 checkpoint and arrest their cell cycle progression so as to allow for

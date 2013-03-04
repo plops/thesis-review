@@ -32,86 +32,80 @@ Even today --- with electron microscopes, magnetic resonance
 tomography and sequencing machines --- optical microscopy still is an
 indispensable tool for research of living organisms.
 
-Fluorescence microscopy is of particular importance: It enables the
-scientist to label particular protein molecules in living cells and
-observe them at how they perform their biological function.
+Fluorescence microscopy is of particular importance: It enables the     \cm{labelling, switching}
+scientist to selectively label a particular type of molecule in living cells
+and observe how they perform their biological function. There are even
+fluorescent labels that report membrane potentials or viscosity inside of 
+cells. compounds that locally release chemicals when illuminated by
+light or even ion pumps that can be switched by light.
 
-There are a multitude of techniques
 
-es gibt methoden um wenige duzend nanometer aufloesung einzelne molekuele zu lokalisieren
 
-es gibt roboter mikroskope die den einfluss zehntausender chemikalien auf in zellinien am leben gehaltener krankheitserreger
-
-eine elegante und zugleich ethisch einwandfreie methode bei der weder menschen noch tiere zu schaden kommen
-mit der wir systematisch krankheiten verstehen und hoffentlich heilen koennen
-
-dennoch:
-rom photophysical prospective of single- and multi-photon
-      microcopy, probably the most disheartening reality is the
-      occurrence of photobleaching and photodamage
+dennoch: from photophysical prospective of single- and multi-photon
+microcopy, probably the most disheartening reality is the occurrence
+of photobleaching and photodamage
 
 \citep{diaspro2009nanoscopy}
 
 
-wie ich spaeter ziegen werde gibt es bereits zahlreiche ansaetze die phototoxicitaet zu mindern
-2photonen spim clem highly inclined opm
+wie ich spaeter zeigen werde gibt es bereits zahlreiche ansaetze die
+phototoxicitaet zu mindern 2photonen spim clem highly inclined opm
 
-doch nicht alle von denen sind fuer alle anwendungen geignet
-beispielsweise wird man spim nicht so einfach mit multi well plates in
-einem robotermikroskop kombinieren koennen
+doch diese haben alle verschiedene vor- und nachteile und nicht alle
+von denen sind fuer alle anwendungen geignet beispielsweise wird man
+spim nicht so einfach mit multi well plates in einem robotermikroskop
+kombinieren koennen und vermutlich kann man damit auch keine organe in
+groesseren tieren beobachten
 
-ich moechte zeigen wie man mit moderner display technologie und den heute erhaeltlichen kameras ein
-mikroskop bauen kann das winkel und blablba im fokus kontrolliert 
-
-ich denke das insbesondere die diskussion der einschraenkungen in
-unserem prototyp den leser interesieren koennten
-
-
-mit anderen displays bald noch bessere mikroskope
-
+in dieser arbeit stelle ich einen ansatz vor, der moderne display
+technologie und die heute erhaeltlichen kameras ausnutzt und nur in
+den beleuchtungspfad des mikroskop eingreift. um das objektiv und
+sample entspricht unser prototyp einem herkoemmlichen wide-field
+mikroskop.
 
 
-Innovation continuously improves microscopy and occasionally new        \cm{it continues to improve}
-fields of research are opened up: The discovery and development of
-fluorescent proteins initiated a revolution in how microscopy can be
-applied in living specimen. 
-
-Optical high resolution techniques allow to observe biological          \cm{recently high res}
-processes at the scale of individual molecules (tens of nm).
-
-Labels that report membrane potentials or viscosity within cells,       \cm{labelling, switching}
-compounds that locally release chemicals when illuminated by light or
-even ion pumps that can be switched by light promise novel interesting
-research.
-
-phototoxizitaet ist wenn aeusseres licht den organismus schaedigt 
-
-grosses problem wenn man nach wirkstoffen gegen krankheitserreger
-sucht, denn das licht selbst kann krankheitserreger toeten
-
-wenn man in lebende ratte oder in multiwell plates schauen will, dann
-ist spim vielleicht nicht die einfachste loesung
-
-wir stellen system vor, das vorn wie ein normales mikroskop aussieht
 
 
-alss biologisches testobjekt c. elegans
+
 
 
 
 \section{Phototoxicity in life sciences}
 
-All these techniques have in common, that excitation light has to       \cm{phototoxicity}
-reach a focal point, line or plane within the sample. For this the
-light has to traverse a more or less dense distribution of
-fluorophores.  With few exceptions (2-photon, SPIM) microscopes are
-generally not optimized for exciting only the in focus fluorophores.
+phototoxizitaet ist wenn aeusseres licht den organismus in irgendeiner
+form schaedigt
 
-- insert biological problems
+die biologischen partner in unserem projekt (institut pasteur, paris,
+fr) interessieren sich fuer die minderung der phototoxicitaet, denn
+dies ist sehr wichtig fuer 
 
-- screening for medication against pathogens
+grosses problem wenn man nach wirkstoffen gegen krankheitserreger
+sucht, denn das anregungslicht der beobachtung selbst kann
+krankheitserreger toeten und damit die erfolgreiche suche nach einem
+medikament verhindern.
 
-- embryological development
+es gibt roboter mikroskope die den einfluss zehntausender chemikalien
+auf in zellinien am leben gehaltener krankheitserreger
+
+eine elegante und zugleich ethisch einwandfreie methode bei der weder
+menschen noch tiere zu schaden kommen mit der wir systematisch
+krankheiten verstehen und hoffentlich heilen koennen
+
+
+
+nun kann man nicht erwarten, dass jemand der ein mikroskop entwickelt,
+dieses an gefaehrlichen krankheitserregern testet. im rahmen unserer
+zusammenarbeit hat das institut pasteur daher ein relativ einfach zu
+benutzendes und ungefaehrliches biologisches testsystem entwickelt,
+dass es erlaubt die phototoxicitaet verschiedener mikroskope zu testen
+\citep{Tinevez2012}.
+
+sie verwenden den eine genetisch modifizierte variante des
+ungefaehrlichen organismus \emph{Caenorhabditis elegans}.
+
+alss biologisches testobjekt c. elegans
+
+
 
 \figref{fig:celegans-devel} compares time lapse experiments on three    \cm{embryo example}
 different \emph{Caenorhabditis elegans} embryos with varying
@@ -119,8 +113,6 @@ illumination intensities. These are small invertebrates. The adult
 form is approximately \unit[1]{mm} long . Their anatomy and normal
 development are comparatively simple and have been well characterized
 \citep{Durbin1987}.
-
-- move the details into extra chapter
 
 The lineage tree of two developing \emph{C. elegans} embryos is the     \cm{reproducible development}
 same.  Even the number of somatic cells is constant in the organism
@@ -184,7 +176,7 @@ of approximately $\unit[60]{\mu m}$.
   intensities. The embryo with lowest excitation dosage (left)
   develops fastest. The embryo with the highest dosage (right) ceases
   development and nearly all fluorophores are bleached after the
-  experiment. Images by J.-Y. Tinevez (Institut Pasteur, Paris).}
+  experiment. Images by J.-Y. Tinevez (Institut Pasteur, Paris, FR).}
   
 
 
@@ -200,7 +192,7 @@ CCD cameras.
   are sigmoidal fits to the data. Also indicated are the two
   phototoxicity thresholds given by the inflection point of the
   sigmoid and their $95\%$ confidence intervals. This data was
-  provided by J.-Y. Tinevez (Institut Pasteur, Paris) and is also
+  provided by J.-Y. Tinevez (Institut Pasteur, Paris, FR) and is also
   published in \cite{Tinevez2012}.}
 
 
@@ -365,9 +357,9 @@ mechanism: They transfer the energy of the chlorophyll onto carotenoid
 molecules and can prevent the hazardous \emph{phototoxicity} effects
 of singlet oxygen \citep{Krieger-Liszkay2005}.
 
-Nowadays many methods are known to reduce photobleaching. Substitute  \cm{methods preventing photobleaching}
+Nowadays many methods are known to reduce photobleaching: Substitute  \cm{methods preventing photobleaching}
 oxygen with noble gases or remove it enzymatically
-\citep[p.~89]{Sauer2011}. Depopulate the triplet state by adding
+\citep[p.~89]{Sauer2011}, depopulate the triplet state by adding
 reducing as well as oxidizing agents to the solvent
 \citep{Vogelsang2008} or couple a triplet quencher directly to the
 fluorophore \citep[p.~19]{Sauer2011}. For fixed samples it helps to
@@ -690,3 +682,8 @@ cmos ist aktiv
 column parallel readout sony exmor
 
 exmor r additionally back illuminated (only works for small sensors)
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "kielhorn_memi"
+%%% End: 

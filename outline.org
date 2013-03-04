@@ -428,7 +428,12 @@ U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)
       vermindert werden und man erreicht auch ohne em gain
       ausleserauschen von etwa 1 elektron pro pixel
 
+  - 1993 eric fossum cmos sensor
+  - nuvucameras.com
 
+  - emccd gain stochastic reduces quantum efficiency
+  - active pixel sensor
+   
 *** characterization of read noise
     - um daten zwischen verschiedenen geraeten zu vergleichen
     - beschreibe mein experiment, wo ich zwei em ccd kameras verglichen habe

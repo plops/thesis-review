@@ -77,8 +77,8 @@ on infectious diseases.
 
 In order to motivate the importance of phototoxicity, I would like to
 portray an elegant drug screening experiment which I have seen on one
-of my visits there: An automatic microscope continuously images a cell
-culture in multiwell plates. These cells carry a pathogen. The
+of my visits in Paris: An automatic microscope continuously images a
+cell culture in multiwell plates. These cells carry a pathogen. The
 pathogen, the nuclei of the cultured cells and the membranes of the
 cells are each stained with a different fluorophore. The cells in each
 well of the plates are exposed to a different chemical.
@@ -93,76 +93,17 @@ excitation light --- and not the drug --- kills the pathogens. The
 effect of phototoxicity should therefore be minimized.
 
 
+Now one would hardly develop a microscope and directly test it with
+dangerous pathogens. As part of our collaboration, the Institut
+Pasteur therefore developed a safe biological test system that is
+relatively easy to maintain and allows to test the phototoxicity of
+various microscopes \citep{Tinevez2012}.
 
-nun kann man nicht erwarten, dass jemand der ein mikroskop entwickelt,
-dieses an gefaehrlichen krankheitserregern testet. im rahmen unserer
-zusammenarbeit hat das institut pasteur daher ein vergleichsweise
-einfach zu benutzendes und ungefaehrliches biologisches testsystem
-entwickelt, dass es erlaubt die phototoxicitaet verschiedener
-mikroskope zu testen \citep{Tinevez2012}.
-
-
-die grundlage des systems bildet das embryo einer genetisch
-modifizierte variante des organismus \emph{Caenorhabditis elegans}.
-
-These are small invertebrates. The adult
-form is approximately \unit[1]{mm} long . Their anatomy and normal
-development are comparatively simple and have been well characterized
-\citep{Durbin1987}.
-
-
-\figref{fig:celegans-devel} compares time lapse experiments on three    \cm{embryo example}
-different \emph{Caenorhabditis elegans} embryos with varying
-illumination intensities. 
-
-The lineage tree of two developing \emph{C. elegans} embryos is the     \cm{reproducible development}
-same.  Even the number of somatic cells is constant in the organism
-(959). With all other factors being equal, particularly the
-temperature constant at room temperature ($\unit[21\pm 1]{{}^\circ\textrm{C}}$), two different
-embryos will develop at the same speed from egg to fertile adult in
-three and a half days. This makes the following experiment possible,
-which has been conducted by Jean-Yves Tinevez at Institut Pasteur.
-
-Embryos are removed from their mothers at an identical stage, before    \cm{description of experiment}
-any cellular divisions have occured. A $z-$stack of the egg with 41
-slices and $\unit[1]{\mu m}$ $z-$sampling is obtained every two minutes.
-
-The rows in \figref{fig:celegans-devel} depict three different embryos      \cm{effect of different intensitites}
-whose development was imaged for two hours and 38 minutes with different
-excitation powers.
-
-The figure contains the maximum intensity projections of the $z-$stacks.     \cm{description of images}
-All images were normalized to the same range. The top left image
-contains the least amount of fluorescence photons, and
-the top right the most.
-
-One hour into the experiment, the embryo with the highest excitation
-dose (right) stopped developing and its fluorophores are considerably
-bleached.  Some cells even turned apoptotic and went into programmed
-cell death.
-
-After two hours and 38 minutes the embryo with the lowest dose (left),
-has developed the most cells. The middle embryo ceased
-developing. Reactive oxygen species created by Cells in presence of
-reactive oxygen species under oxidative stress activate a DNA damage
-checkpoint and arrest their cell cycle progression so as to allow for
-repair and prevention of the transmission of damaged or incompletely
-replicated chromosomes. The right embryo died much earlier and nearly
-all its fluorophores are bleached at the end of the experiment.
-
-% Molecular mechanisms of mammalian DNA repair and the DNA damage
-% checkpoints. Aziz Sancar Stuart Linn
-
-
-It should be noted, that the embryos themselves do not produce the    \cm{constant reservoir of GFP}
-fluorescent proteins themselves. Already in the parent the egg
-contains a certain amount of histone-2B proteins, some of which is
-tagged with the green fluorescent eGFP protein. The histones are
-components of the chromatin. Therefore the images in
-\figref{fig:celegans-devel} label the cell nuclei.
-
-It is useful that the egg stays at constant size within a diameter   \cm{size constant}
-of approximately $\unit[60]{\mu m}$.
+The basis of the system is the embryo of a genetically modified
+variant of the organism \emph{Caenorhabditis elegans}. These are small
+invertebrates. The adult form is approximately \unit[1]{mm} long.
+Their anatomy and development are comparatively simple and have been
+well characterized \citep{Sulston1977,Durbin1987}.
 
 \jpginput{12cm}{celegans-devel}{Phototoxic effects while imaging the
   embryonal development of three \emph{C.~elegans} embryos (strain
@@ -174,11 +115,49 @@ of approximately $\unit[60]{\mu m}$.
   
 
 
-In the rest of this chapter I give an overview of the photophysics of  \cm{more topics}
-fluorophores. We inicate why oxygen is such an important component in
-the process of photobleaching and phototoxicity.  Then I introduce
-conventional microscopes and finally we describe the noise sources of
-CCD cameras.
+\figref{fig:celegans-devel} compares time-lapse experiments on three \cm{embryo example} 
+different \emph{Caenorhabditis elegans} embryos with varying
+excitation intensities.
+
+The lineage tree of two developing \emph{C. elegans} embryos is the \cm{reproducible development}
+same.  With all other factors being equal, particularly if the
+temperature is constant at $\unit[21\pm
+1]{{}^\circ\textrm{C}}$, two different embryos will develop at the
+same speed from egg to fertile adult in three and a half days.
+
+
+At the beginning of the experiment, embryos are removed from their
+mothers at an identical stage, before any cellular divisions have
+occured. Then a $z-$stack of the egg with 41 slices and $\unit[1]{\mu
+  m}$ $z-$sampling is obtained every two minutes.
+
+The rows in \figref{fig:celegans-devel} depict three different embryos
+whose development was imaged according to this protocol for two hours
+and 38 minutes with different excitation powers.
+
+The figure displays the maximum intensity projections of the
+$z-$stacks.  All images were normalized to the same range. As can be
+guessed from the photon shot noise, the upper left image contains the
+least number of fluorescence photons, and the upper right the most.
+
+One hour into the experiment, the embryo with the highest excitation
+dose (right) has stopped developing and its fluorophores are
+considerably bleached.  Some cells even turned apoptotic and went into
+programmed cell death.
+
+After two hours and 38 minutes the embryo which was exposed to the
+lowest dose (left) has developed the largest number of cells. The
+middle embryo ceased developing, and the right embryo died even
+earlier and nearly all its fluorophores are bleached at the end of the
+experiment.
+
+It should be noted, that the embryos themselves do not produce the
+fluorescent proteins themselves. The egg receives a certain amount of
+histone-2B proteins, some of which is genetically tagged with the
+green fluorescent eGFP protein, from the parent. The histones are
+components of the chromatin. Therefore the images in
+\figref{fig:celegans-devel} label the cell nuclei.
+
 
 \gnuplotinput{worm-integration-time}{Longer exposure times are less
   phototoxic. Each data point corresponds to one embryo that developed
@@ -190,15 +169,31 @@ CCD cameras.
   published in \cite{Tinevez2012}.}
 
 
-% i'm not convinced the intensity was measured good enough to allow
-% this comparison:
-% \gnuplotinput{worm-survival}{Phototoxicity curves of two different
-%   microscopes. Each data point corresponds to one embryo that
-%   developed under a particular excitation dose for two hours. The
-%   solid lines are sigmoidal fits to the data. Also indicated are the
-%   two phototoxicity thresholds and their $95\%$ confidence
-%   intervals. This data was provided by J.-Y. Tinevez (Institut
-%   Pasteur, Paris) and is also published in \cite{Tinevez2012}.}
+
+
+
+% Molecular mechanisms of mammalian DNA repair and the DNA damage
+% checkpoints. Aziz Sancar Stuart Linn
+
+Reactive oxygen species created by
+cells in presence of reactive oxygen species under oxidative stress
+activate a DNA damage checkpoint and arrest their cell cycle
+progression so as to allow for repair and prevention of the
+transmission of damaged or incompletely replicated chromosomes.
+
+
+
+It is useful that the egg stays at constant size within a diameter   \cm{size constant}
+of approximately $\unit[60]{\mu m}$.
+
+
+
+In the rest of this chapter I give an overview of the photophysics of  \cm{more topics}
+fluorophores. We inicate why oxygen is such an important component in
+the process of photobleaching and phototoxicity.  Then I introduce
+conventional microscopes and finally we describe the noise sources of
+CCD cameras.
+
 
 \section{Basic photophysical principles of phototoxicity}
 \begin{summary}

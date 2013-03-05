@@ -8,14 +8,14 @@ set style line 3 linecolor rgb '#9ACD32' linetype 4 linewidth 3
 set style line 4 linecolor rgb '#DAA520' linetype 4 linewidth 3
 set log x
 unset key
-set xlabel "Light dose in J/(cm^2 stack)"
+set xlabel "Light dose {/Symbol W} in J/(cm^2 stack)"
 set ylabel "number of cells after 2h"
 
 set style rect fc lt -1 fs solid 0.15 noborder
 
 # label the curves
-set label "500 ms exposure time" at .12,40 textcolor linestyle 1 left front
-set label "100 ms" at .0017,40 textcolor linestyle 2 left front
+set label "{/Symbol t}=500 ms exposure time" at .11,40 textcolor linestyle 1 left front
+set label "{/Symbol t}=100 ms" at .0017,40 textcolor linestyle 2 left front
 set label "exposure time" at .0017,34 textcolor linestyle 2 left front
 
 

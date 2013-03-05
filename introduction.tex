@@ -6,7 +6,7 @@
 
   In the following introductory chapter I describe what phototoxicity   \cm{phototoxicity}
   is and how it comes about. Then I give an example of how it
-  influences biological observations in a developing \emph{C. elegans}
+  influences biological observations in a developing \celegans\ 
   embryo and describe how this particular biological system can be
   used to evaluate and compare the phototoxicity of different microscopes.
 
@@ -70,7 +70,9 @@ path, the space around objective lens and specimen remains as
 accessible as in any conventional wide-field microscope.
 
 
-\section{Phototoxicity in life sciences}
+
+\section{Phototoxicity in life sciences and the model organism
+  \celegans}
 \label{sec:intro-phototoxicity}
 The partner in our project who is responsible for decisions related to
 life sciences and biology is Institut Pasteur (Paris, FR). They work
@@ -101,27 +103,15 @@ relatively easy to maintain \citep{Stiernagle2006} and allows to test
 the phototoxicity of various microscopes \citep{Tinevez2012}.
 
 
-We use embryos which were genetically modified. Histones are
-incorporated into the chromatin during cell divisions, i.e.\ the
-nuclei of our worms fluoresce green.  The mother worm passes a
-sufficient amount of these proteins into the cytoplasm of the
-embryo. In the beginning of its development the embryo entirely relies
-on this reserve of histones. Only in a much later stage, it will form
-its own histones.
 
 
-The basis of the system is the embryo of a genetically
-modified\footnote{Our strain has WormBase ID AZ212
-  \citep{Praitis2001}.}  to include eGFP tagged histones (enhanced
-green fluorescent protein, excitation maximum \unit[488]{nm}, emission
-maximum \unit[509]{nm}) variant of the organism \emph{Caenorhabditis
-  elegans}. These are small invertebrates. The adult form is
-approximately \unit[1]{mm} long.  Their anatomy and development are
-comparatively simple and have been well characterized
-\citep{Sulston1977,Durbin1987}.
+The basis of the system is the embryo of the organism \celegans. These
+are small invertebrates. The adult form is approximately \unit[1]{mm}
+long.  Their anatomy and development are comparatively simple and have
+been well characterized \citep{Sulston1977,Durbin1987}.
 
 \jpginput{12cm}{celegans-devel}{Phototoxic effects while imaging the
-  embryonal development of three \emph{C.~elegans} embryos (strain
+  embryonal development of three \celegans\ embryos (strain
   AZ212, histone-2B tagged with eGFP) with different excitation
   intensities. The embryo with lowest excitation dosage (left)
   develops fastest. The embryo with the highest dosage (right) ceases
@@ -129,12 +119,23 @@ comparatively simple and have been well characterized
   experiment. Images by J.-Y. Tinevez (Institut Pasteur, Paris, FR).}
   
 
+We use embryos of a genetically modified strain\footnote{Our strain
+  has WormBase ID AZ212 \citep{Praitis2001}.} that expresses eGFP
+tagged histones (enhanced green fluorescent protein, excitation
+maximum \unit[488]{nm}, emission maximum \unit[509]{nm}). Histones are
+incorporated into the chromatin during cell divisions, i.e.\ the
+nuclei of our worms fluoresce green.  The mother worm passes a
+sufficient amount of these proteins into the cytoplasm of the
+embryo. In the beginning of its development the embryo entirely relies
+on this reserve of histones. Only in a much later stage --- certainly
+not during the first few hours, that we observe --- it will form its
+own histones.
 
 \figref{fig:celegans-devel} compares time-lapse experiments on three \cm{embryo example} 
-different \emph{Caenorhabditis elegans} embryos with varying
+different \celegans\ embryos with varying
 excitation intensities.
 
-The lineage tree of two developing \emph{C. elegans} embryos is the \cm{reproducible development}
+The lineage tree of two developing \celegans\ embryos is the \cm{reproducible development}
 same.  With all other factors being equal, particularly if the
 temperature is constant at $\unit[21\pm
 1]{{}^\circ\textrm{C}}$, two different embryos will develop at the
@@ -143,36 +144,37 @@ same speed from egg to fertile adult in three and a half days.
 
 At the beginning of the experiment, embryos are removed from their
 mothers at an identical stage, before any cellular divisions have
-occured. Then a $z-$stack of the egg with 41 slices and $\unit[1]{\mu
-  m}$ $z-$sampling is obtained every two minutes.
+occured. Then a $z-$stack of the egg with 41 slices and one micron
+$z-$sampling is obtained every two minutes.
 
-The rows in \figref{fig:celegans-devel} depict three different embryos
+The columns in \figref{fig:celegans-devel} depict three different embryos
 whose development was imaged according to this protocol for two hours
 and 38 minutes with different excitation powers.
 
 The figure displays the maximum intensity projections of the
-$z-$stacks.  All images were normalized to the same range. As can be
-guessed from the photon shot noise, the upper left image contains the
-least number of fluorescence photons, and the upper right the most.
+$z-$stacks.  In order to make the cell nuclei visible in all images, I
+normalized the data to the same range. As can be guessed from the
+photon shot noise, the upper left image contains the least number of
+fluorescence photons, and the upper right the most.
 
-One hour into the experiment, the embryo with the highest excitation
-dose (right) has stopped developing and its fluorophores are
-considerably bleached.  Some cells even turned apoptotic and went into
-programmed cell death.
+An analysis of the time-lapse data show that one hour into the
+experiment the embryo with the highest excitation dose (right) has
+stopped developing and its fluorophores are strongly bleached.  Some
+cells even turned apoptotic and went into programmed cell death.
 
 After two hours and 38 minutes the experiment was stopped and the
 embryo which was exposed to the lowest dose (left) has developed the
-largest number of cells. The middle embryo ceased developing, and the
+largest number of cells. The middle embryo ceased developing while the
 right embryo died even earlier and nearly all its fluorophores are
 bleached at the end of the experiment.
 
-It should be noted, that the embryos at their early stage of
-development do not produce the fluorescent proteins themselves. The
-egg receives a certain amount of histone-2B proteins, some of which is
-genetically tagged with the green fluorescent eGFP protein, from the
-parent. The histones are components of the chromatin. Therefore the
-images in \figref{fig:celegans-devel} label the cell nuclei.
-
+In \figref{fig:worm-integration-time} I reproduce quantitative data
+from \cite{Tinevez2012}. Each data point in this graph corresponds to
+a two hour time-lapse imaging experiment of a \celegans\ embryo in a
+wide-field microscope. From a very low excitation up to a certain
+threshold dose approximately 50 cells develop during the two
+hours. For a dose above the threshold the development is slowed due to
+phototoxicity and the number of cells after the experiment reduce.
 
 \gnuplotinput{worm-integration-time}{Longer exposure times are less
   phototoxic. Each data point corresponds to one embryo that developed
@@ -181,7 +183,31 @@ images in \figref{fig:celegans-devel} label the cell nuclei.
   phototoxicity thresholds given by the inflection point of the
   sigmoid and their $95\%$ confidence intervals. This data was
   provided by J.-Y. Tinevez (Institut Pasteur, Paris, FR) and is also
-  published in \cite{Tinevez2012}.}
+  published in \cite{Tinevez2012}.}  
+
+For the orange data points, the integration time for each slice is
+$\unit[100]{ms}$ and for the green data points the integration time is
+five times higher.
+
+\nomenclature{$\Omega$}{Excitation dose in $\joule/(\centi\meter^2\textrm{stack})$} 
+\nomenclature{$\Phi_e$}{Radiant flux of excitation light $\watt$} 
+The dose $\Omega$ on the $x-$axis is calculated as
+\begin{align}
+\Omega = \frac{\Phi_e n \tau}{A},
+\end{align}
+with integration time $\tau$ and radiant flux $\Phi_e$ of the
+excitation light, as measured in the pupil and area $A$ of the
+illuminated field and the number of slices $n=41$.
+
+Naively one would assume that it shouldn't make any difference 
+
+
+Unvoreingenommen wuerde man annehmen, dass die Phototoxicitaet nur von der Dosis abhaengt
+
+
+Die x-Achse wurde so berechnet
+
+
 
 \citep{Sancar2004}
 

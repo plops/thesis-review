@@ -210,10 +210,10 @@ nuclei get smaller and more dense. In order to track the fate of all
 individual cells it is sufficient, to capture one stack per minute
 with 41 layers and a $z-$step of 1~micron.
 \subsection{Preparation of living embryo samples} 
-For an observation a hermaphrodite worm is cut and the embryos are
+For an experiment a hermaphrodite worm is cut and the embryos are
 placed on an agarose pad, so that they stay immobile during
 imaging. This procedure is explained\footnote{Note that
-  \cite{Murray2006} describes modification of this protocol that
+  \cite{Murray2006} describes an improvement of this protocol that
   prevents squeezing the embryos too much.} in \cite{Hope1999}. Of
 these embryos, the experimenter chooses a young specimen, that has not
 yet divided. We avoid to use fluorescence excitation for this step.
@@ -221,15 +221,15 @@ The undivided embryos can be distinguished using the less phototoxic
 differential interfernce contrast (DIC) imaging mode.
 
 \subsection{Sectioning through structured illumination} 
-To get an estimate of the initial conditions of the fluorophore
-distribution in the embryo we obtain the very first stack with
-structured illumination and no angular control. We use this method to
-avoid the missing cone problem of the widefield microscope. Perhaps
-for our particular task of finding the position of the nucleus within
-the egg, widefield images would be just sufficient.  However, for our
-spatio-angular method, knowledge about the fluorophore distribution is
-very important and therefore we built our microscope such that we can
-obtain optical sections.
+To get an estimate of the initial distribution of the fluorophores in
+the embryo I obtain the very first stack with structured illumination
+and no angular control. I use this method to avoid the missing cone
+problem of the widefield microscope. Perhaps for our particular task
+of finding the position of one nucleus within the egg, widefield
+images would be just sufficient.  However, for our spatio-angular
+method, knowledge about the fluorophore distribution is very important
+and therefore we built our microscope such that we can obtain optical
+sections.
 
 We compared conventional structured illumination using max$-$min
 (FIXME) reconstruction with laser and LED illumination. Although LED
@@ -284,12 +284,12 @@ of C. We have also not considered the effects of pixelation in the CCD
 camera. If the pixel size is non-negligible ..  }
 
 \subsection{Computer model for the integration of a priori knowledge
-about the biological events} Given an initial measurement of the
-fluorophore distribution of the embryo, I employ a computational
-algorithm to find good illumination conditions for subsequent stack
-acquisitions. An important requirement is that the computer can
-estimate, which areas of the sample should be protected from
-illumination.
+about the biological events} 
+Given an initial measurement of the fluorophore distribution of the
+embryo, I employ a computational algorithm to find good illumination
+conditions for subsequent stack acquisitions. An important requirement
+is that the computer can estimate, which areas of the sample should be
+protected from illumination.
 
 For our test system, the \celegans\ embryo, it is a promising approach
 to represent its three-dimensional fluorophore distribution by a

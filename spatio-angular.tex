@@ -193,24 +193,14 @@ microscope.  Later I will show that depth discrimination improves with
 higher resolution patterns (FIXME ref).
 \section{An imaging protocol with spatio-angular illumination control}
 \subsection{Description of an exemplary biological specimen} 
-Now I describe time-lapse imaging with low phototoxicity using the
-example of developing \celegans\ embryos. As we will discuss in later
-chapters, so far we did not reach the point of being able to image the
-development of a real embryo. Key problems are the low light
-throughput of the illumination system and the length of time necessary
-to update images on the focal plane display. Nevertheless, I always
-kept this example in mind, while I was developing the control software
-for our microscope.
-
-We use embryos which were genetically modified\footnote{Our strain has
-WormBase ID AZ212 \citep{Praitis2001}.}  to include eGFP tagged histones (enhanced green
-fluorescent protein, excitation maximum \unit[488]{nm}, emission
-maximum \unit[509]{nm}). Histones are incorporated into the chromatin
-during cell divisions, i.e.\ the nuclei of our worms fluoresce green.
-The mother worm passes a sufficient amount of these proteins into the
-cytoplasm of the embryo. In the beginning of its development the
-embryo entirely relies on this reserve of histones. Only
-in a much later stage, it will form its own histones.
+I now refer to the \celegans\ test sample for phototoxicity that I
+introduced in section \ref{sec:intro-phototoxicity}. As I will discuss
+in later (FIXME) chapters, so far I did not reach the point of being
+able to image the development of a real embryo. Key problems are the
+low light throughput of the illumination system and the length of time
+necessary to update images on the focal plane display. Nevertheless, I
+always kept this example in mind while I was developing the control
+software for our microscope.
 
 During the first few hours, the embryo develops confined within the
 constant volume of its egg, which has an ellipsoidal shape, extends 40
@@ -218,15 +208,17 @@ to 60 microns and can be readily observed using a $63\times$ objective
 lens. Cell divisions occur every few minutes.  During development the
 nuclei get smaller and more dense. In order to track the fate of all
 individual cells it is sufficient, to capture one stack per minute
-with 20 layers at a distance of 1~micron.
+with 41 layers and a $z-$step of 1~micron.
 \subsection{Preparation of living embryo samples} 
-For an observation a worm is cut and the embryos are placed on an
-(FIXME wormbook procedure) agarose pad, so that they stay immobile
-during imaging. Of these embryos, the experimenter chooses a young
-specimen, that has not yet divided. We avoid to use fluorescence
-excitation for this step.  The undivided embryos can be distinguished
-using the less phototoxic differential interfernce contrast (DIC)
-imaging mode.
+For an observation a hermaphrodite worm is cut and the embryos are
+placed on an agarose pad, so that they stay immobile during
+imaging. This procedure is explained\footnote{Note that
+  \cite{Murray2006} describes modification of this protocol that
+  prevents squeezing the embryos too much.} in \cite{Hope1999}. Of
+these embryos, the experimenter chooses a young specimen, that has not
+yet divided. We avoid to use fluorescence excitation for this step.
+The undivided embryos can be distinguished using the less phototoxic
+differential interfernce contrast (DIC) imaging mode.
 
 \subsection{Sectioning through structured illumination} 
 To get an estimate of the initial conditions of the fluorophore

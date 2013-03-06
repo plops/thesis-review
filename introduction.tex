@@ -1,16 +1,16 @@
 \chapter{Introduction}
 \label{sec:intro}
 \begin{summary}
-  In this work I discuss a modification of a fluorescence microscope    \cm{my device}
+  In this work I discuss a modification of a fluorescence microscope    \cma{my device}
   that minimizes the toxic effects of the excitation light.
 
-  In the following introductory chapter I describe what phototoxicity   \cm{phototoxicity}
+  In the following introductory chapter I describe what phototoxicity   \cma{phototoxicity}
   is and how it comes about. Then I give an example of how it
   influences biological observations in a developing \celegans\ 
   embryo and describe how this particular biological system can be
   used to evaluate and compare the phototoxicity of different microscopes.
 
-  Later in this chapter I give an overview of image formation   \cm{cameras}
+  Later in this chapter I give an overview of image formation   \cma{cameras}
   in the wide-field microscope and I describe its principle limitations
   regarding resolution and depth discrimination. Furthermore I
   discuss the two most important current image detector technologies
@@ -32,7 +32,7 @@ Even today --- with electron microscopes, magnetic resonance
 tomography and sequencing machines --- optical microscopy still is an
 indispensable tool for research of living organisms.
 
-Fluorescence microscopy is of particular importance: It enables the     \cm{labelling, switching}
+Fluorescence microscopy is of particular importance: It enables the     \cma{labelling, switching}
 scientist to selectively label a particular type of molecule in living cells
 and observe how they perform their biological function.
 
@@ -131,11 +131,11 @@ on this reserve of histones. Only in a much later stage --- certainly
 not during the first few hours, that we observe --- it will form its
 own histones.
 
-\figref{fig:celegans-devel} compares time-lapse experiments on three \cm{embryo example} 
+\figref{fig:celegans-devel} compares time-lapse experiments on three \cma{embryo example} 
 different \celegans\ embryos with varying
 excitation intensities.
 
-The lineage tree of two developing \celegans\ embryos is the \cm{reproducible development}
+The lineage tree of two developing \celegans\ embryos is the \cma{reproducible development}
 same.  With all other factors being equal, particularly if the
 temperature is constant at $\unit[21\pm
 1]{\degreeCelsius}$, two different embryos will develop at the
@@ -172,11 +172,12 @@ In \figref{fig:worm-integration-time} I reproduce quantitative data
 from \cite{Tinevez2012}. Each data point in this graph corresponds to
 a two hour time-lapse imaging experiment of a \celegans\ embryo in a
 wide-field microscope. From a very low excitation up to a certain
-threshold dose approximately 50 cells develop during the two
-hours.
+threshold dose the development isn't affected by the light and
+approximately 50 cells develop during the two hours.
 
 For a dose above the threshold the development is slowed due to
-phototoxicity and the number of cells after the experiment reduce.
+phototoxicity and the number of cells at the end of the experiment
+decreases.
 
 \gnuplotinput{worm-integration-time}{Longer exposure times are less
   phototoxic. Each data point corresponds to one embryo that developed
@@ -187,9 +188,9 @@ phototoxicity and the number of cells after the experiment reduce.
   provided by J.-Y. Tinevez (Institut Pasteur, Paris, FR) and is also
   published in \cite{Tinevez2012}.}  
 
-For the orange data points, the integration time $\tau$ for each slice
-is \unit[100]{ms} and for the green data points the integration time
-is five times higher.
+The orange data points in the diagram correspond to a per slice
+integration time $\tau$ of \unit[100]{ms} and for the green data
+the integration time is five times higher.
 
 \nomenclature{$\Omega$}{Excitation dose in $\joule/(\centi\meter^2\textrm{stack})$} 
 \nomenclature{$\Phi_e$}{Radiant flux of excitation light $\watt$} 
@@ -204,18 +205,23 @@ light, as measured in the pupil.
 Naively one would assume that it shouldn't make any difference if the
 excitation light dose is administered with \unit[100]{ms} or
 \unit[500]{ms} exposures but these data show that a longer exposure
-time and less intensity are less phototoxic.
+time and low intensity are less phototoxic.
 
-An earlier study with tobacco plants \cite{Dixit2003} obtained similar
-results: There is a threshold dose below which no phototoxicity ca be
-detected, and the threshold decreases with light intensity. In the
-plants Dixit and Cyr show that the damage is caused by reactive oxygen
-species and explain the shift of the phototoxicity threshold by the
-limited capacity of the cells scavenging system for those
-radicals. They also predict the existence of redox-sensitive
-checkpoints in the mitotic division cycle.
+These results agree with an earlier study in tobacco plants
+\citep{Dixit2003}. There is a threshold dose below which no
+phototoxicity can be detected, and the threshold decreases with light
+intensity. In the plants, Dixit and Cyr show that the damage is caused
+by reactive oxygen species and they explain the shift of the
+phototoxicity threshold by the limited capacity of the cells'
+scavenging system for those radicals. They also predict the existence
+of redox-sensitive checkpoints in the mitotic division cycle.
 
 %\citep{Sancar2004}
+
+In summary this section describes how to measure phototoxicity with
+biological specimen.  The next section gives an overview of the
+underlying photophysics and the rest of this work describes our
+attempt to build a microscope with reduced phototoxic footprint.
 
 
 
@@ -252,10 +258,7 @@ absorb and emit in the wavelength range between \unit[300]{nm} and
 \subsection{Depopulation pathways of excited states}
 \begin{figure}[!hbt]
   \centering
-  \def\svgscale{.8}
-  {\small
-  %\input{flu-level_my.eps_tex}
-}
+  \svginput{.8}{flu-level}
   \caption{A typical energy level diagram. The boxes depict orbitals,
     up and down arrows symbolize the spin of the outer electrons. Fat
     lines represent electronic states. Thinner lines indicate

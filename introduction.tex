@@ -138,7 +138,7 @@ excitation intensities.
 The lineage tree of two developing \celegans\ embryos is the \cm{reproducible development}
 same.  With all other factors being equal, particularly if the
 temperature is constant at $\unit[21\pm
-1]{{}^\circ\textrm{C}}$, two different embryos will develop at the
+1]{\degreeCelsius}$, two different embryos will develop at the
 same speed from egg to fertile adult in three and a half days.
 
 
@@ -187,9 +187,9 @@ phototoxicity and the number of cells after the experiment reduce.
   provided by J.-Y. Tinevez (Institut Pasteur, Paris, FR) and is also
   published in \cite{Tinevez2012}.}  
 
-For the orange data points, the integration time for each slice is
-\unit[100]{ms} and for the green data points the integration time is
-five times higher.
+For the orange data points, the integration time $\tau$ for each slice
+is \unit[100]{ms} and for the green data points the integration time
+is five times higher.
 
 \nomenclature{$\Omega$}{Excitation dose in $\joule/(\centi\meter^2\textrm{stack})$} 
 \nomenclature{$\Phi_e$}{Radiant flux of excitation light $\watt$} 
@@ -197,50 +197,26 @@ The dose $\Omega$ on the $x-$axis is calculated as
 \begin{align}
 \Omega = \frac{\Phi_e n \tau}{A},
 \end{align}
-with integration time $\tau$ and radiant flux $\Phi_e$ of the
-excitation light, as measured in the pupil and area $A$ of the
-illuminated field and the number of slices $n=41$.
+with integration time $\tau$, area $A$ of the illuminated field, the
+number of slices $n=41$ and radiant flux $\Phi_e$ of the excitation
+light, as measured in the pupil.
 
 Naively one would assume that it shouldn't make any difference if the
-excitation light is administered in \unit[100]{ms} or \unit[500]{ms}
-but the data show that a longer exposure time and less intensity are
-less phototoxic.
+excitation light dose is administered with \unit[100]{ms} or
+\unit[500]{ms} exposures but these data show that a longer exposure
+time and less intensity are less phototoxic.
 
-A study with tobacco plants \citep{Dixit2003} obtained similar
-results: There is a threshold dose below which there is no measurable
-phototoxicity and the threshold decreases with light intensity. In the
+An earlier study with tobacco plants \cite{Dixit2003} obtained similar
+results: There is a threshold dose below which no phototoxicity ca be
+detected, and the threshold decreases with light intensity. In the
 plants Dixit and Cyr show that the damage is caused by reactive oxygen
 species and explain the shift of the phototoxicity threshold by the
 limited capacity of the cells scavenging system for those
 radicals. They also predict the existence of redox-sensitive
 checkpoints in the mitotic division cycle.
 
+%\citep{Sancar2004}
 
-\citep{Sancar2004}
-
-
-
-% Molecular mechanisms of mammalian DNA repair and the DNA damage
-% checkpoints. Aziz Sancar Stuart Linn
-
-Reactive oxygen species created by
-cells in presence of reactive oxygen species under oxidative stress
-activate a DNA damage checkpoint and arrest their cell cycle
-progression so as to allow for repair and prevention of the
-transmission of damaged or incompletely replicated chromosomes.
-
-
-
-It is useful that the egg stays at constant size within a diameter   \cm{size constant}
-of approximately $\unit[60]{\mu m}$.
-
-
-
-In the rest of this chapter I give an overview of the photophysics of  \cm{more topics}
-fluorophores. We inicate why oxygen is such an important component in
-the process of photobleaching and phototoxicity.  Then I introduce
-conventional microscopes and finally we describe the noise sources of
-CCD cameras.
 
 
 \section{Basic photophysical principles of phototoxicity}
@@ -251,20 +227,20 @@ CCD cameras.
 
 \newcommand{\vmu}{\mbox{\boldmath{$\mu$}}}
 \subsection{Absorption and emission of light}
-A transition between a ground state $S_0$ to an excited state $S_1$     \cm{electronic transition}
+A transition between a ground state $S_0$ to an excited state $S_1$     \cma{electronic transition}
 occurs, when a radiation field connects the two states. The connection
 is described by the transition dipole moment
 
-An incident photon can electronically excite a molecule from the
-highest occupied molecular orbital (HOMO), usually the singlet ground
-state $S_0$, into the lowest unoccupied molecular orbital (LUMO), the
-singlet excited state $S_1$.\nomenclature{HOMO}{highest occupied
-  molecular orbital}\nomenclature{LUMO}{lowest unoccupied molecular
-  orbital} For this, the energy $E_\textrm{ph}=hc/\lambda$ of the
-photon has to match the energy gap $\Delta E=E_{S_1}-E_{S_0}$ of a
-possible electronic transition within the molecule.
+% An incident photon can electronically excite a molecule from the
+% highest occupied molecular orbital (HOMO), usually the singlet ground
+% state $S_0$, into the lowest unoccupied molecular orbital (LUMO), the
+% singlet excited state $S_1$.\nomenclature{HOMO}{highest occupied
+%   molecular orbital}\nomenclature{LUMO}{lowest unoccupied molecular
+%   orbital} For this, the energy $E_\textrm{ph}=hc/\lambda$ of the
+% photon has to match the energy gap $\Delta E=E_{S_1}-E_{S_0}$ of a
+% possible electronic transition within the molecule.
 
-Photons with wavelengths below \unit[200]{nm} have sufficient energy     \cm{wavelength range of fluorophores}
+Photons with wavelengths below \unit[200]{nm} have sufficient energy     \cma{wavelength range of fluorophores}
 to ionize molecules. On the other side of the spectrum, a dye that
 absorbs in the near-infrared ($\unit[>700]{nm}$) has a low-lying
 excited singlet state $S_1$ and potentially increased reactivity
@@ -289,7 +265,7 @@ absorb and emit in the wavelength range between \unit[300]{nm} and
     from][]{Haken2006}.}
   \label{fig:flu-level}
 \end{figure}
-The Jablonski diagram in \figref{fig:flu-level} summarizes information    \cm{energy levels}
+The Jablonski diagram in \figref{fig:flu-level} summarizes information    \cma{energy levels}
 about the energy levels of a molecule and possible transition
 processes. If a molecule is in the ground state $S_0$ one of its outer
 electrons can be excited by absorbing a photon to the first excited
@@ -303,7 +279,7 @@ therefore the transition $S_0\rightarrow T_1$ into the triplet state
 $T_1$ only occurs with very low probability.
 
 \subsubsection{Kasha's rule}
-As described above, electronic excitation in general also leads to the   \cm{solution rapidly damps vibrations}
+As described above, electronic excitation in general also leads to the   \cma{solution rapidly damps vibrations}
 excitation of a vibro-rotational nonequilibrium state (Franck-Condon
 state). In microscopy, fluorophores are often in solution, where they
 experience at least $10^{12}$ collisions per second. Inter- and
@@ -315,7 +291,7 @@ nanoseconds). Therefore spontaneous emission of a photon will occur
 from the vibrational ground state $S_{1,v_1=0}$ (\emph{Kasha's rule}).
 
 \subsubsection{Stokes' shift}
-During emission of a fluorescence photon a Franck-Condon state of the  \cm{energy-loss = color change}
+During emission of a fluorescence photon a Franck-Condon state of the  \cma{energy-loss = color change}
 singlet ground state $S_0$ is excited and returns into thermal
 equilibrium by vibro-rotational relaxation. Thus, some of the energy
 of the original excitation photon is lost as heat. The emitted
@@ -326,7 +302,7 @@ absorption maximum.
 
 
 \subsubsection{Intersystem crossing}
-There is a small probability that the HOMO electron doesn't relax by   \cm{spin flip forbidden}
+There is a small probability that the HOMO electron doesn't relax by   \cma{spin flip forbidden}
 internal conversion or emission of a fluorescence photon. Instead it
 flips its spin (due to spin-orbit coupling\footnote{The probability of
   a spin flip is increased if heavier atoms are part of the
@@ -341,7 +317,7 @@ radiative decay is called phosphorescence.
   
 
 \subsection{Photobleaching and phototoxicity}
-The prolonged lifetime of the triplet state $T_1$ increases the      \cm{triplet reactive for long time}
+The prolonged lifetime of the triplet state $T_1$ increases the      \cma{triplet reactive for long time}
 probability for the excited molecule to collide with a partner and
 react.
 
@@ -356,7 +332,7 @@ react.
 \end{figure}
 
 
-The ground state of the oxygen molecule is a triplet state ${}^3\O_2$,   \cm{oxygen likely reaction partner}
+The ground state of the oxygen molecule is a triplet state ${}^3\O_2$,   \cma{oxygen likely reaction partner}
 with two unpaired electrons of parallel spin in its
 $\pi^*-$orbitals\footnote{The antibonding molecular orbital $\pi^*$ of
   molecular oxygen is constructed by linear combination of two atomic
@@ -380,13 +356,13 @@ depicted on the right of \figref{fig:oxygen}. During the transition
 ${}^1\Sigma\rightarrow{}^1\Delta$ an infra-red photon with
 \unit[1268]{nm} wavelength is emitted \citep[p.~20]{Linde2011a}.
 
-The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a       \cm{effect of free radical}
+The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a       \cma{effect of free radical}
 typical specimen it diffuses only a few tens of nanometre until it
 reacts with another molecule \citep{Sauer2011}. When it reacts with
 the fluorophore, it can destroy it (photobleaching) also the singlet
 oxygen can damage the DNA of living creatures. 
 
-Plants have developed several protection mechanisms against being      \cm{nature protects itself}
+Plants have developed several protection mechanisms against being      \cma{nature protects itself}
 exposed to too much light. Within the cells they reorient and shift
 their chloroplasts in order to expose them to less light
 \citep{Reshak2009}.  However, they even have a molecular protection
@@ -394,7 +370,7 @@ mechanism: They transfer the energy of the chlorophyll onto carotenoid
 molecules and can prevent the hazardous \emph{phototoxicity} effects
 of singlet oxygen \citep{Krieger-Liszkay2005}.
 
-Nowadays many methods are known to reduce photobleaching: Substitute  \cm{methods preventing photobleaching}
+Nowadays many methods are known to reduce photobleaching: Substitute  \cma{methods preventing photobleaching}
 oxygen with noble gases or remove it enzymatically
 \citep[p.~89]{Sauer2011}, depopulate the triplet state by adding
 reducing as well as oxidizing agents to the solvent
@@ -402,7 +378,7 @@ reducing as well as oxidizing agents to the solvent
 fluorophore \citep[p.~19]{Sauer2011}. For fixed samples it helps to
 change the solvent or polymer.
  
-In living specimen these techniques may reduce photobleaching, but      \cm{hard to protect living sample}
+In living specimen these techniques may reduce photobleaching, but      \cma{hard to protect living sample}
 they can also have an effect on the biological system itself. Removing
 oxygen will quite certainly have a negative effect. In order to reduce
 phototoxicity it makes sense to think about the light management in
@@ -450,7 +426,7 @@ The uncoloured beam in \figref{fig:widefield-microscope}~a) represents
 rays that start from the intersection $O$ of the optical axis and the
 front focal plane of the objective. The objective collects the rays
 and collimates them into a beam that is parallel to the optical
-axis. After traversing the tube length $f+f_\textrm{TL}$, the rays are
+axis. After traversing the tube length $f+f_\mathrm{TL}$, the rays are
 focused by the detection tube lens TL1 on the intersection $O'$ of its
 focal plane and the optical axis. 
 
@@ -470,7 +446,7 @@ to the optical axis, containing $O'$ and $P'$. The plane with the
 images is called intermediate image plane. It is magnified by the
 factor $M$:
 \begin{align}
-  M=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\textrm{TL}}{f}.
+  M=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
 \end{align}
 In our microscope we use an objective with magnification $M=63$. The
 focal length of the tube lens is \unit[164.5]{mm} for most Zeiss

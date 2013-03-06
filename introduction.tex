@@ -173,7 +173,9 @@ from \cite{Tinevez2012}. Each data point in this graph corresponds to
 a two hour time-lapse imaging experiment of a \celegans\ embryo in a
 wide-field microscope. From a very low excitation up to a certain
 threshold dose approximately 50 cells develop during the two
-hours. For a dose above the threshold the development is slowed due to
+hours.
+
+For a dose above the threshold the development is slowed due to
 phototoxicity and the number of cells after the experiment reduce.
 
 \gnuplotinput{worm-integration-time}{Longer exposure times are less
@@ -186,7 +188,7 @@ phototoxicity and the number of cells after the experiment reduce.
   published in \cite{Tinevez2012}.}  
 
 For the orange data points, the integration time for each slice is
-$\unit[100]{ms}$ and for the green data points the integration time is
+\unit[100]{ms} and for the green data points the integration time is
 five times higher.
 
 \nomenclature{$\Omega$}{Excitation dose in $\joule/(\centi\meter^2\textrm{stack})$} 
@@ -199,14 +201,19 @@ with integration time $\tau$ and radiant flux $\Phi_e$ of the
 excitation light, as measured in the pupil and area $A$ of the
 illuminated field and the number of slices $n=41$.
 
-Naively one would assume that it shouldn't make any difference 
+Naively one would assume that it shouldn't make any difference if the
+excitation light is administered in \unit[100]{ms} or \unit[500]{ms}
+but the data show that a longer exposure time and less intensity are
+less phototoxic.
 
-
-Unvoreingenommen wuerde man annehmen, dass die Phototoxicitaet nur von der Dosis abhaengt
-
-
-Die x-Achse wurde so berechnet
-
+A study with tobacco plants \citep{Dixit2003} obtained similar
+results: There is a threshold dose below which there is no measurable
+phototoxicity and the threshold decreases with light intensity. In the
+plants Dixit and Cyr show that the damage is caused by reactive oxygen
+species and explain the shift of the phototoxicity threshold by the
+limited capacity of the cells scavenging system for those
+radicals. They also predict the existence of redox-sensitive
+checkpoints in the mitotic division cycle.
 
 
 \citep{Sancar2004}

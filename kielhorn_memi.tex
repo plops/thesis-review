@@ -46,7 +46,7 @@
 % otherwise urls have no
 % line breaks
 
-\usepackage{units}
+
 \usepackage[disable]{todonotes} % for draft, disable for final
 
 \usepackage{lineno}
@@ -62,7 +62,8 @@
 
 \usepackage{natbib}
 
-%\usepackage{SIunits} %sudo apt-get install texlive-science
+\usepackage{SIunits} %sudo apt-get install texlive-science
+\usepackage{units}
 
 %\usepackage{refcheck} % for draft, uncomment for final
 % for app_hilo
@@ -240,6 +241,8 @@ ich wollte schnelles prototyping
 
 \chapter{Methods of controlling illumination patterns}
 \label{sec:illum-patterns}
+\section{programmable array}
+\cite{Jovin2011}
 
 \include{spatio-angular}
 \include{device1}
@@ -346,6 +349,9 @@ ich wollte schnelles prototyping
 
 - hilo ist nicht unbedingt notwendig, ziemlich kompliziert und brauch
   fudge factor
+
+  - high density fluorophore labelling for the shorter wavelength
+  fluorophore (better signal noise)
 
 \chapter{outlook}
 \label{sec:outlook}

@@ -225,42 +225,22 @@ attempt to build a microscope with reduced phototoxic footprint.
 
 
 
-\section{Basic photophysical principles of phototoxicity}
+\section{Photophysical principles of phototoxicity}
 \begin{summary}
   Here I give a short overview of fluorescence of molecules in order
   to introduce the terms photobleaching and phototoxicity.
 \end{summary}
-
-\newcommand{\vmu}{\mbox{\boldmath{$\mu$}}}
-\subsection{Absorption and emission of light}
-A transition between a ground state $S_0$ to an excited state $S_1$     \cma{electronic transition}
-occurs, when a radiation field connects the two states. The connection
-is described by the transition dipole moment
-
-% An incident photon can electronically excite a molecule from the
-% highest occupied molecular orbital (HOMO), usually the singlet ground
-% state $S_0$, into the lowest unoccupied molecular orbital (LUMO), the
-% singlet excited state $S_1$.\nomenclature{HOMO}{highest occupied
-%   molecular orbital}\nomenclature{LUMO}{lowest unoccupied molecular
-%   orbital} For this, the energy $E_\textrm{ph}=hc/\lambda$ of the
-% photon has to match the energy gap $\Delta E=E_{S_1}-E_{S_0}$ of a
-% possible electronic transition within the molecule.
-
-Photons with wavelengths below \unit[200]{nm} have sufficient energy     \cma{wavelength range of fluorophores}
-to ionize molecules. On the other side of the spectrum, a dye that
-absorbs in the near-infrared ($\unit[>700]{nm}$) has a low-lying
-excited singlet state $S_1$ and potentially increased reactivity
-\citep{Sauer2011}. Hence, most known stable and bright fluorophores
-absorb and emit in the wavelength range between \unit[300]{nm} and
-\unit[700]{nm}.
-
-
-\subsection{Depopulation pathways of excited states}
+A fluorophore is a molecule that can absorb and subsequently emit
+light. During the absorption of a photon the molecular orbital
+transitions from the electronic ground state $S_0$ to an excited state
+$S_1$. The lifetime of the excited state $S_1$ is in the order of a
+few nanoseconds.
 \begin{figure}[!hbt]
   \centering
   \svginput{.8}{flu-level}
-  \caption{A typical energy level diagram. The boxes depict orbitals,
-    up and down arrows symbolize the spin of the outer electrons. Fat
+  \caption{The Jablonski energy level diagram of an illustrative
+    fluorescent molecule. The boxes depict orbitals, up and down
+    arrows symbolize the spin of the outer electrons. Fat horizontal
     lines represent electronic states. Thinner lines indicate
     vibro-rotational states. Various processes are shown with their
     typical time scales. VR = vibro-rotational relaxation, ISC =
@@ -268,61 +248,58 @@ absorb and emit in the wavelength range between \unit[300]{nm} and
     from][]{Haken2006}.}
   \label{fig:flu-level}
 \end{figure}
-The Jablonski diagram in \figref{fig:flu-level} summarizes information    \cma{energy levels}
-about the energy levels of a molecule and possible transition
-processes. If a molecule is in the ground state $S_0$ one of its outer
-electrons can be excited by absorbing a photon to the first excited
-singlet state $S_1$.  If the photon has an even higher energy, the
-electron will go into the second excited singlet state $S_2$.
+A Jablonski diagram, as depicted in \figref{fig:flu-level}, summarizes
+information \cma{energy levels} about the energy levels of a molecule
+and possible transition processes.
 
-Transition from the ground state into higher electronic states than
-$S_2$ is not usual in commonly used fluorophores and wavelength range.
-Absorption of one photon doesn't change the spin of an electron and
-therefore the transition $S_0\rightarrow T_1$ into the triplet state
-$T_1$ only occurs with very low probability.
+%  If the photon has an even higher
+% energy, the electron will go into the second excited singlet state
+% $S_2$.
 
-\subsubsection{Kasha's rule}
-As described above, electronic excitation in general also leads to the   \cma{solution rapidly damps vibrations}
-excitation of a vibro-rotational nonequilibrium state (Franck-Condon
-state). In microscopy, fluorophores are often in solution, where they
-experience at least $10^{12}$ collisions per second. Inter- and
-intramolecular interactions bring the vibrations of the fluorophore
-molecule back to thermal equilibrium in a
-very short timescale ($\unit[10^{-12}]{s}$). This is considerably less
-then the lifetime of the electronic excitation (few
-nanoseconds). Therefore spontaneous emission of a photon will occur
-from the vibrational ground state $S_{1,v_1=0}$ (\emph{Kasha's rule}).
+The majority of known stable and bright fluorophores absorb and emit
+in the wavelength range between \unit[300]{nm} and \unit[700]{nm}.
+Photons at the high energy end of this range can excite molecules into
+higher energy levels $S_n, (n>1)$ than the first excited state; these
+states are unstable and hardly return to the ground state $S_0$. On
+the other side of the spectrum: a molecule that absorbs in the
+near-infrared ($\unit[>700]{nm}$) has a low-lying excited singlet
+state $S_1$ and therefore potentially increased reactivity and a high
+probability for a non-radiative transfer back into the ground state
+$S_0$ \citep{Sauer2011}.
 
-\subsubsection{Stokes' shift}
-During emission of a fluorescence photon a Franck-Condon state of the  \cma{energy-loss = color change}
-singlet ground state $S_0$ is excited and returns into thermal
-equilibrium by vibro-rotational relaxation. Thus, some of the energy
-of the original excitation photon is lost as heat. The emitted
-fluorescence photon is red shifted compared to the excitation
-photon. Technically the \emph{Stokes' shift} is defined as the
-difference of the wavenumbers of the fluorescence maximum and
-absorption maximum.
+The triplet states $T_n$ play an important role in photobleaching.
+Pure electronic absorption of one photon has no effect on the spin of
+an electron and therefore the transition from singlet states $S_n$
+into the triplet state $T_n$ shouldn't occur. However, higher order
+quantum mechanical effects can mediate this spin
+transition. Therefore, in fluorophores this transition has a small
+probability, resulting in long lifetimes of the triplet state
+$T_1$. \cite{Deschenes2002} show that excitation of higher triplet
+states $T_n$ is the predominant reactive process for
+photobleaching. In particular they measured that a rhodamine~6G
+molecule \emph{in vacuum} can emit more than \num{1e9} photons before
+it bleaches, if the excitation intensity is low enough
+$(\sim\unit[1]{\si{\watt/\cm^2}})$ to prevent decay over triplet
+states.
 
+The term \emph{Stokes' shift} describes the frequency shift between
+the absorbed and emitted photon. The difference in energy is lost as
+heat to the fluorophore molecule and surrounding solvent.  The Stokes'
+shift is significant for the practical implementation of fluorescence
+microscopes, as it enables to separate excitation and emission light
+with a dichromatic beam splitter.
 
-\subsubsection{Intersystem crossing}
-There is a small probability that the HOMO electron doesn't relax by   \cma{spin flip forbidden}
-internal conversion or emission of a fluorescence photon. Instead it
-flips its spin (due to spin-orbit coupling\footnote{The probability of
-  a spin flip is increased if heavier atoms are part of the
-  molecule. E.g.\ while fluorescein has a triplet yield of 0.03, the
-  triplet yield of eosin, a fluorescein derivative with four bromine
-  substituents is 0.76 \citep[p.~37]{Sauer2011}.}). This process is
-called \emph{intersystem crossing} and populates the first triplet
-state $T_1$. A transition into the ground state $S_0$ would need
-another spin-flip of the electron and is quite improbable. Therefore
-the triplet state has a long lifetime (up to several seconds). The
-radiative decay is called phosphorescence.
+The direction of the emitted fluorescence photon is random. If the
+fluorophore molecule is small and can rotate quickly, then all
+information about the polarization of the excitation light is lost.
+
   
 
 \subsection{Photobleaching and phototoxicity}
 The prolonged lifetime of the triplet state $T_1$ increases the      \cma{triplet reactive for long time}
 probability for the excited molecule to collide with a partner and
 react.
+\citep{Bernas2004}
 
 \begin{figure}[!hbt]
   \centering

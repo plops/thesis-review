@@ -208,10 +208,11 @@ excitation light dose is administered with \unit[100]{ms} or
 time and low intensity are less phototoxic.
 
 These results agree with an earlier study in tobacco plants
-\citep{Dixit2003}. There is a threshold dose below which no
-phototoxicity can be detected, and the threshold decreases with light
-intensity. In the plants, Dixit and Cyr show that the damage is caused
-by reactive oxygen species and they explain the shift of the
+\citep{Dixit2003}. They investigate cell death a few days after
+illumination and find that there is a threshold dose below which no
+phototoxicity can be detected, and that this threshold decreases with
+light intensity. Dixit and Cyr show that the damage is caused by
+reactive oxygen species and they explain the shift of the
 phototoxicity threshold by the limited capacity of the cells'
 scavenging system for those radicals. They also predict the existence
 of redox-sensitive checkpoints in the mitotic division cycle.
@@ -267,90 +268,73 @@ state $S_1$ and therefore potentially increased reactivity and a high
 probability for a non-radiative transfer back into the ground state
 $S_0$ \citep{Sauer2011}.
 
+
+The term \emph{Stokes' shift} describes the frequency shift between
+the absorbed and emitted photon; the energy difference is lost as heat
+to the fluorophore molecule and surrounding solvent.  For the
+practical implementation of fluorescence microscopes this is
+significant, as it enables to separate excitation and emission light
+with a dichromatic beam splitter.
+
+A fluorescence photon is emitted into a random direction. We use this
+in the next section to describe image formation in the fluorescence
+microscope.
+
+
 The triplet states $T_n$ play an important role in photobleaching.
 Pure electronic absorption of one photon has no effect on the spin of
 an electron and therefore the transition from singlet states $S_n$
-into the triplet state $T_n$ shouldn't occur. However, higher order
-quantum mechanical effects can mediate this spin
-transition. Therefore, in fluorophores this transition has a small
-probability, resulting in long lifetimes of the triplet state
-$T_1$. \cite{Deschenes2002} show that excitation of higher triplet
-states $T_n$ is the predominant reactive process for
-photobleaching. In particular they measured that a rhodamine~6G
-molecule \emph{in vacuum} can emit more than \num{1e9} photons before
-it bleaches, if the excitation intensity is low enough
+into the triplet state $T_n$ shouldn't occur. However, interaction
+with the nuclei can mediate this spin transition. Therefore, in
+fluorophores this transition has a small probability, resulting in
+long lifetimes of the triplet state $T_1$.
+
+\cite{Deschenes2002} show that excitation of higher triplet states
+$T_n$ is the predominant reactive process for photobleaching in
+vacuum. In particular they measured that one rhodamine~6G molecule
+\emph{in vacuum} can emit more than \num{1e9} photons before it
+bleaches, if the excitation intensity is low enough
 $(\sim\unit[1]{\si{\watt/\cm^2}})$ to prevent decay over triplet
 states.
 
-The term \emph{Stokes' shift} describes the frequency shift between
-the absorbed and emitted photon. The difference in energy is lost as
-heat to the fluorophore molecule and surrounding solvent.  The Stokes'
-shift is significant for the practical implementation of fluorescence
-microscopes, as it enables to separate excitation and emission light
-with a dichromatic beam splitter.
+In normal atmosphere the prolonged lifetime of the triplet state $T_1$
+makes it highly likely for the fluorophore to react with molecular
+oxygen $\O_2$. Oxygen is abundant and has a triplet ground state
+${}^3\Sigma$ with two unpaired electrons of parallel spin in its
+$\pi^*-$orbitals (see \figref{fig:oxygen}).
 
-The direction of the emitted fluorescence photon is random. If the
-fluorophore molecule is small and can rotate quickly, then all
-information about the polarization of the excitation light is lost.
-
-  
-
-\subsection{Photobleaching and phototoxicity}
-The prolonged lifetime of the triplet state $T_1$ increases the      \cma{triplet reactive for long time}
-probability for the excited molecule to collide with a partner and
-react.
-\citep{Bernas2004}
+  \citep{Bernas2004}
 
 \begin{figure}[!hbt]
   \centering
-%  \input{oxygen.eps_tex}
-  \caption{{\bf left:} Molecular orbitals of the oxygen molecule. {\bf
-      right:} Molecular oxygen has the lowest energy in its triplet
-    state ${}^3\Sigma$. Then the spins of the two $\pi^*-$electrons
+  \svginput{1}{oxygen}
+  \caption{{\bf left:} Schematic that depicts how the orbitals of the
+    oxygen molecule are formed from the atomic orbitals. {\bf right:}
+    Molecular oxygen has the lowest energy in its triplet state
+    ${}^3\Sigma$ where the spins of the two outer $\pi^*-$electrons
     are parallel. Inspired from \citet{Linde2011a}.}
   \label{fig:oxygen}
 \end{figure}
 
+If a ground-state oxygen molecule comes into physical contact with a
+$T_1$ fluorophore, the energy of the latter can be transferred by an
+electron exchange energy transfer mechanism in which the orbitals
+directly interact with each other \citetext{\citealp[p.~438]{Haken2006} and
+  \citealp{Linde2011a}}.
 
-The ground state of the oxygen molecule is a triplet state ${}^3\O_2$,   \cma{oxygen likely reaction partner}
-with two unpaired electrons of parallel spin in its
-$\pi^*-$orbitals\footnote{The antibonding molecular orbital $\pi^*$ of
-  molecular oxygen is constructed by linear combination of two atomic
-  orbitals of oxygen.}  (see \figref{fig:oxygen}). The triplet ground
-state and its abundance in typical microscope samples are the reasons
-why oxygen is so important when it comes to phototoxicity. If an
-oxygen molecule comes into physical contact with a $T_1$ fluorophore,
-e.g.\ ${}^3\textsf{Chlorophyll}^*$, the energy of the dye can be
-transferred to the oxygen by an electron exchange energy transfer
-mechanism in which the orbitals directly interact with each other
-\citetext{\citealp[p.~438]{Haken2006} and \citealp{Linde2011a}}:
-\begin{align}
-  {}^3\O_2 + {}^3\textsf{Chlorophyll}^* \rightarrow
-  {}^1\O^*_2+{}^1\textsf{Chlorophyll}
-\end{align}
-This reaction is also known as triplet--triplet annihilation.  There
-are two forms of singlet oxygen, that form in competition: The lower
-energy ${}^1\Delta$ and the short-lived, higher energy ${}^1\Sigma$
-form ($T_{1/2}\sim\unit[10^{-9}]{s}$), with spin orientations as
-depicted on the right of \figref{fig:oxygen}. During the transition
-${}^1\Sigma\rightarrow{}^1\Delta$ an infra-red photon with
-\unit[1268]{nm} wavelength is emitted \citep[p.~20]{Linde2011a}.
+During this reaction, which is also known as triplet--triplet
+annihilation, two forms of singlet oxygen form in competition: The
+lower energy state ${}^1\Delta$ and the short-lived, higher energy
+state ${}^1\Sigma$ that immediately ($T_{1/2}\sim\unit[10^{-9}]{s}$)
+sends out a \unit[1268]{nm} photon and decays into ${}^1\Delta$.
 
-The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a       \cma{effect of free radical}
-typical specimen it diffuses only a few tens of nanometre until it
-reacts with another molecule \citep{Sauer2011}. When it reacts with
-the fluorophore, it can destroy it (photobleaching) also the singlet
-oxygen can damage the DNA of living creatures. 
+The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a
+typical specimen it diffuses only a few tens of nanometres until it
+reacts with another molecule.
 
-Plants have developed several protection mechanisms against being      \cma{nature protects itself}
-exposed to too much light. Within the cells they reorient and shift
-their chloroplasts in order to expose them to less light
-\citep{Reshak2009}.  However, they even have a molecular protection
-mechanism: They transfer the energy of the chlorophyll onto carotenoid
-molecules and can prevent the hazardous \emph{phototoxicity} effects
-of singlet oxygen \citep{Krieger-Liszkay2005}.
+(FIXME 2000 greenbaum measures oxygen production, bernas 2004 anoxia gfp)
 
-Nowadays many methods are known to reduce photobleaching: Substitute  \cma{methods preventing photobleaching}
+Nowadays many methods are known to reduce photobleaching: Substitute
 oxygen with noble gases or remove it enzymatically
 \citep[p.~89]{Sauer2011}, depopulate the triplet state by adding
 reducing as well as oxidizing agents to the solvent
@@ -358,21 +342,19 @@ reducing as well as oxidizing agents to the solvent
 fluorophore \citep[p.~19]{Sauer2011}. For fixed samples it helps to
 change the solvent or polymer.
  
-In living specimen these techniques may reduce photobleaching, but      \cma{hard to protect living sample}
-they can also have an effect on the biological system itself. Removing
-oxygen will quite certainly have a negative effect. In order to reduce
-phototoxicity it makes sense to think about the light management in
-the microscope.
+In living specimen these techniques may reduce photobleaching, but
+they can also have a detrimental effect on the biological system
+itself. Removing oxygen will quite certainly have a negative
+effect. In order to reduce phototoxicity it makes sense to think about
+the light management in the microscope.
 
 
 \section{Conventional microscopes}
 \begin{summary}
-  Microscopes that are in common use today do not optimally excite
-  fluorophores within the specimen. In this section we outline how
-  these microscopes work. We explain how out-of-focus blur severely
-  limits the performance of the wide field microscope. Then we discuss
-  how confocal microscopy improves the sectioning capability at the
-  cost of increasing the phototoxic load on the specimen.
+  Microscopes that are in common use today do excite fluorophores
+  within the specimen in an optimal way. In this section I outline how
+  these microscopes work and explain how out-of-focus blur severely
+  limits the performance of the wide field microscope.
 \end{summary}
 The basic building block of microscopes are lenses. A lens is a piece
 of glass with two polished spherical surfaces. Aspherical lenses also
@@ -384,7 +366,7 @@ plane. The distance between focal plane and the region where the rays
 start to converge is called focal length and denoted by $f$.
 \begin{figure}[!hbt]
   \centering
- % \input{widefield-microscope.eps_tex}
+  \svginput{1}{widefield-microscope}
   \caption{{\bf a)} Schematic of a modern microscope. The sample is in
     the front focal plane of the objective. The detection tube lens
     TL1 forms a magnified image on the camera. {\bf b)} Parallel laser
@@ -529,7 +511,7 @@ frequencies within the transfer function attenuate with defocus
 
 \begin{figure}[!hbt]
   \centering
-%  \input{missing-cone.eps_tex}
+  \svginput{1}{missing-cone}
   \caption{Schematic depicting $k_xk_z-$cross sections of the support
     of optical transfer function (see Appendix~\ref{sec:app_hilo}) for
     microscope objectives with different collection angles. {\bf

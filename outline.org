@@ -219,7 +219,7 @@ log(9e-0)/log(10) = c*0.46520516+d
 	  - crystal structure (ormo 1996) indicates that chromophore
             is completely shielded from bulk solvent by a dense
             11-stranded beta-barrel
-        - can generate reactive oxygen species
+        - can generate reactive oxygen species (cited in bernas2004)
 	  - 2000 greenbaum gfp photobleaching a model for protein damage
     - low irradiance is better to prevent further excitation of T1
       - GOT 1998 eggeling seidel photobleaching of fluorescent dyes under

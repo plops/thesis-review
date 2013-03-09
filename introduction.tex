@@ -274,7 +274,7 @@ the absorbed and emitted photon; the energy difference is lost as heat
 to the fluorophore molecule and surrounding solvent.  For the
 practical implementation of fluorescence microscopes this is
 significant, as it enables to separate excitation and emission light
-with a dichromatic beam splitter.
+with a dichroic beam splitter.
 
 A fluorescence photon is emitted into a random direction. We use this
 in the next section to describe image formation in the fluorescence
@@ -351,38 +351,265 @@ the light management in the microscope.
 
 \section{Conventional microscopes}
 \begin{summary}
-  Microscopes that are in common use today do excite fluorophores
-  within the specimen in an optimal way. In this section I outline how
-  these microscopes work and explain how out-of-focus blur severely
-  limits the performance of the wide field microscope.
+  Most of the fluorescence microscopes that are in common use today do
+  not excite fluorophores of the specimen in an optimal way. In
+  this section I outline how these microscopes work and explain how
+  out-of-focus blur severely limits the performance of the wide-field
+  microscope.
 \end{summary}
-The basic building block of microscopes are lenses. A lens is a piece
-of glass with two polished spherical surfaces. Aspherical lenses also
-exist but are much harder to manufacture because of their lower
-symmetry. Light is slower in glass than in air. The shape of a lens
-redirects photons and the thickness of the material can delay them. A
-lens ideally focuses a parallel beam of light into a spot on its focal
-plane. The distance between focal plane and the region where the rays
-start to converge is called focal length and denoted by $f$.
+
+
+A microscope, is a device that collects light coming from one plane
+and forms a magnified image on a
+camera. \figref{fig:widefield-microscope}~b) shows a schematic
+representation of the detection path of a wide-field microscope.
+
+The main components are an objective lens with focal length $f$ and a
+tube lens TL1 with focal length $f_\textrm{TL}>f$. Sample, lenses and
+camera are arranged in double-telecentric configuration, i.e.\ the
+sample is positioned in the front focal plane of the objective, the
+tube lens is at distance $f_\textrm{TL}$ behind the pupil and the
+camera is in the focal plane behind the tube lens.
+
+\nomenclature{$\beta$}{Magnification of an objective
+  $\beta=f_\mathrm{TL}/f$, for Zeiss lenses the magnification
+  $\beta$ is written on the objective and the focal length of the tube
+  lens is defined as $f_\textrm{TL}=\unit[164.5]{mm}$.}
+
+
+Light from the sample is collimated by the objective lens and
+re-imaged by the tube lens. The magnification $\beta$ is given by the
+ratio of the focal lengths of the two lenses:
+\begin{align}
+  \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
+\end{align}
+
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{widefield-microscope}
-  \caption{{\bf a)} Schematic of a modern microscope. The sample is in
-    the front focal plane of the objective. The detection tube lens
-    TL1 forms a magnified image on the camera. {\bf b)} Parallel laser
-    epifluorescence excitation. The excitation tube lens focuses a
-    laser into the back focal plane (BFP). The beam is reflected by a
-    dichromatic beam splitter (BS) towards the objective. An extended
-    area in the specimen is illuminated. Fluorescence light of lower
-    wavelength returns through the objective, is transmitted through
-    BS and forms an image on the camera. {\bf c)} Confocal
-    microscope. A pinhole PH2 is imaged as a diffraction limited spot
-    into the specimen. Returning fluorescence light is only detected
-    when it passes through an aligned pinhole PH1. This configuration
-    rejects light that doesn't originate from the front focal plane
-    (green) of the objective.}
+  \caption{{\bf a)} Transmitted segment of the three-dimensional
+    frequency spectrum is highlighted in red on the Ewald sphere. {\bf
+      b)} Schematic of the detection path of a modern microscope. The
+    sample is in the front focal plane of the objective. The detection
+    tube lens TL1 forms a magnified image on the camera. The aplanatic
+    spheres for objective and tube lens are indicated in
+    \textcolor{red}{red}. {\bf c)} Parallel laser epifluorescence
+    excitation. The excitation tube lens TL2 focuses a laser into the
+    pupil of the objective. The beam is reflected by a dichroic beam
+    splitter (BS) towards the objective. An extended area in the
+    specimen is illuminated. Fluorescence light returns through the
+    objective, is transmitted through BS and forms an image on the
+    camera. }
   \label{fig:widefield-microscope}
 \end{figure}
+
+Note that I represented the objective lens as a single element.  This
+is a very strong simplification. In a real objective lens --- for the
+drawing on the title page I used data for a high-aperture objective
+from the patent US6504653 (FIXME) --- many spherical surfaces and
+various glasses must be combined to obtain a device that is
+apochromatic, isoplanatic and aplanatic \citep{Gross2005}.
+.
+
+
+
+\nomenclature{marginal ray}{axial ray through the periphery of the
+  entrance aperture}
+
+\nomenclature{chief ray}{ray from the periphery of the field through
+  the center of the entrance aperture}
+
+\nomenclature{entrance aperture}{projection of the limiting aperture
+  of the optical system into object space}
+
+The term apochromatic refers to color correction and means that blue,
+green and red images are superimposed in one plane.
+
+The isoplanatic condition ensures that the imaging conditions (FIXME)
+are invariant for small regions of the field plane. This allows to
+express image formation with linear systems theory.
+
+% p 261
+The aplanatic correction is often used for lateral imaging systems
+like microscopes.  It describes a lens that carries out a Fourier
+transform.
+
+The isoplanatic condition and aplanatic correction can only be
+fulfilled exactly for the axial point. Therefore real systems fulfill
+them only approximately. In the case of an objective lens, this is
+only possible because the size of the field is relatively small:
+\begin{itemize}
+\item  field diameter $\sim\unit[0.3]{mm}$,
+\item diameter of lenses $\sim\unit[10]{mm}$,
+\item number of lens elements: $\sim20$.
+\end{itemize}
+However, lithographic lenses achieve much bigger field sizes at
+similar numerical apertures but at a much higher cost and only for one
+wavelength:
+\begin{itemize}
+\item field diameter $\sim\unit[30]{mm}$,
+\item diameter of lenses $\sim\unit[180]{mm}$,
+\item number of lens elements: $>40$.
+\end{itemize}
+
+Preliminary designs and systems with low numerical aperture are often
+investigated in the paraxial limit. In this regime, ray-tracing
+calculations for a thick lens or even several consecutive lens
+elements can be simplified by bending the ray only at one place --- at
+the principal plane.
+
+(FIXME shift the following into raytracing chapter)
+The intersection point of a ray and the first
+principal plane is shifted parallel to the optical axis into the other
+principal plane. There the ray continues under an angle as a
+construction on a thin lens.
+
+For an aplanatic system with high numerical aperture it is still
+possible to represent the effect on the ray by bending once on a
+single surface. However, this surface is no longer a plane. Instead it
+is a sphere with radius $n f$ that touches the principal plane on a
+point in the axis. This sphere is called the aplanatic surface.
+
+
+\subsection{Wave-optical theory for image formation}
+In the following I want to describe the image formation. In and close
+to the image, the ray-optical model is not valid and we have to use
+wave theory. As both are very much related, we can give a useful
+interpretation of the aplanatic surface for wave optics.
+
+As the underlying Maxwell equations and the wave equation are linear,
+we can represent propagating solutions of the wave equation as a
+superposition of the elementary solution --- monochromatic, plane
+waves described by wave vector $\k$:
+\begin{align}
+  U(\r,t)=U\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\ \k=(k_x,k_y,k_z),\ |\k|=2\pi/\lambda,
+\end{align}
+A proper treatment of high-aperture optics would actually (FIXME zwar)
+require vectorial treatment, but as I don't need quantitative
+expressions I limit myself to one scalar field $U$.
+
+{\boldmath{$\nu\gamma\alpha a$}}
+spatial freq vect $2\pi \vec {\boldmath\nu} =\vec k$
+
+
+- expand stationary field amplitude distribution u(x,y,z) into spatial
+  frequency spectrum $U(\nu_x,\nu_y,\nu_z)$:
+
+$$  u(x,y,z)=\int\int\int U(\nu_x,\nu_y,\nu_z) exp(2\pi i (x \nu_x+y\nu_y+z\nu_z)) d \nu_x d \nu_y d \nu_z$$
+
+- neglect evanescent waves, solutions of above equation aare given by spatial periodical field:
+
+$$  u(x,y,z) = A exp(- 2 pi i (x \nu_x+y\nu_y+z\nu_z))$$
+
+- relationship between optical direction cosine $\vec p$, spatial
+  frequency vector $\vec\nu$, tangential vector to the light ray $\vec s$ and wave front W:
+$$  \vec p = \lambda\vec\nu = n \vec s = \grad W$$
+
+- all vectors $\nu$ have the same length and lie on the ewald sphere,
+  which is transfer function of free space
+
+- note that $\nu_z$ can be expressed in terms of the other components,
+  replacing in the exponential inside the integral acoordingly gives
+  with $= U(\nu_x,\nu_y,\nu_z)/cos(\alpha)$
+
+$$ u(x,y,z)=\int\int U_\textrm{2D}(\nu_x,\nu_y)|_{z=0}  exp(2\pi i (x \nu_x+y\nu_y+z\sqrt{(n/\lambda)^2-\nu_x^2-\nu_y^2})) d \nu_x d \nu_y$$
+
+- the aperture angle $\alpha$ defines the maximum transversal freq of
+  the spectrum of a 3d scalar point response function
+
+- the 3d freq spectrum is given by a segment of the ewald sphere
+  (which mccutchen calls generalized aperture)
+
+- based on this, one can estimate the transversal distribution of the
+  psf I(r,z=0) and the axial psf I(r=0,z)
+
+- first order born approximation:
+
+    - light is deflected only by a single interaction 
+
+    - diffraction is linear in frequency space: diffracted spectrum U_s is
+      given by the convolution of the incident spectrum U_i with object
+      spectrum f
+
+U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)
+
+    - if U_i is a planar wave, then the scattered wave is just the
+      object spectrum shifted by the frequency of the incoming wave
+
+    -single moment transfer: only those frequencies \vec\gamma are
+     transferred forr which the laue equation is satisfied
+
+\nu_s-\nu_i=\vec\gamma
+
+
+
+
+
+a double telecentric system
+
+
+
+the entrance pupil is the the image of the limiting aperture into 
+
+aperture stop limits the direction cosines passing from object space
+to image space through the optical system
+
+in a certain distance from the image plane a spherical wave is assumed,
+the so-called Gaussian reference sphere
+
+
+\begin{align}
+  \beta = \frac{\nu}{\nu'}=\frac{\sin\alpha}{\sin\alpha'}
+\end{align}
+
+the aplanatic surface and ewald sphere are related just by a factor
+$f\lambda$
+
+for application of linear systems theory it is necessary that the
+imaging conditions are invariant at least over small regions of the
+field plane (isoplanatic condition)
+
+The field in the pupil is
+\begin{align}
+u(\nu)=F\left[U(x)\right]
+\end{align}
+
+The pupil works as a filte
+r\begin{align}
+h(\nu)=P(\nu) \exp\left(\frac{2\pi i}{\lambda} W(\nu)\right)
+\end{align}
+
+The field behind the pupil aperture is
+\begin{align}
+u'(\nu)=h(\nu) u(\nu)
+\end{align}
+
+the field in the image plane is obtained by a repeated Fourier
+transform with a corresponding scaling of the pupil coordinates
+linear mapping between object and image space coordinates $x'=\beta x$
+
+scaling of the spectra $\nu'=$
+\begin{align}
+U'(x')=\mathcal{F}(h(\nu) u(\nu)) = H(x) \otimes U(x) = \int U(x'') H(x-x'') \textrm{d}x''
+\end{align}
+
+the camera can only detect the intensity
+\begin{align}
+I'(x')=|U'(x')|^2=U'(x')U'^*(x')
+\end{align}
+
+the marginal ray starts from an outer field point in the object and
+passes through the center of the entrance pupil, which here is in
+this double telecentric system is in axial infinity 
+
+in a system, natural vignetting (projection along chief ray in object
+and image) should be taken into account with energy apodization
+factors
+
+etendue
+geometrical flux
+
+
 
 The uncoloured beam in \figref{fig:widefield-microscope}~a) represents
 rays that start from the intersection $O$ of the optical axis and the
@@ -407,11 +634,10 @@ images of points from the front focal plane in the plane perpendicular
 to the optical axis, containing $O'$ and $P'$. The plane with the
 images is called intermediate image plane. It is magnified by the
 factor $M$:
-\begin{align}
-  M=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
-\end{align}
+
+
 In our microscope we use an objective with magnification $M=63$. The
-focal length of the tube lens is \unit[164.5]{mm} for most Zeiss
+focal length of the tube lens is for most Zeiss
 microscopes. Therefore the focal length of our objective is
 $f=\unit[2.61]{mm}$.
 
@@ -433,6 +659,7 @@ manufacturing tolerances and wavelengths, so that the microscope
 behaves as the thin-lens model predicts. Diffraction at the periphery
 of the pupil in the back focal plane dictates the resolution, one can
 achieve inside of the sample.
+
 
 It is quite possible that heating to \unit[37]{${}^\circ$C} will ruin
 such a high-precision instrument. A related source of aberrations
@@ -459,7 +686,7 @@ only once.
 The red beam in \figref{fig:widefield-microscope}~b) is a parallel
 laser. The excitation tube lens TL2 focuses the beam into the back
 focal plane (BFP) of the objective. The beam is reflected at a
-dichromatic beam splitter (BS). This is a glass plate that has been
+dichroic beam splitter (BS). This is a glass plate that has been
 coated with dielectric layers. The refractive index, thickness and
 sequence of the layers are designed so that the excitation light is
 reflected towards the objective. Excitation light, that is scattered
@@ -476,7 +703,7 @@ the spatial coherence of the laser is sometimes reduced.  Incoherent
 light emitting diodes, mercury or xenon arc lamps are often used
 instead of lasers. In the latter case a band pass filter selects the
 useful part of the spectrum of the excitation lamp upstream of the
-dichromatic beam splitter.
+dichroic beam splitter.
 
 \subsubsection{Out-of-focus blur}
 However, independent of the choice of the light source, the wide field
@@ -529,6 +756,15 @@ intensity is large, its shot noise is high as well. Subtraction only
 increases noise and a faint in-focus image can be severely
 deteriorated by the noise of the out-of-focus light.
 \subsection{Confocal microscope}
+
+
+{\bf c)} Confocal
+    microscope. A pinhole PH2 is imaged as a diffraction limited spot
+    into the specimen. Returning fluorescence light is only detected
+    when it passes through an aligned pinhole PH1. This configuration
+    rejects light that doesn't originate from the front focal plane
+    (green) of the objective.
+
 One way of addressing both problems of the wide field microscope is
 depicted in \figref{fig:widefield-microscope}~c). In the confocal
 microscope the whole field of view isn't illuminated simultaneously.
@@ -623,12 +859,11 @@ performance of CCD imagers in the low light regime was limited by the
 noise of the read out amplifier (a few electrons per pixel
 rms\footnote{root mean square} \todo{rms}).
 
-Since the millenium we have electron multiplying CCD (EM-CCD)
-\nomenclature{EM-CCD}{Electron multiplying charge-coupled devices
-  (p. \pageref{sec:ccd-intro}, \pageref{sec:ccd-meas})} technology,
-which allows comparably good performance at low photon numbers
-\citep{Mackay,Robbins2003} and moderate read out speeds (tens of
-MHz). EM-CCDs contain a row of additional registers in front of the
+Since the millennium we have electron multiplying CCD (EMCCD)
+\nomenclature{EMCCD}{electron multiplying charge-coupled devices}
+technology, which allows comparably good performance at low photon
+numbers \citep{Mackay,Robbins2003} and moderate read out speeds (tens
+of MHz). EM-CCDs contain a row of additional registers in front of the
 read out circuit. There, one of the three phases is clocked with a
 much higher voltage (up to \unit[40]{V}) then is needed purely for
 charge transfer ($\unit[\sim6]{V}$). The large electric fields cause

@@ -315,8 +315,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.0000001"
-     inkscape:cx="64.548821"
-     inkscape:cy="152.06283"
+     inkscape:cx="250.54881"
+     inkscape:cy="127.06283"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -391,7 +391,7 @@
          sodipodi:role="line"
          id="tspan4001"
          x="224.42114"
-         y="267.86218">sample $U(\r)$</tspan></text>
+         y="267.86218">sample $u(\r)$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -470,7 +470,7 @@
          sodipodi:role="line"
          id="tspan3775"
          x="234.22974"
-         y="232.66933">pupil $h(\vnu)$</tspan></text>
+         y="232.66933">pupil $\widetilde h(\vnu_t)$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -697,7 +697,7 @@
          sodipodi:role="line"
          id="tspan4005-3"
          x="271.18338"
-         y="48.537331">$U'(\r')$</tspan></text>
+         y="48.537331">$u'(\r')$</tspan></text>
     <g
        id="g8642"
        transform="translate(-10.253048,-79.903064)">
@@ -722,7 +722,7 @@
            id="tspan4286-0"
            y="244.30026"
            x="67.617538"
-           sodipodi:role="line">pupil $u(\vnu)$</tspan></text>
+           sodipodi:role="line">pupil $\widetilde u(\vnu_t)$</tspan></text>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"

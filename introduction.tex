@@ -193,7 +193,7 @@ integration time $\tau$ of \unit[100]{ms} and for the green data
 the integration time is five times higher.
 
 \nomenclature{$\Omega$}{Excitation dose in $\joule/(\centi\meter^2\textrm{stack})$} 
-\nomenclature{$\Phi_e$}{Radiant flux of excitation light $\watt$} 
+\nomenclature{$\Phi_e$}{Radiant flux of excitation light in watts} 
 The dose $\Omega$ on the $x-$axis is calculated as
 \begin{align}
 \Omega = \frac{\Phi_e n \tau}{A},
@@ -374,7 +374,7 @@ camera is in the focal plane behind the tube lens.
 \nomenclature{$\beta$}{Magnification of an objective
   $\beta=f_\mathrm{TL}/f$, for Zeiss lenses the magnification
   $\beta$ is written on the objective and the focal length of the tube
-  lens is defined as $f_\textrm{TL}=\unit[164.5]{mm}$.}
+  lens is defined as $f_\textrm{TL}=\unit[164.5]{mm}$}
 
 
 Light from the sample is collimated by the objective lens and
@@ -384,53 +384,46 @@ ratio of the focal lengths of the two lenses:
   \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
 \end{align}
 
-\begin{figure}[!hbt]
-  \centering
-  \svginput{1}{widefield-microscope}
-  \caption{{\bf a)} Transmitted segment of the three-dimensional
-    frequency spectrum is highlighted in red on the Ewald sphere. {\bf
-      b)} Schematic of the detection path of a modern microscope. The
-    sample is in the front focal plane of the objective. The detection
-    tube lens TL1 forms a magnified image on the camera. The aplanatic
-    spheres for objective and tube lens are indicated in
-    \textcolor{red}{red}. {\bf c)} Parallel laser epifluorescence
-    excitation. The excitation tube lens TL2 focuses a laser into the
-    pupil of the objective. The beam is reflected by a dichroic beam
-    splitter (BS) towards the objective. An extended area in the
-    specimen is illuminated. Fluorescence light returns through the
-    objective, is transmitted through BS and forms an image on the
-    camera. }
-  \label{fig:widefield-microscope}
-\end{figure}
 
 Note that I represented the objective lens as a single element.  This
 is a very strong simplification. In a real objective lens --- for the
 drawing on the title page I used data for a high-aperture objective
-from the patent US6504653 (FIXME) --- many spherical surfaces and
+from the patent \cite{Mathae2003}  %US6504653 (FIXME) 
+--- many spherical surfaces and
 various glasses must be combined to obtain a device that is
-apochromatic, isoplanatic and aplanatic \citep{Gross2005}.
+apochromatic, aplanatic and isoplanatic \citep{Gross2005}.
 
 
-\nomenclature{marginal ray}{axial ray through the periphery of the
+\nomenclature{marginal ray}{Axial ray through the periphery of the
   entrance aperture}
 
-\nomenclature{chief ray}{ray from the periphery of the field through
+\nomenclature{chief ray}{Ray from the periphery of the field through
   the center of the entrance aperture}
 
-\nomenclature{entrance aperture}{projection of the limiting aperture
+\nomenclature{entrance aperture}{Projection of the limiting aperture
   of the optical system into object space}
 
 The term apochromatic refers to color correction and means that blue,
 green and red images are superimposed in one plane.
 
-The isoplanatic condition ensures that the imaging conditions (FIXME)
-are invariant for small regions of the field plane. This allows to
-express image formation with linear systems theory.
 
 % p 261
-The aplanatic correction is often used for lateral imaging systems
-like microscopes.  It describes a lens that carries out a Fourier
-transform.
+Aplanatism is often used for lateral imaging systems like microscopes.
+It corresponds to lens with corrected spherical aberrations, linear
+coma (sagittal and tangential) near the axis and fulfills the Abbe
+Sine condition. This type of lens carries out a Fourier transform,
+even for high angles.
+
+Isoplanatism ensures that the imaging conditions are invariant for
+small regions of the field plane. With this condition, the coma rays
+are symmetric around the chief ray, the wavefront and point spread
+function are in first order approximately invariant for small field
+sizes. This allows to express image formation with linear systems
+theory.
+
+% Staeble-Lihotzky condition for isoplanatism is fulfilled but it is
+% the same as the Abbe Sine condition if spherical aberration is
+% corrected. Prof Gross IAT 10
 
 The isoplanatic condition and aplanatic correction can only be
 fulfilled exactly for the axial point. Therefore real systems fulfill
@@ -466,8 +459,10 @@ For an aplanatic system with high numerical aperture it is still
 possible to represent the effect on the ray by bending once on a
 single surface. However, this surface is no longer a plane. Instead it
 is a sphere with radius $n f$ that touches the principal plane on a
-point in the axis. This sphere is called the aplanatic surface.
-
+point in the axis, where $f$ is the focal length of the lens, $n$ is
+the refractive index of the immersion medium. This sphere is called
+the aplanatic surface and drawn as two circle segments with bold red
+strokes on the lenses in \figref{fig:widefield-microscope}~b).
 
 \subsection{Wave-optical theory for image formation}
 In the following I want to describe how the image on the camera
@@ -482,32 +477,98 @@ neglected) of the wave equation as a superposition of the elementary
 solution --- the monochromatic, plane waves described by wave vector
 $\k$:
 \begin{align}
-  U(\r,t)=U\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\
+  u(\r,t)=u\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\
   \k=(k_x,k_y,k_z),\ |\k|=2\pi n/\lambda_0,
 \end{align}
 The accurate treatment of high-aperture optics would in fact require a
-vectorial treatment, but as I don't need quantitative expressions I
-limit myself to the scalar problem.
+vectorial calculation of the image for a fluorophore with a particular
+dipole orientation.  Subsequently these images should be averaged to
+account for random fluorophore orientations, but as I don't need
+quantitative expressions I limit myself to the scalar problem.
+
+
+\begin{figure}[!hbt]
+  \centering
+  \svginput{1}{widefield-microscope}
+  \caption{{\bf a)} Transmitted segment of the three-dimensional
+    frequency spectrum is highlighted in red on the Ewald sphere. {\bf
+      b)} Schematic of the detection path of a modern microscope. The
+    sample is in the front focal plane of the objective. The detection
+    tube lens TL1 forms a magnified image on the camera. The aplanatic
+    spheres for objective and tube lens are indicated in
+    \textcolor{red}{red}. {\bf c)} Parallel laser epifluorescence
+    excitation. The excitation tube lens TL2 focuses a laser into the
+    pupil of the objective. The beam is reflected by a dichroic beam
+    splitter (BS) towards the objective. An extended area in the
+    specimen is illuminated. Fluorescence light returns through the
+    objective, is transmitted through BS and forms an image on the
+    camera. }
+  \label{fig:widefield-microscope}
+\end{figure}
+
+\nomenclature{$u(\r)$}{Scalar field as a function of spatial
+  coordinates} 
+
+\nomenclature{$\widetilde u(\vnu)$}{Fourier transform
+  of scalar field as a function of spatial frequencies}
+
+\nomenclature{$\r=(r_x,r_y,r_z)^T$}{Three-dimensional spatial
+  coordinate} 
+
+\nomenclature{$\r_t=(r_x,r_y)^T$}{Transversal two-dimensional spatial
+  coordinate}
+
+\nomenclature{$\vnu=(\nu_x,\nu_y,\nu_z)^T$}{Three-dimensional spatial
+  frequency}
+
+\nomenclature{$\vnu_t=(\nu_x,\nu_y)^T$}{Transversal two-dimensional
+  spatial frequency}
+
+
 
 Assuming excited fluorophores in the sample give rise to a
 monochromatic electromagnetic field --- again, I simplify the problem
 by omitting the complication that fluorophores emit photons in a
 wavelength range --- then using the spatial frequency vector
 $\vnu=\k/(2\pi)$ we can expand the three-dimensional, stationary field
-amplitude distribution $U(\r)$ into its spatial frequency spectrum
-$u(\vnu)$:
+amplitude distribution $u(\r)$ into its spatial frequency spectrum
+$\widetilde u(\vnu)$:
 \begin{align}
- U(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
+ u(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} \widetilde u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
 \end{align}
-Since we have assumed a monochromatic field, the support of this
-spectrum $u(\vnu)$ is limited to the surface of a sphere of radius
-$n/\lambda_0$:
+Since we have assumed a monochromatic field and the length $|\vnu|$ of
+the spatial frequency vector is the inverse of the wavelength, the
+support of this spectrum $u(\vnu)$ is limited to the surface of a
+sphere of radius $n/\lambda_0$:
 \begin{align}
-  \supp u(\vnu) = \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
+  \supp \widetilde u(\vnu) = \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
 \end{align}
 This sphere is the transfer function of free space, and is also called
-Ewald sphere.
-\nomenclature{Ewald sphere}{Transfer function of free space.}
+Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
+  space}  Rays that fall into the acceptance angle $\alpha$ of the
+objective fill out a segment of the Ewald sphere as shown in
+\figref{fig:widefield-microscope}~a). Scaling this segment with
+$f\lambda_0$ leads to the aplanatic surface of the lens.
+
+\begin{align}
+  \widetilde h(\vnu_t)=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda}
+    W(\vnu_t)\right)
+\end{align}
+
+
+The Ewald sphere allows an intuitive calculation of the transfer
+function of a microscope. The low-pass 
+
+The pupil works as a filte
+
+
+
+no absorption or diffraction in sample
+random fluorophores
+recording successive slices, telecentricity, real microscope 
+main results: image formation linear in intensity, three dimensionally shift-invariant
+
+missing cone \cite{Streibl1984}
 
 
 - note that $\nu_z$ can be expressed in terms of the other components,
@@ -529,19 +590,19 @@ $$ u(x,y,z)=\int\int U_\textrm{2D}(\nu_x,\nu_y)|_{z=0}  exp(2\pi i (x \nu_x+y\nu
 
     - light is deflected only by a single interaction 
 
-    - diffraction is linear in frequency space: diffracted spectrum U_s is
-      given by the convolution of the incident spectrum U_i with object
+    - diffraction is linear in frequency space: diffracted spectrum $U_s$ is
+      given by the convolution of the incident spectrum $U_i$ with object
       spectrum f
 
-U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)
+$$U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)$$
 
-    - if U_i is a planar wave, then the scattered wave is just the
+    - if $U_i$ is a planar wave, then the scattered wave is just the
       object spectrum shifted by the frequency of the incoming wave
 
-    -single moment transfer: only those frequencies \vec\gamma are
+    -single moment transfer: only those frequencies $\vec\gamma$ are
      transferred forr which the laue equation is satisfied
 
-\nu_s-\nu_i=\vec\gamma
+$$\nu_s-\nu_i=\vec\gamma$$
 
 
 
@@ -561,8 +622,8 @@ the so-called Gaussian reference sphere
 
 
 \begin{align}
-  \beta = \frac{\nu}{\nu'}=\frac{\sin\alpha}{\sin\alpha'}
-\end{align}
+  \beta = \frac{\nu}{\nu'}=\frac{n\sin\alpha}{n'\sin\alpha'}
+\end{align} % FIXME steht da nun n oder nicht? IAT 3
 
 the aplanatic surface and ewald sphere are related just by a factor
 $f\lambda$
@@ -576,10 +637,6 @@ The field in the pupil is
 u(\nu)=F\left[U(x)\right]
 \end{align}
 
-The pupil works as a filte
-r\begin{align}
-h(\nu)=P(\nu) \exp\left(\frac{2\pi i}{\lambda} W(\nu)\right)
-\end{align}
 
 The field behind the pupil aperture is
 \begin{align}
@@ -650,7 +707,9 @@ objective and position a camera on $O'$. When illuminating the mirror
 from the side opposite to the objective, the camera will show two
 spots with $\unit[126]{\mu m}$ distance.
 
-\nomenclature{NA}{numerical aperture}
+\nomenclature{NA}{Numerical aperture $\textrm{NA}=n\sin\alpha$, with
+  refractive index $n$ of immersion medium and acceptance half-angle
+  $\alpha$ of the lens}
 
 Note that \figref{fig:widefield-microscope} depicts a \emph{thin-lens
   model of a high numerical aperture objective} that fulfils Abbe's
@@ -843,7 +902,7 @@ preferable, when low overall phototoxicity is a requirement.
 \section{Image detectors in wide field microscopy}
 \label{sec:ccd-intro}
 \begin{summary}
-  Here we describe CCD\nomenclature{CCD}{charge-coupled devices}
+  Here we describe CCD\nomenclature{CCD}{Charge-coupled devices}
   sensors and their characteristics.
 \end{summary}
 Charge-coupled devices are semiconductor devices that contain a 2D
@@ -862,7 +921,7 @@ noise of the read out amplifier (a few electrons per pixel
 rms\footnote{root mean square} \todo{rms}).
 
 Since the millennium we have electron multiplying CCD (EMCCD)
-\nomenclature{EMCCD}{electron multiplying charge-coupled devices}
+\nomenclature{EMCCD}{Electron multiplying charge-coupled devices}
 technology, which allows comparably good performance at low photon
 numbers \citep{Mackay,Robbins2003} and moderate read out speeds (tens
 of MHz). EM-CCDs contain a row of additional registers in front of the

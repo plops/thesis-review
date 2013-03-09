@@ -316,7 +316,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2.0000001"
      inkscape:cx="64.548821"
-     inkscape:cy="72.062831"
+     inkscape:cy="152.06283"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -391,7 +391,7 @@
          sodipodi:role="line"
          id="tspan4001"
          x="224.42114"
-         y="267.86218">sample $U(x)$</tspan></text>
+         y="267.86218">sample $U(\r)$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -470,7 +470,7 @@
          sodipodi:role="line"
          id="tspan3775"
          x="234.22974"
-         y="232.66933">pupil $h(\nu)$</tspan></text>
+         y="232.66933">pupil $h(\vnu)$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -697,7 +697,7 @@
          sodipodi:role="line"
          id="tspan4005-3"
          x="271.18338"
-         y="48.537331">$U'(x')$</tspan></text>
+         y="48.537331">$U'(\r')$</tspan></text>
     <g
        id="g8642"
        transform="translate(-10.253048,-79.903064)">
@@ -722,7 +722,7 @@
            id="tspan4286-0"
            y="244.30026"
            x="67.617538"
-           sodipodi:role="line">pupil $u(\nu)$</tspan></text>
+           sodipodi:role="line">pupil $u(\vnu)$</tspan></text>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
@@ -944,7 +944,7 @@
          sodipodi:role="line"
          x="94.118996"
          y="270.31335"
-         id="tspan4286-0-2-2-6">$\frac{n}{\lambda}$</tspan></text>
+         id="tspan4286-0-2-2-6">$\frac{n}{\lambda_0}$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -984,6 +984,18 @@
        id="path3183"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="sssss" />
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:cmr10;-inkscape-font-specification:Sans Bold"
+       x="293"
+       y="221.18973"
+       id="text3184"
+       sodipodi:linespacing="125%"
+       transform="translate(8.6539583,7.691754)"><tspan
+         sodipodi:role="line"
+         id="tspan3186"
+         x="293"
+         y="221.18973" /></text>
   </g>
   <g
      inkscape:groupmode="layer"

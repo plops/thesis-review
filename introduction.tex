@@ -409,8 +409,6 @@ drawing on the title page I used data for a high-aperture objective
 from the patent US6504653 (FIXME) --- many spherical surfaces and
 various glasses must be combined to obtain a device that is
 apochromatic, isoplanatic and aplanatic \citep{Gross2005}.
-.
-
 
 
 \nomenclature{marginal ray}{axial ray through the periphery of the
@@ -441,7 +439,7 @@ only possible because the size of the field is relatively small:
 \begin{itemize}
 \item  field diameter $\sim\unit[0.3]{mm}$,
 \item diameter of lenses $\sim\unit[10]{mm}$,
-\item number of lens elements: $\sim20$.
+\item number of lens elements $\sim20$.
 \end{itemize}
 However, lithographic lenses achieve much bigger field sizes at
 similar numerical apertures but at a much higher cost and only for one
@@ -449,7 +447,7 @@ wavelength:
 \begin{itemize}
 \item field diameter $\sim\unit[30]{mm}$,
 \item diameter of lenses $\sim\unit[180]{mm}$,
-\item number of lens elements: $>40$.
+\item number of lens elements $>40$.
 \end{itemize}
 
 Preliminary designs and systems with low numerical aperture are often
@@ -472,41 +470,45 @@ point in the axis. This sphere is called the aplanatic surface.
 
 
 \subsection{Wave-optical theory for image formation}
-In the following I want to describe the image formation. In and close
-to the image, the ray-optical model is not valid and we have to use
-wave theory. As both are very much related, we can give a useful
-interpretation of the aplanatic surface for wave optics.
+In the following I want to describe how the image on the camera
+forms. For this we have to use wave theory because close to the image
+rays intersect, invalidating ray-optical predictions. As both
+theories are very much related, we can give a useful interpretation of
+the aplanatic surface for wave optics.
 
-As the underlying Maxwell equations and the wave equation are linear,
-we can represent propagating solutions of the wave equation as a
-superposition of the elementary solution --- monochromatic, plane
-waves described by wave vector $\k$:
+The underlying Maxwell equations and the wave equation are linear and
+we can represent propagating solutions (evanescent solutions are
+neglected) of the wave equation as a superposition of the elementary
+solution --- the monochromatic, plane waves described by wave vector
+$\k$:
 \begin{align}
-  U(\r,t)=U\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\ \k=(k_x,k_y,k_z),\ |\k|=2\pi/\lambda,
+  U(\r,t)=U\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\
+  \k=(k_x,k_y,k_z),\ |\k|=2\pi n/\lambda_0,
 \end{align}
-A proper treatment of high-aperture optics would actually (FIXME zwar)
-require vectorial treatment, but as I don't need quantitative
-expressions I limit myself to one scalar field $U$.
+The accurate treatment of high-aperture optics would in fact require a
+vectorial treatment, but as I don't need quantitative expressions I
+limit myself to the scalar problem.
 
-{\boldmath{$\nu\gamma\alpha a$}}
-spatial freq vect $2\pi \vec {\boldmath\nu} =\vec k$
+Assuming excited fluorophores in the sample give rise to a
+monochromatic electromagnetic field --- again, I simplify the problem
+by omitting the complication that fluorophores emit photons in a
+wavelength range --- then using the spatial frequency vector
+$\vnu=\k/(2\pi)$ we can expand the three-dimensional, stationary field
+amplitude distribution $U(\r)$ into its spatial frequency spectrum
+$u(\vnu)$:
+\begin{align}
+ U(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
+\end{align}
+Since we have assumed a monochromatic field, the support of this
+spectrum $u(\vnu)$ is limited to the surface of a sphere of radius
+$n/\lambda_0$:
+\begin{align}
+  \supp u(\vnu) = \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
+\end{align}
+This sphere is the transfer function of free space, and is also called
+Ewald sphere.
+\nomenclature{Ewald sphere}{Transfer function of free space.}
 
-
-- expand stationary field amplitude distribution u(x,y,z) into spatial
-  frequency spectrum $U(\nu_x,\nu_y,\nu_z)$:
-
-$$  u(x,y,z)=\int\int\int U(\nu_x,\nu_y,\nu_z) exp(2\pi i (x \nu_x+y\nu_y+z\nu_z)) d \nu_x d \nu_y d \nu_z$$
-
-- neglect evanescent waves, solutions of above equation aare given by spatial periodical field:
-
-$$  u(x,y,z) = A exp(- 2 pi i (x \nu_x+y\nu_y+z\nu_z))$$
-
-- relationship between optical direction cosine $\vec p$, spatial
-  frequency vector $\vec\nu$, tangential vector to the light ray $\vec s$ and wave front W:
-$$  \vec p = \lambda\vec\nu = n \vec s = \grad W$$
-
-- all vectors $\nu$ have the same length and lie on the ewald sphere,
-  which is transfer function of free space
 
 - note that $\nu_z$ can be expressed in terms of the other components,
   replacing in the exponential inside the integral acoordingly gives
@@ -515,7 +517,7 @@ $$  \vec p = \lambda\vec\nu = n \vec s = \grad W$$
 $$ u(x,y,z)=\int\int U_\textrm{2D}(\nu_x,\nu_y)|_{z=0}  exp(2\pi i (x \nu_x+y\nu_y+z\sqrt{(n/\lambda)^2-\nu_x^2-\nu_y^2})) d \nu_x d \nu_y$$
 
 - the aperture angle $\alpha$ defines the maximum transversal freq of
-  the spectrum of a 3d scalar point response function
+   the spectrum of a 3d scalar point response function
 
 - the 3d freq spectrum is given by a segment of the ewald sphere
   (which mccutchen calls generalized aperture)
@@ -683,7 +685,7 @@ only once.
 
 \nomenclature{BFP}{Back focal plane}
 
-The red beam in \figref{fig:widefield-microscope}~b) is a parallel
+The red beam in \figref{fig:widefield-microscope}~c) is a parallel
 laser. The excitation tube lens TL2 focuses the beam into the back
 focal plane (BFP) of the objective. The beam is reflected at a
 dichroic beam splitter (BS). This is a glass plate that has been

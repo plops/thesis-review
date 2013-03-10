@@ -371,10 +371,10 @@ sample is positioned in the front focal plane of the objective, the
 tube lens is at distance $f_\textrm{TL}$ behind the pupil and the
 camera is in the focal plane behind the tube lens.
 
-\nomenclature{$\beta$}{Magnification of an objective
-  $\beta=f_\mathrm{TL}/f$, for Zeiss lenses the magnification
-  $\beta$ is written on the objective and the focal length of the tube
-  lens is defined as $f_\textrm{TL}=\unit[164.5]{mm}$}
+\nomenclature{$\beta$}{Transversal magnification of an objective
+  $\beta=f_\mathrm{TL}/f$, for Zeiss lenses the magnification $\beta$
+  is written on the objective and the focal length of the tube lens is
+  defined as $f_\textrm{TL}=\unit[164.5]{mm}$}
 
 
 Light from the sample is collimated by the objective lens and
@@ -411,8 +411,28 @@ green and red images are superimposed in one plane.
 Aplanatism is often used for lateral imaging systems like microscopes.
 It corresponds to lens with corrected spherical aberrations, linear
 coma (sagittal and tangential) near the axis and fulfills the Abbe
-Sine condition. This type of lens carries out a Fourier transform,
-even for high angles.
+Sine condition. This correction ensures that the focal length --- a
+parameter that is normally only defined for paraxial rays --- is
+identical for all collected rays. Such a lens carries out a Fourier
+transform from the front to the back focal plane with linear scaling,
+even for high angles:
+\begin{align}
+  \beta = \frac{|\vnu_t|}{|\vnu'_t|}=\frac{n \sin\alpha}{n' \sin\alpha'}
+\end{align}
+ Only then, the image is similar to the object.
+
+ The longitudinal magnification $\zeta=\Delta\nu_z/\Delta\nu'_z$, with
+ $\Delta\nu_z=n/\lambda - \nu_z$ giving the distance from a point on
+ the Ewald sphere to the point on the Ewald sphere that intersects
+ the $\nu_z-$ axis, depends on the transverse frequency $|\vnu_t|$:
+ \begin{align}
+   \zeta = \frac{n/\lambda - \nu_z}{n'/\lambda - \nu'_z}=\frac{n/\lambda - \sqrt{(n/\lambda)^2-|\vnu_t|^2}}{n'/\lambda - \sqrt{(n'/\lambda)^2-|\vnu_t|^2/\beta^2}}. %=\frac{n(1-cos\alpha)}{n'(1-cos\alpha')}=\frac{n\sin^2(\alpha/2)}{n'\sin^2(\alpha'/2)} %Herschel condition
+ \end{align}
+ Therefore an image that is longitudinally similar is not possible for
+ large aperture.
+
+
+% Gross p. 341
 
 Isoplanatism ensures that the imaging conditions are invariant for
 small regions of the field plane. With this condition, the coma rays
@@ -545,21 +565,51 @@ sphere of radius $n/\lambda_0$:
 \end{align}
 This sphere is the transfer function of free space, and is also called
 Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
-  space}  Rays that fall into the acceptance angle $\alpha$ of the
-objective fill out a segment of the Ewald sphere as shown in
-\figref{fig:widefield-microscope}~a). Scaling this segment with
-$f\lambda_0$ leads to the aplanatic surface of the lens.
+  space} Rays that fall into the acceptance angle $\alpha$ of the
+objective fill out a segment of the Ewald sphere with the
+three-dimensional frequency spectrum $\widetilde u(\vnu)$ of the
+sample as shown in \figref{fig:widefield-microscope}~a). Scaling this
+segment with $f\lambda_0$ gives the aplanatic surface of the lens and
+just as with 
+
+und aehnlich wie bei der parallelverschiebung von Strahlen zwischen
+den zwei Hauptebenen, kann hier durch paralleles Verschieben entlang
+der optischen Achse das dreidimensionale Frequenzspektrum $\widetilde
+u(\vnu)$ von der Ewaldkugel in die Pupillenebene projeziert werden, wo
+ich es als $\widetilde u(\vnu_t)$ und nur als Funktion der zwei
+transversalen Ortsfrequenzen $\vnu_t=(\nu_x,\nu_y)$ auffasse. 
+
+Die Pupille begrenzt die durchgelassenen Strahlbuendel und wirkt damit
+als low-pass filter auf das Ortsfrequenzspektrum. Falls das System
+Aberrationen aufweist, koennte man diese hier mit der Wellenfront
+$W(\vnu_t)$ einfuegn. Durch multiplikation mit der Funktion $\widetilde h$ 
+
+diffraction limited W=1
 
 \begin{align}
   \widetilde h(\vnu_t)=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda}
     W(\vnu_t)\right)
 \end{align}
 
+Faltungstheorem
+\begin{align}
+  \mathcal{F}[\widetilde h(\vnu_t)\widetilde u(\vnu_t)]
+\end{align}
+
+
+angularly band-limited
+
+
+\begin{align}
+  A &= \frac{f}{d} = \frac{1}{2\tan\alpha}\\
+  h_r(\vnu_t,\nu_z)&=\frac{1}{2\pi\nu_t A}\sqrt{1-\left(\frac{2A\nu_z}{\nu_t}\right)^2}
+\end{align}
 
 The Ewald sphere allows an intuitive calculation of the transfer
 function of a microscope. The low-pass 
 
 The pupil works as a filte
+
 
 
 

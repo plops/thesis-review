@@ -384,11 +384,10 @@ ratio of the focal lengths of the two lenses:
   \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
 \end{align}
 
-
 Note that I represented the objective lens as a single element.  This
-is a very strong simplification. In a real objective lens --- for the
+is an oversimplification. In a real objective lens --- for the
 drawing on the title page I used data for a high-aperture objective
-from the patent \cite{Mathae2003}  %US6504653 (FIXME) 
+from the patent \cite{Matthae2003}  %US6504653 (FIXME)
 --- many spherical surfaces and
 various glasses must be combined to obtain a device that is
 apochromatic, aplanatic and isoplanatic \citep{Gross2005}.
@@ -409,17 +408,17 @@ green and red images are superimposed in one plane.
 
 % p 261
 Aplanatism is often used for lateral imaging systems like microscopes.
-It corresponds to lens with corrected spherical aberrations, linear
-coma (sagittal and tangential) near the axis and fulfills the Abbe
-Sine condition. This correction ensures that the focal length --- a
-parameter that is normally only defined for paraxial rays --- is
-identical for all collected rays. Such a lens carries out a Fourier
-transform from the front to the back focal plane with linear scaling,
-even for high angles:
+This condition describes a lens which is corrected for spherical
+aberrations, linear coma (sagittal and tangential) and that fulfills
+the Abbe Sine condition. Correction of the Sine condition ensures that
+the focal length --- a parameter that is normally only defined for
+paraxial rays --- is identical for all collected rays. Such a lens
+carries out a Fourier transform from the front to the back focal plane
+with linear scaling, even for high angles:
 \begin{align}
-  \beta = \frac{|\vnu_t|}{|\vnu'_t|}=\frac{n \sin\alpha}{n' \sin\alpha'}
+  \beta = \frac{|\vnu_t|}{|\vnu'_t|}=\frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe Sine condition)}
 \end{align}
- Only then, the image is similar to the object.
+ Only then the image is similar to the object.
 
  The longitudinal magnification $\zeta=\Delta\nu_z/\Delta\nu'_z$, with
  $\Delta\nu_z=n/\lambda - \nu_z$ giving the distance from a point on
@@ -454,17 +453,15 @@ only possible because the size of the field is relatively small:
 \item diameter of lenses $\sim\unit[10]{mm}$,
 \item number of lens elements $\sim20$.
 \end{itemize}
-However, lithographic lenses achieve much bigger field sizes at
-similar numerical apertures but at a much higher cost and only for one
-wavelength:
+However, lenses for photolithography in microfabrication of
+semiconductors achieve much bigger field sizes at similar numerical
+apertures but at a much higher cost and only for one wavelength:
 \begin{itemize}
 \item field diameter $\sim\unit[30]{mm}$,
 \item diameter of lenses $\sim\unit[180]{mm}$,
 \item number of lens elements $>40$.
 \end{itemize}
-
-Preliminary designs and systems with low numerical aperture are often
-investigated in the paraxial limit. In this regime, ray-tracing
+In the paraxial limit ray-tracing
 calculations for a thick lens or even several consecutive lens
 elements can be simplified by bending the ray only at one place --- at
 the principal plane.
@@ -572,6 +569,8 @@ sample as shown in \figref{fig:widefield-microscope}~a). Scaling this
 segment with $f\lambda_0$ gives the aplanatic surface of the lens and
 just as with 
 
+\cite{McCutchen1969}
+
 und aehnlich wie bei der parallelverschiebung von Strahlen zwischen
 den zwei Hauptebenen, kann hier durch paralleles Verschieben entlang
 der optischen Achse das dreidimensionale Frequenzspektrum $\widetilde
@@ -585,6 +584,10 @@ Aberrationen aufweist, koennte man diese hier mit der Wellenfront
 $W(\vnu_t)$ einfuegn. Durch multiplikation mit der Funktion $\widetilde h$ 
 
 diffraction limited W=1
+
+size of the calotte is determined by the aperture angle
+
+mccutchen: the lens like a cookie cutter is expected to chop out a chunk of spherical wave
 
 \begin{align}
   \widetilde h(\vnu_t)=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda}

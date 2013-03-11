@@ -359,17 +359,18 @@ the light management in the microscope.
 \end{summary}
 
 
-A microscope, is a device that collects light coming from one plane
+A microscope, is a device that collects light coming from one plane  \cma{lateral image}
 and forms a magnified image on a
 camera. \figref{fig:widefield-microscope}~b) shows a schematic
 representation of the detection path of a wide-field microscope.
 
-The main components are an objective lens with focal length $f$ and a
+The main components are an objective lens with focal length $f$ and a \cma{telecentric arrangement}
 tube lens TL1 with focal length $f_\textrm{TL}>f$. Sample, lenses and
 camera are arranged in double-telecentric configuration, i.e.\ the
-sample is positioned in the front focal plane of the objective, the
-tube lens is at distance $f_\textrm{TL}$ behind the pupil and the
-camera is in the focal plane behind the tube lens.
+sample is located in the front focal plane of the objective, the tube
+lens is at distance $f_\textrm{TL}$ behind the pupil and the camera is
+in the focal plane behind the tube lens.
+
 
 \nomenclature{$\beta$}{Transversal magnification of an objective
   $\beta=f_\mathrm{TL}/f$, for Zeiss lenses the magnification $\beta$
@@ -377,20 +378,19 @@ camera is in the focal plane behind the tube lens.
   defined as $f_\textrm{TL}=\unit[164.5]{mm}$}
 
 
-Light from the sample is collimated by the objective lens and
+Light from the sample is collimated by the objective lens and         \cma{lateral magnification}
 re-imaged by the tube lens. The magnification $\beta$ is given by the
 ratio of the focal lengths of the two lenses:
 \begin{align}
   \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
 \end{align}
-
-Note that I represented the objective lens as a single element.  This
-is an oversimplification. In a real objective lens --- for the
-drawing on the title page I used data for a high-aperture objective
-from the patent \cite{Matthae2003}  %US6504653 (FIXME)
---- many spherical surfaces and
-various glasses must be combined to obtain a device that is
-apochromatic, aplanatic and isoplanatic \citep{Gross2005}.
+Note that I represented the objective lens as a single element.  This  \cma{necessary corrections}
+is an oversimplification. In a real objective lens --- for the drawing
+on the title page I used data for a high-aperture objective from the
+patent \cite{Matthae2003} %US6504653 (FIXME)
+--- many spherical surfaces and various glasses must be combined to
+obtain a device that is apochromatic, aplanatic and isoplanatic
+\citep{Gross2005}.
 
 
 \nomenclature{marginal ray}{Axial ray through the periphery of the
@@ -402,77 +402,56 @@ apochromatic, aplanatic and isoplanatic \citep{Gross2005}.
 \nomenclature{entrance aperture}{Projection of the limiting aperture
   of the optical system into object space}
 
-The term apochromatic refers to color correction and means that blue,
+The term apochromatic refers to color correction and means that blue,   \cma{chromatic}
 green and red images are superimposed in one plane.
 
 
 % p 261
-Aplanatism is often used for lateral imaging systems like microscopes.
+Aplanatism is often used for lateral imaging systems like microscopes.   \cm{planar}
 This condition describes a lens which is corrected for spherical
 aberrations, linear coma (sagittal and tangential) and that fulfills
 the Abbe Sine condition. Correction of the Sine condition ensures that
 the focal length --- a parameter that is normally only defined for
 paraxial rays --- is identical for all collected rays. Such a lens
 carries out a Fourier transform from the front to the back focal plane
-with linear scaling, even for high angles:
+with linear scaling, even for high angles. This makes sure, that the
+image is similar to the object.
 \begin{align}
   \beta = \frac{|\vnu_t|}{|\vnu'_t|}=\frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe Sine condition)}
 \end{align}
- Only then the image is similar to the object.
-
- The longitudinal magnification $\zeta=\Delta\nu_z/\Delta\nu'_z$, with
- $\Delta\nu_z=n/\lambda - \nu_z$ giving the distance from a point on
- the Ewald sphere to the point on the Ewald sphere that intersects
- the $\nu_z-$ axis, depends on the transverse frequency $|\vnu_t|$:
- \begin{align}
+The longitudinal magnification $\zeta=\Delta\nu_z/\Delta\nu'_z$, with    \cma{longitudinal magnification}
+$\Delta\nu_z=n/\lambda - \nu_z$ giving the distance from a point on
+the Ewald sphere to the point on the Ewald sphere that intersects the
+$\nu_z-$ axis, depends on the transverse frequency $|\vnu_t|$:
+\begin{align}
    \zeta = \frac{n/\lambda - \nu_z}{n'/\lambda - \nu'_z}=\frac{n/\lambda - \sqrt{(n/\lambda)^2-|\vnu_t|^2}}{n'/\lambda - \sqrt{(n'/\lambda)^2-|\vnu_t|^2/\beta^2}}. %=\frac{n(1-cos\alpha)}{n'(1-cos\alpha')}=\frac{n\sin^2(\alpha/2)}{n'\sin^2(\alpha'/2)} %Herschel condition
- \end{align}
- Therefore an image that is longitudinally similar is not possible for
- large aperture.
+\end{align}
+Therefore an image that is longitudinally similar is not possible for
+large aperture.
 
 
 % Gross p. 341
 
-Isoplanatism ensures that the imaging conditions are invariant for
+Isoplanatism ensures that the imaging conditions are invariant for    \cma{isoplan}
 small regions of the field plane. With this condition, the coma rays
 are symmetric around the chief ray, the wavefront and point spread
 function are in first order approximately invariant for small field
 sizes. This allows to express image formation with linear systems
 theory.
 
-% Staeble-Lihotzky condition for isoplanatism is fulfilled but it is
-% the same as the Abbe Sine condition if spherical aberration is
-% corrected. Prof Gross IAT 10
 
-The isoplanatic condition and aplanatic correction can only be
-fulfilled exactly for the axial point. Therefore real systems fulfill
-them only approximately. In the case of an objective lens, this is
-only possible because the size of the field is relatively small:
-\begin{itemize}
-\item  field diameter $\sim\unit[0.3]{mm}$,
-\item diameter of lenses $\sim\unit[10]{mm}$,
-\item number of lens elements $\sim20$.
-\end{itemize}
-However, lenses for photolithography in microfabrication of
-semiconductors achieve much bigger field sizes at similar numerical
-apertures but at a much higher cost and only for one wavelength:
-\begin{itemize}
-\item field diameter $\sim\unit[30]{mm}$,
-\item diameter of lenses $\sim\unit[180]{mm}$,
-\item number of lens elements $>40$.
-\end{itemize}
 In the paraxial limit ray-tracing
 calculations for a thick lens or even several consecutive lens
 elements can be simplified by bending the ray only at one place --- at
 the principal plane.
 
-(FIXME shift the following into raytracing chapter)
-The intersection point of a ray and the first
-principal plane is shifted parallel to the optical axis into the other
-principal plane. There the ray continues under an angle as a
-construction on a thin lens.
+%(FIXME shift the following into raytracing chapter)
+%The intersection point of a ray and the first
+%principal plane is shifted parallel to the optical axis into the other
+%principal plane. There the ray continues under an angle as a
+%construction on a thin lens.
 
-For an aplanatic system with high numerical aperture it is still
+For an aplanatic system with high numerical aperture it is still      \cma{aplanatic surface}
 possible to represent the effect on the ray by bending once on a
 single surface. However, this surface is no longer a plane. Instead it
 is a sphere with radius $n f$ that touches the principal plane on a
@@ -482,13 +461,13 @@ the aplanatic surface and drawn as two circle segments with bold red
 strokes on the lenses in \figref{fig:widefield-microscope}~b).
 
 \subsection{Wave-optical theory for image formation}
-In the following I want to describe how the image on the camera
+In the following I want to describe how the image on the camera       \cma{wave optics}
 forms. For this we have to use wave theory because close to the image
 rays intersect, invalidating ray-optical predictions. As both
 theories are very much related, we can give a useful interpretation of
 the aplanatic surface for wave optics.
 
-The underlying Maxwell equations and the wave equation are linear and
+The underlying Maxwell equations and the wave equation are linear and   \cma{plane waves}
 we can represent propagating solutions (evanescent solutions are
 neglected) of the wave equation as a superposition of the elementary
 solution --- the monochromatic, plane waves described by wave vector
@@ -501,7 +480,8 @@ The accurate treatment of high-aperture optics would in fact require a
 vectorial calculation of the image for a fluorophore with a particular
 dipole orientation.  Subsequently these images should be averaged to
 account for random fluorophore orientations, but as I don't need
-quantitative expressions I limit myself to the scalar problem.
+quantitative expressions I limit myself to the simpler scalar problem
+which provides a qualitatively similar result.
 
 
 \begin{figure}[!hbt]
@@ -541,9 +521,7 @@ quantitative expressions I limit myself to the scalar problem.
 \nomenclature{$\vnu_t=(\nu_x,\nu_y)^T$}{Transversal two-dimensional
   spatial frequency}
 
-
-
-Assuming excited fluorophores in the sample give rise to a
+Assuming excited fluorophores in the sample give rise to a                 \cma{Ewald sphere}
 monochromatic electromagnetic field --- again, I simplify the problem
 by omitting the complication that fluorophores emit photons in a
 wavelength range --- then using the spatial frequency vector
@@ -558,7 +536,8 @@ the spatial frequency vector is the inverse of the wavelength, the
 support of this spectrum $u(\vnu)$ is limited to the surface of a
 sphere of radius $n/\lambda_0$:
 \begin{align}
-  \supp \widetilde u(\vnu) = \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
+  \supp \widetilde u(\vnu) &= \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\} \\
+  &=\left\{|\vnu_t| \in [0,n\sin(\alpha)/\lambda_0]: \left(\vnu_t,\sqrt{(n/\lambda_0)^2-|\vnu_t|^2}\right)\right\}.
 \end{align}
 This sphere is the transfer function of free space, and is also called
 Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
@@ -585,7 +564,7 @@ $W(\vnu_t)$ einfuegn. Durch multiplikation mit der Funktion $\widetilde h$
 
 diffraction limited W=1
 
-size of the calotte is determined by the aperture angle
+size of the calotte  or cap is determined by the aperture angle
 
 mccutchen: the lens like a cookie cutter is expected to chop out a chunk of spherical wave
 

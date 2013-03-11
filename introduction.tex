@@ -385,13 +385,25 @@ ratio of the focal lengths of the two lenses:
   \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
 \end{align}
 Note that I represented the objective lens as a single element.  This  \cma{necessary corrections}
-is an oversimplification. In a real objective lens --- for the drawing
-on the title page I used data for a high-aperture objective from the
-patent \cite{Matthae2003} %US6504653 (FIXME)
+is a simplification.
+
+In the paraxial limit ray-tracing calculations for a thick lens or
+even several consecutive lens elements can be simplified by bending
+the ray only at one place --- at the principal plane.
+
+For certain high-aperture lenses it is still possible to represent the
+effect on the ray by bending once on a single surface. However, this
+surface is no longer a plane. Instead it is a sphere with radius $n f$
+and called \emph{aplanatic sphere}. I depict this surface as two
+circle segments with bold red strokes on the lenses in
+\figref{fig:widefield-microscope}~b).
+
+In a real objective lens --- for the drawing on the title page I used
+data for a high-aperture objective from the patent
+\cite{Matthae2003} %US6504653 (FIXME)
 --- many spherical surfaces and various glasses must be combined to
 obtain a device that is apochromatic, aplanatic and isoplanatic
 \citep{Gross2005}.
-
 
 \nomenclature{marginal ray}{Axial ray through the periphery of the
   entrance aperture}
@@ -407,7 +419,7 @@ green and red images are superimposed in one plane.
 
 
 % p 261
-Aplanatism is often used for lateral imaging systems like microscopes.   \cm{planar}
+Aplanatism is often used for lateral imaging systems like microscopes.   \cma{planar}
 This condition describes a lens which is corrected for spherical
 aberrations, linear coma (sagittal and tangential) and that fulfills
 the Abbe Sine condition. Correction of the Sine condition ensures that
@@ -419,15 +431,15 @@ image is similar to the object.
 \begin{align}
   \beta = \frac{|\vnu_t|}{|\vnu'_t|}=\frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe Sine condition)}
 \end{align}
-The longitudinal magnification $\zeta=\Delta\nu_z/\Delta\nu'_z$, with    \cma{longitudinal magnification}
-$\Delta\nu_z=n/\lambda - \nu_z$ giving the distance from a point on
-the Ewald sphere to the point on the Ewald sphere that intersects the
-$\nu_z-$ axis, depends on the transverse frequency $|\vnu_t|$:
-\begin{align}
-   \zeta = \frac{n/\lambda - \nu_z}{n'/\lambda - \nu'_z}=\frac{n/\lambda - \sqrt{(n/\lambda)^2-|\vnu_t|^2}}{n'/\lambda - \sqrt{(n'/\lambda)^2-|\vnu_t|^2/\beta^2}}. %=\frac{n(1-cos\alpha)}{n'(1-cos\alpha')}=\frac{n\sin^2(\alpha/2)}{n'\sin^2(\alpha'/2)} %Herschel condition
-\end{align}
-Therefore an image that is longitudinally similar is not possible for
-large aperture.
+% The longitudinal magnification $\zeta=\Delta\nu_z/\Delta\nu'_z$, with    \cma{longitudinal magnification}
+% $\Delta\nu_z=n/\lambda - \nu_z$ giving the distance from a point on
+% the Ewald sphere to the point on the Ewald sphere that intersects the
+% $\nu_z-$ axis, depends on the transverse frequency $|\vnu_t|$:
+% \begin{align}
+%    \zeta = \frac{n/\lambda - \nu_z}{n'/\lambda - \nu'_z}=\frac{n/\lambda - \sqrt{(n/\lambda)^2-|\vnu_t|^2}}{n'/\lambda - \sqrt{(n'/\lambda)^2-|\vnu_t|^2/\beta^2}}. %=\frac{n(1-cos\alpha)}{n'(1-cos\alpha')}=\frac{n\sin^2(\alpha/2)}{n'\sin^2(\alpha'/2)} %Herschel condition
+% \end{align}
+% Therefore an image that is longitudinally similar is not possible for
+% large aperture.
 
 
 % Gross p. 341
@@ -440,25 +452,6 @@ sizes. This allows to express image formation with linear systems
 theory.
 
 
-In the paraxial limit ray-tracing
-calculations for a thick lens or even several consecutive lens
-elements can be simplified by bending the ray only at one place --- at
-the principal plane.
-
-%(FIXME shift the following into raytracing chapter)
-%The intersection point of a ray and the first
-%principal plane is shifted parallel to the optical axis into the other
-%principal plane. There the ray continues under an angle as a
-%construction on a thin lens.
-
-For an aplanatic system with high numerical aperture it is still      \cma{aplanatic surface}
-possible to represent the effect on the ray by bending once on a
-single surface. However, this surface is no longer a plane. Instead it
-is a sphere with radius $n f$ that touches the principal plane on a
-point in the axis, where $f$ is the focal length of the lens, $n$ is
-the refractive index of the immersion medium. This sphere is called
-the aplanatic surface and drawn as two circle segments with bold red
-strokes on the lenses in \figref{fig:widefield-microscope}~b).
 
 \subsection{Wave-optical theory for image formation}
 In the following I want to describe how the image on the camera       \cma{wave optics}
@@ -566,7 +559,8 @@ acceptance angle $\alpha$ of the objective\footnote{Note that this
   $\widetilde h(\vnu)$ encompassing the full range $[0,\pi]$ for
   $\alpha$ must contain two functions of each $P$ and $W$, in
   dependence on whether the spatial frequency vector $\vnu$ is
-  directed in or against the direction of the optical axis.  }:
+  directed in or against the direction of the optical axis. This is
+  necessary to express the transfer function of a 4Pi microscope.}:
 
 % \begin{align}
 %   \widetilde h(\vnu) =

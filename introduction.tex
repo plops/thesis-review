@@ -529,33 +529,96 @@ $\vnu=\k/(2\pi)$ we can expand the three-dimensional, stationary field
 amplitude distribution $u(\r)$ into its spatial frequency spectrum
 $\widetilde u(\vnu)$:
 \begin{align}
- u(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} \widetilde u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
+  u(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  \widetilde u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
 \end{align}
 Since we have assumed a monochromatic field and the length $|\vnu|$ of
 the spatial frequency vector is the inverse of the wavelength, the
 support of this spectrum $u(\vnu)$ is limited to the surface of a
 sphere of radius $n/\lambda_0$:
 \begin{align}
-  \supp \widetilde u(\vnu) &= \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\} \\
-  &=\left\{|\vnu_t| \in [0,n\sin(\alpha)/\lambda_0]: \left(\vnu_t,\sqrt{(n/\lambda_0)^2-|\vnu_t|^2}\right)\right\}.
+  \supp \widetilde u(\vnu) &= \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
 \end{align}
 This sphere is the transfer function of free space, and is also called
 Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
-  space} Rays that fall into the acceptance angle $\alpha$ of the
-objective fill out a segment of the Ewald sphere with the
-three-dimensional frequency spectrum $\widetilde u(\vnu)$ of the
-sample as shown in \figref{fig:widefield-microscope}~a). Scaling this
-segment with $f\lambda_0$ gives the aplanatic surface of the lens and
-just as with 
+  space} Scaling the Ewald sphere with $f\lambda_0$ gives the
+aplanatic surface of the lens. 
 
-\cite{McCutchen1969}
+According to \cite{McCutchen1964} the transfer function $\widetilde
+h(\vnu)$ of the lens is defined by complex values on the Ewald sphere. 
+aperture:
+\begin{align}
+  \widetilde h(\vnu)&=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
+    W(\vnu_t)\right)
+  \delta\left(|\vnu|-\frac{n}{\lambda_0}\right),
+\end{align}
+with the Dirac delta function $\delta$, transversal spatial frequency
+vector $\vnu_t=(\nu_x,\nu_y)^T$, and the real valued pupil function
+$P(\vnu_t)$ and wavefront error $W(\vnu_t)$. McCutchen calls
+$\widetilde h(\vnu)$ the generalized aperture.
 
-und aehnlich wie bei der parallelverschiebung von Strahlen zwischen
-den zwei Hauptebenen, kann hier durch paralleles Verschieben entlang
-der optischen Achse das dreidimensionale Frequenzspektrum $\widetilde
-u(\vnu)$ von der Ewaldkugel in die Pupillenebene projeziert werden, wo
-ich es als $\widetilde u(\vnu_t)$ und nur als Funktion der zwei
-transversalen Ortsfrequenzen $\vnu_t=(\nu_x,\nu_y)$ auffasse. 
+For this discussion I set $W(\vnu_t)=1$, i.e.\ there are no wavefront
+aberration and the lens is diffraction limited. Furthermore I use a
+uniform cylinder as pupil function $P(\vnu_t)$, in order to limit the
+size of the calotte or cap of the Ewald sphere that is defined by the
+acceptance angle $\alpha$ of the objective\footnote{Note that this
+  expression is only valid for $\alpha\in[0,\pi/2]$. An expression for
+  $\widetilde h(\vnu)$ encompassing the full range $[0,\pi]$ for
+  $\alpha$ must contain two functions of each $P$ and $W$, in
+  dependence on whether the spatial frequency vector $\vnu$ is
+  directed in or against the direction of the optical axis.  }:
+
+% \begin{align}
+%   \widetilde h(\vnu) =
+%   \begin{cases}
+%     P_-(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
+%     W_-(\vnu_t)\right)
+%   \delta\left(|\vnu|-\frac{n}{\lambda_0}\right) & \nu_z<0
+%  \\
+% P_+(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
+%     W_+(\vnu_t)\right)
+%   \delta\left(|\vnu|-\frac{n}{\lambda_0}\right) & \nu_z\ge 0
+%   \end{cases}
+% \end{align}
+
+\begin{align}
+  P(\vnu_t) &=
+  H\left(|\vnu_t|-\frac{n\sin(\alpha)}{\lambda_0}\right), \quad \textrm{with}\ 
+  H(x)=
+  \begin{cases} 
+    1 & x\ge 0 \\
+    0 & x<0 
+  \end{cases}
+\end{align}
+where $H(x)$ is the step function. In general $P(\vnu_t)$ can assume
+values between 0 and 1 in order to account for apodization due to
+Fresnel reflection or natural vignetting. I ignore these effects here.
+
+Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
+with the generalized aperture $\widetilde h(\vnu)$ gives the angular
+frequency spectrum of the amplitude in the image:
+\begin{align}
+  \widetilde u'(\vnu) = \widetilde u(\vnu)\cdot \widetilde h(\vnu).
+\end{align}
+According to the convolution theorem this multiplication of the
+spectra corresponds to a convolution of the field distribution $u(\r)$
+and an amplitude point spread function $h(\r)=\mathcal{F}(\widetilde
+h(\vnu))$ that describes the imaging of the objective lens:
+\begin{align}
+  u'(\r) = u(\r) \otimes h(\r) =
+  \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  u(\r')\ h(\r-\r')\ \textrm{d}^3\r'.
+\end{align}
+
+
+with the
+three-dimensional frequency spectrum  of the
+sample as shown in \figref{fig:widefield-microscope}~a).
+
+
+
+
+transversal spatial frequencies $\vnu_t=(\nu_x,\nu_y)$
 
 Die Pupille begrenzt die durchgelassenen Strahlbuendel und wirkt damit
 als low-pass filter auf das Ortsfrequenzspektrum. Falls das System
@@ -564,14 +627,8 @@ $W(\vnu_t)$ einfuegn. Durch multiplikation mit der Funktion $\widetilde h$
 
 diffraction limited W=1
 
-size of the calotte  or cap is determined by the aperture angle
 
-mccutchen: the lens like a cookie cutter is expected to chop out a chunk of spherical wave
 
-\begin{align}
-  \widetilde h(\vnu_t)=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda}
-    W(\vnu_t)\right)
-\end{align}
 
 Faltungstheorem
 \begin{align}

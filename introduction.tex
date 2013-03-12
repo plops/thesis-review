@@ -408,10 +408,11 @@ order to produce a high resolution image. This is a fact I will
 support shortly using the wave-optical model. Unfortunately the large
 ray angles in the objective prevent its simplified description using
 principal planes, but an analysis using the eikonal theory shows that
-an optical system that fulfills the Abbe Sine condition allows perfect
+an optical system that fulfills the Abbe sine condition allows perfect
 imaging even for widespread ray bundles.
 \begin{align}
-  \beta = \frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe Sine condition)}
+  \label{eq:sine-condition}
+  \beta = \frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe sine condition)}
 \end{align}
 This condition ensures that the focal length, a quantity which is
 usually defined only for paraxial rays, is equal for all angles.  This
@@ -421,7 +422,7 @@ lens with a non-linear distortion in the back focal plane will fail to
 produce an image that is similar to the object.
 
 It turns out that ray bending in a high-aperture lens system that
-fulfills the Abbe Sine condition can be simplified to a one bend at a
+fulfills the Abbe sine condition can be simplified to a one bend at a
 single surface, quite similar to the utilization of principal planes
 in paraxial optics. For a high-aperture system this surface is no
 longer a plane.  Instead it is a sphere with radius $n f$ and called
@@ -429,7 +430,7 @@ longer a plane.  Instead it is a sphere with radius $n f$ and called
 with bold red strokes on the lenses in
 \figref{fig:widefield-microscope}~b).
 
-In addition to the Abbe Sine condition microscope lenses are also
+In addition to the Abbe sine condition microscope lenses are also
 corrected for spherical aberration and linear coma \citep{Gross2005}.
 Then the coma rays are symmetric around the chief ray, the wavefront
 and point spread function are approximately invariant for small field
@@ -526,7 +527,15 @@ radius $n/\lambda_0$:
 This sphere is the transfer function of free space, and is also called
 Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
   space} Scaling the Ewald sphere with $f\lambda_0$ gives the
-aplanatic surface of the lens. 
+aplanatic surface of the lens. Note that the $x-$component of the
+marginal ray (in the $xz-$plane) corresponds to the spatial frequency
+component $\nu_x = n\sin\alpha$ in object space and
+$\nu_x'=n'\sin\alpha'$ with $n'=1$ in image space. According to the
+Abbe sine condition (\ref{eq:sine-condition}) the transversal spatial
+frequency components are related:
+\begin{align}
+  \beta &= \nu_x/\nu_x',\quad  \beta = \nu_y/\nu_y'.
+\end{align}
 
 According to \cite{McCutchen1964} the transfer function $\widetilde
 h(\vnu)$ of the lens is defined by complex values on the Ewald sphere. 
@@ -584,60 +593,70 @@ Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
 with the generalized aperture $\widetilde h(\vnu)$ gives the angular
 frequency spectrum of the amplitude in the image:
 \begin{align}
-  \widetilde u'(\vnu) = \widetilde u(\vnu)\cdot \widetilde h(\vnu).
+  \widetilde u'(\vnu') = \widetilde u'(\vnu/\beta) = \widetilde u(\vnu/\beta)\cdot \widetilde h(\vnu/\beta).
 \end{align}
+Note that I use the transversal magnification to scale the arguments
+of the functions, so that the result is given in image space spatial
+frequencies\footnote{Unfortunately my notation is slightly problematic
+  here. I assume that $z-$sampling occurs by stepping the sample
+  through the object space while the camera is fixed in the focal
+  plane of the tube lens. That way there is no difference between
+  axial coordinates $r_z$ and $r'_z$ in object and image.}.
+
 According to the convolution theorem this multiplication in frequency
 space corresponds to a convolution in the domain of spatial
 coordinates $\r$ of the field distribution $u(\r)$ and an amplitude
 point spread function $h(\r)=\mathcal{F}(\widetilde h(\vnu))$ that
 describes the imaging of the objective lens:
 \begin{align}
-  u'(M^{-1} \r) = u(\r) \otimes h(\r) =
+  u'(\r')=u'(\beta \r) = (u \otimes h)(\r) =
   \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
   u(\vvarrho)\ h(\r-\vvarrho)\ \textrm{d}^3\vvarrho
 \end{align}
-where $\vvarrho$ is a spatial coordinate, the scaling matrix
-$M=\diag(\beta,\beta,\zeta)$ to transform spatial coordinates from
-object space $\r$ into image space $\r'$. Note that the lateral
-magnification $\beta=\r'/\r$ is identical for all angles, but the
-axial magnification $\zeta$ depends on the ray angle.
+where $\vvarrho$ is a spatial coordinate and the lateral magnification
+$\beta=\r'/\r$ transforms between image space $\r'$ and object space
+$\r$. This result shows that the three-dimensional amplitude
+distribution of the image is linearly related to the amplitude
+distribution in the sample.
 
-\zeta = \frac{n/\lambda - \sqrt{(n/\lambda)^2-|\vnu_t|^2}}{n'/\lambda - \sqrt{(n'/\lambda)^2-|\vnu_t|^2/\beta^2}}. %=\frac{n(1-cos\alpha)}{n'(1-cos\alpha')}=\frac{n\sin^2(\alpha/2)}{n'\sin^2(\alpha'/2)} %Herschel condition
-
-
-transversal spatial frequencies $\vnu_t=(\nu_x,\nu_y)$
-
-Die Pupille begrenzt die durchgelassenen Strahlbuendel und wirkt damit
-als low-pass filter auf das Ortsfrequenzspektrum. Falls das System
-Aberrationen aufweist, koennte man diese hier mit der Wellenfront
-$W(\vnu_t)$ einfuegn. Durch multiplikation mit der Funktion $\widetilde h$ 
-
-diffraction limited W=1
-
-
-
-
-Faltungstheorem
+A focal plane detector can only measure the intensity, which has a
+non-linear relationship with the field:
 \begin{align}
-  \mathcal{F}[\widetilde h(\vnu_t)\widetilde u(\vnu_t)]
+  I'(\r')=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r').
 \end{align}
-
-
-angularly band-limited
-
-
+Note how in the last expression, the absolute value is expressed as
+the product of the amplitude $u'(\r')$ and its complex conjugate
+$u'^*(\r')$. We can apply the convolution theorem and express this
+product as a convolution in Fourier space, using spatial frequencies
+$\vnu'$ of the image: (FIXME welches paper erklaert das als erstes?)
 \begin{align}
-  A &= \frac{f}{d} = \frac{1}{2\tan\alpha}\\
-  h_r(\vnu_t,\nu_z)&=\frac{1}{2\pi\nu_t A}\sqrt{1-\left(\frac{2A\nu_z}{\nu_t}\right)^2}
+  \widetilde I'(\vnu') &=
+  \widetilde u'(\vnu') \otimes \widetilde u'^*(-\vnu') \\
+  &=\left(\widetilde u(\vnu') \cdot \widetilde h(\vnu')\right) 
+  \otimes
+  \left(\widetilde u(\vnu') \cdot \widetilde h(\vnu')\right)^*\\
+  &= \widetilde I(\vnu') \cdot 
+  \left(\widetilde h(\vnu')\otimes \widetilde h^*(-\vnu')\right)
 \end{align}
-
-The Ewald sphere allows an intuitive calculation of the transfer
-function of a microscope. The low-pass 
-
-The pupil works as a filte
+This expression allows a geometric interpretation.
 
 
 
+\begin{figure}[!hbt]
+  \centering
+  \svginput{1}{missing-cone}
+  \caption{Schematic depicting $\nu_x\nu_z-$cross sections of the support
+    of optical transfer function (see Appendix~\ref{sec:app_hilo}) for
+    microscope objectives with different collection angles. {\bf
+      left:} Objectives, that only collect light that is directed into
+    one half space, have the missing cone problem. There, low spatial
+    frequencies do not attenuate with defocus. {\bf right:} Theoretical
+    objective with larger collection angle and no missing cone.}
+  \label{fig:missing-cone}
+\end{figure}
+
+
+Dieser Ausdruck erlaubt eine geometrische Interpretation.
 
 no absorption or diffraction in sample
 random fluorophores
@@ -646,165 +665,6 @@ main results: image formation linear in intensity, three dimensionally shift-inv
 
 missing cone \cite{Streibl1984}
 
-
-- note that $\nu_z$ can be expressed in terms of the other components,
-  replacing in the exponential inside the integral acoordingly gives
-  with $= U(\nu_x,\nu_y,\nu_z)/cos(\alpha)$
-
-$$ u(x,y,z)=\int\int U_\textrm{2D}(\nu_x,\nu_y)|_{z=0}  exp(2\pi i (x \nu_x+y\nu_y+z\sqrt{(n/\lambda)^2-\nu_x^2-\nu_y^2})) d \nu_x d \nu_y$$
-
-- the aperture angle $\alpha$ defines the maximum transversal freq of
-   the spectrum of a 3d scalar point response function
-
-- the 3d freq spectrum is given by a segment of the ewald sphere
-  (which mccutchen calls generalized aperture)
-
-- based on this, one can estimate the transversal distribution of the
-  psf I(r,z=0) and the axial psf I(r=0,z)
-
-- first order born approximation:
-
-    - light is deflected only by a single interaction 
-
-    - diffraction is linear in frequency space: diffracted spectrum $U_s$ is
-      given by the convolution of the incident spectrum $U_i$ with object
-      spectrum f
-
-$$U_s(\nu_x,\nu_y,\nu_z) \sim f(\nu_x,\nu_y,\nu_z) \otimes U_i(\nu_x,\nu_y,\nu_z)$$
-
-    - if $U_i$ is a planar wave, then the scattered wave is just the
-      object spectrum shifted by the frequency of the incoming wave
-
-    -single moment transfer: only those frequencies $\vec\gamma$ are
-     transferred forr which the laue equation is satisfied
-
-$$\nu_s-\nu_i=\vec\gamma$$
-
-
-
-
-
-a double telecentric system
-
-
-
-the entrance pupil is the the image of the limiting aperture into 
-
-aperture stop limits the direction cosines passing from object space
-to image space through the optical system
-
-in a certain distance from the image plane a spherical wave is assumed,
-the so-called Gaussian reference sphere
-
-
-\begin{align}
-  \beta = \frac{\nu}{\nu'}=\frac{n\sin\alpha}{n'\sin\alpha'}
-\end{align} % FIXME steht da nun n oder nicht? IAT 3
-
-the aplanatic surface and ewald sphere are related just by a factor
-$f\lambda$
-
-for application of linear systems theory it is necessary that the
-imaging conditions are invariant at least over small regions of the
-field plane (isoplanatic condition)
-
-The field in the pupil is
-\begin{align}
-u(\nu)=F\left[U(x)\right]
-\end{align}
-
-
-The field behind the pupil aperture is
-\begin{align}
-u'(\nu)=h(\nu) u(\nu)
-\end{align}
-
-the field in the image plane is obtained by a repeated Fourier
-transform with a corresponding scaling of the pupil coordinates
-linear mapping between object and image space coordinates $x'=\beta x$
-
-scaling of the spectra $\nu'=$
-\begin{align}
-U'(x')=\mathcal{F}(h(\nu) u(\nu)) = H(x) \otimes U(x) = \int U(x'') H(x-x'') \textrm{d}x''
-\end{align}
-
-the camera can only detect the intensity
-\begin{align}
-I'(x')=|U'(x')|^2=U'(x')U'^*(x')
-\end{align}
-
-the marginal ray starts from an outer field point in the object and
-passes through the center of the entrance pupil, which here is in
-this double telecentric system is in axial infinity 
-
-in a system, natural vignetting (projection along chief ray in object
-and image) should be taken into account with energy apodization
-factors
-
-etendue
-geometrical flux
-
-
-
-The uncoloured beam in \figref{fig:widefield-microscope}~a) represents
-rays that start from the intersection $O$ of the optical axis and the
-front focal plane of the objective. The objective collects the rays
-and collimates them into a beam that is parallel to the optical
-axis. After traversing the tube length $f+f_\mathrm{TL}$, the rays are
-focused by the detection tube lens TL1 on the intersection $O'$ of its
-focal plane and the optical axis. 
-
-The blue beam corresponds to rays that start from an off-axis point
-$P$ in the front focal plane of the objective. Behind the objective
-the blue beam is a parallel beam. However, the beam is tilted relative
-to the optical axis. The tube lens TL1 focuses the blue beam into a
-spot at $P'$ on its focal plane.
-
-The objective fulfils the Abbe sine condition -- it is aplanatic. The
-microscope forms stigmatic\footnote{An imaging system collects some of
-  the rays, that leave an object and directs them towards the
-  image. If all rays that leave an object point converge in the
-  conjugate image point, then we call the image point stigmatic.}
-images of points from the front focal plane in the plane perpendicular
-to the optical axis, containing $O'$ and $P'$. The plane with the
-images is called intermediate image plane. It is magnified by the
-factor $M$:
-
-
-In our microscope we use an objective with magnification $M=63$. The
-focal length of the tube lens is for most Zeiss
-microscopes. Therefore the focal length of our objective is
-$f=\unit[2.61]{mm}$.
-
-Let's assume we have an opaque sample with just two small
-($\diameter<\unit[120]{nm}$) holes with $\unit[2]{\mu m}$ distance
-between them.  We put this object into the front focal plane of the
-objective and position a camera on $O'$. When illuminating the mirror
-from the side opposite to the objective, the camera will show two
-spots with $\unit[126]{\mu m}$ distance.
-
-\nomenclature{NA}{Numerical aperture $\textrm{NA}=n\sin\alpha$, with
-  refractive index $n$ of immersion medium and acceptance half-angle
-  $\alpha$ of the lens}
-
-Note that \figref{fig:widefield-microscope} depicts a \emph{thin-lens
-  model of a high numerical aperture objective} that fulfils Abbe's
-sine condition. A real objective contains in the order of ten coated
-lenses of different glass and crystalline materials. Their curvatures,
-positions and materials were all carefully chosen, taking into account
-manufacturing tolerances and wavelengths, so that the microscope
-behaves as the thin-lens model predicts. Diffraction at the periphery
-of the pupil in the back focal plane dictates the resolution, one can
-achieve inside of the sample.
-
-
-It is quite possible that heating to \unit[37]{${}^\circ$C} will ruin
-such a high-precision instrument. A related source of aberrations
-(departure of design performance) is the refractive index inside of
-the specimen. In Appendix~\ref{sec:ray-aberration} we describe a more
-complicated model that can predict the effect of embedding the sample
-in water (instead of immersion oil with the same refractive index as
-the glass).
 
 \subsection{Widefield epifluorescence microscope}
 Fluorescence photons are emitted in all directions, independent of the
@@ -873,18 +733,6 @@ half space (see \figref{fig:missing-cone}). Not all spatial
 frequencies within the transfer function attenuate with defocus
 \citep{Neil1997}.
 
-\begin{figure}[!hbt]
-  \centering
-  \svginput{1}{missing-cone}
-  \caption{Schematic depicting $k_xk_z-$cross sections of the support
-    of optical transfer function (see Appendix~\ref{sec:app_hilo}) for
-    microscope objectives with different collection angles. {\bf
-      left:} Objectives, that only collect light that is directed into
-    one half space, have the missing cone problem. There, low spatial
-    frequencies do not attenuate with defocus. {\bf right:} Theoretical
-    objective with larger collection angle and no missing cone.}
-  \label{fig:missing-cone}
-\end{figure}
 
 Second, even with ideal detectors there is photon shot noise in the
 image. In deconvolution algorithms the image of one slice is improved

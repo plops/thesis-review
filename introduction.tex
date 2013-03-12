@@ -459,15 +459,12 @@ dipole orientation.  Subsequently these images should be averaged to
 account for random fluorophore orientations, but as I don't need
 quantitative expressions I limit myself to the simpler scalar problem
 which provides a qualitatively similar result.
-
 % \begin{figure}[!hbt]
 %   \centering
 %   \svginput{1}{sine-condition}
 %   \caption{dasfklj}
 %   \label{fig:sine-condition}
 % \end{figure}
-
-
 
 \begin{figure}[!hbt]
   \centering
@@ -487,6 +484,13 @@ which provides a qualitatively similar result.
     camera. }
   \label{fig:widefield-microscope}
 \end{figure}
+Assuming that the excited fluorophores in the sample give rise to a \cma{Ewald sphere}
+monochromatic electromagnetic field --- I simplify the problem by
+omitting the complication that fluorophores emit photons in a
+wavelength range --- then using the spatial frequency vector
+$\vnu=\k/(2\pi)$ we can expand the three-dimensional, stationary field
+amplitude distribution $u(\r)$ into its spatial frequency spectrum
+$\widetilde u(\vnu)$:
 
 \nomenclature{$u(\r)$}{Scalar field as a function of spatial
   coordinates} 
@@ -506,21 +510,16 @@ which provides a qualitatively similar result.
 \nomenclature{$\vnu_t=(\nu_x,\nu_y)^T$}{Transversal two-dimensional
   spatial frequency}
 
-Assuming excited fluorophores in the sample give rise to a                 \cma{Ewald sphere}
-monochromatic electromagnetic field --- again, I simplify the problem
-by omitting the complication that fluorophores emit photons in a
-wavelength range --- then using the spatial frequency vector
-$\vnu=\k/(2\pi)$ we can expand the three-dimensional, stationary field
-amplitude distribution $u(\r)$ into its spatial frequency spectrum
-$\widetilde u(\vnu)$:
+
 \begin{align}
   u(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
   \widetilde u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
 \end{align}
 Since we have assumed a monochromatic field and the length $|\vnu|$ of
-the spatial frequency vector is the inverse of the wavelength, the
-support of this spectrum $u(\vnu)$ is limited to the surface of a
-sphere of radius $n/\lambda_0$:
+the spatial frequency vector is the inverse $n/\lambda_0$ of the
+wavelength (in the material of refractive index $n$), the support of
+this spectrum $u(\vnu)$ is limited to the surface of a sphere of
+radius $n/\lambda_0$:
 \begin{align}
   \supp \widetilde u(\vnu) &= \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
 \end{align}
@@ -578,7 +577,8 @@ acceptance angle $\alpha$ of the objective\footnote{Note that this
 \end{align}
 where $H(x)$ is the step function. In general $P(\vnu_t)$ can assume
 values between 0 and 1 in order to account for apodization due to
-Fresnel reflection or natural vignetting. I ignore these effects here.
+natural vignetting or angle-dependent Fresnel reflection losses on the
+lenses. I ignore such effects in this discussion.
 
 Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
 with the generalized aperture $\widetilde h(\vnu)$ gives the angular
@@ -586,22 +586,23 @@ frequency spectrum of the amplitude in the image:
 \begin{align}
   \widetilde u'(\vnu) = \widetilde u(\vnu)\cdot \widetilde h(\vnu).
 \end{align}
-According to the convolution theorem this multiplication of the
-spectra corresponds to a convolution of the field distribution $u(\r)$
-and an amplitude point spread function $h(\r)=\mathcal{F}(\widetilde
-h(\vnu))$ that describes the imaging of the objective lens:
+According to the convolution theorem this multiplication in frequency
+space corresponds to a convolution in the domain of spatial
+coordinates $\r$ of the field distribution $u(\r)$ and an amplitude
+point spread function $h(\r)=\mathcal{F}(\widetilde h(\vnu))$ that
+describes the imaging of the objective lens:
 \begin{align}
-  u'(\r) = u(\r) \otimes h(\r) =
+  u'(M^{-1} \r) = u(\r) \otimes h(\r) =
   \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-  u(\r')\ h(\r-\r')\ \textrm{d}^3\r'.
+  u(\vvarrho)\ h(\r-\vvarrho)\ \textrm{d}^3\vvarrho
 \end{align}
+where $\vvarrho$ is a spatial coordinate, the scaling matrix
+$M=\diag(\beta,\beta,\zeta)$ to transform spatial coordinates from
+object space $\r$ into image space $\r'$. Note that the lateral
+magnification $\beta=\r'/\r$ is identical for all angles, but the
+axial magnification $\zeta$ depends on the ray angle.
 
-
-with the
-three-dimensional frequency spectrum  of the
-sample as shown in \figref{fig:widefield-microscope}~a).
-
-
+\zeta = \frac{n/\lambda - \sqrt{(n/\lambda)^2-|\vnu_t|^2}}{n'/\lambda - \sqrt{(n'/\lambda)^2-|\vnu_t|^2/\beta^2}}. %=\frac{n(1-cos\alpha)}{n'(1-cos\alpha')}=\frac{n\sin^2(\alpha/2)}{n'\sin^2(\alpha'/2)} %Herschel condition
 
 
 transversal spatial frequencies $\vnu_t=(\nu_x,\nu_y)$

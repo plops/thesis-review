@@ -316,7 +316,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="2.0000001"
      inkscape:cx="250.54881"
-     inkscape:cy="127.06283"
+     inkscape:cy="147.06283"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -463,14 +463,14 @@
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="234.22974"
+       x="252.22974"
        y="232.66933"
        id="text3773"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3775"
-         x="234.22974"
-         y="232.66933">pupil $\widetilde h(\vnu_t)$</tspan></text>
+         x="252.22974"
+         y="232.66933">pupil</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -495,14 +495,14 @@
            y="247.73001" /></flowRegion><flowPara
          id="flowPara9105" /></flowRoot>    <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 79.675883,221.66324 -9.168077,1.38128"
+       d="m 96.675882,221.66324 -26.168076,1.38128"
        id="path9499"
        inkscape:connector-curvature="0"
        transform="translate(153.44051,7.3248526)"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 149.84924,221.60258 175,223.24902"
+       d="M 134.84924,220.10258 175,223.24902"
        id="path9501"
        inkscape:connector-curvature="0"
        transform="translate(153.44051,7.3248526)"
@@ -698,38 +698,6 @@
          id="tspan4005-3"
          x="271.18338"
          y="48.537331">$u'(\r')$</tspan></text>
-    <g
-       id="g8642"
-       transform="translate(-10.253048,-79.903064)">
-      <text
-         sodipodi:linespacing="125%"
-         id="text3773-0"
-         y="227.82397"
-         x="48.080074"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Gentium;-inkscape-font-specification:Gentium"
-         xml:space="preserve"><tspan
-           id="tspan4286"
-           y="227.82397"
-           x="48.080074"
-           sodipodi:role="line">field in front of</tspan></text>
-      <text
-         sodipodi:linespacing="125%"
-         id="text3773-0-0"
-         y="244.30026"
-         x="67.617538"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Gentium;-inkscape-font-specification:Gentium"
-         xml:space="preserve"><tspan
-           id="tspan4286-0"
-           y="244.30026"
-           x="67.617538"
-           sodipodi:role="line">pupil $\widetilde u(\vnu_t)$</tspan></text>
-    </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 180.80077,233.40913 c -46.59508,28.22102 -67.74029,-27.84685 -71.4368,-62.70027"
-       id="path9505-5"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -967,17 +935,6 @@
          x="22.051031"
          y="285.75174"
          id="tspan4286-0-2-2-6-2-4">$\nu_x$</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="53.414993"
-       y="189.32101"
-       id="text3773-0-0-3-2-7-1-1"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         x="53.414993"
-         y="189.32101"
-         id="tspan4286-0-2-2-6-2-7">$\nu_z$</tspan></text>
     <path
        style="fill:#ffd5d5;stroke:none"
        d="m 79.806576,222.60755 c 10.944817,8.59304 3.343668,6.76156 0.899809,4.00184 -4.114415,-4.64618 -7.986542,-6.03944 -11.083316,-7.33027 -4.398705,-1.83351 -1.691136,-3.52883 6.294417,0.67677 1.122991,0.59142 2.782277,1.78268 3.88909,2.65166 z"

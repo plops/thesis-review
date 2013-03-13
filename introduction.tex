@@ -577,17 +577,17 @@ acceptance angle $\alpha$ of the objective\footnote{Note that this
 
 \begin{align}
   P(\vnu_t) &=
-  H\left(|\vnu_t|-\frac{n\sin(\alpha)}{\lambda_0}\right), \quad \textrm{with}\ 
-  H(x)=
+  \step\left(|\vnu_t|-\frac{n\sin(\alpha)}{\lambda_0}\right), \quad \textrm{with}\ 
+  \step(x)=
   \begin{cases} 
     1 & x\ge 0 \\
     0 & x<0 
-  \end{cases}
+  \end{cases}.
 \end{align}
-where $H(x)$ is the step function. In general $P(\vnu_t)$ can assume
-values between 0 and 1 in order to account for apodization due to
-natural vignetting or angle-dependent Fresnel reflection losses on the
-lenses. I ignore such effects in this discussion.
+In general $P(\vnu_t)$ can assume values between 0 and 1 in order to
+account for apodization due to natural vignetting or angle-dependent
+Fresnel reflection losses on the lenses. I ignore such effects in this
+discussion.
 
 Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
 with the generalized aperture $\widetilde h(\vnu)$ gives the angular
@@ -619,25 +619,28 @@ $\r$. This result shows that the three-dimensional amplitude
 distribution of the image is linearly related to the amplitude
 distribution in the sample.
 
-A focal plane detector can only measure the intensity, which has a
-non-linear relationship with the field:
+Ein Detektor kann nur die Intensitaet messen, die nicht linear von der
+Amplitude abhaengt. Interessanterweise kann die Bildentstehung dennoch
+vollstaendig auf eine lineare Operation zurueckgefuehrt werden:
+
+A focal plane detector can only measure the intensity $I'$ which
+depends non-linear on the amplitude of the field $u'$. Interestingly,
+the image formation can still be ascribed to a linear operation:
 \begin{align}
-  I'(\r')=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r').
+  I'(\r')&=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r')=(u \otimes h)(\r')\cdot \left(u\otimes h\right)^{*}(\r')\\
+  &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  u(\vvarrho)\ h(\r'-\vvarrho) 
+  u^*(\vvarrho)\ h^*(\r'-\vvarrho) 
+  \ \textrm{d}^3\vvarrho \label{eq:combine-conv}  \\
+  &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  I(\vvarrho)\ |h(\r'-\vvarrho)|^2
+  \ \textrm{d}^3\vvarrho
 \end{align}
-Note how in the last expression, the absolute value is expressed as
-the product of the amplitude $u'(\r')$ and its complex conjugate
-$u'^*(\r')$. We can apply the convolution theorem and express this
-product as a convolution in Fourier space, using spatial frequencies
-$\vnu'$ of the image: (FIXME welches paper erklaert das als erstes?)
-\begin{align}
-  \widetilde I'(\vnu') &=
-  \widetilde u'(\vnu') \otimes \widetilde u'^*(-\vnu') \\
-  &=\left(\widetilde u(\vnu') \cdot \widetilde h(\vnu')\right) 
-  \otimes
-  \left(\widetilde u(\vnu') \cdot \widetilde h(\vnu')\right)^*\\
-  &= \widetilde I(\vnu') \cdot 
-  \left(\widetilde h(\vnu')\otimes \widetilde h^*(-\vnu')\right)
-\end{align}
+The square of the absolute value is expressed as the product of the
+amplitude $u'(\r')$ and its complex conjugate $u'^*(\r')$. In equation
+(\ref{eq:combine-conv}) both factors can be pulled under one
+convolution integral according to the Fubini's theorem because all
+functions involved belong to $\matchcal{L}_1(\mathbb{R}^3,\r)$.
 This expression allows a geometric interpretation.
 
 

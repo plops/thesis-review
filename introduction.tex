@@ -641,15 +641,33 @@ amplitude $u'(\r')$ and its complex conjugate $u'^*(\r')$. In equation
 (\ref{eq:combine-conv}) both factors can be pulled under one
 convolution integral according to the Fubini's theorem because all
 functions involved belong to $\matchcal{L}_1(\mathbb{R}^3,\r)$.
-This expression allows a geometric interpretation.
 
+Das beschreibt, wie gut Frequenzen ubertragen werden.
 
+It is useful to discuss the Fourier transform of the intensity point
+spread function $|h|^2$. This is the three-dimensional optical
+transfer function of the microscope and describes how well different
+spatial frequencies are transmitted:
+\begin{align}
+  \widetilde{|h|^2}(\vnu') = \mathcal{F}(h(\r')\ h^*(\r')) =
+  \widetilde h(\vnu') \otimes \widetilde h^*(-\vnu'). \label{eq:otf}
+\end{align}
+This is just a single application of the convolution theorem. Note
+that the complex conjugation of the second factor $h^*(\r')$ results
+in an inversion of the argument of $\widetilde h^*(-\vnu')$.
 
+This expression allows a geometric interpretation of the support of
+the optical transfer function $\widetilde{|h|^2}(\vnu')$. Equation
+(\ref{eq:otf}) describes a convolution of two spherical caps whose
+open sides are facing each other. The entire covered volume somewhat
+resembles a torus with vanishing internal
+diameter. \figref{fig:missing-cone} depicts a
+$\nu_x\nu_z-$cross-section for two different aperture angles $\alpha$.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{missing-cone}
   \caption{Schematic depicting $\nu_x\nu_z-$cross sections of the support
-    of optical transfer function (see Appendix~\ref{sec:app_hilo}) for
+    of optical transfer function $\widetilde{|h|^2}$ for
     microscope objectives with different collection angles. {\bf
       left:} Objectives, that only collect light that is directed into
     one half space, have the missing cone problem. There, low spatial
@@ -658,15 +676,23 @@ This expression allows a geometric interpretation.
   \label{fig:missing-cone}
 \end{figure}
 
+It is noteworthy that the axial region above and below the origin is
+always empty for $\alpha<\pi/2$, i.e.\ for all practical objectives. 
 
-Dieser Ausdruck erlaubt eine geometrische Interpretation.
+This means that in a conventional wide-field microscope it is
+impossible to focus a (defect-free) fluorescent plane sample because
+low spatial frequencies do not attenuate with defocus. This effect is
+also called ``missing cone problem'' \citep{Streibl1984}.
+
+
+Dieser Effekt wird auch Missing Cone problem genannt.
 
 no absorption or diffraction in sample
 random fluorophores
 recording successive slices, telecentricity, real microscope 
 main results: image formation linear in intensity, three dimensionally shift-invariant
 
-missing cone \cite{Streibl1984}
+missing cone 
 
 
 \subsection{Widefield epifluorescence microscope}

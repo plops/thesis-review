@@ -439,11 +439,12 @@ invariant for small regions of the field plane and allows to express
 image formation with linear systems theory.
 
 \subsection{Wave-optical theory for image formation}
-In the following I want to describe how the image on the camera       \cma{wave optics}
-forms. For this we have to use wave theory because close to the image
-rays intersect, invalidating ray-optical predictions. As both
-theories are very much related, we can give a useful interpretation of
-the aplanatic surface for wave optics.
+In the following I want to describe how the image on the camera
+\cma{wave optics} forms. For this we have to use wave theory because
+close to the image rays intersect, invalidating ray-optical
+predictions. As both, wave-optical and ray-optical theory, are very
+much related, we can give a useful interpretation of the aplanatic
+surface for wave optics.
 
 The underlying Maxwell equations and the wave equation are linear and   \cma{plane waves}
 we can represent propagating solutions (evanescent solutions are
@@ -452,14 +453,17 @@ solution --- the monochromatic, plane waves described by wave vector
 $\k$:
 \begin{align}
   u(\r,t)=u\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\
-  \k=(k_x,k_y,k_z),\ |\k|=2\pi n/\lambda_0,
+  \k=(k_x,k_y,k_z),\ |\k|=2\pi \underbrace{n/\lambda_0}_{1/\lambda},
 \end{align}
+with vacuum wavelength $\lambda_0$, refractive index $n$ and
+wavelength $\lambda$ in the immersion medium.
+
 The accurate treatment of high-aperture optics would in fact require a
 vectorial calculation of the image for a fluorophore with a particular
 dipole orientation.  Subsequently these images should be averaged to
 account for random fluorophore orientations, but as I don't need
 quantitative expressions I limit myself to the simpler scalar problem
-which provides a qualitatively similar result.
+which provides qualitatively similar results.
 % \begin{figure}[!hbt]
 %   \centering
 %   \svginput{1}{sine-condition}
@@ -485,13 +489,13 @@ which provides a qualitatively similar result.
     camera. }
   \label{fig:widefield-microscope}
 \end{figure}
-Assuming that the excited fluorophores in the sample give rise to a \cma{Ewald sphere}
-monochromatic electromagnetic field --- I simplify the problem by
-omitting the complication that fluorophores emit photons in a
-wavelength range --- then using the spatial frequency vector
-$\vnu=\k/(2\pi)$ we can expand the three-dimensional, stationary field
-amplitude distribution $u(\r)$ into its spatial frequency spectrum
-$\widetilde u(\vnu)$:
+Assuming that the excited fluorophores in the sample give rise to a
+\cma{Ewald sphere} monochromatic electromagnetic field --- I simplify
+the problem by omitting the complication that fluorophores emit
+photons in a wavelength range --- then using the spatial frequency
+vector $\vnu=\k/(2\pi)$ we can expand the three-dimensional,
+stationary field amplitude distribution $u(\r)$ into its spatial
+frequency spectrum $\widetilde u(\vnu)$:
 
 \nomenclature{$u(\r)$}{Scalar field as a function of spatial
   coordinates} 
@@ -512,10 +516,32 @@ $\widetilde u(\vnu)$:
   spatial frequency}
 
 
+\begin{table}[!hbt]
+  \centering
+  \begin{tabular}{ l l | l }
+    $u(\r):$&$ \mathbb{R}^3\to\mathbb{C}$ & field distribution in sample space \\
+    $u'(\r'):$&$\mathbb{R}^3\to\mathbb{C}$ & field distribution in image space \\
+    $I'(\r'):$&$\mathbb{R}^3\to\mathbb{R}$ & intensity distribution in image space\\
+    $\widetilde u(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & spatial frequency spectrum of field in sample space \\
+    $h(\r):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude point spread function \\
+    $\widetilde h(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude transfer function, generalized aperture \\
+    $|h(\r)|^2:$&$\mathbb{R}^3\to\mathbb{R}$ & intensity point spread function \\
+    $\widetilde{|h(\vnu)|^2}:$&$\mathbb{R}^3\to\mathbb{C}$ & optical transfer function \\
+  \end{tabular}
+  \caption{Overview of the functions that are used in this section.}
+  \label{tab:widefield-functions}
+\end{table}
+
+
+
 \begin{align}
-  u(\r)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  u(\r)=\mathcal{F}(u(\vnu)):=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
   \widetilde u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
 \end{align}
+Where $\mathcal{F}$ denotes the Fourier transform operation. I will
+use several functions in this section. See
+Table~\ref{tab:widefield-functions} for a listing of their names.
+
 Since we have assumed a monochromatic field and the length $|\vnu|$ of
 the spatial frequency vector is the inverse $n/\lambda_0$ of the
 wavelength (in the material of refractive index $n$), the support of
@@ -530,16 +556,14 @@ Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
 aplanatic surface of the lens. Note that the $x-$component of the
 marginal ray (in the $xz-$plane) corresponds to the spatial frequency
 component $\nu_x = n\sin\alpha$ in object space and
-$\nu_x'=n'\sin\alpha'$ with $n'=1$ in image space. According to the
-Abbe sine condition (\ref{eq:sine-condition}) the transversal spatial
-frequency components are related:
+$\nu_x'=n'\sin\alpha'$ with $n'=1$ in image space. The transversal
+spatial frequency components are related due to the Abbe sine
+condition (\ref{eq:sine-condition}):
 \begin{align}
   \beta &= \nu_x/\nu_x',\quad  \beta = \nu_y/\nu_y'.
 \end{align}
-
-According to \cite{McCutchen1964} the transfer function $\widetilde
-h(\vnu)$ of the lens is defined by complex values on the Ewald sphere. 
-aperture:
+The transfer function $\widetilde h(\vnu)$ of the lens is defined by
+complex values on the Ewald sphere \citep{McCutchen1964}:
 \begin{align}
   \widetilde h(\vnu)&=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
     W(\vnu_t)\right)
@@ -547,14 +571,15 @@ aperture:
 \end{align}
 with the Dirac delta function $\delta$, transversal spatial frequency
 vector $\vnu_t=(\nu_x,\nu_y)^T$, and the real valued pupil function
-$P(\vnu_t)$ and wavefront error $W(\vnu_t)$. McCutchen calls
-$\widetilde h(\vnu)$ the generalized aperture.
+$P(\vnu_t)$ and wavefront error $W(\vnu_t)$. McCutchen calls the
+three-dimensional function $\widetilde h(\vnu)$ the generalized
+aperture.
 
 For this discussion I set $W(\vnu_t)=1$, i.e.\ there are no wavefront
-aberration and the lens is diffraction limited. Furthermore I use a
-uniform cylinder as pupil function $P(\vnu_t)$, in order to limit the
-size of the calotte or cap of the Ewald sphere that is defined by the
-acceptance angle $\alpha$ of the objective\footnote{Note that this
+aberration and the lens is diffraction limited. Furthermore, I use a
+uniform cylinder as pupil function $P(\vnu_t)$ in order to limit the
+size of the calotte (or cap) of the Ewald sphere that is defined by
+the acceptance angle $\alpha$ of the objective\footnote{Note that this
   expression is only valid for $\alpha\in[0,\pi/2]$. An expression for
   $\widetilde h(\vnu)$ encompassing the full range $[0,\pi]$ for
   $\alpha$ must contain two functions of each $P$ and $W$, in
@@ -595,13 +620,13 @@ frequency spectrum of the amplitude in the image:
 \begin{align}
   \widetilde u'(\vnu') = \widetilde u'(\vnu/\beta) = \widetilde u(\vnu/\beta)\cdot \widetilde h(\vnu/\beta).
 \end{align}
-Note that I use the transversal magnification to scale the arguments
-of the functions, so that the result is given in image space spatial
-frequencies\footnote{Unfortunately my notation is slightly problematic
-  here. I assume that $z-$sampling occurs by stepping the sample
-  through the object space while the camera is fixed in the focal
-  plane of the tube lens. That way there is no difference between
-  axial coordinates $r_z$ and $r'_z$ in object and image.}.
+Note that I use the transversal magnification $\beta$ to scale the
+arguments of the functions, so that the result is given in image space
+spatial frequencies\footnote{Unfortunately my notation is slightly
+  problematic here. I assume that $z-$sampling occurs by stepping the
+  sample through the object space while the camera is fixed in the
+  focal plane of the tube lens. Therefore the axial coordinates $r_z$
+  and $r'_z$ in object and image are identical.}.
 
 According to the convolution theorem this multiplication in frequency
 space corresponds to a convolution in the domain of spatial
@@ -619,13 +644,10 @@ $\r$. This result shows that the three-dimensional amplitude
 distribution of the image is linearly related to the amplitude
 distribution in the sample.
 
-Ein Detektor kann nur die Intensitaet messen, die nicht linear von der
-Amplitude abhaengt. Interessanterweise kann die Bildentstehung dennoch
-vollstaendig auf eine lineare Operation zurueckgefuehrt werden:
-
 A focal plane detector can only measure the intensity $I'$ which
-depends non-linear on the amplitude of the field $u'$. Interestingly,
-the image formation can still be ascribed to a linear operation:
+depends non-linearly on the amplitude of the field
+$u'$. Interestingly, the image formation can still be ascribed to a
+linear operation:
 \begin{align}
   I'(\r')&=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r')=(u \otimes h)(\r')\cdot \left(u\otimes h\right)^{*}(\r')\\
   &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
@@ -642,7 +664,6 @@ amplitude $u'(\r')$ and its complex conjugate $u'^*(\r')$. In equation
 convolution integral according to the Fubini's theorem because all
 functions involved belong to $\matchcal{L}_1(\mathbb{R}^3,\r)$.
 
-Das beschreibt, wie gut Frequenzen ubertragen werden.
 
 It is useful to discuss the Fourier transform of the intensity point
 spread function $|h|^2$. This is the three-dimensional optical
@@ -676,24 +697,71 @@ $\nu_x\nu_z-$cross-section for two different aperture angles $\alpha$.
   \label{fig:missing-cone}
 \end{figure}
 
-It is noteworthy that the axial region above and below the origin is
-always empty for $\alpha<\pi/2$, i.e.\ for all practical objectives. 
+It is noteworthy that a cone shaped region around the axis above and
+below the origin is always empty for aperture angles $\alpha<\pi/2$
+that collect only light from one half space, i.e.\ for all practical
+objectives.
 
 This means that in a conventional wide-field microscope it is
-impossible to focus a (defect-free) fluorescent plane sample because
-low spatial frequencies do not attenuate with defocus. This effect is
-also called ``missing cone problem'' \citep{Streibl1984}.
+impossible to bring into focus a (defect-free) fluorescent plane
+because low spatial frequencies do not attenuate with defocus. This
+effect is also called ``missing cone problem'' \citep{Streibl1984}.
+
+The lateral $\Delta\nu_x$ and axial $\Delta\nu_z$ extent of the
+optical transfer function can be expressed in terms of wavelength
+$\lambda_0$, immersion index $n$ and aperture angle $\alpha$:
+\begin{align}
+  \Delta\nu_x =
+  \begin{cases}
+4 n \sin(\alpha)/\lambda_0 & 0\le \alpha\le \pi/2\\
+4 n/\lambda_0 & \pi/2<\alpha<\pi
+  \end{cases}
+, \quad
+  \Delta\nu_z = 2\frac{n}{\lambda_0}(1-\cos\alpha),
+\end{align}
+(FIXME verify with rainers book chapter) allow to give lower bounds for
+the resolution that can be obtained using a well corrected objective:
+\begin{align} 
+  \Delta d_x = \frac{2}{\Delta\nu_x} = \frac{\lambda_0}{2 n \sin\alpha}, \quad
+  \Delta d_z = \frac{2}{\Delta\nu_z} = \frac{\lambda_0}{n(1-\cos\alpha)}.
+\end{align}
 
 
-Dieser Effekt wird auch Missing Cone problem genannt.
+\subsubsection*{Conclusion}
+\label{sec:widefield-conclusion}
 
-no absorption or diffraction in sample
-random fluorophores
-recording successive slices, telecentricity, real microscope 
-main results: image formation linear in intensity, three dimensionally shift-invariant
+In diesem Abschnitt habe ich ein theoretisches Modell eingefuehrt,
+dass es erlaubt die Bildformung im Weitfeld-Mikroskop zu beschreiben.
+Fuer gut korrigierte diffraktionslimitierte Objektive ist diese
+Operation linear in der Intensitaet und 3D translationsinvariant.
 
-missing cone 
+Verglichen mit anderen Methoden der Mikroskopie, z.B. differentiellem
+Interferenzkontrast, ist es daher sehr einfach, aus einer gegebenen 3D
+Fluorophorverteilung auf die Bilder zu schliessen, die ein
+Fluoreszensmikroskop davon liefert. Insbesondere kann mit dem Traeger
+der optischen Transferfunktion Vorraussagen ueber die bestmoegliche
+transversale und axiale Aufloesung machen.
 
+Bei dieser Analyse wird man auf eine wichtige Limitierung des
+Weitfeld-Mikroskops aufmerksam: Der auf nur einen Halbraum
+eingeschraenkte Aperturwinkel fuehrt zum Missing Cone Problem ---
+einem leeren Bereich in der optischen Transferfunktion, wo keine
+Informationen uebertragen werden. Im Bild macht sich das dadurch
+bemerkbar, dass Fluoreszenslicht von out-of-fokus Molekuelen nicht
+durch destruktive Interferenz verschwindet sondern zu einem
+verschwommenen Hintergrund beitraegt.
+
+Im 4Pi-Mikroskop wird das Licht zweier entgegengesetzer Objektive zur
+Interferenz gebracht. Die optische Transferfunktion hat deshalb keinen
+Missing Cone und Bilder auf der Kamera enthalten nur Information aus
+der Fokusebene. Leider stellt dies unheimlich grosse Anforderungen an
+die Qualitaet der Linsen und funktioniert auch nur fuer wenige
+Mikrometer duenne, transparente Spezimen.
+
+Ein anderer Ansatz, dass missing cone problem zu beheben, ist
+strukturierte beleuchtung.  dann werden jedoch einige bilder benoetigt
+oder gescannt (confocal) ausser bei picosim wo geschickte verwendung
+von polarization
 
 \subsection{Widefield epifluorescence microscope}
 Fluorescence photons are emitted in all directions, independent of the

@@ -260,6 +260,30 @@ ich wollte schnelles prototyping
 
 \chapter{Methods of controlling illumination patterns}
 \label{sec:illum-patterns}
+\subsection{2-photon laser scanning fluorescence microscopy}
+\label{sec:2-photon}
+If the laser intensity in the focal spot of a confocal microscope is
+sufficiently high, then two infrared photons can be absorbed within
+\unit[$\sim 5$]{fs} and excite the same electronic state.
+
+In this regime, the fluorescence emission increases quadratically with
+laser intensity. This non-linearity confines the excitation volume to
+the vincinity of the focal plane \citep{Denk1990}. Fluorophores
+outside of this region are not excited. Therefore this method produces
+sectioned images by default and there is no need for a detection
+pinhole.
+
+As an additional benefit infrared light is scattered less than visible
+light of half the wavelength. This increases penetration depth and
+image quality. Photodamage outside of the focal volume is unlikely and
+phototoxicity is much lower, compared to the single-photon confocal
+microscope, when $z-$stacks are acquired.
+
+However, the phototoxicity within the focal volume is higher and
+techniques like ultramicroskopy (section
+\ref{sec:light-sheet-microscopy}) with single-photon excitation are
+preferable, when low overall phototoxicity is a requirement.
+
 \section{programmable array}
 \cite{Caarls2011}
 

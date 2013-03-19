@@ -25,6 +25,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage[onehalfspacing]{setspace} 
+%\usepackage[draft]{graphicx}
 \usepackage{graphicx}
 \usepackage{longtable}
 \usepackage{float}
@@ -36,10 +37,17 @@
 \usepackage{pdfcomment}
 
 % choose font here: http://www.tug.dk/FontCatalogue/mathfonts.html
+\usepackage[T1]{fontenc}
 %\usepackage[math]{iwona}
 \usepackage[math]{kurier}
 %\usepackage{cmbright}
-%\usepackage[T1]{fontenc}
+\usepackage[scaled]{beramono}
+
+
+\usepackage{microtype}
+\newcommand\Small{\fontsize{9}{9.2}\selectfont}
+\newcommand*\LSTfont{\Small\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
+
 
 
 
@@ -441,8 +449,8 @@ preferable, when low overall phototoxicity is a requirement.
     einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
     Inneren lebender Organe (z.B. Gehirn) verbessern.
 
-
-%\include{app_term}
+\appendix
+\include{appendix}
 \bibliographystyle{abbrvnat}
 \bibliography{literature}
 %\bibliography{../All}

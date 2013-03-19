@@ -1,0 +1,196 @@
+\chapter{EM-CCD camera calibration}
+\section{Andor Basic code listing for automatic image acquisition}
+\label{sec:basic-acquisition}
+\definecolor{light-gray}{gray}{0.95}
+
+\lstdefinestyle{myframe}{
+  basicstyle=\LSTfont,
+  % basicstyle=\footnotesize\ttfamily,
+  rulesepcolor=\color{gray} ,
+  rulecolor = \color{black},
+  frame = single,
+  % framerule = 0pt,
+  backgroundcolor =\color{light-gray}, 
+  fontadjust=true,
+  breaklines = true,
+  showstringspaces=false,
+}
+\lstdefinestyle{mybasic}{
+  language=[Visual]Basic,
+  commentstyle=\itshape,
+  style=myframe
+}
+\lstdefinestyle{mypython}{
+  language=Python,
+  showstringspaces=false,
+  tabsize=4,
+  commentstyle=\itshape,
+  basicstyle=\ttfamily,
+  morekeywords={models, lambda, forms},
+  frame = single,
+  breaklines = true,
+  style=myframe
+}
+
+
+\begin{lstlisting}[style=mybasic]
+' This is code for the Basic interpreter in Andor Solis
+function ~GetSaturatingExposure()
+        SetKineticNumber(1)
+        exp=.01
+        SetExposureTime(exp)
+        run()
+        m=maximum(#0,1,512)
+        GetSaturatingExposure=exp*10000/(m-100)
+        CloseWindow(#0)
+return
+name$ = "C:\Users\work\Desktop\martin\20111111\scan-em3\ixon_"
+print("start")
+
+SetOutputAmp(1)
+print("conv_start")
+exp= ~GetSaturatingExposure()
+print(exp)
+SetExposureTime(exp)
+SetKineticNumber(20)
+SetShutter(0,1)
+run()
+save(#0,name$ + "conv1_dark.sif")
+ExportTiff(#0, name$ + "conv1_dark.tif", 1, 1, 0, 0)
+CloseWindow(#0)
+CloseWindow(#1)
+        
+SetShutter(1,1)
+run()
+save(#0,name$ + "conv1_bright.sif")
+ExportTiff(#0, name$ + "conv1 _bright.tif", 1, 1, 0, 0)
+CloseWindow(#0)
+CloseWindow(#1)
+
+SetOutputAmp(0)
+SetShutter(1,1)
+for i = 40 to 300 step 10
+        SetGain(i)
+        exp=~GetSaturatingExposure()
+        print(exp)
+        SetExposureTime(exp)
+        SetKineticNumber(20)
+        SetShutter(0,1)
+        run()
+        save(#0,name$ + str$(i) + "_dark.sif")
+        ExportTiff(#0, name$ + str$(i) + "_dark.tif", 1, 1, 0, 0)
+        CloseWindow(#0)
+        CloseWindow(#1)
+        SetShutter(1,1)
+        run()
+        save(#0,name$ + str$(i) + "_bright.sif")
+        ExportTiff(#0, name$ + str$(i) + "_bright.tif", 1, 1, 0, 0)
+        CloseWindow(#0)
+        CloseWindow(#1)
+next
+
+SetOutputAmp(1)
+print("conv_end")
+exp= ~GetSaturatingExposure()
+print(exp)
+SetExposureTime(exp)
+SetKineticNumber(20)
+SetShutter(0,1)
+run()
+save(#0,name$ + "conv2_dark.sif")
+ExportTiff(#0, name$ + "conv2_dark.tif", 1, 1, 0, 0)
+CloseWindow(#0)
+CloseWindow(#1)
+        
+SetShutter(1,1)
+run()
+save(#0,name$ + "conv2_bright.sif")
+ExportTiff(#0, name$ + "conv2 _bright.tif", 1, 1, 0, 0)
+CloseWindow(#0)
+CloseWindow(#1)
+\end{lstlisting}
+
+\section{Python code listing for the read noise evaluation}
+\label{sec:python-readnoise-eval}
+\begin{lstlisting}[style=mypython]
+#!/usr/bin/env python
+# ./ti.py /media/backup/andor-ultra-ixon/martin/20111111/scan-em3/ ultra 2700
+import sys
+import os
+
+import matplotlib
+matplotlib.use('Agg')
+
+from pylab import *
+from libtiff import TIFFfile, TIFFimage
+from scipy import stats
+
+seterr(divide='ignore')
+
+folder = sys.argv[1]
+cam = sys.argv[2]
+gain = sys.argv[3]
+
+def readpics(gain,cam='ixon_',isdark=False):
+    print 'loading ', os.path.join(folder,cam) + '_' + gain + '_bright.tif'
+    fg=TIFFfile(os.path.join(folder,cam) + '_' + gain + '_bright.tif')
+    bright,bright_names=fg.get_samples()
+    bg=TIFFfile(os.path.join(folder,cam) + '_' + gain + '_dark.tif')    
+    dark,dark_names=bg.get_samples()
+    return (bright[0],dark[0])
+
+(f,b) = readpics(gain=gain,cam=cam)
+
+bg=mean(b,axis=0)
+v=var(f,axis=0)
+i=mean(f,axis=0)
+
+ny,nx=64,128
+H,y,x=histogram2d(v.flatten(),i.flatten(),bins=[ny,nx],
+                  range=[[0,v.max()],[0,i.max()]])
+extent = [x[0], x[-1], y[0], y[-1]] 
+acc=zeros(x.shape,dtype=float64)
+accn=zeros(x.shape,dtype=int64)
+s=nx/i.max()
+for ii,vv in nditer([i,v]):
+    p=round(ii*s)
+    acc[p]+=vv
+    accn[p]+=1   
+
+fig=figure(figsize=(24, 8),dpi=300)
+hold(False)
+title('bal')
+subplot(1,3,1)
+imshow(log(H), extent=extent,
+           aspect='auto', interpolation='none',origin='lower')
+hold(True)
+ax=x[nonzero(accn)]
+ay=acc/accn
+ay=ay[nonzero(accn)]
+l=round(.6*len(ax))
+bx=ax[0:l]
+by=ay[0:l]
+plot(ax,ay,'r+')
+slope,intercept,rval,pval,stderr=stats.linregress(bx,by)
+plot(ax,polyval([slope,intercept],ax))
+xlabel('intensity/ADU')
+ylabel(r'variance/ADU$^2$')
+real_gain=1/slope # unit electrons/ADU
+read_noise=sqrt(var(b))*real_gain # electrons RMS per pixel
+mean_elecs=(mean(f)-mean(b))*real_gain # photoelectrons electrons per pixel
+print gain,cam,real_gain,read_noise,mean_elecs,mean(b),rval,pval,stderr
+tit='EM-gain: %s, cam: %s, real gain: %.2f e/ADU\n
+read noise: %.2f e RMS/pixel, mean: %.2f e/pixel, offset: %.2f'
+% (gain,cam,real_gain,read_noise,mean_elecs,mean(b))
+title(tit)
+subplot(1,3,2)
+imshow(var(b,axis=0))
+title('variance of darkimages')
+colorbar()
+subplot(1,3,3)
+imshow(mean(b,axis=0))
+title('mean of darkimages')
+colorbar()
+show()
+fig.savefig(cam+'_'+gain+'.png')
+\end{lstlisting}

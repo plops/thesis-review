@@ -415,7 +415,9 @@ Microscope objectives must collect light from a large aperture in
 resolution image. This is a fact I will support shortly using the
 wave-optical model. Unfortunately the large ray angles in the
 objective prevent its simplified description using principal planes,
-but an analysis using the eikonal theory \citep{Haferkorn1984} shows
+but an analysis using the eikonal theory \citep{Haferkorn1984} shows % page 125 2.3.2 mikroobjektive65g ggggg g gg g v g      v  v--*
+
+
 that an optical system that fulfills the Abbe sine condition allows
 perfect imaging even for widespread ray bundles.
 \begin{align}
@@ -441,7 +443,7 @@ with bold red strokes on the lenses in
 In addition to the Abbe sine condition microscope lenses are also
 corrected for spherical aberration and linear coma \citep{Gross2005}.
 Then the coma rays are symmetric around the chief ray, the wavefront
-and point spread function are approximately invariant for small field
+and point-spread function are approximately invariant for small field
 sizes (in first order).  This ensures that the imaging conditions are
 invariant for small regions of the field plane and allows to express
 image formation with linear systems theory.
@@ -530,12 +532,13 @@ frequency spectrum $\widetilde u(\vnu)$:
   \begin{tabular}{ l l | l }
     $u(\r):$&$ \mathbb{R}^3\to\mathbb{C}$ & field distribution in sample space \\
     $u'(\r'):$&$\mathbb{R}^3\to\mathbb{C}$ & field distribution in image space \\
+    $S(\r):$ & $\mathbb{R}^3\to\mathbb{R}$ & distribution of fluorophores in sample space \\
     $I'(\r'):$&$\mathbb{R}^3\to\mathbb{R}$ & intensity distribution in image space\\
     $\widetilde u(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & spatial frequency spectrum of field in sample space \\
-    $h(\r):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude point spread function \\
-    $\widetilde h(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude transfer function, generalized aperture \\
-    $|h(\r)|^2:$&$\mathbb{R}^3\to\mathbb{R}$ & intensity point spread function \\
-    $\widetilde{|h(\vnu)|^2}:$&$\mathbb{R}^3\to\mathbb{C}$ & optical transfer function \\
+    $a(\r):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude point-spread function \\
+    $\widetilde a(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude transfer function, generalized aperture \\
+    $h(\r)=|a(\r)|^2:$&$\mathbb{R}^3\to\mathbb{R}$ & intensity point-spread function \\
+    $\widetilde h(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & optical transfer function \\
   \end{tabular}
   \caption{Overview of the functions that are used in this section.}
   \label{tab:widefield-functions}
@@ -571,10 +574,10 @@ condition (\ref{eq:sine-condition}):
 \begin{align}
   \beta &= \nu_x/\nu_x',\quad  \beta = \nu_y/\nu_y'.
 \end{align}
-The transfer function $\widetilde h(\vnu)$ of the lens is defined by
+The transfer function $\widetilde a(\vnu)$ of the lens is defined by
 complex values on the Ewald sphere \citep{McCutchen1964}:
 \begin{align}
-  \widetilde h(\vnu)&=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
+  \widetilde a(\vnu)&=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
     W(\vnu_t)\right)
   \delta\left(|\vnu|-\frac{n}{\lambda_0}\right)  \step(\nu_z),\\
   \step(x)&=
@@ -586,7 +589,7 @@ complex values on the Ewald sphere \citep{McCutchen1964}:
 with the Dirac delta function $\delta$, transversal spatial frequency
 vector $\vnu_t=(\nu_x,\nu_y)^T$, and the real valued pupil function
 $P(\vnu_t)$ and wavefront error $W(\vnu_t)$. McCutchen calls the
-three-dimensional function $\widetilde h(\vnu)$ the generalized
+three-dimensional function $\widetilde a(\vnu)$ the generalized
 aperture.
 
 For this discussion I set $W(\vnu_t)=1$, i.e.\ there is no wavefront
@@ -595,7 +598,7 @@ uniform, solid cylinder as pupil function $P(\vnu_t)$ in order to
 limit the size of the calotte (or cap) of the Ewald sphere that is
 defined by the acceptance angle $\alpha$ of the
 objective\footnote{Note that this expression is only valid for
-  $\alpha\in[0,\pi/2]$. An expression for $\widetilde h(\vnu)$
+  $\alpha\in[0,\pi/2]$. An expression for $\widetilde a(\vnu)$
   encompassing the full range $[0,\pi]$ for $\alpha$ must contain two
   functions of each $P$ and $W$, in dependence on whether the spatial
   frequency vector $\vnu$ is directed in or against the direction of
@@ -603,7 +606,7 @@ objective\footnote{Note that this expression is only valid for
   of a 4Pi or I${}^n$M microscope.}:
 
 % \begin{align}
-%   \widetilde h(\vnu) =
+%   \widetilde a(\vnu) =
 %   \begin{cases}
 %     P_-(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
 %     W_-(\vnu_t)\right)
@@ -631,10 +634,10 @@ readily described by the generalized aperture of just its objective
 lens.
 
 Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
-with the generalized aperture $\widetilde h(\vnu)$ gives the angular
+with the generalized aperture $\widetilde a(\vnu)$ gives the angular
 frequency spectrum of the amplitude in the image:
 \begin{align}
-  \widetilde u'(\vnu') = \widetilde u'(\vnu/\beta) = \widetilde u(\vnu/\beta)\cdot \widetilde h(\vnu/\beta).
+  \widetilde u'(\vnu') = \widetilde u'(\vnu/\beta) = \widetilde u(\vnu/\beta)\cdot \widetilde a(\vnu/\beta).
 \end{align}
 Note that I use the transversal magnification $\beta$ to scale the
 arguments of the functions, so that the result is given in image space
@@ -647,12 +650,12 @@ spatial frequencies\footnote{Unfortunately my notation is slightly
 According to the convolution theorem this multiplication in frequency
 space corresponds to a convolution in the domain of spatial
 coordinates $\r$ of the field distribution $u(\r)$ and an amplitude
-point spread function $h(\r)=\mathcal{F}(\widetilde h(\vnu))$ that
+point-spread function $a(\r)=\mathcal{F}(\widetilde a(\vnu))$ that
 describes the imaging of the objective lens:
 \begin{align}
-  u'(\r')=u'(\beta \r) = (u \otimes h)(\r) =
+  u'(\r')=u'(\beta \r) = (u \otimes a)(\r) =
   \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-  u(\vvarrho)\ h(\r-\vvarrho)\ \textrm{d}^3\vvarrho
+  u(\vvarrho)\ a(\r-\vvarrho)\ \textrm{d}^3\vvarrho
 \end{align}
 where $\vvarrho$ is a spatial coordinate and the lateral magnification
 $\beta=\r'/\r$ transforms between image space $\r'$ and object space
@@ -661,66 +664,58 @@ distribution of the image is linearly related to the amplitude
 distribution in the sample.
 
 A focal plane detector can only measure the intensity $I'$ which
-depends non-linearly on the amplitude of the field $u'$. Fortunately,
-as fluorescent samples are incoherent sources, and therefore additive
-in intensity, the image formation can be further simplified as a
-convolution of the intensity emitted by the sample $I$ and an
-intensity point spread function $|h^2|(\r')$ \citep{Gustafsson1995}:
-
-% \begin{align}
-%   I'(\r')&=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r')=(u \otimes h)(\r')\cdot \left(u\otimes h\right)^{*}(\r')\\
-%   &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-%   u(\vvarrho)\ h(\r'-\vvarrho) 
-%   u^*(\vvarrho)\ h^*(\r'-\vvarrho) 
-%   \ \textrm{d}^3\vvarrho \label{eq:combine-conv}  \\
-%   &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-%   I(\vvarrho)\ |h(\r'-\vvarrho)|^2
-%   \ \textrm{d}^3\vvarrho\\
-%   &=\left(I\otimes|h|^2\right)(\r')
-% \end{align}
-% The square of the absolute value is expressed as the product of the
-% amplitude $u'(\r')$ and its complex conjugate $u'^*(\r')$. In equation
-% (\ref{eq:combine-conv}) both factors can be pulled under one
-% convolution integral according to the Fubini's theorem because all
-% functions involved belong to $\mathcal{L}_1(\mathbb{R}^3,\r')$.
-
-
-It is useful to discuss the Fourier transform of the intensity point
-spread function $|h|^2$. This is the three-dimensional optical
-transfer function of the microscope and describes how well different
-spatial frequencies are transmitted:
+depends non-linearly on the amplitude of the field $u'$.  However, the
+fluorophores act as independent sources and their phases vary randomly
+with respect to each other. Each fluorophore gives rise to its
+coherent image $h(\r')$  \citep{goodman1968}:
 \begin{align}
-  \widetilde{|h|^2}(\vnu') = \mathcal{F}(h(\r')\ h^*(\r')) =
-  \widetilde h(\vnu') \otimes \widetilde h^*(-\vnu'). \label{eq:otf}
+  h(\r')=|a(\r')|^2.
 \end{align}
-The product of the amplitude point spread function $h(\r')$ and its
+The three-dimensional intensity distribution $I'(\r')$ in image space
+can then be obtained by incoherently adding the individual images of
+the fluorophores:
+\begin{align}
+  I'(\r') &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  S(\vvarrho)\ h(\r'-\vvarrho)\ \textrm{d}^3\vvarrho\\
+  &= (S \otimes h) (\r')
+\end{align}
+where $S(\vvarrho)$ represents the three-dimensional fluorophore
+distribution and $\vvarrho$ is the spatial coordinate in image space.
+
+It is useful to discuss the Fourier transform of the intensity point  \cma{optical transfer function}
+spread function $h$. This is the three-dimensional optical transfer
+function of the microscope and describes how well different spatial
+frequencies are transmitted:
+\begin{align}
+  \widetilde h(\vnu') = \mathcal{F}(a(\r')\ a^*(\r')) =
+  \widetilde a(\vnu') \otimes \widetilde a^*(-\vnu'). \label{eq:otf}
+\end{align}
+The product of the amplitude point-spread function $a(\r')$ and its
 complex conjugate corresponds to an auto-correlation of the amplitude
 transfer function in spatial frequency space. Note that the complex
-conjugation of the second factor $h^*(\r')$ results in an inversion of
-the argument of $\widetilde h^*(-\vnu')$.
+conjugation of the second factor $a^*(\r')$ results in an inversion of
+the argument of $\widetilde a^*(-\vnu')$.
 
 This expression allows a geometric interpretation of the support of
-the optical transfer function $\widetilde{|h|^2}(\vnu')$. Equation
-(\ref{eq:otf}) describes a convolution of two spherical caps whose
-open sides are facing each other. The entire covered volume somewhat
-resembles a torus with vanishing internal
-diameter. \figref{fig:missing-cone} depicts a
+the optical transfer function $\widetilde h(\vnu')$
+\citep{Gustafsson1995}. Equation (\ref{eq:otf}) describes a
+convolution of two spherical caps whose open sides are facing each
+other. The entire covered volume somewhat resembles a torus with
+vanishing internal diameter. \figref{fig:missing-cone} depicts a
 $\nu_x\nu_z-$cross-section for two different aperture angles $\alpha$.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{missing-cone}
-  \caption{Schematic depicting $\nu_x\nu_z-$cross sections of the support
-    of optical transfer function $\widetilde{|h|^2}$ for
+  \caption{Schematic depicting $\nu_x\nu_z-$cross sections of the
+    support of optical transfer function $\widetilde{h}$ for
     microscope objectives with different collection angles. {\bf
       left:} Objectives, that only collect light that is directed into
-    one half space, have the missing cone problem. There, low spatial
-    frequencies do not attenuate with defocus. {\bf right:} Fictional (FIXME or theoretical?)
-    objective with larger collection angle and no missing cone.}
+    one half space, have the missing cone problem. {\bf right:}
+    Optical transfer function for fictional objective with larger
+    collection angle and no missing cone.}
   \label{fig:missing-cone}
 \end{figure}
-
-
-The lateral $\Delta\nu_x$ and axial $\Delta\nu_z$ extent of the
+The lateral $\Delta\nu_x$ and axial $\Delta\nu_z$ extent of the  
 optical transfer function can be expressed in terms of wavelength
 $\lambda_0$, immersion index $n$ and aperture angle $\alpha$:
 \begin{align}
@@ -732,8 +727,8 @@ $\lambda_0$, immersion index $n$ and aperture angle $\alpha$:
 , \quad
   \Delta\nu_z = 2\frac{n}{\lambda_0}(1-\cos\alpha),
 \end{align}
-(FIXME verify with rainers book chapter) allow to give lower bounds for
-the resolution that can be obtained using a well corrected objective:
+(FIXME verify with rainers book chapter) allow to give lower bounds for  \cma{resolution}
+the resolution that can be obtained using a well corrected objective: 
 \begin{align} 
 \label{eq:resolution}
   \Delta d_x = \frac{2}{\Delta\nu_x} = \frac{\lambda_0}{2 n \sin\alpha}, \quad
@@ -765,40 +760,47 @@ two detection beam paths are brought to interference using a beam
 splitter on a focal plane detector. This configuration substantially
 increases the collection angle, improves the $z-$resolution and fills
 the missing cone but puts stringent requirements on the optical path
-difference between the two interferometer arms, i.e.\ in practice this
-method only works for samples which are only a few microns thick
-\citep{Gustafsson1999} (wavelength range of fluorescence FIXME).  
+difference between the two interferometer arms, i.e.\ this device is
+very sensitive to sample-induced aberrations and in practice, with
+fluorophores that emit in a broad wavelength range, this method only
+works for samples which are only a few microns thick
+\citep{Gustafsson1999}.
 
 \nomenclature{I${}^2$M}{Image interference microscopy
   \citep{Gustafsson1999}.}
+
 
 Light from the focal plane interferes constructively on the detector,
 light emitted at $\lambda/4$ distance away from the focal plane
 interferes destructively, light that is emitted at several wavelengths
 distance from the focal plane contributes as an incoherent sum to the
-detected signal. Therefere a $z-$stack of a fluorescent plane captured
+detected signal. Therefore a $z-$stack of a fluorescent plane captured
 with two opposing lenses compared to just one lens will give a signal
-that is twice as bright in focus and has the same brightness
-out-of-focus. This means the axial location of the fluorescent plane
-can be measured in I${}^2$M but there is still background signal
-\citep{Gustafsson1995}.
+that is four times as bright in focus, shows damped oscillations
+(because of the finite spectral band emitted by the fluorophores) when
+going away from focus and has twice the brightness out-of-focus. This
+means the axial location of the fluorescent plane can be measured in
+I${}^2$M but there is still background signal \citep{Gustafsson1995}.
 
-The reason for this background signal is that a light ray that started
-in a certain object point does not stop in the corresponding image
-point. Therefore most out-of-focus light is added incoherently as a
-background to the detected signal.
+The reason for this background signal is conservation of energy from
+plane to planet. A light ray that started in a certain object point
+does not stop in the corresponding image point. Therefore most
+out-of-focus light is added incoherently as a background to the
+detected signal. Structured illumination can be used to remove this
+out-of-focus light (FIXME reference to confocal and structured
+illumination sections).
 
 
 \subsection{Illumination in a wide-field epifluorescence microscope}
 As mentioned in section \ref{sec:photophysics}, fluorescence photons
-are emitted in all directions, independent of the original
-illumination direction. Therefore it is possible and convenient to use
-the objective for excitation as well as detection. This mode of
-microscopy is called epifluorescence (Greek: $\varepsilon\pi\iota$;
-on, above).  In this configuration usually only a small percentage of
-the excitation light returns due to diffraction or reflection. This
-simplifies the separation of fluorescence light from excitation light
-and parts of opaque specimen can be imaged.
+are essentially emitted in all directions by a typical, (nearly)
+independent of the original illumination direction. Therefore it is
+possible and convenient to use the objective for excitation as well as
+detection. This mode of microscopy is called epifluorescence (Greek:
+$\varepsilon\pi\iota$; on, above).  In this configuration usually only
+a small percentage of the excitation light returns due to scattering
+or reflection. This simplifies the separation of fluorescence light
+from excitation light and parts of opaque specimen can be imaged.
 
 The blue beam in \figref{fig:widefield-microscope}~c) depicts a
 parallel laser that is focused into the pupil of the objective by tube
@@ -824,14 +826,14 @@ lamp upstream of the dichroic beam splitter.
 
 \subsubsection*{The space-bandwidth product of a microscopic lens}
 \label{sec:etendue}
-A useful quantity in optics is the etendue $\mathcal{E}$. For a
-microscope objective its value is related to the number of point spread
+A useful quantity in optics is the etendue $\mathcal{E}$. For a \cma{etendue}
+microscope objective its value is related to the number of point-spread
 functions that can be resolved in the field.  Therefore this quantity
 is also called information capacity, light gathering capacity or
 space-bandwidth product. For a high-aperture lens, the etendue is
 given by \nomenclature{$\mathcal{E}$}{Etendue, information capacity,
   light gathering capacity or space-bandwidth product; its value is
-  related to the number of point spread functions that can be resolved
+  related to the number of point-spread functions that can be resolved
   in the field.}
 \begin{align}
 \label{eq:high-aperture-etendue}
@@ -842,14 +844,15 @@ $D_\textrm{field}$. The typical image diameter for Zeiss microscopes
 is \unit[25]{mm}.  For a $63\times$ oil-immersion objective with
 $\textrm{NA}=1.4$ this corresponds to a field diameter of
 $D_\textrm{field}=\unit[0.4]{mm}$ and an etendue of
-$\mathcal{E}=\unit[0.27]{mm^2/sr}$.
+$\mathcal{E}=\unit[0.27]{mm^2/sr}$, where '\unit[]{sr}' denotes
+steradian, the SI unit of solid angle.
 
 
 \subsection{Phototoxicity in conventional microscopes}
 When imaging living specimen we should distinguish between useful and
 unnecessary excitation. Taking into account the detection capabilities
 of objective lenses we should maximize the ratio of in-focus to
-out-of-focus fluorescence. The epifluorescent wide field and confocal
+out-of-focus fluorescence. The epifluorescent wide-field and confocal
 microscope surely do not represent an optimum in this regard.
 
 In chapter \ref{sec:approaches} I will introduce other microscopy
@@ -865,15 +868,15 @@ three-dimensionally shift-invariant. In order to predict the image of
 a three-dimensional sample it is sufficient to know the image of a
 single point source.
 
-By investigating this point spread function and its Fourier transform
-it is possible to give the simple relationship in equation
+By investigating this point-spread function and its Fourier transform
+it is possible to give the simple relationships in equations
 (\ref{eq:resolution}) for the best possible resolution. Furthermore I
 describe the missing cone problem, a limitation inherent in all lenses
 that only collect light from one half-space.
 
 
 
-\section{Image detectors in wide field microscopy}
+\section{Image detectors in wide-field microscopy}
 \label{sec:ccd-intro}
 \begin{summary}
 - decribe ccd
@@ -898,17 +901,18 @@ that only collect light from one half-space.
 
 
 \gnuplotinput{camera-snr}{Camera snr. dotted line for lowest light
-  level, where $N_r$ is the dominant noise; dashed line indicates high
+  level, where $N_r$ is the dominant noise; thin line indicates high
   light region where quantum efficiency and excess noise factor $F_n$ matter
 }
 
+\begin{verbatim}
 snr(s,ib,qe,fn,nr,m) :=  (qe*s)/sqrt(fn*fn*qe*(s+ib)+(nr/m)^2);
 f(s,ib,qe,fn,nr,m):=snr(s,ib,qe,fn,nr,m)/snr(s,ib,1,1,0,1);
 assume(m>0);
 limit(f(s,ib,qe,fn,nr,m),s,inf);
 
 sqrt(qe)/fn
-
+\end{verbatim}
 
 - effects to look out for
 
@@ -971,7 +975,7 @@ carriers can be achieved. In microscopy we usually work with gains of
 up to 300. 
 
 $solve((1+x)^{536.0}=1000,x),numer;$
-x = .0129710061
+$x = .0129710061$
 
 - significant power consumption
 
@@ -1033,7 +1037,7 @@ $S+I_b$ is the standard deviation
     camera & $f_\textrm{read}$ [MHz] & $QE$ & $N_r$ [e/px] & $F_n$ & $M$ \\
     \hline
     back-thinned CCD & 1 & 0.95 & 9 & 1 & 1 \\
-    EM-CCD & 10 & 0.95 & 9 & \sqrt{2} & 5 and 20 \\
+    EM-CCD & 10 & 0.95 & 9 & $\sqrt{2}$ & 5 and 20 \\
     sCMOS global shutter& 400 &0.70 & $1.3\cdot1.41$ & 1 & 1 \\
     sCMOS rolling shutter& 400 &0.70 & $1.3$ & 1 & 1 \\
     interline CCD & 20 & 0.65 & 6.5 & 1 & 1\\
@@ -1148,6 +1152,7 @@ conventional readout gives the \emph{excess noise factor}\todo{get
 describes the apparent reduction of the quantum efficiency.
 
 
+\begin{verbatim}
 ib = 0.3
 nr = 9
 nr_scmos = 1.3*1.41
@@ -1158,7 +1163,7 @@ qe_interline = .65
 qe_scmos = .7
 
 plot f(x,ib,qe,1,nr,1) w l title "back-thinned CCD" ls 1, f(x,ib,qe,fn,nr,20) w l title "EM-CCD" ls 2, f(x,ib,qe,fn,nr,5) w l notitle ls 2, f(x,ib,qe_scmos,1,nr_scmos,1) w l title "sCMOS" ls 3, f(x,ib,qe_interline,1,nr_interline,1) w l title "interline CCD" ls 4, (x+ib<1)?f(x,ib,qe,1,nr,50):NaN w l title "EM-CCD gain=50 single photon" ls 5
-
+\end{verbatim}
 
 
 % Due to a bug in the capturing process the images in the second row

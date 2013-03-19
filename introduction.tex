@@ -91,7 +91,7 @@ trials, when the time lapse images show that the culture cells stay
 healthy and the number of pathogens decrease. As neither people nor
 animals come to harm, this screening experiment is an impeccable
 method to systematically understand and hopefully heal certain
-diseases. However, this experiment doesn't work very well, if the
+diseases. However, this experiment does not work very well, if the
 excitation light --- and not the drug --- kills the pathogens. The
 effect of phototoxicity should therefore be minimized.
 
@@ -172,7 +172,7 @@ In \figref{fig:worm-integration-time} I reproduce quantitative data
 from \cite{Tinevez2012}. Each data point in this graph corresponds to
 a two hour time-lapse imaging experiment of a \celegans\ embryo in a
 wide-field microscope. From a very low excitation up to a certain
-threshold dose the development isn't affected by the light and
+threshold dose the development is not affected by the light and
 approximately 50 cells develop during the two hours.
 
 For a dose above the threshold the development is slowed due to
@@ -202,7 +202,7 @@ with integration time $\tau$, area $A$ of the illuminated field, the
 number of slices $n=41$ and radiant flux $\Phi_e$ of the excitation
 light, as measured in the pupil.
 
-Naively one would assume that it shouldn't make any difference if the
+Naively one would assume that it should not make any difference if the
 excitation light dose is administered with \unit[100]{ms} or
 \unit[500]{ms} exposures but these data show that a longer exposure
 time and low intensity are less phototoxic.
@@ -277,15 +277,20 @@ practical implementation of fluorescence microscopes this is
 significant, as it enables to separate excitation and emission light
 with a dichroic beam splitter.
 
-A fluorescence photon is emitted into a random direction. We use this
-in the next section to describe image formation in the fluorescence
-microscope.
+
+The excitation probability of a fluorescence molecule depends on the
+orientation of its dipole axis relative to the plane of vibration of
+the excitation field. Especially if the molecule is not rigidly bound
+to a bigger structure or embedded in a viscous solvent it will
+reorient its dipole during the fluorescence lifetime and emit the
+fluorescence photon in a random direction. We use this in the next
+section to describe image formation in the fluorescence microscope.
 
 
 The triplet states $T_n$ play an important role in photobleaching.
 Pure electronic absorption of one photon has no effect on the spin of
 an electron and therefore the transition from singlet states $S_n$
-into the triplet state $T_n$ shouldn't occur. However, interaction
+into the triplet state $T_n$ should not occur. However, interaction
 with the nuclei can mediate this spin transition. Therefore, in
 fluorophores this transition has a small probability, resulting in
 long lifetimes of the triplet state $T_1$.
@@ -355,8 +360,8 @@ the light management in the microscope.
   The wide-field fluorescence microscope does not excite fluorophores
   of the specimen in an optimal way. In this section I outline how
   these microscopes work and explain how out-of-focus blur severely
-  limits its performance. I introduce the terms point spread function,
-  optical transfer function and etendue.
+  limits their performance. I introduce the terms point spread
+  function, optical transfer function and etendue.
 \end{summary}
 
 \subsection{Ray-optical description of a large-aperture lens}
@@ -366,12 +371,13 @@ and forms a magnified image on a
 camera. \figref{fig:widefield-microscope}~b) shows a schematic
 representation of the detection path of a wide-field microscope.
 
-The main components are an objective lens with focal length $f$ and a \cma{telecentric arrangement}
-tube lens TL1 with focal length $f_\textrm{TL}>f$. Sample, lenses and
-camera are arranged in double-telecentric configuration, i.e.\ the
-sample is located in the front focal plane of the objective, the tube
-lens is at distance $f_\textrm{TL}$ behind the pupil and the camera is
-in the focal plane behind the tube lens.
+The main components are an objective lens with focal length $f$ and a
+\cma{telecentricity} tube lens TL1 with focal length
+$f_\textrm{TL}>f$. Sample, lenses and camera are arranged in
+double-telecentric configuration, i.e.\ the sample is located in the
+front focal plane of the objective, the tube lens is at distance
+$f_\textrm{TL}$ behind the pupil (i.e.\ the back focal plane of the
+objective) and the camera is in the focal plane behind the tube lens.
 
 
 \nomenclature{$\beta$}{Transversal magnification of an objective
@@ -388,8 +394,7 @@ the two lenses:
   \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
 \end{align}
 Note that in \figref{fig:widefield-microscope}~b) I represent the
-\cma{necessary corrections} objective lens as a single element.  This
-is a simplification.
+objective lens as a single element.  This is a simplification.
 
 In the paraxial limit ray-tracing calculations for a thick lens or
 even several consecutive lens elements can be simplified by bending
@@ -406,12 +411,13 @@ the ray only at one place --- at the principal plane.
 
 
 Microscope objectives must collect light from a large aperture in
-order to produce a high resolution image. This is a fact I will
-support shortly using the wave-optical model. Unfortunately the large
-ray angles in the objective prevent its simplified description using
-principal planes, but an analysis using the eikonal theory shows that
-an optical system that fulfills the Abbe sine condition allows perfect
-imaging even for widespread ray bundles.
+\cma{perfect imaging and high-aperture} order to produce a high
+resolution image. This is a fact I will support shortly using the
+wave-optical model. Unfortunately the large ray angles in the
+objective prevent its simplified description using principal planes,
+but an analysis using the eikonal theory \citep{Haferkorn1984} shows
+that an optical system that fulfills the Abbe sine condition allows
+perfect imaging even for widespread ray bundles.
 \begin{align}
   \label{eq:sine-condition}
   \beta = \frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe sine condition)}
@@ -423,7 +429,7 @@ the front to the back focal plane with linear scaling. Note that a
 lens with a non-linear distortion in the back focal plane will fail to
 produce an image that is similar to the object.
 
-It turns out that ray bending in a high-aperture lens system that
+It turns out that ray bending in a high-aperture lens system that  \cma{aplanatic sphere}
 fulfills the Abbe sine condition can be simplified to a one bend at a
 single surface, quite similar to the utilization of principal planes
 in paraxial optics. For a high-aperture system this surface is no
@@ -442,7 +448,7 @@ image formation with linear systems theory.
 
 \subsection{Wave-optical theory for image formation in a fluorescence microscope}
 In the following I want to describe how the image on the camera
-\cma{wave optics} forms. For this we have to use wave theory because
+\cma{wave optics} is formed. For this we have to use wave theory because
 close to the image rays intersect, invalidating ray-optical
 predictions. As both, wave-optical and ray-optical theory, are very
 much related, we can give a useful interpretation of the aplanatic
@@ -463,7 +469,7 @@ wavelength $\lambda$ in the immersion medium.
 The accurate treatment of high-aperture optics would in fact require a
 vectorial calculation of the image for a fluorophore with a particular
 dipole orientation.  Subsequently these images should be averaged to
-account for random fluorophore orientations, but as I don't need
+account for random fluorophore orientations, but as I do not need
 quantitative expressions I limit myself to the simpler scalar problem
 which provides qualitatively similar results.
 % \begin{figure}[!hbt]
@@ -546,10 +552,10 @@ use several functions in this section. See
 Table~\ref{tab:widefield-functions} for a listing of their names.
 
 Since we have assumed a monochromatic field and the length $|\vnu|$ of
-the spatial frequency vector is the inverse $n/\lambda_0$ of the
-wavelength (in the material of refractive index $n$), the support of
-this spectrum $u(\vnu)$ is limited to the surface of a sphere of
-radius $n/\lambda_0$:
+the spatial frequency vector is the inverse of the wavelength
+($n/\lambda_0$, in the material of refractive index $n$), the support
+(denoted '$\supp$') of this spectrum $\widetilde u(\vnu)$ is limited
+to the surface of a sphere of radius $n/\lambda_0$:
 \begin{align}
   \supp \widetilde u(\vnu) &= \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
 \end{align}
@@ -570,7 +576,12 @@ complex values on the Ewald sphere \citep{McCutchen1964}:
 \begin{align}
   \widetilde h(\vnu)&=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
     W(\vnu_t)\right)
-  \delta\left(|\vnu|-\frac{n}{\lambda_0}\right),
+  \delta\left(|\vnu|-\frac{n}{\lambda_0}\right)  \step(\nu_z),\\
+  \step(x)&=
+  \begin{cases} 
+    1 & x\ge 0 \\
+    0 & x<0 
+  \end{cases}, \qquad \textrm{(Heaviside step function)} \label{eq:unit-step}
 \end{align}
 with the Dirac delta function $\delta$, transversal spatial frequency
 vector $\vnu_t=(\nu_x,\nu_y)^T$, and the real valued pupil function
@@ -578,17 +589,18 @@ $P(\vnu_t)$ and wavefront error $W(\vnu_t)$. McCutchen calls the
 three-dimensional function $\widetilde h(\vnu)$ the generalized
 aperture.
 
-For this discussion I set $W(\vnu_t)=1$, i.e.\ there are no wavefront
+For this discussion I set $W(\vnu_t)=1$, i.e.\ there is no wavefront
 aberration and the lens is diffraction limited. Furthermore, I use a
-uniform cylinder as pupil function $P(\vnu_t)$ in order to limit the
-size of the calotte (or cap) of the Ewald sphere that is defined by
-the acceptance angle $\alpha$ of the objective\footnote{Note that this
-  expression is only valid for $\alpha\in[0,\pi/2]$. An expression for
-  $\widetilde h(\vnu)$ encompassing the full range $[0,\pi]$ for
-  $\alpha$ must contain two functions of each $P$ and $W$, in
-  dependence on whether the spatial frequency vector $\vnu$ is
-  directed in or against the direction of the optical axis. This is
-  necessary to express the transfer function of a 4Pi microscope.}:
+uniform, solid cylinder as pupil function $P(\vnu_t)$ in order to
+limit the size of the calotte (or cap) of the Ewald sphere that is
+defined by the acceptance angle $\alpha$ of the
+objective\footnote{Note that this expression is only valid for
+  $\alpha\in[0,\pi/2]$. An expression for $\widetilde h(\vnu)$
+  encompassing the full range $[0,\pi]$ for $\alpha$ must contain two
+  functions of each $P$ and $W$, in dependence on whether the spatial
+  frequency vector $\vnu$ is directed in or against the direction of
+  the optical axis. This is necessary to express the transfer function
+  of a 4Pi or I${}^n$M microscope.}:
 
 % \begin{align}
 %   \widetilde h(\vnu) =
@@ -605,21 +617,18 @@ the acceptance angle $\alpha$ of the objective\footnote{Note that this
 
 \begin{align}
   P(\vnu_t) &=
-  \step\left(|\vnu_t|-\frac{n\sin(\alpha)}{\lambda_0}\right), \quad \textrm{with}\ 
-  \step(x)=
-  \begin{cases} 
-    1 & x\ge 0 \\
-    0 & x<0 
-  \end{cases}.
+  \step\left(|\vnu_t|-\frac{n\sin(\alpha)}{\lambda_0}\right), 
 \end{align}
-In general $P(\vnu_t)$ can assume values between 0 and 1 in order to
-account for apodization due to natural vignetting or angle-dependent
-Fresnel reflection losses on the lenses. I ignore such effects in this
-discussion. Also, just as the objective lens, the tube lens can be
-described by its generalized aperture but I assume that the tube lens
-maintains a diffraction limited wavefront of the full angular
-range. For this discussion, the full microscope is readily described
-by the generalized aperture of just its generalized aperture.
+with the Heaviside step function as defined in equation
+(\ref{eq:unit-step}.  In general $P(\vnu_t)$ can assume values between
+0 and 1 in order to account for apodization due to natural vignetting
+or angle-dependent Fresnel reflection losses on the lenses. I ignore
+such effects in this discussion. Also, just as the objective lens, the
+tube lens can be described by its generalized aperture but I assume
+that the tube lens maintains a diffraction limited wavefront of the
+full angular range. For this discussion, the full microscope is
+readily described by the generalized aperture of just its objective
+lens.
 
 Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
 with the generalized aperture $\widetilde h(\vnu)$ gives the angular
@@ -652,27 +661,28 @@ distribution of the image is linearly related to the amplitude
 distribution in the sample.
 
 A focal plane detector can only measure the intensity $I'$ which
-depends non-linearly on the amplitude of the field $u'$. Fortunately
-fluorescent samples are incoherent sources, and therefore additive in
-intensity, the image formation can be further simplified as a
+depends non-linearly on the amplitude of the field $u'$. Fortunately,
+as fluorescent samples are incoherent sources, and therefore additive
+in intensity, the image formation can be further simplified as a
 convolution of the intensity emitted by the sample $I$ and an
 intensity point spread function $|h^2|(\r')$ \citep{Gustafsson1995}:
-\begin{align}
-  I'(\r')&=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r')=(u \otimes h)(\r')\cdot \left(u\otimes h\right)^{*}(\r')\\
-  &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-  u(\vvarrho)\ h(\r'-\vvarrho) 
-  u^*(\vvarrho)\ h^*(\r'-\vvarrho) 
-  \ \textrm{d}^3\vvarrho \label{eq:combine-conv}  \\
-  &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-  I(\vvarrho)\ |h(\r'-\vvarrho)|^2
-  \ \textrm{d}^3\vvarrho\\
-  &=\left(I\otimes|h|^2\right)(\r')
-\end{align}
-The square of the absolute value is expressed as the product of the
-amplitude $u'(\r')$ and its complex conjugate $u'^*(\r')$. In equation
-(\ref{eq:combine-conv}) both factors can be pulled under one
-convolution integral according to the Fubini's theorem because all
-functions involved belong to $\mathcal{L}_1(\mathbb{R}^3,\r')$.
+
+% \begin{align}
+%   I'(\r')&=|u'(\r')|^2=u'(\r')\cdot u'^{*}(\r')=(u \otimes h)(\r')\cdot \left(u\otimes h\right)^{*}(\r')\\
+%   &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+%   u(\vvarrho)\ h(\r'-\vvarrho) 
+%   u^*(\vvarrho)\ h^*(\r'-\vvarrho) 
+%   \ \textrm{d}^3\vvarrho \label{eq:combine-conv}  \\
+%   &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+%   I(\vvarrho)\ |h(\r'-\vvarrho)|^2
+%   \ \textrm{d}^3\vvarrho\\
+%   &=\left(I\otimes|h|^2\right)(\r')
+% \end{align}
+% The square of the absolute value is expressed as the product of the
+% amplitude $u'(\r')$ and its complex conjugate $u'^*(\r')$. In equation
+% (\ref{eq:combine-conv}) both factors can be pulled under one
+% convolution integral according to the Fubini's theorem because all
+% functions involved belong to $\mathcal{L}_1(\mathbb{R}^3,\r')$.
 
 
 It is useful to discuss the Fourier transform of the intensity point
@@ -748,21 +758,22 @@ because low spatial frequencies do not attenuate with defocus
 \citep{Neil1997}. This effect is also called ``missing cone problem''
 \citep{Streibl1984}.
 
-It is instructive to look at a microscope, that isn't hampered by the
+It is instructive to look at a microscope, that is not hampered by the
 missing cone problem: In image interference microscopy (I${}^2$M) two
 opposing microscope objectives collect light from the sample and the
 two detection beam paths are brought to interference using a beam
-splitter (that looses half the light) on a focal plane detector. This
-configuration substantially increases the collection angle, improves
-the $z-$resolution and fills the missing cone but puts stringent
-(FIXME) requirements on the optical path difference between the two
-interferometer arms, i.e.\ this method only for samples which are only
-a few microns thick \citep{Gustafsson1999}.
+splitter on a focal plane detector. This configuration substantially
+increases the collection angle, improves the $z-$resolution and fills
+the missing cone but puts stringent requirements on the optical path
+difference between the two interferometer arms, i.e.\ in practice this
+method only works for samples which are only a few microns thick
+\citep{Gustafsson1999} (wavelength range of fluorescence FIXME).  
+
 \nomenclature{I${}^2$M}{Image interference microscopy
   \citep{Gustafsson1999}.}
 
 Light from the focal plane interferes constructively on the detector,
-light emitted at $\lambda/2$ distance away from the focal plane
+light emitted at $\lambda/4$ distance away from the focal plane
 interferes destructively, light that is emitted at several wavelengths
 distance from the focal plane contributes as an incoherent sum to the
 detected signal. Therefere a $z-$stack of a fluorescent plane captured
@@ -1101,7 +1112,7 @@ that can be used to convert ADU into photoelectrons (here
 The following figures show corresponding measurements using the EM
 readout mode with varying EM-gain. It is followed by one last
 measurement with conventional readout to verify, that the fluorophores
-didn't bleach too much during the experiment.
+did not bleach too much during the experiment.
 
 The camera was cooled to \unit[$-75$]{$\,^{\circ}{\rm C}$}. In order
 to prevent overexposure of the sensor a preliminary image with a short
@@ -1151,7 +1162,7 @@ plot f(x,ib,qe,1,nr,1) w l title "back-thinned CCD" ls 1, f(x,ib,qe,fn,nr,20) w 
 
 
 % Due to a bug in the capturing process the images in the second row
-% (for EM-gain 40) was overexposed and the data shouldn't be used.  Also
+% (for EM-gain 40) was overexposed and the data should not be used.  Also
 % the last experiment \textsf{conv2} with conventional readout reports
 % a larger gain of \unit[1.6]{e/ADU} than the first experiment
 % \textsf{conv1} with gain \unit[1.3]{e/ADU}. Later we learned that one

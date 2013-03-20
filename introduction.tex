@@ -883,6 +883,8 @@ that only collect light from one half-space.
 
 - characterization/calibration
 
+- zahlen die ich nenne entsprechen CCDs die ich benutze
+
 - noise
 
 - compare with scmos
@@ -906,7 +908,8 @@ three adjacent capacitors, the charge can be transported line by line
 from the sensor --- therefore, this technology is known as
 charge-coupled device (CCD). An additional row of similar capacitors
 (denoted horizontal shift register) on one side of the array pushes
-the carriers into a charge amplifier. This consists of a much smaller
+the carriers into a charge amplifier. \cma{charge amplifier}
+ This consists of a much smaller   
 capacitor, the read node, and a field-effect transistor amplifying its
 voltage, which linearly depends on the charge in the read node
 \citep{Pawley2006}.
@@ -968,36 +971,67 @@ average $\langle I\rangle$:
     gives the detector read noise.}
   \label{fig:shot-noise}
 \end{figure}
-For the calibration of a good quality CCD camera, twenty images of a \cma{detector gain calibration}
-defocused fluorescent object (see left image in
-\figref{fig:shot-noise}) are acquired. From the twenty images the variance of the
-intensity is determined for each pixel. Then all occurring intensities
-are collected into 100 bins. The average intensity variance of each
-bin is then plotted against the intensity (see right image in
-\figref{fig:shot-noise}). The data lie on a straight line. From its
-slope we calculate the gain to convert the arbitrary analog-to-digital
-units into the number of detected photoelectrons; given in these units
-the slope of the line is one, according to equation
-\eqref{eq:variance}.
+For the calibration of a detector, twenty images of a \cma{detector
+  gain calibration} defocused fluorescent object (see left image in
+\figref{fig:shot-noise}) are acquired. From the twenty images the
+variance of the intensity is determined for each pixel. Then all
+occurring intensities are collected into 100 bins. The average
+intensity variance of each bin is then plotted against the intensity
+(see right image in \figref{fig:shot-noise}). The data lie on a
+straight line. From its slope we calculate the gain to convert the
+arbitrary analog-to-digital units into the number of detected
+photoelectrons. If the data is plotted in this unit, the slope of the
+line is one, according to equation \eqref{eq:variance}.
 
 \comment{ % this is just for copying the jpeg file
 \jpginput{10cm}{calib-pic}{Image of a defocused area on a fluorescent
   plane sample.}}
 
-To determine the quality of a detector, we create twenty dark images,  \cma{measuring read noise}
-where the detector is protected from illumination. In an ideal,
-noise-free detector these images would contain zero everywhere. In a
-real CCD sensor the variance of the values in the dark images reflect
-the readout noise. Using the calibration gain, the read noise can be
-specified as photoelectrons$/$pixel (\unit[]{e/px}). 
+ To determine the quality of a detector we                             \cma{measuring read noise}
+ensure that no light falls on the detector and create twenty dark
+images.  For an ideal, noise-free detector these images would contain
+zero everywhere. In a real CCD sensor the variance of the values in
+the dark images reflect the readout noise. Using the calibration gain,
+the read noise can be specified as photoelectrons$/$pixel
+(\unit[]{e/px}).
 
 The analysis for the right diagram in \figref{fig:shot-noise} gave a
 read noise of \unit[5.6]{e/px}. For the evaluation I used the function
 \verb!cal_readnoise! of the DIPimage toolbox for Matlab. In appendix
-\ref{sec:python-readnoise-eval} I list my alternative implementation
-in Python.
+\ref{sec:python-readnoise-eval} I list an alternative Python
+implementation of this algorithm.
 
-photon noise limited
+The major source for read noise is the charge amplifier. Its noise is
+added uniformly to every image pixel. For readout frequencies above
+\unit[1]{MHz} the read noise increases with the square root of the
+read speed \citep{Pawley2006}. Until a decade ago this limited the
+readout speed of scientific CCD cameras. Then a new type of sensor was
+developed --- the electron-multiplying CCD \citep{Mackay}.
+
+This device contains an additional sequence of capacitors (denoted        \cma{electron-multiplying CCD}
+multiplication registers), which are operated with a high voltage (up
+to \unit[46]{V}). The field accelerates electrons and they can
+generate more charge carriers via a process called impact
+ionization. This is a statistical process and for every electron going
+through a multiplication register, there is an average probability $p$
+that it creates another electron. This probability is quite low
+($p<1.3\%$) but after a sequence of 536 registers the gain
+$M=(1+p)^{536}\approx 1015$ is so high, that even read noise at \unit[17]{MHz}
+readout speed can be neglected.
+
+This amplification process consumes a lot of energy and requires
+elaborate cooling of the detector chip as the gain is temperature
+dependent.
+
+Unfortunately, the statistical nature of impact ionization leads to a
+new noise source. Since the noise corresponds to an uncertainty in
+gain, the noise has a multiplicative effect on the
+signal. \cite{Robbins2003} analyzed the amplification process and
+shows that the multiplicative noise has the effect of halving the
+apparent quantum efficiency of the detector.
+
+
+ photon noise limited
 
 
 

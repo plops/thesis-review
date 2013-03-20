@@ -899,41 +899,29 @@ intensity-dependent charge is collected during the exposure time.
 There are basically two different technologies to measure and digitize
 this charge:
 
-In the passive sensor, columns of diodes form a linear row of
-\cma{CCD} capacitors. By applying a sequence of different voltages to
-each of three adjacent capacitors, the charge can be transported line
-by line from the sensor. An additional row of similar capacitors
+In the passive-pixel sensor, columns of diodes form a linear row of    \cma{Charge-coupled devices (CCD)}
+capacitors. By applying a sequence of different voltages to each of
+three adjacent capacitors, the charge can be transported line by line
+from the sensor --- therefore, this technology is known as
+charge-coupled device (CCD). An additional row of similar capacitors
 (denoted horizontal shift register) on one side of the array pushes
-the carriers into a charge amplifier. 
+the carriers into a charge amplifier. This consists of a much smaller
+capacitor, the read node, and a field-effect transistor amplifying its
+voltage, which linearly depends on the charge in the read node
+\citep{Pawley2006}. 
 
-On the exit side of the array , a further row of such capacitors is (
-denoted horizontal shift register) push the charge into a charge
-amplifier. This consists of a much smaller capacitor and a
-field-effect transistor measuring its ( charge- abhaenige ) voltage .
+In the active-pixel sensor, each photodiode is surrounded by its own     \cma{active-pixel sensor}
+transistors for read-out and reset. The two-dimensional array is
+addressed with an access enable wire which is shared by pixels of a
+line and an output wire, which is shared by pixels of a column. In the
+simplest case (with three in-pixel transistors) start of integration
+and readout occurs one line at a time (rolling shutter).
 
-
-besitzen
-
-Es gibt grundsaetzlich zwei Technologien um diese Ladung zu messen und
-digitalisieren. Beim passiven Sensor bilden die Dioden entlang der
-Spalten eine lineare von Kondensatoren. Durch Anlegen von
-unterschiedlichen Spannungen an jeweils drei benachbarte Kondensatoren
-kann die Ladung zeilenweise aus dem Sensor transportiert werden. Auf
-der Austrittsseite des Arrays befindet sich eine weitere Zeile solcher
-Kondensatoren (denoted horizontal shift register) die die Ladung in
-einen charge amplifier schieben. Dieser besteht aus einem deutlich
-kleinerem Kondensator und ein field-effect transistor misst dessen
-(ladungs-abhaenige) Spannung.
-
-- focal plane detector
-
-- pin photodiode pn junction silicon semiconductor device
-
-- photon can free a carrier in depletion region
-
-- array of them
-
-- collect/transport/measure charge
+When I started this work, passive CCD sensors were the state of the
+art with regards to sensitivity and speed in wide-field
+microscopy. Now, however, faster and cheaper active-pixel sensors that
+provide comparable or better noise performance, become commercially
+available.
 
 
 \gnuplotinput{camera-snr}{Camera snr. dotted line for lowest light

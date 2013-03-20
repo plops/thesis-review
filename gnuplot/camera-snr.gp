@@ -50,11 +50,14 @@ fn =sqrt(2)
 qe = .95
 qe_interline = .65
 qe_scmos = .7
+qe_scmos_ideal = .95
+nr_scmos_ideal = .7
 set label "I_b=0.3" at .11,.845 left front
 set label "M=20" at .8,.76 textcolor ls 2
 set label "M=5" at .2,.45 textcolor ls 2
 set label "global shutter" at 8,.88 textcolor ls 3
 set label "rolling shutter" at 3.4,.5 textcolor ls 3
+set label "back-thinned" at .32,.93 textcolor ls 3
 set label "1MHz" at 100,.9 textcolor ls 4
 set label "20MHz" at 200,.6 textcolor ls 4
 
@@ -73,6 +76,9 @@ plot f1(x,ib,qe,1,nr,1) w l notitle ls 21, \
      f1(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 23, \
      f2(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 3, \
      f3(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 13, \
+     f3(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 13, \
+     f1(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 23, \
+     f2(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 3, \
      f1(x,ib,qe_interline,1,nr_interline_20MHz,1) w l notitle ls 24, \
      f2(x,ib,qe_interline,1,nr_interline_20MHz,1) w l title "interline CCD" ls 4, \
      f3(x,ib,qe_interline,1,nr_interline_20MHz,1) w l notitle ls 14,\
@@ -102,6 +108,9 @@ plot f1(x,ib,qe,1,nr,1) w l notitle ls 21, \
      f1(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 23, \
      f2(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 3, \
      f3(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 13, \
+     f3(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 13, \
+     f1(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 23, \
+     f2(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 3, \
      f1(x,ib,qe_interline,1,nr_interline_20MHz,1) w l notitle ls 24, \
      f2(x,ib,qe_interline,1,nr_interline_20MHz,1) w l title "interline CCD" ls 4, \
      f3(x,ib,qe_interline,1,nr_interline_20MHz,1) w l notitle ls 14,\
@@ -128,6 +137,9 @@ plot f1(x,ib,qe,1,nr,1) w l notitle ls 21, \
      f1(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 23, \
      f2(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 3, \
      f3(x,ib,qe_scmos,1,nr_scmos_rolling,1) w l notitle ls 13, \
+     f3(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 13, \
+     f1(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 23, \
+     f2(x,ib,qe_scmos_ideal,1,nr_scmos_ideal,1) w l notitle ls 3, \
      f1(x,ib,qe_interline,1,nr_interline_20MHz,1) w l notitle ls 24, \
      f2(x,ib,qe_interline,1,nr_interline_20MHz,1) w l title "interline CCD" ls 4, \
      f3(x,ib,qe_interline,1,nr_interline_20MHz,1) w l notitle ls 14,\

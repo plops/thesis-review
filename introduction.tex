@@ -443,7 +443,7 @@ with bold red strokes on the lenses in
 In addition to the Abbe sine condition microscope lenses are also
 corrected for spherical aberration and linear coma \citep{Gross2005}.
 Then the coma rays are symmetric around the chief ray, the wavefront
-and point-spread function are approximately invariant for small field
+and point spread function are approximately invariant for small field
 sizes (in first order).  This ensures that the imaging conditions are
 invariant for small regions of the field plane and allows to express
 image formation with linear systems theory.
@@ -535,9 +535,9 @@ frequency spectrum $\widetilde u(\vnu)$:
     $S(\r):$ & $\mathbb{R}^3\to\mathbb{R}$ & distribution of fluorophores in sample space \\
     $I'(\r'):$&$\mathbb{R}^3\to\mathbb{R}$ & intensity distribution in image space\\
     $\widetilde u(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & spatial frequency spectrum of field in sample space \\
-    $a(\r):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude point-spread function \\
+    $a(\r):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude point spread function \\
     $\widetilde a(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & amplitude transfer function, generalized aperture \\
-    $h(\r)=|a(\r)|^2:$&$\mathbb{R}^3\to\mathbb{R}$ & intensity point-spread function \\
+    $h(\r)=|a(\r)|^2:$&$\mathbb{R}^3\to\mathbb{R}$ & intensity point spread function \\
     $\widetilde h(\vnu):$&$\mathbb{R}^3\to\mathbb{C}$ & optical transfer function \\
   \end{tabular}
   \caption{Overview of the functions that are used in this section.}
@@ -650,7 +650,7 @@ spatial frequencies\footnote{Unfortunately my notation is slightly
 According to the convolution theorem this multiplication in frequency
 space corresponds to a convolution in the domain of spatial
 coordinates $\r$ of the field distribution $u(\r)$ and an amplitude
-point-spread function $a(\r)=\mathcal{F}(\widetilde a(\vnu))$ that
+point spread function $a(\r)=\mathcal{F}(\widetilde a(\vnu))$ that
 describes the imaging of the objective lens:
 \begin{align}
   u'(\r')=u'(\beta \r) = (u \otimes a)(\r) =
@@ -690,7 +690,7 @@ frequencies are transmitted:
   \widetilde h(\vnu') = \mathcal{F}(a(\r')\ a^*(\r')) =
   \widetilde a(\vnu') \otimes \widetilde a^*(-\vnu'). \label{eq:otf}
 \end{align}
-The product of the amplitude point-spread function $a(\r')$ and its
+The product of the amplitude point spread function $a(\r')$ and its
 complex conjugate corresponds to an auto-correlation of the amplitude
 transfer function in spatial frequency space. Note that the complex
 conjugation of the second factor $a^*(\r')$ results in an inversion of
@@ -783,7 +783,7 @@ means the axial location of the fluorescent plane can be measured in
 I${}^2$M but there is still background signal \citep{Gustafsson1995}.
 
 The reason for this background signal is conservation of energy from
-plane to planet. A light ray that started in a certain object point
+plane to plane. A light ray that started in a certain object point
 does not stop in the corresponding image point. Therefore most
 out-of-focus light is added incoherently as a background to the
 detected signal. Structured illumination can be used to remove this
@@ -827,13 +827,13 @@ lamp upstream of the dichroic beam splitter.
 \subsubsection*{The space-bandwidth product of a microscopic lens}
 \label{sec:etendue}
 A useful quantity in optics is the etendue $\mathcal{E}$. For a \cma{etendue}
-microscope objective its value is related to the number of point-spread
+microscope objective its value is related to the number of point spread
 functions that can be resolved in the field.  Therefore this quantity
 is also called information capacity, light gathering capacity or
 space-bandwidth product. For a high-aperture lens, the etendue is
 given by \nomenclature{$\mathcal{E}$}{Etendue, information capacity,
   light gathering capacity or space-bandwidth product; its value is
-  related to the number of point-spread functions that can be resolved
+  related to the number of point spread functions that can be resolved
   in the field.}
 \begin{align}
 \label{eq:high-aperture-etendue}
@@ -868,7 +868,7 @@ three-dimensionally shift-invariant. In order to predict the image of
 a three-dimensional sample it is sufficient to know the image of a
 single point source.
 
-By investigating this point-spread function and its Fourier transform
+By investigating this point spread function and its Fourier transform
 it is possible to give the simple relationships in equations
 (\ref{eq:resolution}) for the best possible resolution. Furthermore I
 describe the missing cone problem, a limitation inherent in all lenses
@@ -889,6 +889,42 @@ that only collect light from one half-space.
 \end{summary}
 
 \subsection{Introduction}
+Nowadays, all wide-field microscopes use Si-based cameras to measure   \cma{detection}
+and digitize the intensity pattern in the intermediate image. The
+semiconductor surface is patterned with a two-dimensional array of PIN
+photodiodes. Light photons can be absorbed in their depletion region
+and generate free charge carriers. In each diode an
+intensity-dependent charge is collected during the exposure time.
+
+There are basically two different technologies to measure and digitize
+this charge:
+
+In the passive sensor, columns of diodes form a linear row of
+\cma{CCD} capacitors. By applying a sequence of different voltages to
+each of three adjacent capacitors, the charge can be transported line
+by line from the sensor. An additional row of similar capacitors
+(denoted horizontal shift register) on one side of the array pushes
+the carriers into a charge amplifier. 
+
+On the exit side of the array , a further row of such capacitors is (
+denoted horizontal shift register) push the charge into a charge
+amplifier. This consists of a much smaller capacitor and a
+field-effect transistor measuring its ( charge- abhaenige ) voltage .
+
+
+besitzen
+
+Es gibt grundsaetzlich zwei Technologien um diese Ladung zu messen und
+digitalisieren. Beim passiven Sensor bilden die Dioden entlang der
+Spalten eine lineare von Kondensatoren. Durch Anlegen von
+unterschiedlichen Spannungen an jeweils drei benachbarte Kondensatoren
+kann die Ladung zeilenweise aus dem Sensor transportiert werden. Auf
+der Austrittsseite des Arrays befindet sich eine weitere Zeile solcher
+Kondensatoren (denoted horizontal shift register) die die Ladung in
+einen charge amplifier schieben. Dieser besteht aus einem deutlich
+kleinerem Kondensator und ein field-effect transistor misst dessen
+(ladungs-abhaenige) Spannung.
+
 - focal plane detector
 
 - pin photodiode pn junction silicon semiconductor device
@@ -1040,6 +1076,7 @@ $S+I_b$ is the standard deviation
     EM-CCD & 10 & 0.95 & 9 & $\sqrt{2}$ & 5 and 20 \\
     sCMOS global shutter& 400 &0.70 & $1.3\cdot1.41$ & 1 & 1 \\
     sCMOS rolling shutter& 400 &0.70 & $1.3$ & 1 & 1 \\
+    back-thinned sCMOS& --- &0.95 & $0.7$ & 1 & 1 \\
     interline CCD & 20 & 0.65 & 6.5 & 1 & 1\\
     interline CCD & 1 & 0.65 & 2.4 & 1 & 1\\
     EM-CCD single photon & 10 & 0.95 & 9 & 1 & 50 \\

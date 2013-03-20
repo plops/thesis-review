@@ -19,8 +19,8 @@ TEX_FILES_IN_BUILD=$(TEX_FILES:%=build/%)
 
 # damit ich nicht jedesmal beim make aufrufen sed aufrufen muss
 # - sorgt dafuer das es keinen fehler gibt
--include build/make.vector.pdf_tex.dep
-build/make.vector.pdf_tex.dep: $(TEX_FILES)
+-include build/make_vector.pdf_tex.dep
+build/make_vector.pdf_tex.dep: $(TEX_FILES)
 	for i in $^; do \
 		echo -n build/$$i": "; \
 		sed -n 's+^[^%].*\\svginput{[^\}]*}{\([^\}]*\)}+build/\1.pdf_tex+p' $$i|tr '\12' ' '; \
@@ -35,15 +35,15 @@ build/%.eps_tex: vector/%.svg
 	inkscape $< --export-latex --export-eps=build/`basename $< .svg`.eps
 
 
-# find included pdf images, copy them to build/%.vector.pdf 
--include build/make.vector.pdf.dep
-build/make.vector.pdf.dep: $(TEX_FILES)
+# find included pdf images, copy them to build/%_vector.pdf 
+-include build/make_vector.pdf.dep
+build/make_vector.pdf.dep: $(TEX_FILES)
 	for i in $^; do \
 		echo -n build/$$i": "; \
-		sed -n 's+^[^%].*\pdfinput{[^\}]*}{\([^\}]*\)}+build/\1.vector.pdf+p' $$i|tr '\12' ' '; \
+		sed -n 's+^[^%].*\pdfinput{[^\}]*}{\([^\}]*\)}+build/\1_vector.pdf+p' $$i|tr '\12' ' '; \
 		echo ; \
 	done > $@
-build/%.vector.pdf: vector/%.pdf
+build/%_vector.pdf: vector/%.pdf
 	cp $< $@
 
 # find all included jpg files

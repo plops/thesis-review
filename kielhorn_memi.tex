@@ -159,9 +159,9 @@
 \newcommand{\svginput}[2]{{\def\svgscale{#1}\input{#2\svgending}}}
 
 \def\pdfending{\ifx\pdfoutput\undefined% 
-  .vector.eps% 
+  _vector.eps% 
   \else%
-  .vector%
+  _vector%
   \fi}
 \newcommand{\pdfinput}[2]{\includegraphics[width=#1]{#2\pdfending}}
 

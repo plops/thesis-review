@@ -899,8 +899,9 @@ intensity-dependent charge is collected during the exposure time.
 There are basically two different technologies to measure and digitize
 this charge:
 
-In the passive-pixel sensor, columns of diodes form a linear row of    \cma{Charge-coupled devices (CCD)}
-capacitors. By applying a sequence of different voltages to each of
+In the passive-pixel sensor, columns of diodes form a linear row of
+\cma{Charge-coupled devices (CCD)} capacitors. By applying a sequence
+of different voltages, in the range up to \unit[6]{V}, to each of
 three adjacent capacitors, the charge can be transported line by line
 from the sensor --- therefore, this technology is known as
 charge-coupled device (CCD). An additional row of similar capacitors
@@ -908,20 +909,96 @@ charge-coupled device (CCD). An additional row of similar capacitors
 the carriers into a charge amplifier. This consists of a much smaller
 capacitor, the read node, and a field-effect transistor amplifying its
 voltage, which linearly depends on the charge in the read node
-\citep{Pawley2006}. 
+\citep{Pawley2006}.
 
 In the active-pixel sensor, each photodiode is surrounded by its own     \cma{active-pixel sensor}
-transistors for read-out and reset. The two-dimensional array is
+transistors for readout and reset. The two-dimensional array is
 addressed with an access enable wire which is shared by pixels of a
 line and an output wire, which is shared by pixels of a column. In the
 simplest case (with three in-pixel transistors) start of integration
 and readout occurs one line at a time (rolling shutter).
 
-When I started this work, passive CCD sensors were the state of the
-art with regards to sensitivity and speed in wide-field
+When I started this work in 2008, passive CCD sensors were the state
+of the art with regards to sensitivity and speed in wide-field
 microscopy. Now, however, faster and cheaper active-pixel sensors that
 provide comparable or better noise performance, become commercially
 available.
+
+In the next section I will deal with various noise sources that affect
+the signal of focal plane detectors. This is not only relevant to
+compare the performance of cameras from different manufacturers or to
+determine the optimal parameter settings for a particular
+experiment. Often it is advantageous to specify an intensity
+measurement as the number of detected photoelectrons, e.g.\ when
+comparing images of different microscope systems (confocal, spinning
+disk and wide-field) or when utilizing sophisticated noise reduction
+algorithms.
+
+\subsection{Quantum shot noise and read noise}
+Fluorescence photons arrive independently of each other at the  \cma{Quantum shot noise}
+ detector. This random process leads to
+fluctuations in the number of the detected photons and can be described by the
+Poissonian probability mass function (denoted as '$\pois$'):
+\begin{align}
+  \pois(k;\lambda) = \frac{\lambda^k \exp(-\lambda)}{k!},\quad \lambda\in\mathbb{R},\quad k=0,1,2,\ldots
+\end{align}
+where $k$ describes the number of measured photons and the real number
+$\lambda$ is the average number of photons that reach the detector
+during the integration time.
+
+We can calibrate every detector in order to specify the measurement in
+the unit of detected photoelectrons. For this we utilize the property
+of the Poisson distribution that the variance $(\Delta I)^2$ of an
+intensity measurement (in the unit of photoelectrons) is equal to the
+average $\langle I\rangle$:
+\begin{align}
+\label{eq:variance}
+  (\Delta I)^2 = \langle(I - \langle I \rangle) ^2\rangle = \langle I\rangle.
+\end{align}
+\newcommand{\comment}[2]{#2}
+\begin{figure}
+  \centering
+  \includegraphics[height=5.9cm, trim=130 10 120 20, clip]{calib-pic}
+  \pdfinput{7.4cm, trim=0 0 30 20, clip}{andor_normal_preamp5_exp30}
+  \caption{{\bf left:} Image of a defocused area on a fluorescent
+    plane sample. This is used for calibrating the detector. {\bf
+      right:} Result of a detector calibration. The slope of the curve
+    allows to convert the arbitrary analog-to-digital units into
+    detected photoelectrons, the point of interception at the $y-$axis
+    gives the detector read noise.}
+  \label{fig:shot-noise}
+\end{figure}
+For the calibration of a good quality CCD camera, twenty images of a \cma{detector gain calibration}
+defocused fluorescent object (see left image in
+\figref{fig:shot-noise}) are acquired. From the twenty images the variance of the
+intensity is determined for each pixel. Then all occurring intensities
+are collected into 100 bins. The average intensity variance of each
+bin is then plotted against the intensity (see right image in
+\figref{fig:shot-noise}). The data lie on a straight line. From its
+slope we calculate the gain to convert the arbitrary analog-to-digital
+units into the number of detected photoelectrons; given in these units
+the slope of the line is one, according to equation
+\eqref{eq:variance}.
+
+\comment{ % this is just for copying the jpeg file
+\jpginput{10cm}{calib-pic}{Image of a defocused area on a fluorescent
+  plane sample.}}
+
+To determine the quality of a detector, we create twenty dark images,  \cma{measuring read noise}
+where the detector is protected from illumination. In an ideal,
+noise-free detector these images would contain zero everywhere. In a
+real CCD sensor the variance of the values in the dark images reflect
+the readout noise. Using the calibration gain, the read noise can be
+specified as photoelectrons$/$pixel (\unit[]{e/px}). 
+
+The analysis for the right diagram in \figref{fig:shot-noise} gave a
+read noise of \unit[5.6]{e/px}. For the evaluation I used the function
+\verb!cal_readnoise! of the DIPimage toolbox for Matlab. In appendix
+\ref{sec:python-readnoise-eval} I list my alternative implementation
+in Python.
+
+photon noise limited
+
 
 
 \gnuplotinput{camera-snr}{Camera snr. dotted line for lowest light
@@ -963,7 +1040,7 @@ Charge-coupled devices are semiconductor devices that contain a 2D
 grid of capacitors, formed by at least three groups of electrodes
 (phases). Cycling the voltage on these electrodes allows to push
 charges, which has been accumulated under the capacitors (registers)
-into their neighbours.  into read out logic.
+into their neighbours.  into readout logic.
 
 - $\unit[\sim6]{V}$ charge transfer
 
@@ -1076,9 +1153,6 @@ $S+I_b$ is the standard deviation
 
 
 - poisson noise 
-\begin{align}
-  f(k;\lambda) = \frac{\lambda^k e^{-\lambda}}{k!}
-\end{align}
 
 - variance equal to mean
 
@@ -1091,11 +1165,10 @@ $S+I_b$ is the standard deviation
 In order to characterize a camera we captured sequences of images that
 contain a light pattern as displayed in \figref{fig:calib-pic}. The
 pattern is smooth and non-uniform.  
-\jpginput{10cm}{calib-pic}{Image
-  of a defocused area on a fluorescent plane sample. Several such
-  images ($20$) are captured and variance in each pixel is plotted
-  against the intensity to find the correspondence between reported
-  ADU and detected photoelectrons.}  The images were produced in a
+
+
+
+  The images were produced in a
 fluorescence microscope. The light source is a DPSS laser with
 \unit[473]{nm} wavelength. It illuminates a circular area of the
 sample, which is a green fluorescent plane. A FITC filter cube and a

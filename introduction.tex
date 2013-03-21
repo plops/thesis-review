@@ -1091,10 +1091,17 @@ $F_n=\sqrt{2}$.
   \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}}
 \end{align}
 This equation makes it possible to compare all the cameras that I can
-use for my experiments. Table \ref{tab:cam-param} lists their
-parameters and the three diagrams in \figref{fig:camera-snr} shows
-curves of the relative signal-to-noise ratio $\SNR/\SNRid$ for three
-different amounts of background light $I_b$.
+use for my experiments. Table \ref{tab:cam-param} lists parameters
+from their datasheets and the three diagrams in
+\figref{fig:camera-snr} shows curves of the relative signal-to-noise
+ratio $\SNR/\SNRid$ for three different amounts of background light
+$I_b$.
+
+FIXME bevorzugen
+
+Bei der Parameterwahl lege ich besonderen Wert auf die Noise
+performance, auch wenn das mit Geschwindigkeitseinbussen einhergeht.
+
 \begin{savenotes}
   \begin{table}[!htbp]
     \centering
@@ -1102,9 +1109,9 @@ different amounts of background light $I_b$.
       camera type & $f_\textrm{read}$  & $QE$ & $N_r$ & $F_n$ & $M$ & model \\
        & [MHz] & &  [e/px] & &  &  \\
       \hline
-      back-thinned CCD & 1 & 0.95 & 6 & 1 & 1 &  E2V CCD97\\
-      EM-CCD & 10 & 0.95 & 9 & $\sqrt{2}$ & 5 and 20 & E2V CCD97 \\
-      EM-CCD single photon & 10 & 0.95 & 9 & 1 & 50 & E2V CCD97 \\
+      back-thinned CCD & 1 & 0.95 & 5.3 & 1 & 1 &  E2V CCD97\\
+      EM-CCD & 1 & 0.95 & 15.0 & $\sqrt{2}$ & 40 and 80 & E2V CCD97 \\
+      EM-CCD single photon & 17 & 0.95 & 89.0 & 1 & 50 & E2V CCD97 \\
       sCMOS global shutter& 200 &0.52 & $2.3$ & 1 & 1 & Fairchild CIS2521F\\
       sCMOS rolling shutter& 140 &0.72 & $1.3$ & 1 & 1 & Hamamatsu FL-400\\
       back-thinned sCMOS & --- &0.95 & $0.7$ & 1 & 1 & --- \footnote{Back-thinned sCMOS are not available at the time of writing.} \\
@@ -1140,14 +1147,15 @@ performance.
   light region where quantum efficiency and excess noise factor $F_n$ matter
 }
 
-The first thing I want to look at is the EM-CCD. For a high gain of \cma{interpretation of EM-CCD in \figref{fig:camera-snr}}
-$M=20$ the curve is horizontal and the sensor differs from the ideal
-detector only in terms of a reduced apparent quantum efficiency. In a
-low background environment $I_b=0.3$ the electron multiplying mode is
-only advantageous for signals with less than 30 photons per pixel. For
-a higher background $I_b=30$ electron multiplication does not improve
-noise performance --- but note that in this mode the sensor can still
-be read out at a 10 times higher speed.
+The first thing I want to look at is the EM-CCD. For a high gain of
+\cma{interpretation of EM-CCD in \figref{fig:camera-snr}} $M=20$ the
+curve is horizontal and the sensor differs from the ideal detector
+only in terms of a reduced apparent quantum efficiency. In a low
+background environment $I_b=0.3$ the electron multiplying mode is only
+advantageous for signals with less than 30 photons per pixel. For a
+higher background $I_b=30$ electron multiplication does not improve
+noise performance --- but note that in this mode the sensor could be
+read out at a 10 times higher speed.
 
 In a low background environment and low signal level the EM-CCD comes
 very close to the ideal detector, when it is run in photon counting
@@ -1155,6 +1163,32 @@ mode as indicated by the red line in the top left.
 
 Next I want to discuss the curves of the active-pixel
 sensors. \cma{sCMOS in \figref{fig:camera-snr}}
+
+Bei dem mit global shutter bezeichnete Chip handelt es sich um einen
+Sensor mit 5 Transistoren pro Pixel. Das erlaubt zwar aehnlich bei
+einer CCD die Integration fuer jeden Pixel gleichzeitig zu starten und
+zu beenden, hat aber zwei wichtige Nachteile: Die zusaetzlichen
+Transistoren bedecken Platz und verringern die Quanteneffizienz des
+Sensors ausserdem muss fuer quantitative Daten zu jedem Bild noch ein
+Referenzframe aufgenommen werden \cite{Cameras2012}. Das vermindert
+die Ausleserate und erhoeht das Ausleserauschen.
+
+Der mit rolling shutter bezeichnete Sensor hat nur 3 Transistoren pro
+Pixel (FIXME stimmt das?) und weist daher eine entsprechend hoehere
+Quanteneffizienz auf. Fuer ein Signal zwischen 6 und 82 Elektronen
+liefert dieser Sensor die beste Qualitaet und das bei 14 mal hoeherer
+Geschwindigkeit als die EM-CCD. Fuer die Anwendung in unserem
+Prototypen muss gewaehrleistet werden, dass alle Pixel integrieren,
+waehrend unsere Displays Muster anzeigen. Gluecklicherweise gibt es
+dafuer mittlerweile einen Modus namens global exposure
+synchonization. (FIXME ronny fragen) Dabei werden die Zeilen zwar
+immernoch nacheinander ausgelesen, wenn das Triggersignal
+$\unit[14.6]{\mu s}$ vor der eignetlichen Belichtung erzeugt wird,
+koennen alle Pixel ihre integration starten.
+
+Der Eintrag back-thinned sCMOS ist nur ein hypothetischer Sensor den
+ich eingetragen habe um zu sehen, wie die Kurve fuer einen derartigen
+Sensor aussehen wuerde.
 
 The sensor E2V CCD97($512\times512$, pixel pitch \unit[16]{$\mu$m}) is
 used in several of our EM-CCD cameras. It has a \citep{2004e2v}

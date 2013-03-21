@@ -62,7 +62,7 @@ set label "global shutter" at 10.8,.5 textcolor ls 3
 set label "back-thinned" at .32,.93 textcolor ls 3
 set label "1MHz" at 120,.82 textcolor ls 4
 set label "20MHz" at 200,.6 textcolor ls 4
-
+unset key
 plot f1(x,ib,qe,1,nr_conv,1) w l notitle ls 21, \
      f2(x,ib,qe,1,nr_conv,1) w l title "back-thinned CCD" ls 1, \
      f3(x,ib,qe,1,nr_conv,1) w l notitle  ls 11, \
@@ -123,6 +123,7 @@ plot f1(x,ib,qe,1,nr_conv,1) w l notitle ls 21, \
      (x+ib<1)?f2(x,ib,qe,1,nr_em,50):NaN w l notitle ls 5,\
      (x+ib<1)?f3(x,ib,qe,1,nr_em,50):NaN w l notitle ls 15
 unset label
+set key
 ib = 30
 set label "1MHz" at 120,.82 textcolor ls 4
 set label "20MHz" at 200,.6 textcolor ls 4

@@ -1125,23 +1125,36 @@ quantum efficiency $Q_E$ wins (back-thinned CCD, green line):
 For detectors with readout noise, there is a signal photon number
 $S_n$ below which the readout noise predominates:
 \begin{align}
-  F_n^2 Q_E (S+I_b) &> \frac{N_r^2}{M^2} \\
   S_n&= \frac{N_r^2}{M^2F_n^2 Q_E}-I_b.  \qquad\textrm{(photon shot noise limit)}
 \end{align}
-I indicate both limits in \figref{fig:camera-snr} using different
-line types. The line is dotted in the region where the readout noise
+I indicate both limits in \figref{fig:camera-snr} using different line
+types. The line is dotted in the region where the readout noise
 dominates, followed by a thick solid line where both photon shot noise
 and readout noise contribute. A thin line indicates the region where
 the relative SNR is within 95\% of the high light limit and the
-detection is limited by the photon shot noise.
-
+sensor's quantum efficiency becomes the parameter that defines the
+performance.
 
 \gnuplotinput{camera-snr}{Camera snr. dotted line for lowest light
   level, where $N_r$ is the dominant noise; thin line indicates high
   light region where quantum efficiency and excess noise factor $F_n$ matter
 }
- 
 
+The first thing I want to look at is the EM-CCD. For a high gain of \cma{interpretation of EM-CCD in \figref{fig:camera-snr}}
+$M=20$ the curve is horizontal and the sensor differs from the ideal
+detector only in terms of a reduced apparent quantum efficiency. In a
+low background environment $I_b=0.3$ the electron multiplying mode is
+only advantageous for signals with less than 30 photons per pixel. For
+a higher background $I_b=30$ electron multiplication does not improve
+noise performance --- but note that in this mode the sensor can still
+be read out at a 10 times higher speed.
+
+In a low background environment and low signal level the EM-CCD comes
+very close to the ideal detector, when it is run in photon counting
+mode as indicated by the red line in the top left.
+
+Next I want to discuss the curves of the active-pixel
+sensors. \cma{sCMOS in \figref{fig:camera-snr}}
 
 The sensor E2V CCD97($512\times512$, pixel pitch \unit[16]{$\mu$m}) is
 used in several of our EM-CCD cameras. It has a \citep{2004e2v}
@@ -1149,7 +1162,6 @@ used in several of our EM-CCD cameras. It has a \citep{2004e2v}
 % DU-897E-CS0-\#BV) and Photometrics Cascade~II
 
 
-\cma{interpretation of \figref{fig:camera-snr}}
 
 
 - effects to look out for

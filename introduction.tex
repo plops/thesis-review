@@ -17,6 +17,7 @@
   --- electron multiplying charge-coupled devices (EMCCD) and
   scientifc complementary metal–oxide–semiconductor (sCMOS).
 \end{summary}
+\nomenclature{EM-CCD}{Electron multiplying charge-coupled devices}
 Regardless of whether it is the picture of earth captured by an
 orbiting satellite, the x-ray motion picture of a running dog or the
 time-lapse recording of a blooming flower. Images capture our
@@ -891,69 +892,87 @@ that only collect light from one half-space.
 \end{summary}
 
 \subsection{Introduction}
-Nowadays, all wide-field microscopes use Si-based cameras to measure   \cma{detection}
-and digitize the intensity pattern in the intermediate image. The
-semiconductor surface is patterned with a two-dimensional array of PIN
-photodiodes. Light photons can be absorbed in their depletion region
-and generate free charge carriers. In each diode an
-intensity-dependent charge is collected during the exposure time.
+Nowadays, all wide-field microscopes use silicon-based cameras to
+measure \cma{detection} and digitize the intensity distribution in the
+intermediate image plane. The semiconductor surface is patterned with
+a two-dimensional array of PIN photodiodes that generate and collect
+an intensity-dependent amount of free charge carriers when their
+depletion region is exposed to light photons.
+
+Modern detectors can have a very high probability of a photon being
+\cma{quantum efficiency and back-thinning} absorbed and contributing to final signal
+(quantum efficiency $Q_E$). For the most light sensitive devices even
+the backside of the silicon substrate is removed until the diodes can
+be exposed from the backside. In this way, the diodes can cover the
+entire surface and the fill factor is not reduced due to opaque wires
+running over the surface. Such detectors are called 'back-thinned' and
+can achieve a quantum efficiency of up to $95\%$ for green light.
 
 There are basically two different technologies to measure and digitize
-this charge:
+the charge that was collected in the photodiodes:
 
-In the passive-pixel sensor, columns of diodes form a linear row of
+In the passive-pixel sensor columns of diodes form a linear row of
 \cma{Charge-coupled devices (CCD)} capacitors. By applying a sequence
-of different voltages, in the range up to \unit[6]{V}, to each of
+of different voltages, in the range up of to \unit[6]{V} to each of
 three adjacent capacitors, the charge can be transported line by line
-from the sensor --- therefore, this technology is known as
+out of the sensor --- therefore, this technology is known as
 charge-coupled device (CCD). An additional row of similar capacitors
 (denoted horizontal shift register) on one side of the array pushes
-the carriers into a charge amplifier. \cma{charge amplifier}
- This consists of a much smaller   
-capacitor, the read node, and a field-effect transistor amplifying its
-voltage, which linearly depends on the charge in the read node
-\citep{Pawley2006}.
+the carriers into a charge amplifier. \cma{charge amplifier} This
+consists of a much smaller capacitor (the read node) and a
+field-effect transistor that amplifies the voltage across the read
+node. This voltage linearly depends on the charge \citep{Pawley2006}.
 
-In the active-pixel sensor, each photodiode is surrounded by its own     \cma{active-pixel sensor}
-transistors for readout and reset. The two-dimensional array is
-addressed with an access enable wire which is shared by pixels of a
-line and an output wire, which is shared by pixels of a column. In the
-simplest case (with three in-pixel transistors) start of integration
-and readout occurs one line at a time (rolling shutter).
+In the active-pixel sensor each individual photodiode is surrounded by
+its own \cma{active-pixel sensor} transistors for readout and
+reset. The two-dimensional array is addressed with an access
+enable wire which is shared by pixels of a line and an output wire,
+which is shared by pixels of a column. In the simplest case (with
+three in-pixel transistors) start of integration and readout occurs
+one line at a time (rolling shutter).
 
-When I started this work in 2008, passive CCD sensors were the state
-of the art with regards to sensitivity and speed in wide-field
-microscopy. Now, however, faster and cheaper active-pixel sensors that
-provide comparable or better noise performance, become commercially
-available.
+When I started this work in 2008, passive CCD sensors were state of
+the art detectors for fluorescence microscope with regards to
+sensitivity and speed. Now, however, faster and cheaper active-pixel
+sensors that provide comparable or better noise performance, become
+commercially available.
 
 In the next section I will deal with various noise sources that affect
 the signal of focal plane detectors. This is not only relevant to
 compare the performance of cameras from different manufacturers or to
-determine the optimal parameter settings for a particular
-experiment. Often it is advantageous to specify an intensity
+determine the optimal parameter settings for one particular
+experiment; often it is advantageous to specify an intensity
 measurement as the number of detected photoelectrons, e.g.\ when
 comparing images of different microscope systems (confocal, spinning
-disk and wide-field) or when utilizing sophisticated noise reduction
+disk or wide-field) or when utilizing sophisticated noise reduction
 algorithms.
 
-\subsection{Quantum shot noise and read noise}
-Fluorescence photons arrive independently of each other at the  \cma{Quantum shot noise}
- detector. This random process leads to
-fluctuations in the number of the detected photons and can be described by the
+\subsection{Photon shot noise and read noise}
+Fluorescence photons arrive at the \cma{Photon shot noise} detector
+independently of each other. This random process leads to fluctuations
+in the number of the detected photons and can be described by the
 Poissonian probability mass function (denoted as '$\pois$'):
 \begin{align}
   \pois(k;\lambda) = \frac{\lambda^k \exp(-\lambda)}{k!},\quad \lambda\in\mathbb{R},\quad k=0,1,2,\ldots
 \end{align}
-where $k$ describes the number of measured photons and the real number
-$\lambda$ is the average number of photons that reach the detector
-during the integration time.
+Note that in this particular formula the quantities have a different
+meaning than in other parts of this work. The variable $k$ describes
+the number of measured photons and the real number $\lambda$ is the
+average number of photons that reach the detector during the
+integration time. \figref{fig:pois} displays the discrete detection
+probabilities for three different values of $\lambda$.
+
+\gnuplotinput{pois}{Poissonian probability mass function
+  $\pois(k;\lambda)$ for three photon fluxes with different average
+  photon numbers $\lambda$.}
+
 
 We can calibrate every detector in order to specify the measurement in
-the unit of detected photoelectrons. For this we utilize the property
+the unit of detected photoelectrons. For this, we utilize the property
 of the Poisson distribution that the variance $(\Delta I)^2$ of an
 intensity measurement (in the unit of photoelectrons) is equal to the
-average $\langle I\rangle$:
+average intensity $\langle I\rangle$:
+% nice proof: http://www.proofwiki.org/wiki/Variance_of_Poisson_Distribution
 \begin{align}
 \label{eq:variance}
   (\Delta I)^2 = \langle(I - \langle I \rangle) ^2\rangle = \langle I\rangle.
@@ -981,73 +1000,157 @@ intensity variance of each bin is then plotted against the intensity
 straight line. From its slope we calculate the gain to convert the
 arbitrary analog-to-digital units into the number of detected
 photoelectrons. If the data is plotted in this unit, the slope of the
-line is one, according to equation \eqref{eq:variance}.
+line is one, according to equation \eqref{eq:variance}. The smooth
+light distribution in the input images ensures a good coverage for
+each data point in the variance-intensity plot. 
 
 \comment{ % this is just for copying the jpeg file
 \jpginput{10cm}{calib-pic}{Image of a defocused area on a fluorescent
   plane sample.}}
 
- To determine the quality of a detector we                             \cma{measuring read noise}
+To determine the quality of a detector we \cma{measuring read noise}
 ensure that no light falls on the detector and create twenty dark
 images.  For an ideal, noise-free detector these images would contain
 zero everywhere. In a real CCD sensor the variance of the values in
-the dark images reflect the readout noise. Using the calibration gain,
-the read noise can be specified as photoelectrons$/$pixel
+the dark images reflect the readout noise $N_r$. Using the calibration
+gain, the readout noise can be specified as photoelectrons$/$pixel
 (\unit[]{e/px}).
 
 The analysis for the right diagram in \figref{fig:shot-noise} gave a
-read noise of \unit[5.6]{e/px}. For the evaluation I used the function
-\verb!cal_readnoise! of the DIPimage toolbox for Matlab. In appendix
-\ref{sec:python-readnoise-eval} I list an alternative Python
-implementation of this algorithm.
+readout noise of \unit[5.6]{e/px}. For the evaluation I used the
+function \verb!cal_readnoise! of the DIPimage toolbox for Matlab
+\citep{Lidke2005a}. In appendix \ref{sec:python-readnoise-eval} I list
+an alternative Python implementation of this algorithm.
 
-The major source for read noise is the charge amplifier. Its noise is
+The major source for readout noise is the charge amplifier. Its noise is
 added uniformly to every image pixel. For readout frequencies above
-\unit[1]{MHz} the read noise increases with the square root of the
+\unit[1]{MHz} the readout noise increases with the square root of the
 read speed \citep{Pawley2006}. Until a decade ago this limited the
 readout speed of scientific CCD cameras. Then a new type of sensor was
-developed --- the electron-multiplying CCD \citep{Mackay}.
+developed --- the electron-multiplying CCD (EM-CCD) \citep{Mackay}.
 
 This device contains an additional sequence of capacitors (denoted        \cma{electron-multiplying CCD}
 multiplication registers), which are operated with a high voltage (up
 to \unit[46]{V}). The field accelerates electrons and they can
-generate more charge carriers via a process called impact
+generate more charge carriers by a process called impact
 ionization. This is a statistical process and for every electron going
 through a multiplication register, there is an average probability $p$
 that it creates another electron. This probability is quite low
 ($p<1.3\%$) but after a sequence of 536 registers the gain
-$M=(1+p)^{536}\approx 1015$ is so high, that even read noise at \unit[17]{MHz}
+$M=(1+p)^{536}\approx 1015$ is so high, that even readout noise at \unit[17]{MHz}
 readout speed can be neglected.
 
-This amplification process consumes a lot of energy and requires
-elaborate cooling of the detector chip as the gain is temperature
-dependent.
+This amplification process consumes a lot of energy and requires an
+elaborate cooling scheme of the detector chip as the gain is
+temperature dependent.
 
-Unfortunately, the statistical nature of impact ionization leads to a
-new noise source. Since the noise corresponds to an uncertainty in
-gain, the noise has a multiplicative effect on the
-signal. \cite{Robbins2003} analyzed the amplification process and
-shows that the multiplicative noise has the effect of halving the
-apparent quantum efficiency of the detector.
+Unfortunately, the statistical nature of impact ionization leads to an
+uncertainty in gain and therefore introduces a \cma{excess noise
+  reduces quantum efficiency} new noise source. As a gain this noise
+acts multiplicately on the signal. \cite{Robbins2003} analyzed the
+amplification process and shows that the multiplicative noise, which
+is also called excess noise, has the effect of halving the apparent
+quantum efficiency of the detector.
 
+Note that for very low light conditions with a minute probability to
+detect more than one photon per pixel, the EM-CCD can be run with
+maximum gain as a binary detector in photon counting mode. In this
+mode the excess noise has no effect whatsoever; but other noise
+sources become important.
 
- photon noise limited
+\newcommand{\SNRid}{\textrm{SNR}_{id}}
+\newcommand{\SNRadd}{\textrm{SNR}_{add}}
+\newcommand{\SNR}{\textrm{SNR}}
+\subsection{Comparison chart for detector selection}
+Now I will introduce a comparison chart that I first saw in
+\cite{Cameras2012}. It is based on a single formula for the
+signal-to-noise ratio $\SNR$ and if the detector parameters, such as
+readout noise and quantum efficiency, are known, a quantitative
+estimate of the expected quality of the data can be made.
 
+Shot noise defines the fundamental limit for the signal-to-noise ratio
+in photo detectors \citep{Sheppard2006a}. As already mentioned above,
+the expected noise for a signal of $S$ photons is $\sqrt{S}$. Assuming
+the contributions to a detector pixel are $S$ photons signal perturbed
+by an additional number of $I_b$ photons background light. The
+signal-to-noise $\SNRid$ ratio for an ideal, noise-free detector is:
+\begin{align}
+  \SNRid = \frac{S}{\sqrt{S+I_b}}.
+\end{align}
+A conventional detector with reduced quantum efficiency $Q_E\in[0,1]$ and
+additive readout noise $N_r$ (in \unit[]{e/px}) can only produce a
+worse signal-to-noise ratio:
+\begin{align}
+  \SNRadd = \frac{Q_E\cdot S}{\sqrt{Q_E(S+I_b)+N_r^2}}.
+\end{align}
+This formula can be adapted for the electron-multiplying CCD. There,
+the readout noise is reduced because of the gain $M$ but the influence
+of the shot noise is doubled due to the excess noise factor
+$F_n=\sqrt{2}$.
+\begin{align}
+  \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}}
+\end{align}
+This equation makes it possible to compare all the cameras that I can
+use for my experiments. Table \ref{tab:cam-param} lists their
+parameters and the three diagrams in \figref{fig:camera-snr} shows
+curves of the relative signal-to-noise ratio $\SNR/\SNRid$ for three
+different amounts of background light $I_b$.
+\begin{savenotes}
+  \begin{table}[!htbp]
+    \centering
+    \begin{tabular}{l r r r r r l}
+      camera type & $f_\textrm{read}$  & $QE$ & $N_r$ & $F_n$ & $M$ & model \\
+       & [MHz] & &  [e/px] & &  &  \\
+      \hline
+      back-thinned CCD & 1 & 0.95 & 6 & 1 & 1 &  E2V CCD97\\
+      EM-CCD & 10 & 0.95 & 9 & $\sqrt{2}$ & 5 and 20 & E2V CCD97 \\
+      EM-CCD single photon & 10 & 0.95 & 9 & 1 & 50 & E2V CCD97 \\
+      sCMOS global shutter& 200 &0.52 & $2.3$ & 1 & 1 & Fairchild CIS2521F\\
+      sCMOS rolling shutter& 140 &0.72 & $1.3$ & 1 & 1 & Hamamatsu FL-400\\
+      back-thinned sCMOS & --- &0.95 & $0.7$ & 1 & 1 & --- \footnote{Back-thinned sCMOS are not available at the time of writing.} \\
+      interline CCD & 20 & 0.62 & 6.5 & 1 & 1 & Sony ICX285\\
+      interline CCD & 1 & 0.62 & 2.4 & 1 & 1 & Sony ICX285\\
+    \end{tabular}
+    \caption{Camera parameters for the curves in \figref{fig:camera-snr}.}
+    \label{tab:cam-param}
+  \end{table}
+\end{savenotes}
+
+For a very large number of photons the detector with the highest
+quantum efficiency $Q_E$ wins (back-thinned CCD, green line):
+\begin{align}
+  \lim_{S\rightarrow\infty} \frac{\SNR}{\SNRid} &=
+  \frac{\sqrt{Q_E}}{F_n}. \qquad \textrm{(high light limit)}
+\end{align}
+For detectors with readout noise, there is a signal photon number
+$S_n$ below which the readout noise predominates:
+\begin{align}
+  F_n^2 Q_E (S+I_b) &> \frac{N_r^2}{M^2} \\
+  S_n&= \frac{N_r^2}{M^2F_n^2 Q_E}-I_b.  \qquad\textrm{(photon shot noise limit)}
+\end{align}
+I indicate both limits in \figref{fig:camera-snr} using different
+line types. The line is dotted in the region where the readout noise
+dominates, followed by a thick solid line where both photon shot noise
+and readout noise contribute. A thin line indicates the region where
+the relative SNR is within 95\% of the high light limit and the
+detection is limited by the photon shot noise.
 
 
 \gnuplotinput{camera-snr}{Camera snr. dotted line for lowest light
   level, where $N_r$ is the dominant noise; thin line indicates high
   light region where quantum efficiency and excess noise factor $F_n$ matter
 }
+ 
 
-\begin{verbatim}
-snr(s,ib,qe,fn,nr,m) :=  (qe*s)/sqrt(fn*fn*qe*(s+ib)+(nr/m)^2);
-f(s,ib,qe,fn,nr,m):=snr(s,ib,qe,fn,nr,m)/snr(s,ib,1,1,0,1);
-assume(m>0);
-limit(f(s,ib,qe,fn,nr,m),s,inf);
 
-sqrt(qe)/fn
-\end{verbatim}
+The sensor E2V CCD97($512\times512$, pixel pitch \unit[16]{$\mu$m}) is
+used in several of our EM-CCD cameras. It has a \citep{2004e2v}
+% which is in our EM-CCD cameras Andor IXon2 (head:
+% DU-897E-CS0-\#BV) and Photometrics Cascade~II
+
+
+\cma{interpretation of \figref{fig:camera-snr}}
+
 
 - effects to look out for
 
@@ -1066,81 +1169,11 @@ sqrt(qe)/fn
 
 - room light
 
-\subsection{Charge-coupled devices}
-
-- for a long time ccd were the method of choice
-
-Charge-coupled devices are semiconductor devices that contain a 2D
-grid of capacitors, formed by at least three groups of electrodes
-(phases). Cycling the voltage on these electrodes allows to push
-charges, which has been accumulated under the capacitors (registers)
-into their neighbours.  into readout logic.
-
-- $\unit[\sim6]{V}$ charge transfer
-
-Forty years of development lead to imaging devices with remarkable
-charge transfer efficiency, high quantum efficiency (up to 95\% with
-back illumination) and very low dark currents. Until ten years ago the
-performance of CCD imagers in the low light regime was limited by the
-noise of the read out amplifier (a few electrons per pixel
-rms\footnote{root mean square}).
-
-- quantum efficiency, probability of a photon being absorbed and
-contributing to final signal
-
-- depends on area
-
-- backside illuminated
-
-
-
-Since the millennium we have electron multiplying CCD (EM-CCD)
-\nomenclature{EM-CCD}{Electron multiplying charge-coupled devices}
-technology, which allows comparably good performance at low photon
-numbers \citep{Mackay,Robbins2003} and moderate read out speeds (tens
-of MHz). EM-CCDs contain a row of additional registers in front of the
-read out circuit. There, one of the three phases is clocked with a
-much higher voltage (up to \unit[46]{V}) then is needed purely for
-charge transfer. The large electric fields cause
-charge carriers to be accelerated to sufficiently high velocities, so
-that additional carriers are generated by impact ionization. The
-charge multiplication chance per transfer is small ($\sim1\%$) but by
-using several hundred registers a substantial gain in the number of
-carriers can be achieved. In microscopy we usually work with gains of
-up to 300. 
-
-$solve((1+x)^{536.0}=1000,x),numer;$
-$x = .0129710061$
-
-- significant power consumption
 
 - Higher gains are possible but limit the dynamic range.
 
 - maximum charge handling capacity with linear response: 400000 \citep{2004e2v}
 
-- gain depends on temperature
-
-The charge amplification helps to push the read noise from
-$\sim\unit[40]{electrons\ rms}$ to significantly below
-$\unit[1]{electron\ rms}$ --- in effect creating a sensor limited only
-by the photon noise. However, the multiplicative nature of the gain
-leads to a perceived reduction in the quantum efficiency of the sensor
-(excess noise factor), i.e. an image with $\unit[100]{photons/pixel}$
-without gain will look like the same image at only
-$\unit[50]{photons/pixel}$ with EM-gain (see Appendix
-\ref{sec:ccd-meas}).
-
-- multiplication of charge: secondary electrons are generated via an
-impact-ionization process
-
-- enables ultra-low-light detection at high operation speeds (10 MHz, maybe 17MHz)
-
-- amplification process generates excess noise \citep{Robbins2003},
-\citep{Mackay} outlines the operation of the EM-CCD
-
-- multiplicative noise
-
-- photon counting mode
 
 - cic is a problem
 
@@ -1152,90 +1185,13 @@ impact-ionization process
 - clock-induced charge for very fast frame rates
 
 
-\citep{Robbins2003}
-\begin{align}
-  \textrm{SNR} = \frac{\textrm{QE}\cdot S}{\sqrt{F_n^2\cdot \textrm{QE} \cdot (S+I_b) + (N_r/M)^2}}
-\end{align}
-quantities in photons: signal $S$, background $I_b$, quantum
-efficiency $\textrm{QE}$,  EM-gain $M$, excess noise factor $F_n$,
-read noise $N_r$ in $e/px$
-
-$S+I_b$ is the standard deviation
-
-- high gain $M$ eliminates readout noise $N_r$
-
-- adapted from \citep{Cameras2012}
-
-\begin{table}[!htbp]
-  \centering
-  \begin{tabular}{l r r r r r}
-    camera & $f_\textrm{read}$ [MHz] & $QE$ & $N_r$ [e/px] & $F_n$ & $M$ \\
-    \hline
-    back-thinned CCD & 1 & 0.95 & 9 & 1 & 1 \\
-    EM-CCD & 10 & 0.95 & 9 & $\sqrt{2}$ & 5 and 20 \\
-    sCMOS global shutter& 400 &0.70 & $1.3\cdot1.41$ & 1 & 1 \\
-    sCMOS rolling shutter& 400 &0.70 & $1.3$ & 1 & 1 \\
-    back-thinned sCMOS& --- &0.95 & $0.7$ & 1 & 1 \\
-    interline CCD & 20 & 0.65 & 6.5 & 1 & 1\\
-    interline CCD & 1 & 0.65 & 2.4 & 1 & 1\\
-    EM-CCD single photon & 10 & 0.95 & 9 & 1 & 50 \\
-  \end{tabular}
-  \caption{camera parameters.}
-  \label{tab:cam-param}
-\end{table}
-
-
-
-- poisson noise 
-
-- variance equal to mean
-
-- mean variance plot
-
 % cascade II /mnt/backup/safe-with-time/torben/safed/y2009/0414
 % andor ultra ~/1114  python code for calibration and andor basic for acquisition
-\subsection{Read noise characterization of cameras}
-
-In order to characterize a camera we captured sequences of images that
-contain a light pattern as displayed in \figref{fig:calib-pic}. The
-pattern is smooth and non-uniform.  
+\subsection{Readout noise characterization of cameras}
 
 
+- stable light source
 
-  The images were produced in a
-fluorescence microscope. The light source is a DPSS laser with
-\unit[473]{nm} wavelength. It illuminates a circular area of the
-sample, which is a green fluorescent plane. A FITC filter cube and a
-$10\times$ objective were used. The sample was adjusted to be slightly
-out-of-focus in order to obtain a smooth intensity gradient in the
-image.
-
-The light source is stable and the relative standard deviation of the
-illumination intensity is typically $<0.2\%$ for the calibration
-time. 
-
-A sequence (20) of such images can be used to determine the mapping
-between analog-to-digital units (ADU)
-\nomenclature{ADU}{analog-to-digital unit} and the number of detected
-photoelectrons. This method is based on the known relation between the
-mean number of Poisson distributed photons and its variance.
-
-For the calibration a 2D histogram of the per pixel
-variance image and the per pixel mean of the image stack is
-plotted. Then the slope of the resulting point cloud is determined.
-
-\begin{figure}
-  \centering
-  \pdfinput{17cm}{ixon_conv1}
-  \pdfinput{17cm}{ixon_300}
-  \caption{{\bf top:} Conventional readout of an Andor IXon3
-    camera. {\bf bottom:} readout with an EM-gain setting of 300 on
-    the same camera with identical sample. {\bf left:} 2D histogram of
-    per pixel variances against binned intensities. {\bf middle:}
-    variance of 20 dark images. {\bf right:} mean of 20 dark images.}
-  \label{fig:ixon}
-\end{figure}
-  
 The top left diagram of \figref{fig:ixon} contains such a 2D
 histogram. It was obtained by conventional readout at \unit[3]{MHz} of
 our Andor IXon3 camera (head: DU-897D-CS0-\#BV). The variances are
@@ -1261,10 +1217,6 @@ was automated using an Andor Solis Basic program which is listed
 below.
 
 
-The square root of the mean of the variance of the dark images was
-converted into a read noise in electrons per pixel using the real
-gain.
-
 Table~\ref{tab:ixon-table} summarizes the calibration results. The
 average of the dark images (in ADU) is given in the column
 \textsf{offset}. The read noise in conventional mode is approximately
@@ -1282,20 +1234,6 @@ quantum efficiency of the sensor. Dividing values of the column
 conventional readout gives the \emph{excess noise factor}\todo{get
   this right: should be $\sqrt{2}$}. Its value is smaller than one and
 describes the apparent reduction of the quantum efficiency.
-
-
-\begin{verbatim}
-ib = 0.3
-nr = 9
-nr_scmos = 1.3*1.41
-nr_interline = 6.5
-fn =sqrt(2)
-qe = .95
-qe_interline = .65
-qe_scmos = .7
-
-plot f(x,ib,qe,1,nr,1) w l title "back-thinned CCD" ls 1, f(x,ib,qe,fn,nr,20) w l title "EM-CCD" ls 2, f(x,ib,qe,fn,nr,5) w l notitle ls 2, f(x,ib,qe_scmos,1,nr_scmos,1) w l title "sCMOS" ls 3, f(x,ib,qe_interline,1,nr_interline,1) w l title "interline CCD" ls 4, (x+ib<1)?f(x,ib,qe,1,nr,50):NaN w l title "EM-CCD gain=50 single photon" ls 5
-\end{verbatim}
 
 
 % Due to a bug in the capturing process the images in the second row
@@ -1371,8 +1309,9 @@ EM-gain parameter setting into the real EM-gain. For this, we divide
 the real gain (\textsf{gain}) of the respective EM readout to the real
 gain of the conventional readout.
 
+
 \figref{fig:old-cams} shows some calibrations on older cameras (Andor
-IXon2 (head: DU-897E-CS0-\#BV, sensor: E2V Tech CCD97 $512\times512$,
+IXon2 (head: DU-897E-CS0-\#BV, sensor: E2V Tech CCD97 $512\times512$, 
 pixel pitch \unit[16]{$\mu$m}, cooled to $-70{}^\circ\textrm{C}$) and
 Photometrics Cascade~II (sensor: E2V CCD97, $512\times512$, pixel
 pitch \unit[16]{$\mu$m}, cooled to $-70{}^\circ\textrm{C}$) which were

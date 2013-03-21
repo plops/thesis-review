@@ -112,6 +112,21 @@ CloseWindow(#1)
 
 \section{Python code listing for the read noise evaluation}
 \label{sec:python-readnoise-eval}
+
+\begin{figure}
+  \centering
+  \pdfinput{17cm}{ixon_conv1}
+  \pdfinput{17cm}{ixon_300}
+  \caption{{\bf top:} Conventional readout of an Andor IXon3
+    camera. {\bf bottom:} readout with an EM-gain setting of 300 on
+    the same camera with identical sample. {\bf left:} 2D histogram of
+    per pixel variances against binned intensities. {\bf middle:}
+    variance of 20 dark images. {\bf right:} mean of 20 dark images.}
+  \label{fig:ixon}
+\end{figure}
+  
+
+
 \begin{lstlisting}[style=mypython]
 #!/usr/bin/env python
 # ./ti.py /media/backup/andor-ultra-ixon/martin/20111111/scan-em3/ ultra 2700

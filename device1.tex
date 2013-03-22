@@ -1,5 +1,5 @@
 
-\chapter{Device 1: prototype for spatio-angular illumination}
+\chapter{Description of our prototype for spatio-angular illumination}
 \label{sec:dev1}
 \begin{summary}
   In the preceding chapter I showed the underlying concept of our
@@ -232,9 +232,10 @@ i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.  In
 the real system, the lens L1 consists of four glass elements.
 
-The phase distribution $\Phi(\x)$ in MMA plane corresponds to the
+The phase distribution $\Phi(\x)$ in MMA plane corresponds to the       \cma{Fourier diffraction pattern}
 profile in \figref{fig:mma-fft}~left:
 \begin{align}
+\label{eq:mma-complex}
  \Phi(\x) =  \sum_\p \left[\underbrace{\left(\exp(i \k(p_x,p_y) \x)\cdot \rect(x,y)\right)}_{\Phi_\p}\otimes
   \delta(x-p_x\Delta x, y-p_y\Delta y)\right]
 \end{align}
@@ -249,23 +250,77 @@ gradient which depends on the mirror position $\p$:
 \begin{align}
  \widetilde\Phi_\p(\k)=\mathcal{F}(\Phi_\p(\x)) = \sinc\left(k_x-k(p_x,p_y)\right) \cdot\exp\left(i\k(p_x\Delta x,p_y \Delta y)\right)
 \end{align}
-
-Adjacent rows of mirrors tilt in opposite directions.  Assuming the
-micro-mirrors fill an infinite plane, then the Fraunhofer diffraction
-pattern is:
-
+Adjacent rows of mirrors tilt in opposite directions ($\pm x$).
+Therefore, we can specify the term $\Phi_\p(\x)$ in equation
+\ref{eq:mma-complex} more precisely and obtain two expressions:
 \begin{align}
-  I_1(x,y)&=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) \\
-  I_2(x,y)&=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x)
+  \Phi_\p^{(1)}(x,y)&=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) \\
+  \Phi_\p^{(2)}(x,y)&=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) 
 \end{align}
-    - $I_1(x,y) (\rect(y)\otimes\sum\textrm{every second row})+I_2(x,y) (\rect(y)\otimes\sum\textrm{every second row, shifted by one})$
+A good analytical description of the surface of the MMA is:
+\begin{align}
+  \Phi(\x)&=\Phi_\p^{(1)}(x,y) \left(\rect(y)\otimes\sum\textrm{(every second row)}\right) \nonumber \\
+  &\qquad+\Phi_\p^{(2)}(x,y) \left(\rect(y)\otimes\sum\textrm{(every second row, shifted by one)}\right)
+\end{align}
+\figref{fig:mma-fft}~right shows a numerically calculated diffraction
+pattern of this structure for a monochromatic plane wave. Suppose the
+Fourier stop B1 blocks light outside of the circle with the solid
+line. Then the transmitted zero-order irradiance is proportional to
+the $\sinc^2$ of the deflection angle.  This applies more or less even
+if not all mirrors of the array are deflected. Therefore, we can
+modulate the irradiance in the plane $P'$ using this optical system
+albeit the transfer function is non-linear.
 
-    - fourier aperture makes response non-linear
+An accurate prediction of the irradiance in $P'$ is even more    
+difficult to describe when the field mask B0 is opened and the
+extended source produces illumination that is spatially partially
+coherent \citep{Mehta2010a}.
 
-    - intensity for single laser $\propto \sinc^2(\textrm{deflection})$
+But one thing is clear: The contrast can only achieve good results as    \cma{maximal etendue}
+long as higher diffraction (dashed circles in
+\figref{fig:mma-fft}~right) orders can not pass the Fourier stop
+B1. This limits the size of the field mask B0 to the diameter
+$d_\textrm{max}$, assuming that no high frequency pattern is displayed
+on the MMA.
 
-    - point to mehta, sheppard for treatment of partial coherent case
-      (extended illumination source)
+The smallest distance between the orders in \figref{fig:mma-fft}~right
+corresponds to a structure size $\Lambda$ of two mirror pitches:
+$\Lambda=\unit[32]{\mu m}$. Therefore the diffraction angle $\theta$
+is:
+\begin{align}
+  \sin\theta&=\lambda/\Lambda
+\end{align}
+Utilizing this, we can express the maximum radius:
+\begin{align}
+  d_\texrm{max} &= f \tan\theta \approx \frac{f\lambda}{\Lambda}
+\end{align}
+Here, $f$ is the focal length of lens L1. With the F-number $N=f/(2d)$
+we can find the maximum etendue of the Fourier optical system:
+% f/(2*f l/L) = L/(2*l)
+\begin{align}
+\mathcal{E} = \frac{\pi A}{4 N^2} = \frac{\pi A\lambda^2}{\Lambda^2},  
+\end{align}
+with the area $A=(\unit[4]{mm})^2$ of the micro-mirror array.
+
+
+% (%i1) 16*%pi*.4^2/32^2,numer;
+% (%o1)                         .007853981633974483
+% (%i2) 16*%pi*.7^2/32^2,numer;
+% (%o2)                         .02405281875404685
+
+For our system the maximal etendue is between $\unit[0.0079]{mm^2/sr}$
+and $\unit[0.024]{mm^2/sr}$, depending on the wavelength. This is much
+smaller than the etendue of a typical microscope objective
+($\unit[0.27]{mm^2/sr}$, see section \ref{sec:etendue}) and
+corresponds to a field diameter $D_\textrm{field}$ in the specimen
+between $\unit[70]{\mu m}$ for a wavelength $\lambda$ of
+\unit[400]{nm} and $\unit[125]{\mu m}$ for \unit[700]{nm}, with
+\begin{align}
+  D_\textrm{field}=\sqrt\left(\frac{\mathcal{E}}{NA^2 \pi/4}\right).
+\end{align}
+% NA:1.4; eps:0.0079; sqrt(eps/(NA^2*%pi/4)),numer;
+% NA:1.4; eps:0.024; sqrt(eps/(NA^2*%pi/4)),numer;
+
 
 %\jpginput{14cm}{mma-calib}{bal}
 
@@ -288,23 +343,29 @@ all.
 
 \subsection{ Contrast generation on focal plane SLM using
   polarization}
-The SLM we use to control the focal plane illumination is a
-ferroelectric liquid crystal on silicon device (ForthDD WXGA R3,
+The SLM we use to control the focal plane illumination is a           \cma{Why fLCoS and not DMD?}
+ferroelectric liquid crystal on silicon device (fLCoS, ForthDD WXGA R3,
 UK). Depending on if a pixel is off or om, the returning light either
 retains the polarization of the input light or rotates it by 90
-degrees.
+degrees \citep{Martinez-Garcia2009}.  From this, a polarization beam
+splitter generates a binary intensity contrast (see
+\figref{fig:memi-real}~C).
 
-From this, a polarization beam splitter generates a binary intensity
-contrast (see \figref{fig:memi-real}~C). 
+We have not opted for a digital micro-mirror device (DMD), because
+those mirrors have sharp edges and loose significant amounts of light
+into higher orders that can not contribute to the image in the
+specimen. The pixels borders of a fLCoS device are defined by electric
+fields and are therefore more blurred. At least in this sense, an
+fLCoS based device should be more efficient than a DMD.
 
-We opted for a wire-grid polarization beam splitter (Moxtek PBF02C,
+We use a wire-grid polarization beam splitter (Moxtek PBF02C,     \cma{polarizing beam splitter}
 Orem, UT, US) because they ensure a high enough optical quality, good
 contrast and the plate causess less back reflections than a beam
 splitter cube.
 
 
-- ignacio moreno 2009 operational modes of a ferroelectric lcos
-(FIXME)
+%- ignacio moreno 2009 operational modes of a ferroelectric lcos
+%(FIXME)
 
 The s-polarized component of the incoming light is reflected towards
 the SLM. Active pixels of the SLM rotate the polarization of light by
@@ -319,10 +380,10 @@ beam splitter's surface will deteriorate the image quality of the
 focal plane SLM. Therefore, we use the beam splitter in transmission.
 
 
-The beam splitter plate makes the overall optics slightly assymmetric
-and thus induces mainly astigmatism and lateral color (ref FIXME
-D8.9). The plate is thin enough (thickness \unit[0.7]{mm}), so that
-the design remains diffraction limited.
+The beam splitter plate makes the overall optics slightly asymmetric
+and thus induces mainly astigmatism and lateral color
+\citep{Ipp2009a}. The plate is thin enough (thickness \unit[0.7]{mm}),
+so that the design remains diffraction limited.
 
  	
 \jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
@@ -331,47 +392,47 @@ the design remains diffraction limited.
   and focal plane SLM: liquid crystal on silicon display (LCoS)) are
   indicated. Drawing by Josef Wenisch (In-Vision, Austria).}
 	  	
-\jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
-
-\subsection{Thoughts about the etendue}
+%\jpginput{14cm}{memi-setup-only-lenses}{only lenses7}
 
 \subsection{ Variable telescope as tube lens}
 Microscope objectives come with various pupil diameters. The last lens
 $\textrm{TL}_\textrm{ill}$ in our illumination system has been
-designed as a variable zoom objective, that maps the pupil plane SLM
-from $\textrm{P}''$ with variable magnification to $\textrm{P}$.
+designed as a variable zoom objective (by In-Vision, Guntramsdorf,
+Austria), that maps the pupil plane SLM from $\textrm{P}''$ with
+variable magnification to $\textrm{P}$.
 
 Unlike conventional zoom telescopes we use three movable lens groups
 to guarantee that the image of the pupil plane SLM remains stationary
-and simultaneously focal plane SLM stays imaged into infinity while
-changing the magnification.
+while the focal plane SLM is always imaged into infinity during
+magnification changes.
 
- - email mit erhard ipp
-  - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
-  - Ja. Der Laser wird an zwei Metall-Spiegeln M1 und M2)
-     reflektiert. Vor dem Mikrolinsenarray messe ich
-   - (1.885+/-0.005) mW ohne Polarisator, (1.580+/-0.001) mW mit
-     Polarisator in Maximalstellung und
-   - (27.26+/-0.01) uW mit Polarisator in Minimumstellung.  Der
-     Kontrast ist 1.8e-3/27e-6=70:1.
+ % - email mit erhard ipp
+ %  - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
+ %  - Ja. Der Laser wird an zwei Metall-Spiegeln M1 und M2)
+ %     reflektiert. Vor dem Mikrolinsenarray messe ich
+ %   - (1.885+/-0.005) mW ohne Polarisator, (1.580+/-0.001) mW mit
+ %     Polarisator in Maximalstellung und
+ %   - (27.26+/-0.01) uW mit Polarisator in Minimumstellung.  Der
+ %     Kontrast ist 1.8e-3/27e-6=70:1.
 
 
 \section{Electronic control of the component}
 
-Both spatial light modulators can run at most with $50\%$ duty
+Both spatial light modulators can run at most with $50\%$ duty         \cma{local pattern storage}
 cycle. Therefore it is necessary to synchronize the displays. Their
-controllers allow to upload several hundred frames of image data
-before an experiment and keep them in local storage. Images can then
-be selected by fast function calls over USB (LCoS) or Ethernet (MMA).
+controllers allow to upload several hundred frames of image data at
+the beginning of an experiment and keep them in local storage. Images
+can then be selected by fast function calls over USB (focal plane SLM,
+fLCoS) or Ethernet (pupil plane SLM, MMA).
 
-The camera (Clara, Andor PLC, Belfast, Northern Ireland) as the
-slowest device is chosen as the master. The camera provides two TTL
+The camera (Clara, Andor PLC, Belfast, Northern Ireland) as the        \cma{camera is master}
+slowest device is chosen as the master. It provides two TTL
 outputs. The output ``fire'' is high while the camera is
 integrating. The output ``shutter'' goes high \unit[1]{ms} before
 ``fire'' and provides enough time (\unit[$>850$]{$\mu$s}) for the MMA
 controller to tilt and let the mirrors settle.
 
-The LCoS controller can display its images only for certain discrete
+The LCoS controller can display its images only for certain discrete    
 times (\unit[20]{ms}, \unit[10]{ms}, \unit[5]{ms}, \unit[200]{$\mu$s})
 and it is not straight forward to change this via USB
 interface. Therefore we always work with a fixed LCoS display time of
@@ -395,18 +456,18 @@ reached its target position.
 
 
 
-(FIXME bring both these images into the appendix)
+% (FIXME bring both these images into the appendix)
 
-\begin{figure}[!htbp]
-  \centering
-  \svginput{2}{memi-sketch}
-  \caption{Schematic of the lenses in the MEMI system and their focal
-    lengths. The focal length $f_\textrm{TL}$ of the tube lens can be
-    varied. This allows to scale the second intermediate image
-    $r''_\textrm{MMA}$ of the micro mirror array to fit the back
-    focal plane of different objectives. Dimensions in mm.}
-  \label{fig:memi-sketch}
-\end{figure}
+% \begin{figure}[!htbp]
+%   \centering
+%   \svginput{2}{memi-sketch}
+%   \caption{Schematic of the lenses in the MEMI system and their focal
+%     lengths. The focal length $f_\textrm{TL}$ of the tube lens can be
+%     varied. This allows to scale the second intermediate image
+%     $r''_\textrm{MMA}$ of the micro mirror array to fit the back
+%     focal plane of different objectives. Dimensions in mm.}
+%   \label{fig:memi-sketch}
+% \end{figure}
 
 
 

@@ -316,14 +316,14 @@ Diese Arbeit beschaeftigt sich mit der theoretischen Analyse und dem
 praktischen Aufbau eines wide-field Mikroskops, das Phototoxicitaet
 durch Kontrolle des Einstrahlwinkels des Beleuchtungslichts mindert.
 
-Urspruenglich war die Idee ein PAM Mikroskop mit variablen
+Urspruenglich war die Idee ein PAM Mikroskop mit variablen              \cma{Historischer Ursprung der Idee}
 Beleuchtungswinkel zu kombinieren.  Diese Idee klingt zunaechst
 elegant: Dieses Mikroskop erzeugt zwei Bilder auf einer Kamera, eines
 davon enthaelt nur out-of-focus licht. Durch variation des
 Beleuchtungswinkels sollte man eine stelle finden koennen, wo das
 out-of-fokus licht minimiert wird.
 
-Ziemlich schnell wurde jedoch klar, dass dieser ansatz wenn
+Ziemlich schnell wurde jedoch klar, dass dieser Ansatz wenn           
 ueberhaupt, dann nur sehr ineffizient funktioniert. Schliesslich muss
 man sehr kleine Strukturen im Sample beleuchten, damit das PAM
 funktioniert. Dies hat jedoch zur Folge, dass statt einer einzelnen
@@ -333,21 +333,64 @@ gegenueber einem widefield Mikroskop bringen.
 
 Wir entschieden uns stattdessen fuer die hier vorgestellte
 Modifikation eines Widefield Mikroskops. Meine Annahme war, dass bei
-Kenntis der dreidimensionalen Fluorophorverteilung, und vielleicht
+Kenntnis der dreidimensionalen Fluorophorverteilung, und vielleicht
 zusaetzlichen Informationen ueber die zu erwartenden Bewegungen von
 Zellen, Pathogenen oder Organen, eine hinreichend genaue Vorhersage
 des bei bestimmten Beleuchtungsrichtungen entstehende Out-of-fokus
 lichts moeglich wird.
 
+Mit Hilfe zweier Displays koennen wir die entsprechenden Pattern in       \cma{beschreibung unserer Hardware}
+das Sample projezieren. Ein SLM kontrolliert die Winkel und das andere
+das in-focus Lichtmuster. Bei der Auswahl dieser Komponenten haben wir
+besonderen Wert auf hohe Geschwindigkeit gelegt --- 1 Stack mit 20
+slices pro Minute war unser Ziel und fuer jeden slice muss man von
+einigen Teilbelichtungen ausgehen.
 
-- zuerst habe ich dvi lcos mit mma verbaut, das hat leider nur
-  gelegntlich funktioniert
+Die schnellsten kommerziell verfuegbaren SLM sind ferroelectric LCoS
+(fLCoS) und digital micro-mirror devices (DMD). Beide sind binaer.
+Aber binaere Intensitaetsmodulation ist in unserem Fall von Nachteil,
+denn scharfe Kanten fuehren zu hohen Beugungsverlusten und auch
+starken Oszillationen des Feldes im Fraunhofer Beugungsbild.
 
-- urspruenglich war geplant folgendes system einzusetzen: Biological
-  applications of an LCoS-based programmable array microscope (PAM)
 
-- dann habe ich usb lcos eingesetzt, damit geht es immer, ist aber
-  langsamer und deutlich weniger nuetzlich zum experimentieren
+Das pupil plane SLM zur Kontrolle der Winkel bedarf keiner hohen
+\cma{Grund fuer MMA} Aufloesung aber scharfe Kanten sollten hier
+vermieden werden, weil die sonst auftretenden Oszillationen sonst
+direkt im Feld und auf der Kamera sichtbar werden. Wir benutzen ein
+neu entwickeltes Graustufen SLM, das in der Funktionsweise und
+Geschwindigkeit einem DMD aehnelt, aber Graustufen erzeugen kann.
+
+Das focal plane SLM sollte eine hohe Aufloesung haben und gleichzeitig  \cma{Why LCoS}
+schnellen Feedback zur Kamera ermoeglichen. Wir entschieden uns fuer
+einen an eine Graphikkarte angeschlossenen ferroelectric LCoS weil
+dessen Pixel weniger scharfkantig sind als die eines DMD. Die
+Ansteuerung mittels Graphikkarte war nicht vereinbar mit der
+synchronisation der anderen Geraete. Daher ersetzte ich den Controller
+relativ spaet im Projekt durch einen mit USB und internen
+Speicher. Damit Funktioniert leider der schnelle Feedback mit der
+Kamera nicht mehr. Im nachhinein bringt die Verwendung des fLCoS also
+keine Vorteile und es waere einfacher gewesen, gleich mit zwei
+identischen grauwert SLM von Fraunhofer zu arbeiten. Zumal die
+Bildupdates am Fraunhofer SLM deutlich schneller sind als am fLCoS.
+
+Ein gravierender Nachteil des Fraunhofer SLM ist jedoch sein sehr
+\cma{a remedy against low acceptance angle?} kleiner Akzeptanzwinkel
+im Falle einer Intensitaetskontrasterzeugung mit Fourierfilter. Zur
+Loesung dieses Problems haben mein Chef und Kai schon bereits vor dem
+Beginn meiner Arbeit eine auf common path interferometry beruhende
+Methode der Kontrasterzeugung vorgeschlagen. Sie ist naeher in dem
+Patentantrag WO FIXME und den Patenten D01 FIXME erlaeutert.  Der
+Ansatz ist abgeleitet vom reflectiven DIC in Materialmikroskopen. Ein
+Nomarski Prisma separiert das beleuchtende Buendel in zwei leicht
+versetzte. Der Shear entspricht dem Pixel pitch, so dass reflektiertes
+Licht die Hoehenunterschiede zwischen benachbarten Spiegeln
+theoretisch mit sehr hohem Kontrast als Intensitaetsmodulation
+darstellt.  Praktische Versuche lieferten keine sehr guten Ergebnisse
+denn die im Labor vorhandenen Prismen hatten zu kleinen Durchmesser um
+den notwendigen Shear zu erzeugen aber nicht gleichzeitig
+Beugungsordnungen abzuschneiden. Diese Methode koennte jedoch wichtig
+werden, insbesondere wenn piston mma erhaeltlich werden.
+
 
 - ausserdem ist die ettendue des beleuchtungssystems arg
   eingeschraenkt mit einem 63x objektiv (NA=1.47) wird nur ein feld

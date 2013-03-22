@@ -108,7 +108,7 @@ the optical axis. This time-varying element allows to reduce speckle.
 
 Both, the fiber bundle and microlens array, increase the etendue of
 the laser illumination to the optimum value, which is given by one of
-our SLM as discussed below in \ref{sec:etendue-mma}. 
+our SLM as discussed on page \pageref{sec:etendue-mma}. 
 
 The light  pipe is  a hollow  mirror-integrator tunnel  with quadratic
 cross-section and depicted in \figref{fig:integrator-rod}. The mixing
@@ -283,7 +283,7 @@ B1. This limits the size of the field mask B0 to the diameter
 $d_\textrm{max}$, assuming that no high frequency pattern is displayed
 on the MMA.
 
-The smallest distance between the orders in \figref{fig:mma-fft}~right
+The smallest distance between the orders in \figref{fig:mma-fft}~right  \label{sec:etendue-mma}
 corresponds to a structure size $\Lambda$ of two mirror pitches:
 $\Lambda=\unit[32]{\mu m}$. Therefore the diffraction angle $\theta$
 is:
@@ -292,13 +292,14 @@ is:
 \end{align}
 Utilizing this, we can express the maximum radius:
 \begin{align}
-  d_\textrm{max} &= f \tan\theta \approx \frac{f\lambda}{\Lambda}
+  d_\textrm{max} &= f_\textrm{L1} \tan\theta \approx \frac{f\lambda}{\Lambda}
 \end{align}
-Here, $f$ is the focal length of lens L1. With the F-number $N=f/(2d)$
-we can find the maximum etendue of the Fourier optical system:
+Here, $f_\textrm{L1}$ is the focal length of lens L1. With the
+F-number $\#=f_\textrm{L1}/(2d_\textrm{max})$ we can find the maximum
+etendue of the Fourier optical system:
 % f/(2*f l/L) = L/(2*l)
 \begin{align}
-\mathcal{E} = \frac{\pi A}{4 N^2} = \frac{\pi A\lambda^2}{\Lambda^2},  
+\mathcal{E} = \frac{\pi A}{4 \#^2} = \frac{\pi A\lambda^2}{\Lambda^2},  
 \end{align}
 with the area $A=(\unit[4]{mm})^2$ of the micro-mirror array.
 
@@ -316,7 +317,7 @@ corresponds to a field diameter $D_\textrm{field}$ in the specimen
 between $\unit[70]{\mu m}$ for a wavelength $\lambda$ of
 \unit[400]{nm} and $\unit[125]{\mu m}$ for \unit[700]{nm}, with
 \begin{align}
-  D_\textrm{field}=\sqrt{\frac{\mathcal{E}}{NA^2 \pi/4}},
+  D_\textrm{field}=\frac{2}{\textrm{NA}}\sqrt{\frac{\mathcal{E}}{\pi}},
 \end{align}
 where $\textrm{NA}$ is the numerical aperture.
 

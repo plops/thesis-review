@@ -2,7 +2,7 @@
 \chapter{Device 1: prototype for spatio-angular illumination}
 \label{sec:dev1}
 \begin{summary}
-  In the preceding chapter I showed the underlying concept of our        \cm{more specific problems}
+  In the preceding chapter I showed the underlying concept of our
   spatio-angular microscope. Here I discuss additional details that
   are important for the practical implementation.
 
@@ -11,12 +11,12 @@
   system of the camera pixels into the coordinate system of the focal
   plane SLM.
   
-  The pupil plane SLM was specifically developed for our project by    \cm{MMA details later}
-  our partner Fraunhofer IPMS (Dresden, DE). Therefore I dedicate
-  chapter \ref{sec:mma} on page \pageref{sec:mma} to this device.
+  The pupil plane SLM was specifically developed for our project by    
+  our partner Fraunhofer IPMS (Dresden, DE). 
+  % FIXME more on mma?
 \end{summary}
 \section{Description of the optical components}
-So far we have only shown the beam path for transmissive displays (in
+So far I have only shown the beam path for transmissive displays (in
 \figref{fig:memi-simple}). Such SLM only have a very low transmission
 in practice. Therefore we use reflective displays in our prototype.
 
@@ -27,16 +27,15 @@ from the bottom left. The optic components are color corrected and
 have anti-reflex coating for wavelengths in the range from
 \unit[400]{nm} to \unit[700]{nm}.
 
-The system successively illuminates the pupil plane SLM---a grayscale
+The system successively illuminates the pupil plane SLM --- a grayscale
 micromirror array developed by our project partner Fraunhofer IPMS
-Dresden---and the focal plane SLM, a commercial binary liquid crystal
+Dresden --- and the focal plane SLM, a commercial binary liquid crystal
 on silicon display.
  
 I gathered some of the following details from the documents that were
 created during the development of our prototype and are classified as
 confidential. I have summarized the key decisions here and the
-relevant project partners have agreed to the publication (FIXME not
-finished).
+relevant project partners have agreed to the publication.
 
 
 \begin{figure}[!htbp]
@@ -47,14 +46,15 @@ finished).
     illuminate the pupil plane SLM in $\textrm{P}''$ and the focal
     plane SLM in F'. $F$ is the field plane in the sample and its
     primed versions are conjugated planes. $P$ is the pupil of the
-    objective. $B_0$ and $B_1$ are adjustable circular apertures. PBS
-    is a polarizing beam splitter. DBS is a dichroic beam splitter.
-    The red boxes deliminate subsystems of the illumination system:
-    {\bf A:} light scrambling and homogenization, {\bf B:}
+    objective. Field mask $B_0$ and Fourier stop $B_1$ are adjustable
+    circular apertures. PBS is a polarizing beam splitter. DBS is a
+    dichroic beam splitter.  The red boxes deliminate subsystems of
+    the illumination system: {\color{Orchid}\bf A$_1$ and A$_2$:}
+    light scrambling and homogenization, {\color{Orchid}\bf B:}
     Fourier-optical filter to provide intensity modulating pupil plane
-    SLM. {\bf C:} Polarization based intensity modulator as focal
-    plane SLM. {\bf D:} Wide-field fluorescence microscope with
-    detection path. (FIXME finish diagram, don't use B twice)}
+    SLM. {\color{Orchid}\bf C:} Polarization based intensity modulator
+    as focal plane SLM. {\color{Orchid}\bf D:} Wide-field fluorescence
+    microscope with detection path.}
   \label{fig:memi-real}
 \end{figure}
 
@@ -64,21 +64,24 @@ with different illumination patterns is simplified when both pupil
 plane SLM and focal plane SLM are uniformly illuminated.
 
 We use either a laser\footnote{Lasever LSR473H, diode-pumped solid
-  state laser, output power 600mW, $\lambda=\unit[473]{nm}$} or an
+  state laser, output power 600mW, $\lambda=\unit[473]{nm}$} or a
 light emitting diode (LED) \nomenclature{LED}{light emitting diode} as
 the light source in our experiments. Below we discuss optical measures
 that attain homogeneity of the illumination of both displays.
 
 The LED\footnote{Huey Jann HPB8-48KBD, wavelength
   $\unit[(463\pm1)]{nm}$, brightness \unit[35]{lm}, view angle
-  $120{}^\circ$, FIXME TODO: Flaeche messen} we use has a large active
+  $120{}^\circ$ %, FIXME TODO: Flaeche messen
+} we use has a large active
 area. Due to etendue mismatch a relatively large amount of its
 produced light will never reach the sample. But it is easy to achieve
 a homogeneous illumination. Moreover, the LED can be quickly switched
-on and off electronically \footnote{The DPSS Laser doesn't allow fast
-  direct electronic switching at full power. We have to use an
-  acousto-optic modulator connected with the additional expense of its
-  optical alignment (FIXME siehe spaetere ref section).}.
+on and off electronically.
+
+ % \footnote{The DPSS Laser doesn't allow fast
+ %  direct electronic switching at full power. We have to use an
+ %  acousto-optic modulator connected with the additional expense of its
+ %  optical alignment (FIXME siehe spaetere ref section).}.
 
 Unlike an LED, a laser delivers light of considerably higher spectral
 radiance ($\unit[]{W/(sr\, m^2 m)}$). Thus it is in principle possible
@@ -95,17 +98,17 @@ bundle\footnote{Fiber bundle with circular cross-section (Loptek,
 the light distribution at the bundle output and also broadens the
 illumination angles.
 
-A relay system (A1) images the circular output of the fiber bundle
+A relay system (A$_1$) images the circular output of the fiber bundle
 onto the entrance of a light pipe. This relay system contains a
 rotating microlens array\footnote{Array of cross-oriented cylindrical
   lenses on both sides with a pitch of \unit[0.5]{mm} resulting in an
   effective focal length of \unit[6.9]{mm} (LIMO, Dortmund, DE).}. It
-is driven by a motor with the axis of rotation being diplaced from the
-optical axis. This time-varying element allows to reduce speckle.
+is driven by a motor with the axis of rotation being displaced from
+the optical axis. This time-varying element allows to reduce speckle.
 
 Both, the fiber bundle and microlens array, increase the etendue of
 the laser illumination to the optimum value, which is given by one of
-our SLM as discussed below in \ref{sec:etendue} (FIXME ref). 
+our SLM as discussed below in \ref{sec:etendue-mma}. 
 
 The light  pipe is  a hollow  mirror-integrator tunnel  with quadratic
 cross-section and depicted in \figref{fig:integrator-rod}. The mixing
@@ -114,8 +117,8 @@ in the plane of the tunnel output as it would occur without tunnel.
 
 Drawing the outline of the square cross-section into this irradiance
 map selects the light that directly reaches this plane.  Surrounding
-this outline with the four squares that touch its edges selects the
-light that will reach the output plane after one reflection. The
+this outline with four identical copies that touch its edges selects
+the light that will reach the output plane after one reflection. The
 irradiance maps from neighbouring squares are mirrored and added to
 the direct illumination. Depending on the numerical aperture of the
 input light, more reflections may occur --- resulting in the addition
@@ -131,9 +134,9 @@ $1/\sqrt{N}$ \citep{Koshel2012}.
 
 However, we also align the source distribution to be rotationally
 symmetric about the optical axis and obtain an even more uniform
-output than this prediction because positive and negative slopes from
-different subregions compensate in the superposition (also
-\cite{Koshel2012}).
+output than what would follow from this prediction because positive
+and negative slopes from different subregions compensate in the
+superposition (also \cite{Koshel2012}).
 
 In our system the side length of the cross-section of the tunnel is
 \unit[2.5]{mm} and its length of \unit[250]{mm} ensures enough
@@ -150,14 +153,14 @@ been prohibitively long.
   \unit[250]{mm} length.}
 
 Regarding the two relay systems the optical designer at In-Vision
-commented (FIXME ref D8.9) that these have not been optimized for
+commented \citep{Ipp2009a} that these have not been optimized for
 prefect imaging but for the transport of the homogeneous light
-distribution. The system A1 at the tunnel entrance has to transfer the
-illumination from the round fiber end to the square tunnel
+distribution. The system A$_1$ at the tunnel entrance has to transfer
+the illumination from the round fiber end to the square tunnel
 entrance. The engineer designed a good quality system with only two
-lenses (and the microlens array). At the other end (A2 in
+lenses (and the microlens array). At the other end (A$_2$ in
 \figref{fig:memi-real}) five elements carry the light from the tunnel
-exit into $\textrm{F}'''$.
+exit into the field mask $B_0$ in $\textrm{F}'''$.
 
 During the planning phase we also considered a homogenization design
 based on a fly's eye condensor (two consecutive microlens
@@ -168,6 +171,7 @@ wavelength.
 
 In summary the following points are important in order to achieve
 homogeneous illumination of focal and pupil plane with the tunnel:
+%\renewcommand{\labelitemi}{$\star$}
 \begin{itemize}
 \item The image of the end of the bundle should properly cover the
   tunnel entrance. Especially the corners of the tunnel should not be
@@ -185,12 +189,35 @@ homogeneous illumination of focal and pupil plane with the tunnel:
   plane SLM}
 
 The micromirror array, which we use as a pupil plane SLM consists of
-torsion mirrors that modulate the phase of the light (for a more
-detailed description see ref FIXME). In order to modulate the
-intensity we use the Fourier filter shown in \figref{fig:memi-real}~B.
+torsion mirrors that modulate the phase of the light (see
+\figref{fig:mma} for images of the device). In order to modulate the
+intensity we use the Fourier optical filter denoted as
+'schlierenoptics' in \figref{fig:memi-real}~B.
+
+\jpginput{14cm}{mma}{{\bf left:} Scanning electron microscope image of
+  the micro-mirror array (MMA).  The pixel pitch of the device is
+  \unit[0.016]{mm}. The hinges for the tilt movement and the
+  electrodes are clearly visible. {\bf middle:} Optical reflective
+  microscope image of the MMA. {\bf right:} exaggerated rendering of
+  how a 8x8 checker board pattern would be displayed on the
+  device. Electron and optical micrograph by Fraunhofer IPMS Dresden
+  (Germany)}
+\begin{figure}[!hbt]
+  \centering
+  \svginput{.6}{mma-fft}
+  \caption{{\bf left:} Measurement of the deflection of micro-mirrors
+    using a white-light interferometer (provided by Fraunhofer IPMS
+    Dresden (Germany)). {\bf reft:} Simulation of the Fraunhofer
+    diffraction pattern of the micro-mirror array for coherent,
+    monochromatic light (kindly provided by Joel Seligson). The
+    circles with radius $d_\textrm{max}$ indicate the maximum size of
+    the field mask B0 where the diffraction orders do not
+    overlap. This limits the etendue of our illumination system.}
+  \label{fig:mma-fft}
+\end{figure}
 
 The lens L1 has two purposes: First, it images the field mask B0 into
-the field stop B1. Second, the plane $\textrm{P}''$ with the phase SLM
+the Fourier stop B1. Second, the plane $\textrm{P}''$ with the phase SLM
 is imaged to infinity.
 
 With undeflected micromirrors, the SLM has no signifcant effect and
@@ -202,9 +229,46 @@ light along the dashed line in \figref{fig:memi-real}. This light is
 absorbed by the field stop B1 and therefore missing in $\textrm{P}'$,
 i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 ($\unit[]{W}$) through the beam stop in $\textrm{F}''$ decreases while
-the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.
+the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.  In
+the real system, the lens L1 consists of four glass elements.
 
-In the real system, the lens L1 consists of four elements.
+The phase distribution $\Phi(\x)$ in MMA plane corresponds to the
+profile in \figref{fig:mma-fft}~left:
+\begin{align}
+ \Phi(\x) =  \sum_\p \left[\underbrace{\left(\exp(i \k(p_x,p_y) \x)\cdot \rect(x,y)\right)}_{\Phi_\p}\otimes
+  \delta(x-p_x\Delta x, y-p_y\Delta y)\right]
+\end{align}
+where $\x=(x,y)$ is a position in the MMA plane, the rectangular
+function $\rect$ delimits an individual micro-mirror with its
+deflection encoded in $\k=(k_x,k_y)^T$. The index vector
+$\p=(p_x,p_y)^T$ indicates the mirror position.
+
+The diffraction pattern of an individual mirror is a $\sinc-$function
+which is shifted according to the mirror deflection and a phase
+gradient which depends on the mirror position $\p$:
+\begin{align}
+ \widetilde\Phi_\p(\k)=\mathcal{F}(\Phi_\p(\x)) = \sinc\left(k_x-k(p_x,p_y)\right) \cdot\exp\left(i\k(p_x\Delta x,p_y \Delta y)\right)
+\end{align}
+
+Adjacent rows of mirrors tilt in opposite directions.  Assuming the
+micro-mirrors fill an infinite plane, then the Fraunhofer diffraction
+pattern is:
+
+\begin{align}
+  I_1(x,y)&=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) \\
+  I_2(x,y)&=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x)
+\end{align}
+    - $I_1(x,y) (\rect(y)\otimes\sum\textrm{every second row})+I_2(x,y) (\rect(y)\otimes\sum\textrm{every second row, shifted by one})$
+
+    - fourier aperture makes response non-linear
+
+    - intensity for single laser $\propto \sinc^2(\textrm{deflection})$
+
+    - point to mehta, sheppard for treatment of partial coherent case
+      (extended illumination source)
+
+%\jpginput{14cm}{mma-calib}{bal}
+
 
 \subsection{Relay optics between pupil plane and focal plane SLM}
 The lenses L2 and L3 form a double-telecentric relay system with
@@ -347,14 +411,6 @@ reached its target position.
 
 
 
-% \imagw{14cm}{mma}{{\bf left:} Scanning electron microscope image of
-%   the micro-mirror array (MMA).  The pixel pitch of the device is
-%   \unit[0.016]{mm}. The hinges for the tilt movement and the
-%   electrodes are clearly visible. {\bf middle:} Optical reflective
-%   microscope image of the MMA. {\bf right:} exaggerated rendering of
-%   how a 8x8 checker board pattern would be displayed on the
-%   device. Electron and optical micrograph by Fraunhofer IPMS Dresden
-%   (Germany)}
 
 % \begin{figure}[!hbt]
 %   \centering
@@ -365,3 +421,8 @@ reached its target position.
 %     aligned system.}
 %   \label{fig:mma-closeup}
 % \end{figure}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "kielhorn_memi"
+%%% End: 

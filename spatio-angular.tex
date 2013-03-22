@@ -233,12 +233,12 @@ We compared conventional structured illumination using max$-$min
 illumination resulted in excellent optical sections, the
 reconstruction of laser illuminated images contained artifacts.
 
-{\color{red} - (FIXME muss das vielleicht in appendix?) In einem
-ersten Entwicklungsschritt, bevor InVision uns den Prototyp fuer das
-spatio-angulare Mikroskop zur Verfuegung stellte, setzten wir einen
-SLM in die Zwischenbildebene. Auf dem SLM wurden vier Streifenmuster
-angezeigt und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm LED
-Beleuchtung (CoolLED).}
+% {\color{red} - (FIXME muss das vielleicht in appendix?) In einem
+% ersten Entwicklungsschritt, bevor InVision uns den Prototyp fuer das
+% spatio-angulare Mikroskop zur Verfuegung stellte, setzten wir einen
+% SLM in die Zwischenbildebene. Auf dem SLM wurden vier Streifenmuster
+% angezeigt und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm LED
+% Beleuchtung (CoolLED).}
 
 Therefore, we decided to implement HiLo (see Appendix FIXME). With
 this algorithm, we obtain artifact-free optical sections, regardless
@@ -247,38 +247,38 @@ increases acquisition speed, because only two raw images per slice are
 necessary.
 
 
-{\color{red} wir haben artefakte in der max-min rekonstruktion
-beobachtet, wenn wir ein grobes streifenmuster (8 forthdd slm pixel
-periode) mit laser beleuchtet haben
+% {\color{red} wir haben artefakte in der max-min rekonstruktion
+% beobachtet, wenn wir ein grobes streifenmuster (8 forthdd slm pixel
+% periode) mit laser beleuchtet haben
 
-     - irgendwann hat rainer das erklaert aber ich kann mich nicht
-mehr dran erinnern aber es waere cool, wenn ich die story bringen
-koennte
+%      - irgendwann hat rainer das erklaert aber ich kann mich nicht
+% mehr dran erinnern aber es waere cool, wenn ich die story bringen
+% koennte
      
-- grobes gitter heisst im amplitudenbild: einige ordnungen (nicht nur
-3) gehen durch die bfp
+% - grobes gitter heisst im amplitudenbild: einige ordnungen (nicht nur
+% 3) gehen durch die bfp
 
-     - irgendwie kam es dadurch im intensitaetsbild zu einigen hoehere
-ordnungstermen
+%      - irgendwie kam es dadurch im intensitaetsbild zu einigen hoehere
+% ordnungstermen
 
-     - bei LED (extended source) werden die weggemittelt, bei laser
-nicht
+%      - bei LED (extended source) werden die weggemittelt, bei laser
+% nicht
 
-       - ein bisschen kopfzerbrechen bereitet mir noch der bias
+%        - ein bisschen kopfzerbrechen bereitet mir noch der bias
 
-       - im paper habe ich das nicht verstanden [2011 mertz Optically
-sectioned in vivo imaging with speckle illumination HiLo microscopy]
+%        - im paper habe ich das nicht verstanden [2011 mertz Optically
+% sectioned in vivo imaging with speckle illumination HiLo microscopy]
 
-       - aber ich habe ihr java imagej plugin decompiliert bekommen
-und koennte versuchen ihre implementierung zu verstehen (andererseits
-ist mir das jetzt ziemlich egal)
+%        - aber ich habe ihr java imagej plugin decompiliert bekommen
+% und koennte versuchen ihre implementierung zu verstehen (andererseits
+% ist mir das jetzt ziemlich egal)
 
-       - unter equation 10: The first two terms are variance
-contributions of shot noise. Filtering has the effect of reducing
-noise variance and is taken into account with the integral term. This
-bias must thus be subtracted from $\sigma^2$ prior to the evaluation
-of C. We have also not considered the effects of pixelation in the CCD
-camera. If the pixel size is non-negligible ..  }
+%        - unter equation 10: The first two terms are variance
+% contributions of shot noise. Filtering has the effect of reducing
+% noise variance and is taken into account with the integral term. This
+% bias must thus be subtracted from $\sigma^2$ prior to the evaluation
+% of C. We have also not considered the effects of pixelation in the CCD
+% camera. If the pixel size is non-negligible ..  }
 
 \subsection{Computer model for the integration of a priori knowledge
 about the biological events} 

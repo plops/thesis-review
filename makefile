@@ -2,7 +2,7 @@ all: pdf
 pdf: build/kielhorn_memi.pdf
 dvi: build/kielhorn_memi.dvi
 
-TEX_FILES_NOEXT = kielhorn_memi introduction spatio-angular device1 appendix
+TEX_FILES_NOEXT = kielhorn_memi introduction spatio-angular device1 device2 mma appendix
 TEX_FILES = $(TEX_FILES_NOEXT:%=%.tex)
 TEX_FILES_IN_BUILD=$(TEX_FILES:%=build/%)
 

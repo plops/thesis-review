@@ -360,80 +360,82 @@ direkt im Feld und auf der Kamera sichtbar werden. Wir benutzen ein
 neu entwickeltes Graustufen SLM, das in der Funktionsweise und
 Geschwindigkeit einem DMD aehnelt, aber Graustufen erzeugen kann.
 
-Das focal plane SLM sollte eine hohe Aufloesung haben und gleichzeitig  \cma{Why LCoS}
-schnellen Feedback zur Kamera ermoeglichen. Wir entschieden uns fuer
-einen an eine Graphikkarte angeschlossenen ferroelectric LCoS weil
-dessen Pixel weniger scharfkantig sind als die eines DMD. Die
-Ansteuerung mittels Graphikkarte war nicht vereinbar mit der
-synchronisation der anderen Geraete. Daher ersetzte ich den Controller
-relativ spaet im Projekt durch einen mit USB und internen
+Das focal plane SLM sollte eine hohe Aufloesung haben und gleichzeitig
+\cma{Why LCoS} schnellen Feedback zur Kamera ermoeglichen. Wir
+entschieden uns fuer einen an eine Graphikkarte angeschlossenen
+ferroelectric LCoS weil dessen Pixel weniger scharfkantig sind als die
+eines DMD. Die Ansteuerung mittels Graphikkarte war nicht vereinbar
+mit der synchronisation der anderen Geraete. Daher ersetzte ich den
+Controller relativ spaet im Projekt durch einen mit USB und internen
 Speicher. Damit Funktioniert leider der schnelle Feedback mit der
 Kamera nicht mehr. Im nachhinein bringt die Verwendung des fLCoS also
 keine Vorteile und es waere einfacher gewesen, gleich mit zwei
 identischen grauwert SLM von Fraunhofer zu arbeiten. Zumal die
 Bildupdates am Fraunhofer SLM deutlich schneller sind als am fLCoS.
+Das Projekt wird von Pasteur und Fraunhofer, diesmal unter Verwendung
+zweier ihrere SLM, weitergefuehrt.
 
-Ein gravierender Nachteil des Fraunhofer SLM ist jedoch sein sehr
-\cma{a remedy against low acceptance angle?} kleiner Akzeptanzwinkel
-im Falle einer Intensitaetskontrasterzeugung mit Fourierfilter. Zur
-Loesung dieses Problems haben mein Chef und Kai schon bereits vor dem
-Beginn meiner Arbeit eine auf common path interferometry beruhende
+Ein gravierender Nachteil, insbesonder in Anbetracht der mittlerweile
+erhaeltlichen Kameras, des Fraunhofer SLM ist jedoch sein sehr \cma{a
+  remedy against low acceptance angle?} kleiner Akzeptanzwinkel im
+Falle einer Intensitaetskontrasterzeugung mit Fourierfilter (40 um
+Felddurchmesser mit hohen und 80um bei geringerem Kontrast fuer 473 nm
+fuer 63x objektiv mit 400um moeglich). Zur Loesung dieses Problems
+haben andere meiner arbeitsgruppe mein Chef und Kai schon bereits vor
+dem Beginn meiner Arbeit eine auf common path interferometry beruhende
 Methode der Kontrasterzeugung vorgeschlagen. Sie ist naeher in dem
-Patentantrag WO FIXME und den Patenten D01 FIXME erlaeutert.  Der
-Ansatz ist abgeleitet vom reflectiven DIC in Materialmikroskopen. Ein
-Nomarski Prisma separiert das beleuchtende Buendel in zwei leicht
-versetzte. Der Shear entspricht dem Pixel pitch, so dass reflektiertes
-Licht die Hoehenunterschiede zwischen benachbarten Spiegeln
-theoretisch mit sehr hohem Kontrast als Intensitaetsmodulation
-darstellt.  Praktische Versuche lieferten keine sehr guten Ergebnisse
-denn die im Labor vorhandenen Prismen hatten zu kleinen Durchmesser um
-den notwendigen Shear zu erzeugen aber nicht gleichzeitig
-Beugungsordnungen abzuschneiden. Diese Methode koennte jedoch wichtig
-werden, insbesondere wenn piston mma erhaeltlich werden.
+Patentantrag WO2010089548 FIXME und den Patenten D01 FIXME erlaeutert.
+Der Ansatz ist abgeleitet vom reflectiven DIC in
+Materialmikroskopen. Ein Nomarski Prisma separiert das beleuchtende
+Buendel in zwei leicht versetzte. Der Shear entspricht dem Pixel
+pitch, so dass reflektiertes Licht die Hoehenunterschiede zwischen
+benachbarten Spiegeln theoretisch mit sehr hohem Kontrast als
+Intensitaetsmodulation darstellt.  Praktische Versuche lieferten keine
+sehr guten Ergebnisse denn die im Labor vorhandenen Prismen hatten zu
+kleinen Durchmesser um den notwendigen Shear zu erzeugen aber nicht
+gleichzeitig Beugungsordnungen abzuschneiden. Diese Methode koennte
+jedoch wichtig werden, insbesondere wenn piston mma erhaeltlich
+werden.
+
+Angesichts der geringen Transmission des Gesamtsystems, die ohnehin
+\cma{relative priority of the control algorithm} kaum ausreicht um das
+angestrebte biologische Testsystem zu untersuchen; dem
+unverhaeltnismaessig hohem Aufwand zur Synchronisation beider SLM, der
+einhergeht mit einer Verringerung des Duty Cycle und der
+eingeschraenkten Ettendue, die einige Interessante Experimente
+ausschliesst oder erschwert, waere es im Nachhinein besser gewesen, in
+kurzer Zeit einen auf zwei konventionellen, langsamen Grauwert-SLM
+basierenden Demonstrator zu bauen und dafuer den
+Beleuchtungskontrollalgorithmus eine hoehere Prioritaet zu geben.
+
+In diesem Zusammenhang versuchte ich ein holographisches System       \cma{holographic system}
+umzusetzen. Dabei ermoeglicht ein einzelner Phasen SLM in der
+Zwischenbildebene die Kontrolle von sowohl der in-focus
+Lichtverteilung als auch der Winkel. Dafuer stellt der SLM ein
+Beugungsgitter dar, deren erste Ordnung in dei Pupille reflektiert
+wird. Die Beleuchtungswinkel koennen dann durch Gitterperiode und
+Richtung eingestellt werden und die oertliche Intensitaet durch den
+Gitterkontrast.
+
+Leider weist der damals verwendete SLM cross-talk zwischen den Pixeln,
+eine nichtlineare Uebertragungsfunktion und temporale Fluktuationen
+des Phasenmusters auf und es war Unsicher ob diese Probleme durch
+Kalibration umgangen werden koennten um z.B. fein strukturierte Gitter
+ins Sample abzubilden.  Denn fuer meinen Beleuchtungsalgorithmus
+brauche ich eine halbwegs gute Messung der 3D Fluorophorverteilung im
+Sample und dies bedarf fuer fuer viele Proben Strukturierter
+Beleuchtung um das Missing Cone Problem zu umgehen. Jetzt verfuegbare
+phasen SLM weisen diese Nachteile nicht mehr auf und koennten
+vermutlich zum Bau eines solchen systems verwendet werden.
+
+Wie
 
 
-- ausserdem ist die ettendue des beleuchtungssystems arg
-  eingeschraenkt mit einem 63x objektiv (NA=1.47) wird nur ein feld
-  mit 40 um durchmesser beleuchtet
-
-- deshalb untersuchten wir einen anderen weg zur kontrasterzeugung und
-  lernten dabei dass ein interferometrischer ansatz sehr wohl geeignet
-  ist, die ettendue zu erhoehen
-
-  - einschraenkungen in der realisierbaren optik (freier durchmesser
-    der nomarski prismen) fuehrte zu nicht ganz ueberzeugenden bildern
-
-  - ein piston mma wuerde zu deutlich besseren ergebnisse fuehren
-- WO2010089548  
-- ein weiterer ansatz fuer spatio-angular beleuchtung wurde mit einer
-  holographischen methode verfolgt
-
-  - dabei lernten wir dass die qualitaet des verwendeten
-    phasenmodulators zu wuenschen uebrig laesst
-
-  - einfacherer ansatz mit nur einem display, erfordert daher weniger
-    optik und elektronik
-
-  - loest jedoch nicht das problem geringer ettendue (die moegliche
+  - holographie loest jedoch nicht das problem geringer ettendue (die moegliche
     ettendue muss ich mir genauer ueberlegen, sie haengt mit der
     anzahl der pixel des displays und den grating konstanten zusammen,
     die dargestellt werden koennen, da das system off-axis betrieben
     werden muss, wird die ettendue geviertelt)
-
-- Im Nachhinein muss man sagen, dass es Zielfuehrender gewesen
-    waere, und unsere Aufgabe erheblich vereinfacht haette, wenn wir
-    beide SLM vom gleichen Typ verwendet haetten. Es handelte sich
-    aber um einen Prototypen und er war in den ersten Jahr des
-    Projektes noch nicht verfuegbar. Das Projekt wird von Pasteur und
-    Fraunhofer, diesmal unter Verwendung zweier ihrere SLM,
-    weitergefuehrt. 
-
-  - Leider wird dieser Ansatz unsereserachtens nicht das wesentliche
-    Problem der kleinen Ettendue bereinigen und der neue Prototyp wird
-    noch immer nicht die interessantesten Experimente erlauben. Es ist
-    ganz einfach so, dass es einfacher waere, ein biologisch
-    Relevantes Experiment zu designen, wenn das Beleuchtungssystem
-    auch die volle Ettendue heutiger Mikroskopobjektive ausschoepft.
 
 - kameras sind zur zeit an einem wendepunkt. vermutlich wuerde man
   heutzutage eine sCMOS benutzen, dann sollte man aber auf die

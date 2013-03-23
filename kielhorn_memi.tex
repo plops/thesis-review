@@ -310,71 +310,87 @@ preferable, when low overall phototoxicity is a requirement.
 %\include{device2}
 \chapter{Experimental results with spatio-angular microscope}
 \label{sec:results}
-\chapter{discussion}
+\chapter{Discussion}
 \label{sec:discussion}
-Diese Arbeit beschaeftigt sich mit der theoretischen Analyse und dem
-praktischen Aufbau eines wide-field Mikroskops, das Phototoxicitaet
-durch Kontrolle des Einstrahlwinkels des Beleuchtungslichts mindert.
+This thesis deals with the practical development of a wide-field
+fluorescence microscope system that can control the irradiance in the
+specimen as well as the illumination angles with the aim of decreasing
+phototoxicity.
 
-Urspruenglich war die Idee ein PAM Mikroskop mit variablen              \cma{Historischer Ursprung der Idee}
-Beleuchtungswinkel zu kombinieren.  Diese Idee klingt zunaechst
-elegant: Dieses Mikroskop erzeugt zwei Bilder auf einer Kamera, eines
-davon enthaelt nur out-of-focus licht. Durch variation des
-Beleuchtungswinkels sollte man eine stelle finden koennen, wo das
-out-of-fokus licht minimiert wird.
+The original \cma{origin of the idea} idea was to combine a
+programmable array microscope with a control of the illumination
+directions. Initially this seems to be an elegant approach: The
+programmable array microscope produces two images on a camera, one of
+which contains only out-of-focus light. By variation of the
+illumination angle of the excitation light, it should be possible to
+find the direction with minimal out-of-focus contributions.
+ 
+Fairly quickly it became clear that this approach, if at all, would
+work only inefficiently. After all, for the programmable array
+microscope to work, fine structures must be imaged into the
+specimen. This, however, has the consequence that several diffraction
+orders instead of one bundle of rays with similar directions must
+traverse the sample. For most specimens this will bring no advantage
+compared to a wide-field microscope.
 
-Ziemlich schnell wurde jedoch klar, dass dieser Ansatz wenn           
-ueberhaupt, dann nur sehr ineffizient funktioniert. Schliesslich muss
-man sehr kleine Strukturen im Sample beleuchten, damit das PAM
-funktioniert. Dies hat jedoch zur Folge, dass statt einer einzelnen
-Beleuchtungsrichtung viele verschiedene Beugungsordnungen das Sample
-durchlaufen. Fuer die meisten Spezimen wird dies keinen Vorteil
-gegenueber einem widefield Mikroskop bringen.
+We opted instead for a modification of the excitation path in a
+wide-field microscope. My assumption was that given an estimate of the
+'to-be-imaged' three-dimensional fluorophore distribution, and perhaps
+additional information on the expected movement of cells, pathogens or
+organs; a sufficiently accurate prediction of the expected
+out-of-focus light can be made.
 
-Wir entschieden uns stattdessen fuer die hier vorgestellte
-Modifikation eines Widefield Mikroskops. Meine Annahme war, dass bei
-Kenntnis der dreidimensionalen Fluorophorverteilung, und vielleicht
-zusaetzlichen Informationen ueber die zu erwartenden Bewegungen von
-Zellen, Pathogenen oder Organen, eine hinreichend genaue Vorhersage
-des bei bestimmten Beleuchtungsrichtungen entstehende Out-of-fokus
-lichts moeglich wird.
+Using \cma{description of the hardware} two spatial light modulators
+(SLM), we can project appropriate distributions of excitation light
+into the sample. One SLM controls the angle and the other the in-focus
+pattern of light. Our goal for the instrument was that it can capture
+one stack per minute, consisting of twenty slices. For this, partial
+recordings of slices should be acquired in sequence and later composed
+into one image. Therefore We selected the SLM devices with an emphasis
+on high speed.
 
-Mit Hilfe zweier Displays koennen wir die entsprechenden Pattern in       \cma{beschreibung unserer Hardware}
-das Sample projezieren. Ein SLM kontrolliert die Winkel und das andere
-das in-focus Lichtmuster. Bei der Auswahl dieser Komponenten haben wir
-besonderen Wert auf hohe Geschwindigkeit gelegt --- 1 Stack mit 20
-slices pro Minute war unser Ziel und fuer jeden slice muss man von
-einigen Teilbelichtungen ausgehen.
+The fastest commercially available SLM are ferroelectric liquid
+crystal on silicon devices (fLCoS) and digital micro-mirror devices
+(DMD), which both can only do binary modulation. However, in our case
+binary intensity modulation is disadvantageous. Sharp edges lead to
+high diffraction losses and strong oscillations of the field in the
+Fraunhofer diffraction pattern.
 
-Die schnellsten kommerziell verfuegbaren SLM sind ferroelectric LCoS
-(fLCoS) und digital micro-mirror devices (DMD). Beide sind binaer.
-Aber binaere Intensitaetsmodulation ist in unserem Fall von Nachteil,
-denn scharfe Kanten fuehren zu hohen Beugungsverlusten und auch
-starken Oszillationen des Feldes im Fraunhofer Beugungsbild.
+The pupil \cma{Why Fraunhofer micro-mirror array?} plane SLM, that
+controls the illumination angles does not necessarily need a high
+resolution but a binary SLM device should be avoided here because
+otherwise oscillations of excitation intensity would occur in the
+specimen and appear on the camera image. For this reason, we use a
+specifically developed SLM, which resembles a DMD in terms of mode of
+operation and speed but can display gray scale values.
 
+The focal plane SLM, on the other hand, should have a high resolution
+\cma{choice for focal plane SLM} and it should be possible to update
+its patterns very fast, depending on recent camera
+acquisitions. Initially I opted for a SLM that is connected to the
+graphics card of a computer. We chose a fLCoS SLM because its pixel
+borders are less sharp than the DMD and we expected a better
+efficiency for our application. Unfortunately there were difficulties
+with the synchronization of the graphics card and the other
+devices. Therefore, relatively late into the project I had to replace
+the SLM controller with another one that contains internal memory and
+is linked to a computer via USB.  \nomenclature{USB}{Universal Serial
+  Bus.} Unfortunately, the USB connection is very slow and fast update
+of image patterns is no longer possible. In retrospect, it would have
+been easier to use two identical gray value SLM from Fraunhofer. Note
+that Institut Pasteur and Fraunhofer IPMS continue this work and do
+just that under the Joint-Programme Inter Carnot Fraunhofer PICF 2011,
+``Micromirror Enhanced Microscopic Imaging for high-speed angular and
+spatial light control in spectral Optogenetics and Photomanipulation
+applications in biological applications'' (MEMI-OP).
 
-
-Das pupil plane SLM zur Kontrolle der Winkel bedarf keiner hohen
-\cma{Grund fuer MMA} Aufloesung aber scharfe Kanten sollten hier
-vermieden werden, weil die sonst auftretenden Oszillationen sonst
-direkt im Feld und auf der Kamera sichtbar werden. Wir benutzen ein
-neu entwickeltes Graustufen SLM, das in der Funktionsweise und
-Geschwindigkeit einem DMD aehnelt, aber Graustufen erzeugen kann.
-
-Das focal plane SLM sollte eine hohe Aufloesung haben und gleichzeitig
-\cma{Why LCoS} schnellen Feedback zur Kamera ermoeglichen. Wir
-entschieden uns fuer einen an eine Graphikkarte angeschlossenen
-ferroelectric LCoS weil dessen Pixel weniger scharfkantig sind als die
-eines DMD. Die Ansteuerung mittels Graphikkarte war nicht vereinbar
-mit der synchronisation der anderen Geraete. Daher ersetzte ich den
-Controller relativ spaet im Projekt durch einen mit USB und internen
-Speicher. Damit Funktioniert leider der schnelle Feedback mit der
-Kamera nicht mehr. Im nachhinein bringt die Verwendung des fLCoS also
-keine Vorteile und es waere einfacher gewesen, gleich mit zwei
-identischen grauwert SLM von Fraunhofer zu arbeiten. Zumal die
-Bildupdates am Fraunhofer SLM deutlich schneller sind als am fLCoS.
-Das Projekt wird von Pasteur und Fraunhofer, diesmal unter Verwendung
-zweier ihrere SLM, weitergefuehrt.
+A \cma{remedy against low acceptance angle} serious disadvantage of
+the Fraunhofer SLM in combination with the Fourier optical filter
+approach employed in our prototype is the small acceptance angle. This
+limits the exposed field to $\unit[80]{\mu m}$ diameter for a
+wavelength of \unit[473]{nm} using a $63\times$ objective with a
+numerical aperture of $1.4$, while the objective does support
+$\unit[400]{\mu m}$ field diameter.
 
 Ein gravierender Nachteil, insbesonder in Anbetracht der mittlerweile
 erhaeltlichen Kameras, des Fraunhofer SLM ist jedoch sein sehr \cma{a

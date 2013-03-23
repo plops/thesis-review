@@ -436,8 +436,19 @@ Beleuchtung um das Missing Cone Problem zu umgehen. Jetzt verfuegbare
 phasen SLM weisen diese Nachteile nicht mehr auf und koennten
 vermutlich zum Bau eines solchen Systems verwendet werden.
 
-Hilo relativ frueh im projekt anpassung unabhaengig mittlerweile
-veroeffentlicht
+In dem von mir entwickelten Prototyp kann strukturierte Beleuchtung   \cma{sectioning by structured illumination}
+gut umgesetzt werden. Periode und Beleuchtungsaperture koennen mit den
+beiden Displays so gewaehlt werden, dass das in-focus
+Beleuchtungsmuster ein moeglichst hohen Kontrast erreicht. Optisch
+geschnittene Bilder koennen dann mit den ueblichen Methoden berechnet
+werden. Die von Jerome Mertz vorgeschlagene HiLo Methode ist fuer
+unser System besonders gut geeignet, weil sie nur zwei Aufnahmen pro
+Schicht braucht. Da unsere Bilder in schneller Folge aufgenommen
+werden koennen und Artefakte durch Bewegung relativ unwahrscheinlich
+sind, habe ich auf Vorschlag meines Betreuers eine Variante
+entwickelt, die statt eines homogen beleuchteten und eines
+strukturiert beleuchteten zwei strukturiert beleuchtete Bilder
+verwendet und damit besseres signal-to-noise erlaubt.
 
 Waehrend meiner Arbeit an dem Projekt kam eine wesentlich verbesserte   \cma{sCMOS --- new camera technology}
 Kameratechnologie auf den Markt, die zwar nicht mehr fuer Messungen in
@@ -470,11 +481,10 @@ trial und error verbrachte. Haette ich das vorher gewusst, haette ich
 den Prototypen anders designed und auch einige optische Nachteile in
 Kauf genommen.
 
-Besonders unzufrieden bin ich mit dem Zustand wissenschaftlicher        \cma{Open hardware is a good thing}
-Kameras, denn diese bereiteten mir einige Probleme mit inkompatiblen
-oder instabilen Treibern.
-
-Daher hoffe ich darauf dass sich Projekte die ihre Quellen oeffentlich
+Besonders unzufrieden bin ich mit dem Zustand wissenschaftlicher
+\cma{Open hardware is a good thing} Kameras, denn diese bereiteten mir
+einige Probleme mit inkompatiblen oder instabilen Treibern.  Daher
+hoffe ich darauf dass sich Projekte die ihre Quellen oeffentlich
 zugaenglich machen, wie Marc Levoy's Frankencamera \citep{Adams2010}
 zunehmen und dass die immer besser werdende CMOS Kameratechnologie
 ihren weg in Consumer cameras findet, mit offen dokumentierten
@@ -484,69 +494,76 @@ zugaenglich zu machen (wie bei der Logitech Pro 9000).
 
 %Fu2011
 
+Unser Prototyp und die Software fuer die Beleuchtungsoptimierung ist
+\cma{Resultate mit existierend Kontrollsoftware.}  auf die Beobachtung
+von Zellen in einem sich entwickelnden \celegans\ embyro
+ausgelegt. Bisher konnte ich an statischen, nicht-lebenden Proben die
+Funktionsweise der spatio-angularen Beleuchtungskontrolle nachweisen.
+Eine Anwendung an lebenden Organismen wurde von uns bisher noch nicht
+versucht. Dabei ist das Hauptproblem, dass das hochladen der Bilder,
+vorallem auf den focal plane SLM unverhaeltnismaessig lang dauert.
+
+\section{Outlook}
+
+Wenn sich das Sample nicht schnell aendert und damit genuegend Zeit      \cma{proposal of an optogenetics experiment}
+bleibt um Bilder in die SLM controller hochzuladen, kann man die
+Hardware prinzipiell bereits fuer sehr schnelle Experimente einsetzen,
+bei denen beide SLMs mit etwa 1000 fps laufen.  Denkbar waere z.B.\
+ein optogenetic Experiment aehnlich zu \cite{Branco2010}. Dort wurden
+Synapsen entlang eines linearen Dendriten angeregt und die Reaktion in
+Abhaengigkeit der Geschwindigkeit gemessen. Mit unserem System koennte
+man zwei Zweige eines Dendriten angeregt und die Reaktion an der
+Junction untersuchen.
 
 
-- arduino war nuetzlich um die elektronische triggerung ohne grossen
-  aufwand umzusetzen (der hauptaufwand war oft nicht die
-  zeitsteuerung, sondern eine ordentliche galvanische entkopplung der
-  displays, die ist auch wichtig)
+Der \cma{next steps for control software} Kontrollalgorithmus fuer die
+Beleuchtungsoptimierung kann und sollte noch ausgebaut werden. Bisher
+werden die Nuklei in jedem slice einzeln mit optimierten Winkeln
+angeleuchtet, besser waere es Nuklei, die mit gleichen Winkeln
+angeleuchtet werden koennen zu gruppieren und gemeinsam zu
+beleuchten. Vielleicht kann man auch von dem bisher verwendeten
+Ansatz, bei dem die Fluorophorverteilung als eine Ansammlung von
+Kugeln repraesentiert wird abgehen und die Optimierungsrechnung direkt
+auf dem Fluoreszensvolumendatensatz vornehmen. In einem ersten
+einfachen Experiment, dass eine graphics processing unit nutzt, konnte
+ich zeigen, dass die umfangreichen Rechnungen in handhabbaren
+Zeitraeumen durchgefuehrt werden koennen sollten.
 
-  - da unterscheiden sich die hersteller ohnehin sehr stark, bei dem
-    dvi display war es erforderlich, testpunkte vom board abzugreifen
-    und ueber adum zu entkoppeln, bei neueren varianten des usb boards
-    kann man mittlerweile einfach einen stecker anstecken
-
-- man kann relativ viel aufwand bei der rekonstruktion von optisch
-  geschnittenen bildern betreiben, fuer das reale problem ist die
-  vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
-  oder nuklei lokalisieren)
+Auch hinsichtlich der \cma{partial coherent simulation} Optik sind
+noch ein paar Fragen offen. Es waere interessant, die Bildentstehung
+mit der Schlierenoptik am pupil plane SLM unter Beruecksichtigung von
+partieller Kohaerenz zu simulieren. Dies wuerde die Frage beantworten,
+wie wichtig der graulevel micro-mirror array ist und ob nicht
+stattdessen ein binaerer DMD eingesetzt werden koennte.
 
 
-  
-\chapter{outlook}
-\label{sec:outlook}
-- den algorithmus zur beleuchtungsoptimierung kann man noch deutlich
-  verbessern
+% - eine genaue analyse einiger probleme mit wellenoptischer partiell
+%   kohaerenter theorie steht noch aus und waere interessant (nach
+%   wichtigkeit)
 
-  - gleichzeitige beleuchtung mehrerer nuklei
+%   - partiell kohaerente simulation des mma im schlierenoptischen system
 
-  - andere objektstrukturen (z.b. zylinder, axone)
+%     - sind graulevel vorteilhaft?
 
-    - 2010 hermann cuntz: One Rule to Grow Them All: A General Theory
-      of Neuronal Branching and Its Practical Application
+%     - wuerde ein mma, bei dem alle spiegel in dieselbe richtung kippen
+%       die ettendue verdoppeln?
 
-      - modell wie neuronen wachsen um axon oder dendritendichte
-        vorherzusagen
+%   - partiell kohaerente simulation des mma im shearing
+%     interferometrischen system
 
-  - voxels05\_final
+%     - was ist die maximale ettendue eines wollaston prismas?
 
-- eine genaue analyse einiger probleme mit wellenoptischer partiell
-  kohaerenter theorie steht noch aus und waere interessant (nach
-  wichtigkeit)
+%   - holographie methode mit extended source
 
-  - partiell kohaerente simulation des mma im schlierenoptischen system
-
-    - sind graulevel vorteilhaft?
-
-    - wuerde ein mma, bei dem alle spiegel in dieselbe richtung kippen
-      die ettendue verdoppeln?
-
-  - partiell kohaerente simulation des mma im shearing
-    interferometrischen system
-
-    - was ist die maximale ettendue eines wollaston prismas?
-
-  - holographie methode mit extended source
-
-  - Denkbar waere auch ein scannendes konfokales Mikroskop, dass an
-    die Beleuchtungswinkel an jedem Punkt kontrolliert (siehe
-    fig:hourglass-all-b).  Bisher wurden in der Literatur nur Systeme
-    beschrieben, die die Phase des Beleuchtungslicht in der Pupille
-    aendern (FIXME ref). Eine Adaption dieser Systeme zu einem
-    spatio-angularen ist naheliegend und ich schlage vor, derartige
-    Systeme auch untersucht werden sollten. Die Kombination von CLEM,
-    einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
-    Inneren lebender Organe (z.B. Gehirn) verbessern.
+  % - Denkbar waere auch ein scannendes konfokales Mikroskop, dass an
+  %   die Beleuchtungswinkel an jedem Punkt kontrolliert (siehe
+  %   fig:hourglass-all-b).  Bisher wurden in der Literatur nur Systeme
+  %   beschrieben, die die Phase des Beleuchtungslicht in der Pupille
+  %   aendern (FIXME ref). Eine Adaption dieser Systeme zu einem
+  %   spatio-angularen ist naheliegend und ich schlage vor, derartige
+  %   Systeme auch untersucht werden sollten. Die Kombination von CLEM,
+  %   einem Ringdetektor (vielleicht mit UZI) koennte die Bildgebung im
+  %   Inneren lebender Organe (z.B. Gehirn) verbessern.
 
 \appendix
 \include{appendix}

@@ -353,6 +353,7 @@ denn scharfe Kanten fuehren zu hohen Beugungsverlusten und auch
 starken Oszillationen des Feldes im Fraunhofer Beugungsbild.
 
 
+
 Das pupil plane SLM zur Kontrolle der Winkel bedarf keiner hohen
 \cma{Grund fuer MMA} Aufloesung aber scharfe Kanten sollten hier
 vermieden werden, weil die sonst auftretenden Oszillationen sonst
@@ -417,29 +418,73 @@ wird. Die Beleuchtungswinkel koennen dann durch Gitterperiode und
 Richtung eingestellt werden und die oertliche Intensitaet durch den
 Gitterkontrast.
 
+  % - holographie loest jedoch nicht das problem geringer ettendue (die moegliche
+  %   ettendue muss ich mir genauer ueberlegen, sie haengt mit der
+  %   anzahl der pixel des displays und den grating konstanten zusammen,
+  %   die dargestellt werden koennen, da das system off-axis betrieben
+  %   werden muss, wird die ettendue geviertelt)
+
+
 Leider weist der damals verwendete SLM cross-talk zwischen den Pixeln,
 eine nichtlineare Uebertragungsfunktion und temporale Fluktuationen
-des Phasenmusters auf und es war Unsicher ob diese Probleme durch
+des Phasenmusters auf. Es war unsicher ob diese Probleme durch
 Kalibration umgangen werden koennten um z.B. fein strukturierte Gitter
 ins Sample abzubilden.  Denn fuer meinen Beleuchtungsalgorithmus
 brauche ich eine halbwegs gute Messung der 3D Fluorophorverteilung im
 Sample und dies bedarf fuer fuer viele Proben Strukturierter
 Beleuchtung um das Missing Cone Problem zu umgehen. Jetzt verfuegbare
 phasen SLM weisen diese Nachteile nicht mehr auf und koennten
-vermutlich zum Bau eines solchen systems verwendet werden.
+vermutlich zum Bau eines solchen Systems verwendet werden.
 
-Wie
+Hilo relativ frueh im projekt anpassung unabhaengig mittlerweile
+veroeffentlicht
+
+Waehrend meiner Arbeit an dem Projekt kam eine wesentlich verbesserte   \cma{sCMOS --- new camera technology}
+Kameratechnologie auf den Markt, die zwar nicht mehr fuer Messungen in
+dieser Arbeit verwendet wurde, jedoch ohne wesentliche Aenderungen und
+mit Vorteil in das System eingefuegt werden koennen sollte.
+
+Nicht zuletzt durch den Arduino. Diese billige, einfach zu benutzende  \cma{Arduino for control electronics}
+Elektronikplatform leistet uns seit Jahren gute Dienste im Labor und
+war besonders fuer die Zeitsteurung der Geraete im hier vorgestellten
+Prototypen hilfreich. Der Quellcode fuer Arduino Mikrocontroller ist
+kurz und vergleichsweise einfach zu lesen. Er eignet sich daher gut um
+die logik der elektronische Schaltung zu dokumentieren und kann leicht
+von neuen Mitgliedern der Arbeitsgruppe erweitert werden.
+
+Waehrend dieser Arbeit verband ich viele verschiedene elektronische
+Geraete (SLM: Hamamatsu, Holoeye, ForthDD, Texas Instruments,
+Fraunhofer, cameras: Andor (Clara, IXon2, IXon3, IXon Ultra, Neo
+sCMOS), Photometrics Cascade II, Hamamatsu (Orca Flash 2.8 and 4.0),
+Logitech Pro 9000, and more). Dabei faellt auf, dass der notwendige
+Aufwand fuer den Bau und die Fehlerbereinigung extrem stark von der
+Guete der Dokumentation abhaengt. Sehr nuetzlich fuer Debugging sind
+offene Standards (USB video device class, Ethernet).
+
+Besonders positiv war ich von Texas Instruments DMD                   
+ueberrascht. Dieser SLM kommt mit sehr ausgereifter, quelloffener
+Software, perfekter Dokumentation. Bei meinen Tests war ich in der
+Lage, Features innerhalb von 3 Tagen zu implementieren, fuer die ich
+bei Hardware anderer Hersteller mehrere Monate reverse engineering und
+trial und error verbrachte. Haette ich das vorher gewusst, haette ich
+den Prototypen anders designed und auch einige optische Nachteile in
+Kauf genommen.
+
+Besonders unzufrieden bin ich mit dem Zustand wissenschaftlicher        \cma{Open hardware is a good thing}
+Kameras, denn diese bereiteten mir einige Probleme mit inkompatiblen
+oder instabilen Treibern.
+
+Daher hoffe ich darauf dass sich Projekte die ihre Quellen oeffentlich
+zugaenglich machen, wie Marc Levoy's Frankencamera \citep{Adams2010}
+zunehmen und dass die immer besser werdende CMOS Kameratechnologie
+ihren weg in Consumer cameras findet, mit offen dokumentierten
+Protokollen um Automatiken auszuschalten und Rohdaten der Sensoren
+zugaenglich zu machen (wie bei der Logitech Pro 9000).
 
 
-  - holographie loest jedoch nicht das problem geringer ettendue (die moegliche
-    ettendue muss ich mir genauer ueberlegen, sie haengt mit der
-    anzahl der pixel des displays und den grating konstanten zusammen,
-    die dargestellt werden koennen, da das system off-axis betrieben
-    werden muss, wird die ettendue geviertelt)
+%Fu2011
 
-- kameras sind zur zeit an einem wendepunkt. vermutlich wuerde man
-  heutzutage eine sCMOS benutzen, dann sollte man aber auf die
-  triggereigenschaften achten
+
 
 - arduino war nuetzlich um die elektronische triggerung ohne grossen
   aufwand umzusetzen (der hauptaufwand war oft nicht die
@@ -456,37 +501,8 @@ Wie
   vermeidung von artefakten dann oft doch nicht so wichtig (z.b. beads
   oder nuklei lokalisieren)
 
-- transmission ist nicht ausreichend um wuermer zu untersuchen  
-
-- vergleiche die folgenden displays:
-
-  - holoeye (erwaehne triggerversuche, kalibrationsmessungen von
-    uebertragungsfunktion und interpixel cross talk, hamamatsu)
-
-  - forthdd (frage sie vielleicht, ob sie mir im nachhinein doch noch
-    information geben)
-  - wir haetten stattdessen dmd nehmen koennen
-
-  - ti dmd (sehr gute dokumentation, sehr viele funktionen; gut waere,
-    wenn ich ein programm auf dem lokalen arm prozessor laufen lassen
-    koennte, was die vollen 4000fps aus runlength (oder irgendwie
-    komprimierten) daten vom usb aus erzeugen koennte
-
-    - deflection angle defines f/\# number of projection lens and
-      therefore etendue, for good contrast f/\# shouldn't be smaller
-      than f/2.8
-
-  - mma (naja)
 
   
-
-- hilo ist nicht unbedingt notwendig, ziemlich kompliziert und brauch
-  fudge factor
-
-  - high density fluorophore labelling for the shorter wavelength
-  fluorophore (better signal noise)
-
-- frankencamera
 \chapter{outlook}
 \label{sec:outlook}
 - den algorithmus zur beleuchtungsoptimierung kann man noch deutlich

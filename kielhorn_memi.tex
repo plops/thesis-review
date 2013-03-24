@@ -22,6 +22,8 @@
 %\usepackage{enumitem}
 %\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
 
+%\usepackage{etoolbox}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[usenames,dvipsnames]{color}
@@ -389,49 +391,45 @@ approach employed in our prototype is the small acceptance angle. This
 limits the exposed field to $\unit[80]{\mu m}$ diameter for a
 wavelength of \unit[473]{nm} using a $63\times$ objective with a
 numerical aperture of $1.4$, while the objective does support
-$\unit[400]{\mu m}$ field diameter.
+$\unit[400]{\mu m}$ field diameter. One solution could be contrast
+generation in a common path interferometer as described in the patent
+application \citep{Heintzmann2010a}. The approach is derived from
+reflective Nomarski differential interference contrast microscopy. A
+birefringent prism separates the illumination bundle into bundles that
+have a small offset (shear).  If the shear distance corresponds to the
+pixel pitch $\Lambda=\unit[16]{\mu m}$ of the micro-mirrors then this
+device converts height differences between adjacent mirrors into
+intensity contrast. My experiments with a set of Nomarski prisms that
+were available in our lab gave an indication, that this method can
+work. However the prisms had too small a shear angle and returning
+diffraction orders were cut off. At this point in time, the planning
+for the original prototype was already so far advanced that a change
+was not possible. However, this is still a very promising method and
+will probably produce good results when prisms with larger shear
+angles are used. Additionally it should be noted that this method will
+work better for piston-type micro-mirrors than for torsion
+micro-mirrors.
 
-Ein gravierender Nachteil, insbesonder in Anbetracht der mittlerweile
-erhaeltlichen Kameras, des Fraunhofer SLM ist jedoch sein sehr \cma{a
-  remedy against low acceptance angle?} kleiner Akzeptanzwinkel im
-Falle einer Intensitaetskontrasterzeugung mit Fourierfilter (40 um
-Felddurchmesser mit hohen und 80um bei geringerem Kontrast fuer 473 nm
-fuer 63x objektiv mit 400um moeglich). Zur Loesung dieses Problems
-haben andere meiner arbeitsgruppe mein Chef und Kai schon bereits vor
-dem Beginn meiner Arbeit eine auf common path interferometry beruhende
-Methode der Kontrasterzeugung vorgeschlagen. Sie ist naeher in dem
-Patentantrag WO2010089548 FIXME und den Patenten D01 FIXME erlaeutert.
-Der Ansatz ist abgeleitet vom reflectiven DIC in
-Materialmikroskopen. Ein Nomarski Prisma separiert das beleuchtende
-Buendel in zwei leicht versetzte. Der Shear entspricht dem Pixel
-pitch, so dass reflektiertes Licht die Hoehenunterschiede zwischen
-benachbarten Spiegeln theoretisch mit sehr hohem Kontrast als
-Intensitaetsmodulation darstellt.  Praktische Versuche lieferten keine
-sehr guten Ergebnisse denn die im Labor vorhandenen Prismen hatten zu
-kleinen Durchmesser um den notwendigen Shear zu erzeugen aber nicht
-gleichzeitig Beugungsordnungen abzuschneiden. Diese Methode koennte
-jedoch wichtig werden, insbesondere wenn piston mma erhaeltlich
-werden.
+Given \cma{priority of the control algorithm} the \emph{low
+  transmission} of our prototype, which could be just barely enough to
+investigate the biological test system of \celegans\ embryos, the
+disproportionally high effort that went into synchronizing the two
+fast SLM which can only run at a \emph{reduced duty cycle}, and the
+\emph{limited etendue} which excludes some interesting experiments, it
+would have been better in hindsight, to build a demonstrator with two
+slow, conventional, gray-value SLM and to spend more effort on the
+development of the illumination control algorithm.
 
-Angesichts der geringen Transmission des Gesamtsystems, die ohnehin
-\cma{relative priority of the control algorithm} kaum ausreicht um das
-angestrebte biologische Testsystem zu untersuchen; dem
-unverhaeltnismaessig hohem Aufwand zur Synchronisation beider SLM, der
-einhergeht mit einer Verringerung des Duty Cycle und der
-eingeschraenkten Ettendue, die einige Interessante Experimente
-ausschliesst oder erschwert, waere es im Nachhinein besser gewesen, in
-kurzer Zeit einen auf zwei konventionellen, langsamen Grauwert-SLM
-basierenden Demonstrator zu bauen und dafuer den
-Beleuchtungskontrollalgorithmus eine hoehere Prioritaet zu geben.
+In \cma{holographic system} this context, with the aim of simplifying
+the hardware, I built a holographic illumination system consisting of
+a single phase-only SLM in the intermediate image plane. This enables
+simultaneous control of both, the in-focus light distribution as well
+as the illumination angles in the specimen. The SLM displays
+diffraction gratings and its arrangement is such, that the first
+diffraction order illuminates the pupil. The illumination angle in the
+specimen can be adjusted by the grating period and direction while the
+local irradiance is controlled with the grating contrast.
 
-In diesem Zusammenhang versuchte ich ein holographisches System       \cma{holographic system}
-umzusetzen. Dabei ermoeglicht ein einzelner Phasen SLM in der
-Zwischenbildebene die Kontrolle von sowohl der in-focus
-Lichtverteilung als auch der Winkel. Dafuer stellt der SLM ein
-Beugungsgitter dar, deren erste Ordnung in dei Pupille reflektiert
-wird. Die Beleuchtungswinkel koennen dann durch Gitterperiode und
-Richtung eingestellt werden und die oertliche Intensitaet durch den
-Gitterkontrast.
 
   % - holographie loest jedoch nicht das problem geringer ettendue (die moegliche
   %   ettendue muss ich mir genauer ueberlegen, sie haengt mit der
@@ -439,117 +437,127 @@ Gitterkontrast.
   %   die dargestellt werden koennen, da das system off-axis betrieben
   %   werden muss, wird die ettendue geviertelt)
 
+Unfortunately the phase-only SLM that I used for the experiments
+suffers from cross-talk between pixels, a non-linear transfer function
+and temporal fluctuations of the displayed phase pattern. It was
+uncertain whether these problems could be circumvented. Especially
+higher orders which are generated by the device's non-linearity and
+that can reach the sample are a problem, and it seems particularly
+difficult to project a finely structured grid into the sample.
+Projecting such patterns is necessary, because for my illumination
+algorithm I need a reasonably good measurement of the
+three-dimensional fluorophore distribution. For many specimen
+structured illumination is necessary to remove out-of-focus light from
+the raw images and obtain optical sections.  Phase SLM which became
+available more recently have a much better performance and could
+probably be used to construct a holographic spatio-angular
+illumination device.
 
-Leider weist der damals verwendete SLM cross-talk zwischen den Pixeln,
-eine nichtlineare Uebertragungsfunktion und temporale Fluktuationen
-des Phasenmusters auf. Es war unsicher ob diese Probleme durch
-Kalibration umgangen werden koennten um z.B. fein strukturierte Gitter
-ins Sample abzubilden.  Denn fuer meinen Beleuchtungsalgorithmus
-brauche ich eine halbwegs gute Messung der 3D Fluorophorverteilung im
-Sample und dies bedarf fuer fuer viele Proben Strukturierter
-Beleuchtung um das Missing Cone Problem zu umgehen. Jetzt verfuegbare
-phasen SLM weisen diese Nachteile nicht mehr auf und koennten
-vermutlich zum Bau eines solchen Systems verwendet werden.
+Our \cma{sectioning by structured illumination} prototype with two SLM
+is more suitable for structured illumination. The period on the focal
+plane SLM and the illumination aperture defined by the pupil plane SLM
+can be selected for best possible contrast of the in-focus light
+pattern. Optically sectioned images can the be calculated with the
+usual methods. The HiLo method proposed by Jerome Mertz and best
+documented in \cite{Mertz2010} is preferable to others as only two
+exposures per slice are necessary. Since images in our system are
+taken in rapid succession and movement artifacts are unlikely, we
+developed a variant of the HiLo method and in contrast to the
+original, which uses one uniformly illuminated image and one with
+structured illumination, we use two structured illumination images
+which gives better signal-to-noise.
 
-In dem von mir entwickelten Prototyp kann strukturierte Beleuchtung   \cma{sectioning by structured illumination}
-gut umgesetzt werden. Periode und Beleuchtungsaperture koennen mit den
-beiden Displays so gewaehlt werden, dass das in-focus
-Beleuchtungsmuster ein moeglichst hohen Kontrast erreicht. Optisch
-geschnittene Bilder koennen dann mit den ueblichen Methoden berechnet
-werden. Die von Jerome Mertz vorgeschlagene HiLo Methode ist fuer
-unser System besonders gut geeignet, weil sie nur zwei Aufnahmen pro
-Schicht braucht. Da unsere Bilder in schneller Folge aufgenommen
-werden koennen und Artefakte durch Bewegung relativ unwahrscheinlich
-sind, habe ich auf Vorschlag meines Betreuers eine Variante
-entwickelt, die statt eines homogen beleuchteten und eines
-strukturiert beleuchteten zwei strukturiert beleuchtete Bilder
-verwendet und damit besseres signal-to-noise erlaubt.
+During my work on the project \cma{sCMOS --- new camera technology} a
+much improved camera technology came to market. No such camera was
+used for measurements in this work, however, such a camera could be
+added to our system without substantial changes. 
 
-Waehrend meiner Arbeit an dem Projekt kam eine wesentlich verbesserte   \cma{sCMOS --- new camera technology}
-Kameratechnologie auf den Markt, die zwar nicht mehr fuer Messungen in
-dieser Arbeit verwendet wurde, jedoch ohne wesentliche Aenderungen und
-mit Vorteil in das System eingefuegt werden koennen sollte.
+This change is made \cma{Arduino for control electronics} possible
+mostly due to the flexibility that the Arduino gives. This cheap and
+easy to use electronics platform has been used for several years in
+our lab and is particularly useful for synchronization of multiple
+devices. The source code for the Arduino microcontroller is often
+short and relatively easy to read. This controller is thus well suited
+to document the logic in our synchronization circuits and can be
+easily understood and extended by new members of our group.
 
-Nicht zuletzt durch den Arduino. Diese billige, einfach zu benutzende  \cma{Arduino for control electronics}
-Elektronikplatform leistet uns seit Jahren gute Dienste im Labor und
-war besonders fuer die Zeitsteurung der Geraete im hier vorgestellten
-Prototypen hilfreich. Der Quellcode fuer Arduino Mikrocontroller ist
-kurz und vergleichsweise einfach zu lesen. Er eignet sich daher gut um
-die logik der elektronische Schaltung zu dokumentieren und kann leicht
-von neuen Mitgliedern der Arbeitsgruppe erweitert werden.
+During this work, I used many different electronic devices (SLM:
+Hamamatsu, Holoeye, ForthDD, Texas Instruments, Fraunhofer, cameras:
+Andor (Clara, IXon2, IXon3, IXon Ultra, Neo sCMOS), Photometrics
+Cascade II, Hamamatsu (Orca Flash 2.8 and 4.0), Logitech Pro 9000, and
+more). I noticed that construction and debugging effort depend very
+much on the quality of the documentation. If documentation is
+insufficient, which unfortunately is often the case, then it helps if
+communication is done with open standards (USB video device class,
+Ethernet).
 
-Waehrend dieser Arbeit verband ich viele verschiedene elektronische
-Geraete (SLM: Hamamatsu, Holoeye, ForthDD, Texas Instruments,
-Fraunhofer, cameras: Andor (Clara, IXon2, IXon3, IXon Ultra, Neo
-sCMOS), Photometrics Cascade II, Hamamatsu (Orca Flash 2.8 and 4.0),
-Logitech Pro 9000, and more). Dabei faellt auf, dass der notwendige
-Aufwand fuer den Bau und die Fehlerbereinigung extrem stark von der
-Guete der Dokumentation abhaengt. Sehr nuetzlich fuer Debugging sind
-offene Standards (USB video device class, Ethernet).
+Particularly positive I was surprised by the Texas Instruments
+DMD. The SLM development kit is very mature, contains open source
+software and high quality documentation explaining even the control
+registers of individual chips. While working with the kit I was able
+to implement features within three days, for which I spent several
+months of reverse engineering and trial and error on devices of other
+manufacturers. If I had known that before, I would have designed the
+prototype differently and I would have accepted some drawback
+regarding optical performance.
 
-Besonders positiv war ich von Texas Instruments DMD                   
-ueberrascht. Dieser SLM kommt mit sehr ausgereifter, quelloffener
-Software, perfekter Dokumentation. Bei meinen Tests war ich in der
-Lage, Features innerhalb von 3 Tagen zu implementieren, fuer die ich
-bei Hardware anderer Hersteller mehrere Monate reverse engineering und
-trial und error verbrachte. Haette ich das vorher gewusst, haette ich
-den Prototypen anders designed und auch einige optische Nachteile in
-Kauf genommen.
-
-Besonders unzufrieden bin ich mit dem Zustand wissenschaftlicher
-\cma{Open hardware is a good thing} Kameras, denn diese bereiteten mir
-einige Probleme mit inkompatiblen oder instabilen Treibern.  Daher
-hoffe ich darauf dass sich Projekte die ihre Quellen oeffentlich
-zugaenglich machen, wie Marc Levoy's Frankencamera \citep{Adams2010}
-zunehmen und dass die immer besser werdende CMOS Kameratechnologie
-ihren weg in Consumer cameras findet, mit offen dokumentierten
-Protokollen um Automatiken auszuschalten und Rohdaten der Sensoren
-zugaenglich zu machen (wie bei der Logitech Pro 9000).
+I \cma{Open hardware is a good thing} am particular unhappy with the
+state of scientific cameras as all of them gave me problems with
+incompatible or unstable drivers. Therefore, I hope that there will be
+more projects that open their resources to the public, such as Marc
+Levoy's Franken Camera \citep{Adams2010}; or that the manufacturers of
+the ever-improving consumer cameras document and disclose the
+protocols for disabling automatic image processing and accessing raw
+sensor data for their devices (as with the Logitech Pro 9000).
 
 
 %Fu2011
 
-Unser Prototyp und die Software fuer die Beleuchtungsoptimierung ist
-\cma{Resultate mit existierend Kontrollsoftware.}  auf die Beobachtung
-von Zellen in einem sich entwickelnden \celegans\ embyro
-ausgelegt. Bisher konnte ich an statischen, nicht-lebenden Proben die
-Funktionsweise der spatio-angularen Beleuchtungskontrolle nachweisen.
-Eine Anwendung an lebenden Organismen wurde von uns bisher noch nicht
-versucht. Dabei ist das Hauptproblem, dass das hochladen der Bilder,
-vorallem auf den focal plane SLM unverhaeltnismaessig lang dauert.
+Our \cma{results of existing control software} prototype and the
+software for illumination optimization has been designed for the
+observation of cells in a developing \celegans\ embryo. So far I was
+able to demonstrate spatio-angular illumination on static, non-living
+samples. So far I have not applied the method for living
+organisms. Here, the main problem is that image upload, especially to
+the focal plane SLM takes disproportionally long.
 
 \section{Outlook}
 
-Wenn sich das Sample nicht schnell aendert und damit genuegend Zeit      \cma{proposal of an optogenetics experiment}
-bleibt um Bilder in die SLM controller hochzuladen, kann man die
-Hardware prinzipiell bereits fuer sehr schnelle Experimente einsetzen,
-bei denen beide SLMs mit etwa 1000 fps laufen.  Denkbar waere z.B.\
-ein optogenetic Experiment aehnlich zu \cite{Branco2010}. Dort wurden
-Synapsen entlang eines linearen Dendriten angeregt und die Reaktion in
-Abhaengigkeit der Geschwindigkeit gemessen. Mit unserem System koennte
-man zwei Zweige eines Dendriten angeregt und die Reaktion an der
-Junction untersuchen.
+If \cma{proposal of an optogenetics experiment} the sample does not
+change very fast, and plenty of time is available to upload images
+into the SLM controllers, then the current prototype allows
+experiments with rapidly changing illumination patterns (about 1000
+fps should be possible). One interesting biological experiment would
+be similar to \cite{Branco2010}. There, synapses were excited by
+moving a focal spot along one linear dendrite and its response was
+recorded as a function of the speed of the focal spot. With our
+system, two branches of a dendrite could be stimulated simultaneously
+and the response of the junction could be investigated.
+
+The \cma{next steps for control software} algorithm for the
+optimization of the illumination patterns can still be improved. So
+far, I assume that the sample can be represented well by spheres. The
+nuclei in each slice are illuminated individually and the algorithm
+finds illumination angles so that exposure of out-of-focus nuclei is
+avoided. An obvious improvement would be to find nuclei that can be
+illuminated with similar angles and group them for simultaneous
+exposure. Even better would be an algorithm that does not need to
+represent the specimen as solid bodies but works directly on stacks of
+optical sections. In a first simple experiment, using the graphics
+processing unit, I could show that the extensive calculations can be
+carried out in reasonable time frames.
 
 
-Der \cma{next steps for control software} Kontrollalgorithmus fuer die
-Beleuchtungsoptimierung kann und sollte noch ausgebaut werden. Bisher
-werden die Nuklei in jedem slice einzeln mit optimierten Winkeln
-angeleuchtet, besser waere es Nuklei, die mit gleichen Winkeln
-angeleuchtet werden koennen zu gruppieren und gemeinsam zu
-beleuchten. Vielleicht kann man auch von dem bisher verwendeten
-Ansatz, bei dem die Fluorophorverteilung als eine Ansammlung von
-Kugeln repraesentiert wird abgehen und die Optimierungsrechnung direkt
-auf dem Fluoreszensvolumendatensatz vornehmen. In einem ersten
-einfachen Experiment, dass eine graphics processing unit nutzt, konnte
-ich zeigen, dass die umfangreichen Rechnungen in handhabbaren
-Zeitraeumen durchgefuehrt werden koennen sollten.
+Our work \cma{partial coherent simulation} also leaves an unanswered
+question regarding the optics. It would be interesting to simulate the
+wave-optical image formation of the prototype with partial
+coherence. This would answer the question how important the gray
+levels of the micro-mirror array in the pupil-plane really are, and
+whether or not we can replace it with a binary DMD.
 
-Auch hinsichtlich der \cma{partial coherent simulation} Optik sind
-noch ein paar Fragen offen. Es waere interessant, die Bildentstehung
-mit der Schlierenoptik am pupil plane SLM unter Beruecksichtigung von
-partieller Kohaerenz zu simulieren. Dies wuerde die Frage beantworten,
-wie wichtig der graulevel micro-mirror array ist und ob nicht
-stattdessen ein binaerer DMD eingesetzt werden koennte.
+A similar simulation should be used to investigate the influence of
+field mask B0 and Fourier stop B1 on the contrast and the transfer
+function of the schlierenoptics system.
 
 
 % - eine genaue analyse einiger probleme mit wellenoptischer partiell

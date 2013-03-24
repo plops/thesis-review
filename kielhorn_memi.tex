@@ -234,11 +234,153 @@
   \hspace{4cm}\textsf{\Large July 2012}
 \end{titlepage}
 \newpage
-\include{abstract}
+%\include{abstract}
+\section*{Abstract}
+\begin{summary}
+  Photobleaching and phototoxicity pose a problem in live cell
+  imaging. Fluorescence imaging induces reactive oxygen species in
+  observed organisms which can alter the behaviour of the
+  sample. Hence, minimising the light exposure is an important goal.
+
+  We augment a wide field epifluorescence microscope with two spatial
+  light modulators. By controlling the spatial excitation pattern and
+  the angle of illumination, we can adapt the illumination to the
+  specimen. In many cases, this technique will create exposures with
+  reduced excitation of the out-of-focus fluorophores, resulting in
+  better image quality and less phototoxicity.
+
+  Our custom software is used to obtain an initial image stack of the
+  specimen. Subsequent image sections are exposed with excitation
+  patterns that account for the previous image stack. Depending
+  upon the distribution of fluorophores, this adaptive exposure can
+  considerably reduce photobleaching and phototoxicity.
+\end{summary}
+
 \urlstyle{sf}
 %\setcounter{tocdepth}{3}
-\section*{Preface}
+
+\chapter*{Preface}
+%\section*{Preface}
 \cite{Matthae2003} %US6504653 (FIXME)
+
+The work described in this thesis was carried out between June 2008
+and March 2013.
+
+In chapter \ref{sec:intro}, we introduce photophysics of fluorescence
+and emphasize the importance of oxygen for phototoxicity. Furthermore,
+we also explain conventional microscopes and CCD cameras.
+
+In chapter \ref{sec:approaches}, we compare some state-of-the-art
+techniques for illumination control in microscopes.  Particularly in
+section \ref{sec:light-field-microscopy}, we discuss the micro-lens
+based light field microscope by Levoy's computational photography
+group, which imaged the toy soldier in 2003.
+
+In chapter \ref{sec:setup}, we describe our microscope and in chapter
+\ref{sec:experiments}, we show some images, taken with illumination
+control in our prototype.
+
+There is also an extensive appendix where we document more technical
+issues like read noise calibration of a camera (Appendix
+\ref{sec:ccd-meas}) or finding a rigid transform between a camera and
+a display (Appendix \ref{sec:rigid}).
+
+In the appendix, we also describe a completely different approach for
+spatio--angular illumination based on holography (Appendix
+\ref{sec:app_holo}) and we document an interferometric attempt to
+convert our precise programmable phase mask into a spatial intensity
+modulator (Appendix \ref{sec:app_dic}).
+
+Note that the Appendix \ref{sec:dvi} describes a modification of our
+prototype with a spatial light modulator that receives data from a
+graphics card. A higher bandwidth makes this approach more useful than
+the prototype described in the main text and we tried to implement
+this first. However eventually, it proved too difficult to trigger the
+components in this configuration and we switched to the more
+predictable USB-controlled display as described in the main body of
+the text.
+ 
+The appendix also contains some theoretical explainations of
+raytracing (Appendix \ref{sec:raytrace}), computational optical
+sectioning (Appendix \ref{sec:app_hilo}) and the wave-optics based
+simulation of our microscope (Appendix \ref{sec:sim-angle}).
+
+\subsection*{Source Code Availability}
+
+Source code that has been developed during this project is available
+on \url{https://github.com/plops/mma}.  It contains implementations
+for:
+\begin{itemize}
+\item illumination planning based on raytraces (see Appendix
+  \ref{sec:raytrace})
+\item moving the $z-$stage of a Zeiss Axiovert 200M microscope body
+\item controlling an Andor Clara camera using the Andor SDK version
+  2. For the other cameras following below, control software was written:
+  \begin{itemize}
+  \item Photometrics Cascade~II (interface to unsupported
+    closed-source driver, only works on very old 32-bit Linux kernels)
+  \item mvBlueFox 102G using the SDK
+  \item Logitech Pro 9000 using a generic Video4Linux interface
+  \item Andor sCMOS using Andor SDK version 3
+  \end{itemize}
+\item displaying patterns using a graphics card that supports OpenGL
+  on a ForthDD SXGA ferroelectric LCoS display
+\item controlling a stand-alone ForthDD WXGA 3DM display controller
+  using USB
+\item estimating the parameters of a rigid transformation between
+  camera and LCoS display (see Appendix \ref{sec:rigid}),
+\item controlling the micro-mirror array by Fraunhofer IPMS using
+  their SDK
+\item some specific image processing tools:
+  \begin{itemize}
+  \item three-dimensional convolution and Fourier transforms
+  \item drawing of lines and ellipsoids in volumes
+  \item rasterization of triangles (for creating shadow maps in the
+    BFP, see section \ref{sec:trace-detect})
+  \item calculation of optical transfer function for high NA
+    objectives
+  \item localization of spherical nuclei in volumetric data (parts of
+    the algorithm as described in \citet{Santella2010})
+  \end{itemize}
+\end{itemize}
+The main development was done using GNU~Linux. However, portability
+was kept in mind and most of the code was made to work with Microsoft
+Windows as well.
+
+\subsection*{Acknowledgements}
+It is my pleasure to thank all those who have made this thesis
+possible. First and foremost, I owe my deepest gratitude to my
+supervisor Rainer Heintzmann for giving me the opportunity to become
+part of his research group at King's College London and later in the
+Institute of Photonic Technology in Jena.
+
+I owe my sincere thanks to Kai Wicker, Jakub Nedbal, Susan Cox, Daniel
+Appelt, Ond\v rej Mandula, Ronny F\"orster, Ivana \v Sumanovac,
+Eckhard Birkner, Kathrin Klehs and all the other members of our group
+for valuable discussions, support and review of the manuscript.
+
+My sincere thanks to the European Union Framework Programme 7 (project
+number 2115597) for the studentship on this project.  I also thank
+Erhard Ipp, G\"unter Z\"ochling, Vincent Galy, QueeLim Ch'ng, J\"org
+Heber, Mark Eckert, Dirk Berndt, Joel Seligson, Jean-Yves Tinevez and
+Florian R\"uckerl for helpful collaboration.
+
+Furthermore I highly appreciate the input of Herbert Gross, Miroslav
+Grajcar, Edward Rosten, Christophe Rhodes, Paul Khuong, Nikodemus
+Siivola, Gabor Melis and Lu\' is Oliveira. Occasionally, the expertise
+and insight of them steered me into right direction or greatly
+simplified problems I faced.
+
+Finally, I wish to thank the authors and contributors to the following
+software projects: Linux, GCC, Emacs, SBCL \citep{Rhodes2008}, Maxima,
+Micromanager \citep{Edelstein2010}, DIPimage, Wireshark, Latex,
+Inkscape, Gimp, ImageJ/Fiji \citep{Abramoff,Schindelin2012} and
+Blender.  These free software projects and their communities are
+invaluable to my work and greatly enhance my efficiency.
+
+The work presented in this thesis is my own, unless I cite a
+reference.
+
 \begin{flushright}
   M.~K.
 \end{flushright}
@@ -247,28 +389,14 @@
 Jena, Germany
 
 \noindent
-July 2012
+March 2013
+
+
 
 \newpage
 \tableofcontents
 \printnomenclature
 
-\chapter*{preface}
-add herbert gross to acknowledgements
-
-hoffentlich kommen bessere prototypen nach mir
-
-die programmierung verschiedenster hardware war ein wesentlicher aspekt
-ich habe mir ein beispiel an mikromanager genommen profitiert habe
-
-ich hoffe dass diese arbeit einen grundstein legt.
-und dass jemand der damit beginnen will leichter den einstieg fidnet
-daher alle meine software auf github
-
-die komplexitaet und stabilitaet wird zwar nicht erreicht
-das war aber nicht das ziel
-
-ich wollte schnelles prototyping
 
 
 \include{introduction}
@@ -558,6 +686,8 @@ whether or not we can replace it with a binary DMD.
 A similar simulation should be used to investigate the influence of
 field mask B0 and Fourier stop B1 on the contrast and the transfer
 function of the schlierenoptics system.
+
+
 
 
 % - eine genaue analyse einiger probleme mit wellenoptischer partiell

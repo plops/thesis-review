@@ -1,25 +1,49 @@
 \chapter{Experimental results with spatio-angular microscope}
 \label{sec:results}
+\begin{summary}
+Akzeptanzwinkel
 
-einer der ersten versuche akzeptanzwinkel in abhaengigkeit vom immersionsmedium
+Bleaching
 
-dafuer zeigt der focal plane slm einen moeglichst grossen kreis an und
-ein kleines fenster wird ueber die pupille bewegt 
+Strukturierte Beleuchtung
+Berechnung zu wenige beads
 
-fuer jeden punkt auf der pupille wird das gesamte von der kamera
-detektierte licht summiert und in ein bild eingetragen
-
-auf diesem bild sieht man indirekt den akzeptanzwinkel, denn wenn man
-ueber den hinausgeht, dann wird das anregungslicht totalreflektiert
-und fluoreszenslicht bleibt weg
-
-hier wurde das mit drei einfach herzustellenden sampeln erzeugt
-
-duenne schicht fluoreszenter marker pen wurde auf drei slides aufgebracht
+sample mit dichter 3d verteilung von beads
+\end{summary}
 
 
+Als einen der ersten Versuche des vollstaendigen Systems habe ich den
+Akzeptanzwinkel in Abhaengigkeit vom Immersionsmedium bestimmt.
 
-\begin{figure}[H]
+
+Fuer die Messung wurde eine duenne schicht Fluorophore mit einem
+marker pen auf drei Mikroskopslides aufgebracht. Weiterhin wurde ein
+Kreis mit nail polish als Abstandshalter drumherum gemalt. Nach dem
+Trocknen wurden auf zwei Sample jeweils ein Tropfen immersionsoel oder
+wasser gegeben und alle samples mit deckglaesern versehen und mit nail
+polish verschlossen.
+
+Waehrend der Messung zeigt der focal plane SLM einen moeglichst
+grossen Kreis (30 um Durchmesser) an waehrend ein kleines Fenster von
+15x15 pixeln (das entspricht 1/17tel des pupillendurchmessers) ueber
+den pupil plane slm scannt.
+
+Fuer jeden damit erzeugten Beleuchtungswinkel wird das gesamte von der
+Kamera detektierte Licht summiert und in ein Bild eingetragen.  Auf
+diesem Bild sieht man indirekt den Akzeptanzwinkel, denn wenn man
+ueber diesen hinausgeht, dann wird das Anregungslicht totalreflektiert
+und das Fluoreszenslicht verschwindet entsprechend.
+
+Dies ist gut in den drei Bildern in fig:tirf-exp zu erkennen. Ueber
+den Durchmesser der Kreise kann der Akzeptanzwinkel und im Falle von
+oil immersion die Position des pupil plane SLM relativ zur Pupille
+bestimmt werden.
+
+
+
+
+
+\begin{figure}[htbp]
   \centering
   %\input{tirf-exp.eps_tex} 
   \svginput{1}{tirf-exp}
@@ -44,7 +68,7 @@ duenne schicht fluoreszenter marker pen wurde auf drei slides aufgebracht
 
 
 gel with fluorophore \cite{Ruckerl}
-\begin{figure}[!hbt]
+\begin{figure}[!hbtp]
   \centering
   \svginput{1}{overview-bleach}
   \caption{The confocal measurements and images were kindly provided
@@ -56,7 +80,7 @@ gel with fluorophore \cite{Ruckerl}
 \jpginput{}{m_wf}{}
 }
 
-\begin{figure}[H]
+\begin{figure}[hbtp]
   \centering
   \includegraphics[width=12cm]{m_wf}
   \caption{Wide field stack of a three-dimensional distribution of
@@ -65,7 +89,7 @@ gel with fluorophore \cite{Ruckerl}
 \end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}[hbtp]
   \centering
   \svginput{1}{m_sec}
   \caption{Computationally sectioned images. Note that two beads (4
@@ -75,7 +99,7 @@ gel with fluorophore \cite{Ruckerl}
 \end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}[hbtp]
   \centering
   \svginput{1}{angular-beads}
   \caption{Spatio-angular controlled illumination of the beads from

@@ -4,18 +4,34 @@
 \label{sec:raytrace}
 \renewcommand{\i}{\nvect i}
 \begin{summary}
-  Here we give an overview of some useful equations for
-  raytracing. The design parameters of our microscope objectives are
-  not usually known to us. However, this is not an insurmountable
-  problem as they can be represented using a simplified model
-  \citep{Hwang2008}. We use this to find which regions of the
-  objectives back focal plane are safe to illuminate and which will
-  excite out-of-focus fluorescence. Further, we consider the
-  refraction at the coverslip--medium interface for non-index matched
-  media.
+  Imaging with our microscope requires that during the observation of
+  the sample new light patterns are created continuously and as fast
+  as possible. We can not solve this problem by using a commercial
+  software and I therefore decided to implement a simple raytracer.
+
+  This chapter documents the basic concepts. Note that some
+  approximations, which are usually used in optical design (paraxial,
+  only non-skew rays) are not applicable here, because rays are to be
+  pursued through diverse fluorophore distributions in samples.
+
+  The design parameters of our microscope objectives are not usually
+  known to us. I therefore represent the high-aperture lens using a
+  simplified model \citep{Hwang2008}. Together with a model of the
+  fluorophore distribution in the sample I can to determine which
+  regions of the objectives back focal plane are safe to illuminate
+  and which will excite out-of-focus fluorescence.
+
+  Further, I consider the refraction at the coverslip--medium
+  interface for non-index matched media. This enables the calculation
+  of illumination patterns for highly inclined and laminated optical
+  sheet microscopy, as introduced in section \ref{sec:hilo}.
+
+  {\bf Note:} The boxed formulas are implemented in the computer code
+  that is published on
+  \url{https://github.com/plops/mma/tree/master/lens}.
 \end{summary}
 \section{Refraction at planar surface}
-We begin by describing refraction at a planar surface\footnote{The
+I begin by describing refraction at a planar surface\footnote{The
   equations are as in \citep{McClain1993}.}. The wavelength of the
 light in vacuum defines the length of the wave vector $\k_0$. The
 lengths of the incident and transmitted wave vectors $\k_1$ and $\k_2$
@@ -25,8 +41,8 @@ are given by the refractive index in their respective half space:
   k_1&=n_1 k_0\\
   k_2&=n_2 k_0.
 \end{align}
-We choose the normal $\n$ to be directed into the half-space of the
-incident wave (see \figref{fig:refraction-plane}). We define the
+I choose the normal $\n$ to be directed into the half-space of the
+incident wave (see \figref{fig:refraction-plane}) and define the
 transversal and normal component of the wave vectors:
 \begin{align}
   \k_{1n}&=(\k_1\n)\n\\ 
@@ -38,7 +54,7 @@ transversal component of the wave vector is invariant:
   k_2^2&=k_{2n}^2 + k_{2t}^2\\
   \k_{2t}&=\k_{1t}.
 \end{align}
-Using the two equations from above we can calculate the length of the
+Using the two equations from above one can calculate the length of the
 normal component of the transmitted wave vector $\k_2$:
 \begin{align}
   k_2^2&=k_{2n}^2 + (\k_1 - \k_{1n})^2\\
@@ -46,19 +62,16 @@ normal component of the transmitted wave vector $\k_2$:
   &= k_2^2-(k_1^2-2(\k_1\n)^2+(\k_1\n)^2)\\
   &= k_2^2-k_1^2+(\k_1\n)^2.
 \end{align}
-Finally we can express the full transmitted wave vector $\k_2$ using
+Finally one can express the full transmitted wave vector $\k_2$ using
 only known quantities:
 \begin{align}
   \k_2&=\k_{1t}-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n\\
   &=\k_1-(\k_1\n)\n-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n.
 \end{align}
-We divide by $k_2$ with $\k_2/k_2=\t$ and $\k_1/k_2=\eta\,\i$ in order
+I divide by $k_2$ with $\k_2/k_2=\t$ and $\k_1/k_2=\eta\,\i$ in order
 to introduce unit direction vectors $\i$ and $\t$ for incident and
 outgoing light. The relative index change across the interface is
 $\eta=n_1/n_2$.
-
-FIXME TRANSLATE: Bemerkung: Nur die eingerahmten Formeln finden sich
-im Quellcode fuer das Computerprogramm wieder.
 \begin{figure}
   \centering
   \svginput{1}{refraction}
@@ -83,12 +96,12 @@ component inverts the sign:
 Let a ray start at a point $\s$ with direction $\hd$.  A plane
 (defined by a point $\c$ and the normal $\n$) intersects this ray if
 normal and ray direction are not perpendicular: $\n\,\hd\not=0$. The
-distance between the plane and the origin is $h=\c\n$. We can define
-the plane equation in Hesse normal form:
+distance between the plane and the origin is $h=\c\n$. I define the
+plane equation in Hesse normal form:
 \begin{align}
   \r\n=h
 \end{align}
-We replace the coordinate $\r$ with the ray equation and solve for
+I replace the coordinate $\r$ with the ray equation and solve for
 the parameter $\tau$:
 \begin{align}
   (\s+\tau\hd)\n&=h\\
@@ -119,8 +132,8 @@ quadratic equation for $\tau$:
 In order to prevent numerical errors the following solution should be
 used \citep{Press1997}:
 \begin{align}
-  d&:=\boxed{b^2-4ac}\\
-  q&:=\boxed{-\frac{b+\sqrt{d}\sign b}{2}}\\
+  \Delta&:=\boxed{b^2-4ac}\\
+  q&:=\boxed{-\frac{b+\sqrt{\Delta}\sign b}{2}}\\
   \tau&=\boxed{
   \begin{cases}
     \frac{q}{a} &\,\textrm{when}\,\abs{q}\approx 0\\ 
@@ -128,7 +141,7 @@ used \citep{Press1997}:
     (\frac{q}{a}, \frac{c}{q}) &\,\textrm{else}
   \end{cases}}
 \end{align}
-If the discriminant $d$ is negative the ray misses the sphere and
+If the discriminant $\Delta$ is negative the ray misses the sphere and
 there is no solution. If the discriminant is zero the ray touches the
 periphery and there is only one solution. A positive determinant
 corresponds to two solutions.
@@ -151,7 +164,7 @@ $\overline{CB} \parallel \overline{OA} \parallel \vrho$,
 $\overline{FA} \parallel \overline{CA}$ and $\overline{AB} \parallel
 \overline{OF} \parallel \i$. The side $\overline{OF}$ is hypotenuse of
 a right angled triangle. Its adjacent with respect to the angle
-$\theta$ has length $f$. Therefore the we can deduce the length
+$\theta$ has length $f$. Therefore one can deduce the length
 $\abs{\overline{OF}}=f/\cos\theta$.
 
 Between the two similar triangles, the following relation holds and
@@ -162,11 +175,11 @@ can be used to calculate the length $\abs{\overline{BC}}$:
   \frac{\abs{\overline{CB}}}{1}&=
   \frac{\rho}{f/\cos(\theta)}.
 \end{align}
-Given its length, the vector $\overline{CB}$ can now calculated,
-because we know its direction to be along $\vrho$. With this vector
-and $\i$ we can now obtain the (arbitrarily scaled) transmitted vector
-$\r'$. We could normalize it but it turns out to be useful for the
-high NA immersion lens to find the vector $\r$, that ends in the focal
+Given its length, the vector $\overline{CB}$ can now be calculated,
+because I know its direction to be along $\vrho$. With this vector and
+$\i$ one can now obtain the (arbitrarily scaled) transmitted vector
+$\r'$. I could normalize it but it turns out to be useful for the high
+NA immersion lens to find the vector $\r$, that ends in the focal
 plane.  The procedure from above is condensed in the following
 equations:
 \begin{align}
@@ -184,14 +197,14 @@ equations:
   \caption{Construction of a ray on an high numerical aperture oil
     immersion objective. As opposed to a thin air lens the objective's
     focal length needs to be corrected by the focus difference vector
-    $\a$ to accommodate for the immersion and we must take into
-    account spherical principal surface.}
+    $\a$ to accommodate for the immersion and one must take into
+    account spherical principal surface (aplanatic surface) .}
 \end{figure}
 It is possible to augment the results of the calculation from the
 previous chapter to treat an aplanatic immersion objective
 \citep{Hwang2008} fulfilling the Abbe sine condition.
 
-We account for the immersion medium by shifting the focal plane in
+I account for the immersion medium by shifting the focal plane in
 sample space to $nf$ using the focus difference vector $\a$.
 \begin{align}
   \a &= \boxed{f (n-1) \hz} \\
@@ -207,33 +220,32 @@ express the deviation between the real principal surface and the
 principal plane with an approximation for small angles $\theta$ and
 $\phi$:
 \begin{align}
-  \s &= \boxed{\left(R - \sqrt{R^2-\rho^2}\right)\i}
+  \s &= \left(R - \sqrt{R^2-\rho^2}\right)\i
 \end{align}
 This is an approximation because it only takes into account the
 perpendicular (along $\z$) distance between plane and sphere. They
 demonstrate the viability of this approximation by comparing its
 results with a full raytrace through a $100\times\,1.41$
 objective. Focus displacement errors are less than \unit[130]{nm} for
-a field of $\unit[86.4]{\mu m}$ radius. This is sufficient for our
-problem. As we anyway have the code for a ray--sphere intersection, we
-can use it here as well and calculate an exact vector $\s$.
+a field of $\unit[86.4]{\mu m}$ radius. This would be sufficient for
+our problem. However, in my implementation I reuse the code for
+ray--sphere intersection to determine the exact vector $\s$.
 
 The final ray exiting the objective has the direction $\r_0$:
 \begin{align}
   \r_0 &= \boxed{\r + \a - \s}.
 \end{align}
 \section{Reverse path through oil objective (detection)}
-Now we consider the oil objective in the reverse direction (see
-\figref{fig:obj-ref-full}). We have a ray starting within the sample
-and want to know the transmitted ray in the pupil.
+Now I consider the oil objective in the reverse direction (see
+\figref{fig:obj-ref-full}). Given a ray that starts within the sample
+I will determine the ray in the pupil.
 
 \subsection{Easy case: back focal plane positions only}
-If we are only interested in positions of rays in the back focal
-plane, we don't have to do full raytracing. If we are imaging beads in
-index matched embedding medium and we want to calculate shadow maps
-for the MMA (see section \ref{sec:shadow-map}), we don't need a full
-raytrace. Instead it is sufficient to ignore ray origins and just
-consider their directions.
+If the intersections of rays in the back focal plane are sufficient, a
+full raytrace is not necessary. This is the case when imaging beads in
+index matched embedding medium and we want to calculate a pattern for
+the pupil plane SLM (MMA). Instead it is sufficient to ignore ray
+origins and just consider their directions in the sample.
 
 A unit ray direction $\i=(x,y,z)^T$ in sample space is transformed
 into a position $\r_b=(x',y')^T$ in the back focal plane of the
@@ -257,38 +269,39 @@ back focal plane is hit.
  \subsection{Full raytrace through oil objective in detection
    direction}
 \label{sec:objective-raytrace-detection}
-If we are also interested in the angles of the transmitted rays in the
-back focal plane, when we want to trace the rays further into the
-camera or if we want to consider aberrations due to an index mismatch
-of the embedding medium, we will have to calculate a full raytrace, as
-described below.
+Now I discuss the general case and calulate both, the origins and the
+directions of rays emerging from the back focal plane. This is
+necessary in order to trace light bundles from the specimen into the
+plane of the camera (or focal plane SLM). In the next section I will
+further modify these formulas to incorporate aberrations due to
+non-index matched embedding medium.
 
 The position of the objective is defined by its principal point $\c$
 and the normal $\n$ (directed along optical axis towards sample
 space). The incident ray is defined by its starting point $\p$ and the
-direction $\i$. First we calculate the centre of the Gaussian sphere
+direction $\i$. First I calculate the centre of the aplanatic sphere
 $\vect g$:
 \begin{align}
   \vect g &= \c + nf \n.
 \end{align}
-Then we obtain the position $\p'$ by intersecting the incident ray and
-the plane perpendicular to the optical axis through $\vect{g}$.  The focus
-difference vector is defined by its length and the optical axis. It
-can be used to calculate an intermediate point $\p''$.
+Then I obtain the position $\p'$ by intersecting the incident ray and
+the plane perpendicular to the optical axis through $\vect{g}$.  The
+focus difference vector is defined by its length and the optical
+axis. It can be used to calculate an intermediate point $\p''$.
 \begin{align}
   \a &= -f(n-1)\n \\
   \p'' &= \p' + a.
 \end{align}
 The point $\p''$ has now been shifted, so that a thin air lens would
-image it exactly as the oil objective would image $\p'$. We can use
+image it exactly as the oil objective would image $\p'$. One can use
 $\p''$ to find the direction $\t$ of the transmitted ray. It is just
 the normalized difference vector $\vect m$ to the principal point.
 \begin{align}
   \vect m &= \c - \p'' \\
   \t &= \vect m / \abs{\vect m}.
 \end{align}
-As a last step we calculate the starting point $\e$ of the transmitted
-ray by intersecting the incident ray with the Gaussian sphere.
+As a last step I calculate the starting point $\e$ of the transmitted
+ray by intersecting the incident ray with the aplanatic sphere.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{obj-rev-full}
@@ -298,11 +311,13 @@ ray by intersecting the incident ray with the Gaussian sphere.
 \end{figure}
 \subsection{Treatment of aberration (detection)}
 \label{sec:ray-aberration}
-Now we consider a ray originating in point $\p$ with direction $\i$
-within an immersion of index $n_e$. We want to treat the problem of a
-non-matched embedding medium $n_e\not=n$. We find the intersection
-$\f$ of the ray with the coverslip--embedding interface and refract to
-obtain $\i'$. We calculate the time $t$ a photon takes, to travel from
+Now I will extend the formulas of the previous section to include
+aberrations due to a non-matched embedding medium $n_e\not=n$.
+
+I consider a ray originating in point $\p$ with direction $\i$ within
+an immersion of index $n_e$. I determine the intersection $\f$ of the
+ray with the coverslip--embedding interface and refract to obtain
+$\i'$. Then I calculate the time $t$ a photon takes, to travel from
 $\p$ to the interface $\f$:
 \begin{align}
   t = \abs{\f - \p} \frac{n_e}{c}
@@ -311,7 +326,7 @@ and extend the path of the photon backward along the direction $\i'$
 (corrected for the refraction at the coverslip--embedding surface) by
 the distance $tc/n$. This results in the corrected position $\p'$ that
 indicates where the photon would have originated if the embedding
-would have been index matched.  Now we can apply the equations from
+would have been index matched.  Now I can apply the equations from
 the previous sections on the ray defined by $\p'$ and $\i'$ to obtain
 the transmitted ray in the pupil.
 
@@ -323,9 +338,14 @@ the transmitted ray in the pupil.
  \end{figure}
 \section{Sphere projection}
 \label{sec:sphere-projection}
-When we model our sample as a collection of spheres, it is useful to
+When I model our sample as a collection of spheres, it is useful to
 trace rays from the periphery of these spheres through an in focus
-target $\c$ into the back focal plane. Here we construct the rays.
+target $\c$ into the back focal plane. 
+
+While the previous sections have described a fairly general raytracer,
+this section is very technical and relates to our specific problem to
+represent the sphere model of a fluorophore distribution with as few
+rays as possible.
 
 The tangents of an out-of-focus sphere $S^\s_r$ centred at $\s$ with
 radius $r$ that pass through the target $\c$ form a double cone
@@ -356,13 +376,13 @@ There are two solutions:
 In the case $R<r$ the out-of-focus nucleus is intersecting the target,
 obviating the reason to do the projection in the first place.
 
-We construct two vectors $\hx$ and $\hy$ that span the coordinate
+I construct two vectors $\hx$ and $\hy$ that span the coordinate
 system, in order to transform the solution from 2D into 3D. The
 (unnormalized) direction $\x$ of the x-axis of this coordinate system
 is given by the difference vector of the target $\c$ and the nucleus
 centre $\s$. The direction $\y$ must be perpendicular to $\x$ and is
 obtained by calculating the cross product with another vector $\q$.
-We ensure that $\q$ and $\x$ are not colinear. The vectors $\q$ and
+I ensure that $\q$ and $\x$ are not colinear. The vectors $\q$ and
 $\x$ are colinear, when the absolute value of their scalar product
 equals the square of the length $\abs{\q\x}=\x^2$.
 \begin{align}
@@ -375,7 +395,7 @@ equals the square of the length $\abs{\q\x}=\x^2$.
   \hx&=\x/\abs{\x}\\
   \hy&=\y/\abs{\y}
 \end{align}
-Now we can sample the intersection circle $C$ in order to create
+Now I can sample the intersection circle $C$ in order to create
 viable starting points $\e$ for tangential rays.  Let $R_\phi^\hc$ be
 a rotation matrix that rotates a vector by angle $\phi$ around an axis
 $\hc$. A point $\e$ on the circle is then defined using one solution
@@ -395,24 +415,24 @@ can be used as the centre of the (distorted) shape on the back focal
 plane to rasterize it as a fan of triangles.
 
 \section{Conclusion}
-We documented how to trace rays through a perfect thin lens and a high
+I documented how to trace rays through a perfect thin lens and a high
 numerical aperture objective. These equations are the starting point
 to find good illumination strategies. 
 
 The treatment of aberrations due to a non-matching embedding medium
 needs more parameters (target depth, refractive index $n_e$) and a
 raytrace from sample space, through the back focal plane, tubelens and
-LCoS. However, it enriches the type of control, that can be
-implemented. Illumination with high angles will create thin slices of
-light (highly inclined and laminated optical sheet, see section
-\ref{sec:hilo}).
+focal plane SLM (fLCoS). However, it enriches the type of control,
+that can be implemented. Illumination with high angles into a low
+index embedding medium will create thin slices of light (highly
+inclined and laminated optical sheet, see section \ref{sec:hilo}).
 
 Note that ray optics are not an sufficient approximation, when
 intensity features in the scale of the wavelength are to be
 investigated. Small features would mean that only a few pixels of the
 LCoS would be enabled. This would mean that most of the information of
 the MMA pattern is filtered out at the LCoS and no simultaneous tight
-angular control would be possible (see Appendix \ref{sec:sim-angle}).
+angular control would be possible.
 
 %FIXME maybe compare to ./cyberpower-store/0314/zeiss-patents/20080106795-correction-ring.pdf 
 %or US7268953-63x.pdf

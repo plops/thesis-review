@@ -11,43 +11,13 @@ Berechnung zu wenige beads
 sample mit dichter 3d verteilung von beads
 \end{summary}
 
-
-Als einen der ersten Versuche des vollstaendigen Systems habe ich den
-Akzeptanzwinkel in Abhaengigkeit vom Immersionsmedium bestimmt.
-
-
-Fuer die Messung wurde eine duenne schicht Fluorophore mit einem
-marker pen auf drei Mikroskopslides aufgebracht. Weiterhin wurde ein
-Kreis mit nail polish als Abstandshalter drumherum gemalt. Nach dem
-Trocknen wurden auf zwei Sample jeweils ein Tropfen immersionsoel oder
-wasser gegeben und alle samples mit deckglaesern versehen und mit nail
-polish verschlossen.
-
-Waehrend der Messung zeigt der focal plane SLM einen moeglichst
-grossen Kreis (30 um Durchmesser) an waehrend ein kleines Fenster von
-15x15 pixeln (das entspricht 1/17tel des pupillendurchmessers) ueber
-den pupil plane slm scannt.
-
-Fuer jeden damit erzeugten Beleuchtungswinkel wird das gesamte von der
-Kamera detektierte Licht summiert und in ein Bild eingetragen.  Auf
-diesem Bild sieht man indirekt den Akzeptanzwinkel, denn wenn man
-ueber diesen hinausgeht, dann wird das Anregungslicht totalreflektiert
-und das Fluoreszenslicht verschwindet entsprechend.
-
-Dies ist gut in den drei Bildern in fig:tirf-exp zu erkennen. Ueber
-den Durchmesser der Kreise kann der Akzeptanzwinkel und im Falle von
-oil immersion die Position des pupil plane SLM relativ zur Pupille
-bestimmt werden.
-
-
-
-
+As one of the first attempts to use the spatio-angular illumination
+system, I devised an experiment to determine the acceptance angle of a
+microscope objective as a function of the embedding medium.
 
 \begin{figure}[htbp]
   \centering
-  %\input{tirf-exp.eps_tex} 
   \svginput{1}{tirf-exp}
-%  \includegraphics[height=40mm]{screen_mma-disk-integrate_rot}
   \caption{A fluorescent plane on a slide is embedded in oil, water or
     air. The thickness of the embedding medium is approximately
     $\unit[5]{\mu m}$. The focal plane SLM illuminates a disk with $\unit[30]{\mu
@@ -62,6 +32,48 @@ bestimmt werden.
     camera image.}
   \label{fig:tirf-exp}
 \end{figure}
+
+
+
+For the measurement a thin layer of fluorophores was applied with a
+marker pen on three microscope slides. Furthermore, as a spacer, a
+surrounding circle was painted with nail polish. After drying a drop
+of immersion oil ($n=1.52$) or water ($n=1.33$) was added to two
+samples. Then coverslips were added to all samples and sealed with
+nail polish.
+
+During the measurement the focal plane SLM projected a disk with
+$\unit[30]{\mu m}$ diameter on the fluorescent plane. The illumination
+angle was varied by stepping a window of $15\times 15$ pixels
+(equivalent to 1/17th of the pupil diameter) over the pupil plane SLM.
+
+For each angle, the sum of all the light on the camera is
+recorded. The data is depicted in the three images in
+\figref{fig:tirf-exp}. 
+
+These images contain a bright disk whose diameter is growing with the
+index of the embedding medium. The center of the disk corresponds to
+the center of the pupil --- the optical axis of the microscope. Points
+in the interior of the circle have an almost constant intensity
+(residual fluctuations can be attributed to non-uniformity of the
+illumination of the pupil plane SLM). For oil immersion the diameter
+of the disk corresponds to the diameter of the pupil. As you can see
+the pupil plane SLM was not centered perfectly on the optical axis in
+this experiment.
+
+If the index of the embedding medium is less than the index of the
+immersion medium, then total internal reflection occurs on the
+interface between coverslip and embedding medium for high incidence
+angles. The excitation light can then no longer reach the
+sample. Therefore, the disks in the plots for water and air are smaller.
+
+FIXME winkel ausrechnen
+
+
+
+
+
+
 
 
 

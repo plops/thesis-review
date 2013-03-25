@@ -136,27 +136,30 @@ used \citep{Press1997}:
   q&:=\boxed{-\frac{b+\sqrt{\Delta}\sign b}{2}}\\
   \tau&=\boxed{
   \begin{cases}
-    \frac{q}{a} &\,\textrm{when}\,\abs{q}\approx 0\\ 
-    \frac{c}{q} &\,\textrm{when}\,\abs{a}\approx 0\\
-    (\frac{q}{a}, \frac{c}{q}) &\,\textrm{else}
+    q/a &\,\textrm{when}\,\abs{q}\approx 0\\ 
+    c/q &\,\textrm{when}\,\abs{a}\approx 0\\
+    (q/a, c/q) &\,\textrm{else}
   \end{cases}}
 \end{align}
 If the discriminant $\Delta$ is negative the ray misses the sphere and
 there is no solution. If the discriminant is zero the ray touches the
-periphery and there is only one solution. A positive determinant
+periphery and there is only one solution. A positive discriminant
 corresponds to two solutions.
 \section{Refraction on paraxial thin lens}
-\begin{figure}[!hbt]
+The incident beam with direction $\i$ hits the lens at the point
+$\vrho$. A line parallel to $\i$ through the centre of the lens
+defines the point on the focal plane, which will be intersected by the
+transmitted ray $\r$ as well.
+
+
+\begin{figure}[hbtp]
   \centering
   \svginput{1}{lens-fwd}
   \caption{Construction of a ray on a thin lens. The incident beam
     with direction $\i$ (from right) hits the lens at the point
     $\vrho$.}
 \end{figure}
-The incident beam with direction $\i$ hits the lens at the point
-$\vrho$. A line parallel to $\i$ through the centre of the lens
-defines the point on the focal plane, which will be intersected by the
-transmitted ray $\r$ as well.
+
 
 The triangle $ABC$ is similar to triangle $FOA$. All three angles are
 identical because each of the lines are parallel:
@@ -167,6 +170,8 @@ a right angled triangle. Its adjacent with respect to the angle
 $\theta$ has length $f$. Therefore one can deduce the length
 $\abs{\overline{OF}}=f/\cos\theta$.
 
+
+
 Between the two similar triangles, the following relation holds and
 can be used to calculate the length $\abs{\overline{BC}}$:
 \begin{align}
@@ -176,11 +181,11 @@ can be used to calculate the length $\abs{\overline{BC}}$:
   \frac{\rho}{f/\cos(\theta)}.
 \end{align}
 Given its length, the vector $\overline{CB}$ can now be calculated,
-because I know its direction to be along $\vrho$. With this vector and
-$\i$ one can now obtain the (arbitrarily scaled) transmitted vector
-$\r'$. I could normalize it but it turns out to be useful for the high
-NA immersion lens to find the vector $\r$, that ends in the focal
-plane.  The procedure from above is condensed in the following
+because its direction is known to be along $\vrho$. With this vector
+and $\i$ one can now obtain the (arbitrarily scaled) transmitted
+vector $\r'$. I could normalize it but it turns out to be useful for
+the high NA immersion lens to find the vector $\r$, that ends in the
+focal plane.  The procedure from above is condensed in the following
 equations:
 \begin{align}
   \vrho&=(x_0,y_0,0)^T=\rho (\cos\phi,\sin\phi,0)^T\\
@@ -191,6 +196,10 @@ equations:
 \end{align}
 
 \section{Refraction through high NA objective (illumination)}
+It is possible to augment the results of the calculation from the
+previous chapter to treat an aplanatic immersion objective
+\citep{Hwang2008}.
+
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{obj-fwd}
@@ -200,9 +209,7 @@ equations:
     $\a$ to accommodate for the immersion and one must take into
     account spherical principal surface (aplanatic surface) .}
 \end{figure}
-It is possible to augment the results of the calculation from the
-previous chapter to treat an aplanatic immersion objective
-\citep{Hwang2008} fulfilling the Abbe sine condition.
+
 
 I account for the immersion medium by shifting the focal plane in
 sample space to $nf$ using the focus difference vector $\a$.

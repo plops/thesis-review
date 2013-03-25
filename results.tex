@@ -77,13 +77,13 @@ For each angle, the sum of all the light on the camera is
 recorded. The data is depicted in the three images in
 \figref{fig:tirf-exp}.  These images contain a bright disk whose
 diameter is growing with the index of the embedding medium. The center
-of the disk corresponds to the center of the pupil --- the optical
-axis of the microscope. Points in the interior of the circle have an
-almost constant intensity (residual fluctuations can be attributed to
+of the disk corresponds to the optical axis of the
+objective. Therefore pupil plane SLM is not exactly aligned with the
+optical axis.  Points in the interior of the circle have an almost
+constant intensity (residual fluctuations can be attributed to
 non-uniformity of the illumination of the pupil plane SLM). For oil
 immersion the diameter of the disk corresponds to the diameter of the
-pupil. As you can see the pupil plane SLM was not centered perfectly
-on the optical axis in this experiment.
+pupil.
 
 If the index of the embedding medium is less than the index of the
 immersion medium, then total internal reflection occurs on the
@@ -94,42 +94,43 @@ sample. Therefore, the disks in the plots for water and air are smaller.
 
 
 \section{Measuring light distribution by bleaching a fluorescent gel}
-Das vorhergehende Experiment laesst nur eine sehr indirekte Messung
-der Winkelkontrolle mit unserem Mikroskop zu. Jetzt beschreibe ich ein
-Experiment, das eine sehr direkte Bestimmung der Lichtverteilung im
-Sample erlaubt. Dafuer werden Fluorophore in einer einigen 10 um
-dicken Schicht gebleicht. Im Anschluss kann die gebleichte Region mit
-einem Konfokalem Mikroskop vermessen werden. 
+The above-described experiment allows only an indirect measure of then
+effects of angular control in our microscope. Now I describe an
+experiment where fluorophores are bleached in a several 10 microns
+thick layer. This allows a more direct measurement of the light
+distribution in the sample by imaging the bleached region in a
+confocal microscope. 
 
-Als Sample wird ein 4\%iges Agarose-Gel mit fluoreszent markierten DNA
-Plasmiden benutzt. Die genaue Sequenz der Plasmide ist irrelevant. Sie
-dienen nur als Traeger fuer den Fluorphor (SYBR Save DNA gel stain,
-Invitrogen) und verhindern dass ungebleichter Fluorophor in die
-gebleichten Regionen zurueckkehrt. Unsere Proben sind ueber einen
-Zeitraum von einigen Wochen stabil.  Das Gel wurde von Florian
-R\"uckerl ausgewaehlt und prepariert \citep{Ruckerl}.
+As a sample we use a 4\% agarose gel containing fluorescently labeled
+DNS plasmids. The exact sequence of the plasmids is irrelevant. They
+only serve as carriers for the fluorophore (SYBR Save DNA gel stain,
+Invitrogen). These samples are stable for several weeks and no
+unbleached fluorophores return to bleached regions. The gel was chosen
+and prepared by Florian R\"uckerl \citep{Ruckerl} with whom I
+conducted this experiment.
 
-
-Fuer das Experiment wurden drei verschieden pattern auf dem focal
-plane SLM angezeigt (alles dunkel, alles hell, vertical bar) und acht
-verschieden pattern auf dem pupil plane SLM (alles dunkel, alles hell
-und 6 kreisrunde Fenster). Der focal plane SLM wurde moeglichst weit
-in die Mitte des samples projeziert und ueber Nacht wurde eine
-Belichtungsserie angefertigt, wobei ein XY-Tisch das Sample zwischen
-den Belichtungen um 400um verfahren hat.
+During the experiment the focal plane SLM displays three different
+patterns (all dark, all bright, bright vertical bar) and the pupil
+plane SLM displays eight different patterns (all dark, all bright, and
+6 circular windows). The focal plane SLM was projected as far into the
+middle of the gel layer as the working distance of the objective
+allowed and an exposure series was mad overnight. Utilizing a
+XY-stage, the sample was moved by \unit[0.4]{mm} between exposures.
 
 % https://github.com/plops/cl-web-ui/commit/79ad04c61116b34aaf5f2422a3122a1d75ece890
 
-Der Laser liefert 400mW Dauerstrich, wird aber moduliert, so dass nur
-waehrend der Kameraintegrationszeit (20ms) Licht auf die Probe
-faellt. Hinter dem AOM sind es im Durchschnitt dann noch 15mW in der
-ersten Ordnung. Fuer dieses Experiment habe ich den Laser dann direkt
-auf die rotierenden Mikrolinsen und in den Integrationsstab geleitet
-(ohne Faserbuendel). Ich traf diese Entscheidung um die notwendige
-Beleuchtungszeit zu verringern. Im Nachhinein waere es jedoch besser
-gewesen, das Faserbuendel zu nutzen. Hinter dem Integrationsstab waren
-es noch 7mW. Nach dem Durchlaufen beider Displays (beide hell
-geschalten) kommen 17uW vor dem Dichroic Mirror des Mikroskops an.
+The laser delivers a continuous beam of \unit[473]{nm} wavelength with
+\unit[400]{mW} power. It is modulated using an acousto-optic modulator
+(AOM) so that only during the camera integration time (\unit[20]{ms})
+and when the two SLM are in a defined state light can excite the
+sample. The modulated beam has an average power of \unit[15]{mW}. For
+this experiment I illuminate the rotating micro-lens array and
+integrator rod directly (without fibre bundle). I made this decision
+in the hope to reduce the necessary bleaching time. In hindsight it
+would have been better to use the fibre bundle. Behind the integrator
+tunnel there were still \unit[7]{mW} average power and in front of the
+dichroic mirror of the microscope a mere \unit[17]{uW} (with both SLM
+showing a white pattern).
 
 \begin{figure}[hbtp]
   \centering
@@ -139,32 +140,33 @@ geschalten) kommen 17uW vor dem Dichroic Mirror des Mikroskops an.
   \label{fig:overview-bleach}
 \end{figure}
 
-In fig:overview-bleach a) ist ein Uebersichtsbild vom gebleichten
-Bereich im Gel dargestellt (in der Ebene, wo der focal plane SLM
-fokussiert war).  Zu sehen ist ein Raster aus $11\times6$
-Belichtungen. In der Vertikalen Richtung variiert die eingebrachte
-Dosis. Im Diagram einbeschrieben ist die akkumulierte
-Belichtungszeit. In der horizontalen Richtung variieren die auf den
-beiden SLM dargestellten Muster. An den beiden Raendern sind zwei
-volle Beleuchtungen und eine Spalte weiter innen zwei Belichtungen, wo
-beide SLM dunkel geschalten waren. An diesen Stellen ist ueberhaupt
-kein Bleichmuster zu erkennen. Dies belegt dass das Licht mit den SLM
-mit sehr hohem Kontrast dunkel geschaltet werden kann.
+\figref{fig:overview-bleach}~a) is a mosaic of confocal images in the
+vicinity of the plane in the bleached gel where the focal plane SLM
+was focused. The bleached areas form a pattern of $11\times 6$
+exposures. The bleaching dose varies with the vertical direction as
+indicated by the accumulated exposure times (consisting of numerous
+\unit[20]{ms} exposures). Along the horizontal direction, different
+SLM patterns were displayed. The two areas at both outer borders were
+bleached with full angular and spatial exposure. The next column gives
+an indication of how well both SLM can produce black as no bleaching
+pattern is evident in these places.
 
-Fuer die Bleichbereiche in der Mitte wurde ein vertikaler Balken auf
-dem focal plane SLM dargestellt und die eingestrahlten Winkel
-variiert. Der erste Balken von links wurde mit vollem Winkel
-beleuchtet. fig:overview-bleach b) zeigt eine 3D Darstellung einer
-Konfokalen Aufnahme des gebleichten Bereichs. Leider war die
-Ausleuchtung nicht homogen genug. Deshalb sind drei separate Buendel
-sichtbar.
+The central areas were all displaying a vertical bar on the focal
+plane SLM while the pupil plane SLM displayed a circular window,
+varying the incidence angle. The first bar from the left was
+illuminated with all angles. \figref{fig:overview-bleach}~b) shows a
+three-dimensional representation of a confocal recording of the
+bleached area. Unfortunately, three separate bundles are visible,
+indicating insufficient uniformity of the illumination.
 
-Die Bilder fig:overview-bleach c) und d) stellen die Konfokalen
-Aufnahmen fuer winkel-kontrollierte Beleuchtung dar. Hierfuer wurde
-ein kreisfoermiges Fenster mit Radius $r=0.3$ auf dem pupil plane SLM
-dargestellt. Wobei die Koordinaten $\rho$ und $r$ relativ zum
-Pupillenradius angegeben sind und das Fenster fuer $\rho=1$ auf dem
-Rand der Pupille zentriert waere (siehe e)).
+The images in \figref{fig:overview-bleach}~c) and d) show confocal
+measurements of illumination with restricted angles. For this, a
+circular window with radius $r=0.3$ was displayed on the pupil plane
+SLM. Where the coordinates $\rho$ and $r$ are given relative to the
+pupil radius --- for $\rho=1$ the window would be centered on the
+periphery of the pupil, as indicated in the drawing
+\figref{fig:overview-bleach}~e).
+
 
 
 

@@ -958,7 +958,13 @@ meaning than in other parts of this work. The variable $k$ describes
 the number of measured photons and the real number $\lambda$ is the
 average number of photons that reach the detector during the
 integration time. \figref{fig:pois} displays the discrete detection
-probabilities for three different values of $\lambda$.
+probabilities for three different values of $\lambda$.  
+
+FIXME
+translate Fuer grosse $\lambda$ entspricht die Form der Verteilung immer
+mehr einer Normalverteiltung mit varianz $\lambda$.
+
+FIXME herleitung in appendix
 
 \gnuplotinput{pois}{Poissonian probability mass function
   $\pois(k;\lambda)$ for three photon fluxes with different average
@@ -1075,9 +1081,12 @@ signal-to-noise $\SNRid$ ratio for an ideal, noise-free detector is:
 \begin{align}
   \SNRid = \frac{S}{\sqrt{S+I_b}}.
 \end{align}
-A conventional detector with reduced quantum efficiency $Q_E\in[0,1]$ and
-additive readout noise $N_r$ (in \unit[]{e/px}) can only produce a
-worse signal-to-noise ratio:
+FIXME wie interpretiert man das bei kleinen S, wenn gauss und poisson
+verteilung nicht gleich aus sehen?
+
+A conventional detector with reduced quantum efficiency $Q_E\in[0,1]$
+and additive, Gaussian readout noise with standard deviation $N_r$ (in
+\unit[]{e/px}) can only produce a worse signal-to-noise ratio:
 \begin{align}
   \SNRadd = \frac{Q_E\cdot S}{\sqrt{Q_E(S+I_b)+N_r^2}}.
 \end{align}

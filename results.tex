@@ -176,7 +176,8 @@ made this decision in the hope to reduce the necessary bleaching
 time. In hindsight it would have been better to use the fibre
 bundle. Behind the integrator tunnel there were still \unit[7]{mW}
 average power and in front of the dichroic mirror of the microscope a
-mere \unit[17]{uW} (with both SLM showing a white pattern).
+mere $\unit[17]{\mu W}$ (with both SLM showing a white pattern, giving
+an illuminated field diameter of $\unit[40]{\mu m}$).
 
 \begin{figure}[htbp]
   \centering
@@ -191,11 +192,10 @@ vicinity of the plane in the bleached gel where the focal plane SLM
 was focused. The bleached areas form a pattern of $11\times 6$
 exposures. The bleaching dose varies with the vertical direction as
 indicated by the accumulated exposure times (consisting of numerous
-\unit[20]{ms} exposures). 
-
-FIXME translate
-Erst bei 30s Bleachzeit ist ein deutliches in-focus bleaching erkennbar. 
-
+\unit[20]{ms} exposures).  Strong in-focus bleaching becomes evident
+for bleach durations from \unit[30]{s} and higher, corresponding to a
+light dose above $\unit[40]{J/cm^2}$ in the focal plane.
+%17e-6 W * 30s /	(pi (20e-6 m)^2)
 
 Along the horizontal direction, different SLM patterns were
 displayed. The two areas at both outer borders were bleached with full
@@ -210,11 +210,9 @@ first bar from the left was illuminated with all
 angles. \figref{fig:overview-bleach}~b) shows a three-dimensional
 representation of a confocal recording of the bleached
 area. Unfortunately, three separate bundles are visible, indicating
-insufficient uniformity of the illumination.
-
-FIXME translate Die Unebenheiten sind auch nicht symmetrisch zur
-optischen Achse, daher laufen die Buendel in leicht unterschiedlichen
-Winkeln.
+insufficient uniformity of the illumination.  As the non-uniformities
+are not rotationally symmetric with respect to the optical axis, the
+bundles propagate at slightly different angles.
 
 The images in \figref{fig:overview-bleach}~c) and d) show confocal
 measurements of illumination with restricted angles. For this, a
@@ -224,9 +222,9 @@ pupil radius --- for $\rho=1$ the window would be centered on the
 periphery of the pupil, as indicated in the drawing
 \figref{fig:overview-bleach}~e).
 
-FIXME translate Bei den rot umrahmten Zahlen im Bild handelt es sich
-um Markierungen, die Nachtraeglich mit dem Confocal zu Orientierung
-eingebleicht wurden.
+The bleached digits in the mosaic (framed by red circles) are
+landmarks that were retrospectively bleached into the specimen for
+orientation during the acquisition with the confocal microscope.
 
 
 \comment{
@@ -234,26 +232,23 @@ eingebleicht wurden.
 }
 
 \section{Beads under spatio-angular illumination}
+The next experiment models the imaging conditions of a biological
+sample. For this, beads of three microns diameter were distributed in
+agarose gel. The goal is to first localize the beads and subsequently
+utilize the knowledge of their three-dimensional distribution to find
+patterns for the pupil plane SLM to excite and image the beads
+inidividually while avoiding exposure of out-of-focus beads.
 
-Das naechste Experiment ist der Bildgebung in einer biologischen Probe
-nachempfunden. Hierfuer wurden 3um grosse Beads in einem Agarose-Gel
-verteilt. Das Ziel ist, die Beads in einer ersten Aufnahme zu
-lokalisieren und mit der Information ueber ihre dreidimensionale
-Verteilung Pattern fuer focal plane SLM und pupil plane SLM zu
-bestimmen um die Beads einzeln anzuleuchten und die Anregung von
-out-of-focus beads zu vermeiden.
-
-Zunaechst \cma{wide field baseline} zeige ich zum Vergleich in
-\figref{fig:m_wf} eine Fokusserie mit 1 micron Schritten von wide
-field Aufnahme bei der das maximale Feld in der Probe unter vollen
-Winkeln beleuchtet wird. In diesen Aufnahmen sieht man wie mehrere
-Beads nacheinander in-focus kommen. Leider liefert das Gel eine
-relativ hohe Hintergrundfluoreszenz in der die verschwommenen Abbilder
-von der Out-of-focus beads schnell nicht mehr unterscheidbar sind. Aus
-diesem sparsen Datensatz kann man relativ einfach die 3D Verteilung
-der Beads bestimmen. In einem Sample mit einer dichteren Verteilung
-von Beads oder den Zellkernen in einem Embryo ist das jedoch nicht
-mehr moeglich.
+First of all \cma{wide field baseline} I show a focal series of wide
+field images with $z-$steps of one micron and illumination of the full
+field using all angles in \figref{fig:m_wf}. These recordings show how
+several beads sequentially come into focus. Unfortunately, the gel
+contributes a relatively high background fluorescence from which the
+blurred images of the out-of-focus beads are no longer distinguishable
+after only a few microns. For this sample of sparse beads, their
+three-dimensional distribution could easily be determined from these
+wide field images. In a more dense sample, e.g. a higher bead
+concentration or nuclei in an embryo, this is no longer possible.
 
 
 \begin{figure}[hbtp]
@@ -265,23 +260,25 @@ mehr moeglich.
   \label{fig:m_wf}
 \end{figure}
 
-Dann \cma{optical sectioning} hilft eine Trennung von out-of-focus und in-focus
-Fluoreszenslicht, wie sie mit strukturierter Beleuchtung moeglich
-wird. \figref{fig:m_sec} zeigt das Ergebnis der Berechnung von
-optischen Schnitten aus jeweils vier strukturiert beleuchteten
-Rohbildern in \figref{fig:m_phase} in the Appendix on page
-\pageref{fig:m_phase}.  Die Schnitte zeigen relativ praegnante
-vertikale Rekonstruktionsartefakte, die bei Verwendung der HiLo
-Rekonstruktion vermieden werden koennen. In lebenden Samplen wuerde
-diese Methode ausserdem zu bevorzugen sein, weil sie nur zwei
-Rohaufnahmen braucht.
+In those cases \cma{optical sectioning} it is useful to utilize
+structured illumination to separate out-of-focus and in-focus
+fluorescence. \figref{fig:m_sec} shows the computed optical sections
+from four raw images per slice, which are displayed in
+\figref{fig:m_phase} in the appendix on page \pageref{fig:m_phase}.
+The sections in \figref{fig:m_sec} show relatively destinctive
+vertical reconstruction artifacts. These can be avoided using the HiLo
+reconstruction method which has the additional advantage of only
+needing two raw images per slice.
 
-Fuer \cma{bead localization} die Lokalisierung der Beads stoeren die
-Artefakte jedoch nicht. Ich ermittelte die Mittelpunkte der Beads
-durch bestimmung der lokalen maxima nach anwendung eines auf die beads
-angepassten drei-dimensionalen difference of gaussian filters und das
-ergebnis ist im inlay in \figref{fig:m_sec} geplottet. Die Beads
-wurden automatisch vom Algorithmus numeriert.
+However, \cma{bead localization} the HiLo method needs considerably
+more code and I have not implemented it in my real-time imaging
+software. Also, the artifacts have no effect on the localization
+precision of the algorithm that I describe next: I determine the
+center of each bead by finding local maxima after applying a
+three-dimensional difference of Gaussian filter (matched to the bead
+diameter). The result is depicted in \figref{fig:m_sec}. In order to
+facilitate the discussion I manually added the bead numbers to the
+optical sections.
 
 \begin{figure}[hbtp]
   \centering

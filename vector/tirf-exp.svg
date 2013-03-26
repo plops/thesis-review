@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="348.11398"
-     inkscape:cy="80.286532"
+     inkscape:cx="357.71481"
+     inkscape:cy="130.4651"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -33,9 +33,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1678"
-     inkscape:window-height="1039"
-     inkscape:window-x="1366"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
+     inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
      units="mm">
@@ -892,37 +892,37 @@
        width="74.409447" />
     <text
        xml:space="preserve"
-       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="336.46188"
-       y="293.25607"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="293.5304"
+       y="301.25607"
        id="text3862"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3864"
-         x="336.46188"
-         y="293.25607">air</tspan></text>
+         x="293.5304"
+         y="301.25607">$n_\textrm{air}=1$</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="411.30414"
-       y="292.88156"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="377.30414"
+       y="300.88156"
        id="text3866"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3868"
-         x="411.30414"
-         y="292.88156">water</tspan></text>
+         x="377.30414"
+         y="300.88156">$n_\textrm{water}=1.33$</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="518.49847"
-       y="293.25607"
+       style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="472.49847"
+       y="301.25607"
        id="text3870"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3872"
-         x="518.49847"
-         y="293.25607">oil</tspan></text>
+         x="472.49847"
+         y="301.25607">$n_\textrm{oil}=1.52$</tspan></text>
     <path
        style="fill:none;stroke:#ff5555;stroke-width:1.99999964;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mendd)"
        d="m 349.972,186.37049 -15.34009,25.42804"
@@ -989,5 +989,38 @@
        d="m 486.34387,270.42071 -5.79506,-3.74421"
        id="path5313-0-0"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="247.1958"
+       y="196.35681"
+       id="text3144"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3146"
+         x="247.1958"
+         y="196.35681">$d_\textrm{crit}=160\pm7$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="380.91922"
+       y="196.35681"
+       id="text3144-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3146-7"
+         x="380.91922"
+         y="196.35681">$222\pm7$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="472.64255"
+       y="196.35681"
+       id="text3144-9-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3146-7-6"
+         x="472.64255"
+         y="196.35681">$242\pm7$</tspan></text>
   </g>
 </svg>

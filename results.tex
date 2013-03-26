@@ -48,18 +48,39 @@ microscope objective as a function of the embedding medium.
   \svginput{1}{tirf-exp}
   \caption{A fluorescent plane on a slide is embedded in oil, water or
     air. The thickness of the embedding medium is approximately
-    $\unit[5]{\mu m}$. The focal plane SLM illuminates a disk with $\unit[30]{\mu
-      m}$ diameter while a  window of $15\times 15$ pixels is scanned over the
-    MMA. The window corresponds to a square with $\unit[210]{\mu m}$
-    on the side as opposed to \unit[3.6]{mm} BFP diameter. 
+    $\unit[5]{\mu m}$. The focal plane SLM illuminates a disk with
+    $\unit[30]{\mu m}$ diameter while a window of $15\times 15$ pixels
+    is scanned over the MMA. The window corresponds to a square with
+    $\unit[210]{\mu m}$ on the side as opposed to \unit[3.6]{mm} BFP
+    diameter.  The red numbers indicate the diameter of the bright
+    circle in pixels of the pupil plane SLM.
 % 200 px diameter on LCoS
 % 15x15 px full diameter is D=2*(R=f*NA) f=164.5/63=2.61  NA=1.38
 % D=3.6mm -> D/256*15 = 210 um
+% measuring fwhm in cross section:
+% 241 or 244 px in oil
+% 217 or 228 px in water
+% 155 or 166 px air 
+% measuring visible edge by drawing a circle in Fiji
+% 270 in oil
+% 237 in water
+% 173 in air
+% (%i2) 1.33/1.52;
+% (%o2)                                0.875
+% (%i3) 1/1.52;
+% (%o3)                          .6578947368421053
+% (%i8) 237/270,numer;
+% (%o8)                          .8777777777777778
+% (%i9) 173/270,numer;
+% (%o9)                          .6407407407407407
+% (%i11) ((7/270)+(7/237))*.8777777;
+% (%o11)                        .04868312325832162
+% (%i12) ((7/270)+(7/173))*.640740740740;
+% (%o12)                        .04253772290804411
+% (%i13) 
 }
   \label{fig:tirf-exp}
 \end{figure}
-
-
 
 For the measurement a thin layer of fluorophores was applied with a
 marker pen on three microscope slides. Furthermore, as a spacer, a
@@ -77,8 +98,8 @@ the pupil plane SLM.
 For each angle, the sum of all the light on the camera is
 recorded. The data is depicted in the three images in
 \figref{fig:tirf-exp}.  These images contain a bright disk whose
-diameter is growing with the index of the embedding medium. The center
-of the disk corresponds to the optical axis of the
+diameter $d_\textrm{crit}$ is growing with the index of the embedding
+medium. The center of the disk corresponds to the optical axis of the
 objective. Therefore pupil plane SLM is not exactly aligned with the
 optical axis.  Points in the interior of the circle have an almost
 constant intensity (residual fluctuations can be attributed to
@@ -90,8 +111,32 @@ If the index of the embedding medium is less than the index of the
 immersion medium, then total internal reflection occurs on the
 interface between coverslip and embedding medium for high incidence
 angles. The excitation light can then no longer reach the
-sample. Therefore, the disks in the plots for water and air are smaller.
-{\color{red} FIXME winkel ausrechnen}
+sample. Therefore, the disks in the plots for water and air are
+smaller.
+
+Zwischen dem Durchmesser des hellen Kreises $d_\textrm{crit}$ und dem
+kritischen Winkel der Totalreflexion an der Grenzflaeche vom coverslip
+$n_\textrm{cs}=n_\textrm{oil}=1.52$ zum embedding medium
+$n_\textrm{emb}$ besteht folgender Zusammenhang:
+\begin{align}
+  \theta_\textrm{crit}&=\arcsin\left(\frac{n_\textrm{emb}}{n_{cs}}\right) \\
+  d_\textrm{crit} &= 2 n_\textrm{imm} f_\textrm{obj}
+  \sin\theta_\textrm{crit}= 2 n_\textrm{imm} f_\textrm{obj}
+  \frac{n_\textrm{emb}}{n_{imm}}
+\end{align}
+Eine Vergleich der Verhaeltnisse der gemessenen Durchmesser mit dem
+Verhaeltnis der Indizes in Tabelle 1 zeigt, dass die Messung gut mit
+der Theorie uebereinstimmt.
+\begin{table}[!hbt]
+  \centering
+  \begin{tabular}{ l r r }
+    & $n_\textrm{emb}/n_\textrm{oil}$ & $d^\textrm{emb}_\textrm{crit}/ d^\textrm{oil}_\textrm{crit}$ \\  \hline
+    water & 0.875 & $0.88\pm0.05$ \\
+    air & 0.658 & $0.64\pm0.04$ 
+  \end{tabular}
+  \caption{Vergleich des durch die Messung bestimmten Akzeptanzwinkels mit der Theorie.}
+  \label{tab:acceptance}
+\end{table}
 
 
 \section{Measuring light distribution by bleaching a fluorescent gel}
@@ -179,10 +224,9 @@ pupil radius --- for $\rho=1$ the window would be centered on the
 periphery of the pupil, as indicated in the drawing
 \figref{fig:overview-bleach}~e).
 
-FIXME translate
-Bei den rot markierten Zahlen im Bild handelt es sich um Markierungen,
-die Nachtraeglich mit dem Confocal zu Orientierung eingebleicht
-wurden.
+FIXME translate Bei den rot umrahmten Zahlen im Bild handelt es sich
+um Markierungen, die Nachtraeglich mit dem Confocal zu Orientierung
+eingebleicht wurden.
 
 
 \comment{
@@ -248,9 +292,11 @@ wurden automatisch vom Algorithmus numeriert.
   \label{fig:m_sec}
 \end{figure}
 
-Ausgehend vom 3D modell masken fuer focal plane SLM zur individuelle
+Ausgehend vom 3D modell erstellt masken fuer focal plane SLM zur individuelle
 beleuchtung der beads erstellt und zu jeder dieser masken wird
-automatisch eine maske fuer den pupil plane SLM erzeugt. 
+automatisch eine maske fuer den pupil plane SLM erzeugt. Diese sind in
+Bild .. unter den Kameraaufnahmen dargestellt. beispiel Fuer die Belichtung von
+bead 4 sieht man die winkel die bead 6 vermeiden.
 
 
 

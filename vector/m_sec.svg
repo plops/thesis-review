@@ -10,7 +10,7 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="462.20978"
+   width="425.19684"
    height="425.19684"
    id="svg2"
    version="1.1"
@@ -55,7 +55,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="145.84056"
+     inkscape:cx="-154.19572"
      inkscape:cy="142.72312"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -64,10 +64,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1678"
-     inkscape:window-height="1039"
-     inkscape:window-x="1366"
-     inkscape:window-y="9"
+     inkscape:window-width="1396"
+     inkscape:window-height="941"
+     inkscape:window-x="1479"
+     inkscape:window-y="107"
      inkscape:window-maximized="0"
      units="mm">
     <inkscape:grid
@@ -94,7 +94,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-63.252641,-61.603199)">
+     transform="translate(-100.26559,-61.603199)">
     <text
        xml:space="preserve"
        style="font-size:23px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -329,14 +329,20 @@
        id="rect5643"
        width="211.87947"
        height="151.52287"
-       x="64.152641"
-       y="305.73016" />
+       x="-162.99022"
+       y="307.15872" />
     <image
-       y="307.00116"
-       x="65.626083"
+       y="308.42972"
+       x="-161.51677"
        id="image5120"
        xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/model.jpg"
        height="148.3445"
        width="208.52997" />
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="weg"
+     style="display:none"
+     transform="translate(-264.15581,0)" />
 </svg>

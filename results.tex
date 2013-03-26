@@ -1,39 +1,23 @@
 \chapter{Experimental results with spatio-angular microscope}
 \label{sec:results}
 \begin{summary}
-Akzeptanzwinkel
+  Ich beschreibe eine Experimente die die Funktion unseres
+  Prototypen unter Beweis stellen.
 
-Bleaching
+  Im ersten nutze ich die total internal reflection aus, die Auftritt,
+  wenn das Sample in einem Medium mit geringerer Brechzahl als der
+  Immersion eingebettet ist. Damit kann ich auf einfachen weg zeigen,
+  dass die Winkelbeleuchtung funktoiniert.
 
-Strukturierte Beleuchtung
-Berechnung zu wenige beads
+  In einem weiteren Experiment messen wir das Beleuchtungsfeld im
+  Sample direkt, indem wir die Fluoreszenz aus einer Gelschicht
+  ausbleichen. 
 
-sample mit dichter 3d verteilung von beads
-432r
-3
-2
-33
-3
-23
-
-
-3
-2
-
-2
-
-2
-2
-2
-
-2
-
-2
-
-2
-
-2
-2
+  Dann beschreibe ich noch ein Experiment, dass das Problem der
+  Bildgebung von lebenden Samplen nachbildet. Die Aufgabe ist, die
+  Positionen dreidimensionaler Beads zu vermessen und diese dann
+  einzeln, mit einer fuer dieses spezielle Sample optimierten
+  Beleuchtungsverteilung erneut zu imagen.
 
 \end{summary}
 
@@ -177,7 +161,7 @@ time. In hindsight it would have been better to use the fibre
 bundle. Behind the integrator tunnel there were still \unit[7]{mW}
 average power and in front of the dichroic mirror of the microscope a
 mere $\unit[17]{\mu W}$ (with both SLM showing a white pattern, giving
-an illuminated field diameter of $\unit[40]{\mu m}$).
+an illuminated field diameter of $\unit[40]{\mu m}$ in the sample).
 
 \begin{figure}[htbp]
   \centering
@@ -203,7 +187,7 @@ angular and spatial exposure. The next column gives an indication of
 how well both SLM can produce black as no bleaching pattern is evident
 in these places.
 
-The \cma{observed bleaching patterns1} central areas were all
+The \cma{observed bleaching patterns} central areas were all
 displaying a vertical bar on the focal plane SLM while the pupil plane
 SLM displayed a circular window, varying the incidence angle. The
 first bar from the left was illuminated with all
@@ -231,7 +215,9 @@ orientation during the acquisition with the confocal microscope.
 \jpginput{}{m_wf}{}
 }
 
-\section{Beads under spatio-angular illumination}
+FIXME translate
+\section{Beads unter spatio-angular Beleuchtung}
+\label{sec:beads_under}
 The next experiment models the imaging conditions of a biological
 sample. For this, beads of three microns diameter were distributed in
 agarose gel. The goal is to first localize the beads and subsequently
@@ -241,31 +227,38 @@ inidividually while avoiding exposure of out-of-focus beads.
 
 First of all \cma{wide field baseline} I show a focal series of wide
 field images with $z-$steps of one micron and illumination of the full
-field using all angles in \figref{fig:m_wf}. These recordings show how
-several beads sequentially come into focus. Unfortunately, the gel
-contributes a relatively high background fluorescence from which the
-blurred images of the out-of-focus beads are no longer distinguishable
-after only a few microns. For this sample of sparse beads, their
-three-dimensional distribution could easily be determined from these
-wide field images. In a more dense sample, e.g. a higher bead
-concentration or nuclei in an embryo, this is no longer possible.
+field using all angles in the left mosaic of \figref{fig:m_wf}. These
+recordings show how several beads sequentially come into focus. In
+order to facilitate the discussion I manually labeled each bead with
+its number. Unfortunately, the gel contributes a relatively high
+background fluorescence from which the blurred images of the
+out-of-focus beads are no longer distinguishable after only three
+microns. For this sample of sparse beads, their three-dimensional
+distribution could easily be determined from these wide field
+images. In a more dense sample, e.g. a higher bead concentration or
+nuclei in an embryo, this is no longer possible.
 
 
 \begin{figure}[hbtp]
   \centering
-  \includegraphics[width=12cm]{m_wf}
-  \caption{Wide field stack of a three-dimensional distribution of
-    yellow-green beads in agarose gel. Sampling in $z$ is
-    $\unit[1]{\mu m}$.}
+%  \includegraphics[width=8cm]{m_wf}
+    \svginput{.6}{m_wf}
+    \svginput{.6}{m_sec}
+    \caption{{\bf left:} Wide field focus series of a
+      three-dimensional distribution of yellow-green beads in agarose
+      gel. Sampling in $z$ is $\unit[1]{\mu m}$. {\bf left:}
+      Computationally sectioned images of the same sample. The
+      corresponding raw images are shown in \figref{fig:m_phase} on
+      page \pageref{fig:m_phase}.}
   \label{fig:m_wf}
 \end{figure}
 
 In those cases \cma{optical sectioning} it is useful to utilize
 structured illumination to separate out-of-focus and in-focus
-fluorescence. \figref{fig:m_sec} shows the computed optical sections
-from four raw images per slice, which are displayed in
-\figref{fig:m_phase} in the appendix on page \pageref{fig:m_phase}.
-The sections in \figref{fig:m_sec} show relatively destinctive
+fluorescence. The mosaic on the right of \figref{fig:m_wf} shows the
+computed optical sections from four raw images per slice, which are
+displayed in \figref{fig:m_phase} in the appendix on page
+\pageref{fig:m_phase}.  The sections contain relatively distinctive
 vertical reconstruction artifacts. These can be avoided using the HiLo
 reconstruction method which has the additional advantage of only
 needing two raw images per slice.
@@ -276,25 +269,21 @@ software. Also, the artifacts have no effect on the localization
 precision of the algorithm that I describe next: I determine the
 center of each bead by finding local maxima after applying a
 three-dimensional difference of Gaussian filter (matched to the bead
-diameter). The result is depicted in \figref{fig:m_sec}. In order to
-facilitate the discussion I manually added the bead numbers to the
-optical sections.
+diameter). The result is depicted in the inlay in \figref{fig:m_ang}.
 
-\begin{figure}[hbtp]
-  \centering
-  \svginput{1}{m_sec}
-  \caption{Computationally sectioned images. Note that two beads (4
-    and 7) are very close to the border of the field of view and not
-    fully illuminated.}
-  \label{fig:m_sec}
-\end{figure}
-
-Ausgehend vom 3D modell erstellt masken fuer focal plane SLM zur individuelle
-beleuchtung der beads erstellt und zu jeder dieser masken wird
-automatisch eine maske fuer den pupil plane SLM erzeugt. Diese sind in
-Bild .. unter den Kameraaufnahmen dargestellt. beispiel Fuer die Belichtung von
-bead 4 sieht man die winkel die bead 6 vermeiden.
-
+% \begin{figure}[hbtp]
+%   \centering
+%   \svginput{.7}{m_sec}
+%   \caption{}
+%   \label{fig:m_sec}
+% \end{figure}
+Im naechsten Schritt werden die einzelnen Beads individuell
+beleuchtet, indem eine helle Scheibe an der entsprechenden Stelle des
+focal plane SLM angezeigt wird. Gleichzeitig wird auf dem pupil plane
+SLM jeweils eine Maske dargestellt die die Beleuchtung der
+out-of-focus beads verhindert. Die Maske wird automatisch mit einem
+Raytracer aus dem dreidimensionalen Modell der Beadverteilung
+berechnet. 
 
 
 \begin{figure}[hbtp]
@@ -308,6 +297,60 @@ bead 4 sieht man die winkel die bead 6 vermeiden.
   \label{fig:m_ang}
 \end{figure}
 
+Die acht Kamerabilder mit den einzelnen Beads sind in den oberen zwei
+Zeilen von \figref{fig:m_ang} dargestellt. Im Gegensatz zu
+\figref{fig:m_wf} ist hier keine Fokusserie gezeigt, sondern auf jeden
+Bead wurde einzeln fokussiert. Die entsprechenden pupil plane SLM
+Masken sind darunter dargestellt. Den \cma{description of pupil plane
+  masks} Aufbau der Maske moechte ich kurz and der Aufnahme von Bead 4
+erlaeutern. An der 3D Darstellung im Inlay in \figref{fig:m_ang} sieht
+man, dass bead 4 sich am Rand der Verteilung befindet und alle anderen
+beads auf nur auf einer Seite von ihm. Der Winkel zwischen der
+Verbindungsgerade von bead 4 und bead 6 bezueglich der optischen achse
+ist der kleinste. Daher entspricht der in der Maske mit einem Pfeil
+markierte einzelne ``Schatten'' bead 6. Alle anderen beads wuerden nur
+beleuchtet werden wenn bead 4 unter extrem hohem Winkel angeleuchtet
+wird. Sie fallen in den zweiten Schatten am Rand der Pupille.
+
+Wenn \cma{stability} man sich die Bilder in
+\figref{fig:m_ang} genauer betrachtet, dann faellt zunaechst auf, dass
+die Bilder fuer bead 2 und 7 komplett dunkel sind. Das liegt daran,
+dass das sich mapping zwischen Kamera und focal plane SLM zwischen
+Kalibration mit einem fluorescent plane sample und der Messung mit den
+beads um wenige microns verschoben hat. Bead 6 wird exakt
+angeleuchtet, aber bei Bead 5 und 3 weicht die Beleuchtung zunehmend
+ab. Nach der Messung wurden die Gummifuesse vom Mikroskop entfernt und
+der Mikroskopkoerper auf dem Metalltisch verschraubt und derartige
+Probleme traten nicht mehr auf.
+
+Ein \cma{artifacts} interessanteres Problem sieht man, wenn man sich
+das Bild von Bead 5 genau anschaut. Dort sieht man das nur die untere
+Haelfte des Beads beleuchtet ist. Durch die Hintergrundfluoreszenz des
+Agarose Gels sieht man aber auch den runden Bereich, der durch den
+focal plane SLM angeleuchtet wird. Fuer manche Sample wird es dadurch
+vermutlich schwierig mehrere focal plane Belichtungen seamless
+ineinanderuebergehen zu lassen und Bilder wie in einem konfokalem
+Mikroskop zu erzeugen.
+
+Ich \cma{comparison spatial control and only angular control} habe die
+Bilder in \figref{fig:m_ang} sowohl mit vollen Beleuchtungswinkeln
+aber auch mit der Winkelkontrolle.  Bei der selektiven Beleuchtung
+einzelner Beads hat sich die Hintergrundfluoreszenz in den Bildern
+erheblich verringert. Leider kann man keine Verbesserung feststellen,
+wenn man dann auch noch die Winkelkontrolle zuschaltet. Ich denke dies
+kann man durch die hohe Hintergrundfluoreszens des Agarose Gels und
+die geringe Dichte an Beads erklaeren. Nur dass man die Fluoreszens
+von Out-of-focus beads nicht mehr im Rauschen nachweisen kann,
+bedeutet jedoch nicht, dass die Winkelkontrolle nicht doch einen
+positiven Effekt hat. Schliesslich wird vermieden, dass die Beads
+nutzlos angeregt werden. Man kann es eben nur schwer nachweisen.
+
+\section{Winkelbeleuchtung in hoeherer Konzentration an Beads}
+
+Um den Einfluss der Winkelkontrolle der Beleuchtung direkt zu messen
+habe ich ein weiteres Sample mit einer hoeheren Konzentration an Beads
+in anderem Agarose Gel mit deutlich geringerer Eigenfluoreszens
+angefertigt.
 
 \begin{figure}[!hbt]
   \centering
@@ -317,7 +360,37 @@ bead 4 sieht man die winkel die bead 6 vermeiden.
 \end{figure}
 
 
+In \figref{fig:montage-ang} sind die entsprechenden Aufnahmen
+dargestellt. Im wide field Bild ist mit einem weissen Kreis mit
+gestrichelter Linie der Bead dargestellt, der dann durch den focal
+plane SLM selektiv angeleuchtet wird. 
 
+Der Einfachheit halber habe ich hier auf die Beleuchtungsoptimierung
+mittels Raytracer verzichtet und variiere mit der Geometrie wie in
+\figref{fig:overview-bleach}~e) ein rundes Fenster ($\rho=0.7, r=0.3$)
+auf dem pupil plane SLM.
+
+Die Bilder im Mosaik auf der rechten Seite von \label{fig:montage-ang}
+zeigen die 100fach verstaerkte Intensitaet des linken unteren Bildes
+und der mit der Fensterposition variierende Beleuchtungskegel macht
+sich als Aenderung der relativen intensitaet der out-of-focus beads
+bemerkbar. Ein deutlicher Unterschied ist beispielsweise zwischen dem
+Bild fuer $\theta=30^\circ$ und $\theta=330^\circ$ an der mit einem
+Pfeil markierten Stelle zu erkennen.
+
+\section{Conclusion}
+Die beschriebenen Experimente zeigen, dass die Hardware des Mikroskops
+prinzipiell funktioniert.  Insbesondere fuer den in section
+\ref{sec:beads_under} beschriebenen Versuch musste eine grosse Menge
+an Software kombiniert werden, um Kamera und focal plane SLM zu
+kalibrieren, die beads zu lokalisieren, optimale Beleuchtungspattern
+zu erzeugen und dies alles mit der Hardwaresteuerung zusammen laufen
+zu lassen, so dass das gesamte Experiment moeglichst automatisch und
+in ueberschaubarer Zeit ablaeuft.
+
+Das Hauptproblem und der groesste Zeitaufwand lag hier vor allem an
+nicht ausreichenden Informationen ueber einige der nicht ersetzbaren,
+alternativlosen Hardwarekomponenten.
 
 %%% Local Variables: 
 %%% mode: latex

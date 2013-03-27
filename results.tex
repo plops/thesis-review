@@ -1,24 +1,22 @@
 \chapter{Experimental results with spatio-angular microscope}
 \label{sec:results}
 \begin{summary}
-  Ich beschreibe eine Experimente die die Funktion unseres
-  Prototypen unter Beweis stellen.
+  Here I describe some of our experiments that demonstrate the
+  functioning of our spatio-angular microscope prototype.
 
-  Im ersten nutze ich die total internal reflection aus, die Auftritt,
-  wenn das Sample in einem Medium mit geringerer Brechzahl als der
-  Immersion eingebettet ist. Damit kann ich auf einfachen weg zeigen,
-  dass die Winkelbeleuchtung funktoiniert.
+  In the first experiment I use total internal reflection which
+  prevents high angles from reaching the sample when the refractive
+  index of the embedding medium is lower than that of the
+  immersion. This allows to show in a simple way that the angular
+  illumination control works.
 
-  In einem weiteren Experiment messen wir das Beleuchtungsfeld im
-  Sample direkt, indem wir die Fluoreszenz aus einer Gelschicht
-  ausbleichen. 
+  In the second experiment, we measure the three-dimensional light
+  distribution in the sample by bleaching a fluorescent gel layer.
 
-  Dann beschreibe ich noch ein Experiment, dass das Problem der
-  Bildgebung von lebenden Samplen nachbildet. Die Aufgabe ist, die
-  Positionen dreidimensionaler Beads zu vermessen und diese dann
-  einzeln, mit einer fuer dieses spezielle Sample optimierten
-  Beleuchtungsverteilung erneut zu imagen.
-
+  Then I describe another experiment, that replicates the problem of
+  imaging life specimen. The task is to localize three-dimensionally
+  distributed beads and then image them individually using an
+  optimized excitation light distribution.
 \end{summary}
 
 \section{Measuring acceptance angle for three different embedding
@@ -35,7 +33,7 @@ microscope objective as a function of the embedding medium.
     $\unit[5]{\mu m}$. The focal plane SLM illuminates a disk with
     $\unit[30]{\mu m}$ diameter while a window of $15\times 15$ pixels
     is scanned over the MMA. The window corresponds to a square with
-    $\unit[210]{\mu m}$ on the side as opposed to \unit[3.6]{mm} BFP
+    $\unit[210]{\mu m}$ on the side as opposed to \unit[3.6]{mm} pupil
     diameter.  The red numbers indicate the diameter of the bright
     circle in pixels of the pupil plane SLM.
 % 200 px diameter on LCoS
@@ -62,16 +60,16 @@ microscope objective as a function of the embedding medium.
 % (%i12) ((7/270)+(7/173))*.640740740740;
 % (%o12)                        .04253772290804411
 % (%i13) 
-}
+  }
   \label{fig:tirf-exp}
 \end{figure}
 
 For the measurement a thin layer of fluorophores was applied with a
-marker pen on three microscope slides. Furthermore, as a spacer, a
-surrounding circle was painted with nail polish. After drying a drop
-of immersion oil ($n=1.52$) or water ($n=1.33$) was added to two
-samples. Then coverslips were added to all samples and sealed with
-nail polish.
+marker pen on three microscope slides. As a spacer, a surrounding
+circle was painted with nail polish. After drying, a drop of a liquid
+embedding medium was added to two of the samples (immersion oil
+($n=1.52$) and water ($n=1.33$)). Then coverslips were added to all
+three samples and sealed with nail polish.
 
 During \cma{scan pupil plane SLM} the measurement the focal plane SLM
 projected a disk with $\unit[30]{\mu m}$ diameter on the fluorescent
@@ -79,17 +77,31 @@ plane. The illumination angle was varied by stepping a window of
 $15\times 15$ pixels (equivalent to 1/17th of the pupil diameter) over
 the pupil plane SLM.
 
-For each angle, the sum of all the light on the camera is
-recorded. The data is depicted in the three images in
+For each angle, the sum of all fluorescence light reaching the camera
+is recorded. The data is depicted in the three images in
 \figref{fig:tirf-exp}.  These images contain a bright disk whose
 diameter $d_\textrm{crit}$ is growing with the index of the embedding
 medium. The center of the disk corresponds to the optical axis of the
-objective. Therefore pupil plane SLM is not exactly aligned with the
-optical axis.  Points in the interior of the circle have an almost
+objective.  Points in the interior of the circle have an almost
 constant intensity (residual fluctuations can be attributed to
 non-uniformity of the illumination of the pupil plane SLM). For oil
-immersion the diameter of the disk corresponds to the diameter of the
-pupil.
+immersion the measured diameter of the disk corresponds to the
+diameter of the pupil. I compare the measurement with the pupil
+diameter for the objective with magnification $63\times$ and numerical
+aperture 1.47 that was used in the experiment.
+\begin{align}
+  d^\textrm{(measure)}_\textrm{pupil} &= d^{(oil)}_\textrm{crit}\Lambda = (242\pm7)\cdot\unit[16]{\mu m}=\unit[(3.88\pm0.08)]{mm}\\
+  d^\textrm{(theory)}_\textrm{pupil} &=
+  \textrm{NA}f_\textrm{TL}/63=1.47\cdot\underbrace{\unit[164.5]{mm}/63}_{f_\textrm{obj}}=\unit[3.84]{mm}
+\end{align}
+Here $\Lambda$ is the pixel pitch of the pupil plane SLM and
+$f_\textrm{TL}$ is the standard tube length for Zeiss microscopes and
+is used to calculate the focal length $f_\textrm{obj}$ of the objective.
+
+% (%i4) 164.5/63*1.47;
+% (%o4)                          3.838333333333333
+% (%i6) 242*.016;
+% (%o6)                                3.872
 
 If the index of the embedding medium is less than the index of the
 immersion medium, then total internal reflection occurs on the
@@ -97,6 +109,9 @@ interface between coverslip and embedding medium for high incidence
 angles. The excitation light can then no longer reach the
 sample. Therefore, the disks in the plots for water and air are
 smaller.
+
+
+FIXME translate
 
 Zwischen dem Durchmesser des hellen Kreises $d_\textrm{crit}$ und dem
 kritischen Winkel der Totalreflexion an der Grenzflaeche vom coverslip
@@ -124,7 +139,7 @@ der Theorie uebereinstimmt.
 
 
 \section{Measuring light distribution by bleaching a fluorescent gel}
-The above-described experiment allows only an indirect measure of the
+The above-described experiment allows only an indirect measurement of the
 effects of angular control in our microscope. Now I describe an
 experiment where fluorophores in a slab of several microns thickness
 are bleached. This allows a more direct measurement of the light
@@ -134,34 +149,35 @@ confocal microscope.
 As a sample we use a 4\% agarose gel containing fluorescently labeled
 DNS plasmids. The exact sequence of the plasmids is irrelevant. They
 only serve as carriers for the fluorophore (SYBR Save DNA gel stain,
-Invitrogen). These samples are stable for several weeks and no
-unbleached fluorophores return to bleached regions. The gel was chosen
-and prepared by Florian R\"uckerl with whom I conducted this
+Invitrogen). Exposed samples are stable for several weeks and no
+unbleached fluorophores diffuse to bleached regions. The gel was
+chosen and prepared by Florian R\"uckerl with whom I conducted this
 experiment. We reported on this in \cite{Ruckerl}.
 
 During the experiment the focal plane SLM displays three different
 patterns (all dark, all bright, bright vertical bar) and the pupil
 plane SLM displays eight different patterns (all dark, all bright, and
 6 circular windows). The focal plane SLM was projected as far into the
-middle of the gel layer as the working distance of the objective
-allowed and an exposure series was mad overnight. Utilizing a
-XY-stage, the sample was moved by \unit[0.4]{mm} between exposures.
+gel layer as the working distance of the objective would allow and an
+exposure series was produced overnight. Utilizing a XY-stage, the
+sample was moved by \unit[0.4]{mm} between exposures.
 
 % https://github.com/plops/cl-web-ui/commit/79ad04c61116b34aaf5f2422a3122a1d75ece890
 
 The \cma{overall light efficiency} laser delivers a continuous beam of
 \unit[473]{nm} wavelength with \unit[400]{mW} power. It is modulated
 using an acousto-optic modulator (AOM) so that only during the camera
-integration time (\unit[20]{ms}) and when the two SLM are in a defined
-state light can excite the sample. The modulated beam has an average
-power of \unit[15]{mW}. For this experiment I illuminate the rotating
-micro-lens array and integrator rod directly (without fibre bundle). I
-made this decision in the hope to reduce the necessary bleaching
-time. In hindsight it would have been better to use the fibre
-bundle. Behind the integrator tunnel there were still \unit[7]{mW}
-average power and in front of the dichroic mirror of the microscope a
-mere $\unit[17]{\mu W}$ (with both SLM showing a white pattern, giving
-an illuminated field diameter of $\unit[40]{\mu m}$ in the sample).
+integration time (\unit[20]{ms}), and when the two SLM are in a
+defined state, light can excite the sample. The modulated beam (duty
+cycle $<50\%$) has an average power of \unit[15]{mW}. For this
+experiment I illuminate the rotating micro-lens array and integrator
+rod directly (without fibre bundle). I made this decision in the hope
+to reduce the necessary bleaching time. In hindsight it would have
+been better to use the fibre bundle. Behind the integrator tunnel
+there were still \unit[7]{mW} average power and in front of the
+dichroic mirror of the microscope a mere $\unit[17]{\mu W}$ (with both
+SLM showing a white pattern, giving an illuminated field diameter of
+$\unit[40]{\mu m}$ in the sample).
 
 \begin{figure}[htbp]
   \centering
@@ -176,21 +192,23 @@ vicinity of the plane in the bleached gel where the focal plane SLM
 was focused. The bleached areas form a pattern of $11\times 6$
 exposures. The bleaching dose varies with the vertical direction as
 indicated by the accumulated exposure times (consisting of numerous
-\unit[20]{ms} exposures).  Strong in-focus bleaching becomes evident
-for bleach durations from \unit[30]{s} and higher, corresponding to a
-light dose above $\unit[40]{J/cm^2}$ in the focal plane.
+individual \unit[20]{ms} camera integrations).  Strong in-focus bleaching
+becomes evident for bleach durations from \unit[30]{s} and higher,
+corresponding to a light dose above $\unit[40]{J/cm^2}$ in the focal
+plane.
 %17e-6 W * 30s /	(pi (20e-6 m)^2)
 
 Along the horizontal direction, different SLM patterns were
-displayed. The two areas at both outer borders were bleached with full
-angular and spatial exposure. The next column gives an indication of
-how well both SLM can produce black as no bleaching pattern is evident
-in these places.
+displayed. The two areas at both outer borders (column 0 and 10) were
+bleached with full angular and spatial exposure. The next columns 1
+and 9 give an indication of how well both SLM can produce black as no
+bleaching pattern is evident in these places.
 
-The \cma{observed bleaching patterns} central areas were all
-displaying a vertical bar on the focal plane SLM while the pupil plane
-SLM displayed a circular window, varying the incidence angle. The
-first bar from the left was illuminated with all
+The \cma{observed bleaching patterns} central areas (columns 2-9,
+indicated with green circles) were all displaying a vertical bar on
+the focal plane SLM while the pupil plane SLM displayed a circular
+window, varying the incidence angle. The first bar from the left
+(column 2) was illuminated with all
 angles. \figref{fig:overview-bleach}~b) shows a three-dimensional
 representation of a confocal recording of the bleached
 area. Unfortunately, three separate bundles are visible, indicating
@@ -199,24 +217,23 @@ are not rotationally symmetric with respect to the optical axis, the
 bundles propagate at slightly different angles.
 
 The images in \figref{fig:overview-bleach}~c) and d) show confocal
-measurements of illumination with restricted angles. For this, a
-circular window with radius $r=0.3$ was displayed on the pupil plane
-SLM. Where the coordinates $\rho$ and $r$ are given relative to the
-pupil radius --- for $\rho=1$ the window would be centered on the
-periphery of the pupil, as indicated in the drawing
-\figref{fig:overview-bleach}~e).
+measurements of illumination with restricted angles (columns 3 and
+6). For this, a circular window with radius $r=0.3$ was displayed on
+the pupil plane SLM. Where the coordinates $\rho$ and $r$ are given
+relative to the pupil radius --- for $\rho=1$ the window would be
+centered on the periphery of the pupil, as indicated in the drawing
+of \figref{fig:overview-bleach}~e).
 
-The bleached digits in the mosaic (framed by red circles) are
-landmarks that were retrospectively bleached into the specimen for
-orientation during the acquisition with the confocal microscope.
+Dark digits in the mosaic (framed by red circles) are landmarks that were
+retrospectively bleached into the specimen for orientation during the
+acquisition with the confocal microscope.
 
 
 \comment{
 \jpginput{}{m_wf}{}
 }
 
-FIXME translate
-\section{Beads unter spatio-angular Beleuchtung}
+\section{Spatio-angular illumination of three-dimensionally distributed beads}
 \label{sec:beads_under}
 The next experiment models the imaging conditions of a biological
 sample. For this, beads of three microns diameter were distributed in
@@ -231,12 +248,12 @@ field using all angles in the left mosaic of \figref{fig:m_wf}. These
 recordings show how several beads sequentially come into focus. In
 order to facilitate the discussion I manually labeled each bead with
 its number. Unfortunately, the gel contributes a relatively high
-background fluorescence from which the blurred images of the
-out-of-focus beads are no longer distinguishable after only three
-microns. For this sample of sparse beads, their three-dimensional
-distribution could easily be determined from these wide field
-images. In a more dense sample, e.g. a higher bead concentration or
-nuclei in an embryo, this is no longer possible.
+background fluorescence from which the blurred images of beads are no
+longer distinguishable after only three microns of defocus. For this
+sample of sparse beads, their three-dimensional distribution could
+easily be determined from these wide field images. In a more dense
+sample, e.g. a higher bead concentration or nuclei in an embryo, this
+is no longer possible.
 
 
 \begin{figure}[hbtp]
@@ -256,9 +273,9 @@ nuclei in an embryo, this is no longer possible.
 In those cases \cma{optical sectioning} it is useful to utilize
 structured illumination to separate out-of-focus and in-focus
 fluorescence. The mosaic on the right of \figref{fig:m_wf} shows the
-computed optical sections from four raw images per slice, which are
-displayed in \figref{fig:m_phase} in the appendix on page
-\pageref{fig:m_phase}.  The sections contain relatively distinctive
+computed optical sections from four raw images per slice. The raw
+images are displayed in \figref{fig:m_phase} in the appendix on page
+\pageref{fig:m_phase}.  The sections contain relatively distinct
 vertical reconstruction artifacts. These can be avoided using the HiLo
 reconstruction method which has the additional advantage of only
 needing two raw images per slice.
@@ -266,10 +283,10 @@ needing two raw images per slice.
 However, \cma{bead localization} the HiLo method needs considerably
 more code and I have not implemented it in my real-time imaging
 software. Also, the artifacts have no effect on the localization
-precision of the algorithm that I describe next: I determine the
-center of each bead by finding local maxima after applying a
-three-dimensional difference of Gaussian filter (matched to the bead
-diameter). The result is depicted in the inlay in \figref{fig:m_ang}.
+precision of the algorithm. For localization I determine the center of
+each bead by finding local maxima after applying a three-dimensional
+difference of Gaussian filter (matched to the bead diameter). The
+resulting coordinates are depicted in the inlay in \figref{fig:m_ang}.
 
 % \begin{figure}[hbtp]
 %   \centering
@@ -277,6 +294,8 @@ diameter). The result is depicted in the inlay in \figref{fig:m_ang}.
 %   \caption{}
 %   \label{fig:m_sec}
 % \end{figure}
+
+FIXME translate
 Im naechsten Schritt werden die einzelnen Beads individuell
 beleuchtet, indem eine helle Scheibe an der entsprechenden Stelle des
 focal plane SLM angezeigt wird. Gleichzeitig wird auf dem pupil plane
@@ -289,94 +308,102 @@ berechnet.
 \begin{figure}[hbtp]
   \centering
   \svginput{1}{angular-beads}
-  \caption{Spatio-angular controlled illumination of the beads from
-    \figref{fig:m_sec}. The top left image shows bead number zero and
-    so forth, the second image in the top shows bead number one and so
-    on. The LCoS selectively illuminates the target bead and the MMA
-    displays the pattern shown in \figref{fig:m_bfp_co}.}
+  \caption{{\bf left inlay:} Coordinates of the beads from
+    \figref{fig:m_wf}. {\bf top mosaic:} Camera images with
+    spatio-angular illumination of the beads. This is not a focus
+    series but an image of each individual bead. {\bf bottom mosaic:}
+    Corresponding patterns of the pupil plane SLM.}
   \label{fig:m_ang}
 \end{figure}
 
-Die acht Kamerabilder mit den einzelnen Beads sind in den oberen zwei
-Zeilen von \figref{fig:m_ang} dargestellt. Im Gegensatz zu
-\figref{fig:m_wf} ist hier keine Fokusserie gezeigt, sondern auf jeden
-Bead wurde einzeln fokussiert. Die entsprechenden pupil plane SLM
-Masken sind darunter dargestellt. Den \cma{description of pupil plane
-  masks} Aufbau der Maske moechte ich kurz and der Aufnahme von Bead 4
-erlaeutern. An der 3D Darstellung im Inlay in \figref{fig:m_ang} sieht
-man, dass bead 4 sich am Rand der Verteilung befindet und alle anderen
-beads auf nur auf einer Seite von ihm. Der Winkel zwischen der
-Verbindungsgerade von bead 4 und bead 6 bezueglich der optischen achse
-ist der kleinste. Daher entspricht der in der Maske mit einem Pfeil
-markierte einzelne ``Schatten'' bead 6. Alle anderen beads wuerden nur
-beleuchtet werden wenn bead 4 unter extrem hohem Winkel angeleuchtet
-wird. Sie fallen in den zweiten Schatten am Rand der Pupille.
+The eight camera images of the individual beads are shown in the two
+top rows in \figref{fig:m_ang}. Unlike \figref{fig:m_wf}, no focal
+series is shown. Each image is focused on a single bead. The
+corresponding pupil plane SLM masks are shown in the two rows below. I
+will briefly describe \cma{description of pupil plane masks} the
+construction of the masks using bead 4 as an example. According to the
+three-dimensional diagram in the inlay in \figref{fig:m_ang} bead 4 is
+on the edge of the bead distribution. The smallest angle relative to
+the optical axis is between the connecting line of bead 4 and
+7. Therefore the single ``shadow'' (indicated with an arrow) in the
+pupil plane mask corresponds to bead 7. All other beads would only be
+illuminated by light that strikes bead 4 under a larger angle. Bead 6
+and maybe bead 5 combine to the second shadow on the periphery of the
+pupil.
 
-Wenn \cma{stability} man sich die Bilder in
-\figref{fig:m_ang} genauer betrachtet, dann faellt zunaechst auf, dass
-die Bilder fuer bead 2 und 7 komplett dunkel sind. Das liegt daran,
-dass das sich mapping zwischen Kamera und focal plane SLM zwischen
-Kalibration mit einem fluorescent plane sample und der Messung mit den
-beads um wenige microns verschoben hat. Bead 6 wird exakt
-angeleuchtet, aber bei Bead 5 und 3 weicht die Beleuchtung zunehmend
-ab. Nach der Messung wurden die Gummifuesse vom Mikroskop entfernt und
-der Mikroskopkoerper auf dem Metalltisch verschraubt und derartige
-Probleme traten nicht mehr auf.
+The \cma{stability} camera images of bead 2 and 7 in
+\figref{fig:m_ang} stand out because they are completely dark. The
+reason is that the registration between the focal plane SLM and camera
+has shifted by a few microns between localizing the beads and their
+spatio-angular exposure. This type of error was corrected by removing
+rubber feet from the microscope and screwing it directly to the metal
+table.
 
-Ein \cma{artifacts} interessanteres Problem sieht man, wenn man sich
-das Bild von Bead 5 genau anschaut. Dort sieht man das nur die untere
-Haelfte des Beads beleuchtet ist. Durch die Hintergrundfluoreszenz des
-Agarose Gels sieht man aber auch den runden Bereich, der durch den
-focal plane SLM angeleuchtet wird. Fuer manche Sample wird es dadurch
-vermutlich schwierig mehrere focal plane Belichtungen seamless
-ineinanderuebergehen zu lassen und Bilder wie in einem konfokalem
-Mikroskop zu erzeugen.
+ 
 
-Ich \cma{comparison spatial control and only angular control} habe die
-Bilder in \figref{fig:m_ang} sowohl mit vollen Beleuchtungswinkeln
-aber auch mit der Winkelkontrolle.  Bei der selektiven Beleuchtung
-einzelner Beads hat sich die Hintergrundfluoreszenz in den Bildern
-erheblich verringert. Leider kann man keine Verbesserung feststellen,
-wenn man dann auch noch die Winkelkontrolle zuschaltet. Ich denke dies
-kann man durch die hohe Hintergrundfluoreszens des Agarose Gels und
-die geringe Dichte an Beads erklaeren. Nur dass man die Fluoreszens
-von Out-of-focus beads nicht mehr im Rauschen nachweisen kann,
-bedeutet jedoch nicht, dass die Winkelkontrolle nicht doch einen
-positiven Effekt hat. Schliesslich wird vermieden, dass die Beads
-nutzlos angeregt werden. Man kann es eben nur schwer nachweisen.
+A \cma{artifacts} more interesting effect is visible in the camera
+image of bead 5. Only the bottom half of the bead is illuminated but
+due to fluorescence in the agarose gel the circular area that is
+illuminated by the focal plane SLM is still visible. This effect would
+predominantly occur in samples where fluorescent areas are not sharply
+defined. As exposures with light from different angles will contain
+different contributions of background fluorescence it is not clear
+whether individual sub-images of the spatio-angular microscope can be
+joined into a seamless image. The image quality of confocal
+microscopes hardly seems achievable. Cells in an embryo can probably
+be counted and tracked, but a quantitative measurement of the
+fluorescence seems difficult.
 
-\section{Winkelbeleuchtung in hoeherer Konzentration an Beads}
+I \cma{comparison spatial control and only angular control} imaged the
+beads in \figref{fig:m_ang} with both full angles and optimized
+angles. Already the selective illumination of individual beads using
+only the focal plane SLM and full angles reduced the background
+fluorescence from other beads and the gel
+significantly. Unfortunately, it is not possible to discern any
+further improvement with additional angular control.  I think the
+fluorescence from out-of-focus beads can not be detected in the photon
+shot noise of the fluorescence from the gel. Angular control will
+still have a positive effect because out-of-focus beads are not
+uselessly exposed --- it is just not possible to measure this in this
+particular sample.
 
-Um den Einfluss der Winkelkontrolle der Beleuchtung direkt zu messen
-habe ich ein weiteres Sample mit einer hoeheren Konzentration an Beads
-in anderem Agarose Gel mit deutlich geringerer Eigenfluoreszens
-angefertigt.
+\section{Angular illumination and a higher concentration of beads}
+In order to measure the influence of angular illumination control
+directly, I made another sample with higher concentration of beads in
+an agarose gel with significantly less fluorescence.
 
+
+FIXME translate
 \begin{figure}[!hbt]
   \centering
-  \svginput{1}{montage-ang}
-  \caption{}
+  \svginput{.9}{montage-ang}
+  \caption{Dichte beads in agarose gel. {\bf top left:} Wide field
+    image der Beads. Einer der Beads ist mit einem weissen Kreis
+    hervorgehoben und wird in {\bf bottom left:} durch den focal plane
+    SLM selektiv beleuchtet.  {\bf right mosaic:} Darstellung der um
+    den Zielbead liegenden out-of-focus beads bei Variation des
+    Beleuchtungswinkels.}
   \label{fig:montage-ang}
 \end{figure}
 
+The images are shown in \figref{fig:montage-ang}. In the wide field
+image I indicate one bead with a white circle. In the other images
+this bead is selectively illuminated using the focal plane SLM white
+circle with dashed outline.
 
-In \figref{fig:montage-ang} sind die entsprechenden Aufnahmen
-dargestellt. Im wide field Bild ist mit einem weissen Kreis mit
-gestrichelter Linie der Bead dargestellt, der dann durch den focal
-plane SLM selektiv angeleuchtet wird. 
+For simplicity, I have omitted the raytrace illumination optimization
+and just vary a circular window on the pupil plane SLM ($\rho=0.7,
+r=0.3$, with the same geometry as in \figref{fig:overview-bleach}~e)).
 
-Der Einfachheit halber habe ich hier auf die Beleuchtungsoptimierung
-mittels Raytracer verzichtet und variiere mit der Geometrie wie in
-\figref{fig:overview-bleach}~e) ein rundes Fenster ($\rho=0.7, r=0.3$)
-auf dem pupil plane SLM.
 
-Die Bilder im Mosaik auf der rechten Seite von \label{fig:montage-ang}
-zeigen die 100fach verstaerkte Intensitaet des linken unteren Bildes
-und der mit der Fensterposition variierende Beleuchtungskegel macht
-sich als Aenderung der relativen intensitaet der out-of-focus beads
-bemerkbar. Ein deutlicher Unterschied ist beispielsweise zwischen dem
-Bild fuer $\theta=30^\circ$ und $\theta=330^\circ$ an der mit einem
-Pfeil markierten Stelle zu erkennen.
+In the mosaic on the right side of \figref{fig:montage-ang} the
+intensity is displayed with a factor of $100\times$ compared to the
+FIXME translate previous two images. Alle Bilder werden mit
+identischer Skalierung angezeigt. The intensity of the central bead is
+clipped. The illumination cone, that moves with the window manifests
+itself as a change in the relative intensities of the out-of-focus
+beads. A difference can be seen, for example, in the point marked by
+an arrow in the pictures for $\theta=30^\circ$ and $\theta=330^\circ$.
 
 \section{Conclusion}
 Die beschriebenen Experimente zeigen, dass die Hardware des Mikroskops

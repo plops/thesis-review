@@ -24,14 +24,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284272"
-     inkscape:cx="455.05288"
-     inkscape:cy="111.99299"
+     inkscape:cx="136.50128"
+     inkscape:cy="169.62219"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
      inkscape:window-width="1678"
-     inkscape:window-height="1037"
+     inkscape:window-height="1039"
      inkscape:window-x="1366"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
@@ -562,13 +562,13 @@
        sodipodi:linespacing="125%"
        id="text3392"
        y="883.07642"
-       x="-103.41595"
+       x="-117.55808"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        xml:space="preserve"><tspan
          y="883.07642"
-         x="-103.41595"
+         x="-117.55808"
          id="tspan3394"
-         sodipodi:role="line">widefield</tspan></text>
+         sodipodi:role="line">wide field</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3396"
@@ -725,7 +725,7 @@
          sodipodi:role="line">{\color{white}$\theta=120^\circ$}</tspan></text>
     <path
        transform="translate(-143.39923,739.76709)"
-       d="m 75.25,64.522644 a 7.625,7.625 0 1 1 -15.25,0 7.625,7.625 0 1 1 15.25,0 z"
+       d="m 75.25,64.522644 c 0,4.211171 -3.413829,7.625 -7.625,7.625 -4.211171,0 -7.625,-3.413829 -7.625,-7.625 0,-4.211171 3.413829,-7.625 7.625,-7.625 4.211171,0 7.625,3.413829 7.625,7.625 z"
        sodipodi:ry="7.625"
        sodipodi:rx="7.625"
        sodipodi:cy="64.522644"

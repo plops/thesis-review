@@ -25,6 +25,12 @@
 %\usepackage{etoolbox}
 
 \pdfminorversion=5
+% 9 is best zlib compression i use 0 while writing in the hope that
+% git can track changes more easily
+\pdfcompresslevel=0
+% 3 is maximum for now
+\pdfobjcompresslevel=0
+
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -39,7 +45,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
-\usepackage{pdfcomment}
+%\usepackage{pdfcomment}  % breaks hyperref metadata
 
 % choose font here: http://www.tug.dk/FontCatalogue/mathfonts.html
 \usepackage[T1]{fontenc}
@@ -58,9 +64,8 @@
 
 
 
-\usepackage[pdftex]{hyperref} 
 
-\pdfcompresslevel=0
+
 %\newcont\pdfcompresslevel
 
 
@@ -85,6 +90,14 @@
                  % with hyperref, though
 
 \usepackage{natbib}
+%\usepackage{citeref}
+\usepackage[pdftex,a4paper=true,plainpages,bookmarksnumbered,pagebackref,% put after natbib
+pdftitle={Spatio-Angular Microscopy},%
+pdfauthor={Martin Kielhorn},%
+pdfkeywords={microscopy, photobleaching,%
+  phototoxicity, spatial light modulator}, %
+pdfsubject={PhD thesis}]{hyperref}
+
 
 \usepackage{siunitx} %sudo apt-get install texlive-science
 \usepackage{units}
@@ -233,7 +246,7 @@
   \hspace{4cm}\textsf{\Large Martin Kielhorn}
   
   \vspace{1cm}
-  \hspace{4cm}\textsf{\Large July 2012}
+  \hspace{4cm}\textsf{\Large April 2013}
 \end{titlepage}
 \newpage
 %\include{abstract}
@@ -265,7 +278,7 @@
 %\section*{Preface}
 
 The work described in this thesis was carried out between June 2008
-and March 2013.
+and April 2013.
 
 In chapter \ref{sec:intro}, we introduce photophysics of fluorescence
 and emphasize the importance of oxygen for phototoxicity. Furthermore,
@@ -281,10 +294,9 @@ In chapter \ref{sec:setup}, we describe our microscope and in chapter
 \ref{sec:experiments}, we show some images, taken with illumination
 control in our prototype.
 
-There is also an extensive appendix where we document more technical
-issues like read noise calibration of a camera (Appendix
-\ref{sec:ccd-meas}) or finding a rigid transform between a camera and
-a display (Appendix \ref{sec:rigid}).
+- ccd measurment
+
+- mapping lcos camera
 
 In the appendix, we also describe a completely different approach for
 spatio--angular illumination based on holography (Appendix
@@ -399,7 +411,7 @@ reference.
 Jena, Germany
 
 \noindent
-March 2013
+April 2013
 
 
 

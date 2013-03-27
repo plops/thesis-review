@@ -110,22 +110,19 @@ angles. The excitation light can then no longer reach the
 sample. Therefore, the disks in the plots for water and air are
 smaller.
 
-
-FIXME translate
-
-Zwischen dem Durchmesser des hellen Kreises $d_\textrm{crit}$ und dem
-kritischen Winkel der Totalreflexion an der Grenzflaeche vom coverslip
-$n_\textrm{cs}=n_\textrm{oil}=1.52$ zum embedding medium
-$n_\textrm{emb}$ besteht folgender Zusammenhang:
+The relationship between the diameter $d_\textrm{crit}$ of the bright
+circle and the critical angle of total reflection at the interface
+between coverslip ($n_\textrm{cs}=n_\textrm{oil}=1.52$) and embedding
+medium ($n_\textrm{emb}$) is as follows:
 \begin{align}
   \theta_\textrm{crit}&=\arcsin\left(\frac{n_\textrm{emb}}{n_{cs}}\right) \\
   d_\textrm{crit} &= 2 n_\textrm{imm} f_\textrm{obj}
   \sin\theta_\textrm{crit}= 2 n_\textrm{imm} f_\textrm{obj}
   \frac{n_\textrm{emb}}{n_{imm}}
 \end{align}
-Eine Vergleich der Verhaeltnisse der gemessenen Durchmesser mit dem
-Verhaeltnis der Indizes in Tabelle 1 zeigt, dass die Messung gut mit
-der Theorie uebereinstimmt.
+A comparison between the ratios of the measured diameters and the
+ratios of the refractive indeces in Table \ref{ref:acceptance} shows
+that the measurement is in good agreement with the theory.
 \begin{table}[!hbt]
   \centering
   \begin{tabular}{ l r r }
@@ -133,7 +130,7 @@ der Theorie uebereinstimmt.
     water & 0.875 & $0.88\pm0.05$ \\
     air & 0.658 & $0.64\pm0.04$ 
   \end{tabular}
-  \caption{Vergleich des durch die Messung bestimmten Akzeptanzwinkels mit der Theorie.}
+  \caption{Comparison showing that the measurement of the angle of acceptance for two different embedding media corresponds to the theory.}
   \label{tab:acceptance}
 \end{table}
 
@@ -295,14 +292,12 @@ resulting coordinates are depicted in the inlay in \figref{fig:m_ang}.
 %   \label{fig:m_sec}
 % \end{figure}
 
-FIXME translate
-Im naechsten Schritt werden die einzelnen Beads individuell
-beleuchtet, indem eine helle Scheibe an der entsprechenden Stelle des
-focal plane SLM angezeigt wird. Gleichzeitig wird auf dem pupil plane
-SLM jeweils eine Maske dargestellt die die Beleuchtung der
-out-of-focus beads verhindert. Die Maske wird automatisch mit einem
-Raytracer aus dem dreidimensionalen Modell der Beadverteilung
-berechnet. 
+In the next step, each bead is illuminated individually by displaying
+a bright disk at the corresponding position on the focal plane SLM
+while the pupil plane SLM respectively displays a mask which prevents
+exposure of out-of-focus beads. This mask is calculated automatically
+with a raytracer and utilizing the three-dimensional model of the bead
+distribution.
 
 
 \begin{figure}[hbtp]
@@ -377,12 +372,13 @@ FIXME translate
 \begin{figure}[!hbt]
   \centering
   \svginput{.9}{montage-ang}
-  \caption{Dichte beads in agarose gel. {\bf top left:} Wide field
-    image der Beads. Einer der Beads ist mit einem weissen Kreis
-    hervorgehoben und wird in {\bf bottom left:} durch den focal plane
-    SLM selektiv beleuchtet.  {\bf right mosaic:} Darstellung der um
-    den Zielbead liegenden out-of-focus beads bei Variation des
-    Beleuchtungswinkels.}
+  \caption{Dense beads in agarose gel {\bf top left:} Wide field image
+    of the beads. The target bead is highlighted with a white circle.
+    {\bf bottom left:} Target bead is selectively illuminated by the
+    focal plane SLM (using all angles).  {\bf right mosaic:} Variation
+    of illumination angle. The contrast of out-of-focus beads is
+    increased by scaling the values with a factor of 100 compared to
+    the two images on the left.}
   \label{fig:montage-ang}
 \end{figure}
 
@@ -398,26 +394,29 @@ r=0.3$, with the same geometry as in \figref{fig:overview-bleach}~e)).
 
 In the mosaic on the right side of \figref{fig:montage-ang} the
 intensity is displayed with a factor of $100\times$ compared to the
-FIXME translate previous two images. Alle Bilder werden mit
-identischer Skalierung angezeigt. The intensity of the central bead is
-clipped. The illumination cone, that moves with the window manifests
-itself as a change in the relative intensities of the out-of-focus
-beads. A difference can be seen, for example, in the point marked by
-an arrow in the pictures for $\theta=30^\circ$ and $\theta=330^\circ$.
+previous two images. The same scaling is applied to the images of the
+mosaic. The intensity of the central bead is clipped. The illumination
+cone, that moves with the window manifests itself as a change in the
+relative intensities of the out-of-focus beads. A difference can be
+seen, for example, in the point marked by an arrow in the pictures for
+$\theta=30^\circ$ and $\theta=330^\circ$.
 
 \section{Conclusion}
-Die beschriebenen Experimente zeigen, dass die Hardware des Mikroskops
-prinzipiell funktioniert.  Insbesondere fuer den in section
-\ref{sec:beads_under} beschriebenen Versuch musste eine grosse Menge
-an Software kombiniert werden, um Kamera und focal plane SLM zu
-kalibrieren, die beads zu lokalisieren, optimale Beleuchtungspattern
-zu erzeugen und dies alles mit der Hardwaresteuerung zusammen laufen
-zu lassen, so dass das gesamte Experiment moeglichst automatisch und
-in ueberschaubarer Zeit ablaeuft.
+The described experiments demonstrate that the hardware of the
+microscope is functioning as intended. Although the performance is
+impaired by low transmission and long pattern loading times.
 
-Das Hauptproblem und der groesste Zeitaufwand lag hier vor allem an
-nicht ausreichenden Informationen ueber einige der nicht ersetzbaren,
-alternativlosen Hardwarekomponenten.
+Especially for the experiment in section \ref{sec:beads_under} a lot
+of software had to work in conjunction. The mapping between focal
+plane SLM and camera has to be established, the beads must be located
+and optimal illumination patterns must be found. These algorithms
+should work in close combination with the hardware control, so that
+the entire experiment can run with as little user interaction as
+possible and finish within reasonable time.
+
+% Das Hauptproblem und der groesste Zeitaufwand lag hier vor allem an
+% nicht ausreichenden Informationen ueber einige der nicht ersetzbaren,
+% alternativlosen Hardwarekomponenten.
 
 %%% Local Variables: 
 %%% mode: latex

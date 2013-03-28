@@ -92,7 +92,7 @@ aperture 1.47 that was used in the experiment.
 \begin{align}
   d^\textrm{(measure)}_\textrm{pupil} &= d^{(oil)}_\textrm{crit}\Lambda = (242\pm7)\cdot\unit[16]{\mu m}=\unit[(3.88\pm0.08)]{mm}\\
   d^\textrm{(theory)}_\textrm{pupil} &=
-  \textrm{NA}f_\textrm{TL}/63=1.47\cdot\underbrace{\unit[164.5]{mm}/63}_{f_\textrm{obj}}=\unit[3.84]{mm}
+  \textrm{NA}\cdot f_\textrm{TL}/63=1.47\cdot\underbrace{\unit[164.5]{mm}/63}_{f_\textrm{obj}}=\unit[3.84]{mm}
 \end{align}
 Here $\Lambda$ is the pixel pitch of the pupil plane SLM and
 $f_\textrm{TL}$ is the standard tube length for Zeiss microscopes and
@@ -115,10 +115,10 @@ circle and the critical angle of total reflection at the interface
 between coverslip ($n_\textrm{cs}=n_\textrm{oil}=1.52$) and embedding
 medium ($n_\textrm{emb}$) is as follows:
 \begin{align}
-  \theta_\textrm{crit}&=\arcsin\left(\frac{n_\textrm{emb}}{n_{cs}}\right) \\
-  d_\textrm{crit} &= 2 n_\textrm{imm} f_\textrm{obj}
-  \sin\theta_\textrm{crit}= 2 n_\textrm{imm} f_\textrm{obj}
-  \frac{n_\textrm{emb}}{n_{imm}}
+  \theta_\textrm{crit}&=\arcsin\left(\frac{n_\textrm{emb}}{n_{oil}}\right) \\
+  d_\textrm{crit} &= 2 n_\textrm{oil} f_\textrm{obj}
+  \sin\theta_\textrm{crit}= 2 n_\textrm{oil} f_\textrm{obj}
+  \frac{n_\textrm{emb}}{n_{oil}}
 \end{align}
 A comparison between the ratios of the measured diameters and the
 ratios of the refractive indeces in Table \ref{ref:acceptance} shows
@@ -368,7 +368,6 @@ directly, I made another sample with higher concentration of beads in
 an agarose gel with significantly less fluorescence.
 
 
-FIXME translate
 \begin{figure}[!hbt]
   \centering
   \svginput{.9}{montage-ang}

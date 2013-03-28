@@ -454,14 +454,19 @@ laser on using an acousto-optic modulator (AOM).
 When the z-stage is used, the camera is stopped until the stage has
 reached its target position.
 
-%\begin{figure}[H]
-%  \centering
-%  \svginput{memi-electronics}
-%  \caption{The camera triggers both spatial light modulators with its
-%    TTL outputs. The acousto-optic modulator sends light into the
-%    system during camera integration.}
-%  \label{fig:memi-electronics}
-%\end{figure}
+FIXME translate
+
+\begin{figure}[H]
+ \centering
+ \svginput{1}{memi-electronics}
+ \caption{The camera signals the Arduino \unit[1]{ms} before vor der
+   Integration das es losgeht. Dieser startet dann die 2 displays so
+   dass sie genuegend Zeit zur initialisierung haben und schaltet erst
+   dnan den laser zu. triggers both spatial light modulators with its
+   TTL outputs. The acousto-optic modulator sends light into the
+   system during camera integration.}
+ \label{fig:memi-electronics}
+\end{figure}
 
 
 
@@ -494,6 +499,138 @@ reached its target position.
 %     aligned system.}
 %   \label{fig:mma-closeup}
 % \end{figure}
+
+
+\section{Mapping between pixels of the focal plane SLM and camera pixels}
+\label{sec:map}
+In our microscope the plane of the camera is conjugate to the focal
+plane SLM. It is useful and for most illumination strategies crucial
+to be able to relate a camera position back to the corresponding
+coordinates of the SLM. Then the information from one exposure can be
+used to control the illumination in the next.
+
+Whenever the camera is moved or the variable tubelens is changed, we
+have to recalibrate the system with a fluorescent plane sample on
+which we project single spots with known positions on the focal plane SLM. Here
+I describe a robust approach to find a rigid transform between focal plane SLM
+and camera coordinates.
+\subsection{The coordinate rigid transform}
+In order to relate coordinates on the LCoS display with pixel
+positions on the camera, I found it suffices to use a rigid
+transform. The rigid transform between display and camera is defined
+as:
+\begin{align}
+  \r^d&=s \textrm{R}_\phi \r^c + \vect t\\
+  \textrm{R}_\theta&=\begin{pmatrix}
+  \cos\phi & q\sin\phi \\
+  -\sin\phi & q\cos\phi \\ 
+  \end{pmatrix}
+\end{align}
+where $\r^d=(r^d_x,r^d_y)^T$ is a point on the display,
+$\r^c=(r^c_x,r^c_y)^T$ is a point on the camera, $\vect t=(t_x,t_y)^T$
+is a translation vector and $R_\theta$ is a rotation matrix (or a
+rotation matrix with a reflection if $q=-1$). The value of $q$ can be
+either $+1$ or $-1$. The value of $q$ is $-1$, if there is a single
+axis reflection. It is $+1$ if there is no reflection.
+
+\begin{figure}[!hbt]
+  \centering
+  \svginput{1}{calib-align}
+  \caption{Given $n\ge 4$ camera images of a display showing one
+    point.  It is possible to calculate the parameters of the rigid
+    transform parameters scaling $s$, rotation angle $\phi$,
+    translation vector $\vect t$.}
+  \label{fig:calib-align}
+\end{figure}
+
+One can find the transform parameters scaling $s$, rotation angle
+$\phi$, translation vector $\vect t$, i.e.\ four degrees of freedom,
+by minimizing
+\begin{align}
+ \mathcal{Q}= \sum_i^n \abs{s \textrm{R}_\phi \r^c_i+\vect t -\r^d_i}^2 \label{eq:rigid-sum}
+\end{align}
+for all $n$ points on the display $\r^d_i$ and there corresponding
+camera positions $\r^c_i$.  
+\subsection{Experimental example and image processing}
+
+For the calibration a fluorescent plane (see
+\figref{fig:rigid-pics}~left for a uniform wide field image) is imaged
+with the LCoS display showing spots in the illuminated area.  Ideally
+for this measurement all mirrors on the MMA are undeflected and the
+apertures $B_0$ and $B_1$ completely open (see
+\figref{fig:memi-real}). Then the square exit of the integrating
+tunnel illuminates the biggest possible area on the LCoS.
+
+\comment{
+\jpginput{}{o102}{}
+\jpginput{}{o035}{}
+}
+
+\begin{figure}[!hbt]
+  \centering
+  \includegraphics[width=4cm]{o102}\quad
+  \includegraphics[width=4cm]{o035}
+  \caption{{\bf left:} Uniformly illuminated fluorescent plane (mono
+    and double layer of yellow beads with \unit[110]{nm} diameter,
+    excited with \unit[473]{nm} laser in a 63x/1.47 objective). {\bf
+      right:} Image with the the LCoS displaying a disk with 24 pixels
+    diameter (corresponding to $\unit[2.4]{\mu m}$ in the sample)
+    centred at LCoS position $(550,750)$.}
+  \label{fig:rigid-pics}
+\end{figure}
+
+% i believe the TL_ill is set to r_MMA=3.84mm in BFP 
+% f_TLill = 352 mm
+% mag_real = mag / f_zeiss * f_TLill 
+% pixel-pitch-lcos / mag_real
+% one pixel is: 13.62 / 63 * 164.5 / 352 = 101nm
+
+\begin{figure}[!hbt]
+  \centering
+  \pdfinput{10cm}{rigid-compare}
+  \caption{Red ``$+$'' signs indicate where the spots that were
+    localized in the camera images end up after a rigid
+    transform. There is sufficient agreement with the original
+    display positions.}
+  \label{fig:rigid-compare}
+\end{figure}
+
+
+
+For the calibration $10\times10$ images (100 images, each containing
+one bright spot at a different position) were captured with a disk of
+24 pixels diameter at the positions $(400+50i,500+50j)\ \forall i,j\in
+[0,99]$. Furthermore, one uniformly illuminated image is used to
+correct for intensity fluctuations in the fluorescent plane.  The
+following Matlab/DIPimage code is used to normalize the images and
+localize the spots. The coordinates are then assembled into the Maxima
+command that finds the parameters of the rigid transform. Finally the
+transformed spot positions from the camera images are compared with
+the original LCoS pixel positions.
+
+
+\subsection{Conclusion}
+The rigid transform and our method to estimate its parameters is a
+sufficient and robust method, to map the coordinates of our camera
+into those of the spatial display.
+
+\jpginput{7cm}{screen_lcos-calib}{Example of a perfectly fitting rigid
+  transform between LCoS and camera. {\bf left:} Mask that is
+  displayed on the LCoS. {\bf right:} Camera image of fluorescent
+  plane illuminated by mask. The orange lines indicate the borders of
+  the original pattern.}
+
+
+The rigid transform can be done directly in OpenGL. Hence, it is
+trivial to render a properly transformed texture of the camera
+image which is then shown on the display.
+
+An advantage over other methods, e.g. finding a homology matrix via
+RANSAC, is that the result is not a transformation matrix but
+separated parameters for scaling, rotation and translation. 
+
+
+
 
 %%% Local Variables: 
 %%% mode: latex

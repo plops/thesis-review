@@ -524,47 +524,21 @@ the XYZ-stage is moved.
 
 \section{Mapping between pixels of the focal plane SLM and camera pixels}
 \label{sec:map}
-FIXME translate
+A basic prerequisite for measurement with our system is that the
+mapping between SLM and camera pixels is known. Only then, the sample
+can be irradiated as planned. To measure the mapping, I use a
+fluorescent plane sample, turn on individual pixels at position $\r^d$
+of the focal plane SLM and acquire camera images, which have bright
+spots centered on a camera coordinate $\r^c$.
 
-Eine Grundvorraussetzung dafuer, dass die mit dem Raytracer
-ermittelten SLM Muster das Sample wie geplant bestrahlen ist, dass die
-Abbildung (mapping) zwischen Pixeln des focal plane SLM und der Kamera
-bekannt ist. Um diese zu messen, verwende ich als Sample eine
-fluoreszente Ebene, schalte einzelne Pixel des focal plane SLM ein und 
-nehme Kamerabilder auf.
-
-Die fluoreszente Ebene befindet sich direkt auf der Unterseite des
-Coverslips. Die Abbildung ist daher nahezu ideal mit keiner (oder
-vernachlaessigbar geringer) Distortion.
-
+The fluorescent plane is directly on the underside of the coverslip,
+ensuring good image quality and no (or negligibly small) distortion.
 \subsection{The rigid coordinate transform}
-
-- da eine ebene abgebildet wird kann kann minimal vier freiheitsgrade
-
-- prinzipbedingt
-
-- rotation veraendert sich am meisten
-
-- skalierung bleibt gleich, und optische achse bleibt gleich
-
-- das vereinfacht es ungemein verglichen mit einer affinen
-transformation mit 4 unabhaengigen eintraegen in der matrix
-(zusaetzlich scherung und anisotrope skalierung) also insgesamt 6
-freien parametern
-
-
-Whenever the camera is moved or the variable tubelens is changed, we
-have to recalibrate the system with a fluorescent plane sample on
-which we project single spots with known positions on the focal plane SLM. Here
-I describe a robust approach to find a rigid transform between focal plane SLM
-and camera coordinates.
-
-
-In order to relate coordinates on the LCoS display with pixel
-positions on the camera, I found it suffices to use a rigid
-transform. The rigid transform between display and camera is defined
-as:
+In our experiments, the following transformation with four degrees of
+freedom (scaling $s$, rotation angle $\phi$, translation vector $\vect
+t=(t_x,t_y)^T$) has proved particularly advantageous:
 \begin{align}
+  \label{eq:rigid}
   \r^d&=s \textrm{R}_\phi \r^c + \vect t\\
   \textrm{R}_\phi&=\begin{pmatrix}
   \cos\phi & q\sin\phi \\
@@ -572,12 +546,11 @@ as:
   \end{pmatrix}
 \end{align}
 where $\r^d=(r^d_x,r^d_y)^T$ is a point on the display,
-$\r^c=(r^c_x,r^c_y)^T$ is a point on the camera, $\vect t=(t_x,t_y)^T$
-is a translation vector and $R_\phi$ is a rotation matrix (or a
-rotation matrix with a reflection if $q=-1$). The value of $q$ can be
-either $+1$ or $-1$. The value of $q$ is $-1$, if there is a single
-axis reflection. It is $+1$ if there is no reflection.
-
+$\r^c=(r^c_x,r^c_y)^T$ is a point on the camera and $R_\phi$ is a
+rotation matrix (or a rotation matrix with a reflection if
+$q=-1$). The value of $q$ can be either $+1$ or $-1$. The value of $q$
+is $-1$, if there is a single axis reflection. It is $+1$ if there is
+no reflection.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{calib-align}
@@ -587,15 +560,31 @@ axis reflection. It is $+1$ if there is no reflection.
     translation vector $\vect t$.}
   \label{fig:calib-align}
 \end{figure}
+Alternatively, in the beginning we experimented with an affine
+transformation. This transform is over-determined, as it includes two
+additional degrees of freedom for shear and anisotropic scaling, which
+are negligible in our system. Therefore it is difficult to assess the
+quality of the calculated affine transform parameters.
 
-One can find the transform parameters scaling $s$, rotation angle
-$\phi$, translation vector $\vect t$, i.e.\ four degrees of freedom,
-by minimizing
+With the rigid transform in equation \ref{eq:rigid}, our system can,
+however, be modeled very well: The camera is connected to a flange on
+the microscope body and can be easily rotated. So when the camera was
+moved, ideally, only the rotation angle $\phi$ needs to be determined
+again. Similarly, the focal length setting of the illumination
+tubelens $\textrm{TL}_\textrm{ill}$ mainly affects the scale $s$.
+\subsubsection{Computational parameter estimation}
+Having measured a set of $n\ge 4$ tuples $(\r^c_i,\r^d_i)$ with camera
+and SLM coordinates, the four rigid transform parameters can be
+obtained by minimizing the error $\mathcal{Q}$:
 \begin{align}
  \mathcal{Q}= \sum_i^n \abs{s \textrm{R}_\phi \r^c_i+\vect t -\r^d_i}^2 \label{eq:rigid-sum}
 \end{align}
-for all $n$ points on the display $\r^d_i$ and there corresponding
-camera positions $\r^c_i$.  
+There are good algorithms to solve this type of least squares problem.
+In appendix \ref{seq:app_map} I show the code for the free computer
+algebra system Maxima \citep{Maxima.sourceforge.net2013}. With Maxima
+the code is particularly simple because it transparently calculates
+the necessary derivatives. In addition Maxima can easily be integrated
+in my real-time system because it is written in Common Lisp as well.
 \subsection{Experimental example and image processing}
 
 For the calibration a fluorescent plane (see

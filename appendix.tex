@@ -129,6 +129,10 @@ CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
 
+\comment{
+$
+}
+
 \begin{table}[!htbp]
   \centering
 %  \begin{tabular}{|l|l|l|l|l|l|l|l|}
@@ -302,16 +306,16 @@ fig.savefig(cam+'_'+gain+'.png')
 \chapter{Mapping between focal plane SLM and camera}
 \label{sec:app_map}
 \section{Rigid coordinate transformation}
-Each term of the sum in equation
-\ref{eqn:rigid-sum} on page \pageref{eq:rigid-sum} can be expressed as
-two scalar terms:
+\label{sec:map_maxima}
+The equation for the least squares problem in equation
+\ref{eq:rigid-sum} on \pageref{eq:rigid-sum} can be expressed
+componentwise:
 \begin{align}
   \mathcal{Q}=\sum_i^n&
   \abs{s(\cos\phi r^c_{ix}+q\sin\phi r^c_{iy})+t_x-r^d_{ix}}^2
   +
   \abs{s(-\sin\phi r^c_{ix}+q\cos\phi r^c_{iy})+t_y-r^d_{iy}}^2
 \end{align}
-
 The following Maxima code will find the solution to the least squares
 problem:
 \begin{lstlisting}[style=mymaxima]
@@ -321,18 +325,15 @@ g(s,p,tx,ty):=[s*( cos(p)*<cx>+q*sin(p)*<cy>)+tx-<dx>,
                s*(-sin(p)*<cx>+q*cos(p)*<cy>)+ty-<dy>, ... ]$
 minpack_lsquares(g(s,p,tx,ty), [s,p,tx,ty], [0.88,-3.1,1200,-20]);
 \end{lstlisting}
-I define the function \verb!g! to contain all the terms of the sum.
-This can easily written by a program that constructs the lines
-according to the given pattern, replacing \verb!<cx>!, \verb!<cy>!
-with camera coordinates and \verb!<dx>!, \verb!<dy>! with display
-coordinates.
-\comment{$}
-The function \verb!minpack_lsquares! calls the subroutine \verb!lmder!
-which was originally developed for the Fortran\footnote{Rather than
-  calling a Fortran library Maxima calls a version of this function
-  that was automatically translated into Common Lisp via {\sf f2cl}.}
-package \verb!minpack!.
+Where \verb!g! is a vector function, which contains two entries for
+each pair of points of the focal plane SLM and camera coordinates.  I
+computationally construct the lines according to the given pattern,
+replacing \verb!<cx>!, \verb!<cy>!  with measured camera coordinates
+and \verb!<dx>!, \verb!<dy>! with display coordinates (see the Matlab
+code in the next section).
 
+The function \verb!minpack_lsquares! calls the subroutine \verb!lmder!
+which was originally developed for the Fortran package \verb!minpack!.
 \begin{lstlisting}[style=myfortran]
 c     subroutine lmder (http://www.netlib.org/minpack/lmder.f)
 c     the purpose of lmder is to minimize the sum of the squares of
@@ -344,15 +345,39 @@ c       subroutine lmder(fcn,m,n,x,fvec,fjac,ldfjac,ftol,xtol,gtol,
 c                        maxfev,diag,mode,factor,nprint,info,nfev,
 c                        njev,ipvt,qtf,wa1,wa2,wa3,wa4)
 \end{lstlisting}
-The reason for using Maxima is, that it calculates the symbolic
-Jacobian for the problem. This makes it straight forward to change the
-simple rigid transform to a model with more parameters.
+Maxima automatically calculates the symbolic Jacobian and thereby
+removes an error-prone part of the programmer's work for such
+optimization problems. This code could easily be modified for more
+complicated transformations, e.g.\ including distortion. Because of
+this flexibility, I decided to use Maxima.
 
-The following Common Lisp code shows how the result of the
-optimization can be used to initialize the OpenGL modelview matrix to
-transform objects in its buffer, so that they will appear at the given
-positions on the camera.
- 
+
+\subsection{Application of the rigid transform in OpenGL}
+\label{sec:map_opengl}
+The results of the parameter optimization can then be used to adjust
+the displayed SLM patterns to object positions on earlier camera
+images. In particular, it is straight forward, to implement the rigid
+transform using OpenGL's transform primitives (OpenGL is the graphics
+library, that I usually use).
+
+There are two possibilities of applying the transform: On the one
+hand, geometrical primitives might be displayed on the focal plane
+SLM, so that particular areas on the camera are illuminated.  On the
+other hand, a camera image which was acquired earlier can be displayed
+as texture on the focal plane SLM.
+
+Uploading camera images to the focal plane SLM is too slow in our
+final system to use the latter method\footnote{However, I obtained
+  interesting results with \unit[30]{Hz} frame rate of the camera and
+  fast feedback to an LCoS controller that was directly connected to a
+  graphics card.}
+
+For this reason, I have mainly used the first method and transform the
+geometric primitives before I display them on the focal plane SLM.
+
+Here is the corresponding Common Lisp code to initialize the OpenGL
+modelview matrix with the rigid transform, so that drawn objects will
+appear at the given positions on the camera.
 \begin{lstlisting}[style=mylisp]
 (defun load-cam-to-lcos-matrix (&optional (x 0s0) (y 0s0))
   (let* ((s 0.828333873909549) (sx  s)        (sy  (- s))
@@ -368,7 +393,6 @@ positions on the camera.
 \end{lstlisting}  
 Alternatively, here is the equivalent code in C (with different
 parameters):
-
 \begin{lstlisting}[style=myclang]
 float m[4*4]; // OpenGL Modelview Matrix
 float s=-.8749328910202312,
@@ -384,7 +408,18 @@ glMatrixMode(GL_MODELVIEW);
 glLoadMatrixf(m);
 \end{lstlisting}
 \section{Image processing: Localizing bright spots on the camera}
-The following Matlab listing shows how to open the image files:
+\label{sec:matlab-spots}
+Here I show Matlab/DIPimage code \citep{dipimage} to localize
+individual spots on the camera images, prepare the input for Maxima,
+read back the fitted parameter values and superimpose the transformed
+coordinate system of the camera pixels on the the grid of the focal
+plane SLM in order to estimate the quality of the fit.
+
+The software development kit of the Andor cameras provides functions
+to store image data along with acquisition parameters in the FITS file
+format. This can be loaded into Matlab using the function
+\verb!readim! from the DIPimage toolbox.
+
 % cd /mnt/scan 
 
 \begin{lstlisting}[style=mymatlab]
@@ -397,13 +432,20 @@ The following Matlab listing shows how to open the image files:
   a(:,:,i) = 2^15 + readim(sprintf('o%03d.fits',i));
   end
 \end{lstlisting}
-  Of the 103 images, that are loaded into \verb!a!, the first 100
-  contain spots and the image at the zero-based index 102 is the
-  uniformly illuminated image shown in \figref{fig:rigid-pics} left.
-  The other two images at indices 100 and 101 are two centered disks
-  with different diameters and are not used here.
+With the code above, I load all raw images into Matlab, even some data
+where the spots were not illuminated. I manually account for this in
+the following code.
 
-  \begin{lstlisting}[style=mymatlab]
+Unfortunately DIPimage's \verb!readim! function seems to have a bug
+and loads the data as negative values. I manually correct this.
+
+
+Of the 103 images, that are loaded into the variable \verb!a!, the
+first 100 contain spots and the image at the zero-based index 102 is
+the uniformly illuminated image shown in \figref{fig:rigid-pics} left.
+The other two images at indices 100 and 101 are two centered disks
+with different diameters and are not used here.
+\begin{lstlisting}[style=mymatlab]
     bright = squeeze(a(:,:,102)); % histogram of uniformly illuminated
     % image has minimum at 800 ADU
     mask = gaussf(bright,8) > 800; % create mask with illuminated area
@@ -418,19 +460,17 @@ The following Matlab listing shows how to open the image files:
     tmp = coords(valsind,:); % collect the maximum with highest
     posmax(i,:) = tmp(end,:); % intensity into result
     end
-  \end{lstlisting}
+\end{lstlisting}
 
-  The DIPimage toolbox provides the function \verb!findmaxima!, that
-  locates all local maxima in an image with subpixel accurac y. I
-  sort the result by gray value and only use the biggest.  The
-  measured 100 camera coordinate pairs in \verb!posmax! correspond to
-  $\r^c_i$ in equation \ref{eq:rigid-sum}.
+The DIPimage toolbox provides the function \verb!findmaxima!, that
+locates all local maxima in an image with subpixel accuracy. I sort
+the result by gray value and only use the largest.  The measured 100
+camera coordinate pairs in \verb!posmax! correspond to $\r^c_i$ in
+equation \ref{eq:rigid-sum}.
  
-  From Matlab I create the file \verb!fit.max! with batch commands
-  for Maxima. Then I run Maxima. When it is finished after a few
-  seconds, the file \verb!max.out! will contain the four fitted
-  parameters.
- 
+From Matlab I create the file \verb!fit.max! with batch commands for
+Maxima. Then I run Maxima. When it is finished, after a few seconds,
+the file \verb!max.out! will contain the four fitted parameters.
 \begin{lstlisting}[style=mymatlab]
     c = double(posmax)'; cmd =
     ''; % collect equations in maxima format
@@ -452,12 +492,13 @@ The following Matlab listing shows how to open the image files:
     fwrite(fid,[pre cmd cod]); fclose(fid);
     [max_status,max_result]=system('maxima -b
     fit.max'); % execute maxima
-  \end{lstlisting}
-  We load the transformation parameters back into Matlab and create
-  the diagram \figref{fig:rigid-compare} to visualize, how well the
-  transform matches camera and display coordinates.
+\end{lstlisting}
+I load the transformation parameters back into Matlab and create the a
+diagram (shown in \figref{fig:rigid-compare} in the main text on page
+\pageref{fig:rigid-compare}) to visualize, how well the transform
+matches camera and display coordinates.
 
- \begin{lstlisting} [style=mymatlab]
+\begin{lstlisting} [style=mymatlab]
 % load rigid transformation parameters from the file into matlab
   params = load('max.out')'; scale = params(1); phi = params(2); tx =
   params(3); ty = params(4);
@@ -476,6 +517,6 @@ The following Matlab listing shows how to open the image files:
 
   hold off; plot(dpos(:,1),dpos(:,2),'.'); hold on;
   plot(mapped(11:end,1),mapped(11:end,2),'r+');
-  % \end{lstlisting}
+\end{lstlisting}
 
 % print -depsc2 /home/martin/thesis/kielhorn/rigid/rigid-compare

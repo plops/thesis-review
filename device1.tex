@@ -430,11 +430,11 @@ magnification changes.
 Both spatial light modulators can run at most with $50\%$ duty
 \cma{local pattern storage} cycle. Therefore it is necessary to
 synchronize the displays. Their controllers allow to upload several
-hundred frames of image data at the beginning of an experiment and
-keep them in local storage. Images can then be selected by relatively
-fast function calls over USB (focal plane SLM, fLCoS) or Ethernet
-(pupil plane SLM, MMA), see \figref{fig:memi-electronics} for a plan
-of the interconnections.
+hundred frames of image data into local storage at the beginning of an
+experiment. Images can then be selected by relatively fast function
+calls over USB (focal plane SLM, fLCoS) or Ethernet (pupil plane SLM,
+MMA), see \figref{fig:memi-electronics} for a plan of the
+interconnections.
 
 The camera (Clara, Andor PLC, Belfast, Northern Ireland) as the
 \cma{camera is master} slowest device is chosen as the master. It
@@ -442,9 +442,7 @@ provides two TTL outputs. The output ``fire'' is high while the camera
 is integrating. The output ``shutter'' is programmed to go high
 \unit[1]{ms} before ``fire''.
 
-FIXME translate
-
-This allows an Arduino microcontroller to initiated a time-delayed
+This allows an Arduino microcontroller to initiate a time-delayed
 trigger for both SLM, so that they show their patterns exactly while
 the camera is integrating. I determined the necessary delays using a
 photodiode and an oscilloscope in order to measure when a dark image
@@ -452,7 +450,9 @@ is established on each device. The delay is \unit[$840$]{$\mu$s} for
 pupil plane and \unit[$396$]{$\mu$s} for focal plane SLM. The Arduino
 microcontroller activates a laser by an acousto-optic modulator (AOM)
 so that the system is only illuminated when the camera is integrating
-and both SLM are showing a defined pattern.
+and both SLM are showing a defined pattern.  The ``fire'' output of
+the camera was useful to find these settings, but in the final system
+it remains unused.
 
 % source code:
 % https://github.com/plops/ledtlc/blob/master/ledtlc.ino
@@ -462,30 +462,35 @@ and both SLM are showing a defined pattern.
 % lcos settle time: 940-544 = 396 us
 % mma settle time: 940-100 = 840 us
 
-The USB LCoS controller for the focal plane SLM can display its images
-only for certain discrete times (\unit[20]{ms}, \unit[10]{ms},
-\unit[5]{ms}, \unit[200]{$\mu$s}).  This is because it needs to
-programmed with sequences which are supplied by the manufacturer and
-it is not straight forward to change them via USB interface. Therefore
-we always work with a fixed LCoS display time of \unit[20]{ms}. 
+The \cma{disadvantage of LCoS controller} USB LCoS controller for the
+focal plane SLM can display its images only for certain discrete times
+(\unit[20]{ms}, \unit[10]{ms}, \unit[5]{ms}, \unit[200]{$\mu$s}).
+This is because it needs to be programmed with sequences which are
+supplied by the manufacturer and it is not straight forward to change
+them via USB interface. Therefore we always work with a fixed LCoS
+display time of \unit[20]{ms}.
 
 This disadvantage of the LCoS controller is quite inconvenient as the
 only way to acquire images from dim specimen is to accumulate several
 camera readouts.  The pupil plane SLM and camera would allow a
-variable integration time. In particular a Texas Instruments DMD would
-support variable integration times \citep{Guide2012}.
+variable integration time. In particular a Texas Instruments DMD
+instead of the LCoS would support variable integration times
+\citep{Guide2012}.
 
 
-The camera acquisitions are stopped by the control software, whenever
-the XYZ-stage is moved.
+The \cma{synchronization with stage} camera acquisitions are stopped
+by the control software, whenever the XYZ-stage is moved. Hardware
+tirggering could accelerate the acquisition of $z-$stacks, but hat not
+been implemented so far.
 
 \begin{figure}[H]
  \centering
  \svginput{1}{memi-electronics}
- \caption{The camera signals the Arduino microcontroller \unit[1]{ms}
-   before its integration starts. The microcontroller then starts the
+ \caption{The camera triggers the Arduino microcontroller \unit[1]{ms}
+   before its integration begins. The microcontroller then starts the
    two SLM so that they have enough time for initialization and later
-   enables the laser.}
+   enables the laser at the predefined interval, where the camera is
+   exposing.}
  \label{fig:memi-electronics}
 \end{figure}
 
@@ -531,9 +536,10 @@ fluorescent plane sample, turn on individual pixels at position $\r^d$
 of the focal plane SLM and acquire camera images, which have bright
 spots centered on a camera coordinate $\r^c$.
 
-The fluorescent plane is directly on the underside of the coverslip,
-ensuring good image quality and no (or negligibly small) distortion.
-\subsection{The rigid coordinate transform}
+The fluorescent plane is attached directly to the underside of the
+coverslip, ensuring good image quality and no (or negligibly small)
+distortion.
+\subsection{The rigid transform}
 In our experiments, the following transformation with four degrees of
 freedom (scaling $s$, rotation angle $\phi$, translation vector $\vect
 t=(t_x,t_y)^T$) has proved particularly advantageous:
@@ -547,10 +553,9 @@ t=(t_x,t_y)^T$) has proved particularly advantageous:
 \end{align}
 where $\r^d=(r^d_x,r^d_y)^T$ is a point on the display,
 $\r^c=(r^c_x,r^c_y)^T$ is a point on the camera and $R_\phi$ is a
-rotation matrix (or a rotation matrix with a reflection if
-$q=-1$). The value of $q$ can be either $+1$ or $-1$. The value of $q$
-is $-1$, if there is a single axis reflection. It is $+1$ if there is
-no reflection.
+rotation matrix. The value of $q$ depends on the arrangement of
+mirrors in the beam path. The parameter $q$ is $-1$, if there is a
+single axis reflection and it is $+1$ if there is no reflection.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{calib-align}
@@ -560,6 +565,7 @@ no reflection.
     translation vector $\vect t$.}
   \label{fig:calib-align}
 \end{figure}
+
 Alternatively, in the beginning we experimented with an affine
 transformation. This transform is over-determined, as it includes two
 additional degrees of freedom for shear and anisotropic scaling, which
@@ -568,32 +574,69 @@ quality of the calculated affine transform parameters.
 
 With the rigid transform in equation \ref{eq:rigid}, our system can,
 however, be modeled very well: The camera is connected to a flange on
-the microscope body and can be easily rotated. So when the camera was
-moved, ideally, only the rotation angle $\phi$ needs to be determined
-again. Similarly, the focal length setting of the illumination
+the microscope body and can be easily rotated. So when the camera is
+moved, ideally, only the rotation angle $\phi$ needs to be
+recalibrated. Similarly, the focal length setting of the illumination
 tubelens $\textrm{TL}_\textrm{ill}$ mainly affects the scale $s$.
 \subsubsection{Computational parameter estimation}
-Having measured a set of $n\ge 4$ tuples $(\r^c_i,\r^d_i)$ with camera
+Having measured a set of $n\ge 4$ tuples $(\r^c_i,\r^d_i)$ of camera
 and SLM coordinates, the four rigid transform parameters can be
 obtained by minimizing the error $\mathcal{Q}$:
 \begin{align}
  \mathcal{Q}= \sum_i^n \abs{s \textrm{R}_\phi \r^c_i+\vect t -\r^d_i}^2 \label{eq:rigid-sum}
 \end{align}
 There are good algorithms to solve this type of least squares problem.
-In appendix \ref{seq:app_map} I show the code for the free computer
-algebra system Maxima \citep{Maxima.sourceforge.net2013}. With Maxima
-the code is particularly simple because it transparently calculates
-the necessary derivatives. In addition Maxima can easily be integrated
-in my real-time system because it is written in Common Lisp as well.
-\subsection{Experimental example and image processing}
+In appendix \ref{sec:map_maxima} I show the source code for the
+computer algebra system Maxima
+\citep{Maxima.sourceforge.net2013}. With Maxima the implementation is
+particularly concise because it transparently calculates all the
+necessary derivatives symbolically. 
 
-For the calibration a fluorescent plane (see
-\figref{fig:rigid-pics}~left for a uniform wide field image) is imaged
-with the LCoS display showing spots in the illuminated area.  Ideally
-for this measurement all mirrors on the MMA are undeflected and the
-apertures $B_0$ and $B_1$ completely open (see
-\figref{fig:memi-real}). Then the square exit of the integrating
-tunnel illuminates the biggest possible area on the LCoS.
+% In addition Maxima can easily be
+% integrated in my real-time system.
+% not really true for windows
+\subsection{Experimental example and image processing}
+Now I will show example images to describe the data collection for
+measuring the transformation between camera pixels and focal plane
+SLM.
+
+For \cma{sample preparation} good results it is useful to have a
+fluorescent plane sample that is homogeneous and without empty
+(non-fluorescent) holes. I succeeded in making thinner and more
+uniform samples utilizing fluorescent beads as opposed to marker
+pen. I prepare the sample by drying an undiluted suspension of
+sub-diffraction, fluorescent latex beads on a coverslip. This results
+in expanded areas with uniform mono-, double- or multi-layers (see
+\figref{fig:rigid-pics}).
+
+It \cma{maximize field} is also advantageous if as large an area of
+the focal plane SLM as possible is taken into account for the
+estimation of the transform's parameters. Therefore I open the two
+diaphragms B0 and B1 (see \figref{fig:memi-real}) completely for the
+calibration measurements.  I also keep the mirrors of the pupil plane
+SLM undeflected to ensure maximum irradiance in the sample.
+
+For \cma{scanning SLM pixel grid} the calibration I usually do not
+only enable individual SLM pixels as this would give very dim images
+with \unit[20]{ms} integration time. Instead, I enable pixels in a
+circular area around the centre. This results in images as depicted in
+\figref{fig:rigid-pics}~right. I acquire 100 such camera image while
+moving the circular mask on the focal plane SLM over a $10\times 10$
+grid (a disk of 24 focal plane SLM pixels diameter at the positions
+$\r^d_{i+j}=(400+50i,500+50j)\ \forall i,j\in [0,99]$). Accidentally a
+number of these points fell outside of the illuminated area and were
+excluded from further processing.
+
+In Appendix \ref{sec:matlab-spots} I show Matlab code (using the
+DIPimage toolbox, \cite{dipimage}) to determine the position of the
+bright spot in each camera image. Since the size of the illuminated
+areas in the sample is bigger than the diffraction limit and
+inhomogeneities of the fluorescent layer therefore will be visible in
+the image, the image data must be corrected by dividing the pixel
+values by the data of a uniformly illuminated image of the identical
+region. Otherwise sample non-uniformities would bias the results of
+the localization algorithm.
+
 
 \comment{
 \jpginput{}{o102}{}
@@ -607,9 +650,9 @@ tunnel illuminates the biggest possible area on the LCoS.
   \caption{{\bf left:} Uniformly illuminated fluorescent plane (mono
     and double layer of yellow beads with \unit[110]{nm} diameter,
     excited with \unit[473]{nm} laser in a 63x/1.47 objective). {\bf
-      right:} Image with the the LCoS displaying a disk with 24 pixels
-    diameter (corresponding to $\unit[2.4]{\mu m}$ in the sample)
-    centred at LCoS position $(550,750)$.}
+      right:} Image with the the focal plane SLM displaying a disk
+    with 24 pixels diameter (corresponding to $\unit[2.4]{\mu m}$ in
+    the sample) centred at focal plane SLM position $\r^d = (550,750)$.}
   \label{fig:rigid-pics}
 \end{figure}
 
@@ -618,6 +661,7 @@ tunnel illuminates the biggest possible area on the LCoS.
 % mag_real = mag / f_zeiss * f_TLill 
 % pixel-pitch-lcos / mag_real
 % one pixel is: 13.62 / 63 * 164.5 / 352 = 101nm
+
 
 \begin{figure}[!hbt]
   \centering
@@ -629,39 +673,39 @@ tunnel illuminates the biggest possible area on the LCoS.
   \label{fig:rigid-compare}
 \end{figure}
 
+\figref{fig:rigid-compare} shows how well the transformed camera
+coordinates ($\r^c$, indicated by '$+$' signs) superimpose with the
+coordinates of the focal plane SLM pixel grid.
 
 
-For the calibration $10\times10$ images (100 images, each containing
-one bright spot at a different position) were captured with a disk of
-24 pixels diameter at the positions $(400+50i,500+50j)\ \forall i,j\in
-[0,99]$. Furthermore, one uniformly illuminated image is used to
-correct for intensity fluctuations in the fluorescent plane.  The
-following Matlab/DIPimage code is used to normalize the images and
-localize the spots. The coordinates are then assembled into the Maxima
-command that finds the parameters of the rigid transform. Finally the
-transformed spot positions from the camera images are compared with
-the original LCoS pixel positions.
+\figref{fig:screen_lcos-calib}~left depicts a pattern of discs that
+was displayed on the focal plane SLM and the right figure shows a
+superposition of the camera image and the outline of the circles.
+
+\jpginput{7cm}{screen_lcos-calib}{Example of a rigid transform between
+  focal plane SLM and camera. {\bf left:} Mask that is displayed on
+  the SLM. {\bf right:} Camera image of fluorescent plane illuminated
+  by mask. The orange lines indicate the borders of the original
+  pattern.}
 
 
 \subsection{Conclusion}
-The rigid transform and our method to estimate its parameters is a
-sufficient and robust method, to map the coordinates of our camera
-into those of the spatial display.
+I have shown the simplest possible transformation to map between the
+pixel grid of the camera and the focal plane SLM.
 
-\jpginput{7cm}{screen_lcos-calib}{Example of a perfectly fitting rigid
-  transform between LCoS and camera. {\bf left:} Mask that is
-  displayed on the LCoS. {\bf right:} Camera image of fluorescent
-  plane illuminated by mask. The orange lines indicate the borders of
-  the original pattern.}
+For this I have implemented a calibration routine using a computer
+algebra system which would allow for more complicated transformations,
+e.g.\ considering image distortion. However, my experiments have shown
+that the simple transform is sufficient for our requirements and the
+field of view, that the current illumination system supports.
 
-
-The rigid transform can be done directly in OpenGL. Hence, it is
-trivial to render a properly transformed texture of the camera
-image which is then shown on the display.
-
-An advantage over other methods, e.g. finding a homology matrix via
-RANSAC, is that the result is not a transformation matrix but
-separated parameters for scaling, rotation and translation. 
+The results of a calibration with this particular transformation can
+be easily inverted. Furthermore, the interpretation of the parameters
+and their fitting errors is obvious and simple.  In particular, the
+fitted transform parameters scaling $s$, rotation $\phi$ and
+translation $\vect t$ can be used directly in OpenGL to transform
+vector primitives in and elegant way and with negligible computational
+effort. I give example code in Appendix \ref{sec:map_opengl}.
 
 
 

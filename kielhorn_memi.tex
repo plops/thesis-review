@@ -75,6 +75,9 @@
 % line breaks
 
 \usepackage[showrefs,showcites,ignoreunlbld]{refcheck} % for draft, uncomment for final
+%\usepackage{citeref} % for draft
+\usepackage[notref,notcite]{showkeys}
+%\usepackage{showkeys}
 
 \usepackage[disable]{todonotes} % for draft, disable for final
 
@@ -90,7 +93,7 @@
                  % with hyperref, though
 
 \usepackage{natbib}
-%\usepackage{citeref}
+
 \usepackage[pdftex,a4paper=true,plainpages,bookmarksnumbered,pagebackref,% put after natbib
 pdftitle={Spatio-Angular Microscopy},%
 pdfauthor={Martin Kielhorn},%
@@ -249,7 +252,6 @@ pdfsubject={PhD thesis}]{hyperref}
   \hspace{4cm}\textsf{\Large April 2013}
 \end{titlepage}
 \newpage
-%\include{abstract}
 \section*{Abstract}
 \begin{summary}
   Photobleaching and phototoxicity pose a problem in live cell
@@ -264,7 +266,7 @@ pdfsubject={PhD thesis}]{hyperref}
   reduced excitation of the out-of-focus fluorophores, resulting in
   better image quality and less phototoxicity.
 
-  Our custom software is used to obtain an initial image stack of the
+  My custom software is used to obtain an initial image stack of the
   specimen. Subsequent image sections are exposed with excitation
   patterns that account for the previous image stack. Depending
   upon the distribution of fluorophores, this adaptive exposure can
@@ -360,13 +362,10 @@ The main development was done using GNU~Linux. However, portability
 was kept in mind and most of the code was made to work with Microsoft
 Windows as well.
 
-FIXME TRANSLATE:
-
-Die Zeichnung auf der Titelseite zeigt den Strahlenverlauf durch ein
-$100\times$ objective mit numerical aperture 1.45. Leider sind
-Designparameter der von mir verwendeten Objektive kaum beizukommen
-deshalb habe ich hier Daten aus einem Patent verwendet
-\citep{Matthae2003}.
+The drawing on the title page shows the beam path through at
+$100\times$ objective with a numerical aperture of 1.45. The design
+parameters of the objectives that I used in this project are hard to
+come by and I used data from a patent \citep{Matthae2003}.
 
 
 \subsection*{Acknowledgements}
@@ -466,10 +465,10 @@ preferable, when low overall phototoxicity is a requirement.
 \include{results}
 \chapter{Discussion}
 \label{sec:discussion}
-This thesis deals with the practical development of a wide-field
-fluorescence microscope system that can control the irradiance in the
-specimen as well as the illumination angles with the aim of decreasing
-phototoxicity.
+The aim of this thesis has been the practical development of a
+wide-field fluorescence microscope system that can control the
+irradiance in the specimen as well as the illumination angles with the
+aim of decreasing phototoxicity.
 
 The original \cma{origin of the idea} idea was to combine a
 programmable array microscope with a control of the illumination

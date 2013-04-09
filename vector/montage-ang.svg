@@ -540,21 +540,21 @@
     <image
        width="403.99005"
        height="318.89764"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/montage-ang.jpg"
+       xlink:href="../raster/montage-ang.jpg"
        id="image3279"
        x="-7.7992373"
        y="738.51709" />
     <image
        width="121.19701"
        height="127.55905"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/00wide.jpg"
+       xlink:href="../raster/00wide.jpg"
        id="image3327"
        x="-142.64923"
        y="738.51709" />
     <image
        width="121.19701"
        height="127.55905"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/01clem-all.jpg"
+       xlink:href="../raster/01clem-all.jpg"
        id="image3389"
        x="-142.64923"
        y="894.91064" />

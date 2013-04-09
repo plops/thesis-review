@@ -10,7 +10,7 @@
   rulecolor = \color{black},
   frame = single,
   % framerule = 0pt,
-  backgroundcolor =\color{light-gray}, 
+ % backgroundcolor =\color{light-gray}, 
   fontadjust=true,
   breaklines = true,
   showstringspaces=false,
@@ -18,10 +18,12 @@
 }
 \lstdefinestyle{mymaxima}{
   language=C,
+  title={Maxima},
   style=myframe
 }
 \lstdefinestyle{myclang}{
   language=C,
+  title={C language},
   style=myframe
 }
 \lstdefinestyle{myfortran}{
@@ -30,18 +32,22 @@
 }
 \lstdefinestyle{mymatlab}{
   language=Matlab,
+  title={Matlab},
   style=myframe
 }
 \lstdefinestyle{mylisp}{
   language=Lisp,
+  title={Common Lisp},
   style=myframe
 }
 \lstdefinestyle{mybasic}{
+  title={Andor Basic},
   language=[Visual]Basic,
   style=myframe
 }
 \lstdefinestyle{mypython}{
   language=Python,
+  title={Python},
   showstringspaces=false,
   tabsize=4,
   basicstyle=\ttfamily,
@@ -53,7 +59,6 @@
 
 
 \begin{lstlisting}[style=mybasic]
-' This is code for the Basic interpreter in Andor Solis
 function ~GetSaturatingExposure()
         SetKineticNumber(1)
         exp=.01
@@ -302,6 +307,152 @@ fig.savefig(cam+'_'+gain+'.png')
   \label{fig:m_phase}
 \end{figure}
 
+\section{HiLo}
+
+In diesem Kapitel simuliere ich ein Verfahren, um optische Schnitte
+aus nur zwei Rohbildern zu errechnen. Dafuer nutze ich das
+wellenoptische Modell der Bildformung.
+
+Ich werde eine beispielhafte 3D Fluorophorverteilung konstruieren,
+die ich anstelle eines Samples verwende. Dann errechne ich eine 3D
+point-spread function h (ref 1.13) mit der ich sowohl das Bild auf
+der Kamera simulieren kann als auch die 3D Beleuchtungsverteilung im
+Sample bei gegebenem Muster auf dem focal plane SLM. Anhand dieser
+Daten zeige ich die Errechnung optischer Schnitte mit einer Variante
+der HiLo Methode und vergleiche das Ergebnis mit einem einfacherern,
+konventionellem Algorithmus.
+
+Fuer die numerische Simulation setze ich die DIPimage Toolbox fuer
+Matlab ein. Diese erlaubt es Probleme der Bildverarbeitung mit einer
+verhaeltnismaessig eleganten Syntax auszudruecken. 
+
+\cma{syntax of DIPimage} Im folgenden Codelisting fuelle ich
+beispielsweise drei dreidimensionale Volumenbilder mit Daten, die eine
+Linie, ein Rechteck und eine hohle Kugel mit dickem Rand
+darstellen. Die Funktion newim erzeugt ein neues DIPimage Objekt,
+dabei verwendet sie entweder explizit angegebene Dimensionen
+newim(n,n,n) oder kopiert die Dimensionen von einem anderen Objekt
+newim(g). Linie und Rechteck druecke ich einfach mit Array Slicing
+Operationen aus, fuer die Kugel nutze ich die Funktion rr(g). Diese
+gibt einen 3D array zurueck, in dem jeder Pixel (oder Voxel) den
+abstand zum Pixel im Mittelpunkt enthaelt. Die Vergleichsoperationen
+ergeben Daten mit Booleschen Datentyp und ich wandle sie implizit
+wieder in Zahlen indem ich eine Null addiere.
+
+\cma{Matlab/DIPimage}
+\begin{lstlisting}[style=mymatlab]
+n = 128;    % number of pixels 
+g = newim(n,n,n); % make empty 3d image
+
+%% objects: line, rectangle arranged in two planes and a hollow
+%% sphere as a 3d object
+
+lineseg = newim(g);
+lineseg(91:91,40:90,floor(n/2)+3) = 1;
+
+rectangle = newim(g);
+rectangle(83:114,23:43,floor(n/2)+3) = 1;
+
+hollow_sphere = 0.0 + (30<rr(g) & rr(g)<50); 
+
+S = 12 * lineseg + 4 * rectangle + hollow_sphere;
+\end{lstlisting}
+
+Mit dem folgenden Code berechne ich zunaechst die generalisiert
+McCutchen Apertur a fuer ein Objektiv mit gegebener numerischer
+Apertur. An dieser Stelle wird die Wellenlaenge der Simulation
+festgelegt. Diese setze ich hier auf 5 Pixel. Mit 500nm Licht ist
+demnach die Pixelpitch unserer Simulation 100nm. 
+
+\cma{on sampling} Der Pixelpitch darf nicht zu gross gewaehlt werden. Ansonsten treten
+Artifakte auf und die Simulation wird unrealistische Resultate
+liefern. Zu klein sollte man den Pixelpitch jedoch auch nicht
+waehlen, weil dann nur ein sehr kleines Feld simuliert wird.
+Idealerweise sollte der Pixelpitch so gewaehlt werden, dass das
+Torusgebilde der OTF ft(h) gerade nicht den Rand beruehrt. Da der
+Torus breiter als hoch ist kann man axial mit geringerer Aufloesung
+samplen. Eine korrekte Simulation mit geringstem Aufwand kann mit
+dem in (eqref 1.18 eq:resolution) durchgefuehrt werden.  In diesem
+Beispielcode verzichte ich jedoch auf diese Optimierung, um die
+Lesbarkeit zu erhoehen.
+
+
+\begin{lstlisting}[style=mymatlab]
+%% incoherent 3d point spread function
+lambda0 = 5; % vacuum wavelength of the light (in pixels)
+ri = 1.52; % refractive index
+nu = n/lambda0;  % diameter of the ewald sphere 
+NA = 1.4; % numerical aperture of the lens
+alpha = asin(NA/n);  % acceptance half-angle of lens
+
+% cut segment from sphere shell as given by numerical aperture
+a = q<rr(g) & rr(g)<q+1 & zz(g)>nu*cos(alpha);  
+
+% point spread function in real space
+h = abs(ft(a))^2;
+\end{lstlisting}
+
+Das Bild auf der Kamera erhaelt man gemaess Gleichung 1.14 durch
+Faltung der 3D PSF h und der Fluorophordistribution S. Dabei
+beobachtet die Kamera zwar pro Aufnahme nur einen einzelnen Slice,
+wenn man einen Stack erzeugt, indem das Sample axial verfahren wird
+bekommt man dann jedoch die z-stack Daten in cam.
+
+\begin{lstlisting}[style=mymatlab]
+%% image of the 3d fluorophore distribution
+cam = convolve(h,S);
+
+
+%% illumination pattern: 2d grating in one plane of a 3d volume
+P = 10      % period of the grating (in pixels)
+g = newim(n,n,n);
+g(:,:,floor(n/2)) = mod(xx(n,n),P)>floor(P/2);
+
+
+%% 3d illumination distribution
+
+illum = convolve(h,g);
+
+
+%% erstelle fokus serie, beleuchtungsebene und bildebene bleiben
+%% uebereinander
+
+focus_series = newim(n,n,n,3);
+focus_series(:,:,:,0) = convolve(h,shift(S*illum,[0 0 -3]));
+focus_series(:,:,:,1) = convolve(h,shift(S*illum,[0 0  0]));
+focus_series(:,:,:,2) = convolve(h,shift(S*illum,[0 0  3]));
+
+%% photon shot noise hinzugeben
+
+noise_series = newim(n,n,n,3,2);
+noise_series(:,:,:,:,0) = noise(focus_series*10,'poisson');
+noise_series(:,:,:,:,1) = noise(focus_series*100,'poisson');
+\end{lstlisting}
+
+eigentlich muesste man die periode exakt messen (entweder
+fluorescent plane sample oder korrelationsmethode aus kai's paper?)
+aber fuer diese simulation ist beleuchtungsperiode P bekannt. wir
+verschieben die erste ordnung in die mitte und benutzen einen
+tiefpass filter um die anderen ordnungen zu unterdruecken
+
+bemerkung: ueberlapp fuehrt zu artefakten, high res sim, wiener
+filter 
+
+\begin{lstlisting}[style=mymatlab]
+sigma = 0.07; % filter im fourier raum, bild darstellren
+lp = exp(-rr(n,n)^2/(2*sigma^2));
+hp = 1-lp;
+
+%% ring entlang der grenzfrequenz des filters fuer die integration
+
+ring = abs(ft(besselj(0,2*pi*sigma*n*rr(n,n))));
+
+normal_ring = ring/sum(abs(ring));
+
+eta = sum(ft(ihp)*normal_ring)/sum(ft(ilp)*normal_ring);
+ihilo = eta * ilp + ihp;
+\end{lstlisting}
+
 
 \chapter{Mapping between focal plane SLM and camera}
 \label{sec:app_map}
@@ -318,6 +469,7 @@ componentwise:
 \end{align}
 The following Maxima code will find the solution to the least squares
 problem:
+\cma{Maxima}
 \begin{lstlisting}[style=mymaxima]
 load(minpack)$
 q:-1;
@@ -334,6 +486,7 @@ code in the next section).
 
 The function \verb!minpack_lsquares! calls the subroutine \verb!lmder!
 which was originally developed for the Fortran package \verb!minpack!.
+\cma{Fortran}
 \begin{lstlisting}[style=myfortran]
 c     subroutine lmder (http://www.netlib.org/minpack/lmder.f)
 c     the purpose of lmder is to minimize the sum of the squares of
@@ -378,6 +531,7 @@ geometric primitives before I display them on the focal plane SLM.
 Here is the corresponding Common Lisp code to initialize the OpenGL
 modelview matrix with the rigid transform, so that drawn objects will
 appear at the given positions on the camera.
+\cma{Common Lisp}
 \begin{lstlisting}[style=mylisp]
 (defun load-cam-to-lcos-matrix (&optional (x 0s0) (y 0s0))
   (let* ((s 0.828333873909549) (sx  s)        (sy  (- s))
@@ -393,6 +547,7 @@ appear at the given positions on the camera.
 \end{lstlisting}  
 Alternatively, here is the equivalent code in C (with different
 parameters):
+\cma{C language}
 \begin{lstlisting}[style=myclang]
 float m[4*4]; // OpenGL Modelview Matrix
 float s=-.8749328910202312,
@@ -407,6 +562,8 @@ float s=-.8749328910202312,
 glMatrixMode(GL_MODELVIEW);
 glLoadMatrixf(m);
 \end{lstlisting}
+
+
 \section{Image processing: Localizing bright spots on the camera}
 \label{sec:matlab-spots}
 Here I show Matlab/DIPimage code \citep{dipimage} to localize
@@ -426,16 +583,12 @@ format. This can be loaded into Matlab using the function
 %% load the files
 % 0 .. 99 spot images
 % only 10..99 usable because the first are on border and not illuminated
-  a = newim(1392,1040,103); for i=0:102
-  % Andor's FITS format isn't read correctly
-  % correct this by adding 2^15
+a = newim(1392,1040,103);
+for i=0:102
+% Andor's FITS format isn't read correctly correct this by adding 2^15
   a(:,:,i) = 2^15 + readim(sprintf('o%03d.fits',i));
-  end
+end
 \end{lstlisting}
-With the code above, I load all raw images into Matlab, even some data
-where the spots were not illuminated. I manually account for this in
-the following code.
-
 Unfortunately DIPimage's \verb!readim! function seems to have a bug
 and loads the data as negative values. I manually correct this.
 
@@ -445,53 +598,72 @@ first 100 contain spots and the image at the zero-based index 102 is
 the uniformly illuminated image shown in \figref{fig:rigid-pics} left.
 The other two images at indices 100 and 101 are two centered disks
 with different diameters and are not used here.
+
+
+FIXME translate In diesem speziellen Experiment, waren die focal plane
+spots fuer die ersten zehn Bilder nicht beleuchtet. Daher werden sie
+im folgenden nicht weiter analysiert.  Wichtig ist Bild 102. Dieses
+enthaelt eine Aufnahme mit uniformer Beleuchtung. Anhand des
+Histogramms dieser Aufnahme habe ich den Wert 800 ADU als Grenze fuer
+eine Maske festgelegt, die sich nur auf den beleuchteten Bereich
+beschraenkt.
+
+Die uniform beleuchtete Aufnahme ist in \figref{fig:rigid-pics} links
+dargestellt. Mit ihrer Hilfe normiere ich jede spot-Aufnahme, so dass
+die spots in jedem Bild ``corr'' denselben Wert aufweisen unabhaengig
+davon, wieviele Lagen von beads sich an der jeweiligen Stelle
+befanden. Dabei subtrahiere ich auch einen Hintergrundwert von 510
+ADU, den ich aus den unbeleuchteten Pixeln der Bilder abgeleitet habe.
 \begin{lstlisting}[style=mymatlab]
-    bright = squeeze(a(:,:,102)); % histogram of uniformly illuminated
-    % image has minimum at 800 ADU
-    mask = gaussf(bright,8) > 800; % create mask with illuminated area
-    bg = 510; % the background is be 510 ADU
+bg = 510; 
+bright = squeeze(a(:,:,102)); 
+mask = gaussf(bright,8) > 800; % create mask with illuminated area
 
-    posmax = newim(100,2); for i = 10:99
-    % correct for sample non-uniformity
-    corr = (squeeze(a(:,:,i)) - bg) / bright * mask;
-    % find coordinates of maximum
-    [coords,vals]=findmaxima(gaussf(corr,32)); [valss,valsind] =
-    sort(vals); % sort coordinates by intensity
-    tmp = coords(valsind,:); % collect the maximum with highest
-    posmax(i,:) = tmp(end,:); % intensity into result
-    end
+posmax = newim(100,2);
+for i = 10:99
+  corr = (squeeze(a(:,:,i)) - bg) / bright * mask; % correct for sample non-uniformity
+  [coords,vals] = findmaxima(gaussf(corr,32));     % find coordinates of maximum
+  [valss,valsind] = sort(vals);    % sort coordinates by intensity
+  tmp = coords(valsind,:);         % collect the maximum with highest
+  posmax(i,:) = tmp(end,:);        % intensity into result
+end
 \end{lstlisting}
-
 The DIPimage toolbox provides the function \verb!findmaxima!, that
 locates all local maxima in an image with subpixel accuracy. I sort
-the result by gray value and only use the largest.  The measured 100
-camera coordinate pairs in \verb!posmax! correspond to $\r^c_i$ in
-equation \ref{eq:rigid-sum}.
+the result by gray value and only use the largest.  The measured 90
+coordinates in \verb!posmax! correspond to $\r^c_i$ in equation
+\ref{eq:rigid-sum}.
  
-From Matlab I create the file \verb!fit.max! with batch commands for
-Maxima. Then I run Maxima. When it is finished, after a few seconds,
-the file \verb!max.out! will contain the four fitted parameters.
+FIXME translate Der folgende Matlab code erzeugt und startet Input
+fuer Maxima, wie ich in der vorhergehenden Sektion erlaeutert habe, um
+die Transformationsparameter zu ermitteln.
+
+Das automatisch erzeugte Maxima Batch Programm wird dabei in die Datei
+\verb!fit.max! gespeichert. Die von Maxima gefundenen Parameter
+befindet sich in \verb!max.out!.
 \begin{lstlisting}[style=mymatlab]
-    c = double(posmax)'; cmd =
-    ''; % collect equations in maxima format
-    for i=10:99 dx = num2str(400+50*mod(i,10)); dy =
-    num2str(500+50*floor(i./10)); cx = num2str(c(i+1,1)); cy =
-    num2str(c(i+1,2)); cmd=[cmd ' s*( cos(p)*' cx '+q*sin(p)*' cy
-    ')+tx-' dx ', ...  s*(-sin(p)*'cx '+q*cos(p)*' cy ')+ty-' dy ','];
-    end cmd(:,end) = []; % delete last comma
+c = double(posmax)';
+cmd = ''; % collect equations in maxima format
+for i=10:99 
+  dx = num2str(400+50*mod(i,10));
+  dy = num2str(500+50*floor(i./10));
+  cx = num2str(c(i+1,1));
+  cy = num2str(c(i+1,2));
+  cmd=[cmd ' s*( cos(p)*' cx '+q*sin(p)*' cy')+tx-' dx ', ...
+             s*(-sin(p)*'cx '+q*cos(p)*' cy ')+ty-' dy ','];
+end
+cmd(:,end) = []; % delete last comma
 
 % load the fitting package and start defining the merit function g
-    pre = 'load(minpack)$ q:-1; g(s,p,tx,ty):=[';
+pre = 'load(minpack)$ q:-1; g(s,p,tx,ty):=[';
 % now put cmd between
 % call the fitting function and store the parameters into max.out
-    cod = [']$
-    fit:minpack_lsquares(g(s,p,x,y),[s,p,x,y],[.88,-1.3,1200,-20]);'
-    ...  'write_data(fit[1],"max.out");']
-
-    fid = fopen('fit.max','w'); % write maxima commands into file
-    fwrite(fid,[pre cmd cod]); fclose(fid);
-    [max_status,max_result]=system('maxima -b
-    fit.max'); % execute maxima
+cod = [']$ fit:minpack_lsquares(g(s,p,x,y),[s,p,x,y],[.88,-1.3,1200,-20]);'...
+       'write_data(fit[1],"max.out");']
+fid = fopen('fit.max','w'); % write maxima commands into file
+fwrite(fid,[pre cmd cod]);
+fclose(fid);
+[max_status,max_result]=system('maxima -b fit.max'); % execute maxima
 \end{lstlisting}
 I load the transformation parameters back into Matlab and create the a
 diagram (shown in \figref{fig:rigid-compare} in the main text on page
@@ -500,23 +672,30 @@ matches camera and display coordinates.
 
 \begin{lstlisting} [style=mymatlab]
 % load rigid transformation parameters from the file into matlab
-  params = load('max.out')'; scale = params(1); phi = params(2); tx =
-  params(3); ty = params(4);
+params = load('max.out')';
+scale  = params(1);
+phi    = params(2);
+tx     = params(3);
+ty     = params(4);
+mirr   = -1;
+R      = [ cos(phi), mirr*sin(phi); ...
+          -sin(phi), mirr*cos(phi)];
+T      = [tx ty]';
 
-  mirr = -1; R = [cos(phi),mirr*sin(phi); -sin(phi),mirr*cos(phi)]; T
-  = [tx ty]';
+%% plot the two grids on top of each other
+mapped = zeros(100,2);
+for i=11:100 % camera coordinates into display coordinates
+  mapped(i,:) = (scale*R*q(i,:)'+T)';
+end
 
-  %% plot the two grids on top of each other
-  mapped = zeros(100,2); for
-  i=11:100 % camera coordinates into display coordinates
-  mapped(i,:) = (scale*R*q(i,:)'+T)'; end
+dpos = zeros(100,2);
+for i=0:99 % calculate display points
+  dpos(i+1,1) = 400+50*mod(i,10);
+  dpos(i+1,2) = 500+50*floor(i./10);
+end
 
-  dpos = zeros(100,2); for i=0:99 % calculate display points
-  dpos(i+1,1) = 400+50*mod(i,10); dpos(i+1,2) = 500+50*floor(i./10);
-  end
-
-  hold off; plot(dpos(:,1),dpos(:,2),'.'); hold on;
-  plot(mapped(11:end,1),mapped(11:end,2),'r+');
+hold off; plot(dpos(:,1),dpos(:,2),'.'); hold on;
+plot(mapped(11:end,1),mapped(11:end,2),'r+');
 \end{lstlisting}
 
 % print -depsc2 /home/martin/thesis/kielhorn/rigid/rigid-compare

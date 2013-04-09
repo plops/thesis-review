@@ -137,17 +137,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="7.7503757"
-     inkscape:cy="58.895779"
+     inkscape:zoom="11.2"
+     inkscape:cx="105.0165"
+     inkscape:cy="45.841931"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
-     inkscape:window-width="681"
-     inkscape:window-height="751"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
      inkscape:window-x="0"
-     inkscape:window-y="15"
+     inkscape:window-y="9"
      inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -170,6 +170,20 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0.24285802,-887.72777)">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.60000001999999997;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.40000010000000019, 1.20000005000000010;stroke-dashoffset:1.62000005999999996"
+       d="m 120.22799,888.16527 c -4.44085,24.21286 -6.75,49.1582 -6.75,74.65625 0,1.90619 0.0368,3.78757 0.0625,5.6875 l 17.74999,0 c 0.026,-1.89991 0.0312,-3.78129 0.0312,-5.6875 0,-25.50017 -2.33376,-50.44275 -6.78124,-74.65625 l -4.3125,0 z"
+       id="path3876-0"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="rect3873"
+       width="19.464285"
+       height="6.517868"
+       x="114.19642"
+       y="77.559471"
+       transform="translate(-0.24285802,887.72777)"
+       ry="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.40000006, 1.20000004, 0.60000001, 1.20000004;stroke-dashoffset:0"
        d="m 21.420272,962.80754 142.685748,0"
@@ -282,12 +296,13 @@
        id="path4632"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
-       d="m 121.9313,904.72323 -26.364086,6.30739"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-end:url(#Arrow1Mend)"
+       d="m 121.9313,904.72323 -26.111548,6.55993"
        id="path3133-5"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend-7)"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend-7)"
        d="m 122.39986,962.20022 0,-55.96009"
        id="path5430"
        inkscape:connector-curvature="0"
@@ -295,85 +310,85 @@
     <text
        xml:space="preserve"
        style="font-size:7.63890839px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="98.641869"
-       y="923.02576"
+       x="98.999115"
+       y="925.07874"
        id="text5624"
        sodipodi:linespacing="125%"
-       transform="scale(0.99971879,1.0002813)"><tspan
+       transform="scale(0.99971878,1.0002813)"><tspan
          sodipodi:role="line"
          id="tspan5626"
-         x="98.641869"
-         y="923.02576">$\r'$</tspan></text>
+         x="98.999115"
+         y="925.07874">$\r'$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.63890839px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="126.61404"
-       y="934.27899"
+       x="133.18187"
+       y="937.05615"
        id="text5628"
        sodipodi:linespacing="125%"
-       transform="scale(0.99971879,1.0002813)"><tspan
+       transform="scale(0.99971878,1.0002813)"><tspan
          sodipodi:role="line"
          id="tspan5630"
-         x="126.61404"
-         y="934.27899">$\vrho$</tspan></text>
+         x="133.18187"
+         y="937.05615">$\vrho$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.63890839px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="66.489944"
-       y="926.24103"
+       x="66.311325"
+       y="929.00812"
        id="text5632"
        sodipodi:linespacing="125%"
-       transform="scale(0.99971879,1.0002813)"><tspan
+       transform="scale(0.99971878,1.0002813)"><tspan
          sodipodi:role="line"
          id="tspan5634"
-         x="66.489944"
-         y="926.24103">$\r$</tspan></text>
+         x="66.311325"
+         y="929.00812">$\r$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.63890839px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="120.69655"
-       y="986.57397"
+       x="116.69541"
+       y="988.57343"
        id="text5674"
        sodipodi:linespacing="125%"
        transform="scale(0.99971878,1.0002813)"><tspan
          sodipodi:role="line"
          id="tspan5676"
-         x="120.69655"
-         y="986.57397">lens</tspan></text>
+         x="116.69541"
+         y="988.57343">lens</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:7.63890839px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="25.759468"
-       y="896.40094"
+       x="18.793222"
+       y="893.86591"
        id="text5678"
        sodipodi:linespacing="125%"
        transform="scale(0.99971878,1.0002813)"><tspan
          sodipodi:role="line"
          id="tspan5680"
-         x="25.759468"
-         y="896.40094">focal</tspan></text>
+         x="18.793222"
+         y="893.86591">focal</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="25.75889"
-       y="910.43579"
+       x="18.794605"
+       y="909.90009"
        id="text5931"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5933"
-         x="25.75889"
-         y="910.43579">plane</tspan></text>
+         x="18.794605"
+         y="909.90009">plane</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="120.65196"
-       y="1001.0029"
+       x="112.65196"
+       y="1005.0029"
        id="text5935"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5937"
-         x="120.65196"
-         y="1001.0029">center</tspan></text>
+         x="112.65196"
+         y="1005.0029">center</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker-start:url(#Arrow1Mstart);marker-end:none"
        d="m 0.50714201,962.80754 16.67625999,0"
@@ -405,23 +420,23 @@
        sodipodi:cy="89.61235"
        sodipodi:rx="15.404826"
        sodipodi:ry="15.404826"
-       d="m 120.16046,90.823639 c -0.11214,1.421755 -0.42117,2.82105 -0.91824,4.157795"
-       sodipodi:start="0.078711695"
-       sodipodi:end="0.35600502"
+       d="m 120.19455,90.25962 c -0.0725,1.722734 -0.43361,3.42108 -1.06841,5.024226"
+       sodipodi:start="0.042029701"
+       sodipodi:end="0.37703309"
        sodipodi:open="true"
        transform="matrix(2.5306058,0,0,2.5346731,-143.28463,-105.20951)" />
     <text
        xml:space="preserve"
        style="font-size:15.19583225px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
        x="150.55716"
-       y="133.94472"
+       y="134.16776"
        id="text4352"
        sodipodi:linespacing="125%"
        transform="scale(0.99919734,1.0008033)"><tspan
          sodipodi:role="line"
          id="tspan4354"
          x="150.55716"
-         y="133.94472">$\theta$</tspan></text>
+         y="134.16776">$\theta$</tspan></text>
     <g
        transform="matrix(0,-0.73877636,3.802205,0,-144.79986,18.285163)"
        style="font-size:25.38402748px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -434,15 +449,15 @@
     <text
        xml:space="preserve"
        style="font-size:15.19583225px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="72.440506"
-       y="154.86552"
+       x="77.891312"
+       y="154.15181"
        id="text4362"
        sodipodi:linespacing="125%"
        transform="scale(0.99919734,1.0008033)"><tspan
          sodipodi:role="line"
          id="tspan4364"
-         x="72.440506"
-         y="154.86552">$f$</tspan></text>
+         x="77.891312"
+         y="154.15181">$f$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:15.19583225px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
@@ -458,26 +473,26 @@
     <text
        xml:space="preserve"
        style="font-size:7.63890839px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="103.46465"
-       y="53.918411"
+       x="104.53638"
+       y="52.490242"
        id="text5394"
        sodipodi:linespacing="125%"
-       transform="scale(0.99971879,1.0002813)"><tspan
+       transform="scale(0.99971878,1.0002813)"><tspan
          sodipodi:role="line"
-         x="103.46465"
-         y="53.918411"
+         x="104.53638"
+         y="52.490242"
          id="tspan5398">$\i$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
-       x="71.720825"
-       y="64.59079"
+       x="68.863686"
+       y="66.376503"
        id="text5996"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5998"
-         x="71.720825"
-         y="64.59079">$\propto\!\!\vrho$</tspan></text>
+         x="68.863686"
+         y="66.376503">$\propto\!\!\vrho$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"

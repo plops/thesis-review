@@ -62,7 +62,7 @@
 \newcommand*\cmafont{\fontsize{8}{8.2}\selectfont\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
 
 
-
+\usepackage{esvect} % vector CB in raytrace chapter
 
 
 
@@ -645,16 +645,27 @@ communication is done with open standards (USB video device class,
 Ethernet).
 
 Particularly positive I was surprised by the Texas Instruments
-DMD. The SLM development kit is very mature \citep{Guide2012},
-contains open source software and high quality documentation
-explaining even the control registers of individual chips. While
-working with the kit I was able to implement features within three
-days, for which I spent several months of reverse engineering and
-trial and error on devices of other manufacturers --- most notably,
-the fastest possible image update with 1440 frames per second via
-HDMI. If I had known that before, I would have designed the prototype
-differently and I would have accepted some drawback regarding optical
-performance.
+DMD. The SLM development kit (DLP LightCrafter, YoungOptics) is very
+mature \citep{Guide2012}, contains open source software and high
+quality documentation explaining even the control registers of
+individual chips. While working with the kit I was able to implement
+features within three days, for which I spent several months of
+reverse engineering and trial and error on devices of other
+manufacturers --- most notably, controlling individual frames at the
+fastest possible update rate (1440 frames per second) via HDMI. If I
+had known this before, I would have designed the prototype differently
+and I would have accepted some drawback regarding optical performance.
+
+{\color{red}FIXME translate: }
+Im Gegensatz zum Fraunhofer MMA in Kapitel, klappen
+die TI DMD Spiegel ueber ihre Diagonale. Fuer den in meinem Kit
+verwendeten $0.3$ WVGA DMD werden die Pixel in einem diagonalem Muster
+addressiert. Das erschwert etwas die Softwarekontrolle hat aber den
+Vorteil, der einfacheren justage, denn das Licht kann entlang einer
+der Kanten auf das Element mit den Spiegeln gesendet werden. Die
+groesseren DMDs muessen schraeg beleuchtet werden.
+
+
 
 I \cma{Open hardware is a good thing} am particular unhappy with the
 state of scientific cameras as all of them gave me problems with

@@ -6,36 +6,102 @@
 \begin{summary}
   Imaging with our microscope requires that during the observation of
   the sample new light patterns are created continuously and as fast
-  as possible. We can not solve this problem by using a commercial
-  software and I therefore decided to implement a simple raytracer.
+  as possible. We can not easily solve this problem by using a
+  commercial software and I therefore decided to implement a simple
+  raytracer.
 
   This chapter documents the basic concepts. Note that some
   approximations, which are usually used in optical design (paraxial,
   only non-skew rays) are not applicable here, because rays are to be
-  pursued through diverse fluorophore distributions in samples.
+  pursued in all possible angles through diverse fluorophore
+  distributions in samples.
 
-  The design parameters of our microscope objectives are not usually
-  known to us. I therefore represent the high-aperture lens using a
-  simplified model \citep{Hwang2008}. Together with a model of the
-  fluorophore distribution in the sample I can to determine which
-  regions of the objectives back focal plane are safe to illuminate
-  and which will excite out-of-focus fluorescence.
+FIXME translate
 
-  Further, I consider the refraction at the coverslip--medium
-  interface for non-index matched media. This enables the calculation
-  of illumination patterns for highly inclined and laminated optical
-  sheet microscopy, as introduced in section \ref{sec:hilo}.
+Ich beginne mit einfachen geometrischen Formeln um die Schnittpunkte
+eines Strahls mit einer Ebene oder Kugel zu bestimmen und um die
+Brechung an einer Oberflaeche auszurechnen.
 
-  {\bf Note:} The formulas in frames are implemented in the computer
-  code that is published on
-  \url{https://github.com/plops/mma/tree/master/lens}.
+Dann erklaere ich die Brechung an einer duennen paraxialen Linse und
+zeige eine Modifikation der Formeln fuer Hochaperturlinsen. Damit
+zeige ich wie man vorwaerts und rueckwaerts durch ein
+Mikroskopobjektiv rechnen kann, ohne dessen genaue Designparameter und
+Glassorten zu kennen.
+
+Furthermore, I consider the refraction at the coverslip--medium
+interface for non-index matched media. This enables the calculation of
+illumination patterns for highly inclined and laminated optical sheet
+microscopy, as introduced in section \ref{sec:hilo}.
+
+FIXME translate: Zum Schluss diskutiere ich noch eine geometrische
+Betrachtung, die im speziellen Fall von in Kugeln verteilten
+Fluorophoren dabei Hilft, die Anzahl der fuer eine Simulation durch
+das System zu tracenden Strahlen erheblich zu verkleinern.
+
+{\bf Note:} The formulas in frames are implemented in the computer
+code that is published on
+\url{https://github.com/plops/mma/tree/master/lens}.
 \end{summary}
-\section{Refraction at planar surface}
-I begin by describing refraction at a planar surface\footnote{I use
-  the same notation as \cite{McClain1993}.}. The wavelength of the
-light in vacuum defines the length of the wave vector $\k_0$. The
-lengths of the incident and transmitted wave vectors $\k_1$ and $\k_2$
-are given by the refractive index in their respective half space:
+\section{Geometrische Grundlagen}
+\subsection{Intersection of a ray and a plane}
+Let a ray start at a point $\s$ with direction $\hd$.  A plane
+(defined by a point $\c$ and the normal $\n$) intersects this ray if
+normal and ray direction are not perpendicular: $\n\,\hd\not=0$. The
+distance between the plane and the origin is $h=\c\n$. I define the
+plane equation in Hesse normal form:
+\begin{align}
+  \r\n=h
+\end{align}
+I replace the coordinate $\r$ with the ray equation and solve for
+the parameter $\tau$:
+\begin{align}
+  (\s+\tau\hd)\n&=h\\
+  \s\n+\tau\hd\n&=h\\
+  \tau&=\boxed{\frac{h-\s\n}{\hd\n}}
+\end{align}
+ \begin{figure}[!hbt]
+   \centering
+   \svginput{1}{plane-intersection}
+   \caption{Schematic of plane-ray intersection.}
+ \end{figure}
+\subsection{Intersection of a ray and a sphere}
+Let a ray start at a point $\s$ with direction $\hd$.  Let a sphere be
+centred in $\c$ with radius $R$. Their two equations
+\begin{align}
+  (\r-\c)^2&=R^2\\
+  \r&=\s+\tau\hd
+\end{align}
+define the intersection points. Substitution of $\r$ results in a
+quadratic equation for $\tau$:
+\begin{align}
+  (\s+\tau\hd-\c)^2&=R^2\\
+  \l&:=\boxed{\s-\c}\\
+  l^2+2\tau\l\hd+\tau^2-R^2&=0\\
+  \underbrace{1}_a\tau^2+\underbrace{2\l\hd}_b\tau+\underbrace{l^2-R^2}_c&=0
+\end{align}
+\subsubsection{Solving the quadratic equation}
+In order to prevent numerical errors the following solution should be
+used \citep{Press1997}:
+\begin{align}
+  \Delta&:=\boxed{b^2-4ac}\\
+  q&:=\boxed{-\frac{b+\sqrt{\Delta}\sign b}{2}}\\
+  \tau&=\boxed{
+  \begin{cases}
+    q/a &\,\textrm{when}\,\abs{q}\approx 0\\ 
+    c/q &\,\textrm{when}\,\abs{a}\approx 0\\
+    (q/a, c/q) &\,\textrm{else}
+  \end{cases}}
+\end{align}
+If the discriminant $\Delta$ is negative the ray misses the sphere and
+there is no solution. If the discriminant is zero the ray touches the
+periphery and there is only one solution. A positive discriminant
+corresponds to two solutions.
+\subsection{Refraction at planar surface}
+Now I describe the refraction at a planar surface\footnote{I use the
+  same notation as \cite{McClain1993}.}. The wavelength of the light
+in vacuum defines the length of the wave vector $\k_0$. The lengths of
+the incident and transmitted wave vectors $\k_1$ and $\k_2$ are given
+by the refractive index in their respective half space:
 \begin{align}
   k_0&=2\pi/\lambda\\
   k_1&=n_1 k_0\\
@@ -83,8 +149,18 @@ $\eta=n_1/n_2$.
   \t&=\eta\i-\eta(\i\n)\n-\sqrt{1-\eta^2+\eta^2(\i\n)^2}\n\\
   &=\boxed{\eta\i-\left(\eta\i\n+\sqrt{1-\eta^2(1-(\i\n)^2)}\right)\n}
 \end{align}
-When the radical in the square root is negative a reflection occurs
-instead (TIRF). Then the tangential component is invariant and normal
+When the radical under the square root is negative a reflection occurs
+instead (TIRF).
+
+ FIXME translate: Bemerke das Totale Interne Reflexion in meinem
+ Anwendungsfall prinzipiell nur mit dem Verlust des Strahls
+ einhergeht, denn er traegt nicht mehr zur Samplebeleuchtung bei. Die
+ exakte des reflektierten Strahls Richtung ist in diesem Fall
+ irrelevant. Ich schreibe sie der Vollstaendigkeit halber aber hier
+ mit auf.
+
+
+ Then the tangential component is invariant and normal
 component inverts the sign:
  \begin{align}
    \k_2&=\k_{1t}-\k_{1n}\\
@@ -92,60 +168,46 @@ component inverts the sign:
    &=\k_1-2(\k_1\n)\n\\
    \t_\textrm{TIR}&=\boxed{\i-2(\i\n)\n}
  \end{align}
-\section{Intersection of a ray and a plane}
-Let a ray start at a point $\s$ with direction $\hd$.  A plane
-(defined by a point $\c$ and the normal $\n$) intersects this ray if
-normal and ray direction are not perpendicular: $\n\,\hd\not=0$. The
-distance between the plane and the origin is $h=\c\n$. I define the
-plane equation in Hesse normal form:
-\begin{align}
-  \r\n=h
-\end{align}
-I replace the coordinate $\r$ with the ray equation and solve for
-the parameter $\tau$:
-\begin{align}
-  (\s+\tau\hd)\n&=h\\
-  \s\n+\tau\hd\n&=h\\
-  \tau&=\boxed{\frac{h-\s\n}{\hd\n}}
-\end{align}
- \begin{figure}[!hbt]
-   \centering
-   \svginput{1}{plane-intersection}
-   \caption{Schematic of plane-ray intersection.}
- \end{figure}
-\section{Intersection of a ray and a sphere}
-Let a ray start at a point $\s$ with direction $\hd$.  Let a sphere be
-centred in $\c$ with radius $R$. Their two equations
-\begin{align}
-  (\r-\c)^2&=R^2\\
-  \r&=\s+\tau\hd
-\end{align}
-define the intersection points. Substitution of $\r$ results in a
-quadratic equation for $\tau$:
-\begin{align}
-  (\s+\tau\hd-\c)^2&=R^2\\
-  \l&:=\boxed{\s-\c}\\
-  l^2+2\tau\l\hd+\tau^2-R^2&=0\\
-  \underbrace{1}_a\tau^2+\underbrace{2\l\hd}_b\tau+\underbrace{l^2-R^2}_c&=0
-\end{align}
-\subsection{Solving the quadratic equation}
-In order to prevent numerical errors the following solution should be
-used \citep{Press1997}:
-\begin{align}
-  \Delta&:=\boxed{b^2-4ac}\\
-  q&:=\boxed{-\frac{b+\sqrt{\Delta}\sign b}{2}}\\
-  \tau&=\boxed{
-  \begin{cases}
-    q/a &\,\textrm{when}\,\abs{q}\approx 0\\ 
-    c/q &\,\textrm{when}\,\abs{a}\approx 0\\
-    (q/a, c/q) &\,\textrm{else}
-  \end{cases}}
-\end{align}
-If the discriminant $\Delta$ is negative the ray misses the sphere and
-there is no solution. If the discriminant is zero the ray touches the
-periphery and there is only one solution. A positive discriminant
-corresponds to two solutions.
-\section{Refraction on paraxial thin lens}
+\section{Refraction on lenses}
+FIXME translate:
+
+\cma{Gueltigkeitsbereich des Modells} Eine ideale Linse ist
+infinitesimal duenn und definiert durch ihre Fokuslaenge, also dem
+Abstand zwischen der Linse und der Ebene, in der parallel einfallende
+Strahlen sich schneiden. Fuer eine ideale Linse ist die Fokuslaenge
+unabhaengig davon, unter welchem Winkel Strahlen einfallen. In der
+Praxis gilt das Modell der duennen Linse nur fuer sehr lange
+Fokuslaengen beispielsweise eine 3mm dicke Linse und 200mm
+Fokuslaenge, dann jedoch auch nur fuer Strahlen die unter einem sehr
+kleinen Winkel zur optischen Achse verlaufen (paraxiale Strahlen). 
+
+\cma{Hauptebenen} Fuer eine dicke Linse kann man den Strahlverlauf auf
+eine duenne Linse zurueckfuehren, wenn man die zwei Hauptebenenen der
+dicken Linse bestimmt und den Strahl dazwischen einfach axial
+verschiebt \cite{Smith2000}. Die Hauptebene einer dicken Linse
+befindet sich auf dem Schnittpunkt eines parallel zur optischen Achse
+einfallenden Strahls $\i$ und des austretenden Strahls $\r$. Wie auch
+die Fokuslaenge ist auch die Hauptebene eine Linseneigenschaft, die
+fuer reale Linsen nur im paraxialen Fall gilt. An einer dicken Linse
+gibt es zwei Hauptebenen, fuer die zwei moeglichen Richtungen von
+denen man die parallelen Strahlen hindurchsenden kann. Der Abstand
+zwischen einer Hauptebene und dem dazugehoerigen Fokuspunkt (dem
+Schnitt von $\r$ mit der optischen Achse) ist identisch und die
+Fokuslaenge $f$.
+
+Wie bereits auf Seite \pageref{aplanatic} erwaehnt, kann man
+Mikroskopobjektive als eine Linse auffassen, bei der die Fokuslaenge
+unabhaengig vom Einfallswinkel ist. In diesem Fall ist die Hauptebene
+keine Ebene mehr sondern wird zu einer Kugeloberflaeche deformiert. In
+der Sektion \ref{sec:high-aperture-lens} zeige ich wie man die Formeln
+vom Modell der duennen Linse entsprechend fuer eine aplanatische Linse
+mit Immersion anpassen kann.
+
+
+\subsection{Refraction on paraxial thin lens}
+FIXME translate:
+Zuerst beschreibe ich die Brechung an einer duenne Linse.
+
 The incident beam with direction $\i$ hits the lens at the point
 $\vrho$. A line parallel to $\i$ through the centre of the lens
 defines the point on the focal plane, which will be intersected by the
@@ -157,7 +219,8 @@ transmitted ray $\r$ as well.
   \svginput{1}{lens-fwd}
   \caption{Construction of a ray on a thin lens. The incident beam
     with direction $\i$ (from right) hits the lens at the point
-    $\vrho$.}
+    $\vrho$. FIXME translate: Diese Darstellung ist einer Abbildung in
+    \citep{Hwang2008} nachempfunden.}
 \end{figure}
 
 
@@ -180,26 +243,25 @@ can be used to calculate the length $\abs{\overline{BC}}$:
   \frac{\abs{\overline{CB}}}{1}&=
   \frac{\rho}{f/\cos(\theta)}.
 \end{align}
-Given its length, the vector $\overline{CB}$ can now be calculated,
-because its direction is known to be along $\vrho$. With this vector
-and $\i$ one can now obtain the (arbitrarily scaled) transmitted
-vector $\r'$. I could normalize it but it turns out to be useful for
-the high NA immersion lens to find the vector $\r$, that ends in the
-focal plane.  The procedure from above is condensed in the following
+Given its length, the vector $\vv{CB}$ can now be calculated, because
+its direction is known to be along $\vrho$. With this vector and $\i$
+one can now obtain the (arbitrarily scaled) transmitted vector
+$\r'$. I could normalize it but it turns out to be useful for the high
+NA immersion lens to deliver the vector $\r$, that ends in the focal
+plane.  The procedure from above is condensed in the following
 equations:
 \begin{align}
   \vrho&=(x_0,y_0,0)^T=\rho (\cos\phi,\sin\phi,0)^T\\
   \phi&=\arctan(y_0/x_0)\\
-  \cos\theta&=\boxed{\i\hz}\\
+  \cos\theta&=\boxed{\i\,\hz}\\
   \r'&=\i- \frac{\cos\theta}{f}\vrho\\
   \r&=\boxed{\frac{f}{\cos\theta} \i -\vrho}
 \end{align}
-
-\section{Refraction through high NA objective (illumination)}
-It is possible to augment the results of the calculation from the
-previous chapter to treat an aplanatic immersion objective
-\citep{Hwang2008}.
-
+with the axial unit vector $\hz=(0,0,1)^T$.
+\subsection{Refraction through high aperture objective (illumination)}
+\label{sec:high-aperture-lens}
+Now I augment the results of the calculation from the previous chapter
+to treat an aplanatic immersion objective \citep{Hwang2008}.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{obj-fwd}
@@ -209,45 +271,65 @@ previous chapter to treat an aplanatic immersion objective
     $\a$ to accommodate for the immersion and one must take into
     account spherical principal surface (aplanatic surface) .}
 \end{figure}
-
-
 I account for the immersion medium by shifting the focal plane in
-sample space to $nf$ using the focus difference vector $\a$.
+sample space to $nf$ using the focus difference vector $\a$, i.e.\ for
+an immersion lens with $n=1.52$ the focus moves further away from the
+principal plane.
 \begin{align}
   \a &= \boxed{f (n-1) \hz} \\
   R &= \boxed{nf}
 \end{align}
-The principal surface\footnote{Microscope objectives generally fulfil
-  the Abbe sine condition and form stigmatic images from the sample
-  plane in the image image plane. In this case the principal surface
-  on the object side is a sphere.} is a sphere of radius $R=nf$ around
-the image point \citetext{\citealt[p.~22]{Smith2000} and
-  \citealt{Botcherby2008}}. In the paper \citet{Hwang2008} they
-express the deviation between the real principal surface and the
-principal plane with an approximation for small angles $\theta$ and
-$\phi$:
+In order to account for the curvature of the aplanatic surface, the
+origin of the transmitted ray is axially shifted by a $\rho$ dependent
+sag $\s$ from the principal plane onto the aplanatic surface:
 \begin{align}
-  \s &= \left(R - \sqrt{R^2-\rho^2}\right)\i
+  \s &= \left(R - \sqrt{R^2-\rho^2}\right) \hz
 \end{align}
-This is an approximation because it only takes into account the
-perpendicular (along $\z$) distance between plane and sphere. They
-demonstrate the viability of this approximation by comparing its
-results with a full raytrace through a $100\times\,1.41$
-objective. Focus displacement errors are less than \unit[130]{nm} for
-a field of $\unit[86.4]{\mu m}$ radius. This would be sufficient for
-our problem. However, in my implementation I reuse the code for
-ray--sphere intersection to determine the exact vector $\s$.
-
 The final ray exiting the objective has the direction $\r_0$:
 \begin{align}
   \r_0 &= \boxed{\r + \a - \s}.
 \end{align}
-\section{Reverse path through oil objective (detection)}
+
+FIXME translate: Alle fuer unsere Bildgebung in Frage kommenden
+Mikroskopobjektive sind als aplanatisches System ausgelegt und nur am
+Rand des Feldes werden Abweichungen auftreten, Dieses Modell ist daher
+sehr gut geeignet um unsere Objektive waehrend der
+Beleuchtungsoptimierung zu repraesentieren.
+
+In the paper \citet{Hwang2008} the authors demonstrate the viability
+of this model by comparing its results with a full raytrace through a
+$100\times\,1.41$ objective. Focus displacement errors are less than
+\unit[130]{nm} for a field of $\unit[86.4]{\mu m}$ radius.
+
+Das ist vollkommen ausreichend fuer unsere Anwendung.  Man koennte
+meinen, es waere gut die genauen Objektivparameter zu kennen (also
+Glaeser sowie die Curvature und die Scheitelpositionen der
+Linsenoberflaechen). Diese Angaben werden jedoch von keinem Hersteller
+veroeffentlicht. Ausserdem spielen in Mikroskopobjektiven die
+Zentrierfehler eine herausragende Rolle, so dass das Design an sich
+vermutlich kaum eine bessere Aussage als dieses Modell
+zulaesst. Moeglicherweise koennte man unser spatio-angulares Mikroskop
+vermutlich sogar dazu einsetzen, um die Performance eines
+Mikroskopobjektivs zu vermessen.
+
+\subsection{Reverse path through oil objective (detection)}
 Now I consider the oil objective in the reverse direction (see
 \figref{fig:obj-ref-full}). Given a ray that starts within the sample
 I will determine the ray in the pupil.
 
-\subsection{Easy case: back focal plane positions only}
+FIXME translate: Dafuer habe ich mir nacheinander zwei Ansaetze
+ueberlegt. Der erste und einfachere nutzt aus, dass ein perfektes
+Mikroskopobjektiv die Strahlwinkel aus dem Sample in linearer Weise in
+Positionen auf der Pupille umwandelt. Dieser Ansatz reicht fuer die
+Berechnung von pupil plane SLM patterns aus, wenn sich das Sample in
+index-matched embedding medium befindet.
+
+Im zweiten Ansatz berechne ich zusaetzlich die Winkel der aus der
+Pupille austretenden Strahlen. F\"ur ein perfekt aplanatisches
+Objektiv bringt das zwar keine Vorteile, die Formeln lassen sich dann
+aber aendern, um auch Aberrationen zu beruecksichtigen.
+
+\subsubsection{Easy case: back focal plane positions only}
 If the intersections of rays in the back focal plane are sufficient, a
 full raytrace is not necessary. This is the case when imaging beads in
 index matched embedding medium and we want to calculate a pattern for
@@ -273,7 +355,7 @@ back focal plane is hit.
      $\i$ and the optical axis, the further outside the ray will pass
      through the back focal plane.}
  \end{figure}
- \subsection{Full raytrace through oil objective in detection
+ \subsubsection{Full raytrace through oil objective in detection
    direction}
 \label{sec:objective-raytrace-detection}
 Now I discuss the general case and calulate both, the origins and the
@@ -289,26 +371,34 @@ space). The incident ray is defined by its starting point $\p$ and the
 direction $\i$. First I calculate the centre of the aplanatic sphere
 $\vect g$:
 \begin{align}
-  \vect g &= \c + nf \n.
+  \vect g &= \c + nf\, \n.
 \end{align}
 Then I obtain the position $\p'$ by intersecting the incident ray and
 the plane perpendicular to the optical axis through $\vect{g}$.  The
 focus difference vector is defined by its length and the optical
 axis. It can be used to calculate an intermediate point $\p''$.
 \begin{align}
-  \a &= -f(n-1)\n \\
+  \a &= -f\, (n-1)\,\n \\
   \p'' &= \p' + a.
 \end{align}
-The point $\p''$ has now been shifted, so that a thin air lens would
+The point $\p''$ has been shifted, so that an aplanatic air lens would
 image it exactly as the oil objective would image $\p'$. One can use
 $\p''$ to find the direction $\t$ of the transmitted ray. It is just
-the normalized difference vector $\vect m$ to the principal point.
+the normalized difference vector $\vect m$ to the principal point $\c$.
 \begin{align}
   \vect m &= \c - \p'' \\
   \t &= \vect m / \abs{\vect m}.
 \end{align}
-As a last step I calculate the starting point $\e$ of the transmitted
-ray by intersecting the incident ray with the aplanatic sphere.
+As a last step I calculate the starting point $\e'$ of the transmitted
+ray by intersecting the incident ray with the aplanatic sphere (in
+point $\e$) and axially shifting this point onto the principal plane.
+
+FIXME translate: Bemerkung: Um die Richtigkeit der Implementierung der
+Formeln am aplanatischen Objektiv zu ueberpruefen koennen die
+voneinander unabhaengigen Algorithmen dieser Sektion (in
+Detektionsrichtung) mit Sektion \ref{sec:high-aperture-lens} (in
+Beleuchtungsrichtung) miteinander verglichen werden.
+
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{obj-rev-full}
@@ -322,10 +412,10 @@ Now I will extend the formulas of the previous section to include
 aberrations due to a non-matched embedding medium $n_e\not=n$.
 
 I consider a ray originating in point $\p$ with direction $\i$ within
-an immersion of index $n_e$. I determine the intersection $\f$ of the
-ray with the coverslip--embedding interface and refract to obtain
-$\i'$. Then I calculate the time $t$ a photon takes, to travel from
-$\p$ to the interface $\f$:
+an embedding medium of index $n_e$. I determine the intersection $\f$
+of the ray with the coverslip--embedding interface and refract to
+obtain $\i'$. Then I calculate the time $t$ a photon takes, to travel
+from $\p$ to the interface $\f$:
 \begin{align}
   t = \abs{\f - \p} \frac{n_e}{c}
 \end{align}
@@ -333,39 +423,64 @@ and extend the path of the photon backward along the direction $\i'$
 (corrected for the refraction at the coverslip--embedding surface) by
 the distance $tc/n$. This results in the corrected position $\p'$ that
 indicates where the photon would have originated if the embedding
-would have been index matched.  Now I can apply the equations from
-the previous sections on the ray defined by $\p'$ and $\i'$ to obtain
-the transmitted ray in the pupil.
+would have been index matched.  Now I can apply the equations from the
+previous section on the ray defined by $\p'$ and $\i'$ to obtain the
+transmitted ray in the pupil.
 
  \begin{figure}[!hbt]
    \centering
    \svginput{1}{obj-rev-full-emb}
-   \caption{Construction that treats the interface between embedding
-     and immersion medium}
+   \caption{Construction of an oil immersion objective with a
+     non-index matched embedding medium.}
  \end{figure}
 \section{Sphere projection}
 \label{sec:sphere-projection}
-When I model our sample as a collection of spheres, it is useful to
-trace rays from the periphery of these spheres through an in focus
-target $\c$ into the back focal plane. 
-
 While the previous sections have described a fairly general raytracer,
 this section is very technical and relates to our specific problem to
 represent the sphere model of a fluorophore distribution with as few
 rays as possible.
 
-The tangents of an out-of-focus sphere $S^\s_r$ centred at $\s$ with
-radius $r$ that pass through the target $\c$ form a double cone
-(assuming $\c$ is outside of $S^\s_r$. The tangents touch the surface
-of the sphere $S^\s_r$ at the circular intersection $C$ with the sphere
-$S^\c_R$ centred at $\c$ with radius $R=\abs{\c-\s}$. Radius $R$ is
-the distance from the target to the centre of the out-of-focus sphere.
+FIXME translate:
+
+Abbildung fig:touch-cone~D) zeigt eine Darstellung der
+Interaktionslaenge von Strahlen mit out-of-focus Nuklei, die auf allen
+Punkten der Pupille, die durch den Zielpunkt $\c$ gehen. Die
+Berechnung eines solchen Bildes erfordert die Berechnung einer
+Vielzahl an Strahlen (mindestens 50x50) durch das Objektiv. Um den
+Rechenaufwand zu verringern, kehre ich die Strahlrichtung um. Ich
+ermittle Strahlen von der Periphery jedes out-of-fokus Nukleus durch
+den Zielpunkt $\c$ und bestimme die entsprechenden ``Schattenmasken''
+auf der Pupille in fig:touch-cone~E). Durch diesen Ansatz kann man mit
+deutlich weniger Strahlen (es reichen 7 Strahlen pro out-of-fokus
+Nukleus) hinreichend gute Masken ermitteln.
+
+Jetzt erklaere ich anhand der in fig:touch-cone~A) dargestellten
+Geometrie, wie ich die Punkte auf auf der Peripherie der Nuklei
+selektiere, um diese Berechnung zu ermoeglichen.
+
+The tangents of an out-of-focus sphere
+{\color[rgb]{0.06666667,0.50196078,0}$S^\s_r$}
+centred at $\s$ with radius $r$ that pass through the target $\c$ form
+a double cone (assuming $\c$ is outside of $S^\s_r$. The tangents
+touch the surface of the sphere $S^\s_r$ at the circular intersection
+{\color[rgb]{0.66666667,0,0}{$C$}} with the sphere
+{\color[rgb]{0,0.26666667,0.66666667}$S^\c_r$}
+centred at $\c$ with radius $R=\abs{\c-\s}$. Radius $R$ is the
+distance from the target to the centre of the out-of-focus sphere.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{touch-cone}
-  \caption{Schematic of how an out-of-focus nucleus and a target point
-    $c$ (not necessarily in the centre of a target nucleus) define a
-    cone of tangential rays.}
+  \caption{{\bf (A)} Schematic of how an out-of-focus nucleus and a
+    target point $c$ (not necessarily in the centre of a target
+    nucleus) define a cone of tangential rays. {\bf (B)} FIXME
+    translate: Darstellung mitsamt Objektiv um das Problem zu
+    veranschaulichen. {\bf (C)} Beispielverteilung mit sechs
+    fluoreszenten Kugeln die fuer D und E benutzt wurde. {\bf (D)}
+    Darstellung der Pupille mit exakt ermittelter Interaktionslaenge
+    der Strahlen durch $\c$ mit out-of-focus Nuklei. {\bf (E)} Mit der
+    in dieser Sektion vorgestellten Approximation der
+    Interaktionslaenge.}
+  \label{fig:touch-cone}
 \end{figure}
 In order to find a point $\e$ where a tangent touches the out-of-focus
 sphere, it is sufficient to solve the following equation in a 2D
@@ -403,45 +518,60 @@ equals the square of the length $\abs{\q\x}=\x^2$.
   \hy&=\y/\abs{\y}
 \end{align}
 Now I can sample the intersection circle $C$ in order to create
-viable starting points $\e$ for tangential rays.  Let $R_\phi^\hc$ be
+viable starting points $\e$ for tangential rays.  Let $M_\phi^\hc$ be
 a rotation matrix that rotates a vector by angle $\phi$ around an axis
 $\hc$. A point $\e$ on the circle is then defined using one solution
 from equations \ref{eqn:x1} and \ref{eqn:y1}. The ray direction $\f$
 is then easily obtained:
 \begin{align}
-  \e&=\s+x_1\hx+y_1R_\phi^\hx\hy\\
-  \f&=\c-\e.
+  \e(\phi)&=\s+x_1\hx+y_1M_\phi^\hx\,\hy\\
+  \f(\phi)&=\c-\e.
 \end{align}
-Tracing a sufficient number of rays (e.g.\ 16) with direction $\f$ for
+Tracing a sufficient number of rays (e.g.\ 7) with direction $\f$ for
 different angles $\phi$ to the back focal plane gives the projection
 of the intersection circle $C$. Note that this projection in general
 is not a circle anymore.
 
-For practical reasons its useful to project vector $\x$ as well. It
+For practical reasons it is useful to project vector $\x$ as well. It
 can be used as the centre of the (distorted) shape on the back focal
 plane to rasterize it as a fan of triangles.
 
 \section{Conclusion}
-I documented how to trace rays through a perfect thin lens and a high
-numerical aperture objective. These equations are the starting point
-to find good illumination strategies. 
+FIXME translate:
 
-The treatment of aberrations due to a non-matching embedding medium
-needs more parameters (target depth, refractive index $n_e$) and a
-raytrace from sample space, through the back focal plane, tubelens and
-focal plane SLM (fLCoS). However, it enriches the type of control,
-that can be implemented. Illumination with high angles into a low
-index embedding medium will create thin slices of light (highly
-inclined and laminated optical sheet, see section \ref{sec:hilo}).
+In diesem Kapitel habe ich einen Ueberblick ueber den von mir
+entwickelten Raytracer gegeben. Dieser ist speziell auf mein Problem
+fuer die Abbildung mit einem aplanatischen Objektiv zugeschnitten.
+Die Berechnung wurde optimiert, so dass ohne weiteres gute
+Beleuchtungsmuster in Echtzeit ermittelt werden koennen. 
+
+Weiterhin habe ich die Formeln erweitert, um auch die Aberration zu
+beruecksichtigen, die auftritt wenn ein Sample nicht index-matched
+eingebettet wurde. Dies verringert zwar die bei der Detektion
+moeglichen Aufloesung schon bei geringen Eindringtiefen erheblich,
+ermoeglicht aber eine interessante Art der Beleuchtung mit einem
+highly inclined and laminated optical sheet (see section
+\ref{sec:hilo}). In diesem Fall wird durch ein Fenster am Rand der
+pupille beleuchtet, so dass die Strahlen die Grenzflaeche zum Medium
+nahezu im kritischen Winkel der Totalreflexion erreichen und sehr
+steil durch das Medium gehen. Um die korrekte Position im Feld
+auszuleuchten, muss das auf dem focal plane SLM angezeigte Fenster
+entsprechend verschoben werden um die auftretende (vorallem
+sphaerische) Aberration zu kompensieren.
 
 Note that ray optics are not an sufficient approximation, when
 intensity features in the scale of the wavelength are to be
 investigated. Small features would mean that only a few pixels of the
-LCoS would be enabled. This would mean that most of the information of
-the MMA pattern is filtered out at the LCoS and no simultaneous tight
-angular control would be possible.
+focal plane SLM would be enabled. This would mean that information of
+the pupil plane SLM pattern is heavily filtered and no simultaneous
+tight angular control would be possible.
 
 %FIXME maybe compare to ./cyberpower-store/0314/zeiss-patents/20080106795-correction-ring.pdf 
 %or US7268953-63x.pdf
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "kielhorn_memi"
+%%% End: 
 
 

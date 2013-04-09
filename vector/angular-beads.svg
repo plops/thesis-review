@@ -186,14 +186,14 @@
     <image
        width="283.46457"
        height="141.73228"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/m_ang.jpg"
+       xlink:href="../raster/m_ang.jpg"
        id="image4790"
        x="242.40845"
        y="62.924892" />
     <image
        width="283.46457"
        height="141.73228"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/m_bfp_co.jpg"
+       xlink:href="../raster/m_bfp_co.jpg"
        id="image4868"
        x="242.40845"
        y="210.35347" />
@@ -211,7 +211,7 @@
          y="75.870987"
          x="74.837021"
          id="image4930"
-         xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/model.jpg"
+         xlink:href="../raster/model.jpg"
          height="113.42904"
          width="159.44882" />
     </g>

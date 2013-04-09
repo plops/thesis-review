@@ -627,21 +627,21 @@
        y="287.83255"
        x="288.2749"
        id="image3209"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/air-surf.png"
+       xlink:href="../raster/air-surf.png"
        height="66.721138"
        width="70.866142" />
     <image
        y="287.83255"
        x="471.72165"
        id="image3271"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/oil-surf.png"
+       xlink:href="../raster/oil-surf.png"
        height="66.721138"
        width="70.866142" />
     <image
        y="287.83255"
        x="379.99832"
        id="image3333"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/water-surf.png"
+       xlink:href="../raster/water-surf.png"
        height="66.721138"
        width="70.866142" />
     <text
@@ -886,21 +886,21 @@
        y="201.22078"
        x="467.72165"
        id="image3711"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/oil.jpg"
+       xlink:href="../raster/oil.jpg"
        height="74.409447"
        width="74.409447" />
     <image
        y="201.22078"
        x="375.99832"
        id="image3773"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/water.jpg"
+       xlink:href="../raster/water.jpg"
        height="74.409447"
        width="74.409447" />
     <image
        y="201.22078"
        x="284.2749"
        id="image3835"
-       xlink:href="file:///dev/shm/gentoo/home/martin/revise/raster/air.jpg"
+       xlink:href="../raster/air.jpg"
        height="74.409447"
        width="74.409447" />
     <text

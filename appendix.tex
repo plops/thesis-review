@@ -57,7 +57,48 @@
   style=myframe
 }
 
+FIXME translate:
 
+Der folgende Quellcode ermoeglicht es mit moeglichst wenig
+Nutzerinteraktion Kalibrationsdaten fuer eine Andor EMCCD Kamera
+aufzunehmen.
+
+Das Programm ist in einem Basicdialekt geschrieben und kann in der
+Software Andor Solis ausgefuehrt werden. Vor der Benutzung sollte ein
+Bild auf der Kamera erzeugt werden (z.B. mit einem defokussiertem
+Fluoreszenten Sample). Die Daten koennen mit in Matlab/DIPimage mit
+der Funktion \verb!cal_readnoise! oder, falls Matlab keine Option ist,
+mit dem Pythonskript aus dem naechsten Abschnitt ausgewertet
+werden.
+
+Die Auswertung erlaubt es spaeter andere Kamerabilder, die mit
+gleichen Einstellungen --- pre-amp Verstaerkung, EM-gain Verstaerkung,
+Temperatur, vertical shift speed, readout rate --- aufgenommen werden,
+in der Geraeteunabhaengigen Einheit von detektierten Photoelektronen
+anzugeben. Es ist weiterhin moeglich, den tatsaechlich applizierten
+EM-gain oder den excess noise Faktor zu messen. Genauere ausfuehrungen
+dazu befinden sich im Haupttext im Abschnitt ref:ccd-intro.
+
+Die Kamera, die ich bei der Entwicklung dieses Programms eingesetzt
+habe verfuegt ueber einen internen mechanischen Shutter. Das ist
+nuetzlich weil es wichtig ist, fuer jede Einstellung auch mindestens
+eine Dunkelaufnahme zu machen. Aus dieser wird letztendlich das
+Ausleserauschen berechnet.
+
+Die hier abgedruckten Listings befinden sich hintereinander in einer
+Datei die auch unter FIXME github link abrufbar ist.
+
+Ich beschreibe nun den Code. Angenommen das Mikroskop ist auf ein den
+Anforderungen fuer die Kalibrierung genuegendes Sample eingestellt und
+liefert einen kontinuierlichen Photonenfluss. Mit dem Programm sollen
+fuer verschiedene Einstellungen des EM-gain Bilder aufgenommen
+werden. Da der Photonenfluss konstant bleibt, die Verstaerkung jedoch
+stark variiert, habe ich vor jeder Messreihe eine Aufnahme mit
+$\unit[10]{\mu s}$ kurzer Belichtungszeit aufgenommen und aus dem
+darin befindlichen Maximum die Belichtungszeit ausgerechnet um bei
+gegebenen Gain \unit[10000]{ADU} im Maximum zu erhalten. Die folgende
+Funktion macht diese Probemessung und gibt die Belichtungszeit
+zurueck:
 \begin{lstlisting}[style=mybasic]
 function ~GetSaturatingExposure()
         SetKineticNumber(1)
@@ -65,9 +106,14 @@ function ~GetSaturatingExposure()
         SetExposureTime(exp)
         run()
         m=maximum(#0,1,512)
-        GetSaturatingExposure=exp*10000/(m-100)
+        GetSaturatingExposure=exp*10000/(m-100) % 100 is the background in ADU
         CloseWindow(#0)
 return
+\end{lstlisting}
+Der folgende Code-Abschnitt stellt das konventionelle readout Register
+ein (ein Register ohne EM-gain), nimmt 20 Bilder ohne und dann mit
+Licht auf und speichert diese als eine TIF-Bilddatei.
+\begin{lstlisting}[style=mybasic]
 name$ = "C:\Users\work\Desktop\martin\20111111\scan-em3\ixon_"
 print("start")
 
@@ -83,18 +129,25 @@ save(#0,name$ + "conv1_dark.sif")
 ExportTiff(#0, name$ + "conv1_dark.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
-        
+
 SetShutter(1,1)
 run()
 save(#0,name$ + "conv1_bright.sif")
-ExportTiff(#0, name$ + "conv1 _bright.tif", 1, 1, 0, 0)
+ExportTiff(#0, name$ + "conv1_bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
-
+\end{lstlisting}
+Die folgende Schleife macht entsprechende Aufnahmen fuer verschiedene
+EM-gains. Bei der Auswertung hat sich herausgestellt, dass
+\verb!SetGain! eine gewisse Zeit zur Stabilisierung bedarf. Immerhin
+handelt es sich um relativ hohe Spannungen. Ich habe die entsprechende
+Zeile mit einem Kommentar versehen.
+\begin{lstlisting}[style=mybasic]
 SetOutputAmp(0)
 SetShutter(1,1)
 for i = 40 to 300 step 10
         SetGain(i)
+        % here should be a 3s wait
         exp=~GetSaturatingExposure()
         print(exp)
         SetExposureTime(exp)
@@ -112,7 +165,15 @@ for i = 40 to 300 step 10
         CloseWindow(#0)
         CloseWindow(#1)
 next
-
+\end{lstlisting}
+Abschliessend habe ich eine weitere Aufnahme mit dem konventionellem
+readout Register gemacht. Leider hat sich dabei gezeigt, dass das
+sample waehrend des experiments moeglicherweise etwas gebleicht
+wurde. Daher waere es bei einer Wiederholung besser, eine LED
+Lichtquelle einzusetzen oder konventionelle Aufnahmen in die
+EM-Messungen einzustreuen, um derartige Effekte kompensieren zu
+koennen.
+\begin{lstlisting}[style=mybasic]
 SetOutputAmp(1)
 print("conv_end")
 exp= ~GetSaturatingExposure()
@@ -133,6 +194,8 @@ ExportTiff(#0, name$ + "conv2 _bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
+Die Tabelle \ref{tab:ixon-table} zeigt die ausgewertenden Daten fuer
+eine solche Messreihe.
 
 \comment{
 $
@@ -191,38 +254,44 @@ conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
 
 \section{Python code listing for the read noise evaluation}
 \label{sec:python-readnoise-eval}
-
-\begin{figure}
+Im folgenden Abschnitt stelle ich eine Pythonimplementierung zur
+Auswertung der mit dem im vorhergehenden Abschnitt beschriebenen
+Programm aufgenommenen Daten vor.  \figref{fig:ixon} zeigt zwei
+Auswertungen deren zugrundeliegende Daten fuer zwei verschiedene
+Parameter fuer eine Andor IXon3 EM-CCD aufgenommen wurden.
+\begin{figure}[htbp]
   \centering
   \pdfinput{17cm}{ixon_conv1}
   \pdfinput{17cm}{ixon_300}
-  \caption{Readnoise evaluation using the Python code in section
-    \ref{sec:python-readnoise-eval}{\bf top:} Conventional readout of
-    an Andor IXon3 camera. {\bf bottom:} readout with an EM-gain
-    setting of 300 on the same camera with identical sample. {\bf
-      left:} 2D histogram of per pixel variances against binned
-    intensities. {\bf middle:} variance of 20 dark images. {\bf
-      right:} mean of 20 dark images.}
+  \caption{Readnoise evaluation using the Python code{\bf top:}
+    Conventional readout of an Andor IXon3 camera. {\bf bottom:}
+    readout with an EM-gain setting of 300 on the same camera with
+    identical sample. {\bf left:} 2D histogram of per pixel variances
+    against binned intensities. {\bf middle:} variance of 20 dark
+    images. {\bf right:} mean of 20 dark images.}
   \label{fig:ixon}
 \end{figure}
   
-
-
+Der folgende Code laedt einige Pythonpackete. Im wesentlichen benutze
+ich \verb!numpy! in \verb!pylab! fuer die Datenauswertung und
+\verb!matplotlib! fuer die visualisierung der Resultate.
 \begin{lstlisting}[style=mypython]
 #!/usr/bin/env python
-# ./ti.py /media/backup/andor-ultra-ixon/martin/20111111/scan-em3/ ultra 2700
+# usage:   ti.py DIRECTORY CAMERA_NAME EM_GAIN
+# example: ti.py /media/backup/andor-ultra-ixon/martin/20111111/scan-em3/ ultra 2700
 import sys
 import os
-
 import matplotlib
 matplotlib.use('Agg')
-
 from pylab import *
 from libtiff import TIFFfile, TIFFimage
 from scipy import stats
-
 seterr(divide='ignore')
-
+\end{lstlisting}
+Beim start des Programmes uebergebe ich Kommadozeilenparameter, um
+anzugeben, welche Daten geladen werden sollen. Der folgende Code liest
+dann die entsprechenden Bilder mit und ohne Beleuchtung.
+\begin{lstlisting}[style=mypython]
 folder = sys.argv[1]
 cam = sys.argv[2]
 gain = sys.argv[3]
@@ -236,22 +305,14 @@ def readpics(gain,cam='ixon_',isdark=False):
     return (bright[0],dark[0])
 
 (f,b) = readpics(gain=gain,cam=cam)
-
-bg=mean(b,axis=0)
-v=var(f,axis=0)
-i=mean(f,axis=0)
-
+\end{lstlisting}
+Mit dem folgenden Code erzeuge ich ein zweidimensionales Histogramm
+mit 64 Varianzbins und 128 Intensitaetsbins:
+\begin{lstlisting}[style=mypython]
 ny,nx=64,128
 H,y,x=histogram2d(v.flatten(),i.flatten(),bins=[ny,nx],
                   range=[[0,v.max()],[0,i.max()]])
 extent = [x[0], x[-1], y[0], y[-1]] 
-acc=zeros(x.shape,dtype=float64)
-accn=zeros(x.shape,dtype=int64)
-s=nx/i.max()
-for ii,vv in nditer([i,v]):
-    p=round(ii*s)
-    acc[p]+=vv
-    accn[p]+=1   
 
 fig=figure(figsize=(24, 8),dpi=300)
 hold(False)
@@ -260,6 +321,28 @@ subplot(1,3,1)
 imshow(log(H), extent=extent,
            aspect='auto', interpolation='none',origin='lower')
 hold(True)
+\end{lstlisting}
+Das Histogram ist nicht unbedingt notwendig, fuer die Auswertung,
+erlaubt aber eine schnelle Einschaetzung der gemessenen Daten, d.h. ob
+genuegend Messwerte fuer alle Intensitaeten existieren und der Sensor
+nicht ueberbelichtet wurde. 
+
+Der wichtigste Teil der Auswertung erfolgt im folgenden
+Codesegement. Hier akkumuliere ich in den Variablen \verb!acc! und
+\verb!accn! die Daten um die Mittelwerte der Varianzen fuer alle
+Intensitaeten zu bestimmen.
+\begin{lstlisting}[style=mypython]
+acc=zeros(x.shape,dtype=float64)
+accn=zeros(x.shape,dtype=int64)
+s=nx/i.max()
+for ii,vv in nditer([i,v]):
+    p=round(ii*s)
+    acc[p]+=vv
+    accn[p]+=1   
+\end{lstlisting}
+Dann ermittle ich die Fitparameter fuer eine Gerade and die ersten
+60\% der Intensitaeten.
+\begin{lstlisting}[style=mypython]
 ax=x[nonzero(accn)]
 ay=acc/accn
 ay=ay[nonzero(accn)]
@@ -268,6 +351,11 @@ bx=ax[0:l]
 by=ay[0:l]
 plot(ax,ay,'r+')
 slope,intercept,rval,pval,stderr=stats.linregress(bx,by)
+\end{lstlisting}
+Aus dem Anstieg der Kurve bestimme ich den Umrechnungsfaktor von den
+Geraeteabhaengigen ADU und kann damit aus der Varianz der Dunkelbilder
+das Ausleserauschen als Photoelektronenequivalent angeben.
+\begin{lstlisting}[style=mypython]
 plot(ax,polyval([slope,intercept],ax))
 xlabel('intensity/ADU')
 ylabel(r'variance/ADU$^2$')

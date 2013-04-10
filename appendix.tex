@@ -57,48 +57,42 @@
   style=myframe
 }
 
-FIXME translate:
+The following code makes it possible to record calibration data with
+an Andor EM-CCD with as little user interaction as possible. More
+detail is given in section \ref{sec:ccd-intro} the main text on page
+\pageref{sec:ccd-intro}.
 
-Der folgende Quellcode ermoeglicht es mit moeglichst wenig
-Nutzerinteraktion Kalibrationsdaten fuer eine Andor EMCCD Kamera
-aufzunehmen.
+The program is written in a dialect of Basic and can be executed in
+the Andor Solis software. Before use, a picture should be imaged onto
+the sensor, e.g.\ a fluorescent sample. The acquired data can later be
+processed using either the Matlab/DIPimage function
+\verb!cal_readnoise! or equivalently by using the Python script from
+the next section.
 
-Das Programm ist in einem Basicdialekt geschrieben und kann in der
-Software Andor Solis ausgefuehrt werden. Vor der Benutzung sollte ein
-Bild auf der Kamera erzeugt werden (z.B. mit einem defokussiertem
-Fluoreszenten Sample). Die Daten koennen mit in Matlab/DIPimage mit
-der Funktion \verb!cal_readnoise! oder, falls Matlab keine Option ist,
-mit dem Pythonskript aus dem naechsten Abschnitt ausgewertet
-werden.
+Such calibration allows to convert image data into the device
+independent unit of detected photoelectrons but this only works as
+long as data acquisition occurs at the same camera settings (pre-amp
+gain, EM-gain, sensor temperature, vertical shift speed, readout rate,
+...) that were used for the calibration. This Basic program enables
+these measurements for a wide range of EM-CCD amplification settings,
+but could easily be adopted to analyze other parameters.
 
-Die Auswertung erlaubt es spaeter andere Kamerabilder, die mit
-gleichen Einstellungen --- pre-amp Verstaerkung, EM-gain Verstaerkung,
-Temperatur, vertical shift speed, readout rate --- aufgenommen werden,
-in der Geraeteunabhaengigen Einheit von detektierten Photoelektronen
-anzugeben. Es ist weiterhin moeglich, den tatsaechlich applizierten
-EM-gain oder den excess noise Faktor zu messen. Genauere ausfuehrungen
-dazu befinden sich im Haupttext im Abschnitt ref:ccd-intro.
+The camera that I have used in the development of this program
+comprises an internal mechanical shutter. This is useful because it is
+important that for any parameter setting at least one dark image is
+acquired. Ultimately dark images allow to measure the readout noise.
 
-Die Kamera, die ich bei der Entwicklung dieses Programms eingesetzt
-habe verfuegt ueber einen internen mechanischen Shutter. Das ist
-nuetzlich weil es wichtig ist, fuer jede Einstellung auch mindestens
-eine Dunkelaufnahme zu machen. Aus dieser wird letztendlich das
-Ausleserauschen berechnet.
+The code listings in this section are supposed to be in this sequence
+in a single source file which is also available on github link FIXME.
 
-Die hier abgedruckten Listings befinden sich hintereinander in einer
-Datei die auch unter FIXME github link abrufbar ist.
-
-Ich beschreibe nun den Code. Angenommen das Mikroskop ist auf ein den
-Anforderungen fuer die Kalibrierung genuegendes Sample eingestellt und
-liefert einen kontinuierlichen Photonenfluss. Mit dem Programm sollen
-fuer verschiedene Einstellungen des EM-gain Bilder aufgenommen
-werden. Da der Photonenfluss konstant bleibt, die Verstaerkung jedoch
-stark variiert, habe ich vor jeder Messreihe eine Aufnahme mit
-$\unit[10]{\mu s}$ kurzer Belichtungszeit aufgenommen und aus dem
-darin befindlichen Maximum die Belichtungszeit ausgerechnet um bei
-gegebenen Gain \unit[10000]{ADU} im Maximum zu erhalten. Die folgende
-Funktion macht diese Probemessung und gibt die Belichtungszeit
-zurueck:
+For this program I assume that the camera is connected to a microscope
+with a fluorescent sample that provides a continuous flux of
+photons. The program is designed to acquire images with a wide range
+of EM gains. Since the photon flux remains constant but amplification
+varies greatly I acquire an image with short $\unit[10]{\mu s}$
+exposure prior to each measurement. The following function searches
+for the maximum value in this image and calculates an appropriate
+exposure time so that a maximum of \unit[10000]{ADU} will be obtained in the preceeding acquisitions.
 \begin{lstlisting}[style=mybasic]
 function ~GetSaturatingExposure()
         SetKineticNumber(1)
@@ -110,9 +104,10 @@ function ~GetSaturatingExposure()
         CloseWindow(#0)
 return
 \end{lstlisting}
-Der folgende Code-Abschnitt stellt das konventionelle readout Register
-ein (ein Register ohne EM-gain), nimmt 20 Bilder ohne und dann mit
-Licht auf und speichert diese als eine TIF-Bilddatei.
+The following code listing selects the conventional readout register
+of the sensor (a register without EM multiplication), acquires 20
+images without and then with light and stores the data in a TIF image
+file.
 \begin{lstlisting}[style=mybasic]
 name$ = "C:\Users\work\Desktop\martin\20111111\scan-em3\ixon_"
 print("start")
@@ -137,11 +132,14 @@ ExportTiff(#0, name$ + "conv1_bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
-Die folgende Schleife macht entsprechende Aufnahmen fuer verschiedene
-EM-gains. Bei der Auswertung hat sich herausgestellt, dass
-\verb!SetGain! eine gewisse Zeit zur Stabilisierung bedarf. Immerhin
-handelt es sich um relativ hohe Spannungen. Ich habe die entsprechende
-Zeile mit einem Kommentar versehen.
+\comment{
+$
+}
+This loop makes similar acquisitions for a range of EM gains.  When
+evaluating the data, I learned that after calling \verb!SetGain! a
+settling time of a few seconds should be allowed for. After all, there
+are relatively high voltages. I inserted a comment in the
+corresponding line.
 \begin{lstlisting}[style=mybasic]
 SetOutputAmp(0)
 SetShutter(1,1)
@@ -166,13 +164,12 @@ for i = 40 to 300 step 10
         CloseWindow(#1)
 next
 \end{lstlisting}
-Abschliessend habe ich eine weitere Aufnahme mit dem konventionellem
-readout Register gemacht. Leider hat sich dabei gezeigt, dass das
-sample waehrend des experiments moeglicherweise etwas gebleicht
-wurde. Daher waere es bei einer Wiederholung besser, eine LED
-Lichtquelle einzusetzen oder konventionelle Aufnahmen in die
-EM-Messungen einzustreuen, um derartige Effekte kompensieren zu
-koennen.
+Finally I acquire a last measurement with the conventional readout
+register. Unfortunately, the evaluation showed that the sample might
+have bleached slightly during the experiment. Therefore, it would be
+better to calibrate using an LED light source or intersperse
+conventional readouts between measurements with EM gain in order to
+compensate for these effects. FIXME did i write the function run()?
 \begin{lstlisting}[style=mybasic]
 SetOutputAmp(1)
 print("conv_end")
@@ -194,12 +191,9 @@ ExportTiff(#0, name$ + "conv2 _bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
-Die Tabelle \ref{tab:ixon-table} zeigt die ausgewertenden Daten fuer
-eine solche Messreihe.
+Table \ref{tab:ixon-table} shows the results of calibration
+measurements using this software.
 
-\comment{
-$
-}
 
 \begin{table}[!htbp]
   \centering
@@ -254,11 +248,10 @@ conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
 
 \section{Python code listing for the read noise evaluation}
 \label{sec:python-readnoise-eval}
-Im folgenden Abschnitt stelle ich eine Pythonimplementierung zur
-Auswertung der mit dem im vorhergehenden Abschnitt beschriebenen
-Programm aufgenommenen Daten vor.  \figref{fig:ixon} zeigt zwei
-Auswertungen deren zugrundeliegende Daten fuer zwei verschiedene
-Parameter fuer eine Andor IXon3 EM-CCD aufgenommen wurden.
+Here I present a Python implementation for evaluating data that has
+been recorded using the program from the previous
+section. \figref{fig:ixon} shows two evaluations for data with two
+different camera parameters for an Andor IXon3 EM-CCD camera.
 \begin{figure}[htbp]
   \centering
   \pdfinput{17cm}{ixon_conv1}
@@ -271,10 +264,10 @@ Parameter fuer eine Andor IXon3 EM-CCD aufgenommen wurden.
     images. {\bf right:} mean of 20 dark images.}
   \label{fig:ixon}
 \end{figure}
-  
-Der folgende Code laedt einige Pythonpackete. Im wesentlichen benutze
-ich \verb!numpy! in \verb!pylab! fuer die Datenauswertung und
-\verb!matplotlib! fuer die visualisierung der Resultate.
+The following code loads several Python packages. Essentially, I use
+\verb!numpy! from within \verb!pylab! \cite{Jones} for the data
+analysis tasks and the package \verb!matplotlib! \cite{Hunter:2007}
+for visualizing the results.
 \begin{lstlisting}[style=mypython]
 #!/usr/bin/env python
 # usage:   ti.py DIRECTORY CAMERA_NAME EM_GAIN
@@ -288,9 +281,9 @@ from libtiff import TIFFfile, TIFFimage
 from scipy import stats
 seterr(divide='ignore')
 \end{lstlisting}
-Beim start des Programmes uebergebe ich Kommadozeilenparameter, um
-anzugeben, welche Daten geladen werden sollen. Der folgende Code liest
-dann die entsprechenden Bilder mit und ohne Beleuchtung.
+When starting the program I specify which data should be loaded using
+command line parameters. The following code will read in the image
+data with and without illumination.
 \begin{lstlisting}[style=mypython]
 folder = sys.argv[1]
 cam = sys.argv[2]
@@ -306,8 +299,8 @@ def readpics(gain,cam='ixon_',isdark=False):
 
 (f,b) = readpics(gain=gain,cam=cam)
 \end{lstlisting}
-Mit dem folgenden Code erzeuge ich ein zweidimensionales Histogramm
-mit 64 Varianzbins und 128 Intensitaetsbins:
+The next code listing creates a two-dimensional histogram with 64 bins
+for variances and 128 bins for intensities.
 \begin{lstlisting}[style=mypython]
 ny,nx=64,128
 H,y,x=histogram2d(v.flatten(),i.flatten(),bins=[ny,nx],
@@ -322,15 +315,15 @@ imshow(log(H), extent=extent,
            aspect='auto', interpolation='none',origin='lower')
 hold(True)
 \end{lstlisting}
-Das Histogram ist nicht unbedingt notwendig, fuer die Auswertung,
-erlaubt aber eine schnelle Einschaetzung der gemessenen Daten, d.h. ob
-genuegend Messwerte fuer alle Intensitaeten existieren und der Sensor
-nicht ueberbelichtet wurde. 
+The histogram is not strictly necessary for the analysis but gives an
+overview of the measured data at a quick glance, i.e.\ if there were
+enough measurements for all intensities and whether the sensor was
+over-exposed.
 
-Der wichtigste Teil der Auswertung erfolgt im folgenden
-Codesegement. Hier akkumuliere ich in den Variablen \verb!acc! und
-\verb!accn! die Daten um die Mittelwerte der Varianzen fuer alle
-Intensitaeten zu bestimmen.
+The most important part of the evaluation is performed in the
+following code segment. Here I accumulate data in the variables
+\verb!acc! and \verb!accn! that is later used to determine the average
+values of the variances for all intensities.
 \begin{lstlisting}[style=mypython]
 acc=zeros(x.shape,dtype=float64)
 accn=zeros(x.shape,dtype=int64)
@@ -340,8 +333,8 @@ for ii,vv in nditer([i,v]):
     acc[p]+=vv
     accn[p]+=1   
 \end{lstlisting}
-Dann ermittle ich die Fitparameter fuer eine Gerade and die ersten
-60\% der Intensitaeten.
+Subsequently I determine the fit parameters for a line utilizing the
+first 60\% of the intensities.
 \begin{lstlisting}[style=mypython]
 ax=x[nonzero(accn)]
 ay=acc/accn
@@ -352,9 +345,10 @@ by=ay[0:l]
 plot(ax,ay,'r+')
 slope,intercept,rval,pval,stderr=stats.linregress(bx,by)
 \end{lstlisting}
-Aus dem Anstieg der Kurve bestimme ich den Umrechnungsfaktor von den
-Geraeteabhaengigen ADU und kann damit aus der Varianz der Dunkelbilder
-das Ausleserauschen als Photoelektronenequivalent angeben.
+From the slope of the line I determine the conversion factor to
+convert the ADU units into the device-independent unit of
+photoelectrons. With this I convert the variance of the dark images
+into readout noise in terms of photoelectrons.
 \begin{lstlisting}[style=mypython]
 plot(ax,polyval([slope,intercept],ax))
 xlabel('intensity/ADU')
@@ -680,28 +674,20 @@ end
 Unfortunately DIPimage's \verb!readim! function seems to have a bug
 and loads the data as negative values. I manually correct this.
 
+In this particular experiment, the first ten spots on the focal plane
+were not illuminated. Therefore, these images are excluded from the
+following processing. Notable is image 102 because it contains an
+image with uniform illumination. From its histogram I estimated a
+threshold value of \unit[800]{ADU} to find a mask that corresponds to
+the illuminated region.
 
-Of the 103 images, that are loaded into the variable \verb!a!, the
-first 100 contain spots and the image at the zero-based index 102 is
-the uniformly illuminated image shown in \figref{fig:rigid-pics} left.
-The other two images at indices 100 and 101 are two centered disks
-with different diameters and are not used here.
-
-
-FIXME translate In diesem speziellen Experiment, waren die focal plane
-spots fuer die ersten zehn Bilder nicht beleuchtet. Daher werden sie
-im folgenden nicht weiter analysiert.  Wichtig ist Bild 102. Dieses
-enthaelt eine Aufnahme mit uniformer Beleuchtung. Anhand des
-Histogramms dieser Aufnahme habe ich den Wert 800 ADU als Grenze fuer
-eine Maske festgelegt, die sich nur auf den beleuchteten Bereich
-beschraenkt.
-
-Die uniform beleuchtete Aufnahme ist in \figref{fig:rigid-pics} links
-dargestellt. Mit ihrer Hilfe normiere ich jede spot-Aufnahme, so dass
-die spots in jedem Bild ``corr'' denselben Wert aufweisen unabhaengig
-davon, wieviele Lagen von beads sich an der jeweiligen Stelle
-befanden. Dabei subtrahiere ich auch einen Hintergrundwert von 510
-ADU, den ich aus den unbeleuchteten Pixeln der Bilder abgeleitet habe.
+The uniformly illuminated image is displayed in
+\figref{fig:rigid-pics}~left on page \pageref{fig:rigid-pics}. I
+utilize this image for normalization, so that spots in each image have
+the same values in each image \verb!corr! regardless of the number of
+layers of beads in the spots position. I also subtract a background
+value of \unit[510]{ADU}, which I have derived from non-illuminated
+pixels of the images.
 \begin{lstlisting}[style=mymatlab]
 bg = 510; 
 bright = squeeze(a(:,:,102)); 
@@ -722,13 +708,14 @@ the result by gray value and only use the largest.  The measured 90
 coordinates in \verb!posmax! correspond to $\r^c_i$ in equation
 \ref{eq:rigid-sum}.
  
-FIXME translate Der folgende Matlab code erzeugt und startet Input
-fuer Maxima, wie ich in der vorhergehenden Sektion erlaeutert habe, um
-die Transformationsparameter zu ermitteln.
 
-Das automatisch erzeugte Maxima Batch Programm wird dabei in die Datei
-\verb!fit.max! gespeichert. Die von Maxima gefundenen Parameter
-befindet sich in \verb!max.out!.
+The following Matlab code generates and executes code in Maxima to
+determine the parameters of the transformation, as I explained in the
+previous section.
+
+The programmatically generated Maxima batch program is stored in the
+file \verb!fit.max!. After a successful run Maxima returns the
+transform parameters in the file \verb!max.out!.
 \begin{lstlisting}[style=mymatlab]
 c = double(posmax)';
 cmd = ''; % collect equations in maxima format
@@ -757,7 +744,6 @@ I load the transformation parameters back into Matlab and create the a
 diagram (shown in \figref{fig:rigid-compare} in the main text on page
 \pageref{fig:rigid-compare}) to visualize, how well the transform
 matches camera and display coordinates.
-
 \begin{lstlisting} [style=mymatlab]
 % load rigid transformation parameters from the file into matlab
 params = load('max.out')';
@@ -787,3 +773,8 @@ plot(mapped(11:end,1),mapped(11:end,2),'r+');
 \end{lstlisting}
 
 % print -depsc2 /home/martin/thesis/kielhorn/rigid/rigid-compare
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "kielhorn_memi"
+%%% End: 

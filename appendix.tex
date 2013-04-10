@@ -199,10 +199,10 @@ using the Python code from the next section.
   \centering
 %  \begin{tabular}{|l|l|l|l|l|l|l|l|}
   \begin{tabular}{r l l r  l r l}
-\hline
+\toprule
 $\textsf{gain}_\textrm{software}$ & $1/(M\cdot M_\textrm{pre})$ & $N_r$ & $N_{(M)}/(W\times H)$ &  \textsf{exposure} & $N_{(M)}'/(W\times H)$ & $1/F_n$ \\
  & [e/ADU] & [e/px] & [e/px] & [ADU] & [s] & [e/(px s)]  \\
-\hline
+\midrule
 conv1 & 1.3165 & 7.189 & 3008.66      & 0.2016 & 14923 & 0.981 \\
 50 & 0.1160 & 0.486 & 260.05 & 0.0289 & 8995 & 0.591 \\
 60 & 0.0984 & 0.406 & 225.46 & 0.0249 & 9054 & 0.595 \\
@@ -231,7 +231,7 @@ conv1 & 1.3165 & 7.189 & 3008.66      & 0.2016 & 14923 & 0.981 \\
 290 & 0.0214 & 0.130 & 63.38 & 0.0062 & 10162 & 0.668 \\
 300 & 0.0205 & 0.128 & 63.20 & 0.0062 & 10133 & 0.666 \\
 conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
-\hline
+\bottomrule
 \end{tabular}
 %  \includegraphics[width=12cm]{../app_cam/ixon3}
 \caption{Comparison of read noise for different EM-gain settings

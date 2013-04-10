@@ -57,42 +57,43 @@
   style=myframe
 }
 
-The following code makes it possible to record calibration data with
-an Andor EM-CCD with as little user interaction as possible. More
-detail is given in section \ref{sec:ccd-intro} the main text on page
+The following code allows to record data for calibration of a Andor
+EM-CCD with as little user interaction as possible. More detail is
+given in the main text in section \ref{sec:ccd-intro} on page
 \pageref{sec:ccd-intro}.
 
 The program is written in a dialect of Basic and can be executed in
-the Andor Solis software. Before use, a picture should be imaged onto
-the sensor, e.g.\ a fluorescent sample. The acquired data can later be
-processed using either the Matlab/DIPimage function
-\verb!cal_readnoise! or equivalently by using the Python script from
-the next section.
+the Andor Solis software. Before use, a picture resembling
+\figref{fig:shot-noise} should be imaged onto the sensor, e.g.\ a
+defocused fluorescent sample. The acquired data can later be processed
+using either the Matlab/DIPimage function \verb!cal_readnoise! or,
+equivalently, by using the Python script from the next section.
 
-Such calibration allows to convert image data into the device
+A camera calibration allows to convert image data into the device
 independent unit of detected photoelectrons but this only works as
 long as data acquisition occurs at the same camera settings (pre-amp
 gain, EM-gain, sensor temperature, vertical shift speed, readout rate,
-...) that were used for the calibration. This Basic program enables
-these measurements for a wide range of EM-CCD amplification settings,
-but could easily be adopted to analyze other parameters.
+...) as those that were used for the calibration. This Basic program
+measures data for a wide range of EM-CCD amplification settings, but
+it could easily be adopted to analyze other parameters as well.
 
 The camera that I have used in the development of this program
 comprises an internal mechanical shutter. This is useful because it is
-important that for any parameter setting at least one dark image is
-acquired. Ultimately dark images allow to measure the readout noise.
+important that for each parameter setting at least one dark image is
+acquired. Ultimately, dark images are necessary to quantify the
+readout noise.
 
 The code listings in this section are supposed to be in this sequence
 in a single source file which is also available on github link FIXME.
 
-For this program I assume that the camera is connected to a microscope
-with a fluorescent sample that provides a continuous flux of
-photons. The program is designed to acquire images with a wide range
-of EM gains. Since the photon flux remains constant but amplification
-varies greatly I acquire an image with short $\unit[10]{\mu s}$
-exposure prior to each measurement. The following function searches
-for the maximum value in this image and calculates an appropriate
-exposure time so that a maximum of \unit[10000]{ADU} will be obtained in the preceeding acquisitions.
+For this program I assume that the camera is illuminated with a
+continuous flux of photons. The program is designed to acquire images
+with a wide range of EM gains. Since the photon flux remains constant
+but amplification varies greatly, I acquire one image with a short
+$\unit[10]{\mu s}$ exposure prior to each measurement. The following
+function searches for the maximum value in this image and calculates
+an appropriate exposure time so that a maximum of \unit[10000]{ADU}
+will be obtained in the preceeding acquisitions.
 \begin{lstlisting}[style=mybasic]
 function ~GetSaturatingExposure()
         SetKineticNumber(1)
@@ -132,14 +133,11 @@ ExportTiff(#0, name$ + "conv1_bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
-\comment{
-$
-}
-This loop makes similar acquisitions for a range of EM gains.  When
-evaluating the data, I learned that after calling \verb!SetGain! a
-settling time of a few seconds should be allowed for. After all, there
-are relatively high voltages. I inserted a comment in the
-corresponding line.
+\comment{ $ } The loop in the next listing makes similar acquisitions
+for a range of EM gains.  Later, when evaluating the data, I learned
+that after calling \verb!SetGain! a settling time of a few seconds
+should be allowed for. After all, there are relatively high
+voltages. I inserted a comment in the corresponding line.
 \begin{lstlisting}[style=mybasic]
 SetOutputAmp(0)
 SetShutter(1,1)
@@ -165,12 +163,7 @@ for i = 40 to 300 step 10
 next
 \end{lstlisting}
 Finally I acquire a last measurement with the conventional readout
-register. Unfortunately, the evaluation showed that the sample might
-have bleached slightly during the experiment. Therefore, it would be
-better to calibrate using an LED light source or intersperse
-conventional readouts between measurements with EM gain in order to
-compensate for these effects. FIXME did i write the function run()?
-\begin{lstlisting}[style=mybasic]
+register: \begin{lstlisting}[style=mybasic]
 SetOutputAmp(1)
 print("conv_end")
 exp= ~GetSaturatingExposure()
@@ -191,8 +184,15 @@ ExportTiff(#0, name$ + "conv2 _bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
-Table \ref{tab:ixon-table} shows the results of calibration
-measurements using this software.
+Unfortunately, the evaluation showed that the sample might have
+bleached slightly during the experiment. Therefore, it would be better
+to calibrate using an LED light source or intersperse conventional
+readouts between measurements with EM gain in order to compensate for
+these effects. FIXME did i write the function run()?
+
+Table \ref{tab:ixon-table} summarizes results of calibration
+measurements that were acquired using this software and evaluated
+using the Python code from the next section.
 
 
 \begin{table}[!htbp]
@@ -239,7 +239,7 @@ conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
   estimates the number of photoelectrons the detector would have
   seen with \unit[1]{s} integration time and is used to calculate
   the excess noise factor in the last column. In EM-mode the fastest
-  readout speed was used \unit[10]{MHz} with vertical shift speed of
+  readout speed was used (\unit[10]{MHz}) with a vertical shift speed of
   \unit[1.7]{$\mu$s}.}
   \label{tab:ixon-table}
 \end{table}
@@ -251,7 +251,8 @@ conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
 Here I present a Python implementation for evaluating data that has
 been recorded using the program from the previous
 section. \figref{fig:ixon} shows two evaluations for data with two
-different camera parameters for an Andor IXon3 EM-CCD camera.
+different camera parameters using an Andor IXon3 EM-CCD camera.
+
 \begin{figure}[htbp]
   \centering
   \pdfinput{17cm}{ixon_conv1}
@@ -265,8 +266,8 @@ different camera parameters for an Andor IXon3 EM-CCD camera.
   \label{fig:ixon}
 \end{figure}
 The following code loads several Python packages. Essentially, I use
-\verb!numpy! from within \verb!pylab! \cite{Jones} for the data
-analysis tasks and the package \verb!matplotlib! \cite{Hunter:2007}
+\verb!numpy! by loading \verb!pylab! \citep{Jones} for the data
+analysis tasks and the package \verb!matplotlib! \citep{Hunter:2007}
 for visualizing the results.
 \begin{lstlisting}[style=mypython]
 #!/usr/bin/env python
@@ -282,8 +283,8 @@ from scipy import stats
 seterr(divide='ignore')
 \end{lstlisting}
 When starting the program I specify which data should be loaded using
-command line parameters. The following code will read in the image
-data with and without illumination.
+command line parameters. The following code will read in the measured
+image data with and without illumination.
 \begin{lstlisting}[style=mypython]
 folder = sys.argv[1]
 cam = sys.argv[2]
@@ -333,8 +334,10 @@ for ii,vv in nditer([i,v]):
     acc[p]+=vv
     accn[p]+=1   
 \end{lstlisting}
-Subsequently I determine the fit parameters for a line utilizing the
-first 60\% of the intensities.
+Subsequently, I determine the parameters for a linear fit of the
+variances vs.\ intensities, utilizing only the first 60\% of the
+intensities so that any non-linearities that might occur at higher
+intensities do not affect the slope.
 \begin{lstlisting}[style=mypython]
 ax=x[nonzero(accn)]
 ay=acc/accn
@@ -345,10 +348,10 @@ by=ay[0:l]
 plot(ax,ay,'r+')
 slope,intercept,rval,pval,stderr=stats.linregress(bx,by)
 \end{lstlisting}
-From the slope of the line I determine the conversion factor to
-convert the ADU units into the device-independent unit of
-photoelectrons. With this I convert the variance of the dark images
-into readout noise in terms of photoelectrons.
+From the slope of the line I determine the conversion factor to change
+the ADU units into the device-independent unit of photoelectrons. With
+this I convert the variance of the dark images into readout noise in
+terms of photoelectrons per pixel.
 \begin{lstlisting}[style=mypython]
 plot(ax,polyval([slope,intercept],ax))
 xlabel('intensity/ADU')

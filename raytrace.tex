@@ -4,63 +4,66 @@
 \label{sec:raytrace}
 \renewcommand{\i}{\nvect i}
 \begin{summary}
-  Imaging with our microscope requires that during the observation of
-  the sample new light patterns are created continuously and as fast
-  as possible. We can not easily solve this problem by using a
-  commercial software and I therefore decided to implement a simple
-  raytracer.
+  Imaging with our microscope requires a continuous update of the
+  patterns for the spatial light modulators during operation. The
+  generation of those patterns should be as fast as possible. We can
+  not easily solve this problem by using commercial software and I
+  therefore decided to implement a simple raytracer.
 
   This chapter documents the basic concepts. Note that some
   approximations, which are usually used in optical design (paraxial,
   only non-skew rays) are not applicable here, because rays are to be
   pursued in all possible angles through diverse fluorophore
-  distributions in samples.
+  distributions in the specimen.
 
   I begin by introducing simple geometric formulas to determine the
   points of intersection between a ray and a plane or a sphere. I also
-  describe how to calculate the refraction on a planar surface.
+  describe how to calculate refraction at a planar surface.
 
-  Then I explain the refraction on a thin, paraxial lens and show a
-  modification of the formulas for high aperture lenses. Thus, I give
-  describe algorithm to calculate rays through a microscope objective
-  in two directions (denoted as detection or illumination direction)
-  without knowing the exact design parameters and glass types.
+  Then I explain the refraction at a thin, paraxial lens and show a
+  modification of the formulas for high aperture lenses. This allows
+  to trace rays through a microscope objective in two directions
+  (denoted as detection or illumination direction) without knowing the
+  exact design parameters and glass types.
 
   Furthermore, I consider the refraction at the coverslip--medium
   interface for non-index matched media. This enables the calculation
   of illumination patterns for highly inclined and laminated optical
   sheet microscopy, as introduced in section \ref{sec:hilo}.
 
-  I follow up with a rather technical geometric discussion that helps
-  to significantly speed up the raytracing calculations for the
-  specific case of three-dimensionally fluorescent spheres.
+  I follow up with a rather technical discussion of a geometric
+  problem that helps to significantly speed up the raytracing
+  calculations for the specific case of a sample that can be
+  represented as a three-dimensional distribution of fluorescent
+  spheres.
 
-  {\bf Note:} The formulas in frames are implemented in the computer
-  code that is published on
+  {\bf Note:} The formulas that are emphasized by surrounding frames
+  are implemented in the computer code that is published on
   \url{https://github.com/plops/mma/tree/master/lens}.
 \end{summary}
 \section{Geometrische Grundlagen}
 \subsection{Intersection of a ray and a plane}
-Let a ray start at a point $\s$ with direction $\hd$.  A plane
-(defined by a point $\c$ and the normal $\n$) intersects this ray if
-normal and ray direction are not perpendicular: $\n\,\hd\not=0$. The
-distance between the plane and the origin is $h=\c\n$. I define the
-plane equation in Hesse normal form:
-\begin{align}
-  \r\n=h
-\end{align}
-I replace the coordinate $\r$ with the ray equation and solve for
-the parameter $\tau$:
-\begin{align}
-  (\s+\tau\hd)\n&=h\\
-  \s\n+\tau\hd\n&=h\\
-  \tau&=\boxed{\frac{h-\s\n}{\hd\n}}
-\end{align}
  \begin{figure}[!hbt]
    \centering
    \svginput{1}{plane-intersection}
    \caption{Schematic of plane-ray intersection.}
- \end{figure}
+\end{figure}
+Let a ray start at a point $\s$ with direction $\hd$.  A plane
+(defined by a point $\c$ and the normal $\n$) intersects this ray if
+its normal and the ray's direction are not perpendicular:
+$\n\,\hd\not=0$. The distance between the plane and the origin is
+$h=\c\,\n$. I define the plane equation in Hesse normal form:
+\begin{align}
+  \r\n=h
+\end{align}
+I replace the coordinate $\r$ with the ray equation and solve for the
+parameter $\tau$.
+\begin{align}
+  (\s+\tau\,\hd)\,\n&=h\\
+  \s\n+\tau\,\h\,\n&=h\\
+  \tau&=\boxed{\frac{h-\s\n}{\hd\n}}
+\end{align}
+The point of intersection is on the ray at $\s+\tau\,\hd$.
 \subsection{Intersection of a ray and a sphere}
 Let a ray start at a point $\s$ with direction $\hd$.  Let a sphere be
 centred in $\c$ with radius $R$. Their two equations
@@ -97,44 +100,14 @@ corresponds to two solutions.
 Now I describe the refraction at a planar surface\footnote{I use the
   same notation as \cite{McClain1993}.}. The wavelength of the light
 in vacuum defines the length of the wave vector $\k_0$. The lengths of
-the incident and transmitted wave vectors $\k_1$ and $\k_2$ are given
-by the refractive index in their respective half space:
+the incident and transmitted wave vectors $\k_1$ and $\k_2$ are
+obtained by muliplication with the refractive index in their
+respective half space:
 \begin{align}
   k_0&=2\pi/\lambda\\
   k_1&=n_1 k_0\\
   k_2&=n_2 k_0.
 \end{align}
-I choose the normal $\n$ to be directed into the half-space of the
-incident wave (see \figref{fig:refraction-plane}) and define the
-transversal and normal component of the wave vectors:
-\begin{align}
-  \k_{1n}&=(\k_1\n)\n\\ 
-  \k_{1t}&=\k_1 - \k_{1n}.
-\end{align}
-The two component vectors are orthogonal and during refraction the
-transversal component of the wave vector is invariant:
-\begin{align}
-  k_2^2&=k_{2n}^2 + k_{2t}^2\\
-  \k_{2t}&=\k_{1t}.
-\end{align}
-Using the two equations from above one can calculate the length of the
-normal component of the transmitted wave vector $\k_2$:
-\begin{align}
-  k_2^2&=k_{2n}^2 + (\k_1 - \k_{1n})^2\\
-  k_{2n}^2&=k_2^2-(\k_1-(\k_1\n)\n)^2\\
-  &= k_2^2-(k_1^2-2(\k_1\n)^2+(\k_1\n)^2)\\
-  &= k_2^2-k_1^2+(\k_1\n)^2.
-\end{align}
-Finally one can express the full transmitted wave vector $\k_2$ using
-only known quantities:
-\begin{align}
-  \k_2&=\k_{1t}-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n\\
-  &=\k_1-(\k_1\n)\n-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n.
-\end{align}
-I divide by $k_2$ with $\k_2/k_2=\t$ and $\k_1/k_2=\eta\,\i$ in order
-to introduce unit direction vectors $\i$ and $\t$ for incident and
-outgoing light. The relative index change across the interface is
-$\eta=n_1/n_2$.
 \begin{figure}
   \centering
   \svginput{1}{refraction}
@@ -142,59 +115,90 @@ $\eta=n_1/n_2$.
     vector $\k_1$ into the outgoing wave vector $\k_2$.}
   \label{fig:refraction-plane}
 \end{figure}
+I choose the normal $\n$ to be directed into the half-space of the
+incident wave (see \figref{fig:refraction-plane}) and define the
+transversal and normal component of the wave vectors to be:
+\begin{align}
+  \k_{1n}&=(\k_1\n)\n\\ 
+  \k_{1t}&=\k_1 - \k_{1n}.
+\end{align}
+These two vectors are orthogonal and during refraction the transversal
+component of the wave vector is invariant:
+\begin{align}
+  k_2^2&=k_{2n}^2 + k_{2t}^2\\
+  \k_{2t}&=\k_{1t}.
+\end{align}
+Using the two equations from above, one can calculate the length of
+the normal component of the transmitted wave vector $\k_2$:
+\begin{align}
+  k_2^2&=k_{2n}^2 + (\k_1 - \k_{1n})^2\\
+  k_{2n}^2&=k_2^2-(\k_1-(\k_1\n)\n)^2\\
+  &= k_2^2-(k_1^2-2(\k_1\n)^2+(\k_1\n)^2)\\
+  &= k_2^2-k_1^2+(\k_1\n)^2.
+\end{align}
+Finally, one can express the full transmitted wave vector $\k_2$ using
+only known quantities:
+\begin{align}
+  \k_2&=\k_{1t}-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n\\
+  &=\k_1-(\k_1\n)\n-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n. \label{eq:k2}
+\end{align}
+I divide by $k_2$ with $\k_2/k_2=\t$ and $\k_1/k_2=\eta\,\i$ in order
+to introduce unit direction vectors $\i$ and $\t$ for incident and
+outgoing light. The relative index change across the interface is
+$\eta=n_1/n_2$. With these substitions equation (\ref{eq:k2}) becomes:
 \begin{align}
   \t&=\eta\i-\eta(\i\n)\n-\sqrt{1-\eta^2+\eta^2(\i\n)^2}\n\\
   &=\boxed{\eta\i-\left(\eta\i\n+\sqrt{1-\eta^2(1-(\i\n)^2)}\right)\n}
 \end{align}
-When the radical under the square root is negative a reflection occurs
-instead (TIRF).
+When the expression under the square root is negative a reflection
+occurs instead (TIRF). Note that in my application total internal
+reflection just corresponds to a loss of the beam, for it no longer
+contributes to sample illumination. The exact direction of the
+reflected beam is not relevant in this case but I write them here for
+completeness' sake.
 
-Note that in my application total internal reflection just corresponds
-to a loss of the beam, for it no longer contributes to sample
-illumination. The exact direction of the reflected beam is not
-relevant in this case but I write them here for completeness' sake.
-
-Then the tangential component is invariant and normal component
-inverts the sign:
+In the case of a reflection the tangential component is invariant and
+normal component inverts the sign:
  \begin{align}
    \k_2&=\k_{1t}-\k_{1n}\\
    &=\k_1 - 2\k_{1n}\\
    &=\k_1-2(\k_1\n)\n\\
    \t_\textrm{TIR}&=\boxed{\i-2(\i\n)\n}
  \end{align}
-\section{Refraction on lenses}
+\section{Refraction through lenses}
 
 An \cma{validity of thin lens model} ideal lens is infinitesimally
 thin and defined by its focal length, i.e.\ the distance between the
 lens and the plane through the point in which all the rays of a
-parallel bundle converge. For an ideal lens the focal length is
-independent of the incidence angle but in practice, the model of the
-thin lens is only valid for lenses of long focal length, e.g.\ a
-\unit[3]{mm} thick lens with \unit[200]{mm} focal length and for rays
-that subtend very small angles from the optical axis (paraxial rays).
+focused parallel bundle converge. For an ideal lens the focal length
+is independent of the incidence angle but in practice, the model of
+the thin lens is only valid for lenses of long focal length, e.g.\ a
+\unit[3]{mm} thick lens with \unit[200]{mm} focal length and for
+paraxial rays that subtend very small angles from the optical axis.
 
-Refraction on a \cma{principal planes} thick lens can be reduced to
+Refraction by a \cma{principal planes} thick lens can be reduced to
 the problem of the thin lens by finding the two principal planes of
-the thick lens and shift the ray between them axially
+the thick lens and shifting the ray between them axially
 \cite{Smith2000}. The principal plane of a thick lens is located on
 the intersection between an incident beam $\i\propto\hat\z$ that is
 parallel to the optical axis and the exiting beam $\r$. Just as the
-focal length, the principal planes are a property that for real lenses
-only apply in the paraxial case. There are always two principal
+focal length, the principal planes are a property of lenses that are
+only defined in the paraxial limit. There are always two principal
 planes, one for each of the two possible illumination directions. The
 distances between each principal plane and its corresponding focus
 point (the intersection of $\r$ with the optical axis) are identical.
 
-As already mentioned on \pageref{aplanatic} a microscope objective is
-a lens which is corrected for a constant focal length for rays with
-widely varying incidence angle. In this case, the principle surface is
-no longer a plane but is deformed into a spherical surface. In section
+As already mentioned in section \ref{aplanatic} on page
+\pageref{aplanatic} a microscope objective is a lens which is
+corrected to have a constant focal length for rays of widely varying
+incidence angle. In this case, the principle surface is no longer a
+plane but is deformed into a spherical surface. In section
 \ref{sec:high-aperture-lens} I show how to carry over the formulas
 from the thin lens model to a model that describes an aplanatic lens
 with immersion.
 
-\subsection{Refraction on paraxial thin lens}
-First I describe the refraction on a thin lens: The incident beam with
+\subsection{Refraction through a paraxial thin lens}
+First I describe the refraction by a thin lens: The incident beam with
 direction $\i$ hits the lens at the point $\vrho$. A line parallel to
 $\i$ through the centre of the lens defines the point on the focal
 plane, which will be intersected by the transmitted ray $\r$ as well.
@@ -203,10 +207,10 @@ plane, which will be intersected by the transmitted ray $\r$ as well.
 \begin{figure}[hbtp]
   \centering
   \svginput{1}{lens-fwd}
-  \caption{Construction of a ray on a thin lens. The incident beam
-    with direction $\i$ (from right) hits the lens at the point
-    $\vrho$. This diagram is inspired from a figure in
-    \cite{Hwang2008}.}
+  \caption{Construction of a ray that is refracted through a thin
+    lens. The incident beam with direction $\i$ (from right) hits the
+    lens at the point $\vrho$. This diagram is inspired from a figure
+    in \cite{Hwang2008}.}
 \end{figure}
 
 

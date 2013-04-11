@@ -34,14 +34,14 @@
 \end{summary}
 The idea of illuminating a sample from the side dates back quite far
 into the history of microscopy. Already one hundred years ago, an
-objective perpendicular to the detection objective was used for
-illumination of the focal plane in the specimen. This dark field
-technique was used to characterize gold nano particles in gold ruby
-glass \citep{Siedentopf1903}.
+additional objective, arranged perpendicular to the detection
+objective, was used for illumination of the focal plane in the
+specimen. This dark field technique was used to characterize gold nano
+particles in gold ruby glass \citep{Siedentopf1903}.
 
-Eventually this technique was applied to fluorescence
-microscopy. First to analyze cochlea specimen \citep{Voie1993} and
-more recently for the development of embryos
+Eventually, this illumination method was also applied for fluorescence
+microscopy. First, to analyze cochlea specimen \citep{Voie1993} and,
+more recently, for the development of embryos
 \citep{Huisken2004}. Results in the latter paper have sparked interest
 in the technique at many labs \citep{Santi2011}.
 \subsection{Light sheet generation with cylindrical lens}
@@ -49,7 +49,7 @@ in the technique at many labs \citep{Santi2011}.
   \centering
   \svginput{1}{spim-sketch}
   \caption{Schematic of SPIM (selective plane illumination
-    microscopy). A cylindrical lens illuminates the specimen with a
+    microscope). A cylindrical lens illuminates the specimen with a
     thin sheet of light along the focal plane of the
     objective. Rotating the sample and/or moving it along the axis
     allows to reconstruct a sectioned three-dimensional volume of the
@@ -64,32 +64,27 @@ and comparatively low NA for detection. A $10\times$ objective with
 $\unit[660]{\mu m}$ field of view diameter is used with a sheet
 thickness that varies less than $42\%$ ($\unit[6\ldots 8]{\mu
   m}$). The light sheet not only improves sectioning and contrast but
-also improves the axial resolution from originally $\unit[14]{\mu m}$
+also increases the axial resolution from originally $\unit[14]{\mu m}$
 by nearly a factor of two.
 
 \nomenclature{SPIM}{Selective plane illumination microscopy}
 
-The axial resolution of detection objectives of higher numerical
+The axial resolution of detection objectives with higher numerical
 aperture isn't improved so easily over an extended field of
 view. Shading effects, diffraction and refraction can deteriorate the
 light sheet. As an improvement of the technique it was suggested to
 rotate the specimen or illuminate with multiple sheets of light from
 different directions.
 
-Other improvements involve a Bessel beam that is scanned to illuminate
-a plane. This intensity distribution is ``self-reconstructing'' and
-can compensate better for obstacles in its path. It comes with the
-cost that the light sheet isn't as confined. Simultaneous structured
-illumination and 2-photon effects were suggested to improve this.
-
-A major difference between this technique and conventional microscopy
-techniques is the way the sample is mounted. Usually a specimen is
-placed with a drop of embedding medium on a \unit[170]{$\mu$m} thick
-coverslip. Then it is flipped onto a microscope slide and sealed with
-nail varnish. This approach of mounting the sample does not work for
-an ultramicroscope. There the sample has to be accessed from two
-perpendicular sides. Often the specimen are embedded in an agarose
-cylinder or sometimes, they are fixed in a liquid--filled chamber.
+A major difference between this technique and more conventional
+microscopy techniques is the way the sample is mounted. In a normal
+microscope, usually, a specimen is placed with a drop of embedding
+medium on a \unit[170]{$\mu$m} thick cover slip. Then it is flipped
+onto a microscope slide and sealed with nail varnish. This approach of
+mounting the sample does not work for an ultramicroscope because there
+the sample has to be accessed from two perpendicular sides. Often the
+specimen are embedded in an agarose cylinder or sometimes, they are
+fixed in a liquid--filled chamber.
 
 \subsection{Light sheet generation using the detection objective}
 \label{sec:hilo}
@@ -98,26 +93,27 @@ cylinder or sometimes, they are fixed in a liquid--filled chamber.
   \includegraphics[width=12cm]{dunsby}
   \caption{Schematic of oblique plane microscopy (OPM). An index
     matched sample is excited using an oblique plane of light. The
-    illuminated plane is tilted relative to the focal plane. Therefore
-    out-of-focus fluorophores on the periphery of the field of view
-    are excited. Two additional objectives in the detection path are
-    used to reconstruct an aberration free image of all the excited
-    fluorophores (drawing from \cite{Dunsby2008}).}
+    illuminated plane is tilted relative to the focal
+    plane. Therefore, out-of-focus fluorophores on the periphery of
+    the field of view are excited as well. Two additional objectives
+    in the detection path are used to reconstruct an aberration free
+    image of all the excited fluorophores (drawing from
+    \cite{Dunsby2008}).}
   \label{fig:dunsby}
 \end{figure}
 Modern high numerical aperture objectives allow to illuminate an
 \emph{index matched} sample with a half angle of up to
 $70^\circ$. This enables illumination of an oblique and thin sheet of
-light in the sample just as in selective plane illumination
+light in the specimen just as in selective plane illumination
 microscopy. However this technique (oblique plane microscopy, OPM) has
-the advantage, that only one objective is needed in order to be close
-to the sample and it will work with specimen in conventional
-microscope slides. However, one difficulty is that the excited
-fluorophores are severely defocused in the intermediate image plane
-(see \figref{fig:dunsby}). Dunsby describes how to rotate the
-observational plane optically in order to recover an aplanatic image
-from the oblique illumination plane \citep{Dunsby2008}. They re-image
-the sample through two additional objectives.
+the advantage, that only one objective is and therefore it will work
+with conventional microscope slides. However, one difficulty is that
+some of the excited fluorophores are severely defocused in the
+intermediate image plane (see plane IP1 in
+\figref{fig:dunsby}). Dunsby describes how to rotate the observational
+plane optically in order to recover an aplanatic image from the
+oblique illumination plane \citep{Dunsby2008}. They re-image the
+sample through two additional objectives.
 
 \nomenclature{OPM}{Oblique plane microscopy}
 
@@ -149,8 +145,9 @@ laminated optical sheet microscopy (HILO) \citep{Tokunaga2008,
 \nomenclature{HILO}{Highly inclined and laminated optical sheet microscopy}
 
 Note that the index mismatch between embedding and immersion medium
-will introduce aberrations (mostly spherical) which will limit the
-imaging depth.
+will introduce aberrations (mostly spherical) in the detection which
+will limit the useful imaging depth to a few microns for high aperture
+lenses.
 \section{Scanning techniques for improving light utilization}
 \begin{summary}
   In section \ref{sec:2-photon} we already introduced the 2-photon
@@ -215,6 +212,11 @@ access'' of three-dimensional coordinates in the sample.
 
 \nomenclature{AOD}{Acousto-optic deflector}
 \nomenclature{AOM}{Acousto-optic modulator}
+
+% FIXME
+\cite{botcherby2012aberration}
+
+
 \section{Non-scanning techniques}
 \subsection{Direct illumination}
 An obvious method for doing spatial control is to image a
@@ -269,7 +271,7 @@ detection path to recover an image of the in-focus fluorophores.
   \centering
   \svginput{1}{pam-sketch}
   \caption{Schematic of a programmable array microscope (PAM)
-    \citep[inspired from][]{Verveer1998}. A digital micro mirror
+    \citep[inspired from][]{Verveer1998}. A digital micromirror
     device (DMD) containing an array of tiltable mirrors is imaged
     into the focal plane of the objective. Returning fluorescent light
     from out-of-focus fluorophores is distributed onto both the

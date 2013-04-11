@@ -1022,7 +1022,7 @@ gain, the readout noise can be specified as photoelectrons$/$pixel
 The analysis for the right diagram in \figref{fig:shot-noise} gave a
 readout noise of \unit[5.6]{e/px}. For the evaluation I used the
 function \verb!cal_readnoise! of the DIPimage toolbox for Matlab
-\citep{Lidke2005a}. In appendix \ref{sec:python-readnoise-eval} I list
+\citep{Lidke2005a}. In Appendix \ref{sec:python-readnoise-eval} I list
 an alternative Python implementation of this algorithm.
 
 The major source for readout noise is the charge amplifier. Its noise is
@@ -1110,9 +1110,10 @@ noise performance, even if that comes with a loss in readout speed.
   \begin{table}[!htbp]
     \centering
     \begin{tabular}{l r r r r r l}
+      \toprule
       camera type & $f_\textrm{read}$  & $QE$ & $N_r$ & $F_n$ & $M$ & model \\
        & [MHz] & &  [e/px] & &  &  \\
-      \hline
+      \midrule
       back-thinned CCD & 1 & 0.95 & 5.3 & 1 & 1 &  E2V CCD97\\
       EM-CCD & 1 & 0.95 & 15.0 & $\sqrt{2}$ & 80 & E2V CCD97 \\
       EM-CCD single photon & 17 & 0.95 & 89.0 & 1 & 1000 & E2V CCD97 \\
@@ -1121,6 +1122,7 @@ noise performance, even if that comes with a loss in readout speed.
       back-thinned sCMOS & --- &0.95 & $0.7$ & 1 & 1 & --- \footnote{Back-thinned sCMOS are not available at the time of writing.} \\
       interline CCD & 20 & 0.62 & 6.5 & 1 & 1 & Sony ICX285\\
       interline CCD & 1 & 0.62 & 2.4 & 1 & 1 & Sony ICX285\\
+      \bottomrule
     \end{tabular}
     \caption{Camera parameters for the curves in \figref{fig:camera-snr}.}
     \label{tab:cam-param}
@@ -1228,7 +1230,7 @@ m_{(M)}=Q_E F_n^2/M$ of the intensity-variance curves:
   M = F_n^2 \frac{m_{(1)}}{m_{(M)}}.
 \end{align}
 
-In appendix \ref{sec:basic-acquisition} I show code to automatically
+In Appendix \ref{sec:basic-acquisition} I show code to automatically
 measure data for this calibration. In order to cover a large span of
 gains, I capture a short exposure image before each measurement and
 adjust the exposure time such that the sensor is never overexposed.

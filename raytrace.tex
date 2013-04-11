@@ -26,7 +26,7 @@
   (denoted as detection or illumination direction) without knowing the
   exact design parameters and glass types.
 
-  Furthermore, I consider the refraction at the coverslip--medium
+  Furthermore, I consider the refraction at the ``cover slip--medium''
   interface for non-index matched media. This enables the calculation
   of illumination patterns for highly inclined and laminated optical
   sheet microscopy, as introduced in section \ref{sec:hilo}.
@@ -313,7 +313,7 @@ For that I present two approaches. The first and simpler one utilizes
 the fact that a perfect microscope lens converts ray angle in the
 sample in a linear manner into positions on the pupil. This approach
 is sufficient when calculating pupil plane SLM patterns for samples in
-an index-matched embedding medium.
+an index matched embedding medium.
 
 In the second approach I additionally calculate the angle in which
 rays emerge from the pupil. For a perfectly aplanatic lens this would
@@ -402,14 +402,14 @@ aberrations due to a non-matched embedding medium $n_e\not=n$.
 
 I consider a ray originating in point $\p$ with direction $\i$ within
 an embedding medium of index $n_e$. I determine the intersection $\f$
-of the ray with the coverslip--embedding interface and refract to
+of the ray with the ``cover slip--embedding'' interface and refract to
 obtain $\i'$. Then I calculate the time $t$ a photon takes, to travel
 from $\p$ to the interface $\f$:
 \begin{align}
   t = \abs{\f - \p} \frac{n_e}{c}
 \end{align}
 and extend the path of the photon backward along the direction $\i'$
-(corrected for the refraction at the coverslip--embedding surface) by
+(corrected for the refraction at the ``cover slip--embedding'' surface) by
 the distance $tc/n$. This results in the corrected position $\p'$ that
 indicates where the photon would have originated if the embedding
 medium were index matched.  Now I can apply the equations from the
@@ -534,13 +534,13 @@ illumination patterns can be determined in real time, while the device
 operates.
 
 I described an algorithm that can account for aberration that occurs
-when a sample is not embedded in index-matched medium. On the one hand
+when a sample is not embedded in index matched medium. On the one hand
 this has a negative impact on the resolution of the detected images
 already for small penetration depths ($\sim\unit[10]{\mu}$) but it
 enables the interesting approach of highly inclined and laminated
 optical sheet microscopy (see section \ref{sec:hilo}). In this case, a
 window on the edge of the pupil is illuminated so that rays approach
-the coverslip--medium surface close to the critical angle of total
+the ``cover slip--medium'' surface close to the critical angle of total
 reflection --- and after refraction they will traverse the medium in a
 very steep angle. To illuminate the proper position in the field, the
 window that is displayed on the focal plane SLM must be moved in order

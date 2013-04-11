@@ -180,27 +180,28 @@ Refraction by a \cma{principal planes} thick lens can be reduced to
 the problem of the thin lens by finding the two principal planes of
 the thick lens and shifting the ray between them axially
 \cite{Smith2000}. The principal plane of a thick lens is located on
-the intersection between an incident beam $\i\propto\hat\z$ that is
-parallel to the optical axis and the exiting beam $\r$. Just as the
-focal length, the principal planes are a property of lenses that are
-only defined in the paraxial limit. There are always two principal
-planes, one for each of the two possible illumination directions. The
+the intersection between an incident beam $\i$,0 that is parallel to
+the optical axis, and the transmitted beam $\r$. Just as the focal
+length, the principal planes are a property of lenses that are only
+defined in the paraxial limit. There are always two principal planes,
+one for each of the two possible illumination directions. The
 distances between each principal plane and its corresponding focus
-point (the intersection of $\r$ with the optical axis) are identical.
+point (the intersection of $\r$ with the optical axis) are identical,
+and define the focal length.
 
 As already mentioned in section \ref{aplanatic} on page
 \pageref{aplanatic} a microscope objective is a lens which is
 corrected to have a constant focal length for rays of widely varying
 incidence angle. In this case, the principle surface is no longer a
-plane but is deformed into a spherical surface. In section
-\ref{sec:high-aperture-lens} I show how to carry over the formulas
-from the thin lens model to a model that describes an aplanatic lens
-with immersion.
+plane but is deformed into a spherical surface. After introducing the
+formulas for the thin lens in the next section, I show in section
+\ref{sec:high-aperture-lens} how to carry over those formulas to a
+model that describes an aplanatic lens with immersion.
 
 \subsection{Refraction through a paraxial thin lens}
 First I describe the refraction by a thin lens: The incident beam with
 direction $\i$ hits the lens at the point $\vrho$. A line parallel to
-$\i$ through the centre of the lens defines the point on the focal
+$\i$ through the centre $O$ of the lens defines the point on the focal
 plane, which will be intersected by the transmitted ray $\r$ as well.
 
 
@@ -214,13 +215,14 @@ plane, which will be intersected by the transmitted ray $\r$ as well.
 \end{figure}
 
 
-The triangle $ABC$ is similar to triangle $FOA$. All three angles are
-identical because each of the lines are parallel:
-$\overline{CB} \parallel \overline{OA} \parallel \vrho$,
-$\overline{FA} \parallel \overline{CA}$ and $\overline{AB} \parallel
-\overline{OF} \parallel \i$. The side $\overline{OF}$ is hypotenuse of
-a right angled triangle. Its adjacent with respect to the angle
-$\theta$ has length $f$. Therefore one can deduce the length
+The red triangle~1 with the points $ABC$ is similar to green
+triangle~2 with points $FOA$. All three angles are identical because
+each of the lines are parallel: $\overline{CB} \parallel
+\overline{OA} \parallel \vrho$, $\overline{FA} \parallel
+\overline{CA}$ and $\overline{AB} \parallel \overline{OF} \parallel
+\i$. The side $\overline{OF}$ is hypotenuse of the yellow right angled
+triangle 3. Its adjacent with respect to the angle $\theta$ has length
+$f$. Therefore one can deduce the length
 $\abs{\overline{OF}}=f/\cos\theta$.
 
 
@@ -236,10 +238,10 @@ can be used to calculate the length $\abs{\overline{BC}}$:
 Given its length, the vector $\vv{CB}$ can now be calculated, because
 its direction is known to be along $\vrho$. With this vector and $\i$
 one can now obtain the (arbitrarily scaled) transmitted vector
-$\r'$. I could normalize it but it turns out to be useful for the high
-NA immersion lens to deliver the vector $\r$, that ends in the focal
-plane.  The procedure from above is condensed in the following
-equations:
+$\r'$. I could normalize this result but it turns out to be more
+useful for formulas of the high aperture immersion lens to calculate
+the vector $\r$, that ends in the focal plane.  The procedure from
+above is condensed in the following equations:
 \begin{align}
   \vrho&=(x_0,y_0,0)^T=\rho (\cos\phi,\sin\phi,0)^T\\
   \phi&=\arctan(y_0/x_0)\\
@@ -250,7 +252,7 @@ equations:
 with the axial unit vector $\hz=(0,0,1)^T$.
 \subsection{Refraction through high aperture objective (illumination)}
 \label{sec:high-aperture-lens}
-Now I augment the results of the calculation from the previous chapter
+Now I augment the results of the calculation from the previous section
 to treat an aplanatic immersion objective \citep{Hwang2008}.
 \begin{figure}[!hbt]
   \centering
@@ -261,16 +263,16 @@ to treat an aplanatic immersion objective \citep{Hwang2008}.
     $\a$ to accommodate for the immersion and one must take into
     account spherical principal surface (aplanatic surface) .}
 \end{figure}
-I account for the immersion medium by shifting the focal plane in
-sample space to $nf$ using the focus difference vector $\a$, i.e.\ for
-an immersion lens with $n=1.52$ the focus moves further away from the
-principal plane.
+I account for the immersion medium by axially shifting the focal plane
+in sample space to $nf$ using the difference vector $\a$, i.e.\ in an
+immersion medium with $n=1.52$ the focus moves further away from the
+principal plane. FIXME principal plane and nodal point?
 \begin{align}
   \a &= \boxed{f (n-1) \hz} \\
   R &= \boxed{nf}
 \end{align}
 In order to account for the curvature of the aplanatic surface, the
-origin of the transmitted ray is axially shifted by a $\rho$ dependent
+origin of the transmitted ray is axially shifted by a $\rho-$dependent
 sag $\s$ from the principal plane onto the aplanatic surface:
 \begin{align}
   \s &= \left(R - \sqrt{R^2-\rho^2}\right) \hz
@@ -281,31 +283,31 @@ The final ray exiting the objective has the direction $\r_0$:
 \end{align}
 
 All microscope lenses that come into consideration for use in our
-system are designed as an aplanatic system, with possible variations
-at the edge of the field. The model described by above formulas is
-therefore very well suited to represent the objectives when we run the
-illumination optimization step to find illumination patterns for the
-two SLM in our spatio-angular microscope..
+system are designed as an aplanatic lens. The model described by above
+formulas is therefore very well suited to represent the objectives
+when we run our illumination optimization algorithm to find
+illumination patterns for the two SLM in our spatio-angular
+microscope..
 
 In the paper \citet{Hwang2008} the authors demonstrate the viability
 of this model by comparing its results with a full raytrace through a
-$100\times\,1.41$ objective. Focus displacement errors are less than
-\unit[130]{nm} for a field of $\unit[86.4]{\mu m}$ radius.
+$100\times$ objective with $NA=1.4$. There, focus displacement errors
+are less than \unit[130]{nm} for a field of $\unit[86.4]{\mu m}$
+radius. This is perfectly adequate for our application.
 
-This is perfectly adequate for our application. One might think it
-would be good to know the exact objective parameters, i.e.\ glasses,
-curvatures and vertex positions of lens surfaces. These details are,
-however, to my knowledge not published by any manufacturer. In
-addition alignment of the components plays a prominent role in
-building high performance objectives. Therefore just the design
-parameters probably do not provide a better model of a microscopic
-objective than the simple aplanatic model I described. Possibly one
-could even apply our spatio-angular microscope to measure the
-performance of the objective.
+One might think it would be better to know the exact objective
+parameters, i.e.\ glasses, curvatures and vertex positions of lens
+surfaces. These details are, however, to my knowledge not published by
+any manufacturer. In addition alignment of the components plays a
+prominent role in building high performance objectives. Therefore just
+the design parameters alone probably do not provide a better model of
+a microscope objective. They would have to be augmented with
+performance measurements of the individual objective,
+e.g. point-spread functions in different regions of the field.
+
 \subsection{Reverse path through oil objective (detection)}
-Now I consider the oil objective in the reverse direction (see
-\figref{fig:obj-ref-full}). Given a ray that starts within the sample
-I will determine the ray in the pupil.
+Now I consider an oil immersion objective in the detection direction,
+tracing rays from the sample into the pupil.
 
 For that I present two approaches. The first and simpler one utilizes
 the fact that a perfect microscope lens converts ray angle in the
@@ -318,11 +320,12 @@ rays emerge from the pupil. For a perfectly aplanatic lens this would
 hardly be an advantage but the formulas will be modified to take into
 account aberrations.
 \subsubsection{Easy case: back focal plane positions only}
-If the intersections of rays in the back focal plane are sufficient, a
-full raytrace is not necessary. This is the case when imaging beads in
-index matched embedding medium and we want to calculate a pattern for
-the pupil plane SLM (MMA). Instead it is sufficient to ignore ray
-origins and just consider their directions in the sample.
+If the points of intersection of rays with the back focal plane are
+sufficient, a full raytrace is not necessary. This is the case with
+aberration-free imaging, i.e.\ when the sample is embedded in an index
+matched medium and we want to calculate a pattern for the pupil plane
+SLM. Then it is possible to ignore the starting points of rays in the
+specimen and just work with their directions.
 
 A unit ray direction $\i=(x,y,z)^T$ in sample space is transformed
 into a position $\r_b=(x',y')^T$ in the back focal plane of the
@@ -332,8 +335,7 @@ back focal plane is hit.
 \begin{align}
   \phi'&=\phi=\arctan(y/x)\\
   \theta&=\arcsin(\sqrt{x'^2+y'^2})\\
-  r_b&=nf\sin\theta\\
-  \r_b&=r_b(\cos\phi',\sin\phi')^T
+  \r_b&=r_b\,(\cos\phi',\sin\phi')^T,\quad\textrm{with}\   r_b=nf\sin\theta
 \end{align}
  \begin{figure}[!hbt]
    \centering
@@ -357,14 +359,22 @@ The position of the objective is defined by its principal point $\c$
 and the normal $\n$ (directed along optical axis towards sample
 space). The incident ray is defined by its starting point $\p$ and the
 direction $\i$. First I calculate the centre of the aplanatic sphere
-$\vect g$:
+$\vect g$ (see \figref{fig:obj:rev-full}).
 \begin{align}
   \vect g &= \c + nf\, \n.
 \end{align}
+\begin{figure}[!htbp]
+  \centering
+  \svginput{1}{obj-rev-full}
+  \caption{Construction to find the transmitted ray through an oil
+    immersion objective from a point within the sample.}
+  \label{fig:obj-rev-full}
+\end{figure}
 Then I obtain the position $\p'$ by intersecting the incident ray and
-the plane perpendicular to the optical axis through $\vect{g}$.  The
-focus difference vector is defined by its length and the optical
-axis. It can be used to calculate an intermediate point $\p''$.
+the plane perpendicular to the optical axis through the centre
+$\vect{g}$ of the aplanatic sphere.  The focus difference vector is
+defined by its length and the optical axis. It can be used to
+calculate an intermediate point $\p''$.
 \begin{align}
   \a &= -f\, (n-1)\,\n \\
   \p'' &= \p' + a.
@@ -381,17 +391,10 @@ As a last step I calculate the starting point $\e'$ of the transmitted
 ray by intersecting the incident ray with the aplanatic sphere (in
 point $\e$) and axially shifting this point onto the principal plane.
 
-Note: In order to verify the correctness of the implementations it is
-possible to compare the independent algorithms of this section (for
-tracing in detection direction) and section
+Note: In order to verify the correctness of these formulas or their
+implementation it is possible to compare the algorithms of this
+section (for tracing in detection direction) and section
 \ref{sec:high-aperture-lens} (for illumination direction).
-\begin{figure}[!hbt]
-  \centering
-  \svginput{1}{obj-rev-full}
-  \caption{Construction to find the transmitted ray through an oil
-    immersion objective from a point within the sample.}
-  \label{fig:obj-ref-full}
-\end{figure}
 \subsection{Treatment of aberration (detection)}
 \label{sec:ray-aberration}
 Now I will extend the formulas of the previous section to include
@@ -409,7 +412,7 @@ and extend the path of the photon backward along the direction $\i'$
 (corrected for the refraction at the coverslip--embedding surface) by
 the distance $tc/n$. This results in the corrected position $\p'$ that
 indicates where the photon would have originated if the embedding
-would have been index matched.  Now I can apply the equations from the
+medium were index matched.  Now I can apply the equations from the
 previous section on the ray defined by $\p'$ and $\i'$ to obtain the
 transmitted ray in the pupil.
 
@@ -423,34 +426,35 @@ transmitted ray in the pupil.
 \label{sec:sphere-projection}
 While the previous sections have described a fairly general raytracer,
 this section is very technical and relates to our specific problem to
-represent the sphere model of a fluorophore distribution with as few
-rays as possible.
+represent a fluorophore distribution as a model of spheres and
+simulate it with as few rays as possible.
 
 \figref{fig:touch-cone}~D) shows a representations of the length of
-the section between out-of-focus nuclei rays starting from all points
-in the pupil and going through the target point $\c$. Creating such an
-image in the illumination direction requires to trace a lot of rays
-(at least $50\times 50$). In order to reduce the computational effort,
-I reverse the calculation direction and trace rays starting from the
-periphery of out-of-focus nuclei through the target point $\c$ in
-order to determine appropriate ``shadow masks'' in the pupil plane (as
-depicted in \figref{fig:touch-cone}~E)). Already with six rays per
-nucleus, this approach can determine good masks.
+the section between out-of-focus nuclei and rays starting from all
+points in the pupil and going through the target point $\c$. Creating
+such an image in the illumination direction requires to trace a lot of
+rays (at least $50\times 50$). In order to reduce the computational
+effort, I reverse the calculation direction and trace rays starting
+from the periphery of out-of-focus nuclei through the target point
+$\c$ in order to determine appropriate ``shadow masks'' in the pupil
+plane (as depicted in \figref{fig:touch-cone}~E)). Already with six
+rays per nucleus, this approach can determine very  good masks.
 
 Now I explain how to select good points on the periphery of
 out-of-focus nuclei in order to allow this calculation. I utilize the
 geometry in \figref{fig:touch-cone}~A).
 
 The tangents of an out-of-focus sphere
-{\color[rgb]{0.06666667,0.50196078,0}$S^\s_r$}
-centred at $\s$ with radius $r$ that pass through the target $\c$ form
-a double cone (assuming $\c$ is outside of $S^\s_r$. The tangents
-touch the surface of the sphere $S^\s_r$ at the circular intersection
-{\color[rgb]{0.66666667,0,0}{$C$}} with the sphere
-{\color[rgb]{0,0.26666667,0.66666667}$S^\c_r$}
-centred at $\c$ with radius $R=\abs{\c-\s}$. Radius $R$ is the
-distance from the target to the centre of the out-of-focus sphere.
-\begin{figure}[!hbt]
+{\color[rgb]{0.06666667,0.50196078,0}$S^\s_r$} centred at $\s$ with
+radius $r$ that pass through the target $\c$ form a double cone
+(assuming $\c$ is outside of $S^\s_r$). The tangents touch the surface
+of the sphere $S^\s_r$ in the circle
+{\color[rgb]{0.66666667,0,0}{$C$}}. We will find a parametric
+expression for the points on the circle $C$ by intersecting the sphere
+$S^\s_r$ and the sphere {\color[rgb]{0.28235294,0.24313725,0.21568627}$S^\c_R$}
+centred at $\c$ with radius $R=\abs{\c-\s}$ which is the distance from
+the target to the centre of the out-of-focus sphere.
+\begin{figure}[!htbp]
   \centering
   \svginput{1}{touch-cone}
   \caption{{\bf (A)} Schematic of how an out-of-focus nucleus and a
@@ -464,10 +468,11 @@ distance from the target to the centre of the out-of-focus sphere.
     using the performance improvement as described in this section.}
   \label{fig:touch-cone}
 \end{figure}
+
 In order to find a point $\e$ where a tangent touches the out-of-focus
-sphere, it is sufficient to solve the following equation in a 2D
-coordinate system with the origin in the centre $\s$ of the
-out-of-focus sphere:
+sphere, it is sufficient to solve the following equation in a
+two-dimensional coordinate system with the origin in the centre $\s$
+of the out-of-focus sphere:
 \begin{align}
   (x-R)^2+y^2&=R^2\\
   x^2+y^2=r^2
@@ -477,18 +482,20 @@ There are two solutions:
   x_1&=\frac{r^2}{2R}\label{eqn:x1}\\ 
   y_{1/2}&=\pm\frac{r}{2R}\sqrt{4R^2-r^2} \label{eqn:y1}
 \end{align}
-In the case $R<r$ the out-of-focus nucleus is intersecting the target,
-obviating the reason to do the projection in the first place.
+In the case $R\le r$ the out-of-focus nucleus is very close to the
+target, obviating the reason to do the projection in the first
+place. In the more useful case of $R>r$ there are two solutions but
+either one of them is sufficient to define the circle $C$.
 
 I construct two vectors $\hx$ and $\hy$ that span the coordinate
 system, in order to transform the solution from 2D into 3D. The
-(unnormalized) direction $\x$ of the x-axis of this coordinate system
-is given by the difference vector of the target $\c$ and the nucleus
-centre $\s$. The direction $\y$ must be perpendicular to $\x$ and is
-obtained by calculating the cross product with another vector $\q$.
-I ensure that $\q$ and $\x$ are not colinear. The vectors $\q$ and
-$\x$ are colinear, when the absolute value of their scalar product
-equals the square of the length $\abs{\q\x}=\x^2$.
+direction of $\hx$ is given by the difference vector between target
+$\c$ and nucleus centre $\s$. The direction $\hy$ must be
+perpendicular to $\x$ and is obtained by calculating the cross product
+with another vector $\q$.  I ensure that $\q$ and $\x$ are not
+colinear. The vectors $\q$ and $\x$ are colinear, when the absolute
+value of their scalar product equals the square of the length
+$\abs{\q\x}=\x^2$.
 \begin{align}
   \x&=\c-\s\\
   \q&=\begin{cases}
@@ -514,37 +521,40 @@ different angles $\phi$ to the back focal plane gives the projection
 of the intersection circle $C$. Note that this projection in general
 is not a circle anymore.
 
-For practical reasons it is useful to project vector $\x$ as well. It
-can be used as the centre of the (distorted) shape on the back focal
-plane to rasterize it as a fan of triangles.
+For practical reasons I project the vector $\hx$ as well. I use it as
+a centre to rasterize the shape in the pupil plane as a fan of
+triangles.
 
 \section{Conclusion}
 In this chapter I have given an overview on the raytracer that I use
-as a component in the illumination optimization system for the
+as a component in the illumination optimization algorithm for the
 spatio-angular microscope. This software is tailored to the problem of
 imaging with an aplanatic lens. I optimized the calculations so that
 illumination patterns can be determined in real time, while the device
 operates.
 
-I described algorithms that can account for aberration that occurs
+I described an algorithm that can account for aberration that occurs
 when a sample is not embedded in index-matched medium. On the one hand
-this severely limits resolution of the detected images already for
-small penetration depths ($\sim\unit[10]{\mu}$) but enables the
-interesting approach of highly inclined and laminated optical sheet
-(see section \ref{sec:hilo}). In this case, a window on the edge of
-the pupil is illuminated so that rays enter approach the
-coverslip--medium surface close to the critical angle of total
-reflection --- traversing through the medium in a very steep angle. To
-illuminate the proper position in the field, the window that is
-displayed on the focal plane SLM must be moved in order to compensate
-for any, but mainly spherical, aberrations.
+this has a negative impact on the resolution of the detected images
+already for small penetration depths ($\sim\unit[10]{\mu}$) but it
+enables the interesting approach of highly inclined and laminated
+optical sheet microscopy (see section \ref{sec:hilo}). In this case, a
+window on the edge of the pupil is illuminated so that rays approach
+the coverslip--medium surface close to the critical angle of total
+reflection --- and after refraction they will traverse the medium in a
+very steep angle. To illuminate the proper position in the field, the
+window that is displayed on the focal plane SLM must be moved in order
+to compensate for any, but mainly spherical, aberrations.
 
-Note that ray optics are not an sufficient approximation, when
+Note that ray optics are not a sufficient approximation, when
 intensity features in the scale of the wavelength are to be
 investigated. Small features would mean that only a few pixels of the
 focal plane SLM would be enabled. This would mean that information of
 the pupil plane SLM pattern is heavily filtered and no simultaneous
-tight angular control would be possible.
+tight angular control would be possible. Therefore, algorithms that
+are based on code in this chapter must generate patterns with big
+feature sizes. Features on the pupil plane SLM should be larger than
+several percent of the pupil diameter.
 
 %FIXME maybe compare to ./cyberpower-store/0314/zeiss-patents/20080106795-correction-ring.pdf 
 %or US7268953-63x.pdf

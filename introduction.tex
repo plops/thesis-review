@@ -767,8 +767,9 @@ fluorophores that emit in a broad wavelength range, this method only
 works for samples which are only a few microns thick
 \citep{Gustafsson1999}.
 
-\nomenclature{I${}^2$M}{Image interference microscopy
-  \citep{Gustafsson1999}.}
+\nomenclature{I${}^2$M}{Image interference microscopy, a technique
+  that collects light with two opposing objectives and thereby
+  improves resolution.}
 
 
 Light from the focal plane interferes constructively on the detector,
@@ -787,9 +788,38 @@ The reason for this background signal is conservation of energy from
 plane to plane. A light ray that started in a certain object point
 does not stop in the corresponding image point. Therefore most
 out-of-focus light is added incoherently as a background to the
-detected signal. Structured illumination can be used to remove this
-out-of-focus light \citep{Neil1997} (FIXME reference to confocal and structured
-illumination sections).
+detected signal.
+
+Structured \cma{structured illumination} illumination can be used to
+remove this out-of-focus light.
+
+FIXME translate:
+
+Davon \label{sec:confocal} sind zur Zeit zwei wesentliche
+Inkarnationen in Gebrauch.  Auf der einen Seite gibt es das Konfokale
+Mikroskop, bei dem eine einzelne PSF mechanisch die Fokusebene
+abscannt. Dieser Ansatz ermoeglicht es, das out-of-focus Licht optisch
+zu blocken und wurde auf Grund der hervorragenden Bildqualitaet zu
+einem Standardwerkzeug von Biologie und Life-sciences.  (FIXME 1989
+egger the development of the confocal microscope)
+
+Auf der anderen Seite gibt es einen Ansatz bei dem Muster mit deutlich
+groesserem Hell-Anteil in die Probe projeziert werden und Bilder mit
+einer Kamera aufgenommen werden . Aus wenigen solchen Belichtungen
+(mindestens zwei) kann dann nachtraeglich und computerisiert das
+in-fokus vom out-of-fokus Licht getrennt werden
+\citep{Neil1997}. Vorteile dieser Methode sind, dass sie ohne
+mechanisches Scannen auskommt und daher deutlich schneller sein
+kann. Weiterhin haben heutige Kameras noch eine hoehere
+Quanteneffizienz als die im Konfokalem Mikroskop verwendeten
+Detektoren. Ein wesentlicher Nachteil ist jedoch, dass das
+out-of-focus Licht zunaechst mit der Kamera gemessen wird. Das
+zugehoerige Photonenrauschen (siehe \ref{sec:photon-noise}) mindert
+die Qualitaet des Signals, so dass diese Methode an dicken, ueberall
+fluoreszierenden Proben problematisch ist. Das konfokale Mikroskop ist
+in diesem Sinne das bessere Werkzeug, denn dessen Bildqualitaet haengt
+nicht von der Fluorophorverteilung im Sample ab. (FIXME reference to
+confocal and structured illumination sections).
 
 
 
@@ -946,6 +976,7 @@ disk or wide-field) or when utilizing sophisticated noise reduction
 algorithms.
 
 \subsection{Photon shot noise and read noise}
+\label{sec:photon-noise}
 Fluorescence photons arrive at the \cma{Photon shot noise} detector
 independently of each other. This random process leads to fluctuations
 in the number of the detected photons and can be described by the

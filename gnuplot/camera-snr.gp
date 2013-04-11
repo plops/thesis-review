@@ -7,7 +7,7 @@ set log x
 set yrange [0:1]
 #unset key
 set key bottom right
-set xlabel "signal photon number S"
+set xlabel "average photon number S of signal"
 set ylabel "relative SNR"
 
 set style line 1 linecolor rgb '#9ACD32' linetype 1 linewidth 7

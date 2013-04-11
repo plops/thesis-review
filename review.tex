@@ -7,12 +7,12 @@
 \jpginput{}{aod}{}
 }
 
-\chapter{Other approaches of light control}
+\chapter{Methods for controlling illumination patterns}
 \label{sec:approaches}
 \nomenclature{CLEM}{Controlled light exposure microscopy}%
 \begin{summary}
   This chapter gives an overview of current microscopy techniques that
-  reduce unnecessary fluorescence excitation and reduce
+  prevent unnecessary fluorescence excitation and thereby reduce
   phototoxicity. In \emph{light sheet microscopy}, an oblique sheet of
   light illuminates the sample without exposing too many out-of-focus
   fluorophores. \emph{Controlled light exposure microscopy} (CLEM)
@@ -106,32 +106,38 @@ Modern high numerical aperture objectives allow to illuminate an
 $70^\circ$. This enables illumination of an oblique and thin sheet of
 light in the specimen just as in selective plane illumination
 microscopy. However this technique (oblique plane microscopy, OPM) has
-the advantage, that only one objective is and therefore it will work
-with conventional microscope slides. However, one difficulty is that
-some of the excited fluorophores are severely defocused in the
-intermediate image plane (see plane IP1 in
-\figref{fig:dunsby}). Dunsby describes how to rotate the observational
-plane optically in order to recover an aplanatic image from the
-oblique illumination plane \citep{Dunsby2008}. They re-image the
-sample through two additional objectives.
+the advantage, that only one objective is used and therefore it will
+work with conventional microscope slides. However, one difficulty is
+that some of the excited fluorophores are severely defocused in the
+intermediate image plane (plane IP1 in \figref{fig:dunsby}). Dunsby
+describes how to rotate the observational plane optically in order to
+recover an aplanatic image from the oblique illumination plane
+\citep{Dunsby2008}. For this, they re-image the sample through two
+additional objectives.
 
-\nomenclature{OPM}{Oblique plane microscopy}
+\nomenclature{OPM}{Oblique plane microscopy.}
 
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{hilo-sketch}
   \caption{Schematic of rays in HILO (highly inclined and laminated
     optical sheet) technique. The specimen is embedded in a medium of
-    lower optical density than the cover slip. For a very high
-    illumination angle (point on the periphery of the back focal
-    plane), the light would be reflected at the cover slip-medium
-    interface due to total internal reflection. For HILO, a point on
-    the back focal plane that is closer to the optic axis is
-    illuminated. The light enters the embedding medium at a highly
-    inclined angle and only a thin sheet in the focal plane is
-    illuminated \citep[inspired from][]{Tokunaga2008}.}
+    lower optical density than the immersion medium. For a very high
+    illumination angle --- corresponding to a point on the periphery
+    of the back focal plane --- the light would be reflected at the
+    ``cover slip-medium'' interface due to total internal reflection
+    (TIR). For HILO, a point on the back focal plane slightly closer
+    to the optic axis is illuminated. The light enters the embedding
+    medium at a highly inclined angle and only a thin sheet in the
+    focal plane is illuminated \citep[inspired from][]{Tokunaga2008}.}
   \label{fig:hilo}
+  % FIXME the construction of the rays is not correct, they should go
+  % to the principal plane and then should be just axially shifted
+  % into the aplanatic sphere.
 \end{figure}
+
+
+\nomenclature{TIR}{Total internatl reflection.}
 
 Biological specimen are often not index matched and have a lower index
 $n_e\approx 1.33\ldots1.45$ than the immersion oil $n=1.52$. As
@@ -142,18 +148,42 @@ the focal plane.  This technique is called highly inclined and
 laminated optical sheet microscopy (HILO) \citep{Tokunaga2008,
   Konopka2008}.
 
-\nomenclature{HILO}{Highly inclined and laminated optical sheet microscopy}
+\nomenclature{HILO}{Technique for microscopy illumination: highly
+  inclined and laminated optical sheet}
 
 Note that the index mismatch between embedding and immersion medium
 will introduce aberrations (mostly spherical) in the detection which
 will limit the useful imaging depth to a few microns for high aperture
 lenses.
-\section{Scanning techniques for improving light utilization}
+\section{Scanning techniques with improved light utilization}
 \begin{summary}
   In section \ref{sec:2-photon} we already introduced the 2-photon
   microscope. Its phototoxicity and speed can be improved with the
   methods that are described in the following two subsections.
 \end{summary}
+\subsection{Two-photon laser scanning fluorescence microscopy}
+\label{sec:2-photon}
+If the laser intensity in the focal spot of a confocal microscope is
+sufficiently high, then two infrared photons can be absorbed within
+\unit[$\sim 5$]{fs} and excite the same electronic state.
+
+In this regime, the fluorescence emission increases quadratically with
+laser intensity. This non-linearity confines the excitation volume to
+the vincinity of the focal plane \citep{Denk1990}. Fluorophores
+outside of this region are not excited. Therefore this method produces
+sectioned images by default and there is no need for a detection
+pinhole.
+
+As an additional benefit infrared light is scattered less than visible
+light of half the wavelength. This increases penetration depth and
+image quality. Photodamage outside of the focal volume is unlikely and
+phototoxicity is much lower, compared to the single-photon confocal
+microscope, when $z-$stacks are acquired.
+
+However, the phototoxicity within the focal volume is higher and
+techniques like ultramicroskopy (section
+\ref{sec:light-sheet-microscopy}) with single-photon excitation are
+preferable, when low overall phototoxicity is a requirement.
 \subsection{Controlled light exposure microscopy (CLEM)}
 \label{sec:CLEM}
 The confocal microscope (see \figref{fig:widefield-microscope}~c)
@@ -243,8 +273,8 @@ and emit at $\unit[(470\pm22)]{nm}$.
 \nomenclature{EGFP}{Enhanced green fluorescent protein}
 \nomenclature{YFP}{Yellow fluorescent protein}
 \nomenclature{VCSEL}{Vertical-cavity surface-emitting laser}
-\nomenclature{LED}{Light-emitting diode}
-\nomenclature{MMA}{micro-mirror array}
+\nomenclature{LED}{Light emitting diode} % Fixme
+\nomenclature{MMA}{Micromirror array}
 \nomenclature{LCoS}{Liquid crystal on silicon (display)}
 \nomenclature{DPSS}{Diode-pumped solid-state (laser)}
 

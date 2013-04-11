@@ -41,7 +41,7 @@
   are implemented in the computer code that is published on
   \url{https://github.com/plops/mma/tree/master/lens}.
 \end{summary}
-\section{Geometrische Grundlagen}
+\section{Basic geometric algorithms}
 \subsection{Intersection of a ray and a plane}
  \begin{figure}[!hbt]
    \centering
@@ -60,8 +60,8 @@ I replace the coordinate $\r$ with the ray equation and solve for the
 parameter $\tau$.
 \begin{align}
   (\s+\tau\,\hd)\,\n&=h\\
-  \s\n+\tau\,\h\,\n&=h\\
-  \tau&=\boxed{\frac{h-\s\n}{\hd\n}}
+  \s\n+\tau\,\hd\,\n&=h\\
+  \tau&=\boxed{\frac{h-\s\,\n}{\hd\,\n}}
 \end{align}
 The point of intersection is on the ray at $\s+\tau\,\hd$.
 \subsection{Intersection of a ray and a sphere}
@@ -132,23 +132,23 @@ Using the two equations from above, one can calculate the length of
 the normal component of the transmitted wave vector $\k_2$:
 \begin{align}
   k_2^2&=k_{2n}^2 + (\k_1 - \k_{1n})^2\\
-  k_{2n}^2&=k_2^2-(\k_1-(\k_1\n)\n)^2\\
-  &= k_2^2-(k_1^2-2(\k_1\n)^2+(\k_1\n)^2)\\
-  &= k_2^2-k_1^2+(\k_1\n)^2.
+  k_{2n}^2&=k_2^2-(\k_1-(\k_1\,\n)\,\n)^2\\
+  &= k_2^2-(k_1^2-2(\k_1\,\n)^2+(\k_1\,\n)^2)\\
+  &= k_2^2-k_1^2+(\k_1\,\n)^2.
 \end{align}
 Finally, one can express the full transmitted wave vector $\k_2$ using
 only known quantities:
 \begin{align}
-  \k_2&=\k_{1t}-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n\\
-  &=\k_1-(\k_1\n)\n-\sqrt{k_2^2-k_1^2+(\k_1\n)^2}\n. \label{eq:k2}
+  \k_2&=\k_{1t}-\sqrt{k_2^2-k_1^2+(\k_1\,\n)^2}\n\\
+  &=\k_1-(\k_1\n)\n-\sqrt{k_2^2-k_1^2+(\k_1\,\n)^2}\n. \label{eq:k2}
 \end{align}
 I divide by $k_2$ with $\k_2/k_2=\t$ and $\k_1/k_2=\eta\,\i$ in order
 to introduce unit direction vectors $\i$ and $\t$ for incident and
 outgoing light. The relative index change across the interface is
 $\eta=n_1/n_2$. With these substitions equation (\ref{eq:k2}) becomes:
 \begin{align}
-  \t&=\eta\i-\eta(\i\n)\n-\sqrt{1-\eta^2+\eta^2(\i\n)^2}\n\\
-  &=\boxed{\eta\i-\left(\eta\i\n+\sqrt{1-\eta^2(1-(\i\n)^2)}\right)\n}
+  \t&=\eta\,\i-\eta\,(\i\,\n)\,\n-\sqrt{1-\eta^2+\eta^2\,(\i\,\n)^2}\,\n\\
+  &=\boxed{\eta\,\i-\left(\eta\,\i\,\n+\sqrt{1-\eta^2(1-(\i\,\n)^2)}\right)\n}
 \end{align}
 When the expression under the square root is negative a reflection
 occurs instead (TIRF). Note that in my application total internal
@@ -162,8 +162,8 @@ normal component inverts the sign:
  \begin{align}
    \k_2&=\k_{1t}-\k_{1n}\\
    &=\k_1 - 2\k_{1n}\\
-   &=\k_1-2(\k_1\n)\n\\
-   \t_\textrm{TIR}&=\boxed{\i-2(\i\n)\n}
+   &=\k_1-2(\k_1\,\n)\,\n\\
+   \t_\textrm{TIR}&=\boxed{\i-2(\i\,\n)\n}
  \end{align}
 \section{Refraction through lenses}
 

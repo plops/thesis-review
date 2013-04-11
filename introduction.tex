@@ -790,36 +790,38 @@ does not stop in the corresponding image point. Therefore most
 out-of-focus light is added incoherently as a background to the
 detected signal.
 
-Structured \cma{structured illumination} illumination can be used to
-remove this out-of-focus light.
+Structured \cma{confocal} illumination can be used to
+remove this out-of-focus light.  There are two major incarnations of
+this technique in current use.  On the one hand there is the confocal
+microscope\label{sec:confocal} in which mechanically scans a single
+point spread function over the focal plane. This approach allows to
+block out-of-focus light optically. The concept was invented by Minsky
+in the late fifties \citep{Minsky1961}, the first device with a laser
+was built in the early seventies \citep{davidovits1971scanning} and
+was commercialized after breakthroughs regarding the scanning
+mechanics in the late eighties. Due to the excellent quality of its
+images and the ease of use the confocal microscope became a standard
+tool for biology and life sciences.
 
-FIXME translate:
-
-Davon \label{sec:confocal} sind zur Zeit zwei wesentliche
-Inkarnationen in Gebrauch.  Auf der einen Seite gibt es das Konfokale
-Mikroskop, bei dem eine einzelne PSF mechanisch die Fokusebene
-abscannt. Dieser Ansatz ermoeglicht es, das out-of-focus Licht optisch
-zu blocken und wurde auf Grund der hervorragenden Bildqualitaet zu
-einem Standardwerkzeug von Biologie und Life-sciences.  (FIXME 1989
-egger the development of the confocal microscope)
-
-Auf der anderen Seite gibt es einen Ansatz bei dem Muster mit deutlich
-groesserem Hell-Anteil in die Probe projeziert werden und Bilder mit
-einer Kamera aufgenommen werden . Aus wenigen solchen Belichtungen
-(mindestens zwei) kann dann nachtraeglich und computerisiert das
-in-fokus vom out-of-fokus Licht getrennt werden
-\citep{Neil1997}. Vorteile dieser Methode sind, dass sie ohne
-mechanisches Scannen auskommt und daher deutlich schneller sein
-kann. Weiterhin haben heutige Kameras noch eine hoehere
-Quanteneffizienz als die im Konfokalem Mikroskop verwendeten
-Detektoren. Ein wesentlicher Nachteil ist jedoch, dass das
-out-of-focus Licht zunaechst mit der Kamera gemessen wird. Das
-zugehoerige Photonenrauschen (siehe \ref{sec:photon-noise}) mindert
-die Qualitaet des Signals, so dass diese Methode an dicken, ueberall
-fluoreszierenden Proben problematisch ist. Das konfokale Mikroskop ist
-in diesem Sinne das bessere Werkzeug, denn dessen Bildqualitaet haengt
-nicht von der Fluorophorverteilung im Sample ab. (FIXME reference to
-confocal and structured illumination sections).
+On \cma{structured illumination} the other hand there is an approach
+where a pattern with a significantly larger proportion of illuminated
+area is projected into the focal plane. Images are then captured with
+a camera. Several such exposures (at least two) can then be
+computationally processed to separate in- and out-of-focus light
+\citep{Neil1997}.  Advantages of this method are that it requires no
+mechanical scanning and therefore can be much faster. Furthermore,
+camera sensors have a higher quantum efficiency than the
+photomultiplier tubes that were typically found in confocal systems,
+although this difference disappears when avalanche photodiodes are
+used. A significant disadvantage, however, is that the out-of-focus
+light is always measured with the detector. Its accompanying photon
+shot noise reduces the quality of the signal (see section
+\ref{sec:photon-noise}). Therefore this method is particularly
+problematic in thick fluorescent samples with much more out-of-focus
+than in-focus light. The confocal microscope is in this sense the
+better tool because its picture quality is independent on the
+fluorophore distribution in the specimen. (FIXME reference to confocal
+and structured illumination sections).
 
 
 

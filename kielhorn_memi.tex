@@ -613,23 +613,25 @@ Particularly positive I was surprised by the Texas Instruments
 DMD. The SLM development kit (DLP LightCrafter, YoungOptics) is very
 mature \citep{Guide2012}, contains open source software and high
 quality documentation explaining even the control registers of
-individual chips. While working with the kit I was able to implement
+individual chips.
+
+Unlike the Fraunhofe micromirror array (as described in section
+\ref{sec:mma}), the Texas Instruments digital micromirrors tilt around
+their diagonals. For the 0.3~WVGA DMD, that is used in my development
+kit, the pixels are addressed in a diagonal pattern but can be
+illuminated parallel to one of the edges of the device. This
+simplifies building the setup at the expense of a slightly more
+complicated software control. The larger DMD devices can be addressed
+more easily but must be illuminated in an angle of $45\degree$
+relative to the device.
+
+While working with the kit I was able to implement
 features within three days, for which I spent several months of
 reverse engineering and trial and error on devices of other
 manufacturers --- most notably, controlling individual frames at the
 fastest possible update rate (1440 frames per second) via HDMI. If I
 had known this before, I would have designed the prototype differently
 and I would have accepted some drawback regarding optical performance.
-
-{\color{red}FIXME translate: }
-Im Gegensatz zum Fraunhofer MMA in Kapitel, klappen
-die TI DMD Spiegel ueber ihre Diagonale. Fuer den in meinem Kit
-verwendeten $0.3$ WVGA DMD werden die Pixel in einem diagonalem Muster
-addressiert. Das erschwert etwas die Softwarekontrolle hat aber den
-Vorteil, der einfacheren justage, denn das Licht kann entlang einer
-der Kanten auf das Element mit den Spiegeln gesendet werden. Die
-groesseren DMDs muessen schraeg beleuchtet werden.
-
 
 
 I \cma{Open hardware is a good thing} am particular unhappy with the

@@ -91,7 +91,9 @@ build/%.bib: %.bib
 
 # rubber runs the latex process until finished, --inplace makes sure
 # that clutter stays in build/ directory
-build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib
+build/kielhorn_memi.nlo: $(TEX_FILES_IN_BUILD) build/literature.bib
+	rubber --pdf --inplace $<
+build/kielhorn_memi.pdf: $(TEX_FILES_IN_BUILD) build/literature.bib build/kielhorn_memi.nlo
 	makeindex kielhorn_memi.nlo -s nomencl.ist -o kielhorn_memi.nls
 	rubber --pdf --inplace $<
 

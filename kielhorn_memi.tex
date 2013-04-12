@@ -345,7 +345,7 @@ for:
   using USB
 \item estimating the parameters of a rigid transformation between
   camera and LCoS display (see Appendix \ref{sec:rigid}),
-\item controlling the micro-mirror array by Fraunhofer IPMS using
+\item controlling the micromirror array by Fraunhofer IPMS using
   their SDK
 \item some specific image processing tools:
   \begin{itemize}
@@ -431,14 +431,14 @@ April 2013
 \include{results}
 \chapter{Discussion}
 \label{sec:discussion}
-The aim of this thesis has been the practical development of a
-wide-field fluorescence microscope system that can control the
-irradiance in the specimen as well as the illumination angles with the
-aim of decreasing phototoxicity.
+The aim of this thesis has been the development of a wide-field
+fluorescence microscope system that can control the irradiance in the
+specimen as well as the illumination angles with the aim of decreasing
+phototoxicity.
 
 The original \cma{origin of the idea} idea was to combine a
-programmable array microscope with a control of the illumination
-directions. Initially this seems to be an elegant approach: The
+programmable array microscope with control of the illumination
+directions. Initially this seemed to be an elegant approach: The
 programmable array microscope produces two images on a camera, one of
 which contains only out-of-focus light. By variation of the
 illumination angle of the excitation light, it should be possible to
@@ -448,60 +448,71 @@ Fairly quickly it became clear that this approach, if at all, would
 work only inefficiently. After all, for the programmable array
 microscope to work, fine structures must be imaged into the
 specimen. This, however, has the consequence that several diffraction
-orders instead of one bundle of rays with similar directions must
-traverse the sample. For most specimens this will bring no advantage
-compared to a wide-field microscope.
+orders instead of just one bundle of rays must traverse the
+sample. For most specimens this will bring no advantage compared to a
+wide-field microscope.
 
 We opted instead for a modification of the excitation path in a
 wide-field microscope. My assumption was that given an estimate of the
-'to-be-imaged' three-dimensional fluorophore distribution, and perhaps
-additional information on the expected movement of cells, pathogens or
-organs; a sufficiently accurate prediction of the expected
-out-of-focus light can be made.
+three-dimensional fluorophore distribution, and perhaps additional
+information about the expected movement of cells, pathogens or organs;
+a sufficiently accurate prediction of the expected out-of-focus light
+can be made.
 
 Using \cma{description of the hardware} two spatial light modulators
 (SLM), we can project appropriate distributions of excitation light
 into the sample. One SLM controls the angle and the other the in-focus
-pattern of light. Our goal for the instrument was that it can capture
-one stack per minute, consisting of twenty slices. For this, partial
-recordings of slices should be acquired in sequence and later composed
-into one image. Therefore We selected the SLM devices with an emphasis
-on high speed.
+pattern of light. Our goal for was to acquire one stack, consisting of
+twenty slices, per minute. For this, partial recordings of slices
+should be acquired in sequence and later composed into one image (see
+chapter \ref{sec:concept}, in particular section
+\ref{sec:illum-opt}). Therefore we selected the SLM devices with an
+emphasis on high speed.
 
-The fastest commercially available SLM are ferroelectric liquid
-crystal on silicon devices (fLCoS) and digital micro-mirror devices
-(DMD), which both can only do binary modulation. However, in our case
-binary intensity modulation is disadvantageous. Sharp edges lead to
-high diffraction losses and strong oscillations of the field in the
+The fastest commercially available SLMs are ferroelectric liquid
+crystal on silicon devices (fLCoS) and digital micromirror devices
+(DMD), both of which can only do binary modulation. However, in our
+case binary intensity modulation is disadvantageous. Sharp edges lead
+to high diffraction losses and strong oscillations of the field in the
 Fraunhofer diffraction pattern.
 
-The pupil \cma{Why Fraunhofer micro-mirror array?} plane SLM, that
-controls the illumination angles does not necessarily need a high
-resolution but a binary SLM device should be avoided here because
-otherwise oscillations of excitation intensity would occur in the
-specimen and appear on the camera image. For this reason, we use a
+\nomenclature{fLCoS}{Ferroelectric liquid crystal on silicon device, a
+  reflective spatial light modulater based on switching liquid
+  crystals between two bistable states. It is a particularly fast
+  technology.}
+
+The pupil \cma{Why Fraunhofer micromirror array?} plane SLM, that
+controls the illumination angles should ideally not be a binary
+device, otherwise oscillations of excitation intensity would occur in
+the specimen and appear on the camera image. For this reason, we use a
 specifically developed SLM, which resembles a DMD in terms of mode of
-operation and speed but can display gray scale values.
+operation and speed but can display gray scale values.  FIXME
+translate: An dieser Stelle ist es hilfreich, dass eine geringe
+Aufloesung ausreicht und nur ein Element mit $256\times 256$ Spiegeln
+entwickelt werden muss.
 
 The focal plane SLM, on the other hand, should have a high resolution
 \cma{choice for focal plane SLM} and it should be possible to update
-its patterns very fast, depending on recent camera
-acquisitions. Initially I opted for a SLM that is connected to the
-graphics card of a computer. We chose a fLCoS SLM because its pixel
-borders are less sharp than the DMD and we expected a better
-efficiency for our application. Unfortunately there were difficulties
-with the synchronization of the graphics card and the other
-devices. Therefore, relatively late into the project I had to replace
-the SLM controller with another one that contains internal memory and
-is linked to a computer via USB.  \nomenclature{USB}{Universal Serial
-  Bus.} Unfortunately, the USB connection is very slow and fast update
-of image patterns is no longer possible. In retrospect, it would have
-been easier to use two identical gray value SLM from Fraunhofer. Note
-that Institut Pasteur and Fraunhofer IPMS continue this work and do
-just that under the Joint-Programme Inter Carnot Fraunhofer PICF 2011,
-``Micromirror Enhanced Microscopic Imaging for high-speed angular and
-spatial light control in spectral Optogenetics and Photomanipulation
-applications in biological applications'' (MEMI-OP).
+its patterns very fast, so that the illumination can be adapted to the
+specimen during acquisition with low latency. Initially I opted for a
+SLM that is connected to the graphics card of a computer. We chose a
+fLCoS SLM because its pixel borders are less sharp than those of the
+DMD and we expected a better efficiency for our
+application. Unfortunately, there were difficulties with the
+synchronization between the graphics card and the other
+devices. Therefore, relatively late into the project {\color{red}
+  FIXME is that an okay expression?}, I had to replace the SLM
+controller with another one that contains internal memory and is
+linked to a computer via USB.  \nomenclature{USB}{Universal Serial
+  Bus.}  Unfortunately, the USB connection is very slow and fast
+update of image patterns is no longer possible. In retrospect, it
+would have been easier to use two of the custom-made grey value SLMs
+from Fraunhofer. Note that Institut Pasteur and Fraunhofer IPMS
+continue this work and do just that under the Joint-Programme Inter
+Carnot Fraunhofer PICF 2011, ``Micromirror Enhanced Microscopic
+Imaging for high-speed angular and spatial light control in spectral
+Optogenetics and Photomanipulation applications in biological
+applications'' (MEMI-OP).
 
 A \cma{remedy against low acceptance angle} serious disadvantage of
 the Fraunhofer SLM in combination with the Fourier optical filter
@@ -515,34 +526,38 @@ application \citep{Heintzmann2010a}. The approach is derived from
 reflective Nomarski differential interference contrast microscopy. A
 birefringent prism separates the illumination bundle into bundles that
 have a small offset (shear).  If the shear distance corresponds to the
-pixel pitch $\Lambda=\unit[16]{\mu m}$ of the micro-mirrors then this
+pixel pitch $\Lambda=\unit[16]{\mu m}$ of the micromirrors then this
 device converts height differences between adjacent mirrors into
 intensity contrast. My experiments with a set of Nomarski prisms that
-were available in our lab gave an indication, that this method can
-work. However the prisms had too small a shear angle and returning
-diffraction orders were cut off. At this point in time, the planning
-for the original prototype was already so far advanced that a change
-was not possible. However, this is still a very promising method and
-will probably produce good results when prisms with larger shear
-angles are used. Additionally it should be noted that this method will
-work better for piston-type micro-mirrors than for torsion
-micro-mirrors.
+were available in our lab showed that this method can work. However,
+the prisms had too small a shear angle and returning diffraction
+orders were cut off. Meanwhile planning for the original, and with
+respect to acceptance slightly flawed, prototype had advanced so far
+that the change of the contrast method no longer seemed possible and
+the project consortium decided to abandon the development of this
+alternative contrast method. However, the common path interferometer
+is still a very promising method and has the potential for good
+contrast at large acceptance angles when prisms with larger shear
+angles are used. Additionally, it should be noted that this
+interferometric method will work better when using piston-type
+micromirrors as compared to torsion micromirrors.
 
 Given \cma{priority of the control algorithm} the \emph{low
   transmission} of our prototype, which could be just barely enough to
 investigate the biological test system of \celegans\ embryos, the
 disproportionally high effort that went into synchronizing the two
-fast SLM which can only run at a \emph{reduced duty cycle}, and the
+fast SLMs which can only run at a \emph{reduced duty cycle}, and the
 \emph{limited etendue} which excludes some interesting experiments, it
 would have been better in hindsight, to build a demonstrator with two
-slow, conventional, gray-value SLM and to spend more effort on the
-development of the illumination control algorithm.
+slow, conventional, grey-value SLMs and to spend more effort on the
+development of the illumination control algorithm and biological
+experiments.
 
 In \cma{holographic system} this context, with the aim of simplifying
 the hardware, I built a holographic illumination system consisting of
 a single phase-only SLM in the intermediate image plane. This enables
-simultaneous control of both, the in-focus light distribution as well
-as the illumination angles in the specimen. The SLM displays
+the simultaneous control of both, the in-focus light distribution as
+well as the illumination angles in the specimen. The SLM displays
 diffraction gratings and its arrangement is such, that the first
 diffraction order illuminates the pupil. The illumination angle in the
 specimen can be adjusted by the grating period and direction while the
@@ -559,45 +574,49 @@ Unfortunately the phase-only SLM that I used for the experiments
 suffers from cross-talk between pixels, a non-linear transfer function
 and temporal fluctuations of the displayed phase pattern. It was
 uncertain whether these problems could be circumvented. Especially
-higher orders which are generated by the device's non-linearity and
-that can reach the sample are a problem, and it seems particularly
-difficult to project a finely structured grid into the sample.
-Projecting such patterns is necessary, because for my illumination
+higher orders which are generated by the device's non-linearity are a
+problem when they reach the sample. Furthremore, it seems particularly
+difficult to project a grating with small period into the sample
+because this requires the superposition of two phase gratings on the
+SLM --- a formidable task in the light of its  FIXME probleme.
+
+Projecting grating patterns is necessary, because for my illumination
 algorithm I need a reasonably good measurement of the
 three-dimensional fluorophore distribution. For many specimen
 structured illumination is necessary to remove out-of-focus light from
-the raw images and obtain optical sections.  Phase SLM which became
-available more recently have a much better performance and could
-probably be used to construct a holographic spatio-angular
+the raw images and obtain optical sections. Other phase SLMs which
+became available more recently have a much better performance and
+could presumably be used to construct a holographic spatio-angular
 illumination device.
 
-Our \cma{sectioning by structured illumination} prototype with two SLM
-is more suitable for structured illumination. The period on the focal
-plane SLM and the illumination aperture defined by the pupil plane SLM
-can be selected for best possible contrast of the in-focus light
-pattern. Optically sectioned images can the be calculated with the
-usual methods. The HiLo method proposed by Jerome Mertz and best
+The \cma{sectioning by structured illumination} main prototype of our
+project with two SLM, as described in chapter \ref{sec:dev1}, is more
+suitable for structured illumination. The period on the focal plane
+SLM and the illumination aperture defined by the pupil plane SLM can
+be selected for best possible contrast of the in-focus light
+pattern. Optically sectioned images can then be calculated with
+various methods. The HiLo method proposed by Jerome Mertz and best
 documented in \cite{Mertz2010} is preferable to others as only two
 exposures per slice are necessary. Since images in our system are
 taken in rapid succession and movement artifacts are unlikely, we
-developed a variant of the HiLo method and in contrast to the
-original, which uses one uniformly illuminated image and one with
-structured illumination, we use two structured illumination images
-which gives better signal-to-noise.
+developed a variant of the HiLo method. In contrast to the original,
+which uses one uniformly illuminated image and one with structured
+illumination, we use two structured illumination images leading to an
+improved signal-to-noise ratio.
 
 During my work on the project \cma{sCMOS --- new camera technology} a
-much improved camera technology came to market. No such camera was
-used for measurements in this work, however, such a camera could be
-added to our system without substantial changes. 
+much improved camera technology (sCMOS) came to market. No such camera
+was used for measurements in this work. It could, however, be added to
+our system without substantial changes.
 
-This change is made \cma{Arduino for control electronics} possible
-mostly due to the flexibility that the Arduino gives. This cheap and
-easy to use electronics platform has been used for several years in
-our lab and is particularly useful for synchronization of multiple
-devices. The source code for the Arduino microcontroller is often
-short and relatively easy to read. This controller is thus well suited
-to document the logic in our synchronization circuits and can be
-easily understood and extended by new members of our group.
+I use \cma{Arduino for control electronics} an Arduino microcontroller
+for electronic synchronization. This cheap and easy to use electronics
+platform has been used for several years in our lab and is
+particularly useful for synchronization of multiple devices. The
+source code for the Arduino microcontroller is often short and
+relatively easy to read. This controller is thus well suited to
+document the logic in our synchronization circuits and can be easily
+understood and extended by new members of our group.
 
 During this work, I used many different electronic devices (SLM:
 Hamamatsu, Holoeye, ForthDD, Texas Instruments, Fraunhofer, cameras:
@@ -609,7 +628,7 @@ insufficient, which unfortunately is often the case, then it helps if
 communication is done with open standards (USB video device class,
 Ethernet).
 
-Particularly positive I was surprised by the Texas Instruments
+Particularly positively I was surprised by the Texas Instruments
 DMD. The SLM development kit (DLP LightCrafter, YoungOptics) is very
 mature \citep{Guide2012}, contains open source software and high
 quality documentation explaining even the control registers of
@@ -634,8 +653,8 @@ had known this before, I would have designed the prototype differently
 and I would have accepted some drawback regarding optical performance.
 
 
-I \cma{Open hardware is a good thing} am particular unhappy with the
-state of scientific cameras as all of them gave me problems with
+I \cma{Open hardware is a good thing} am not content with the current
+state of scientific cameras because all of them gave me problems with
 incompatible or unstable drivers. Therefore, I hope that there will be
 more projects that open their resources to the public, such as Marc
 Levoy's Franken Camera \citep{Adams2010}; or that the manufacturers of
@@ -646,26 +665,26 @@ sensor data for their devices (as with the Logitech Pro 9000).
 
 %Fu2011
 
-Our \cma{results of existing control software} prototype and the
-software for illumination optimization has been designed for the
-observation of cells in a developing \celegans\ embryo. So far I was
+Both our \cma{results of existing control software} prototype and the
+software for illumination optimization have been designed for the
+observation of cells in a developing \celegans\ embryo. So far, I was
 able to demonstrate spatio-angular illumination on static, non-living
-samples. So far I have not applied the method for living
-organisms. Here, the main problem is that image upload, especially to
-the focal plane SLM takes disproportionally long.
+samples but I have not yet applied the method on living
+organisms. Here, the main problem is that the image upload, especially
+to the focal plane SLM, takes disproportionally long.
 
 \section{Outlook}
 
-If \cma{proposal of an optogenetics experiment} the sample does not
-change very fast, and plenty of time is available to upload images
+If \cma{proposition for an optogenetics experiment} the sample does
+not change very fast, and plenty of time is available to upload images
 into the SLM controllers, then the current prototype allows
 experiments with rapidly changing illumination patterns (about 1000
-fps should be possible). One interesting biological experiment would
-be similar to \cite{Branco2010}. There, synapses were excited by
-moving a focal spot along one linear dendrite and its response was
-recorded as a function of the speed of the focal spot. With our
-system, two branches of a dendrite could be stimulated simultaneously
-and the response of the junction could be investigated.
+fps is attainable). One interesting biological experiment would be
+similar to \cite{Branco2010}. There, synapses were excited by moving a
+focal spot along one linear dendrite and its response was recorded as
+a function of the speed of the focal spot. With our system, two
+branches of a dendrite could be stimulated simultaneously. Thereby,
+the response of the junction could be investigated.
 
 The \cma{next steps for control software} algorithm for the
 optimization of the illumination patterns can still be improved. So
@@ -674,18 +693,19 @@ nuclei in each slice are illuminated individually and the algorithm
 finds illumination angles so that exposure of out-of-focus nuclei is
 avoided. An obvious improvement would be to find nuclei that can be
 illuminated with similar angles and group them for simultaneous
-exposure. Even better would be an algorithm that does not need to
-represent the specimen as solid bodies but works directly on stacks of
-optical sections. In a first simple experiment, using the graphics
-processing unit, I could show that the extensive calculations can be
-carried out in reasonable time frames.
+exposure. Even better would be an algorithm in which the specimen is
+not represented as solid bodies but works directly on stacks of
+optical sections. In a first simple experiment, using the
+computational power of graphics processing units, I could show that
+the extensive calculations can be carried out in reasonable time
+frames. (FIXME maybe mention this in in main text and add appendix)
 
 
 Our work \cma{partial coherent simulation} also leaves an unanswered
 question regarding the optics. It would be interesting to simulate the
 wave-optical image formation of the prototype with partial
-coherence. This would answer the question how important the gray
-levels of the micro-mirror array in the pupil-plane really are, and
+coherence. This would answer the question how important the grey
+levels of the micromirror array in the pupil-plane really are, and
 whether or not we can replace it with a binary DMD.
 
 A similar simulation should be used to investigate the influence of

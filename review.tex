@@ -158,31 +158,29 @@ will limit the useful imaging depth to a few microns for high aperture
 lenses.
 \section{Scanning techniques with improved light utilization}
 \begin{summary}
-  FIXME translate: Ein konfokales Mikroskop beleuchtet bei einem Scan
-  ueber die fokale Ebene auch Ebenen darueber und darunter. Wenn ein
-  z-stack angefertigt wird, wird bei jeder Aufnahme eines Slices die
-  out-of-focus liegenden Fluorophore mit ungefaehr der gleichen Dosis
-  gebleicht werden. Das hat zum einen zur Folge, dass spaetere Slices
-  dunkler werden aber vorallem kann ein Organismus waehrend der
-  Beobachtung durch Phototoxicitaet geschaedigt werden.
+  A confocal microscope exposes out-of-focus fluorophores with
+  approximately the same dose as the in-focus fluorophores when
+  producing and image of a focal slice. During acquisition of z-stacks
+  this results in bleaching and successive slice contain less and less
+  signal. In particular living organisms may be harmed due to
+  phototoxicity during the observation.
 
-  Hier stelle ich zwei Methoden vor, die diesen Effekt vermindern
-  koennen. Das ist zum einen die Zwei-Photonen Mikroskopie, bei der
-  die Anregung auf Grund eines nichtlinearen Effekts auf die fokale
-  Ebene beschraenkt ist.
+  Here I present two methods that can mitigate this effect. The first
+  ist the two-photon microscop, in which the excitation is limited to
+  the focal plane.
 
-  Weiterhin gibt es controlled light exposure microscopy, bei der das
-  Sample in Abhaengigkeit von seiner Struktur so beleuchtet wird, dass
-  die Bildqualitaet an allen Stellen gleich ist und uninteressante
-  Bereiche unbeleuchtet bleiben.
+  Furthermore, there is controlled light exposure microscopy that
+  selectively illuminates the sample depending on its structure. It
+  delivers images with the overall quality as a conventional confocal
+  while decreasing phototoxicity and bleaching considerably.
 
-  Diese Methode basiert auf Feedback und profitiert daher von geringer
-  Latenz. In diesem Zusammenhang diskutiere ich zwei Ansaetze mit der
-  die Scanngeschwindigkeit erhoeht werden kann.
+  This method is based on a feedback that controls excitation dose
+  depending on the local fluorophore concentration and therefore
+  benefits from any latency improvements. In this context I discuss
+  two approaches that can increase the scanning speed considerably.
 \end{summary}
 \subsection{Two-photon laser scanning fluorescence microscopy}
 \label{sec:2-photon}
-
 If the laser intensity in the focal spot of a confocal microscope is
 sufficiently high, then two infrared photons can be absorbed within
 \unit[$\sim 5$]{fs} and excite the same electronic state.

@@ -16,9 +16,10 @@
   % FIXME more on mma?
 \end{summary}
 \section{Description of the optical components}
-So far I have only shown the beam path for transmissive displays (in
-\figref{fig:memi-simple}). Such SLM only have a very low transmission
-in practice. Therefore we use reflective displays in our prototype.
+In chapter \ref{sec:concept} I have shown the beam path for
+transmissive displays (in \figref{fig:memi-simple}). Such SLM have a
+very low transmission in practice. Therefore we use reflective
+displays in our prototype.
 
 In \figref{fig:memi-real} I adjusted the beam path accordingly. This
 schematic also depicts the optics we use to adapt light from the laser
@@ -32,19 +33,13 @@ micromirror array developed by our project partner Fraunhofer IPMS
 Dresden --- and the focal plane SLM, a commercial binary liquid crystal
 on silicon display.
  
-I gathered some of the following details from the documents that were
-created during the development of our prototype and are classified as
-confidential. I have summarized the key decisions here and the
-relevant project partners have agreed to the publication.
-
-
 \begin{figure}[!htbp]
   \centering
   \svginput{2}{memi-real}
   \caption{Schematic of the light path through our microscope. Laser
     light enters from the lower left, is scrambled and homogenized to
     illuminate the pupil plane SLM in $\textrm{P}''$ and the focal
-    plane SLM in F'. $F$ is the field plane in the sample and its
+    plane SLM in $F'$. $F$ is the field plane in the sample and its
     primed versions are conjugated planes. $P$ is the pupil of the
     objective. Field mask $B_0$ and Fourier stop $B_1$ are adjustable
     circular apertures. PBS is a polarizing beam splitter. DBS is a
@@ -59,24 +54,24 @@ relevant project partners have agreed to the publication.
 \end{figure}
 
 \subsection{Ensuring homogeneous illumination}
-A quantitative evaluation of our experiments (FIXME ref sec:results)
-with different illumination patterns is simplified when both pupil
-plane SLM and focal plane SLM are uniformly illuminated.
+A quantitative evaluation of our experiments (section
+\ref{sec:results}) with different illumination patterns is simplified
+when both pupil plane SLM and focal plane SLM are uniformly
+illuminated.  Below we discuss an optical setup that attains
+homogeneity of the illumination of both displays.
 
 We use either a laser\footnote{Lasever LSR473H, diode-pumped solid
   state laser, output power 600mW, $\lambda=\unit[473]{nm}$} or a
-light emitting diode (LED) as the light source in our
-experiments. Below we discuss optical measures that attain homogeneity
-of the illumination of both displays.
-
-The LED\footnote{Huey Jann HPB8-48KBD, wavelength
-  $\unit[(463\pm1)]{nm}$, brightness \unit[35]{lm}, view angle
+light emitting diode (LED) as the light source in our experiments. The
+LED\footnote{Huey Jann HPB8-48KBD, wavelength $\unit[(463\pm1)]{nm}$,
+  brightness \unit[35]{lm}, view angle
   $120{}^\circ$ %, FIXME TODO: Flaeche messen
-} we use has a large active
-area. Due to etendue mismatch a relatively large amount of its
-produced light will never reach the sample. But it is easy to achieve
-a homogeneous illumination. Moreover, the LED can be quickly switched
-on and off electronically.
+} we use has a large active area.  Due to etendue mismatch a
+relatively large amount of light will never reach the sample. However,
+it is easy to achieve a homogeneous illumination with an
+LED. Moreover, the LED can be quickly switched on and off
+electronically. Nevertheless, it would be better to use an LED with a
+smaller active area but those are hard to find.
 % source code: https://github.com/plops/ledtlc/blob/master/ledtlc.ino
 
  % \footnote{The DPSS Laser doesn't allow fast
@@ -88,87 +83,76 @@ Unlike an LED, a laser delivers light of considerably higher spectral
 radiance ($\unit[]{W/(sr\, m^2 m)}$). Thus it is in principle possible
 to use the laser as a highly efficient light source for our
 system. Unfortunately, the high spectral and spatial coherence of a
-laser often lead to high-contrast fluctuations of the irradiance and
+laser often leads to high-contrast fluctuations of the irradiance and
 we have to compensate for this by time averaging.
 
-When using the Laser, we send its parallel Gaussian beam into a
+When using the laser, we send its collimated Gaussian beam into a
 bundle\footnote{Fiber bundle with circular cross-section (Loptek,
   Berlin, DE), \unit[1.1]{mm} diameter and \unit[2]{m} length. The
   beam broadening is $3{}^\circ$ and increases, when the bundle is
-  bent \citep{Ipp2009}.}  of randomly distributed fibers. This randomizes
-the light distribution at the bundle output and also broadens the
-illumination angles.
+  bent \citep{Ipp2009}.}  of randomly distributed fibers. This
+randomizes the light distribution at the bundle output and also
+broadens the illumination angles.
 
-A relay system (A$_1$) images the circular output of the fiber bundle
-onto the entrance of a light pipe. This relay system contains a
-rotating microlens array\footnote{Array of cross-oriented cylindrical
-  lenses on both sides with a pitch of \unit[0.5]{mm} resulting in an
-  effective focal length of \unit[6.9]{mm} (LIMO, Dortmund, DE).}. It
-is driven by a motor with the axis of rotation being displaced from
-the optical axis. This time-varying element allows to reduce speckle.
+A relay system (A$_1$ in \figref{fig:memi-real}) images the circular
+output of the fiber bundle onto the entrance of a light pipe. This
+relay system contains a rotating microlens array\footnote{Array of
+  cross-oriented cylindrical lenses on both sides with a pitch of
+  \unit[0.5]{mm} resulting in an effective focal length of
+  \unit[6.9]{mm} (LIMO, Dortmund, DE).}. It is driven by a motor with
+the axis of rotation displaced from the optical axis. Integrating
+sufficiently long over the time-variations in the intensity pattern
+allows to reduce speckle.
 
-Both, the fiber bundle and microlens array, increase the etendue of
-the laser illumination to the optimum value, which is given by one of
-our SLM as discussed on page \pageref{sec:etendue-mma}. 
+Both the fiber bundle and microlens array increase the etendue of the
+laser illumination to the optimum value, which is given by one of our
+SLM as discussed on page \pageref{sec:etendue-mma}.
 
-The light  pipe is  a hollow  mirror-integrator tunnel  with quadratic
-cross-section and depicted in \figref{fig:integrator-rod}. The mixing
-effect of the  tunnel can be understood by  considering the irradiance
-in the plane of the tunnel output as it would occur without tunnel.
-
-Drawing the outline of the square cross-section into this irradiance
-map selects the light that directly reaches this plane.  Surrounding
-this outline with four identical copies that touch its edges selects
-the light that will reach the output plane after one reflection. The
+The integration tunnel shown in \figref{fig:integrator-rod} is hollow
+and has a quadratic cross-section. The mixing effect of the tunnel can
+be understood by considering the irradiance in the plane of the tunnel
+output as it would occur without tunnel.  Drawing the outline of the
+square cross-section into this irradiance map selects the light that
+reaches this plane directly without any reflection.  Surrounding this
+outline with four identical copies that touch its edges selects the
+light that will reach the output plane after one reflection. The
 irradiance maps from neighbouring squares are mirrored and added to
 the direct illumination. Depending on the numerical aperture of the
 input light, more reflections may occur --- resulting in the addition
-of irradiance from next-nearest-neighbours and so forth.
+of irradiance from next-nearest-neighbours.
 
-This improves the uniformity of the light distribution in the output
-plane without altering the numerical aperture of the light.  The more
-subregions are superimposed, the better will be the uniformity.
-Assuming $N$ subregions were overlaid and their contributions were
-statistically independent, then according to the central limit theorem
-the standard deviation of the irradiance is proportional to
-$1/\sqrt{N}$ \citep{Koshel2012}.
+This integration tunnel improves the uniformity of the light
+distribution in the output plane without altering the numerical
+aperture of the light.  The more subregions are superimposed, the
+better will be the uniformity of the illumination.  Assuming $N$
+subregions were overlaid and their contributions were statistically
+independent, then according to the central limit theorem the standard
+deviation of the irradiance is proportional to $1/\sqrt{N}$
+\citep{Koshel2012}. {\color{red} FIXME ondrej says this comes directly
+  from poisson distribution but i don't think so}
 
-However, we also align the source distribution to be rotationally
-symmetric about the optical axis and obtain an even more uniform
-output than what would follow from this prediction because positive
-and negative slopes from different subregions compensate in the
-superposition (also \cite{Koshel2012}).
+We also align the source distribution to be rotationally symmetric
+about the optical axis and obtain an even more uniform output because
+positive and negative slopes from different subregions compensate in
+the superposition (also \cite{Koshel2012}).
 
-In our system the side length of the cross-section of the tunnel is
-\unit[2.5]{mm} and its length of \unit[250]{mm} ensures enough
-reflections for homogeneous illumination. A relay system magnifies the
-tunnel output to $\unit[4]{mm}\times\unit[4]{mm}$ in the plane
-$\textrm{F}'''$.
-
-We thought about using the output of the tunnel directly, without the
-additional relais system, but then the length of the tunnel would have
-been prohibitively long.
+The dimensionis of the integration tunnel in our sytem is
+$\unit[2.5]{mm}\times\unit[2.5]{mm}\times\unit[250]{mm}$ and ensures
+enough reflections for homogeneous illumination. A relay system
+magnifies the tunnel output to $\unit[4]{mm}\times\unit[4]{mm}$ in the
+plane $\textrm{F}'''$.
 
 \jpginput{8cm}{integrator-rod}{Hollow mirror-integrator tunnel with a
   quadratic cross section of \unit[2.5]{mm} side length and
   \unit[250]{mm} length.}
 
-Regarding the two relay systems the optical designer at In-Vision
-commented \citep{Ipp2009a} that these have not been optimized for
-prefect imaging but for the transport of the homogeneous light
-distribution. The system A$_1$ at the tunnel entrance has to transfer
-the illumination from the round fiber end to the square tunnel
-entrance. The engineer designed a good quality system with only two
-lenses (and the microlens array). At the other end (A$_2$ in
-\figref{fig:memi-real}) five elements carry the light from the tunnel
-exit into the field mask $B_0$ in $\textrm{F}'''$.
 
 During the planning phase we also considered a homogenization design
 based on a fly's eye condensor (two consecutive microlens
 arrays). According to simulations performed by In-Vision, this,
 however, would have been more difficult to adjust than the tunnel. In
 particular the system would have been more dependent on illumination
-wavelength.
+wavelength compared to the tunnel.
 
 In summary the following points are important in order to achieve
 homogeneous illumination of focal and pupil plane with the tunnel:
@@ -181,8 +165,8 @@ homogeneous illumination of focal and pupil plane with the tunnel:
 \item The end of the fibre bundle must be adjusted in four axes
   (centering and angle).
 \item The focal length of the microlenses should be chosen shorter
-  than predicted by pure etendue calculation. In order to compensate
-  inevitably occuring microchipping on the edges of the cemented glass
+  than predicted by pure etendue calculation in order to compensate
+  microchipping (FIXME better word) on the edges of the cemented glass
   mirrors.
 \end{itemize}
 
@@ -205,16 +189,16 @@ calibration of the deflection angle using a white light interferometer
   the micro-mirror array (MMA).  The pixel pitch of the device is
   \unit[0.016]{mm}. The hinges for the tilt movement and the
   electrodes are clearly visible. {\bf middle:} Optical reflective
-  microscope image of the MMA. {\bf right:} exaggerated rendering of
-  how a 8x8 checker board pattern would be displayed on the
-  device. Electron and optical micrograph by Fraunhofer IPMS Dresden
-  (Germany)}
+  microscope image of the MMA. {\bf right:} Rendering of how a 8x8
+  checker board pattern would be displayed on the device. The
+  deflection angles are exaggerated.  Electron and optical micrograph
+  by Fraunhofer IPMS Dresden (Germany)}
 \begin{figure}[!hbt]
   \centering
   \svginput{.6}{mma-fft}
   \caption{{\bf left:} Measurement of the deflection of micro-mirrors
     using a white-light interferometer (provided by Fraunhofer IPMS
-    Dresden (Germany)). {\bf reft:} Simulation of the Fraunhofer
+    Dresden (Germany)). {\bf right:} Simulation of the Fraunhofer
     diffraction pattern of the micro-mirror array for coherent,
     monochromatic light (kindly provided by Joel Seligson). The
     circles with radius $d_\textrm{max}$ indicate the maximum size of
@@ -223,9 +207,9 @@ calibration of the deflection angle using a white light interferometer
   \label{fig:mma-fft}
 \end{figure}
 
-The lens L1 has two purposes: First, it images the field mask B0 into
-the Fourier stop B1. Second, the plane $\textrm{P}''$ with the phase SLM
-is imaged to infinity.
+The lens L1 has two purposes: First, it images the field mask B0 into % FIXME is it capital F after colon?
+the Fourier stop B1. Second, the plane $\textrm{P}''$ with the phase
+SLM is imaged to infinity.
 
 With undeflected micromirrors, the SLM has no signifcant effect and
 works like a plane mirror. Both planes $\textrm{F}''$ and
@@ -253,18 +237,19 @@ $\p=(p_x,p_y)^T$ indicates the mirror position.
 
 The diffraction pattern of an individual mirror is a $\sinc-$function
 which is shifted according to the mirror deflection and a phase
-gradient which depends on the mirror position $\p$:
+gradient which depends on the mirror position $\p$: {\color{red} FIXME  expand explanation}
 \begin{align}
  \widetilde\Phi_\p(\k)=\mathcal{F}(\Phi_\p(\x)) = \sinc\left(k_x-k(p_x,p_y)\right) \cdot\exp\left(i\k(p_x\Delta x,p_y \Delta y)\right)
 \end{align}
 Adjacent rows of mirrors tilt in opposite directions ($\pm x$).
 Therefore, we can specify the term $\Phi_\p(\x)$ in equation
-\ref{eq:mma-complex} more precisely and obtain two expressions:
-\begin{align}
+\ref{eq:mma-complex}:
+FIXME specify k0
+\begin{align} 
   \Phi_\p^{(1)}(x,y)&=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) \\
   \Phi_\p^{(2)}(x,y)&=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) 
 \end{align}
-A good analytical description of the surface of the MMA is:
+An analytical description of the MMA surface is:
 \begin{align}
   \Phi(\x)&=\Phi_\p^{(1)}(x,y) \left(\rect(y)\otimes\sum\textrm{(every second row)}\right) \nonumber \\
   &\qquad+\Phi_\p^{(2)}(x,y) \left(\rect(y)\otimes\sum\textrm{(every second row, shifted by one)}\right)
@@ -273,31 +258,29 @@ A good analytical description of the surface of the MMA is:
 pattern of this structure for a monochromatic plane wave. Suppose the
 Fourier stop B1 blocks light outside of the circle with the solid
 line. Then the transmitted zero-order irradiance is proportional to
-the $\sinc^2$ of the deflection angle.  This applies more or less even
-if not all mirrors of the array are deflected. Therefore, we can
+the $\sinc^2$ of the deflection angle.  This approximately applies
+even if not all mirrors of the array are deflected. Therefore, we can
 modulate the irradiance in the plane $P'$ using this optical system
 albeit the transfer function is non-linear.
 
-An accurate prediction of the irradiance in $P'$ is even more    
-difficult to describe when the field mask B0 is opened and the
-extended source produces illumination that is spatially partially
-coherent \citep{Mehta2010a}.
-
-But one thing is clear: The contrast can only achieve good results as    \cma{maximal etendue}
-long as higher diffraction (dashed circles in
-\figref{fig:mma-fft}~right) orders can not pass the Fourier stop
+An accurate prediction of the irradiance in $P'$ is more difficult to
+describe when the field mask B0 is opened and the extended source
+produces illumination that is spatially partially coherent
+\citep{Mehta2010a}. However, the contrast can only achieve good
+results \cma{maximal etendue} if the first diffraction orders (dashed
+circles in \figref{fig:mma-fft}~right) can not pass the Fourier stop
 B1. This limits the size of the field mask B0 to the diameter
 $d_\textrm{max}$, assuming that no high frequency pattern is displayed
 on the MMA.
 
-The smallest distance between the orders in \figref{fig:mma-fft}~right  \label{sec:etendue-mma}
-corresponds to a structure size $\Lambda$ of two mirror pitches:
-$\Lambda=\unit[32]{\mu m}$. Therefore the diffraction angle $\theta$
-is:
+The smallest distance between the orders in
+\figref{fig:mma-fft}~right \label{sec:etendue-mma} corresponds to a
+size $\Lambda$ of two mirror pitches: $\Lambda=\unit[32]{\mu
+  m}$. Therefore, the diffraction angle $\theta$ is:
 \begin{align}
   \sin\theta&=\lambda/\Lambda
 \end{align}
-Utilizing this, we can express the maximum radius:
+Therefore, we can express the maximum radius:
 \begin{align}
   d_\textrm{max} &= f_\textrm{L1} \tan\theta \approx \frac{f\lambda}{\Lambda}
 \end{align}
@@ -341,32 +324,31 @@ magnification 2 and image $\textrm{F}''$ onto the focal plane SLM in
 $\textrm{F}'$. At the same time these lenses make sure that the pupil
 plane SLM is imaged to infinity.
  
-The relay system ensures that the pixels of the focal plane SLM are at
-the resolution limit, while the pupil plane SLM fills the pupil.
-
-In addition, the relay system enables a simpler mechanical realization
-and good contrast. It would already be difficult to accommodate the
-focal plane SLM and polarization beam splitter in $\textrm{F}''$ ---
-including an adjustable aperture would probably not be feasible at
-all.
+The relay system ensures that the pixels of the focal plane SLM (see
+\figref{fig:memi-real}) are at the resolution limit, while the pupil
+plane SLM fills the pupil.  In addition, the relay system enables a
+simpler mechanical realization and good contrast. It would be
+difficult to accommodate the focal plane SLM and polarization beam
+splitter in $\textrm{F}''$. Attaching an adjustable aperture would
+probably not be feasible at all.
 
 
 \subsection{ Contrast generation on focal plane SLM using
   polarization}
-The SLM we use to control the focal plane illumination is a           \cma{Why fLCoS and not DMD?}
-ferroelectric liquid crystal on silicon device (fLCoS, ForthDD WXGA R3,
-UK). Depending on if a pixel is off or om, the returning light either
-retains the polarization of the input light or rotates it by 90
-degrees \citep{Martinez-Garcia2009}.  From this, a polarization beam
-splitter generates a binary intensity contrast (see
-\figref{fig:memi-real}~C).
+The SLM we use to control the focal plane illumination is a \cma{Why
+  fLCoS and not DMD?}  ferroelectric liquid crystal on silicon device
+(fLCoS, ForthDD WXGA R3, UK). If a pixel is off the returning light
+retains its polarization. If a pixel is on, the polarization of the
+light is rotated by 90 degrees \citep{Martinez-Garcia2009}.  From
+this, a polarization beam splitter generates a binary intensity
+contrast (see \figref{fig:memi-real}~C).
 
-We have not opted for a digital micro-mirror device (DMD), because
-those mirrors have sharp edges and loose significant amounts of light
-into higher orders that can not contribute to the image in the
+We have not used a digital micro-mirror device (DMD), because those
+mirrors have sharp edges and loose significant amounts of light into
+higher orders that can not contribute to the image in the
 specimen. The pixels borders of a fLCoS device are defined by electric
-fields and are therefore more blurred. At least in this sense, an
-fLCoS based device should be more efficient than a DMD.
+fields and are therefore more blurred. In this sense, an fLCoS based
+device should be more efficient than a DMD.
 
 We use a wire-grid polarization beam splitter (Moxtek PBF02C,     \cma{polarizing beam splitter}
 Orem, UT, US) because they ensure a high enough optical quality, good
@@ -379,21 +361,21 @@ splitter cube.
 
 The s-polarized component of the incoming light is reflected towards
 the SLM. Active pixels of the SLM rotate the polarization of light by
-90 degrees and then passes through the beam splitter as p-polarization
-in the direction of the microscope. There is a supplementary cleanup
-analyzer in the beam path. 
+90 degrees. The light then passes through the beam splitter as
+p-polarization in the direction of the microscope. There is a
+supplementary cleanup analyzer in the beam path.
 
 It would also be conceivable to arrange SLM and beam splitter
 differently, so that the light coming from the SLM is \emph{reflected}
-towards microscope. In this case, however, unwanted bending of the
-beam splitter's surface will deteriorate the image quality of the
+towards the microscope. In this case, however, unwanted bending of the
+beam splitter's surface would deteriorate the image quality of the
 focal plane SLM. Therefore, we use the beam splitter in transmission.
 
 
-The beam splitter plate makes the overall optics slightly asymmetric
-and thus induces mainly astigmatism and lateral color
-\citep{Ipp2009a}. The plate is thin enough (thickness \unit[0.7]{mm}),
-so that the design remains diffraction limited.
+% The beam splitter plate makes the overall optics slightly asymmetric
+% and thus induces astigmatism and lateral color \citep{Ipp2009a}. The
+% plate is thin enough (thickness \unit[0.7]{mm}), so that the design
+% remains diffraction limited.
 
  	
 \jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
@@ -408,13 +390,13 @@ so that the design remains diffraction limited.
 Microscope objectives come with various pupil diameters. The last lens
 $\textrm{TL}_\textrm{ill}$ in our illumination system has been
 designed as a variable zoom objective (by In-Vision, Guntramsdorf,
-Austria), that maps the pupil plane SLM from $\textrm{P}''$ with
-variable magnification to $\textrm{P}$.
+Austria), that maps the pupil plane SLM from $\textrm{P}''$ to
+$\textrm{P}$ with variable magnification.
 
 Unlike conventional zoom telescopes we use three movable lens groups
 to guarantee that the image of the pupil plane SLM remains stationary
-while the focal plane SLM is always imaged into infinity during
-magnification changes.
+while the focal plane SLM is imaged into infinity during magnification
+changes.
 
  % - email mit erhard ipp
  %  - Du gehst jetzt also mit linear polarisiertem Laser direkt in den Lichtmischtunnel?
@@ -429,18 +411,18 @@ magnification changes.
 \section{Electronic control of the component}
 Both spatial light modulators can run at most with $50\%$ duty
 \cma{local pattern storage} cycle. Therefore it is necessary to
-synchronize the displays. Their controllers allow to upload several
-hundred frames of image data into local storage at the beginning of an
-experiment. Images can then be selected by relatively fast function
-calls over USB (focal plane SLM, fLCoS) or Ethernet (pupil plane SLM,
-MMA), see \figref{fig:memi-electronics} for a plan of the
-interconnections.
+synchronize the displays. The controllers of the displays allow to
+upload several hundred frames of image data into local storage at the
+beginning of an experiment. Images can then be selected by relatively
+fast function calls over USB (focal plane SLM, fLCoS) or Ethernet
+(pupil plane SLM, MMA), see \figref{fig:memi-electronics} for a plan
+of the interconnections.
 
-The camera (Clara, Andor PLC, Belfast, Northern Ireland) as the
-\cma{camera is master} slowest device is chosen as the master. It
-provides two TTL outputs. The output ``fire'' is high while the camera
-is integrating. The output ``shutter'' is programmed to go high
-\unit[1]{ms} before ``fire''.
+The camera (Clara, Andor PLC, Belfast, Northern Ireland) is the
+\cma{camera is master} slowest device and therefore is chosen as the
+master. It provides two TTL outputs. The output ``fire'' is high while
+the camera is integrating. The output ``shutter'' is programmed to go
+high \unit[1]{ms} before ``fire''.
 
 This allows an Arduino microcontroller to initiate a time-delayed
 trigger for both SLM, so that they show their patterns exactly while
@@ -463,10 +445,10 @@ it remains unused.
 % mma settle time: 940-100 = 840 us
 
 The \cma{disadvantage of LCoS controller} USB LCoS controller for the
-focal plane SLM can display its images only for certain discrete times
+focal plane SLM can display the images only for certain discrete times
 (\unit[20]{ms}, \unit[10]{ms}, \unit[5]{ms}, \unit[200]{$\mu$s}).
 This is because it needs to be programmed with sequences which are
-supplied by the manufacturer and it is not straight forward to change
+supplied by the manufacturer and it is not straightforward to change
 them via USB interface. Therefore we always work with a fixed LCoS
 display time of \unit[20]{ms}.
 
@@ -476,7 +458,6 @@ camera readouts.  The pupil plane SLM and camera would allow a
 variable integration time. In particular a Texas Instruments DMD
 instead of the LCoS would support variable integration times
 \citep{Guide2012}.
-
 
 The \cma{synchronization with stage} camera acquisitions are stopped
 by the control software, whenever the XYZ-stage is moved. Hardware

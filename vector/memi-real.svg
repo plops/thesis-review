@@ -32,14 +32,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="6.1917381"
-     inkscape:cx="117.03231"
+     inkscape:zoom="3.0958691"
+     inkscape:cx="75.363881"
      inkscape:cy="80.170975"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1364"
-     inkscape:window-height="757"
+     inkscape:window-width="1678"
+     inkscape:window-height="1039"
      inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
@@ -498,14 +498,14 @@
     <text
        xml:space="preserve"
        style="font-size:4px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="140.4216"
-       y="381.8902"
+       x="92.615959"
+       y="382.53622"
        id="text4303"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4305"
-         x="140.4216"
-         y="381.8902">$P''$</tspan></text>
+         x="92.615959"
+         y="382.53622">$P''$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -650,13 +650,13 @@
     <text
        xml:space="preserve"
        style="font-size:4px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="115.4216"
+       x="105.4216"
        y="375.375"
        id="text4365"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4367"
-         x="115.4216"
+         x="105.4216"
          y="375.375">MMA</tspan></text>
     <text
        xml:space="preserve"
@@ -736,25 +736,25 @@
     <text
        xml:space="preserve"
        style="font-size:4px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="152.2851"
-       y="570.12244"
+       x="151.66429"
+       y="576.28625"
        id="text4397"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4399"
-         x="152.2851"
-         y="570.12244">&quot;on&quot; pixels rotate</tspan></text>
+         x="151.66429"
+         y="576.28625">&quot;on&quot; pixels rotate</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="152.29291"
-       y="578.28491"
+       x="151.68578"
+       y="583.13007"
        id="text4401"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4403"
-         x="152.29291"
-         y="578.28491">polarization by 90 degrees</tspan></text>
+         x="151.68578"
+         y="583.13007">polarization by 90 degrees</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 149.76752,567.34454 c -8.95279,-0.17096 -8.95279,-19.17096 -15.95279,-26.17096"
@@ -1239,7 +1239,7 @@
        sodipodi:linespacing="125%"
        transform="translate(50.814732,352.87231)"><tspan
          sodipodi:role="line"
-         id="tspan3397"></tspan></text>
+         id="tspan3397" /></text>
     <text
        xml:space="preserve"
        style="font-size:4px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -1284,5 +1284,53 @@
          id="tspan4371-3-9-1"
          x="68.76339"
          y="561.25043">{\color{Orchid}\textbf{\Large A$_1$}}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
+       x="151.91722"
+       y="568.86816"
+       id="text3206"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3208"
+         x="151.91722"
+         y="568.86816"
+         style="font-size:6px">focal plane SLM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
+       x="129.17853"
+       y="373.39883"
+       id="text3206-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3208-3"
+         x="129.17853"
+         y="373.39883"
+         style="font-size:6px">pupil plane</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
+       x="141.47885"
+       y="30.910534"
+       id="text3231"
+       sodipodi:linespacing="125%"
+       transform="translate(50.814732,352.87231)"><tspan
+         sodipodi:role="line"
+         id="tspan3233"
+         x="141.47885"
+         y="30.910534" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Gentium;-inkscape-font-specification:Gentium"
+       x="143.24408"
+       y="381.15106"
+       id="text3206-9-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3208-3-3"
+         x="143.24408"
+         y="381.15106"
+         style="font-size:6px">SLM</tspan></text>
   </g>
 </svg>

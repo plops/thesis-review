@@ -204,6 +204,48 @@ techniques like ultramicroscopy (section
 preferable, when low overall phototoxicity is a requirement.
 \subsection{Controlled light exposure microscopy (CLEM)}
 \label{sec:CLEM}
+Im konfokalen Mikroskop wird der Anregungsstrahl in einem rechteckigen
+Raster ueber die Fokusebene gescannt. Normalerweise erfolgt dies mit
+zwei Galvanometerspiegeln von denen einer die Pixel Spaltenweise
+ueberstreicht und der andere (deutlich langsamer) die Zeilen anfaehrt.
+Der Anregungslaser ist kontinuierlich aktiv. Letztendlich wird ueber
+die Integrationszeit am Detektor das horizontale Sampling definiert.
+
+Das in jedem Pixel gemessene Signal ist proportional zu den
+aufgefangenen Photonen und daher mit einem Signalabhaengigen
+Quantenschrotrauschen behaftet. Demnach fluktuiert der Signal-To-Noise
+Ratio ueber das Bild. Das Bild enthaelt besonders viel Rauschen in
+Pixeln mit wenigen Fluorophoren an der entsprechenden Stelle im
+Sample. Fuer den menschlichen Beobachter oder viele
+Computeralgorithmen ist dieses Rauschen die Bildqualitaet begrenzende
+Eigenschaft. Die Tatsache, dass helle Stellen im Sample eine hoeheres
+Signal-to-Noise aufweisen, erhoeht die Qualitaet nur
+unwesentlich. Prinzipiell waere es vorteilhaft ein Bild mit
+Signal-zu-Rausch Verhaeltnis in jedem Pixel zu erzeugen.
+
+Dieser Ansatz wird beim controlled light exposure microscope verfolgt.
+Dabei wird jeder einzelne Pixel in eine von drei Klassen
+eingeteilt. Je nachdem ob die Zahl der aufgefangenen Photonen zu
+Beginn der Integration sehr wenige, sehr viele oder ein Wert
+dazwischen sind. Bei den dunkelsten Pixeln (klasse A in fig) geht man
+davon aus, dass ueberhaupt keine Fluorophore vorhanden sind und
+schaltet den Laser ab. Pixel der Klasse B, die in den ersten Momenten
+der Messung nur maessig viele Photonen liefern werden die gesamte
+dwell-time ueber beleuchtet. Bei Pixeln der Klasse A mit hoher
+Fluorophorkonzentration wird der Laser deaktiviert sobald das
+Detektorsignal einen Schwellwert der Photonenzahl ueberschritten
+hat. Das Signal ist in diesem Fall nicht die Zahl der gemessenen
+Photonen, sondern die Beleuchtungsdauer.
+
+Auf diese Weise erhaelt man ein Bild in dem die hellsten
+Fluorophor-Regionen im Bild ein konstantes Signal-Rausch Verhaeltnis
+aufweisen. Regionen ohne Fluorophore werden nur sehr wenig
+Beleuchtet. Insbesondere bei der Aufnahme von z-stacks macht sich die
+Verringerung der Beleuchtungsdosis durch geringeres Bleaching und
+verringertee Phototoxicitaet bemerkbar. Die Bildqualitaet nimmt dabei
+keinen Abbruch.
+
+
 The confocal microscope (see \figref{fig:widefield-microscope}~c)
 allows another adaptive illumination technique. Each point in the
 focal plane of the specimen is treated as one of the following three

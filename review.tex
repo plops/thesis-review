@@ -267,27 +267,66 @@ Ideally, points of type (A) that do not contain fluorophores should
 only be exposed until fluorophore content is ruled out. The other two
 classes (B) and (C) should be exposed until a fixed number of
 fluorescence photons have been detected (C) or a maximum integration
-time has been reached (B). Unfortunately, due to the photon nature of
-light, sometimes a region of type (B) is incorrectly treated as (A)
-which introduces dark pixel artifacts in the image
-\citep{Hoebe2010}.
+time has been reached (B).
 
-In conventional microscopes, areas of class (C) with high fluorophore
-concentration are generally exposed too much. Their signal-to-noise
-ratio would be high, but this doesn't increase the perceived image
-quality. Furthermore, the regions above and below the focal plane are
-unnecessarily subjected to high exposure.
+%  Unfortunately, due to the photon nature of
+% light, sometimes a region of type (B) is incorrectly classified as (A)
+% which introduces dark pixel artifacts in the image \citep{Hoebe2010}.
 
-The CLEM approach was first presented by Hoebe et al.\ in
-2007,\todo{was that first, get}\ followed by an independent similar
-version with adaptive control of the laser power for 2-photon
-microscopy by Chu et al.\ \citep{Hoebe2007,Chu2007}.
+The CLEM approach was first presented by Hoebe et al.\ in 2007,
+followed by an independent similar version with adaptive control of
+the laser power for 2-photon microscopy by Chu et al.\
+\citep{Hoebe2007,Chu2007}.
+
+% FIXME i'm not sure if 2007 was first publication
 \subsection{Acousto-optic deflectors for fast beam steering}
 In a conventional confocal microscope, the beam is steered by two
-galvanometer mirrors. This technique offers very good light throughput
-and is sufficient to obtain rectangular images. However, the inertia
-of the mirrors severely limit the access rate of spots in the focal
-plane.
+galvanometer mirrors. This technique offers very good light
+throughput. However, the inertia of the mirrors severely limit the
+access rate of spots in the focal plane.
+
+FIXME translate und schraenkt damit die Aufloesung ein.
+
+Die CLEM Technik koennte vereinfacht und verbessert werden, wenn der
+Laserstrahl ohne Inertia von Pixel zu Pixel bewegt werden koennte. In
+diesem Fall muesste der Laser nicht mehr deaktiviert werden und
+koennte direkt den naechsten Pixel beleuchten. Bilddaten koennten also
+schneller und mit einem groesserem Dynamikbereich als bei CLEM oder
+konventioneller konfokaler Mikroskopie aufgenommen werden.
+Auch ganz neuartige Experimente wuerden moeglich werden, 
+
+
+Der z-Fokus wird oft ueber eine piezomechnische Bewegung von Probe
+oder Objektiv eingestellt. Dabei muessen relativ grosse Massen bewegt
+werden. Entsprechend gross ist die Latenz.
+
+Eine interessante Alternative zu Galvospiegeln stellen AODs dar. Dabei
+wird eine akustische Welle in einem transparenten Medium erzeugt. Je
+nach eingestrahlter Tonfrequenz lenkt das Dichtegitter einen Laser in
+unterschiedliche Richtung. Der Laserstrahl sollte monochromatisch
+sein, denn dieses Element zeigt starke chromatische Aberration. Die
+Effizienz ist auch nur maessig (70\%). Demnach koennen AOD nicht fuer
+ein descanning des vom Sample zurueckkehrenden Fluorezenslichts
+eingesetzt werden. Einer Anwendung fuer Zwei-Photonenmikroskopen steht
+jedoch nichts im Weg.
+
+Da dort der Laser nur in Form kurzer Pulse eingestrahlt wird kann man
+sogar eine komplizierte Akustische Welle genau im richtigen moment
+abfassen um auch den z-fokus zu beeinflussen. Die schallwelle ist
+dabei so geformt, dass sie einer 1D Fresnelzonenplatte
+entspricht. Hohe frequenzen aussen und geringe in der Mitte. Zwei
+solche Geraete in folge wirken wie zwei Zylinderlinsen und koeennen in
+z fokussieren.
+
+Mit dieser Technik die Aufloessungsgrenze zu erreichen, scheint jedoch
+unmoeglich oder zumindest sehr aufwaendig. Ein guter Ansatz die
+z-fokussierung zu verbessern wird in .. angewendet. Die grundidee
+aehenelt dem OPM. Ein weiteres der Sinusbedingung genuegendes Objektiv
+erzeugt ein ideales dreidimensionales (unvergroessertes) Bild des
+Samples. Dort kann ein kleiner, leichter Spiegel bewegt werden. Im
+Gegensatz zum akustoopticshen Ansatzt ist diese Methode achromatisch,
+und funktioniert sogar fuer endlicht grosses Feld, kann also auch in
+weitfeldmikroskopen eingesetzt werden.
 
 \begin{figure}[htbp]
   \centering
@@ -302,14 +341,7 @@ plane.
 Replacing the mechanical mirrors with an acoustic wave in a
 transparent material (TeO$_2$) enables $\unit[4]{\mu s}$ switching
 time \citep{Otsu2008} and even allows re-focusing
-\citep{Reddy2008}. These acousto-optic deflectors have lower
-efficiency than mirrors (70\% for two AODs) and show chromatic
-aberrations.
-
-However, as descanning isn't necessary in 2-photon microscopy, the
-lower efficiency (in the excitation path) is hardly an
-issue. Therefore, this technique for the first time enables ``random
-access'' of three-dimensional coordinates in the sample.
+\citep{Reddy2008}. 
 
 
 
@@ -363,12 +395,26 @@ techniques more often.
 
 \subsection{Intensity modulation}
 \subsubsection{Programmable array microscopy}
+FIXME translate Das Hauptelement beim Programmable Array mikroskop ist
+ein DMD. Ein und dasselbe Element befindet sich sowohl im Anregungs
+als auch im Anregungs als auch im Detektionsstrahlengang. Die Spiegel
+nehmen eine von zwei Stellungen ein. Entweder sie senden licht ins
+sample oder sie senden es in einen beam dump. Damit ist es moeglich
+struktuiert zu beleuchten. im einfachsten fall ist nur ein einzelner
+pixel aktiviert. dann entspricht die funktionsweise einem konfokalem
+mikroskop. das zurueckkehrende licht hat wird auf zwei kameras
+verteilt.  eine erhaelt eine mixtur von out-of-fokus und in-fokus
+licht die vom beleuchtungspixel reflektiert wird.  die andere erhaelt
+nur out-of-fokus licht das von den anderen pixeln reflektiert wurde.
+
+in (rainers paper) randomisierte muster auf dem dmd angezeigt und in
+zwei bilder akkumuliert. je nachdem duty ratio der bilder (also der
+anzahl der aktiven pixel) kann man crosstalk verringern, muss dann
+aber ueber mehr bilder integrieren.
+
 A technique similar to controlled light exposure microscopy (CLEM,
 section \ref{sec:CLEM}) has been implemented in a programmable array
-microscope (PAM) \citep{Caarls2011}. Like our microscope, the PAM
-images a pattern into the sample using a spatial light
-modulator. Contrary to our system, the same SLM is used in the
-detection path to recover an image of the in-focus fluorophores.
+microscope (P`AM) \citep{Caarls2011}. 
 
 \begin{figure}[!hbt]
   \centering
@@ -382,6 +428,23 @@ detection path to recover an image of the in-focus fluorophores.
   \label{fig:pam-sketch}
 \end{figure}
 
+Ein Problem des PAM ist dass der DMD im detektionsstrahlengang. Er
+verringert zum einen die Effizienz durch diffractionsverluste. zum
+andern kann dort hervorgerufene fluoreszens oder ramansignal auf der
+Kamera nicht von Fluoreszenslicht aus dem Sample unterschieden werden
+und verringert damit den Signal to noise ratio. Problematisch ist auch
+die Alignierung der Kameras und einstellung der Optik. Idealerweise,
+aber schwer umzusetzen, wuerden DMD pixel optisch exakt auf die
+Kamerapixel abgebildet. Eine nachtraegliche interpolation der
+aufgenommen kameradaten die ansonsten notwendig wird hat das problem
+dass diese rechnung die Poissonverteilung der detektierten Photonen in
+den einzelnen Pixeln zerstoert. Dies kann negative Auswirkungen auf
+den algorithmus zur dekonvolution der daten haben.
+
+heutzutage wuerde man ein derartiges system nichtmher mit langer
+integrationszeit bauen. stattdessen wuerde man eine schnelle kamera
+direkt in den detektionsstrahlengang setzen ohne einen umweg ueber den
+SLM zu gehen. so haben wir unser system konzipiert (ziehe kapitel ..)
 
 \nomenclature{PAM}{Programmable array microscopy}%
 \nomenclature{DMD}{Digital micro mirror device}%

@@ -11,16 +11,12 @@
 \label{sec:approaches}
 \nomenclature{CLEM}{Controlled light exposure microscopy}%
 \begin{summary}
-  {\color{red} FIXME improve}
-  This chapter gives an overview of current microscopy techniques that
-  prevent unnecessary fluorescence excitation and thereby reduce
-  phototoxicity. In \emph{light sheet microscopy}, an oblique sheet of
-  light illuminates the sample without exposing too many out-of-focus
-  fluorophores. \emph{Controlled light exposure microscopy} (CLEM)
-  takes into account the in-focus fluorophore distribution and
-  iteratively improves the signal-to-noise ratio of the measurement.
-  Finally, \emph{light field microscopy} allows instantaneous and
-  complete control of all parameters of the incoherent light exposure.
+  Dieses Kapitel gibt einen ueberblick ueber aktuelle Methoden der
+  Fluoreszensmikroskopie, die es erlauben eine irgendwie kontrollierte
+  Verteilung des Anregungslichts im Sample zu erzeugen. Mein
+  Hauptinteresse liegt hierbei insbesondere auf der Moeglichkeit die
+  unnoetige Beleuchtung von Strukturen ausserhalb vom Fokus zu
+  vermeiden um Phototoxicitaet zu vermindern.
 \end{summary}
 \section{Light sheet fluorescence microscopy}
 \label{sec:light-sheet-microscopy}
@@ -269,33 +265,36 @@ the laser power for 2-photon microscopy by Chu et al.\
 % FIXME i'm not sure if 2007 was first publication
 \subsection{Fast beam steering}
 In a conventional confocal microscope, the beam is steered by two
-galvanometer mirrors. This technique offers very good light
-throughput. However, the inertia of the mirrors severely limit the
-access rate of spots in the focal plane.
-
-The CLEM technique could be simplified and improved by an inertia-free
-solution to steer the excitation beam from pixel to pixel. The laser
-intensity would no longer have to be modulated and when enough photons
-were collected in a pixel, the next one could be addressed. 
+galvanometer mirrors. While this technique offers very good light
+throughput the inertia of the mirrors limit the access rate of spots
+in the focal plane. The CLEM technique could be simplified and
+improved by an inertia-free solution to steer the excitation beam from
+pixel to pixel. The laser intensity would no longer have to be
+modulated and when enough photons were collected in a pixel, the next
+one could be addressed.
 
 The z-focus is often controlled by piezomechanical elements that
 either move the sample or the objective, i.e.\ objects of relatively
 large mass. Therefore, the settling time for focus movements has a
-correspondingly large latency.
+correspondingly large latency and focusing is often much slower than
+lateral pixel access.
+
 \subsubsection{Acousto-optic deflectors for fast beam steering}
 An interesting alternative to galvanometric mirrors are acousto
 optical deflectors (AODs). They consist of a transparent optical
 element into which an acoustic wave is coupled by means of an
-ultrasound transducer. 
-
-The acoustic wave modulates the interatomic distance. This influences
-the local electron density and thus the refractive index of the
-medium. This allows to diffract a beam of light with moderate
-efficiency (70\%). Changing the acoustic frequency allows to vary the
-angle of diffraction. Due to its strong chromatic aberration and low
-efficiency, an AOD is cannot be used to descan the beam of a normal
+ultrasound transducer.  An acoustic wave is a longitudinal variation
+of the interatomic distance and thereby affects the local electron
+density and thus the refractive index of the medium. An acoustic wave
+in an AOD allows to diffract a beam of light with moderate efficiency
+(70\%). Changing the acoustic frequency allows to vary the angle of
+diffraction. Due to its strong chromatic aberration and low
+efficiency, an AOD should not be used to descan the beam of a normal
 confocal microscope. However, this device is well suited for a
-two-photon microscope, where descanning is not strictly necessary.
+two-photon microscope, where descanning is not strictly necessary.  In
+\cite{Otsu2008} the authors achieved a switching time of $\unit[4]{\mu
+  s}$ using an acoustic wave in tellurium dioxide (TeO$_2$).
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=12cm]{aod} 
@@ -305,25 +304,20 @@ two-photon microscope, where descanning is not strictly necessary.
   \label{fig:aod}
 \end{figure}
 
-In \cite{Otsu2008} the authors achieved a switching time of
-$\unit[4]{\mu s}$ using an acoustic wave in tellurium dioxide
-(TeO$_2$).
-
 \nomenclature{AOD}{Acousto-optic deflector}
 \nomenclature{AOM}{Acousto-optic modulator}
 
-The article \cite{Reddy2008} describes how to implement fast focusing
-by an acousto optic device for a two-photon microscope. They exploit
-the fact that the excitation light consists of laser pulses. The
-ultrasound transducer generates an acoustic waveform that resembles an
-one-dimensional Fresnel zone --- high frequencies on the outside and
-low frequencies towards the center. 
-
-The generation of the acoustic is synchronized to the laser pulses and
-starts sufficiently early, so that each laser pulse encounters a
-diffraction grating that is symmetric with regards to the optical
-axis. Two such elements in a row but rotated by 90 degrees allow to
-focus the beam, similar to how two cylindrical lenses would.
+The system in \cite{Reddy2008} even uses an acousto optic technique to
+focus the excitation beam of a two-photon microscope. The authors
+exploit the fact that the excitation light consists of laser
+pulses. The ultrasound transducer is synchronized to the laser pulses
+and generates an acoustic waveform that resembles an one-dimensional
+Fresnel zone --- high frequencies on the outside and low frequencies
+towards the center. The synchronization ensures that each pulse
+encounters a diffraction grating that is symmetric with regards to the
+optical axis. Two such elements in a row but rotated by 90 degrees
+allow to focus the beam, similar to how two cylindrical lenses would
+(see \figref{fig:aod}).
 
 \subsubsection{Aberration-free optical refocusing}
 Achieving the resolution limit of modern microscope objectives using
@@ -341,6 +335,76 @@ to a single collimated beam and can be applied in widefield
 microscopes.
 
 \section{Non-scanning techniques}
+\subsection{Intensity modulation}
+\subsubsection{Programmable array microscopy}
+\label{ref:pam}
+The main element of the programmable array microscope is a digital
+micromirror (DMD). It is placed into the intermediate image and acts
+simultaneously in the excitation as well as the detection beam
+path. The mirrors can be programmed to have one of two
+deflections. Either they send light into the sample or they send it
+into a beam dump. This allows structured illumination with a
+computationally defined pattern. In the simplest case, when only a
+single pixel is turned on, the operation of the PAM resembles that of
+a confocal microscope. Fluorescence light of in-focus fluorophores
+returns to the micromirror that was responsible for the excitation and
+is directed towards the camera~1. Out-of-focus fluorescence will be
+reflected by any of the other DMD mirrors and ends up on camera 2.
+
+\begin{figure}[htbp]
+  \centering
+  \svginput{1}{pam-sketch}
+  \caption{Schematic of a programmable array microscope (PAM)
+    \citep[inspired from][]{Verveer1998}. A digital micromirror
+    device (DMD) containing an array of tiltable mirrors is imaged
+    into the focal plane of the objective. Returning fluorescent light
+    from out-of-focus fluorophores is distributed onto both the
+    cameras. In-focus fluorescence is only imaged onto camera 1.}
+  \label{fig:pam-sketch}
+\end{figure}
+
+
+At the time when \cite{Heintzmann2001a} was written, EM-CCDs were not
+widely available. In order to reduce the effects of readout noise,
+cameras~1 and 2 integrate for a long time while the DMD displays many
+patterns. The pattern sequence could for example be a single pixel
+which scans the entire field. This would be very slow, so instead,
+patterns of a pseudorandom sequence are presented which significantly
+accelerates data acquisition because each individual pattern excites
+more in-focus information. However, at the same time crosstalk is
+increased, i.e.\ additional light from out-of-focus fluorophores is
+collected on camera 1.  The images from both cameras for z-stack
+acquisitions are reconstructed using a maximum likelihood
+deconvolution.
+
+A technique similar to controlled light exposure microscopy (CLEM,
+section \ref{sec:CLEM}) has been implemented in a programmable array
+microscope (PAM) \citep{Caarls2011}. 
+
+
+There are a few drawbacks with the programmable array microscope:
+First, diffraction losses at the DMD reduce detection
+efficiency. Second, if excitation light causes fluorescence or Raman
+scattering at the DMD surface, it is impossible to distinguish this
+disturbance from the fluorescence signal of the sample. Third, it is
+difficult to align the optics such that DMD pixels are imaged exactly
+and without distortion on camera pixels.
+
+Distorted imaging could be retrospectively corrected by
+interpolation. However, this process would destroy the known noise
+characteristics of the sample values. The values in an interpolated
+image are no longer Poisson distributed and application of the maximum
+likelihood estimation is problematic.
+
+With the availability of cameras with sub-electron readout noise
+(EM-CCD or sCMOS) one would no longer place the DMD in the detection
+path. Instead, one could acquire an image of each individual pattern
+and do the descanning computationally.
+
+
+\nomenclature{PAM}{Programmable array microscopy}%
+\nomenclature{DMD}{Digital micro mirror device}%
+\nomenclature{MLE-PAM}{Minimized light exposure programmable array microscope}%
 \subsection{Direct illumination}
 An obvious method for doing spatial control is to image a
 two-dimensional array of high-power micro-LEDs into the specimen.
@@ -360,7 +424,7 @@ limited because it is difficult to put a lot of LEDs close to each
 other.  The technique has been demonstrated using a $64\times64$ array
 of $\unit[20]{\mu m}$ micro-emitters with $\unit[50]{\mu m}$ pitch
 \citep{grossman2010}.  The LEDs can be switched at millisecond speed
-and emit at $\unit[(470\pm22)]{nm}$.
+and emit at a wavelength of $\unit[(470\pm22)]{nm}$.
 
 \nomenclature{GFP}{Green fluorescent protein}
 \nomenclature{EGFP}{Enhanced green fluorescent protein}
@@ -371,96 +435,29 @@ and emit at $\unit[(470\pm22)]{nm}$.
 \nomenclature{LCoS}{Liquid crystal on silicon (display)}
 \nomenclature{DPSS}{Diode-pumped solid-state (laser)}
 
-LED arrays enable interesting experiments where processes are
-influenced by light, i.e.\ optogenetics, but the targets ideally have
-to be located in the focal plane. Also, it must be verified that the
-illumination cone of each LED image doesn't affect the measurement,
-i.e.\ activate the specimen in the out-of-focus regions.
-
-Nevertheless, once the LED or VCSEL arrays become available in
-interesting spectral ranges, we might see the direct illumination
-techniques more often.
-
-\subsection{Intensity modulation}
-\subsubsection{Programmable array microscopy}
-\label{ref:pam}
-The main element of the programmable array microscope is a digital
-micromirror (DMD). Its arrangement is such that it acts simultaneously
-in the excitation as well as the detection beam path. The mirrors can
-be programmed to have one of two deflections. Either they send light
-into the sample or they send it into a beam dump. This allows
-structured illumination with a computationally defined pattern. In the
-simplest case, when only a single pixel is turned on, the operation of
-the PAM resembles that of a confocal microscope. Fluorescence light of
-in-focus fluorophores returns to the micromirror that was responsible
-for the excitation and is directed towards the camera~1. Out-of-focus
-fluorescence will be reflected by any of the other DMD mirrors and
-ends up on camera 2. 
-
-\begin{figure}[htbp]
-  \centering
-  \svginput{1}{pam-sketch}
-  \caption{Schematic of a programmable array microscope (PAM)
-    \citep[inspired from][]{Verveer1998}. A digital micromirror
-    device (DMD) containing an array of tiltable mirrors is imaged
-    into the focal plane of the objective. Returning fluorescent light
-    from out-of-focus fluorophores is distributed onto both the
-    cameras. In-focus fluorescence is only imaged onto camera 1.}
-  \label{fig:pam-sketch}
-\end{figure}
-
-
-In \cite{Heintzmann2001a} the authors have the cameras integrate while
-the DMD displays many patterns. The pattern sequence could for example
-be a single pixel which scans the entire field. This would be very
-slow, so instead, patterns of a pseudorandom sequence are presented
-which significantly accelerates data acquisition because each
-individual pattern excites more in-focus information. However, at the
-same time crosstalk is increased, i.e.\ additional light from
-out-of-focus fluorophores is collected on camera 1.  The images from
-both cameras for z-stack acquisitions are reconstructed using a
-maximum likelihood deconvolution.
-
-A technique similar to controlled light exposure microscopy (CLEM,
-section \ref{sec:CLEM}) has been implemented in a programmable array
-microscope (PAM) \citep{Caarls2011}. 
-
-
-There are a few drawbacks with this technique: First, diffraction
-losses at the DMD reduce detection efficiency. Second, if excitation
-light causes fluorescence or Raman scattering at the DMD surface, it
-is impossible to distinguish this this disturbance from the
-fluorescence signal of the sample. Third, it is difficult to align the
-optics such that DMD pixels are exactly imaged on camera pixels. 
-
-Distorted imaging could be retrospectively corrected by
-interpolation. However, this process would loose information about the
-noise characteristics of the sample values. The values in an
-interpolated image are no longer be Poisson distributed and
-application of the maximum likelihood estimation is problematic.
-
-With the availability of cameras with sub-electron readout noise
-(EM-CCD or sCMOS) one would no longer place the DMD in the detection
-path. Instead, one could acquire an image of each individual pattern
-and do the descanning computationally.
-
-
-\nomenclature{PAM}{Programmable array microscopy}%
-\nomenclature{DMD}{Digital micro mirror device}%
-\nomenclature{MLE-PAM}{Minimized light exposure programmable array microscope}%
+FIXME translate: Zum jetzigen Zeitpunkt ist nicht klar, ob direkte
+Beleuchtung jemals gut genug wird, um die flexibleren SLM zu ersetzen.
+Die Hersteller werden ihre Technologie vermutlich fuer
+Consumeranwendungen wie Displays von Mobiltelefonen optimieren, wo
+weder Fill faktor noch Leuchtdichte wesentlich sind.  Interessant
+koennten an Stelle von LEDs arrays aus Vertical-cavity
+surface-emitting lasers (VCSEL), denn die wuerden zumindest hohe
+Irradianz liefern koennen. Diese sind bisher jedoch nur im
+langwelligen Bereich erhaeltlich.
 
 \subsubsection{Light field microscopy}
 \label{sec:light-field-microscopy}
 Interesting work on light fields originally started in the macroscopic
-domain of cameras \citep{Lippmann1908%,Sokolov1911
-} and was eventually applied as a technique for microscopy
+domain of cameras \citep{Lippmann1908 %,Sokolov1911 % I'm sorry but I can't cite russian. Can't figure out how to make it work in tex
+} and was eventually
+applied as a technique for microscopy
 \citep{Levoy2006,Levoy2009,Zhang2009}. This approach is built on
 imaging through an array of microlenses.
 \begin{figure}[!hbt]
   \centering
   %\includegraphics[width=7cm]{microlens-levoy-sketch} %FIXME redraw
   \svginput{1}{microlens-levoy-sketch}
-  \caption{Schematic of microlenses in intermediate image plane
+  \caption{Schematic of microlenses in the intermediate image plane
     \citep[inspired from][]{Levoy2006}. A spatial intensity modulator
     is illuminated from the right with an extended light
     source. Groups of neighboring pixels downstream of individual
@@ -476,74 +473,34 @@ Pupille abgebildet wird. Jede Mikrolinse beleuchtet die Pupille aus
 einem anderen Winkel. D.h. in der vorderen Fokusebene des Objektivs
 erzeugen die Linsengruppen Bilder an verschiedenen Orten.
 
-Handelt es sich bei dem SLM um einen Intensitaetsmodulator, dann
-stellt jeder Pixel direkt ein, mit welcher Lichtstaerke (suche
+Bei dem SLM handelt es sich um einen Intensitaetsmodulator und jeder
+Pixel stellt direkt ein, mit welcher Lichtstaerke (suche
 Radiometrische Groesse) ein bestimmter Punkt im Sample von einem
 bestimmten Winkel aus beleuchtet wird.  Die Summe ueber alle Pixel
-hinter einer Mikrolinse definieren die Irradianz (suche Radiometrische
+hinter einer Mikrolinse definiert die Irradianz (suche Radiometrische
 Groesse, Winkelunabhaengig) in einem Punkt des Samples.
 
-Die im Sample beleuchtete Strukturgroesse kann bei Verwendung eines
-reinen Intensitaetsmodulators nie das Aufloesungslimit des
-Mikroskopobjektivs erreichen. (das muss ich mir genauer ueberlegen,
-was passiert mit wenn slm und mikrolinsen axial verschoben werden, wie
-verhaelt es sich mit einem phasen slm?)
+Die im Sample beleuchtete Strukturgroesse kann zumindest bei
+Verwendung eines reinen Intensitaetsmodulators nie das
+Aufloesungslimit des Mikroskopobjektivs erreichen.
 
-Bei der Anordnung von SLM und Mikrolinsen sind verschiedene Konzepte
-moeglich. In Abbildung .. habe ich eins dargestellt, was fuer die
-Anwendung in der Mikroskopie als optimal erscheint. Bei bedarf kann
-die volle Aufloesung des Objektivs ausgenutzt werden.
 
-A microlens array is placed behind the intermediate image plane (see
-\figref{fig:microlens-levoy-sketch}). The light that illuminates one
-microlens corresponds to one spot in the focal plane of the
-sample. The camera is positioned in the focal plane of the microlenses
-and captures an image of the back focal plane behind each microlens
-(see red ray bundle in \figref{fig:microlens-levoy-sketch}).
+Die Paper nutzen die Mikrolinsen auch im Detektionsstrahlengang, so
+dass die Kamera sehr viele Aufnahmen der Pupille macht, die durch
+umordnen der Pixel zum nachtraeglichen Fokussieren oder
+tomographischer Drehung genutzt werden koennen.  Fuer die Anwendung in
+der Fluoreszensmikroskopie ist davon jedoch abzuraten. Prinzipbedingt
+erhalten die Pixel der Kamera nur Licht aus eines Bruchteils der
+Pupille --- eben dem Bereich der durch eine einzelne Mikrolinse
+aufgefangen wird. Bei der Aufnahme der Einzelbilder hinter den
+Mikrolinsen gehen wichtige Phaseninformationen verloren und damit
+verliert man die Aufloesung.
 
-The camera captures the four dimensional light field, leaving the
-specimen with spatial coordinates $(s,t)$ and angular coordinates
-$(u,v)$. This data enables computational viewpoint shifting,
-refocusing, extended depth of field and aberration correction of the
-detected fluorescence emission.
-
-% \begin{figure}[htbp]
-%   \centering
-%   \svginput{1}{microlens-levoy-sketch_2}
-%   \caption{Construction of an out-of-focus ray bundle through the
-%     light field microscope. In order to improve the readability of the
-%     drawing, the magnification in the microscope was set to $1:1$
-%     (focal lengths of tube lens and objective are equal). An on-axis
-%     sample point originating from below the focal plane of the
-%     objective is imaged onto an on-axis point between the tube lens
-%     and the microlens array. Three of the microlenses re-image this
-%     on-axis image point into three points behind the plane of the
-%     camera, i.e.\ the images behind the three microlenses will contain
-%     bright blurry spots at different positions relative to their
-%     centre.}
-%   \label{fig:microlens-levoy-sketch_2}
-% \end{figure}
-
-\figref{fig:microlens-levoy-sketch_2} shows a bundle of rays
-originating from an out-of-focus point. Each of the microlenses that
-are hit by the circle of confusion, re-image a fraction of the angular
-range into a small image.  This process is crucial because a lot of
-the original image information is lost here. The intensities from the
-sub-images on the camera can't later be recombined in order to, say,
-recover a high resolution image of the defocused point
-\citetext{priv.\ comm.\ R.~Heintzmann}.
-
-Additionally the light field microscope doesn't utilize the full
-resolution of high-NA objectives. This will prevent the use of this
-technique in its current form in the detection path of microscopes.
-When the microlenses are small enough, to obtain a high resolution
-image of the sample, then the angular resolution diminishes.
-
-However, the same idea can be applied in the excitation path
-\citep{Levoy2009}. For illumination purposes, lower resolution will
-often suffice. The light-field technique allows unique control of
-excitation light intensity and angles at each point of the sample
-plane.
+Bei der Beleuchtung stellt dies in vielen Anwendungsfaellen kein so
+grosses Problem dar und es ist beispielsweise moeglich das angezeigte
+Muster zu defokussieren. Moeglicherweise koennte man durch Einsatz
+eines Phase SLM bei der Beleuchtung die volle Aufloesung des
+Mikroskopobjektivs beibehalten.
 
 \nomenclature{TL}{tube lens}
 \subsection{Temporal focusing}
@@ -573,7 +530,7 @@ of $z\approx\tau c/2\approx\unit[3]{\mu m}$ thickness around the
 focus, where the beam has significant intensity.
 
 Using this technique it is possible to build a wide field 2-photon
-microscope. That only excites fluorophores within the focal plane. The
+microscope that only excites fluorophores within the focal plane. The
 technique can be further improved by spatially modulating the beam in
 the intermediate image plane for CLEM like performance. This technique
 has been implemented in the TF-GPC approach and will be discussed in

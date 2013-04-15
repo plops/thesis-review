@@ -204,70 +204,58 @@ techniques like ultramicroscopy (section
 preferable, when low overall phototoxicity is a requirement.
 \subsection{Controlled light exposure microscopy (CLEM)}
 \label{sec:CLEM}
-Im konfokalen Mikroskop wird der Anregungsstrahl in einem rechteckigen
-Raster ueber die Fokusebene gescannt. Normalerweise erfolgt dies mit
-zwei Galvanometerspiegeln von denen einer die Pixel Spaltenweise
-ueberstreicht und der andere (deutlich langsamer) die Zeilen anfaehrt.
-Der Anregungslaser ist kontinuierlich aktiv. Letztendlich wird ueber
-die Integrationszeit am Detektor das horizontale Sampling definiert.
-
-Das in jedem Pixel gemessene Signal ist proportional zu den
-aufgefangenen Photonen und daher mit einem Signalabhaengigen
-Quantenschrotrauschen behaftet. Demnach fluktuiert der Signal-To-Noise
-Ratio ueber das Bild. Das Bild enthaelt besonders viel Rauschen in
-Pixeln mit wenigen Fluorophoren an der entsprechenden Stelle im
-Sample. Fuer den menschlichen Beobachter oder viele
-Computeralgorithmen ist dieses Rauschen die Bildqualitaet begrenzende
-Eigenschaft. Die Tatsache, dass helle Stellen im Sample eine hoeheres
-Signal-to-Noise aufweisen, erhoeht die Qualitaet nur
-unwesentlich. Prinzipiell waere es vorteilhaft ein Bild mit
-Signal-zu-Rausch Verhaeltnis in jedem Pixel zu erzeugen.
-
-Dieser Ansatz wird beim controlled light exposure microscope verfolgt.
-Dabei wird jeder einzelne Pixel in eine von drei Klassen
-eingeteilt. Je nachdem ob die Zahl der aufgefangenen Photonen zu
-Beginn der Integration sehr wenige, sehr viele oder ein Wert
-dazwischen sind. Bei den dunkelsten Pixeln (klasse A in fig) geht man
-davon aus, dass ueberhaupt keine Fluorophore vorhanden sind und
-schaltet den Laser ab. Pixel der Klasse B, die in den ersten Momenten
-der Messung nur maessig viele Photonen liefern werden die gesamte
-dwell-time ueber beleuchtet. Bei Pixeln der Klasse A mit hoher
-Fluorophorkonzentration wird der Laser deaktiviert sobald das
-Detektorsignal einen Schwellwert der Photonenzahl ueberschritten
-hat. Das Signal ist in diesem Fall nicht die Zahl der gemessenen
-Photonen, sondern die Beleuchtungsdauer.
-
-Auf diese Weise erhaelt man ein Bild in dem die hellsten
-Fluorophor-Regionen im Bild ein konstantes Signal-Rausch Verhaeltnis
-aufweisen. Regionen ohne Fluorophore werden nur sehr wenig
-Beleuchtet. Insbesondere bei der Aufnahme von z-stacks macht sich die
-Verringerung der Beleuchtungsdosis durch geringeres Bleaching und
-verringertee Phototoxicitaet bemerkbar. Die Bildqualitaet nimmt dabei
-keinen Abbruch.
-
-
-The confocal microscope (see \figref{fig:widefield-microscope}~c)
-allows another adaptive illumination technique. Each point in the
-focal plane of the specimen is treated as one of the following three
-cases: point with no fluorophores (A), high concentration of
-fluorophores (C) or an intermediate (B).
+In the confocal microscope the excitation beam is scanned in a
+rectangular grid over the focal plane. Normally this is done using two
+galvanometer mirrors, one of which addresses pixel columns and the
+other (much slower) addresses the rows. The excitation laser is
+continuously active during a scan over one line. So ultimately, the
+integration time at the detector defines horizontal sampling.
 \begin{figure}[hbtp]
   \centering
   \svginput{1}{clem-sketch}
-  \caption{Schematische Darstellung eines typischen Fluoreszensbildes
-    einer neuronalen Zelle und Histogramme fuer drei unterschiedliche
-    Regionen. Im herkoemmlichen konfokalen Mikroskop werden der
-    Bereich ohne Fluorophore (A) und der Bereiche mit vielen
-    Fluorophoren (C) einer unnoetig hohen Beleuchtungsdosis
-    ausgesetzt. CLEM adaptiert die Beleuchtung an das Saample.}
+  \caption{ Schematic representation of a typical fluorescence image
+    of a neuronal cell and histograms for three different regions. In
+    the conventional confocal microscope areas without fluorophores
+    (A) and the areas with many fluorophores (C) are subjected to an
+    unnecessarily high light dose. Controlled light exposure
+    microscopy (CLEM) adapts the illumination to the sample in order
+    to reduce phototoxicity and bleaching.}
   \label{fig:clem}
 \end{figure}
 
-Ideally, points of type (A) that do not contain fluorophores should
-only be exposed until fluorophore content is ruled out. The other two
-classes (B) and (C) should be exposed until a fixed number of
-fluorescence photons have been detected (C) or a maximum integration
-time has been reached (B).
+The measured signal in each pixel is proportional to the collected
+photons and therefore subject to Poisson distributed quantum shot
+noise (see section \ref{sec:photon-noise}). Thus, the signal-to-noise
+radio fluctuates over the image. The image is particularly noisy in
+areas with low fluorophore concentration. For the human observer and
+many computer algorithms the noise in these particularly noisy areas
+defines the image quality. The fact that areas with more signal have
+considerably less noise does not increase the perceived image quality,
+neither does it improve the results of an edge detector for the dim
+areas. Considering the detrimental effects of the excitation light it
+would be advantageous to acquire fluorescence images with constant
+signal-to-noise ratio in each pixel.
+
+
+
+This approach is pursued in the controlled light exposure microscope
+(CLEM). It utilizes a confocal microscope, adapted for fast switching
+of the excitation light. Depending on whether the photons collected
+during a short preparation time, each pixel is classified into one of
+three classes. The darkest pixels (class A in \figref{fig:clem}) are
+assumed to not contain any information and the laser is switched off
+for the remainder of the dwell-time. Pixels with moderately many
+photons (class B) are illuminated for the entire dwell-time. For
+pixels with a high fluorophore concentration (class A) the excitation
+laser is turned off, once a certain number of photons have been
+detected. In this case the signal is not the number of photons but the
+illumination duration.
+
+In this way, one obtains a picture in which bright regions have a
+constant signal-to-noise ratio and regions without fluorophores are
+illuminated with only a small dose. Especially when capturing z-stacks
+this procedure significantly reduces phototoxicity and photobleaching
+--- with an insignificant decline in image quality.
 
 %  Unfortunately, due to the photon nature of
 % light, sometimes a region of type (B) is incorrectly classified as (A)
@@ -290,66 +278,67 @@ solution to steer the excitation beam from pixel to pixel. The laser
 intensity would no longer have to be modulated and when enough photons
 were collected in a pixel, the next one could be addressed. 
 
-
-
-Der z-Fokus wird oft ueber eine piezomechnische Bewegung von Probe
-oder Objektiv eingestellt. Dabei muessen relativ grosse Massen bewegt
-werden. Entsprechend gross ist die Latenz.
-
+The z-focus is often controlled by piezomechanical elements that
+either move the sample or the objective, i.e.\ objects of relatively
+large mass. Therefore, the settling time for focus movements has a
+correspondingly large latency.
 \subsubsection{Acousto-optic deflectors for fast beam steering}
+An interesting alternative to galvanometric mirrors are acousto
+optical deflectors (AODs). They consist of a transparent optical
+element into which an acoustic wave is coupled by means of an
+ultrasound transducer. 
 
-Eine interessante Alternative zu Galvospiegeln stellen AODs dar. Dabei
-wird eine akustische Welle in einem transparenten Medium erzeugt. Je
-nach eingestrahlter Tonfrequenz lenkt das Dichtegitter einen Laser in
-unterschiedliche Richtung. Der Laserstrahl sollte monochromatisch
-sein, denn dieses Element zeigt starke chromatische Aberration. Die
-Effizienz ist auch nur maessig (70\%). Demnach koennen AOD nicht fuer
-ein descanning des vom Sample zurueckkehrenden Fluorezenslichts
-eingesetzt werden. Einer Anwendung fuer Zwei-Photonenmikroskopen steht
-jedoch nichts im Weg.
-
-Da dort der Laser nur in Form kurzer Pulse eingestrahlt wird kann man
-sogar eine komplizierte Akustische Welle genau im richtigen moment
-abfassen um auch den z-fokus zu beeinflussen. Die schallwelle ist
-dabei so geformt, dass sie einer 1D Fresnelzonenplatte
-entspricht. Hohe frequenzen aussen und geringe in der Mitte. Zwei
-solche Geraete in folge wirken wie zwei Zylinderlinsen und koeennen in
-z fokussieren.
-
-\subsubsection{Aberration-free optical refocusing}
-Mit dieser Technik die Aufloessungsgrenze zu erreichen, scheint jedoch
-unmoeglich oder zumindest sehr aufwaendig. Ein guter Ansatz die
-z-fokussierung zu verbessern wird in .. angewendet. Die grundidee
-aehenelt dem OPM. Ein weiteres der Sinusbedingung genuegendes Objektiv
-erzeugt ein ideales dreidimensionales (unvergroessertes) Bild des
-Samples. Dort kann ein kleiner, leichter Spiegel bewegt werden. Im
-Gegensatz zum akustoopticshen Ansatzt ist diese Methode achromatisch,
-und funktioniert sogar fuer endlicht grosses Feld, kann also auch in
-weitfeldmikroskopen eingesetzt werden.
-
+The acoustic wave modulates the interatomic distance. This influences
+the local electron density and thus the refractive index of the
+medium. This allows to diffract a beam of light with moderate
+efficiency (70\%). Changing the acoustic frequency allows to vary the
+angle of diffraction. Due to its strong chromatic aberration and low
+efficiency, an AOD is cannot be used to descan the beam of a normal
+confocal microscope. However, this device is well suited for a
+two-photon microscope, where descanning is not strictly necessary.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=12cm]{aod} 
   \caption{Schematic of an acousto-optic deflector (AOD) illumination
-    system with $z-$focusing. Figure taken from \citet{Reddy2008}}
+     system with $z-$focusing. Figure taken from \citet{Reddy2008}}
 % in focusing single s highly preferred http://www.future-perfect.co.uk/grammartips/grammar-tip-focussed-focused.asp
   \label{fig:aod}
 \end{figure}
 
-
-Replacing the mechanical mirrors with an acoustic wave in a
-transparent material (TeO$_2$) enables $\unit[4]{\mu s}$ switching
-time \citep{Otsu2008} and even allows re-focusing
-\citep{Reddy2008}. 
-
-
+In \cite{Otsu2008} the authors achieved a switching time of
+$\unit[4]{\mu s}$ using an acoustic wave in tellurium dioxide
+(TeO$_2$).
 
 \nomenclature{AOD}{Acousto-optic deflector}
 \nomenclature{AOM}{Acousto-optic modulator}
 
-% FIXME
-\citep{Botcherby2007,botcherby2012aberration}
+The article \cite{Reddy2008} describes how to implement fast focusing
+by an acousto optic device for a two-photon microscope. They exploit
+the fact that the excitation light consists of laser pulses. The
+ultrasound transducer generates an acoustic waveform that resembles an
+one-dimensional Fresnel zone --- high frequencies on the outside and
+low frequencies towards the center. 
 
+The generation of the acoustic is synchronized to the laser pulses and
+starts sufficiently early, so that each laser pulse encounters a
+diffraction grating that is symmetric with regards to the optical
+axis. Two such elements in a row but rotated by 90 degrees allow to
+focus the beam, similar to how two cylindrical lenses would.
+
+\subsubsection{Aberration-free optical refocusing}
+Achieving the resolution limit of modern microscope objectives using
+acousto-optic Fresnel zones seems impossible or at least very
+difficult. An alternative approach that can significantly speed up
+conventional focusing techniques is based on a similar technique as
+the oblique plane microscope (see section \ref{sec:hilo}). In
+\cite{Botcherby2007} and \cite{botcherby2012aberration} an additional
+objective produces an unmagnified three-dimensional image of the
+sample which allows rapid refocusing with a lightweight mirror. This
+approach is achromatic and allows to focus many tens of microns deep
+into the sample while maintaining diffraction limited
+resolution. Unlike the acousto-optic device this method is not limited
+to a single collimated beam and can be applied in widefield
+microscopes.
 
 \section{Non-scanning techniques}
 \subsection{Direct illumination}

@@ -466,6 +466,30 @@ imaging through an array of microlenses.
   \label{fig:microlens-levoy-sketch}
 \end{figure}
 
+FIXME translate: Hinter die Mikrolinsen wird ein SLM platziert, so
+dass eine rechteckige Gruppe von beispielsweise 10x10 Pixeln in die
+Pupille abgebildet wird. Jede Mikrolinse beleuchtet die Pupille aus
+einem anderen Winkel. D.h. in der vorderen Fokusebene des Objektivs
+erzeugen die Linsengruppen Bilder an verschiedenen Orten.
+
+Handelt es sich bei dem SLM um einen Intensitaetsmodulator, dann
+stellt jeder Pixel direkt ein, mit welcher Lichtstaerke (suche
+Radiometrische Groesse) ein bestimmter Punkt im Sample von einem
+bestimmten Winkel aus beleuchtet wird.  Die Summe ueber alle Pixel
+hinter einer Mikrolinse definieren die Irradianz (suche Radiometrische
+Groesse, Winkelunabhaengig) in einem Punkt des Samples.
+
+Die im Sample beleuchtete Strukturgroesse kann bei Verwendung eines
+reinen Intensitaetsmodulators nie das Aufloesungslimit des
+Mikroskopobjektivs erreichen. (das muss ich mir genauer ueberlegen,
+was passiert mit wenn slm und mikrolinsen axial verschoben werden, wie
+verhaelt es sich mit einem phasen slm?)
+
+Bei der Anordnung von SLM und Mikrolinsen sind verschiedene Konzepte
+moeglich. In Abbildung .. habe ich eins dargestellt, was fuer die
+Anwendung in der Mikroskopie als optimal erscheint. Bei bedarf kann
+die volle Aufloesung des Objektivs ausgenutzt werden.
+
 A microlens array is placed behind the intermediate image plane (see
 \figref{fig:microlens-levoy-sketch}). The light that illuminates one
 microlens corresponds to one spot in the focal plane of the

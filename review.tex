@@ -279,26 +279,24 @@ the laser power for 2-photon microscopy by Chu et al.\
 \citep{Hoebe2007,Chu2007}.
 
 % FIXME i'm not sure if 2007 was first publication
-\subsection{Acousto-optic deflectors for fast beam steering}
+\subsection{Fast beam steering}
 In a conventional confocal microscope, the beam is steered by two
 galvanometer mirrors. This technique offers very good light
 throughput. However, the inertia of the mirrors severely limit the
 access rate of spots in the focal plane.
 
-FIXME translate und schraenkt damit die Aufloesung ein.
+The CLEM technique could be simplified and improved by an inertia-free
+solution to steer the excitation beam from pixel to pixel. The laser
+intensity would no longer have to be modulated and when enough photons
+were collected in a pixel, the next one could be addressed. 
 
-Die CLEM Technik koennte vereinfacht und verbessert werden, wenn der
-Laserstrahl ohne Inertia von Pixel zu Pixel bewegt werden koennte. In
-diesem Fall muesste der Laser nicht mehr deaktiviert werden und
-koennte direkt den naechsten Pixel beleuchten. Bilddaten koennten also
-schneller und mit einem groesserem Dynamikbereich als bei CLEM oder
-konventioneller konfokaler Mikroskopie aufgenommen werden.
-Auch ganz neuartige Experimente wuerden moeglich werden, 
 
 
 Der z-Fokus wird oft ueber eine piezomechnische Bewegung von Probe
 oder Objektiv eingestellt. Dabei muessen relativ grosse Massen bewegt
 werden. Entsprechend gross ist die Latenz.
+
+\subsubsection{Acousto-optic deflectors for fast beam steering}
 
 Eine interessante Alternative zu Galvospiegeln stellen AODs dar. Dabei
 wird eine akustische Welle in einem transparenten Medium erzeugt. Je
@@ -318,6 +316,7 @@ entspricht. Hohe frequenzen aussen und geringe in der Mitte. Zwei
 solche Geraete in folge wirken wie zwei Zylinderlinsen und koeennen in
 z fokussieren.
 
+\subsubsection{Aberration-free optical refocusing}
 Mit dieser Technik die Aufloessungsgrenze zu erreichen, scheint jedoch
 unmoeglich oder zumindest sehr aufwaendig. Ein guter Ansatz die
 z-fokussierung zu verbessern wird in .. angewendet. Die grundidee
@@ -349,7 +348,7 @@ time \citep{Otsu2008} and even allows re-focusing
 \nomenclature{AOM}{Acousto-optic modulator}
 
 % FIXME
-\cite{botcherby2012aberration}
+\citep{Botcherby2007,botcherby2012aberration}
 
 
 \section{Non-scanning techniques}
@@ -409,6 +408,19 @@ for the excitation and is directed towards the camera~1. Out-of-focus
 fluorescence will be reflected by any of the other DMD mirrors and
 ends up on camera 2. 
 
+\begin{figure}[htbp]
+  \centering
+  \svginput{1}{pam-sketch}
+  \caption{Schematic of a programmable array microscope (PAM)
+    \citep[inspired from][]{Verveer1998}. A digital micromirror
+    device (DMD) containing an array of tiltable mirrors is imaged
+    into the focal plane of the objective. Returning fluorescent light
+    from out-of-focus fluorophores is distributed onto both the
+    cameras. In-focus fluorescence is only imaged onto camera 1.}
+  \label{fig:pam-sketch}
+\end{figure}
+
+
 In \cite{Heintzmann2001a} the authors have the cameras integrate while
 the DMD displays many patterns. The pattern sequence could for example
 be a single pixel which scans the entire field. This would be very
@@ -424,17 +436,6 @@ A technique similar to controlled light exposure microscopy (CLEM,
 section \ref{sec:CLEM}) has been implemented in a programmable array
 microscope (PAM) \citep{Caarls2011}. 
 
-\begin{figure}[!hbt]
-  \centering
-  \svginput{1}{pam-sketch}
-  \caption{Schematic of a programmable array microscope (PAM)
-    \citep[inspired from][]{Verveer1998}. A digital micromirror
-    device (DMD) containing an array of tiltable mirrors is imaged
-    into the focal plane of the objective. Returning fluorescent light
-    from out-of-focus fluorophores is distributed onto both the
-    cameras. In-focus fluorescence is only imaged onto camera 1.}
-  \label{fig:pam-sketch}
-\end{figure}
 
 There are a few drawbacks with this technique: First, diffraction
 losses at the DMD reduce detection efficiency. Second, if excitation
@@ -471,7 +472,12 @@ imaging through an array of microlenses.
   %\includegraphics[width=7cm]{microlens-levoy-sketch} %FIXME redraw
   \svginput{1}{microlens-levoy-sketch}
   \caption{Schematic of microlenses in intermediate image plane
-    \citep[inspired from][]{Levoy2006}}
+    \citep[inspired from][]{Levoy2006}. A spatial intensity modulator
+    is illuminated from the right with an extended light
+    source. Groups of neighboring pixels downstream of individual
+    microlenses are imaged into the pupil. Therefore these pixels
+    allow to control the irradiance in the sample at the area that is
+    conjugated to the microlens. }
   \label{fig:microlens-levoy-sketch}
 \end{figure}
 
@@ -512,22 +518,22 @@ $(u,v)$. This data enables computational viewpoint shifting,
 refocusing, extended depth of field and aberration correction of the
 detected fluorescence emission.
 
-\begin{figure}[htbp]
-  \centering
-  \svginput{1}{microlens-levoy-sketch_2}
-  \caption{Construction of an out-of-focus ray bundle through the
-    light field microscope. In order to improve the readability of the
-    drawing, the magnification in the microscope was set to $1:1$
-    (focal lengths of tube lens and objective are equal). An on-axis
-    sample point originating from below the focal plane of the
-    objective is imaged onto an on-axis point between the tube lens
-    and the microlens array. Three of the microlenses re-image this
-    on-axis image point into three points behind the plane of the
-    camera, i.e.\ the images behind the three microlenses will contain
-    bright blurry spots at different positions relative to their
-    centre.}
-  \label{fig:microlens-levoy-sketch_2}
-\end{figure}
+% \begin{figure}[htbp]
+%   \centering
+%   \svginput{1}{microlens-levoy-sketch_2}
+%   \caption{Construction of an out-of-focus ray bundle through the
+%     light field microscope. In order to improve the readability of the
+%     drawing, the magnification in the microscope was set to $1:1$
+%     (focal lengths of tube lens and objective are equal). An on-axis
+%     sample point originating from below the focal plane of the
+%     objective is imaged onto an on-axis point between the tube lens
+%     and the microlens array. Three of the microlenses re-image this
+%     on-axis image point into three points behind the plane of the
+%     camera, i.e.\ the images behind the three microlenses will contain
+%     bright blurry spots at different positions relative to their
+%     centre.}
+%   \label{fig:microlens-levoy-sketch_2}
+% \end{figure}
 
 \figref{fig:microlens-levoy-sketch_2} shows a bundle of rays
 originating from an out-of-focus point. Each of the microlenses that

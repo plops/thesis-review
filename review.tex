@@ -395,26 +395,34 @@ techniques more often.
 
 \subsection{Intensity modulation}
 \subsubsection{Programmable array microscopy}
-FIXME translate Das Hauptelement beim Programmable Array mikroskop ist
-ein DMD. Ein und dasselbe Element befindet sich sowohl im Anregungs
-als auch im Anregungs als auch im Detektionsstrahlengang. Die Spiegel
-nehmen eine von zwei Stellungen ein. Entweder sie senden licht ins
-sample oder sie senden es in einen beam dump. Damit ist es moeglich
-struktuiert zu beleuchten. im einfachsten fall ist nur ein einzelner
-pixel aktiviert. dann entspricht die funktionsweise einem konfokalem
-mikroskop. das zurueckkehrende licht hat wird auf zwei kameras
-verteilt.  eine erhaelt eine mixtur von out-of-fokus und in-fokus
-licht die vom beleuchtungspixel reflektiert wird.  die andere erhaelt
-nur out-of-fokus licht das von den anderen pixeln reflektiert wurde.
+\label{ref:pam}
+The main element of the programmable array microscope is a digital
+micromirror (DMD). Its arrangement is such that it acts simultaneously
+in the excitation as well as the detection beam path. The mirrors can
+be programmed to have one of two deflections. Either they send light
+into the sample or they send it into a beam dump. This allows
+structured illumination with a computationally defined pattern. In the
+simplest case, when only a single pixel is turned on, the operation of
+the PAM resembles that of a confocal microscope. Fluorescence light of
+in-focus fluorophores returns to the micromirror that was responsible
+for the excitation and is directed towards the camera~1. Out-of-focus
+fluorescence will be reflected by any of the other DMD mirrors and
+ends up on camera 2. 
 
-in (rainers paper) randomisierte muster auf dem dmd angezeigt und in
-zwei bilder akkumuliert. je nachdem duty ratio der bilder (also der
-anzahl der aktiven pixel) kann man crosstalk verringern, muss dann
-aber ueber mehr bilder integrieren.
+In \cite{Heintzmann2001a} the authors have the cameras integrate while
+the DMD displays many patterns. The pattern sequence could for example
+be a single pixel which scans the entire field. This would be very
+slow, so instead, patterns of a pseudorandom sequence are presented
+which significantly accelerates data acquisition because each
+individual pattern excites more in-focus information. However, at the
+same time crosstalk is increased, i.e.\ additional light from
+out-of-focus fluorophores is collected on camera 1.  The images from
+both cameras for z-stack acquisitions are reconstructed using a
+maximum likelihood deconvolution.
 
 A technique similar to controlled light exposure microscopy (CLEM,
 section \ref{sec:CLEM}) has been implemented in a programmable array
-microscope (P`AM) \citep{Caarls2011}. 
+microscope (PAM) \citep{Caarls2011}. 
 
 \begin{figure}[!hbt]
   \centering
@@ -428,23 +436,24 @@ microscope (P`AM) \citep{Caarls2011}.
   \label{fig:pam-sketch}
 \end{figure}
 
-Ein Problem des PAM ist dass der DMD im detektionsstrahlengang. Er
-verringert zum einen die Effizienz durch diffractionsverluste. zum
-andern kann dort hervorgerufene fluoreszens oder ramansignal auf der
-Kamera nicht von Fluoreszenslicht aus dem Sample unterschieden werden
-und verringert damit den Signal to noise ratio. Problematisch ist auch
-die Alignierung der Kameras und einstellung der Optik. Idealerweise,
-aber schwer umzusetzen, wuerden DMD pixel optisch exakt auf die
-Kamerapixel abgebildet. Eine nachtraegliche interpolation der
-aufgenommen kameradaten die ansonsten notwendig wird hat das problem
-dass diese rechnung die Poissonverteilung der detektierten Photonen in
-den einzelnen Pixeln zerstoert. Dies kann negative Auswirkungen auf
-den algorithmus zur dekonvolution der daten haben.
+There are a few drawbacks with this technique: First, diffraction
+losses at the DMD reduce detection efficiency. Second, if excitation
+light causes fluorescence or Raman scattering at the DMD surface, it
+is impossible to distinguish this this disturbance from the
+fluorescence signal of the sample. Third, it is difficult to align the
+optics such that DMD pixels are exactly imaged on camera pixels. 
 
-heutzutage wuerde man ein derartiges system nichtmher mit langer
-integrationszeit bauen. stattdessen wuerde man eine schnelle kamera
-direkt in den detektionsstrahlengang setzen ohne einen umweg ueber den
-SLM zu gehen. so haben wir unser system konzipiert (ziehe kapitel ..)
+Distorted imaging could be retrospectively corrected by
+interpolation. However, this process would loose information about the
+noise characteristics of the sample values. The values in an
+interpolated image are no longer be Poisson distributed and
+application of the maximum likelihood estimation is problematic.
+
+With the availability of cameras with sub-electron readout noise
+(EM-CCD or sCMOS) one would no longer place the DMD in the detection
+path. Instead, one could acquire an image of each individual pattern
+and do the descanning computationally.
+
 
 \nomenclature{PAM}{Programmable array microscopy}%
 \nomenclature{DMD}{Digital micro mirror device}%

@@ -11,12 +11,11 @@
 \label{sec:approaches}
 \nomenclature{CLEM}{Controlled light exposure microscopy}%
 \begin{summary}
-  Dieses Kapitel gibt einen ueberblick ueber aktuelle Methoden der
-  Fluoreszensmikroskopie, die es erlauben eine irgendwie kontrollierte
-  Verteilung des Anregungslichts im Sample zu erzeugen. Mein
-  Hauptinteresse liegt hierbei insbesondere auf der Moeglichkeit die
-  unnoetige Beleuchtung von Strukturen ausserhalb vom Fokus zu
-  vermeiden um Phototoxicitaet zu vermindern.
+  This chapter provides an overview over current methods of
+  fluorescence microscopy that allow to produce a controlled
+  distribution of the excitation light. I focus in particular on
+  techniques that prevent unnecessary illumination of out-of-focus
+  structures and reduce phototoxicity.
 \end{summary}
 \section{Light sheet fluorescence microscopy}
 \label{sec:light-sheet-microscopy}
@@ -435,15 +434,16 @@ and emit at a wavelength of $\unit[(470\pm22)]{nm}$.
 \nomenclature{LCoS}{Liquid crystal on silicon (display)}
 \nomenclature{DPSS}{Diode-pumped solid-state (laser)}
 
-FIXME translate: Zum jetzigen Zeitpunkt ist nicht klar, ob direkte
-Beleuchtung jemals gut genug wird, um die flexibleren SLM zu ersetzen.
-Die Hersteller werden ihre Technologie vermutlich fuer
-Consumeranwendungen wie Displays von Mobiltelefonen optimieren, wo
-weder Fill faktor noch Leuchtdichte wesentlich sind.  Interessant
-koennten an Stelle von LEDs arrays aus Vertical-cavity
-surface-emitting lasers (VCSEL), denn die wuerden zumindest hohe
-Irradianz liefern koennen. Diese sind bisher jedoch nur im
-langwelligen Bereich erhaeltlich.
+Currently it is not clear whether direct illumination will ever
+replace the more flexible spatial light modulators. Manufacturers of
+direct illumination devices will optimize their technology for
+consumer applications such as mobile phone displays where neither fill
+factor nor extreme radiant intensity (\unit[]{W/sr}) are very
+important.  Arrays of Vertical-cavity surface-emitting lasers (VCSEL)
+may become interesting alternatives to LED-arrays because they can
+provide high radiant intensity but currently they are not readily
+available in the interesting wavelength ranges.
+
 
 \subsubsection{Light field microscopy}
 \label{sec:light-field-microscopy}
@@ -467,11 +467,17 @@ imaging through an array of microlenses.
   \label{fig:microlens-levoy-sketch}
 \end{figure}
 
-FIXME translate: Hinter die Mikrolinsen wird ein SLM platziert, so
-dass eine rechteckige Gruppe von beispielsweise 10x10 Pixeln in die
-Pupille abgebildet wird. Jede Mikrolinse beleuchtet die Pupille aus
-einem anderen Winkel. D.h. in der vorderen Fokusebene des Objektivs
-erzeugen die Linsengruppen Bilder an verschiedenen Orten.
+
+Downstream of the microlenses a spatial light modulator (SLM) is
+placed, so that a rectangular group of, say $10\times 10$ pixels is
+imaged into the pupil.
+
+
+Hinter die Mikrolinsen wird ein SLM platziert, so dass eine
+rechteckige Gruppe von beispielsweise 10x10 Pixeln in die Pupille
+abgebildet wird. Jede Mikrolinse beleuchtet die Pupille aus einem
+anderen Winkel. D.h. in der vorderen Fokusebene des Objektivs erzeugen
+die Linsengruppen Bilder an verschiedenen Orten.
 
 Bei dem SLM handelt es sich um einen Intensitaetsmodulator und jeder
 Pixel stellt direkt ein, mit welcher Lichtstaerke (suche

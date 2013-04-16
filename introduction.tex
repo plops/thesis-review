@@ -450,11 +450,11 @@ invariant for small regions of the field plane and allows to express
 image formation with linear systems theory.
 
 \subsection{Wave-optical theory for image formation in a fluorescence microscope}
-In the following I want to describe how the image on the camera
-\cma{wave optics} is formed. For this we have to use wave theory
+In the following sectoin I will describe how the image on the camera
+\cma{wave optics} is formed. For this one has to use wave theory
 because close to the image rays intersect, invalidating ray-optical
 predictions. As both wave-optical and ray-optical theory, are very
-much related, we can give a useful interpretation of the aplanatic
+much related, one can give a useful interpretation of the aplanatic
 surface for wave optics.
 
 The underlying Maxwell equations and the wave equation are linear and   \cma{plane waves}
@@ -943,15 +943,15 @@ the charge that was collected in the photodiodes:
 
 In the passive-pixel sensor columns of diodes form a linear row of
 \cma{Charge-coupled devices (CCD)} capacitors. By applying a sequence
-of different voltages, in the range up of to \unit[6]{V} to each of
-three adjacent capacitors, the charge can be transported line by line
-out of the sensor --- therefore, this technology is known as
-charge-coupled device (CCD). An additional row of similar capacitors
-(denoted horizontal shift register) on one side of the array pushes
-the carriers into a charge amplifier. \cma{charge amplifier} This
-consists of a much smaller capacitor (the read node) and a
-field-effect transistor that amplifies the voltage across the read
-node. This voltage linearly depends on the charge \citep{Pawley2006}.
+of different voltages of up to \unit[6]{V} to each of three adjacent
+capacitors the charge can be transported line by line out of the
+sensor --- therefore, this technology is known as charge-coupled
+device (CCD). An additional row of similar capacitors (denoted
+horizontal shift register) on one side of the array pushes the
+carriers into a charge amplifier. \cma{charge amplifier} This consists
+of a much smaller capacitor (the read node) and a field-effect
+transistor that amplifies the voltage across the read node. This
+voltage linearly depends on the charge \citep{Pawley2006}.
 
 In the active-pixel sensor each individual photodiode is surrounded by
 its own \cma{active-pixel sensor} transistors for readout and
@@ -968,14 +968,15 @@ sensors that provide comparable or better noise performance, become
 commercially available.
 
 In the next section I will deal with various noise sources that affect
-the signal of focal plane detectors. This is not only relevant to
-compare the performance of cameras from different manufacturers or to
+the signal of focal plane detectors. This is relevant when comparing
+the performance of cameras from different manufacturers or to
 determine the optimal parameter settings for one particular
-experiment; often it is advantageous to specify an intensity
-measurement as the number of detected photoelectrons, e.g.\ when
-comparing images of different microscope systems (confocal, spinning
-disk or wide-field) or when utilizing sophisticated noise reduction
-algorithms.
+experiment. Furthermore, it is possible to use the photon shot noise
+to calibrate cameras (or any other intensity detector) and convert
+their measurements to detected photoelectrons.  This allows to compare
+images of different microscope systems (confocal, spinning disk or
+wide-field) or and facilitates the use off sophisticated noise
+reduction algorithms.
 
 \subsection{Photon shot noise and read noise}
 \label{sec:photon-noise}
@@ -1233,7 +1234,7 @@ lines before the illumination is activated.
 % 10-4 Configuring exposure time
 
 The entry back-thinned sCMOS is only a hypothetical sensor which I
-added to compare the performance of a low noise activ-pixel sensor
+added to compare the performance of a low noise active-pixel sensor
 with near perfect quantum efficiency.
 \subsection{Calibration of the EM-CCD gain}
 The method I presented for CCD calibration can be applied to measure
@@ -1248,7 +1249,7 @@ excess noise factor can be calculated with
 \begin{align}
   F_n =  N_{(1)}/N_{(M)}  
 \end{align}
-where $N_{(1)}$ and $N_{(M)}$ are the sum of photoelectrons in the
+where $N_{(1)}$ and $N_{(M)}$ are the sums of photoelectrons in the
 image without and with electron multiplication gain, respectively.
 
 The variance for data without gain is $(\Delta I)^2_{(1)} = Q_E
@@ -1263,10 +1264,11 @@ m_{(M)}=Q_E F_n^2/M$ of the intensity-variance curves:
   M = F_n^2 \frac{m_{(1)}}{m_{(M)}}.
 \end{align}
 
-In Appendix \ref{sec:basic-acquisition} I show code to automatically
-measure data for this calibration. In order to cover a large span of
-gains, I capture a short exposure image before each measurement and
-adjust the exposure time such that the sensor is never overexposed.
+In Appendix \ref{sec:basic-acquisition} I present code to
+automatically measure data for this calibration. In order to cover a
+large span of gains, I capture a short exposure image before each
+measurement and use the longest exposure time that is possible without
+overexposing the sensor.
 
 
 % - effects to look out for
@@ -1336,12 +1338,12 @@ adjust the exposure time such that the sensor is never overexposed.
 Table~\ref{tab:ixon-table} summarizes the calibration results. The
 average of the dark images (in ADU) is given in the column
 \textsf{offset}. The read noise in conventional mode is approximately
-8 electrons per pixel rms. The column \textsf{mean'} contains the
-average number of photoelectrons per pixel in the illuminated image
-normalized by the integration time. The rows \textsf{conv1} and
-\textsf{conv2} with conventional readout (without EM-gain) contain
-approximately the same number. This proves that no significant
-bleaching occurred during the experiment.
+8 electrons per pixel rms. The column \textsf{mean'} (primed variable)
+contains the average number of photoelectrons per pixel in the
+illuminated image normalized by the integration time. The rows
+\textsf{conv1} and \textsf{conv2} with conventional readout (without
+EM-gain) contain approximately the same number. This proves that no
+significant bleaching occurred during the experiment.
 
 \subsection{Conclusion}
 

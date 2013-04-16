@@ -244,7 +244,7 @@ conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
   estimates the number of photoelectrons the detector would have
   seen with \unit[1]{s} integration time and is used to calculate
   the excess noise factor in the last column. In EM-mode the fastest
-  readout speed was used (\unit[10]{MHz}) with a vertical shift speed of
+  readout speed was used (\unit[10]{MHz}) with the default vertical shift speed of
   \unit[1.7]{$\mu$s}.}
   \label{tab:ixon-table}
 \end{table}
@@ -262,12 +262,13 @@ without EM-gain using an Andor IXon3 EM-CCD camera.
   \centering
   \pdfinput{17cm}{ixon_conv1}
   \pdfinput{17cm}{ixon_300}
-  \caption{Readnoise evaluation using the Python code{\bf top:}
-    Conventional readout of an Andor IXon3 camera. {\bf bottom:}
+  \caption{Readout noise evaluation using the Python code {\bf top:}
+    Conventional readout of an Andor iXon3 camera. {\bf bottom:}
     readout with an EM-gain setting of 300 on the same camera with
     identical sample. {\bf left:} 2D histogram of per pixel variances
-    against binned intensities. {\bf middle:} variance of 20 dark
-    images. {\bf right:} mean of 20 dark images.}
+    against binned intensities. red data points: measuremnts, blue
+    line: linear fit {\bf middle:} variance of 20 dark images. {\bf
+      right:} mean of 20 dark images.}
   \label{fig:ixon}
 \end{figure}
 The following code loads several Python packages. Essentially, I use
@@ -398,7 +399,7 @@ fig.savefig(cam+'_'+gain+'.png')
 \end{figure}
 
 \section{HiLo}
-
+FIXME translate:
 In diesem Kapitel simuliere ich ein Verfahren, um optische Schnitte
 aus nur zwei Rohbildern zu errechnen. Dafuer nutze ich das
 wellenoptische Modell der Bildformung.

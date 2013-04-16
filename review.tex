@@ -469,45 +469,28 @@ imaging through an array of microlenses.
 
 
 Downstream of the microlenses a spatial light modulator (SLM) is
-placed, so that a rectangular group of, say $10\times 10$ pixels is
-imaged into the pupil.
+placed, so that a rectangular group, of say $10\times 10$ pixels is
+imaged into the pupil. Each microlens illuminates the pupil from
+another angle. In \cite{Levoy2009} they use an intensity SLM and each
+of its pixels controls the radiant intensity (\unit[]{W/sr}) in the
+area of the sample that is covered by the conjugated image of the
+corresponding microlens. A trade-off has to be made between the
+resolution that can be obtained in the pupil and the resolution in the
+focal plane in the sample. The latter is limited by the size of the
+microlenses.
 
+The paper uses microlenses in the detection path as well. The camera
+captures a lot of images of the pupil. This allows retrospective
+refocusing or rotation of the image using the ray-based plenoptic
+theory. However, splitting the images with microlenses has severe
+drawbacks and should not be used with fluorescence microscopy. When
+recording camera images, important phase information is lost and the
+sub-images can not be recombined to obtain the full resolution of the
+microscope objective.
 
-Hinter die Mikrolinsen wird ein SLM platziert, so dass eine
-rechteckige Gruppe von beispielsweise 10x10 Pixeln in die Pupille
-abgebildet wird. Jede Mikrolinse beleuchtet die Pupille aus einem
-anderen Winkel. D.h. in der vorderen Fokusebene des Objektivs erzeugen
-die Linsengruppen Bilder an verschiedenen Orten.
-
-Bei dem SLM handelt es sich um einen Intensitaetsmodulator und jeder
-Pixel stellt direkt ein, mit welcher Lichtstaerke (suche
-Radiometrische Groesse) ein bestimmter Punkt im Sample von einem
-bestimmten Winkel aus beleuchtet wird.  Die Summe ueber alle Pixel
-hinter einer Mikrolinse definiert die Irradianz (suche Radiometrische
-Groesse, Winkelunabhaengig) in einem Punkt des Samples.
-
-Die im Sample beleuchtete Strukturgroesse kann zumindest bei
-Verwendung eines reinen Intensitaetsmodulators nie das
-Aufloesungslimit des Mikroskopobjektivs erreichen.
-
-
-Die Paper nutzen die Mikrolinsen auch im Detektionsstrahlengang, so
-dass die Kamera sehr viele Aufnahmen der Pupille macht, die durch
-umordnen der Pixel zum nachtraeglichen Fokussieren oder
-tomographischer Drehung genutzt werden koennen.  Fuer die Anwendung in
-der Fluoreszensmikroskopie ist davon jedoch abzuraten. Prinzipbedingt
-erhalten die Pixel der Kamera nur Licht aus eines Bruchteils der
-Pupille --- eben dem Bereich der durch eine einzelne Mikrolinse
-aufgefangen wird. Bei der Aufnahme der Einzelbilder hinter den
-Mikrolinsen gehen wichtige Phaseninformationen verloren und damit
-verliert man die Aufloesung.
-
-Bei der Beleuchtung stellt dies in vielen Anwendungsfaellen kein so
-grosses Problem dar und es ist beispielsweise moeglich das angezeigte
-Muster zu defokussieren. Moeglicherweise koennte man durch Einsatz
-eines Phase SLM bei der Beleuchtung die volle Aufloesung des
-Mikroskopobjektivs beibehalten.
-
+In the case of illumination the loss in resolution is not as important
+and perhaps the full resolution could even be maintained when a phase
+SLM is used.
 \nomenclature{TL}{tube lens}
 \subsection{Temporal focusing}
 \begin{figure}[!hbt]

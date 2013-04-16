@@ -64,10 +64,11 @@ given in the main text in section \ref{sec:ccd-intro} on page
 
 The program is written in a dialect of Basic and can be executed in
 the Andor Solis software. Before use, a picture resembling
-\figref{fig:shot-noise} should be imaged onto the sensor, e.g.\ a
-defocused fluorescent sample. The acquired data can later be processed
-using either the Matlab/DIPimage function \verb!cal_readnoise! or,
-equivalently, by using the Python script from the next section.
+\figref{fig:shot-noise} on page \pageref{fig:shot-noise} should be
+imaged onto the sensor, e.g.\ a defocused fluorescent sample. The
+acquired data can later be processed using either the Matlab/DIPimage
+function \verb!cal_readnoise! or, equivalently, by using the Python
+script from the next section.
 
 A camera calibration allows to convert image data into the device
 independent unit of detected photoelectrons but this only works as
@@ -84,7 +85,7 @@ acquired. Ultimately, dark images are necessary to quantify the
 readout noise.
 
 The code listings in this section are supposed to be in this sequence
-in a single source file which is also available on github link FIXME.
+in a single source file.% which is also available on github link FIXME.
 
 For this program I assume that the camera is illuminated with a
 continuous flux of photons. The program is designed to acquire images
@@ -134,10 +135,10 @@ CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
 \comment{ $ } The loop in the next listing makes similar acquisitions
-for a range of EM gains.  Later, when evaluating the data, I learned
-that after calling \verb!SetGain! a settling time of a few seconds
-should be allowed for. After all, there are relatively high
-voltages. I inserted a comment in the corresponding line.
+for a range of EM gains.  Evaluating the data revealed that a settling
+time of a few seconds should be allowed for after calling
+\verb!SetGain!. After all, there are relatively high voltages. I
+inserted a comment in the corresponding line.
 \begin{lstlisting}[style=mybasic]
 SetOutputAmp(0)
 SetShutter(1,1)
@@ -184,16 +185,20 @@ ExportTiff(#0, name$ + "conv2 _bright.tif", 1, 1, 0, 0)
 CloseWindow(#0)
 CloseWindow(#1)
 \end{lstlisting}
-Unfortunately, the evaluation showed that the sample might have
-bleached slightly during the experiment. Therefore, it would be better
-to calibrate using an LED light source or intersperse conventional
-readouts between measurements with EM gain in order to compensate for
-these effects. FIXME did i write the function run()?
-
 Table \ref{tab:ixon-table} summarizes results of calibration
 measurements that were acquired using this software and evaluated
 using the Python code from the next section.
 
+Unfortunately, the data in the first and last line (conv1 and conv2
+with $M=1$) show a disparity in the pre-amplifier gain
+$M_\textrm{pre}$. An improvement would be to use an LED light source
+(which doesn't bleach) or intersperse conventional readouts between
+measurements with EM gain in order to compensate for variations due to
+bleaching.
+
+%FIXME did i write the function run()?
+
+% 1.3165/1.593*15496 = 12806 < 14923
 
 \begin{table}[!htbp]
   \centering
@@ -250,8 +255,8 @@ conv2 & 1.5953 & 8.768 & 8198.86 & 0.5291 & 15496 & 1.019 \\
 \label{sec:python-readnoise-eval}
 Here I present a Python implementation for evaluating data that has
 been recorded using the program from the previous
-section. \figref{fig:ixon} shows two evaluations for data with two
-different camera parameters using an Andor IXon3 EM-CCD camera.
+section. \figref{fig:ixon} shows two evaluations for data with and
+without EM-gain using an Andor IXon3 EM-CCD camera.
 
 \begin{figure}[htbp]
   \centering

@@ -193,19 +193,6 @@ calibration of the deflection angle using a white light interferometer
   checker board pattern would be displayed on the device. The
   deflection angles are exaggerated.  Electron and optical micrograph
   by Fraunhofer IPMS Dresden (Germany)}
-\begin{figure}[!hbt]
-  \centering
-  \svginput{.6}{mma-fft}
-  \caption{{\bf left:} Measurement of the deflection of micro-mirrors
-    using a white-light interferometer (provided by Fraunhofer IPMS
-    Dresden (Germany)). {\bf right:} Simulation of the Fraunhofer
-    diffraction pattern of the micro-mirror array for coherent,
-    monochromatic light (kindly provided by Joel Seligson). The
-    circles with radius $d_\textrm{max}$ indicate the maximum size of
-    the field mask B0 where the diffraction orders do not
-    overlap. This limits the etendue of our illumination system.}
-  \label{fig:mma-fft}
-\end{figure}
 
 The lens L1 has two purposes: First, it images the field mask B0 into % FIXME is it capital F after colon?
 the Fourier stop B1. Second, the plane $\textrm{P}''$ with the phase
@@ -222,6 +209,50 @@ i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 ($\unit[]{W}$) through the beam stop in $\textrm{F}''$ decreases while
 the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.  In
 the real system, the lens L1 consists of four glass elements.
+
+FIXME translate: Um das Fouriermuster zu beschreiben betrachte ich
+zunaechst einzelnes Pixel mit Breite $d$. Dieses laesst sich zunaechst
+in einer Dimension durch den folgenden Ausdruck beschreiben:
+\begin{align}
+  T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/d)\cdot e^{i k_p x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases}
+\end{align}
+Die Faltung mit der $\delta-$Funktion schiebt das Pixel an die Stelle
+$x_p$ und $k_p$ beschreibt den Kippwinkel des Spiegels. Mit der
+Fouiertransformation
+\begin{align}
+  \frac{1}{d}\int_{-d/2}^{d/2} e^{ikx} \textrm{d}x =
+  \frac{\sin(kd/2)}{kd/2} =: \sinc(kd/2)
+\end{align}
+ergibt sich das Fraunhofer Beugungsbild eines einzelnen Pixels zu:
+\begin{align}
+  \widetilde T_p(k_x) = e^{ik_x x_p} \left(d \sinc(kd/2)\otimes\delta(k_x-k_p)\right)
+\end{align}
+D.h. das sinc-foermige Beugungsbild des Pixels verschiebt sich im
+k-Raum, je nach deflection des Spiegels.
+
+Angenommen die $N$ Pixel sind entlang einer Zeile mit einem Pitch
+verteilt, der Identisch ihrer Breite ist, also $x_p=d\cdot p$ mit $p\in
+[-N/2,N/2+1]$. Dann ist das Fourierspektrum $\widetilde
+T_\textrm{line}$ dieser Zeile:
+\begin{align}
+  \widetilde T_\textrm{line}(k_x) & = \sum_{p=-N/2}^{N/2+1} T_p(k_x) \\
+  &= \sum_{p=-N/2}^{N/2+1}  e^{ik_x d p} \left(d \sinc(kd/2)\otimes\delta(k_x-k_p)\right)
+\end{align}
+
+\begin{figure}[!hbt]
+  \centering
+  \svginput{.6}{mma-fft}
+  \caption{{\bf left:} Measurement of the deflection of micro-mirrors
+    using a white-light interferometer (provided by Fraunhofer IPMS
+    Dresden (Germany)). {\bf right:} Simulation of the Fraunhofer
+    diffraction pattern of the micro-mirror array for coherent,
+    monochromatic light (kindly provided by Joel Seligson). The
+    circles with radius $d_\textrm{max}$ indicate the maximum size of
+    the field mask B0 where the diffraction orders do not
+    overlap. This limits the etendue of our illumination system.}
+  \label{fig:mma-fft}
+\end{figure}
+
 
 The phase distribution $\Phi(\x)$ in MMA plane corresponds to the       \cma{Fourier diffraction pattern}
 profile in \figref{fig:mma-fft}~left:

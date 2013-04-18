@@ -234,12 +234,14 @@ k-Raum, je nach deflection des Spiegels.
 
 Angenommen die $N$ Pixel sind entlang einer Zeile mit einem Pitch
 verteilt, der Identisch ihrer Breite ist, also $x_p=w\cdot p$ mit
-$p\in [-N/2,N/2+1]$.  Der Einfachheit halber vernachlaessige ich die
-Spalte zwischen den Spiegeln (sie Elektronenmikroskopbild).  Das
-Fourierspektrum $\widetilde T_\textrm{line}$ dieser Zeile:
+$p\in \big[-\lfloor N/2\rfloor,\lfloor N/2\rfloor+1\big]$ wobei $\lfloor N/2\rfloor$ die
+groesste ganze Zahl beschreibt, die kleiner N/2 ist.  Der Einfachheit
+halber vernachlaessige ich die Spalte zwischen den Spiegeln (sie
+Elektronenmikroskopbild).  Das Fourierspektrum $\widetilde
+T_\textrm{line}$ dieser Zeile:
 \begin{align}
-  \widetilde T_\textrm{line}(k_x) & = \sum_{p=-N/2}^{N/2+1} T_p(k_x) \\
-  &= \sum_{p=-N/2}^{N/2+1} e^{ik_x w p} \left(w
+  \widetilde T_\textrm{line}(k_x) & = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} T_p(k_x) 
+  = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x w p} \left(w
     \sinc(k_x w/2)\otimes\delta(k_x-k_p)\right)
 \end{align}
 Dieser Ausdruck ist die Fouriertransformation eines Liniengitters mit
@@ -262,11 +264,20 @@ entsprechenden Wellenlaenge) in die erste Ordnung reflektiert.
 Im naechsten Diagramm ist die Intensitaet in der nullten Ordnung fuer
 variierende Spiegelkippung dargstellt. Dieses
 \begin{align}
-  |\widetilde T_\textrm{line}(0)|^2 = \sinc^2(k_p)
+  |\widetilde T_\textrm{line}(0)|^2 = \sinc(k_p)^2
 \end{align}
 % block([N:20,dx:3,k:0],plot2d(cabs(sum(exp(%i*k*p*dx)*sinc(k*dx/2+kp),p,-N/2,N/2+1))^2,[kp,0,%pi*2]));
 
 Bei der Fourierfilterung soll 
+
+\begin{figure}[!hbt]
+  \centering
+  \includegraphics{diffraction_lines}
+  \includegraphics{diffraction_rects}
+  \caption{ vcasdfa}
+  \label{fig:maxima-diffraction}
+\end{figure}
+
 
 \begin{figure}[!hbt]
   \centering

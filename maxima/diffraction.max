@@ -1,22 +1,13 @@
 
 
-/* get fourier transform of a rectangle with size a and area 1*/
-trigsimp(demoivre(integrate(exp(-%i*x*k)/a,x,-a/2,a/2)));
+/* get fourier transform of a rectangle with size a and area 1
+trigsimp(demoivre(integrate(exp(-%i*x*k)/a,x,-a/2,a/2))); */
 /* result: sin(a k/2)/(a k/2) = sinc(k a/2) */
-plot2d([sin(k*1/2)/(k/2),.3*sin(k*1/2)/(k/2)],[k,-100,100],[plot_format,gnuplot],[legend,sinc],[gnuplot_term,"postscript eps size 5.5,2.52 enhanced color font 'Helvetica,22'"],[gnuplot_out_file,"| epstopdf --filter --outfile=/dev/shm/o.pdf"],[style,[lines,8]]);
 
-/* mono output for epaper */
-plot2d([sin(k*1/2)/(k/2),.3*sin(k*1/2)/(k/2)],[k,-100,100],[plot_format,gnuplot],[legend,sinc],[gnuplot_term,"postscript eps size 5.5,2.52 enhanced color font 'Helvetica,22'"],[gnuplot_out_file,"| gs -sDEVICE=x11mono"],[style,[lines,8]]);
-sinc(x) := sin(x)/x;
-/* intensity of first term of diffraction expression for many pixels */
-map(set_plot_option,[[plot_format,gnuplot],[gnuplot_term,"postscript eps size 6cm,4cm enhanced color font 'Helvetica,22'"],[gnuplot_out_file,"| epstopdf --filter --outfile=/dev/shm/o.pdf"]]);
-plot2d(block([N:10,dx:16],cabs(sum(exp(%i*kx*p*dx),p,-floor(N/2),floor(N/2)+1))^2),[kx,-1,1],[style,[lines,8]],[xlabel,"k_x"],[ylabel,"intensity"]);
 /* (local-set-key "\C-\M-x" maxima-send-form) */
 
-
-
 /* calculate normalized diffraction spectrum */
-intens(N):=block([NN:1024,xylist,ma],
+intens(N,NN):=block([xylist,ma],
   xylist:makelist(
     block([dx:16,
       kx:2*(k*1.0/NN-.5)],
@@ -25,32 +16,65 @@ intens(N):=block([NN:1024,xylist,ma],
   ma:lmax(map(second,xylist)),
   maplist(lambda([xy],[first(xy),second(xy)/ma]),xylist));
 
+compile(intens);
 
-int_big : intens(20)$
-int_mid : intens(4)$
-int_small:intens(1)$
+/*
+showtime : true;
+*/
+int_big : intens(20,256)$
+int_mid : intens(4,200)$
+int_small:intens(1,90)$
 
 secondmap(f,xylist):=map(lambda([xy],[first(xy),apply(f,[second(xy)])]),xylist);
 
 map(set_plot_option,
   [[plot_format,gnuplot],
-  [gnuplot_term,"pdfcairo size 5,4 rounded enhanced font 'Helvetica,10'"],
-  [gnuplot_out_file,"/dev/shm/o.pdf"],
-  [gnuplot_preamble,"set border linewidth 2; unset ytics;unset key; set label \"N=1\" at 0.1,3.2;"]]);
+  [gnuplot_term,"pdfcairo size 7.2cm,5cm rounded enhanced font 'Helvetica,6'"],
+  [gnuplot_out_file,"build/diffraction_lines.pdf"],
+/*    [gnuplot_out_file,"| epstopdf --filter --outfile=build/diffraction_lines.pdf"],*/
+  [gnuplot_preamble,"set border 3 lw 2;set grid;unset ytics;unset key; set label \"N=1\" at 0.1,3.1;set label \"N=4\" at 0.1,1.6;set label \"N=20\" at 0.05,.5;"]])$
 
-plot2d(
-  [
-  [discrete,secondmap(lambda([y],2.3+y),int_small)],
+plot2d([[discrete,secondmap(lambda([y],2.3+y),int_small)],
   [discrete,secondmap(lambda([y],1.2+y),int_mid)],
   [discrete,secondmap(lambda([y],.1+y),int_big)]],
   [style,[lines,6]],
-  [color,"#aaa212","#1203aa"],
+  [color,black],
   [y,0,3.4],
   [xlabel,"k_x"],
-  [ylabel,"intensity"]);
+  [ylabel,"intensity"])$
+
+/* N mirrors of width and pitch dx, with tilt k_p estimate fourier spectrum at kx */
+sinc(x) := sin(x)/x;
+four(N,kx,dx,kp):=cabs(sum(exp(1.0*%i*kx*p*dx)*1.0*sinc(1.0*kx*dx/2-kp),p,-floor(N/2),floor(N/2)+1))^2;
+plotfour(N,kp,NN):=block([xylist,ma],
+  xylist:makelist(
+    block([dx:16,
+      kx:2*(k*1.0/NN-.5)],
+      [kx, four(N,kx,dx,kp)])
+    ,k,NN),
+  ma:lmax(map(second,xylist)),
+  maplist(lambda([xy],[first(xy),second(xy)/ma]),xylist));
+
+m_flat : plotfour(20,float(0.0001),512)$
+m_blaze : plotfour(20,float(%pi),512)$
+m_mid : plotfour(20,float(1.8),512)$
+map(set_plot_option,
+  [[plot_format,gnuplot],
+  [gnuplot_term,"pdfcairo size 7.2cm,5cm rounded enhanced font 'Helvetica,6'"],
+  [gnuplot_out_file,"build/diffraction_rects.pdf"],
+  [gnuplot_preamble,"set border 3 lw 2;set grid;unset ytics;unset key; set label \"k_p=0\" at 0.1,3.1;set label \"N=4\" at 0.1,1.6;set label \"N=20\" at 0.05,.5;"]])$
+
+plot2d([[discrete,secondmap(lambda([y],2.3+y),m_flat)],
+  [discrete,secondmap(lambda([y],1.2+y),m_blaze)],
+  [discrete,secondmap(lambda([y],.1+y),m_mid)]],
+  [style,[lines,6]],
+  [color,black],
+  [y,0,3.4],
+  [xlabel,"k_x"],
+  [ylabel,"intensity"])$
 
 /*
-four1(N,k,dx):=cabs(sum(exp(%i*k*p*dx),p,-N/2,N/2+1))^2;
+four1(N,k,dx):=cabs(sum(exp(%i*k*p*dx),p,-floor(N/2),floor(N/2)+1))^2;
 plot2d([10*sqrt(four1(2,kx,16)),sqrt(four1(20,kx,16))],[kx,-1,1],[legend,"N=2","N=20"],[style,[lines,8]]);
 
 /* only zero order when all pixels are undeflected */
@@ -62,7 +86,7 @@ block([N:20,dx:16],plot2d(cabs(sum(exp(%i*k*p*dx)*sinc(k*dx/2-%pi),p,-N/2,N/2+1)
 /* half blaze angle */
 block([N:20,dx:3],plot2d(cabs(sum(exp(%i*k*p*dx)*sinc(k*dx/2-.2*%pi),p,-N/2,N/2+1))^2,[k,-4.5,4.5]));
 
-four(N,k,dx,kp):=cabs(sum(exp(%i*k*p*dx)*sinc(k*dx/2-kp),p,-N/2,N/2+1))^2;
+
 plot2d([four(10,kx,16,.6*%pi),four(10,kx,16,%pi)],[kx,-1,1]);
 
 

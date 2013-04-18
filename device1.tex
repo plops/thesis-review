@@ -210,34 +210,63 @@ i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.  In
 the real system, the lens L1 consists of four glass elements.
 
-FIXME translate: Um das Fouriermuster zu beschreiben betrachte ich
-zunaechst einzelnes Pixel mit Breite $d$. Dieses laesst sich zunaechst
-in einer Dimension durch den folgenden Ausdruck beschreiben:
+FIXME translate: Beschreibe den Effekt des MMA Gratings auf eine
+monochromatische Ebene Welle.  Um das Fouriermuster zu beschreiben
+betrachte ich zunaechst einzelnes Pixel mit Breite $w=\unit[16]{\mu
+  m}$. Dieses laesst sich zunaechst in einer Dimension durch den
+folgenden Ausdruck beschreiben:
 \begin{align}
-  T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/d)\cdot e^{i k_p x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases}
+  T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/w)\cdot e^{i k_p x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases}
 \end{align}
 Die Faltung mit der $\delta-$Funktion schiebt das Pixel an die Stelle
 $x_p$ und $k_p$ beschreibt den Kippwinkel des Spiegels. Mit der
 Fouiertransformation
 \begin{align}
-  \frac{1}{d}\int_{-d/2}^{d/2} e^{ikx} \textrm{d}x =
-  \frac{\sin(kd/2)}{kd/2} =: \sinc(kd/2)
+  \frac{1}{w}\int_{-w/2}^{w/2} e^{ikx} \textrm{d}x =
+  \frac{\sin(kw/2)}{kw/2} =: \sinc(kw/2)
 \end{align}
 ergibt sich das Fraunhofer Beugungsbild eines einzelnen Pixels zu:
 \begin{align}
-  \widetilde T_p(k_x) = e^{ik_x x_p} \left(d \sinc(kd/2)\otimes\delta(k_x-k_p)\right)
+  \widetilde T_p(k_x) = e^{ik_x x_p} \left(w \sinc(kw/2)\otimes\delta(k_x-k_p)\right)
 \end{align}
 D.h. das sinc-foermige Beugungsbild des Pixels verschiebt sich im
 k-Raum, je nach deflection des Spiegels.
 
 Angenommen die $N$ Pixel sind entlang einer Zeile mit einem Pitch
-verteilt, der Identisch ihrer Breite ist, also $x_p=d\cdot p$ mit $p\in
-[-N/2,N/2+1]$. Dann ist das Fourierspektrum $\widetilde
-T_\textrm{line}$ dieser Zeile:
+verteilt, der Identisch ihrer Breite ist, also $x_p=w\cdot p$ mit
+$p\in [-N/2,N/2+1]$.  Der Einfachheit halber vernachlaessige ich die
+Spalte zwischen den Spiegeln (sie Elektronenmikroskopbild).  Das
+Fourierspektrum $\widetilde T_\textrm{line}$ dieser Zeile:
 \begin{align}
   \widetilde T_\textrm{line}(k_x) & = \sum_{p=-N/2}^{N/2+1} T_p(k_x) \\
-  &= \sum_{p=-N/2}^{N/2+1}  e^{ik_x d p} \left(d \sinc(kd/2)\otimes\delta(k_x-k_p)\right)
+  &= \sum_{p=-N/2}^{N/2+1} e^{ik_x w p} \left(w
+    \sinc(k_x w/2)\otimes\delta(k_x-k_p)\right)
 \end{align}
+Dieser Ausdruck ist die Fouriertransformation eines Liniengitters mit
+dem Pixelpitch als Periode, moduliert mit den einzelnen sinc
+Funktionen. Im ersten Diagramm ist nur der Absolutsquare der Summe
+ueber den Phasenfaktor $\sum_p exp(ik_x w p)$ fuer $N=2$ und $N=20$
+dargestellt.  Der von uns verwendete Spiegel hat $N=256$, d.h. die
+Summe liefert einen Zug sehr feiner Beugungsordnungen.
+
+Im naechsten Bild ist der volle Ausdruck $\widetilde
+T_\textrm{line}(k_x)$ dargestellt (wieder fuer $N=20$).  Dabei habe
+ich die Spiegeldeflectionen mittels $k_p$ variiert.  Der Fall $k_p$
+entspricht der roten Linie. In diesem Fall sind alle Spiegel
+unausgelenkt und alles Licht bleibt in der nullten Ordnung. Ein
+besonders interessanter Fall tritt fuer $k_p=\pi$ auf. Dies entspricht
+der Blazekondition und der Abstand zweier benachbarter Spiegelkanten
+betraegt $\lambda/2$. Bei der Reflexion wird alles Licht (der
+entsprechenden Wellenlaenge) in die erste Ordnung reflektiert.
+
+Im naechsten Diagramm ist die Intensitaet in der nullten Ordnung fuer
+variierende Spiegelkippung dargstellt. Dieses
+\begin{align}
+  |\widetilde T_\textrm{line}(0)|^2 = \sinc^2(k_p)
+\end{align}
+% block([N:20,dx:3,k:0],plot2d(cabs(sum(exp(%i*k*p*dx)*sinc(k*dx/2+kp),p,-N/2,N/2+1))^2,[kp,0,%pi*2]));
+
+Bei der Fourierfilterung soll 
 
 \begin{figure}[!hbt]
   \centering
@@ -277,13 +306,13 @@ Therefore, we can specify the term $\Phi_\p(\x)$ in equation
 \ref{eq:mma-complex}:
 FIXME specify k0
 \begin{align} 
-  \Phi_\p^{(1)}(x,y)&=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) \\
-  \Phi_\p^{(2)}(x,y)&=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) 
+  \Phi_\p^{(1)}(x)&=e^{+i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) \\
+  \Phi_\p^{(2)}(x)&=e^{-i\k_0\x}\rect(x)\otimes\sum_p\delta(x-p\Delta x) 
 \end{align}
 An analytical description of the MMA surface is:
 \begin{align}
-  \Phi(\x)&=\Phi_\p^{(1)}(x,y) \left(\rect(y)\otimes\sum\textrm{(every second row)}\right) \nonumber \\
-  &\qquad+\Phi_\p^{(2)}(x,y) \left(\rect(y)\otimes\sum\textrm{(every second row, shifted by one)}\right)
+  \Phi(\r)&=\Phi_\p^{(1)}(x) \left(\rect(y')\otimes\sum\textrm{(every second row)}\right)(y) \nonumber \\
+  &\qquad+\Phi_\p^{(2)}(x) \left(\rect(y')\otimes\sum\textrm{(every second row, shifted by one)}\right)
 \end{align}
 \figref{fig:mma-fft}~right shows a numerically calculated diffraction
 pattern of this structure for a monochromatic plane wave. Suppose the

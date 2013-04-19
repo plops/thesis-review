@@ -179,7 +179,7 @@ torsion mirrors that modulate the phase of the light (see
 intensity we use the Fourier optical filter denoted as
 'schlierenoptics' in \figref{fig:memi-real}~B.
 
-The device itself is documented in more detail the following
+The device itself is documented in more detail in the following
 references: design of the actuators \citep{Schmidt2010}, grey value
 images and contrast measurement \citep{Berndt2010} and per-pixel
 calibration of the deflection angle using a white light interferometer
@@ -207,19 +207,27 @@ light along the dashed line in \figref{fig:memi-real}. This light is
 absorbed by the field stop B1 and therefore missing in $\textrm{P}'$,
 i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 ($\unit[]{W}$) through the beam stop in $\textrm{F}''$ decreases while
-the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.  In
-the real system, the lens L1 consists of four glass elements.
+the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.
 
-FIXME translate: Beschreibe den Effekt des MMA Gratings auf eine
-monochromatische Ebene Welle.  Um das Fouriermuster zu beschreiben
-betrachte ich zunaechst einzelnes Pixel mit Breite $w=\unit[16]{\mu
-  m}$. Dieses laesst sich zunaechst in einer Dimension durch den
-folgenden Ausdruck beschreiben:
+FIXME translate: Da die Tiltwinkel der kleinen Spiegel relativ gering
+sind, ist die Kontrasterzeugung mittels Fourierfilterung etwas
+kompliziert. Im folgenden beschreibe ich den Effekt der MMA
+Phasenfunktion auf eine monochromatische Ebene Welle. Insbesondere bin
+ich daran interessiert, wie die Lichtmenge in der nullten
+Beugungsordnung durch die Kippwinkel der Spiegel veraendert werden
+kann.  Ausserdem ist die Struktur das Beugungsbilds wichtig um eine
+Aussage ueber den Akzeptanzwinkel dieses Systems zu machen. Dieser ist
+naemlich kaum ausreichend fuer unsere Experimente und mein Ziel fuer
+diesen Abschnitt ist, die Ursache dafuer zu diskutieren.
+
+Um das Fouriermuster zu beschreiben betrachte ich zunaechst einzelnes
+Pixel mit Breite $w=\unit[16]{\mu m}$. Dieses laesst sich zunaechst in
+einer Dimension durch den folgenden Ausdruck beschreiben:
 \begin{align}
-  T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/w)\cdot e^{i k_p x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases}
+  T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/w)\cdot e^{i k_p_x x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases} \label{eq:tp}
 \end{align}
 Die Faltung mit der $\delta-$Funktion schiebt das Pixel an die Stelle
-$x_p$ und $k_p$ beschreibt den Kippwinkel des Spiegels. Mit der
+$x_p$ und $k_p_x$ beschreibt den Kippwinkel des Spiegels. Mit der
 Fouiertransformation
 \begin{align}
   \frac{1}{w}\int_{-w/2}^{w/2} e^{ikx} \textrm{d}x =
@@ -227,59 +235,116 @@ Fouiertransformation
 \end{align}
 ergibt sich das Fraunhofer Beugungsbild eines einzelnen Pixels zu:
 \begin{align}
-  \widetilde T_p(k_x) = e^{ik_x x_p} \left(w \sinc(kw/2)\otimes\delta(k_x-k_p)\right)
+  \widetilde T_p(k_x) = e^{ik_x x_p} \left(w \sinc(kw/2)\otimes\delta(k_x-k_p_x)\right)
 \end{align}
 D.h. das sinc-foermige Beugungsbild des Pixels verschiebt sich im
-k-Raum, je nach deflection des Spiegels.
+k-Raum, je nach deflection des Spiegels. Der Zusammenhang zwischen dem
+durch $k_p_x$ beschriebenen Tilt der reflektierten Phasenfront und der
+deflection $l$ der Spiegel (auslenkung der spiegelkante von der
+nullposition) ist:
+\begin{align}
+  \k_p &= (k_p_x,k_p_y)^T = (\sin(2\alpha),\cos(2\alpha))^T \quad \textrm{with}\ \alpha = \arctan\left(\frac{l}{\Lambda/2}\right) \\
+  k_p_x &= \frac{l}{\Lambda+l^2/(4\Lambda)} \approx \frac{l}{\Lambda}
+\end{align}
 
-Angenommen die $N$ Pixel sind entlang einer Zeile mit einem Pitch
-verteilt, der identisch ihrer Breite ist, also $x_p=w\cdot p$ mit
-$p\in \big[-\lfloor N/2\rfloor,\lfloor N/2\rfloor+1\big]$ wobei
-$\lfloor N/2\rfloor$ die groesste ganze Zahl beschreibt, die kleiner
-N/2 ist.  Der Einfachheit halber vernachlaessige ich die Spalte
-zwischen den Spiegeln (sie Elektronenmikroskopbild).  Das
-Fourierspektrum $\widetilde T_\textrm{line}$ dieser Zeile:
+\begin{figure}[htbp]
+  \centering
+  \svginput{1}{deflection-kp}
+  \caption{deflection-kp}
+  \label{fig:deflection-kp}
+\end{figure}
+
+
+Angenommen \cma{1D Beugungsproblem} die $N$ Pixel sind entlang einer
+Zeile mit einem Pitch verteilt, der identisch ihrer Breite ist, also
+$x_p=w\cdot p$ mit $p\in \big[-\lfloor N/2\rfloor,\lfloor
+N/2\rfloor+1\big]$ wobei $\lfloor N/2\rfloor$ die groesste ganze Zahl
+beschreibt, die kleiner N/2 ist.  Der Einfachheit halber
+vernachlaessige ich die Spalte zwischen den Spiegeln (sie
+Elektronenmikroskopbild).  Das Fourierspektrum $\widetilde
+T_\textrm{line}$ dieser Zeile:
 \begin{align}
   \widetilde T_\textrm{line}(k_x) & = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} T_p(k_x) 
   = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x w p} \left(w
-    \sinc(k_x w/2)\otimes\delta(k_x-k_p)\right)
+    \sinc(k_x w/2)\otimes\delta(k_x-k_p_x)\right) \label{eq:tline}
 \end{align}
 Dieser Ausdruck ist die Fouriertransformation eines Liniengitters mit
 dem Pixelpitch als Periode, moduliert mit den einzelnen sinc
-Funktionen. Im ersten Diagramm ist nur der Absolutsquare der Summe
-ueber den Phasenfaktor $\sum_p exp(ik_x w p)$ fuer $N=2$ und $N=20$
-dargestellt.  Der von uns verwendete Spiegel hat $N=256$, d.h. die
-Summe liefert einen Zug sehr feiner Beugungsordnungen.
+Funktionen. Im ersten Diagramm \figref{fig:maxima-diffraction}~left
+ist nur der Absolutsquare der Summe ueber den Phasenfaktor $\sum_p
+exp(ik_x w p)$ fuer $N=1,4$ und $N=20$ dargestellt. Wie man sieht
+werden die Beugungsmaxima mit zunehmender Anzahl Spiegel schaerfer.
+Der von uns verwendete Spiegel hat $N=256$, d.h. die Summe liefert
+einen Zug sehr feiner Beugungsordnungen.
 
-Im naechsten Bild ist der volle Ausdruck $\widetilde
-T_\textrm{line}(k_x)$ dargestellt (wieder fuer $N=20$).  Dabei habe
-ich die Spiegeldeflectionen mittels $k_p$ variiert.  Der Fall $k_p$
-entspricht der roten Linie. In diesem Fall sind alle Spiegel
-unausgelenkt und alles Licht bleibt in der nullten Ordnung. Ein
-besonders interessanter Fall tritt fuer $k_p=\pi$ auf. Dies entspricht
-der Blazekondition und der Abstand zweier benachbarter Spiegelkanten
-betraegt $\lambda/2$. Bei der Reflexion wird alles Licht (der
-entsprechenden Wellenlaenge) in die erste Ordnung reflektiert.
 
-Im naechsten Diagramm ist die Intensitaet in der nullten Ordnung fuer
-variierende Spiegelkippung dargstellt. Dieses
-\begin{align}
-  |\widetilde T_\textrm{line}(0)|^2 = \sinc(k_p)^2
-\end{align}
-% block([N:20,dx:3,k:0],plot2d(cabs(sum(exp(%i*k*p*dx)*sinc(k*dx/2+kp),p,-N/2,N/2+1))^2,[kp,0,%pi*2]));
-
-Bei der Fourierfilterung soll 
-
-\begin{figure}[!hbt]
+\begin{figure}[htbp]
   \centering
   \includegraphics{diffraction_lines}
   \includegraphics{diffraction_rects}
+  \svginput{1}{mirror-tilt}
   \includegraphics{diffraction_kp}
-  \caption{ vcasdfa}
+  \caption{{\bf left:} Darstellung der Intensitaet $|\sum_{p=-\lfloor
+      N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x w p}|^2$ fuer
+    verschiedene $N$. {\bf right:} Darstellung der Beugungsordnungen
+    $|\widetilde T_\textrm{line}(k_x)|^2$ aus Formel (\ref{eq:tline})
+    fuer vier verschiedene Deflektionen der Spiegel. {\bf top:}
+    Intensitaet in der nullten Beugungsordnung $|\widetilde
+    T_\textrm{line}(k_x)|^2$ fuer variierende Verkippung der Spiegel.}
   \label{fig:maxima-diffraction}
 \end{figure}
 
 
+Im Bild \figref{fig:maxima-diffraction}~right ist der volle Ausdruck
+$|\widetilde T_\textrm{line}(k_x)|^2$ dargestellt (wieder fuer
+$N=20$).  Dabei habe ich die Spiegeldeflectionen mittels $k_p_x$
+variiert. Im Falle $k_p_x=0$ sind alle Spiegel unausgelenkt und alles
+Licht bleibt in der nullten Ordnung. Ein besonders interessanter Fall
+tritt fuer $k_p_x=\pi$ auf. Dies entspricht der Blazekondition und der
+Abstand zweier benachbarter Spiegelkanten betraegt $\lambda/2$. Bei
+der Reflexion wird alles Licht (der entsprechenden Wellenlaenge) in
+die erste Ordnung reflektiert.
+
+Im unteren Diagramm in \figref{fig:maxima-diffraction} ist die
+Intensitaet in der nullten Ordnung fuer variierende Spiegelkippung
+dargstellt.
+\begin{align}
+  |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(k_p_x)^2
+\end{align}
+D.h. eine Kippung der Spiegel mit deflektionen zwischen 0 und
+$\lambda/4$ erlaubt es die Intensitaet der Nullten Ordnung graduell
+und monoton zu modulieren. In unserem System bedeutet das, dass die
+Intensitaet in jedem Punkt der Ebene $P'$ (siehe
+\figref{fig:memi-real}) von der Kippung des dazu konjugierten Spiegels
+abhaengt. Um einen hohen Kontrast zu gewaehrleisten, muessen jedoch
+die Beleuchtungsaperture B0 und die Fourierblende B1 so klein gewaehlt
+werden, dass kein Licht der hoeheren Beugungsordnungen $P'$ erreichen
+kann. Bemerke dass eine Oeffnung von B0 bedeutet dass das pupil plane
+SLM statt mit einer Ebenen Welle wie in Gleichung $\ref{eq:tp}$
+vorrausgesetzt durch eine ausgedehnte Quelle beleuchtet
+wird. Dementsprechend \cma{partial coherence} ist die Nullte Ordnung
+im realen System aus der Faltung von B0 mit der Lichtverteilung in
+\figref{fig:maxima-diffraction}~left. Um ein Uebersprechen der
+Ordnungen (im eindimensionalen Problem) auszuschliessen darf der
+maximale Radius $d_\textrm{max}$ von B0 und B1 hoechstens die Haelfte
+des Abstands der Ordnungen betragen.
+
+Nun ist es leider so, dass der MMA aus historischen Gruenden so gebaut
+wurde, dass die Spiegel benachbarter Reihen in entgegengesetzte
+Richtungen gekippt werden. Offenbar birgt es fuer andere Anwendungen
+Vorteile, wenn das Fourierspektrum symmetrisch ist. In unserer
+Anwendung fuehrt dieser Umstand jedoch zu einer Verkleinerung der
+ohnehin limitierenden Etendue um einen Faktor 2.
+
+\cma{2D Beugung}
+
+Dann muss aber das Signal Bandlimitiert sein,
+d.h. der pupil plane SLM darf keine feinen Strukturen
+darstellen. Beispielsweise sollte dann kein Muster mit einer Frequenz
+wie in der roten Linie in \figref{fig:maxima-diffraction}~right
+dargestellt werden.
+
+Um dieses Argument zu verstehen 
 \begin{figure}[!hbt]
   \centering
   \svginput{.6}{mma-fft}

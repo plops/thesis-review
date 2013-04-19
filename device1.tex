@@ -233,12 +233,12 @@ D.h. das sinc-foermige Beugungsbild des Pixels verschiebt sich im
 k-Raum, je nach deflection des Spiegels.
 
 Angenommen die $N$ Pixel sind entlang einer Zeile mit einem Pitch
-verteilt, der Identisch ihrer Breite ist, also $x_p=w\cdot p$ mit
-$p\in \big[-\lfloor N/2\rfloor,\lfloor N/2\rfloor+1\big]$ wobei $\lfloor N/2\rfloor$ die
-groesste ganze Zahl beschreibt, die kleiner N/2 ist.  Der Einfachheit
-halber vernachlaessige ich die Spalte zwischen den Spiegeln (sie
-Elektronenmikroskopbild).  Das Fourierspektrum $\widetilde
-T_\textrm{line}$ dieser Zeile:
+verteilt, der identisch ihrer Breite ist, also $x_p=w\cdot p$ mit
+$p\in \big[-\lfloor N/2\rfloor,\lfloor N/2\rfloor+1\big]$ wobei
+$\lfloor N/2\rfloor$ die groesste ganze Zahl beschreibt, die kleiner
+N/2 ist.  Der Einfachheit halber vernachlaessige ich die Spalte
+zwischen den Spiegeln (sie Elektronenmikroskopbild).  Das
+Fourierspektrum $\widetilde T_\textrm{line}$ dieser Zeile:
 \begin{align}
   \widetilde T_\textrm{line}(k_x) & = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} T_p(k_x) 
   = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x w p} \left(w
@@ -274,6 +274,7 @@ Bei der Fourierfilterung soll
   \centering
   \includegraphics{diffraction_lines}
   \includegraphics{diffraction_rects}
+  \includegraphics{diffraction_kp}
   \caption{ vcasdfa}
   \label{fig:maxima-diffraction}
 \end{figure}

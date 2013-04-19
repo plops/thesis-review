@@ -45,7 +45,7 @@ plot2d([[discrete,secondmap(lambda([y],2.3+y),int_small)],
 
 /* N mirrors of width and pitch dx, with tilt k_p estimate fourier spectrum at kx */
 sinc(x) := sin(x)/x;
-four(N,kx,dx,kp):=cabs(sum(exp(1.0*%i*kx*p*dx)*1.0*sinc(1.0*kx*dx/2-kp),p,-floor(N/2),floor(N/2)+1))^2;
+four(N,kx,dx,kp):=cabs(sum(exp(1.0*%i*kx*p*dx)*1.0*sinc(1.0*kx*dx/2+kp),p,-floor(N/2),floor(N/2)+1))^2;
 plotfour(N,kp,NN):=block([xylist,ma],
   xylist:makelist(
     block([dx:16,
@@ -62,7 +62,7 @@ map(set_plot_option,
   [[plot_format,gnuplot],
   [gnuplot_term,"pdfcairo size 7.2cm,5cm rounded enhanced font 'Helvetica,6'"],
   [gnuplot_out_file,"build/diffraction_rects.pdf"],
-  [gnuplot_preamble,"set border 3 lw 2;set grid;unset ytics;unset key; set label \"k_p=0\" at 0.1,3.1;set label \"N=4\" at 0.1,1.6;set label \"N=20\" at 0.05,.5;"]])$
+  [gnuplot_preamble,"set border 3 lw 2;set grid;unset ytics;unset key; set label \"k_p=0\" at 0.1,3.1;set label \"k_p={/Symbol p}\" at 0.1,1.6;set label \"k_p=1.8\" at 0.05,.5;"]])$
 
 plot2d([[discrete,secondmap(lambda([y],2.3+y),m_flat)],
   [discrete,secondmap(lambda([y],1.2+y),m_blaze)],
@@ -72,6 +72,16 @@ plot2d([[discrete,secondmap(lambda([y],2.3+y),m_flat)],
   [y,0,3.4],
   [xlabel,"k_x"],
   [ylabel,"intensity"])$
+
+
+map(set_plot_option,
+  [[plot_format,gnuplot],
+  [gnuplot_term,"pdfcairo size 14.4cm,4cm rounded enhanced font 'Helvetica,6'"],
+  [gnuplot_out_file,"build/diffraction_kp.pdf"],
+  [gnuplot_preamble,"set border 3 lw 2;set grid;unset key;"]])$
+
+plot2d(sinc(%pi*kp)^2,[kp,-3.5,3.5], [style,[lines,6]], [color,black],
+  [y,0,1], [xlabel,"k_p/{/Symbol p}"], [ylabel,"intensity"])$
 
 /*
 four1(N,k,dx):=cabs(sum(exp(%i*k*p*dx),p,-floor(N/2),floor(N/2)+1))^2;

@@ -16,7 +16,7 @@ intens(N,NN):=block([xylist,ma],
   ma:lmax(map(second,xylist)),
   maplist(lambda([xy],[first(xy),second(xy)/ma]),xylist));
 
-compile(intens);
+compile(all);
 
 /*
 showtime : true;
@@ -65,6 +65,7 @@ plotfour2(N,kp,NN):=block([xylist,ma],
     ,k,NN),
   ma:lmax(map(second,xylist)),
   maplist(lambda([xy],[first(xy),second(xy)/ma]),xylist))$
+compile(all);
 
 m_flat : plotfour(20,float(0.0001),25*FINAL)$
 m_blaze : plotfour(20,float(%pi),25*FINAL)$
@@ -74,7 +75,7 @@ map(set_plot_option,
   [[plot_format,gnuplot],
   [gnuplot_term,"pdfcairo size 6.7cm,5cm rounded enhanced font 'Helvetica,6'"],
   [gnuplot_out_file,"build/diffraction_rects.pdf"],
-  [gnuplot_preamble,"set border 3 lw 2;set grid;unset ytics;unset key; set label \"k_p=0\" at 0.1,3.1;set label \"k_p={/Symbol p}\" at 0.1,1.6;set label \"k_p=1.8\" at 0.1,.5; set label \"k_{p/2}=1.8,k_{p/2+1}=0\" at 0.3,-.4;"]])$
+  [gnuplot_preamble,"set border 3 lw 2;set grid;unset ytics;unset key; set label \"l=0\" at 0.1,3.1;set label \"l={/Symbol l}/4\" at 0.1,1.6;set label \"l=0.14{/Symbol l}\" at 0.1,.5; set label \"l_{2i}={/Symbol l}/4, l_{2i+1}=0\" at 0.24,-.4;"]])$
 
 plot2d([[discrete,secondmap(lambda([y],2.3+y),m_flat)],
   [discrete,secondmap(lambda([y],1.2+y),m_blaze)],
@@ -93,7 +94,7 @@ map(set_plot_option,
   [gnuplot_preamble,"set border 3 lw 2;set grid;unset key;"]])$
 
 plot2d(sinc(float(%pi)*kp)^2,[kp,-3.5,3.5], [style,[lines,6]], [color,black],
-  [y,0,1], [xlabel,"k_p/{/Symbol p}"], [ylabel,"intensity"])$
+  [y,0,1], [xlabel,"l/{/Symbol l}/4"], [ylabel,"intensity"])$
 
 /*
 four1(N,k,dx):=cabs(sum(exp(%i*k*p*dx),p,-floor(N/2),floor(N/2)+1))^2;

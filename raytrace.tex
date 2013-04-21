@@ -4,17 +4,17 @@
 \label{sec:raytrace}
 \renewcommand{\i}{\nvect i}
 \begin{summary}
-  Imaging with our microscope requires a continuous update of the
-  patterns for the spatial light modulators during operation. The
-  generation of those patterns should be as fast as possible. We can
-  not easily solve this problem by using commercial software and I
-  therefore decided to implement a simple raytracer.
+  Imaging with the microscope we developed requires a continuous
+  update of the patterns for the spatial light modulators during
+  operation. It is not easily possible to solve the problem with
+  commercial software. Therefore, a simple raytracer is implemented in
+  this work.
 
-  This chapter documents the basic concepts. Note that some
-  approximations, which are usually used in optical design (paraxial,
-  only non-skew rays) are not applicable here, because rays are to be
-  pursued in all possible angles through diverse fluorophore
-  distributions in the specimen.
+  This chapter documents the basic concepts. Some approximations,
+  which are usually used in optical design (paraxial, only non-skew
+  rays) are not applicable here, because rays are to be pursued in all
+  possible angles through diverse fluorophore distributions in the
+  specimen.
 
   I begin by introducing simple geometric formulas to determine the
   points of intersection between a ray and a plane or a sphere. I also
@@ -49,10 +49,10 @@
    \caption{Schematic of plane-ray intersection.}
 \end{figure}
 Let a ray start at a point $\s$ with direction $\hd$.  A plane
-(defined by a point $\c$ and the normal $\n$) intersects this ray if
+(defined by a point $\c$ and the unit normal $\n$) intersects this ray if
 its normal and the ray's direction are not perpendicular:
 $\n\,\hd\not=0$. The distance between the plane and the origin is
-$h=\c\,\n$. I define the plane equation in Hesse normal form:
+$h=\c\,\n$. The equation of the plane is given in Hesse normal form:
 \begin{align}
   \r\n=h
 \end{align}
@@ -63,23 +63,23 @@ parameter $\tau$.
   \s\n+\tau\,\hd\,\n&=h\\
   \tau&=\boxed{\frac{h-\s\,\n}{\hd\,\n}}
 \end{align}
-The point of intersection is on the ray at $\s+\tau\,\hd$.
+The point of intersection is located on the ray at $\s+\tau\,\hd$.
 \subsection{Intersection of a ray and a sphere}
 Let a ray start at a point $\s$ with direction $\hd$.  Let a sphere be
-centred in $\c$ with radius $R$. Their two equations
+centred in $\c$ with radius $R$. There are two equations
 \begin{align}
   (\r-\c)^2&=R^2\\
   \r&=\s+\tau\hd
 \end{align}
-define the intersection points. Substitution of $\r$ results in a
-quadratic equation for $\tau$:
+that define the intersection points. By substituting $\r$ one obtains
+a quadratic equation in the distance $\tau$ along the ray:
 \begin{align}
   (\s+\tau\hd-\c)^2&=R^2\\
   \l&:=\boxed{\s-\c}\\
   l^2+2\tau\l\hd+\tau^2-R^2&=0\\
   \underbrace{1}_a\tau^2+\underbrace{2\l\hd}_b\tau+\underbrace{l^2-R^2}_c&=0
 \end{align}
-\subsubsection{Solving the quadratic equation}
+%\subsubsection{Solving the quadratic equation to obtain the ray--sphere intersection}
 In order to prevent numerical errors the following solution should be
 used \citep{Press1997}:
 \begin{align}
@@ -94,14 +94,14 @@ used \citep{Press1997}:
 \end{align}
 If the discriminant $\Delta$ is negative the ray misses the sphere and
 there is no solution. If the discriminant is zero the ray touches the
-periphery and there is only one solution. A positive discriminant
+periphery of the sphere and there is only one solution. A positive discriminant
 corresponds to two solutions.
 \subsection{Refraction at planar surface}
 Now I describe the refraction at a planar surface\footnote{I use the
   same notation as \cite{McClain1993}.}. The wavelength of the light
 in vacuum defines the length of the wave vector $\k_0$. The lengths of
 the incident and transmitted wave vectors $\k_1$ and $\k_2$ are
-obtained by muliplication with the refractive index in their
+obtained by multiplication with the refractive index in their
 respective half space:
 \begin{align}
   k_0&=2\pi/\lambda\\
@@ -145,20 +145,20 @@ only known quantities:
 I divide by $k_2$ with $\k_2/k_2=\t$ and $\k_1/k_2=\eta\,\i$ in order
 to introduce unit direction vectors $\i$ and $\t$ for incident and
 outgoing light. The relative index change across the interface is
-$\eta=n_1/n_2$. With these substitions equation (\ref{eq:k2}) becomes:
+$\eta=n_1/n_2$. With these substitutions equation (\ref{eq:k2}) becomes:
 \begin{align}
   \t&=\eta\,\i-\eta\,(\i\,\n)\,\n-\sqrt{1-\eta^2+\eta^2\,(\i\,\n)^2}\,\n\\
   &=\boxed{\eta\,\i-\left(\eta\,\i\,\n+\sqrt{1-\eta^2(1-(\i\,\n)^2)}\right)\n}
 \end{align}
 When the expression under the square root is negative a reflection
-occurs instead (TIRF). Note that in my application total internal
-reflection just corresponds to a loss of the beam, for it no longer
-contributes to sample illumination. The exact direction of the
-reflected beam is not relevant in this case but I write them here for
+occurs instead  of refraction. Note that in my application total internal
+reflection (TIRF) just corresponds to a loss of the beam, because the reflected beam no longer
+contributes to sample illumination. The exact direction of this
+ beam is not relevant in this case but I give the equation here for
 completeness' sake.
 
-In the case of a reflection the tangential component is invariant and
-normal component inverts the sign:
+In the case of reflection, the tangential component is invariant and
+the normal component inverts sign:
  \begin{align}
    \k_2&=\k_{1t}-\k_{1n}\\
    &=\k_1 - 2\k_{1n}\\
@@ -166,19 +166,16 @@ normal component inverts the sign:
    \t_\textrm{TIR}&=\boxed{\i-2(\i\,\n)\n}
  \end{align}
 \section{Refraction through lenses}
-
 An \cma{validity of thin lens model} ideal lens is infinitesimally
-thin and defined by its focal length, i.e.\ the distance between the
-lens and the plane through the point in which all the rays of a
-focused parallel bundle converge. For an ideal lens the focal length
-is independent of the incidence angle but in practice, the model of
-the thin lens is only valid for lenses of long focal length, e.g.\ a
-\unit[3]{mm} thick lens with \unit[200]{mm} focal length and for
-paraxial rays that subtend very small angles from the optical axis.
+thin and is completely defined by its focal length. For an ideal lens the focal
+length is independent of the incidence angle but in practice, the
+model of the thin lens is only valid for lenses of long focal length and
+for paraxial rays that subtend very small angles from the optical
+axis.
 
-Refraction by a \cma{principal planes} thick lens can be reduced to
-the problem of the thin lens by finding the two principal planes of
-the thick lens and shifting the ray between them axially
+For a better approximation of refraction through a \cma{principal planes} thick lens
+the two principal planes of
+the thick lens are calculated and the ray is shifted between them axially
 \citep{Smith2000}. The principal plane of a thick lens is located on
 the intersection between an incident beam $\i$, that is parallel to
 the optical axis, and the transmitted beam $\r$. Just as the focal
@@ -227,7 +224,7 @@ $\abs{\overline{OF}}=f/\cos\theta$.
 
 
 
-Between the two similar triangles, the following relation holds and
+Between the two similar triangles, the following relation 
 can be used to calculate the length $\abs{\overline{BC}}$:
 \begin{align}
   \frac{\abs{\overline{BC}}}{\abs{\overline{BA}}}&=
@@ -235,13 +232,11 @@ can be used to calculate the length $\abs{\overline{BC}}$:
   \frac{\abs{\overline{CB}}}{1}&=
   \frac{\rho}{f/\cos(\theta)}.
 \end{align}
-Given its length, the vector $\vv{CB}$ can now be calculated, because
-its direction is known to be along $\vrho$. With this vector and $\i$
-one can now obtain the (arbitrarily scaled) transmitted vector
-$\r'$. I could normalize this result but it turns out to be more
-useful for formulas of the high aperture immersion lens to calculate
-the vector $\r$, that ends in the focal plane.  The procedure from
-above is condensed in the following equations:
+Given its length, the vector $\vv{CB}$ is now calculated by its length
+and the direction $\vrho$. With this vector and $\i$ one can now
+obtain the (arbitrarily scaled) transmitted vector $\r'$.  Only the
+two framed equations need to be implemented to calculate refraction on
+a thin lens with the procedure from above:
 \begin{align}
   \vrho&=(x_0,y_0,0)^T=\rho (\cos\phi,\sin\phi,0)^T\\
   \phi&=\arctan(y_0/x_0)\\
@@ -252,21 +247,21 @@ above is condensed in the following equations:
 with the axial unit vector $\hz=(0,0,1)^T$.
 \subsection{Refraction through high aperture objective (illumination)}
 \label{sec:high-aperture-lens}
-Now I augment the results of the calculation from the previous section
+Now I modify the results of the calculation from the previous section
 to treat an aplanatic immersion objective \citep{Hwang2008}.
 \begin{figure}[!hbt]
   \centering
   \svginput{1}{obj-fwd}
-  \caption{Construction of a ray on an high numerical aperture oil
-    immersion objective. As opposed to a thin air lens the objective's
+  \caption{Ray construction for a high numerical aperture objective
+    with immersion. As opposed to a thin air lens the objective's
     focal length needs to be corrected by the focus difference vector
     $\a$ to accommodate for the immersion and one must take into
-    account spherical principal surface (aplanatic surface) .}
+    account spherical principal surface (aplanatic surface).}
 \end{figure}
 I account for the immersion medium by axially shifting the focal plane
 in sample space to $nf$ using the difference vector $\a$, i.e.\ in an
 immersion medium with $n=1.52$ the focus moves further away from the
-principal plane. FIXME principal plane and nodal point?
+principal plane.
 \begin{align}
   \a &= \boxed{f (n-1) \hz} \\
   R &= \boxed{nf}
@@ -282,12 +277,12 @@ The final ray exiting the objective has the direction $\r_0$:
   \r_0 &= \boxed{\r + \a - \s}.
 \end{align}
 
-All microscope lenses that come into consideration for use in our
-system are designed as an aplanatic lens. The model described by above
+All microscope lenses that come into consideration for use in the
+system that we built are designed as an aplanatic lens. The model described by above
 formulas is therefore very well suited to represent the objectives
 when we run our illumination optimization algorithm to find
 illumination patterns for the two SLM in our spatio-angular
-microscope..
+microscope.
 
 In the paper \citet{Hwang2008} the authors demonstrate the viability
 of this model by comparing its results with a full raytrace through a
@@ -320,7 +315,7 @@ rays emerge from the pupil. For a perfectly aplanatic lens this would
 hardly be an advantage but the formulas will be modified to take into
 account aberrations.
 \subsubsection{Easy case: back focal plane positions only}
-If the points of intersection of rays with the back focal plane are
+If the points of ray intersection of the back focal plane are
 sufficient, a full raytrace is not necessary. This is the case with
 aberration-free imaging, i.e.\ when the sample is embedded in an index
 matched medium and we want to calculate a pattern for the pupil plane
@@ -348,8 +343,8 @@ back focal plane is hit.
  \subsubsection{Full raytrace through oil objective in detection
    direction}
 \label{sec:objective-raytrace-detection}
-Now I discuss the general case and calulate both the origins and the
-directions of rays emerging from the back focal plane. This is
+Now I discuss the general case and calculate both the origin and the
+direction of a ray emerging from the back focal plane. This is
 necessary in order to trace light bundles from the specimen into the
 plane of the camera (or focal plane SLM). In the next section I will
 further modify these formulas to incorporate aberrations due to
@@ -359,7 +354,7 @@ The position of the objective is defined by its principal point $\c$
 and the normal $\n$ (directed along optical axis towards sample
 space). The incident ray is defined by its starting point $\p$ and the
 direction $\i$. First I calculate the centre of the aplanatic sphere
-$\vect g$ (see \figref{fig:obj:rev-full}).
+$\vect g$ (see \figref{fig:obj-rev-full}).
 \begin{align}
   \vect g &= \c + nf\, \n.
 \end{align}
@@ -372,7 +367,7 @@ $\vect g$ (see \figref{fig:obj:rev-full}).
 \end{figure}
 Then I obtain the position $\p'$ by intersecting the incident ray and
 the plane perpendicular to the optical axis through the centre
-$\vect{g}$ of the aplanatic sphere.  The focus difference vector is
+$\vect{g}$ of the aplanatic sphere.  The focus difference vector $\a$ is
 defined by its length and the optical axis. It can be used to
 calculate an intermediate point $\p''$.
 \begin{align}
@@ -425,7 +420,7 @@ transmitted ray in the pupil.
 \section{Sphere projection}
 \label{sec:sphere-projection}
 While the previous sections have described a fairly general raytracer,
-this section is very technical and relates to our specific problem to
+this section is very technical and relates to the specific problem to
 represent a fluorophore distribution as a model of spheres and
 simulate it with as few rays as possible.
 

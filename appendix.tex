@@ -71,7 +71,7 @@ function \verb!cal_readnoise! or, equivalently, by using the Python
 script from the next section.
 
 A camera calibration allows to convert image data into the device
-independent unit of detected photoelectrons but this only works as
+independent unit of effective photoelectrons but this only works as
 long as data acquisition occurs at the same camera settings (pre-amp
 gain, EM-gain, sensor temperature, vertical shift speed, readout rate,
 ...) as those that were used for the calibration. This Basic program
@@ -206,7 +206,7 @@ bleaching.
   \begin{tabular}{r l l r  l r l}
 \toprule
 $\textsf{gain}_\textrm{software}$ & $1/(M\cdot M_\textrm{pre})$ & $N_r$ & $N_{(M)}/(W\times H)$ &  \textsf{exposure} & $N_{(M)}'/(W\times H)$ & $1/F_n$ \\
- & [e/ADU] & [e/px] & [e/px] & [ADU] & [s] & [e/(px s)]  \\
+ & [$e^-/$ADU] & [$e^-/$px] & [$e^-/$px] & [ADU] & [s] & [$e^-/$(px s)]  \\
 \midrule
 conv1 & 1.3165 & 7.189 & 3008.66      & 0.2016 & 14923 & 0.981 \\
 50 & 0.1160 & 0.486 & 260.05 & 0.0289 & 8995 & 0.591 \\

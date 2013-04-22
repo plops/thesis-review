@@ -276,7 +276,7 @@ the absorbed and emitted photon; the energy difference is lost as heat
 to the fluorophore molecule and surrounding solvent.  For the
 practical implementation of fluorescence microscopes this is
 significant, as it enables to separate excitation and emission light
-with a dichroic beam splitter.
+with a dichromatic beam splitter.
 
 
 The excitation probability of a fluorescence molecule depends on the
@@ -380,6 +380,7 @@ front focal plane of the objective, the tube lens is at distance
 $f_\textrm{TL}$ behind the pupil (i.e.\ the back focal plane of the
 objective) and the camera is in the focal plane behind the tube lens.
 
+%FIXME our microscope is only telecentric with respect to the object side
 
 \nomenclature{$\beta$}{Transversal magnification of an objective
   $\beta=f_\mathrm{TL}/f$, for Zeiss lenses the magnification $\beta$
@@ -392,7 +393,7 @@ Light from the sample is collimated by the objective lens and
 magnification $\beta$ is given by the ratio of the focal lengths of
 the two lenses:
 \begin{align}
-  \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}.
+  \beta=\frac{\overline{O'P'}}{\overline{OP}}=\frac{f_\mathrm{TL}}{f}. \label{eq:beta}
 \end{align}
 Note that in \figref{fig:widefield-microscope}~b) I represent the
 objective lens as a single element.  This is a simplification.
@@ -429,25 +430,31 @@ This condition ensures that the focal length, a quantity which is
 usually defined only for paraxial rays, is equal for all angles.  This
 in turn means that such a lens carries out a Fourier transform from
 the front to the back focal plane with linear scaling. Note that a
-lens with a non-linear distortion in the back focal plane will fail to
+lens with a non-linear distortion in the back focal plane, such as given by the concept of a thin lense used at large angles, will fail to
 produce an image that is similar to the object.
 
-It turns out that ray bending\label{aplanatic} in a high-aperture lens system that  \cma{aplanatic sphere}
-fulfills the Abbe sine condition can be simplified to a one bend at a
-single surface, quite similar to the utilization of principal planes
-in paraxial optics. For a high-aperture system this surface is no
-longer a plane.  Instead it is a sphere with radius $n f$ and called
-\emph{aplanatic sphere}. I depict this surface as two circle segments
-with bold red strokes on the lenses in
+It turns out that ray bending\label{aplanatic} in a high-aperture lens
+system that \cma{aplanatic sphere} fulfills the Abbe sine condition
+can be simplified to a one bend at a single surface, quite similar to
+the utilization of principal planes in paraxial optics. For a
+high-aperture system this surface is no longer a plane.  Instead it is
+a sphere with radius $n f$ and called \emph{aplanatic sphere}. FIXME
+translate: Die Brechzahl $n$ steht dabei fuer ein etwaiges
+objektseitiges Immersionsmedium. I depict this surface as two circle
+segments with a bold red curve on each of the lenses in
 \figref{fig:widefield-microscope}~b).
 
-In addition to the Abbe sine condition microscope lenses are also
+In addition to the Abbe sine condition, microscope lenses are also
 corrected for spherical aberration and linear coma \citep{Gross2005}.
 Then the coma rays are symmetric around the chief ray, the wavefront
 and point spread function are approximately invariant for small field
 sizes (in first order).  This ensures that the imaging conditions are
 invariant for small regions of the field plane and allows to express
 image formation with linear systems theory.
+
+FIXME translate: Die \figref{fig:widefield-microscope} zeigt wie
+mittels Laser das Bildfeld in einem widefield fluorescence microscope
+ausgeleuchtet wird.
 
 \subsection{Wave-optical theory for image formation in a fluorescence microscope}
 In the following sectoin I will describe how the image on the camera
@@ -473,7 +480,7 @@ The accurate treatment of high-aperture optics would in fact require a
 vectorial calculation of the image for a fluorophore with a particular
 dipole orientation.  Subsequently these images should be averaged to
 account for random fluorophore orientations, but as I do not need
-quantitative expressions I limit myself to the simpler scalar problem
+quantitative expressions, I limit myself to the simpler scalar problem
 which provides qualitatively similar results.
 % \begin{figure}[!hbt]
 %   \centering
@@ -490,15 +497,15 @@ which provides qualitatively similar results.
     objective lens is highlighted in red on the Ewald sphere. {\bf b)}
     Schematic of the detection path of a modern microscope. The sample
     is in the front focal plane of the objective. The detection tube
-    lens TL1 forms a magnified image on the camera. The aplanatic
-    spheres for objective and tube lens are indicated in
-    \textcolor{red}{red}. {\bf c)} Parallel laser epifluorescence
-    excitation. The excitation tube lens TL2 focuses a laser into the
-    pupil of the objective. The beam is reflected by a dichroic beam
-    splitter (BS) towards the objective. An extended area in the
-    specimen is illuminated. Fluorescence light returns through the
-    objective, is transmitted through BS and forms an image on the
-    camera. }
+    lens TL1 forms a magnified image on the camera. The image points
+    are denoted by $O'$ and $P'$. The aplanatic spheres for objective
+    and tube lens are indicated in \textcolor{red}{red}. {\bf c)}
+    Parallel laser epifluorescence excitation. The excitation tube
+    lens TL2 focuses a laser into the pupil of the objective. The beam
+    is reflected by a dichromatic beam splitter (BS) towards the
+    objective. An extended area in the specimen is
+    illuminated. Fluorescence light returns through the objective, is
+    transmitted through BS and forms an image on the camera. }
   \label{fig:widefield-microscope}
 \end{figure}
 Assuming that the excited fluorophores in the sample give rise to a
@@ -548,7 +555,7 @@ frequency spectrum $\widetilde u(\vnu)$:
 
 
 \begin{align}
-  u(\r)=\mathcal{F}(u(\vnu)):=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+  u(\r)=\mathcal{F}(\widetilde u(\vnu)):=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
   \widetilde u(\vnu) \exp(2\pi i \r\vnu)\ \textrm{d}^3 \vnu
 \end{align}
 Where $\mathcal{F}$ denotes the Fourier transform operation. I will
@@ -557,14 +564,14 @@ Table~\ref{tab:widefield-functions} for a listing of their names.
 
 Since we have assumed a monochromatic field and the length $|\vnu|$ of
 the spatial frequency vector is the inverse of the wavelength
-($n/\lambda_0$, in the material of refractive index $n$), the support
+($n/\lambda_0$), in the material of refractive index $n$, the support
 (denoted '$\supp$') of this spectrum $\widetilde u(\vnu)$ is limited
 to the surface of a sphere of radius $n/\lambda_0$:
 \begin{align}
   \supp \widetilde u(\vnu) &= \{\vnu \in \mathbb{R}^3: |\vnu|=n/\lambda_0\}.
 \end{align}
 This sphere is the transfer function of free space, and is also called
-Ewald sphere.  \nomenclature{Ewald sphere}{Transfer function of free
+Ewald sphere (see \figref{fig:widefield-microscope}~a)).  \nomenclature{Ewald sphere}{Transfer function of free
   space} Scaling the Ewald sphere with $f\lambda_0$ gives the
 aplanatic surface of the lens. Note that the $x-$component of the
 marginal ray (in the $xz-$plane) corresponds to the spatial frequency
@@ -578,9 +585,9 @@ condition (\ref{eq:sine-condition}):
 The transfer function $\widetilde a(\vnu)$ of the lens is defined by
 complex values on the Ewald sphere \citep{McCutchen1964}:
 \begin{align}
-  \widetilde a(\vnu)&=P(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
+  \widetilde a(\vnu)&=\exp\left(2\pi i \frac{ n}{\lambda_0} 
     W(\vnu_t)\right)
-  \delta\left(|\vnu|-\frac{n}{\lambda_0}\right)  \step(\nu_z),\\
+  \delta\left(\frac{n}{\lambda_0}-|\vnu|\right)  \step\left(|\vnu|cos(\alpha)-\nu_z\right),\\ \label{eq:mccutchen}
   \step(x)&=
   \begin{cases} 
     1 & x\ge 0 \\
@@ -588,55 +595,25 @@ complex values on the Ewald sphere \citep{McCutchen1964}:
   \end{cases}, \qquad \textrm{(Heaviside step function)} \label{eq:unit-step}
 \end{align}
 with the Dirac delta function $\delta$, transversal spatial frequency
-vector $\vnu_t=(\nu_x,\nu_y)^T$, and the real valued pupil function
-$P(\vnu_t)$ and wavefront error $W(\vnu_t)$. McCutchen calls the
-three-dimensional function $\widetilde a(\vnu)$ the generalized
-aperture.
+vector $\vnu_t=(\nu_x,\nu_y)^T$ and the wavefront error
+$W(\vnu_t)$. McCutchen calls the three-dimensional function
+$\widetilde a(\vnu)$ the generalized aperture.
 
-For this discussion I set $W(\vnu_t)=1$, i.e.\ there is no wavefront
+For this discussion I set $W(\vnu_t)=0$, i.e.\ there is no wavefront
 aberration and the lens is diffraction limited. Furthermore, I use a
 uniform, solid cylinder as pupil function $P(\vnu_t)$ in order to
 limit the size of the calotte (or cap) of the Ewald sphere that is
-defined by the acceptance angle $\alpha$ of the
-objective\footnote{Note that this expression is only valid for
-  $\alpha\in[0,\pi/2]$. An expression for $\widetilde a(\vnu)$
-  encompassing the full range $[0,\pi]$ for $\alpha$ must contain two
-  functions of each $P$ and $W$, in dependence on whether the spatial
-  frequency vector $\vnu$ is directed in or against the direction of
-  the optical axis. This is necessary to express the transfer function
-  of a 4Pi or I${}^n$M microscope.}:
+defined by the acceptance angle $\alpha$ of the objective.
 
-% \begin{align}
-%   \widetilde a(\vnu) =
-%   \begin{cases}
-%     P_-(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
-%     W_-(\vnu_t)\right)
-%   \delta\left(|\vnu|-\frac{n}{\lambda_0}\right) & \nu_z<0
-%  \\
-% P_+(\vnu_t) \exp\left(\frac{2\pi i}{\lambda} 
-%     W_+(\vnu_t)\right)
-%   \delta\left(|\vnu|-\frac{n}{\lambda_0}\right) & \nu_z\ge 0
-%   \end{cases}
-% \end{align}
+Just as the objective lens, the tube lens can be described by its
+generalized aperture but I assume that the tube lens maintains a
+diffraction limited wavefront of the full angular range. For this
+discussion, the full microscope is readily described by the
+generalized aperture of just its objective lens.
 
-\begin{align}
-  P(\vnu_t) &=
-  \step\left(|\vnu_t|-\frac{n\sin(\alpha)}{\lambda_0}\right), 
-\end{align}
-with the Heaviside step function as defined in equation
-(\ref{eq:unit-step}.  In general $P(\vnu_t)$ can assume values between
-0 and 1 in order to account for apodization due to natural vignetting
-or angle-dependent Fresnel reflection losses on the lenses. I ignore
-such effects in this discussion. Also, just as the objective lens, the
-tube lens can be described by its generalized aperture but I assume
-that the tube lens maintains a diffraction limited wavefront of the
-full angular range. For this discussion, the full microscope is
-readily described by the generalized aperture of just its objective
-lens.
-
-Multiplication of the angular frequency spectrum $\widetilde u(\vnu)$
+Multiplication of the emission angular frequency spectrum $\widetilde u(\vnu)$
 with the generalized aperture $\widetilde a(\vnu)$ gives the angular
-frequency spectrum of the amplitude in the image:
+frequency spectrum of the amplitude in the image plane:
 \begin{align}
   \widetilde u'(\vnu') = \widetilde u'(\vnu/\beta) = \widetilde u(\vnu/\beta)\cdot \widetilde a(\vnu/\beta).
 \end{align}
@@ -645,8 +622,9 @@ arguments of the functions, so that the result is given in image space
 spatial frequencies\footnote{Unfortunately my notation is slightly
   problematic here. I assume that $z-$sampling occurs by stepping the
   sample through the object space while the camera is fixed in the
-  focal plane of the tube lens. Therefore the axial coordinates $r_z$
-  and $r'_z$ in object and image are identical.}.
+  focal plane of the tube lens. Therefore, $r'_z$ has to be
+  interpreted as a $r_z$ position in sample space which does not
+  correspond to a physical position outside the image plane.}.
 
 According to the convolution theorem this multiplication in frequency
 space corresponds to a convolution in the domain of spatial
@@ -662,7 +640,8 @@ where $\vvarrho$ is a spatial coordinate and the lateral magnification
 $\beta=\r'/\r$ transforms between image space $\r'$ and object space
 $\r$. This result shows that the three-dimensional amplitude
 distribution of the image is linearly related to the amplitude
-distribution in the sample.
+distribution in the sample. A stack of images is obtained by
+translating the sample in $z$.
 
 A focal plane detector can only measure the intensity $I'$ which
 depends non-linearly on the amplitude of the field $u'$.  However, the
@@ -677,15 +656,14 @@ can then be obtained by incoherently adding the individual images of
 the fluorophores:
 \begin{align}
   I'(\r') &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
-  S(\vvarrho)\ h(\r'-\vvarrho)\ \textrm{d}^3\vvarrho\\
-  &= (S \otimes h) (\r')
+  S(\vvarrho)\ h(\r'-\vvarrho)\ \textrm{d}^3\vvarrho = (S \otimes h) (\r')
 \end{align}
 where $S(\vvarrho)$ represents the three-dimensional fluorophore
 distribution and $\vvarrho$ is the spatial coordinate in image space.
 
 It is useful to discuss the Fourier transform of the intensity point  \cma{optical transfer function}
 spread function $h$. This is the three-dimensional optical transfer
-function of the microscope and describes how well different spatial
+function of the microscope and describes how well different object
 frequencies are transmitted:
 \begin{align}
   \widetilde h(\vnu') = \mathcal{F}(a(\r')\ a^*(\r')) =
@@ -728,8 +706,9 @@ $\lambda_0$, immersion index $n$ and aperture angle $\alpha$:
 , \quad
   \Delta\nu_z = 2\frac{n}{\lambda_0}(1-\cos\alpha),
 \end{align}
-(FIXME verify with rainers book chapter) allow to give lower bounds for  \cma{resolution}
-the resolution that can be obtained using a well corrected objective: 
+allow to give lower bounds for \cma{resolution of an objective} the
+smallest periodic structure that can still be resolved using a well
+corrected objective:
 \begin{align} 
 \label{eq:resolution}
   \Delta d_x = \frac{2}{\Delta\nu_x} = \frac{\lambda_0}{2 n \sin\alpha}, \quad
@@ -780,7 +759,7 @@ detected signal. Therefore a $z-$stack of a fluorescent plane captured
 with two opposing lenses compared to just one lens will give a signal
 that is four times as bright in focus, shows damped oscillations
 (because of the finite spectral band emitted by the fluorophores) when
-going away from focus and has twice the brightness out-of-focus. This
+moving away from focus and has twice the brightness out-of-focus. This
 means the axial location of the fluorescent plane can be measured in
 I${}^2$M but there is still background signal \citep{Gustafsson1995}.
 
@@ -790,56 +769,55 @@ does not stop in the corresponding image point. Therefore most
 out-of-focus light is added incoherently as a background to the
 detected signal.
 
-Structured \cma{confocal} illumination can be used to
-remove this out-of-focus light.  There are two major incarnations of
-this technique in current use.  On the one hand there is the confocal
-microscope\label{sec:confocal} in which mechanically scans a single
-point spread function over the focal plane. This approach allows to
-block out-of-focus light optically. The concept was invented by Minsky
-in the late fifties \citep{Minsky1961}, the first device with a laser
-was built in the early seventies \citep{davidovits1971scanning} and
-was commercialized after breakthroughs regarding the scanning
-mechanics in the late eighties. Due to the excellent quality of its
-images and the ease of use the confocal microscope became a standard
-tool for biology and life sciences.
+Structured \cma{optical sectioning with confocal microscope}
+illumination can be used to remove this out-of-focus light.  There are
+two major incarnations of this technique in current use.  On the one
+hand there is the confocal microscope\label{sec:confocal} in which
+mechanically scans a single point spread function over the focal
+plane. This approach allows to block out-of-focus light optically. The
+concept was invented by Minsky in the late fifties \citep{Minsky1961},
+the first confocal microscope with a laser was built in the early
+seventies \citep{davidovits1971scanning} and was commercialized after
+breakthroughs regarding the scanning mechanics in the late eighties
+\cite{Amos1987}. Due to the excellent quality of its images and the
+ease of use the confocal microscope became a standard tool for biology
+and life sciences.
 
-On \cma{structured illumination} the other hand there is an approach
-where a pattern with a significantly larger proportion of illuminated
-area is projected into the focal plane. Images are then captured with
-a camera. Several such exposures (at least two) can then be
-computationally processed to separate in- and out-of-focus light
-\citep{Neil1997}.  Advantages of this method are that it requires no
-mechanical scanning and therefore can be much faster. Furthermore,
-camera sensors have a higher quantum efficiency than the
-photomultiplier tubes that were typically found in confocal systems,
-although this difference disappears when avalanche photodiodes are
-used. A significant disadvantage, however, is that the out-of-focus
-light is always measured with the detector. Its accompanying photon
-shot noise reduces the quality of the signal (see section
-\ref{sec:photon-noise}). Therefore this method is particularly
+On \cma{optical sectioning using structured illumination} the other
+hand there is an approach where a pattern with a significantly larger
+proportion of illuminated area is projected into the focal
+plane. Images are then captured with a camera. Several such exposures
+(at least two) can then be computationally processed to separate in-
+and out-of-focus light \citep{Neil1997}.  Advantages of this method
+are that it requires no mechanical scanning and therefore can be much
+faster. Furthermore, camera sensors have a higher quantum efficiency
+than the photomultiplier tubes that were typically found in confocal
+systems, although this difference disappears when avalanche
+photodiodes are used. A significant disadvantage, however, is that the
+out-of-focus light is always measured with the detector. Its
+accompanying photon shot noise reduces the quality of the signal (see
+section \ref{sec:photon-noise}). Therefore this method is particularly
 problematic in thick fluorescent samples with much more out-of-focus
 than in-focus light. The confocal microscope is in this sense the
 better tool because its picture quality is independent on the
-fluorophore distribution in the specimen. (FIXME reference to confocal
-and structured illumination sections).
-
+fluorophore distribution in the specimen. 
 
 
 
 \subsection{Illumination in a wide-field epifluorescence microscope}
 As mentioned in section \ref{sec:photophysics}, fluorescence photons
-are essentially emitted in all directions by a typical, (nearly)
-independent of the original illumination direction. Therefore it is
-possible and convenient to use the objective for excitation as well as
+are essentially emitted in all directions (nearly) independent of the
+original illumination direction. Therefore it is possible and
+convenient to use the objective for excitation as well as
 detection. This mode of microscopy is called epifluorescence (Greek:
 $\varepsilon\pi\iota$; on, above).  In this configuration usually only
 a small percentage of the excitation light returns due to scattering
 or reflection. This simplifies the separation of fluorescence light
-from excitation light and parts of opaque specimen can be imaged.
+from excitation light.
 
 The blue beam in \figref{fig:widefield-microscope}~c) depicts a
 parallel laser that is focused into the pupil of the objective by tube
-lens TL2. The beam is reflected at a dichroic beam splitter (BS). This
+lens TL2. The beam is reflected at a dichromatic beam splitter (BS). This
 is a glass plate that has been coated with dielectric layers. The
 refractive index, thickness and sequence of the layers are designed so
 that the excitation light is reflected towards the
@@ -857,7 +835,7 @@ illumination. As a remedy the spatial coherence of the laser is
 sometimes reduced.  Incoherent light emitting diodes, mercury or xenon
 arc lamps are often used instead of lasers. In the latter case a band
 pass filter selects the useful part of the spectrum of the excitation
-lamp upstream of the dichroic beam splitter.
+lamp upstream of the dichromatic beam splitter.
 
 \subsubsection*{The space-bandwidth product of a microscopic lens}
 \label{sec:etendue}
@@ -890,9 +868,9 @@ of objective lenses we should maximize the ratio of in-focus to
 out-of-focus fluorescence. The epifluorescent wide-field and confocal
 microscope surely do not represent an optimum in this regard.
 
-In chapter \ref{sec:approaches} I will introduce other microscopy
-techniques that are more considerate of where to deposit excitation
-power within the specimen.
+In the next chapter on page \pageref{sec:approaches} I will introduce
+other microscopy techniques that are more considerate of where to
+deposit excitation power within the specimen.
 
 \subsection{Conclusion}
 \label{sec:widefield-conclusion}
@@ -917,7 +895,7 @@ that only collect light from one half-space.
   I describe the operation of CCD, EM-CCD and sCMOS focal plane
   detectors. Then I utilize a simple noise model to compare different
   camera models and describe a simple method to calibrate cameras so
-  that their data is represented in the standardized unit of detected
+  that their data is represented in the standardized unit of effective
   photoelectrons.
 \end{summary}
 
@@ -927,7 +905,7 @@ measure \cma{detection} and digitize the intensity distribution in the
 intermediate image plane. The semiconductor surface is patterned with
 a two-dimensional array of PIN photodiodes that generate and collect
 an intensity-dependent amount of free charge carriers when their
-depletion region is exposed to light photons.
+depletion region is exposed to photons in the visible range.
 
 Modern detectors can have a very high probability of a photon being
 \cma{quantum efficiency and back-thinning} absorbed and contributing to final signal
@@ -949,11 +927,13 @@ sensor --- therefore, this technology is known as charge-coupled
 device (CCD). An additional row of similar capacitors (denoted
 horizontal shift register) on one side of the array pushes the
 carriers into a charge amplifier. \cma{charge amplifier} This consists
-of a much smaller capacitor (the read node) and a field-effect
-transistor that amplifies the voltage across the read node. This
-voltage linearly depends on the charge \citep{Pawley2006}.
+of a capacitor (the read node) and a field-effect transistor that
+amplifies the voltage across the read node. This voltage $U$ linearly
+depends on the charge $Q$ $U=Q/C$. The designs try to minimize the
+capacitance $C$ of the read node to maximize sensitivity
+\citep{Pawley2006}. {\color{red} FIXME check equation}
 
-In the active-pixel sensor each individual photodiode is surrounded by
+In the active-pixel sensor (e.g.\ sCMOS) each individual photodiode is surrounded by
 its own \cma{active-pixel sensor} transistors for readout and
 reset. The two-dimensional array is addressed with an access
 enable wire which is shared by pixels of a line and an output wire,
@@ -973,7 +953,7 @@ the performance of cameras from different manufacturers or to
 determine the optimal parameter settings for one particular
 experiment. Furthermore, it is possible to use the photon shot noise
 to calibrate cameras (or any other intensity detector) and convert
-their measurements to detected photoelectrons.  This allows to compare
+their measurements to effective photoelectrons.  This allows to compare
 images of different microscope systems (confocal, spinning disk or
 wide-field) or and facilitates the use off sophisticated noise
 reduction algorithms.
@@ -983,20 +963,20 @@ reduction algorithms.
 Fluorescence photons arrive at the \cma{Photon shot noise} detector
 independently of each other. This random process leads to fluctuations
 in the number of the detected photons and can be described by the
-Poissonian probability mass function (denoted as '$\pois$'):
+Poissonian probability mass function (denoted as '$\pois$'):  % FIXME rainer will density
 \begin{align}
   \pois(k;\lambda) = \frac{\lambda^k \exp(-\lambda)}{k!},\quad \lambda\in\mathbb{R},\quad k=0,1,2,\ldots
 \end{align}
-Note that in this particular formula the quantities have a different
+Note that in this particular equation the quantities have a different
 meaning than in other parts of this work. The variable $k$ describes
 the number of measured photons and the real number $\lambda$ is the
 average number of photons that reach the detector during the
 integration time. \figref{fig:pois} displays the discrete detection
 probabilities for three different values of $\lambda$.  For large
-$\lambda>\unit[1000]{photons}$, the shape of the Poisson distribution
+$\lambda>\unit[10]{photons}$, the shape of the Poisson distribution
 is excellently approximated by to the normal distribution with mean
 and variance $\lambda$.
-FIXME quote wikipedia?
+%FIXME quote wikipedia?
 
 
 \gnuplotinput{pois}{Poissonian probability mass function
@@ -1005,10 +985,10 @@ FIXME quote wikipedia?
 
 
 We can calibrate every detector in order to specify the measurement in
-the unit of detected photoelectrons. For this, we utilize the property
-of the Poisson distribution that the variance $(\Delta I)^2$ of an
-intensity measurement (in the unit of photoelectrons) is equal to the
-average intensity $\langle I\rangle$:
+the unit of ``effective'' photoelectrons. For this, we utilize the
+property of the Poisson distribution that the variance $(\Delta I)^2$
+of an intensity measurement (in the unit of photoelectrons, denoted as
+$e^-$) is equal to the average intensity $\langle I\rangle$:
 % nice proof: http://www.proofwiki.org/wiki/Variance_of_Poisson_Distribution
 \begin{align}
 \label{eq:variance}
@@ -1023,7 +1003,7 @@ average intensity $\langle I\rangle$:
     plane sample. This is used for calibrating the detector. {\bf
       right:} Result of a detector calibration. The slope of the curve
     allows to convert the arbitrary analog-to-digital units into
-    detected photoelectrons, the point of interception at the $y-$axis
+    effective photoelectrons, the point of interception at the $y-$axis
     gives the detector read noise.}
   \label{fig:shot-noise}
 \end{figure}
@@ -1035,11 +1015,12 @@ occurring intensities are collected into 100 bins. The average
 intensity variance of each bin is then plotted against the intensity
 (see right image in \figref{fig:shot-noise}). The data lie on a
 straight line. From its slope we calculate the gain to convert the
-arbitrary analog-to-digital units into the number of detected
+arbitrary analog-to-digital units into the number of effective
 photoelectrons. If the data is plotted in this unit, the slope of the
 line is one, according to equation \eqref{eq:variance}. The smooth
 light distribution in the input images ensures a good coverage for
-each data point in the variance-intensity plot. 
+each data point in the variance-intensity plot and a bit of protection
+against drift.
 
 \comment{ % this is just for copying the jpeg file
 \jpginput{10cm}{calib-pic}{Image of a defocused area on a fluorescent
@@ -1049,12 +1030,12 @@ To determine the quality of a detector we \cma{measuring read noise}
 ensure that no light falls on the detector and create twenty dark
 images.  For an ideal, noise-free detector these images would contain
 zero everywhere. In a real CCD sensor the variance of the values in
-the dark images reflect the readout noise $N_r$. Using the calibration
+the dark images reflect the readout noise $N_r$ and the mean estimates the offset. Using the calibration
 gain, the readout noise can be specified as photoelectrons$/$pixel
-(\unit[]{e/px}).
+($\unit[]{e^-/px}$).
 
 The analysis for the right diagram in \figref{fig:shot-noise} gave a
-readout noise of \unit[5.6]{e/px}. For the evaluation I used the
+readout noise of $\unit[5.6]{e^-/px}$. For the evaluation I used the
 function \verb!cal_readnoise! of the DIPimage toolbox for Matlab
 \citep{Lidke2005a}. In Appendix \ref{sec:python-readnoise-eval} I list
 an alternative Python implementation of this algorithm.
@@ -1084,7 +1065,7 @@ temperature dependent.
 Unfortunately, the statistical nature of impact ionization leads to an
 uncertainty in gain and therefore introduces a \cma{excess noise
   reduces quantum efficiency} new noise source. As a gain this noise
-acts multiplicately on the signal. \cite{Robbins2003} analyzed the
+acts multiplicatively on the signal. \cite{Robbins2003} analyzed the
 amplification process and shows that the multiplicative noise, which
 is also called excess noise, has the effect of halving the apparent
 quantum efficiency of the detector.
@@ -1100,37 +1081,37 @@ sources become important.
 \newcommand{\SNR}{\textrm{SNR}}
 \subsection{Comparison chart for detector selection}
 Now I will introduce a comparison chart that I first saw in
-\cite{Cameras2012}. It is based on a single formula for the
-signal-to-noise ratio $\SNR$ and if the detector parameters, such as
+\cite{Cameras2012}. It is based on a single equation for the
+signal-to-noise ratio $\SNR$ and, if the detector parameters, such as
 readout noise and quantum efficiency, are known, a quantitative
 estimate of the expected quality of the data can be made.
 
 Shot noise defines the fundamental limit for the signal-to-noise ratio
 in photo detectors \citep{Sheppard2006a}. As already mentioned above,
 the expected noise for a signal of $S$ photons is $\sqrt{S}$. Assuming
-the contributions to a detector pixel are $S$ photons signal perturbed
+the contributions to a detector pixel are $S$ signal photons, perturbed
 by an additional number of $I_b$ photons background light. The
 signal-to-noise $\SNRid$ ratio for an ideal, noise-free detector is:
 \begin{align}
   \SNRid = \frac{S}{\sqrt{S+I_b}}.
 \end{align}
-FIXME wie interpretiert man das bei kleinen S, wenn gauss und poisson
-verteilung nicht gleich aus sehen?
+%FIXME wie interpretiert man das bei kleinen S, wenn gauss und poisson
+%verteilung nicht gleich aus sehen?
 
 A conventional detector with reduced quantum efficiency $Q_E\in[0,1]$
 and additive, Gaussian readout noise with standard deviation $N_r$ (in
-\unit[]{e/px}) can only produce a worse signal-to-noise ratio:
+$\unit[]{e^-/px}$) can only produce a worse signal-to-noise ratio:
 \begin{align}
   \SNRadd = \frac{Q_E\cdot S}{\sqrt{Q_E(S+I_b)+N_r^2}}.
 \end{align}
-This formula can be adapted for the electron-multiplying CCD. There,
+This equation can be adapted for the electron-multiplying CCD. There,
 the readout noise is reduced because of the gain $M$ but the influence
 of the shot noise is doubled due to the excess noise factor
 $F_n=\sqrt{2}$.
 \begin{align}
   \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}}
 \end{align}
-This equation makes it possible to compare all the cameras that I can
+This equation permits to compare all the cameras that I can
 use for my experiments. Table \ref{tab:cam-param} lists parameters
 from their datasheets and the three diagrams in
 \figref{fig:camera-snr} shows curves of the relative signal-to-noise
@@ -1146,7 +1127,7 @@ noise performance, even if that comes with a loss in readout speed.
     \begin{tabular}{l r r r r r l}
       \toprule
       camera type & $f_\textrm{read}$  & $QE$ & $N_r$ & $F_n$ & $M$ & model \\
-       & [MHz] & &  [e/px] & &  &  \\
+       & [MHz] & &  [$e^-/$px] & &  &  \\
       \midrule
       back-thinned CCD & 1 & 0.95 & 5.3 & 1 & 1 &  E2V CCD97\\
       EM-CCD & 1 & 0.95 & 15.0 & $\sqrt{2}$ & 80 & E2V CCD97 \\
@@ -1169,8 +1150,8 @@ quantum efficiency $Q_E$ wins (back-thinned CCD, green line):
   \lim_{S\rightarrow\infty} \frac{\SNR}{\SNRid} &=
   \frac{\sqrt{Q_E}}{F_n}. \qquad \textrm{(high light limit)}
 \end{align}
-For detectors with readout noise, there is a signal photon number
-$S_n$ below which the readout noise predominates:
+For detectors with readout noise, there is a number $S_n$ of signal
+photons below which the readout noise dominates:
 \begin{align}
   S_n&= \frac{N_r^2}{M^2F_n^2 Q_E}-I_b.  \qquad\textrm{(photon shot noise limit)}
 \end{align}
@@ -1182,10 +1163,22 @@ the relative SNR is within 95\% of the high light limit and the
 sensor's quantum efficiency becomes the parameter that defines the
 performance.
 
-\gnuplotinput{camera-snr}{Camera snr. dotted line for lowest light
-  level, where $N_r$ is the dominant noise; thin line indicates high
-  light region where quantum efficiency and excess noise factor $F_n$ matter
-}
+% \gnuplotinput{camera-snr}{Comparison of signal-to-noise ratio for
+%   different cameras. Dotted line for lowest light level, where $N_r$
+%   is the dominant noise; thin line indicates high light region where
+%   quantum efficiency and excess noise factor $F_n$ matter. }
+
+\begin{figure}[!hbt]
+  \centering
+%  \svginput{1}{camera-snr-svg}
+  \pdfinput{14cm}{camera-snr-svg}
+  \caption{Comparison of signal-to-noise ratio for
+  different cameras. Dotted line for lowest light level, where $N_r$
+  is the dominant noise; thin line indicates high light region where
+  quantum efficiency and excess noise factor $F_n$ matter.}
+  \label{fig:camera-snr}
+\end{figure}
+
 
 The first thing I want to look at is the EM-CCD. For a high gain of
 \cma{interpretation of EM-CCD in \figref{fig:camera-snr}} $M=20$ the
@@ -1199,12 +1192,15 @@ read out at a 10 times higher speed.
 
 In a low background environment and low signal level the EM-CCD comes
 very close to the ideal detector, when it is run in photon counting
-mode as indicated by the red line in the top left.
+mode as indicated by the blue-green line in the top left.  FIXME translate:
+Aber die impact ionization die in den Verstaerkerregistern with
+advantage genutzt wird um tritt mit geringerer Wahrscheinlichkeit auch
+bei kleinen Spannungen auf und fuegt dem Signal so um die
+$\unit[200]{e^-/frame}$ an zusaetzlichen Rauschen hinzu. Dieses wird
+clock-induced charge genannt.
 
-Next I want to discuss the curves of the active-pixel
+Next, I discuss the curves of the active-pixel
 sensors. \cma{sCMOS in \figref{fig:camera-snr}}
-
-
 The device designated as global shutter sCMOS is a sensor with five
 transistors per pixel \citep{Vu2011}. Similar to a passive-pixel CCD
 sensor this permits to start exposure in all pixels simultaneously,
@@ -1240,7 +1236,7 @@ with near perfect quantum efficiency.
 The method I presented for CCD calibration can be applied to measure
 the gain $M$ and the excess noise factor $F_n$ of an EM-CCD. This
 requires dark images and image sequences of the smooth intensity
-distribution (from the exactly the same sample) with and without
+distribution (from the exactly the same sample and illumination) with and without
 electron multiplication gain, so that data for both cases can be
 converted into detected photoelectrons.
 

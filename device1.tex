@@ -265,6 +265,17 @@ Solving for $k_{px}$ results in:
   \label{fig:diffraction}
 \end{figure}
 
+% The \ cma { 1D diffraction problem } $ N $ pixels are along a line
+% with a pitch $ \ lambda $ so distributed $ x_p = \ lambda \ cdot p $
+% with $ p = - \ lfloor N / 2 \ rfloor , \ dots , \ lfloor N / 2 \
+% rfloor +1 U.S. dollars where $ \ lfloor N / 2 \ rfloor $ the largest
+% integer describes the smaller N / second For simplicity, I neglect the
+% gaps between the mirrors and Oberflaechenunebenheit in the center of
+% the mirror (see \ figref { fig: } mma ) . In further consideration, ie
+% the pixel pitch and the pixel width are the same: $ \ lambda = w = \
+% unit [ 16] {\ mu } m $ . The Fourier spectrum widetilde T_ \ textrm
+% {line } $ \ $ this line is:
+
 
 Die \cma{1D Beugungsproblem} $N$ Pixel sind entlang einer Zeile mit
 einem Pitch $\Lambda$ verteilt also $x_p=\Lambda\cdot p$ mit
@@ -280,6 +291,20 @@ ist:
   \widetilde T_\textrm{line}(k_x) & = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} T_p(k_x) 
   = w \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x \Lambda p} \sinc\left(\frac{w}{2}(k_x+k_{px})\right) \label{eq:tline}
 \end{align}
+
+% This expression is the Fourier transform of a line grid with a pixel
+% pitch period , depending on the tilt angle of the individual mirror
+% modulated with the appropriate sinc function. In the first diagram \
+% figref { fig: maximum diffraction } ~ left only the absolute square of
+% the sum over the phase factor $ \ sum_p \ exp ( ik_x \ lambda p) $ for
+% $ n = 1.4 $ and $ N = $ 20 is shown . As you can see , the diffraction
+% peaks with increasing number sharper mirror . The mirror used by us
+% has $ N = 256 $, that is to say the sum of supplies by constructive
+% interference a train of very fine diffraction orders to the equation
+% described by the lattice wave number vectors k_x $ ^ { (m) } $ (see \
+% figref { fig: diffraction } ~ right) :
+
+
 Dieser Ausdruck ist die Fouriertransformation eines Liniengitters mit
 dem Pixelpitch als Periode, je nach Kippwinkel des individuellen
 Spiegels moduliert mit der entsprechenden sinc Funktion. Im ersten
@@ -301,6 +326,18 @@ $k_x^{(m)}$ (siehe \figref{fig:diffraction}~right):
   \includegraphics{diffraction_rects}
   \svginput{1}{mirror-tilt}
   \includegraphics{diffraction_kp}
+% {\ bf left: } representation of the intensity of the diffraction
+% pattern of an increasing number of columns $ | \ sum_ {p = - \ lfloor
+% N / 2 \ rfloor } ^ {\ lfloor N / 2 \ rfloor +1 } e ^ { ik_x \ lambda
+% p} | ^ 2 $ . {\ bf right: } representation of the diffraction orders
+% of $ | \ widetilde T_ \ textrm {line } ( k_x ) | ^ 2 $ from the
+% formula ( \ ref { eq: tline } ) for four different deflections of the
+% mirror. The icons on the right symbolize the Spiegelkippung . For the
+% red curve , every second pixel remains untilted . {\ bf bottom: }
+% intensity in the zeroth diffraction order $ | \ widetilde T_ \ textrm
+% {line } ( k_x = 0) | ^ 2 $ for $ l $ Deflection simultaneously varying
+% all levels.
+
   \caption{{\bf left:} Darstellung der Intensitaet der Beugungsbilder
     einer zunehmenden Anzahl von Spalten $|\sum_{p=-\lfloor
       N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x \Lambda p}|^2$. {\bf
@@ -315,6 +352,17 @@ $k_x^{(m)}$ (siehe \figref{fig:diffraction}~right):
   \label{fig:maxima-diffraction}
 \end{figure}
 
+% In the picture \ figref { fig: maximum diffraction } ~ right is the
+% full expression $ | \ widetilde T_ \ textrm {line } ( k_x ) | ^
+% represented $ 2 ( with $ N = $ 20). And I have the Spiegeldeflectionen
+% with $ k_ { px } $ varied. In the case $ l = 0 $, all mirrors are
+% undeflected and all the light remains in the zero order . A
+% particularly interesting case occurs for $ l = \ lambda / 4 $ . This
+% corresponds to the blaze condition . Each individual mirror reflects a
+% part of the plane wave are offset by exactly one wavelength, and
+% reflects all light in the first order . In the lower diagram in \
+% figref { fig: } the maximum diffraction intensity in the zero order is
+% dargstellt for varying Spiegelkippung .
 
 Im Bild \figref{fig:maxima-diffraction}~right ist der volle Ausdruck
 $|\widetilde T_\textrm{line}(k_x)|^2$ dargestellt (mit $N=20$).  Dabei
@@ -332,6 +380,28 @@ dargstellt.
 \begin{align}
   |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(4 \pi l/\lambda)^2
 \end{align}
+% I.e. a tilt of the mirror with deflections between 0 and $ \ lambda /
+% 4 $ allows the intensity of the zero order gradually and monotonically
+% to modulate . In our system, this means that the intensity at any
+% point in the plane $ P '$ (see \ figref { fig: memi -real } ) depend
+% on the element conjugate to tilt the mirror. In order to allow a high
+% contrast , but the Beleuchtungsaperture B0 and B1 , the Fourier
+% aperture have to be selected so small that no light from the higher
+% diffraction orders of $ P '$ can achieve. Note that an opening of B0
+% means that the pupil plane SLM instead of a plane wave as in ref
+% equation $ \ : $ is by assuming an extended source illuminates eq { tp
+% } . Accordingly \ cma } { partial coherence is the zeroth order in the
+% real system from the convolution of the light distribution in B0 \
+% figref { fig: maximum diffraction } ~ left . A cross-talk of the
+% orders must be excluded ( in the one-dimensional problem) the maximum
+% radius $ d_ \ textrm { max } $ of B0 and B1 are more than half the
+% distance of the orders . Well , sadly , that the MMA was built for
+% historical reasons so that the mirror adjacent rows are tilted in
+% opposite directions. Obviously for other applications it involves
+% advantages when the Fourier spectrum is symmetrical. In our
+% application , however, this fact leads to a reduction of the already
+% limiting etendue by a factor of 2
+
 D.h. eine Kippung der Spiegel mit deflektionen zwischen 0 und
 $\lambda/4$ erlaubt es die Intensitaet der Nullten Ordnung graduell
 und monoton zu modulieren. In unserem System bedeutet das, dass die
@@ -357,6 +427,14 @@ Vorteile, wenn das Fourierspektrum symmetrisch ist. In unserer
 Anwendung fuehrt dieser Umstand jedoch zu einer Verkleinerung der
 ohnehin limitierenden Etendue um einen Faktor 2.
 
+
+% To \ cma } { 2D diffraction to substantiate this statement I give now
+% the two-dimensional Oberflaechenfunktion the MMA . The pixels are
+% square and adjacent lines can only be deflected in the opposite
+% direction (see \ figref { fig: mma fft } ~ left ) . I index the pixels
+% of the lines , the tilt in the same direction with $ p $ . The columns
+% I index with $ q $ .
+
 Um \cma{2D Beugung} diese Aussage zu begruenden gebe ich nun die
 zweidimensionale Oberflaechenfunktion des MMA. Die Pixel sind
 quadratisch und benachbarte Zeilen koennen nur in entgegengesetzte
@@ -371,6 +449,21 @@ $p$. Die Spalten indiziere ich mit $q$.
   \rect\left(\frac{y+\Lambda q}{w}\right) \rect\left(\frac{x+\Lambda
       p}{w}\right)
 \end{align}
+
+% The term ^ q $ -1 $ ensures that adjacent rows in opposite direction
+% on tilt . \ figref { fig: mma fft } ~ right shows the Fourier
+% transform that all mirrors are tilted to the blaze angle for the
+% case. The drawn image in the circles show the maximum allowed size of
+% the opening of the apertures B0 and B1 (see \ figref { fig: memi -real
+% }). When the signal is band- limited , i.e. the tilt angles vary only
+% slowly from mirror to mirror , then avoid this aperture size , that
+% the light of the higher order image in $ P '$ CONTRIBUTES . A
+% checkerboard pattern can not be represented this way (but that is not
+% necessary for our application as a pupil plane SLM) . In this case,
+% the high frequency signal produced additional peaks at each order (as
+% in the red line in \ figref { fig: maximum diffraction } ~ shown right
+% ) .
+
 Der Term $-1^q$ sorgt dafuer das benachbarte Zeilen in
 entgegengesetzte Richtung tilten.  \figref{fig:mma-fft}~right zeigt
 die Fouriertransformation fuer den Fall dass alle Spiegel in den
@@ -402,6 +495,12 @@ Peaks um jede Ordnung ( wie in der roten Linie in
     overlap. This limits the etendue of our illumination system.}
   \label{fig:mma-fft}
 \end{figure}
+
+
+% In the following I Determine the acceptance angle for the pupil plane
+% with the Fourier SLM filters and aperture can go from the assumption
+% that only a strong band- limited image should be displayed.
+
 
 Im folgenden Bestimme ich den Akzeptanzwinkel fuer das pupil plane SLM
 mit der Fourier filter apertur und gehe dabei davon aus, dass nur ein
@@ -440,11 +539,15 @@ smaller than the etendue of a typical microscope objective
 
 FIXME translate:
 Der Durchmesser im Feld kann mit der folgenden Gleichung ermittelt werden:
+wobei NA die numerische Apertur des Objektivs ist.
+% The diameter of the field can be determined with the following
+% equation: where NA is the numerical aperture of the lens.
+
 
 \begin{align}
   D_\textrm{field}=\frac{2}{\textrm{NA}}\sqrt{\frac{\mathcal{E}}{\pi}},
 \end{align}
-wobei NA die numerische Apertur des Objektivs ist.
+
 
 FIXME FIXME
 corresponds to a field diameter $D_\textrm{field}$ in the specimen

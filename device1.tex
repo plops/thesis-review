@@ -221,14 +221,14 @@ naemlich kaum ausreichend fuer unsere Experimente und mein Ziel fuer
 diesen Abschnitt ist, die Ursache dafuer zu diskutieren.
 
 Um das Fouriermuster zu beschreiben betrachte ich zunaechst einzelnes
-Pixel mit Breite $w=\unit[16]{\mu m}$. Dieses laesst sich zunaechst in
+Pixel mit Index $p$ und Breite $w=\unit[16]{\mu m}$. Dieses laesst sich zunaechst in
 einer Dimension durch den folgenden Ausdruck beschreiben:
 \begin{align}
   T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/w)\cdot e^{i k_{px} x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases} \label{eq:tp}
 \end{align}
 Die Faltung mit der $\delta-$Funktion schiebt das Pixel an die Stelle
-$x_p$ und $k_{px}$ beschreibt den Kippwinkel des Spiegels. Mit der
-Fouiertransformation
+$x_p$ und $k_{px}$ beschreibt den Kippwinkel des $p-$ten Spiegels. Mit
+der Fouiertransformation
 \begin{align}
   \frac{1}{w}\int_{-w/2}^{w/2} e^{ikx} \textrm{d}x =
   \frac{\sin(kw/2)}{kw/2} =: \sinc(kw/2)
@@ -239,15 +239,23 @@ ergibt sich das Fraunhofer Beugungsbild eines einzelnen Pixels zu:
   = e^{ik_x x_p} w \sinc\left((k+k_{px})\cdot w/2\right)
 \end{align}
 D.h. das sinc-foermige Beugungsbild des Pixels verschiebt sich im
-k-Raum, je nach deflection des Spiegels. Der Zusammenhang zwischen dem
-durch $k_{px}$ beschriebenen Tilt der reflektierten Phasenfront fuer
-Licht mit der Wellenlaenge $\lambda$ und der deflection $l$ der
-Spiegel (Auslenkung der Spiegelkante aus der Nullposition) ist:
-
+k-Raum, je nach deflection des Spiegels. Der Zusammenhang fuer kleine
+Torsionswinkel zwischen dem durch $k_{px}$ beschriebenen Tilt der
+reflektierten Phasenfront fuer Licht mit der Wellenlaenge $\lambda$
+und der deflection $l$ der Spiegel (Auslenkung der Spiegelkante aus
+der Nullposition) ist.  Dafuer betrachte ich Term $e^{i k_{px} x}$ in
+Gleichgung (\ref{eq:tp}) an der Stelle $x=w/2$. Der Weg $l$ wird bei
+der Reflexion zweimal durchlaufen (siehe
+\figref{fig:diffraction}~left) und es ergibt sich dieser Ausdruck:
 \begin{align}
-  \k_p &= (k_{px},0,k_{pz})^T = \frac{2\pi}{\lambda} (-\sin(2\alpha),0,\cos(2\alpha))^T \quad \textrm{with}\ \alpha = \arctan\left(\frac{l}{w/2}\right) \\
-  k_{px} &= -\frac{2\pi}{\lambda} \frac{l}{w+l^2/(4w)} = -\frac{2\pi}{\lambda} \frac{l}{w} + \mathcal{O}(l^3)
+  e^{ik_{px} \frac{w}{2}} = e^{\frac{2\pi i}{\lambda} 2l} 
 \end{align}
+Umstellen nach $k_{px}$ ergibt:
+\begin{align}
+  k_{px} &= \frac{2\pi}{\lambda} \frac{4l}{w}
+\end{align}
+
+
 
 \begin{figure}[htbp]
   \centering 
@@ -315,18 +323,18 @@ $k_x^{(m)}$ (siehe \figref{fig:diffraction}~right):
 Im Bild \figref{fig:maxima-diffraction}~right ist der volle Ausdruck
 $|\widetilde T_\textrm{line}(k_x)|^2$ dargestellt (mit $N=20$).  Dabei
 habe ich die Spiegeldeflectionen mittels $k_{px}$ variiert. Im Falle
-$k_{px}=0$ sind alle Spiegel unausgelenkt und alles Licht bleibt in
-der nullten Ordnung. Ein besonders interessanter Fall tritt fuer
-$k_{px}=\pi$ auf. Dies entspricht der Blazekondition und einer
-Deflection von $l=\lambda/4$. Bei der Reflexion wird alles Licht in
-die erste Ordnung reflektiert.
+$l=0$ sind alle Spiegel unausgelenkt und alles Licht bleibt in der
+nullten Ordnung. Ein besonders interessanter Fall tritt fuer
+$l=\lambda/4$ auf. Dies entspricht der Blazekondition. Dabei
+reflektiert jeder einzelne Spiegel einen Teile der ebenen Welle die
+genau um eine Wellenlaenge versetzt sind und alles Licht in die erste
+Ordnung reflektiert.
 
 Im unteren Diagramm in \figref{fig:maxima-diffraction} ist die
 Intensitaet in der nullten Ordnung fuer variierende Spiegelkippung
-dargstellt. {\color{red} hier ist noch was falsch, das soll fuer
-  $l=\lambda/4$ null werden, zur zeit tuts das fuer $l=\lambda$}
+dargstellt. 
 \begin{align}
-  |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(\pi l/\lambda)^2
+  |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(4 \pi l/\lambda)^2
 \end{align}
 D.h. eine Kippung der Spiegel mit deflektionen zwischen 0 und
 $\lambda/4$ erlaubt es die Intensitaet der Nullten Ordnung graduell
@@ -433,13 +441,19 @@ For our system the maximal etendue is between $\unit[0.0079]{mm^2/sr}$
 and $\unit[0.024]{mm^2/sr}$, depending on the wavelength. This is much
 smaller than the etendue of a typical microscope objective
 ($\unit[0.27]{mm^2/sr}$, see section \ref{sec:etendue}) and
-corresponds to a field diameter $D_\textrm{field}$ in the specimen
-between $\unit[70]{\mu m}$ for a wavelength $\lambda$ of
-\unit[400]{nm} and $\unit[125]{\mu m}$ for \unit[700]{nm}, with
+
+FIXME translate:
+Der Durchmesser im Feld kann mit der folgenden Gleichung ermittelt werden:
+
 \begin{align}
   D_\textrm{field}=\frac{2}{\textrm{NA}}\sqrt{\frac{\mathcal{E}}{\pi}},
 \end{align}
-where $\textrm{NA}$ is the numerical aperture.
+wobei NA die numerische Apertur des Objektivs ist.
+
+FIXME FIXME
+corresponds to a field diameter $D_\textrm{field}$ in the specimen
+between $\unit[70]{\mu m}$ for a wavelength $\lambda$ of
+\unit[400]{nm} and $\unit[125]{\mu m}$ for \unit[700]{nm}, with
 
 % NA:1.4; eps:0.0079; sqrt(eps/(NA^2*%pi/4)),numer;
 % NA:1.4; eps:0.024; sqrt(eps/(NA^2*%pi/4)),numer;

@@ -21,7 +21,7 @@ compile(all);
 /*
 showtime : true;
 */
-FINAL:10;
+FINAL:30;
 int_big : intens(20,25*FINAL)$
 int_mid : intens(4,20*FINAL)$
 int_small:intens(1,9*FINAL)$

@@ -339,7 +339,7 @@ The resulting singlet oxygen ${}^1\Delta$ is very reactive. In a
 typical specimen it diffuses only a few tens of nanometres until it
 reacts with another molecule.
 
-(FIXME 2000 greenbaum measures oxygen production, bernas 2004 anoxia gfp)
+%(FIXME 2000 greenbaum measures oxygen production, bernas 2004 anoxia gfp)
 
 Nowadays many methods are known to reduce photobleaching: Substitute
 oxygen with noble gases or remove it enzymatically
@@ -438,10 +438,10 @@ system that \cma{aplanatic sphere} fulfills the Abbe sine condition
 can be simplified to a one bend at a single surface, quite similar to
 the utilization of principal planes in paraxial optics. For a
 high-aperture system this surface is no longer a plane.  Instead it is
-a sphere with radius $n f$ and called \emph{aplanatic sphere}. FIXME
-translate: Die Brechzahl $n$ steht dabei fuer ein etwaiges
-objektseitiges Immersionsmedium. I depict this surface as two circle
-segments with a bold red curve on each of the lenses in
+a sphere with radius $n f$ and called \emph{aplanatic sphere}.  The
+refractive index $n$ accounts for an immersion medium on the object
+side.  I depict the aplanatic surface as two circle segments with a
+bold red curve on each of the lenses in
 \figref{fig:widefield-microscope}~b).
 
 In addition to the Abbe sine condition, microscope lenses are also
@@ -452,9 +452,9 @@ sizes (in first order).  This ensures that the imaging conditions are
 invariant for small regions of the field plane and allows to express
 image formation with linear systems theory.
 
-FIXME translate: Die \figref{fig:widefield-microscope} zeigt wie
-mittels Laser das Bildfeld in einem widefield fluorescence microscope
-ausgeleuchtet wird.
+\figref{fig:widefield-microscope}~c) shows the illumination of a
+widefield fluorescence microscope with a laser. A dichromatic beam
+splitter (BS) separates illumination and returning fluorescence light.
 
 \subsection{Wave-optical theory for image formation in a fluorescence microscope}
 In the following sectoin I will describe how the image on the camera
@@ -929,9 +929,9 @@ horizontal shift register) on one side of the array pushes the
 carriers into a charge amplifier. \cma{charge amplifier} This consists
 of a capacitor (the read node) and a field-effect transistor that
 amplifies the voltage across the read node. This voltage $U$ linearly
-depends on the charge $Q$ with $U=Q/C$. Camera sensor designs try to
+depends on the charge $Q$ with $U=Q/C$. Camera sensor are designed to
 minimize the capacitance $C$ of the read node to maximize sensitivity
-\citep{Pawley2006}. {\color{red} FIXME check equation}
+\citep{Pawley2006}. 
 
 In the active-pixel sensor (e.g.\ sCMOS) each individual photodiode is surrounded by
 its own \cma{active-pixel sensor} transistors for readout and
@@ -963,7 +963,7 @@ reduction algorithms.
 Fluorescence photons arrive at the \cma{Photon shot noise} detector
 independently of each other. This random process leads to fluctuations
 in the number of the detected photons and can be described by the
-Poissonian probability mass function (denoted as '$\pois$'):  % FIXME rainer will density
+Poissonian probability mass function (denoted as '$\pois$'): 
 \begin{align}
   \pois(k;\lambda) = \frac{\lambda^k \exp(-\lambda)}{k!},\quad \lambda\in\mathbb{R},\quad k=0,1,2,\ldots
 \end{align}
@@ -1109,7 +1109,7 @@ the readout noise is reduced because of the gain $M$ but the influence
 of the shot noise is doubled due to the excess noise factor
 $F_n=\sqrt{2}$.
 \begin{align}
-  \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}}
+  \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}} \label{eq:snr}
 \end{align}
 This equation permits to compare all the cameras that I can
 use for my experiments. Table \ref{tab:cam-param} lists parameters
@@ -1192,12 +1192,13 @@ read out at a 10 times higher speed.
 
 In a low background environment and low signal level the EM-CCD comes
 very close to the ideal detector, when it is run in photon counting
-mode as indicated by the blue-green line in the top left.  FIXME translate:
-Aber die impact ionization die in den Verstaerkerregistern with
-advantage genutzt wird um tritt mit geringerer Wahrscheinlichkeit auch
-bei kleinen Spannungen auf und fuegt dem Signal so um die
-$\unit[200]{e^-/frame}$ an zusaetzlichen Rauschen hinzu. Dieses wird
-clock-induced charge genannt.
+mode as indicated by the blue-green line in the top left.  In this
+case, however, an effect which was neglected in equation
+(\ref{eq:snr}) becomes important. The impact ionization which is used
+to advantage in the multiplication registers occurs with low
+probability during vertical shifts of the signal and thereby adds
+approximately $\unit[200]{e^-/frame}$ of spurious charge. This effect
+is called clock-induced charge.
 
 Next, I discuss the curves of the active-pixel
 sensors. \cma{sCMOS in \figref{fig:camera-snr}}

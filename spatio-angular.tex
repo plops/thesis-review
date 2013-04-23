@@ -1,7 +1,7 @@
 \chapter{The concept of spatio-angular microscopy}
 \label{sec:concept}
 \begin{summary}
-  Here I introduce the spatio-angular microscope. First I explain the
+  Here I introduce spatio-angular microscopy. First I explain the
   concept of its illumination system using exemplary fluorophore
   distributions, that occur in typical specimen.
 
@@ -13,12 +13,11 @@
   to our approach.  I explain differences between both techniques and
   discuss their respective pros and cons.  I address the peculiarities
   and limitations of the hardware components in chapters
-  \ref{sec:dev1} (optics) and \ref{sec:mma} (micromirror based pupil
-  plane SLM).  Initially, the details would be detrimental to clarity.
+  \ref{sec:dev1}.  Initially, the details would be detrimental to clarity.
 
   The effective use of the spatio-angular microscope, requires more
-  knowledge about the specimen than a conventional or a SPIM
-  microscope \citep{Huisken2004}. Ideally, the distribution of
+  knowledge about the specimen than a conventional or a light-sheet
+  microscope \citep{Siedentopf1903,Huisken2004}. Ideally, the distribution of
   refractive index and fluorophores in the specimen should be
   known. If these parameters were precisely known, there would be no
   need for an image in the first place. However, while imaging a known
@@ -27,8 +26,9 @@
   greater the reduction in phototoxicity will be.
 
   The computer-based selection of appropriate illumination masks
-  requires the prediction, or at least an approximate estimation, of
-  the three-dimensional distribution of light in the specimen.
+  requires model prediction, or at least an approximate estimation, of
+  the three-dimensional distribution of light in the specimen as well as
+  knowledge about the fluorophore distribution.
 
   In the last part of this chapter, I describe the computational
   control loop in our spatio-angular
@@ -52,7 +52,8 @@ of the light in the circular cross-sections of the cone remains
 constant\footnote{The ray-model is valid in large parts of
 \figref{fig:hourglass-all}~a), but not everywhere. The Law of
 Malus--Lupin states that rays and wavefronts are equivalent as long as
-rays do not intersect (caustic), or (FIXME formulas?) a strong
+rays do not intersect (caustic), or %(FIXME formulas?) 
+a strong
 intensity gradient occurs. Thus the ray-model is valid almost
 everywhere in the cone, except for a region with a distance of a few
 wavelengths to the edge, and the focus itself. While the wave-optical
@@ -143,7 +144,7 @@ the pupil plane SLM in P'.}
 
 \figref{fig:memi-simple} shows the optical path through our prototype
 in a simplified form.  From the left side, an extended light source
-illuminates the system. A sequence of telecentric lenses $L_1$, $L_2$,
+illuminates the system. A sequence of confocal lenses $L_1$, $L_2$,
 $L_3$ and the objective lens $L_4$ image the light source from F''
 into the front focal plane (indicated by F, for field). The etendue
 (see page \pageref{sec:etendue} for its definition) of the light
@@ -160,7 +161,7 @@ nor beneficial: First, the pupil of modern high-performance objective
 lenses is typically not accessible. Second, the detection path for
 fluorescent light should contain as few optical components as possible
 and we can definitely not afford it to be blocked by a SLM.  Third,
-the two masks induce non-linear, and therefore difficult to predict,
+the two masks induce  difficult to predict,
 filtering of spatial frequencies. An analysis requires consideration
 of partial spatial coherence, but even without a thorough simulation
 one may assert that the downstream\footnote{Downstream regarding the
@@ -185,10 +186,6 @@ comparatively low refresh rate. We use two small SLMs, which can each
 achieve \unit[1]{kHz} frame rate and enable interesting experiments,
 e.g.\ optogenetic control of neuron activities.
 
-Furthermore, structured illumination with high resolution patterns
-allows us to circumvent the missing cone problem of the widefield
-microscope.  Later I will show that depth discrimination improves with
-higher resolution patterns (FIXME ref).
 \section{An imaging protocol with spatio-angular illumination control}
 \subsection{Description of an exemplary biological specimen} 
 I now refer to the \celegans\ test sample for phototoxicity that I
@@ -224,12 +221,12 @@ and no angular control. I use this method to avoid the missing cone
 problem of the widefield microscope. Perhaps for our particular task
 of finding the position of one nucleus within the egg, widefield
 images would be just sufficient.  However, for our spatio-angular
-method, knowledge about the fluorophore distribution is very important
+method, knowledge about the three-dimensional fluorophore distribution is very important
 and therefore we built our microscope such that we can obtain optical
 sections.
 
-We compared conventional structured illumination using max$-$min
-(FIXME) reconstruction with laser and LED illumination. Although LED
+We compared conventional structured illumination using conventional max$-$min
+reconstruction with laser and LED illumination. Although LED
 illumination resulted in excellent optical sections, the
 reconstruction of laser illuminated images contained artifacts.
 
@@ -240,7 +237,7 @@ reconstruction of laser illuminated images contained artifacts.
 % angezeigt und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm LED
 % Beleuchtung (CoolLED).}
 
-Therefore, we decided to implement HiLo (see Appendix FIXME). With
+Therefore, we decided to implement HiLo (see Appendix \label{ref:sectioning}). With
 this algorithm, we obtain artifact-free optical sections, regardless
 of the illumination source. As another advantage the HiLo method
 increases acquisition speed, because only two raw images per slice are
@@ -295,7 +292,7 @@ fluorophores. When in focus, the spheres are the source of useful,
 informative fluorescence signal, but should be protected against
 exposure when out of focus.
 
-As I mentioned earlier, there are also unused histones with
+As mentioned earlier, there are also unused histones with
 fluorophores outside of the nuclei. The images reveal that they occur
 in the cytoplasm at a much lower concentration than in the
 nuclei. Fluorophores in the cytoplasm have a smaller phototoxic
@@ -345,17 +342,17 @@ following text I assume that the described position predictions were
 available and I discuss how I determine masks for the focal plane and
 pupil plane SLM.
 
-\cite{Murray2006}
+% \cite{Murray2006}
 
-TODO FIXME Bernhard Kauslers work is nice
-\verb!http://archiv.ub.uni-heidelberg.de/volltextserver/11820/1/thesis_fkaster.pdf!
-Live-cell microscopy image analysis for the study of zebrafish embryogenesis
-\verb!http://hci.iwr.uni-heidelberg.de/publications/mip/techrep/kausler_12_discrete.pdf!
-A Discrete Chain Graph Model for
-  3d+t Cell Tracking with High
-    Misdetection Robustness
+% TODO FIXME Bernhard Kauslers work is nice
+% \verb!http://archiv.ub.uni-heidelberg.de/volltextserver/11820/1/thesis_fkaster.pdf!
+% Live-cell microscopy image analysis for the study of zebrafish embryogenesis
+% \verb!http://hci.iwr.uni-heidelberg.de/publications/mip/techrep/kausler_12_discrete.pdf!
+% A Discrete Chain Graph Model for
+%   3d+t Cell Tracking with High
+%     Misdetection Robustness
 
-(FIXME read this)
+% (FIXME read this)
 
 
 \subsection{Illumination optimization by means of raytracing} 
@@ -390,14 +387,21 @@ In order to trace the rays into the pupil, I need the design
 parameters of the objective lens (vertex position, curvature and
 material for all surfaces). Unfortunately, these rarely are publicly
 available for high-performance objective lenses. Nevertheless, in
-chapter (FIXME) I use a simpler model of the objective lens, that
+chapter \ref{sec:raytrace} I use a simpler model of the objective lens, that
 requires only three parameters: focal length, refractive index of the
 immersion medium and numerical aperture. These are always known.
 
 Additionally, I have adapted the model for non index matched embedding
 of the specimen. This problem occurs when the embryo is illuminated
-with an oil immersion objective, using HILO (FIXME ref). It should be
+with an oil immersion objective, using HILO \citep{Tokunaga2008}. It should be
 noted, however, that good image quality of the embryo can only be
 achieved with an objective lens that has the same immersion index as
 the embryo. Otherwise data from 20 microns within the sample will be
 severely deteriorated by spherical aberrations.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "kielhorn_memi"
+%%% eval: (reftex-mode)
+%%% eval: (flyspell-mode)
+%%% End: 

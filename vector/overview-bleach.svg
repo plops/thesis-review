@@ -10,7 +10,7 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="553.86145"
+   width="583.40344"
    height="392.99573"
    id="svg2"
    version="1.1"
@@ -23,16 +23,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000001"
-     inkscape:cx="126.68613"
-     inkscape:cy="310.24877"
+     inkscape:zoom="5.6568545"
+     inkscape:cx="407.39158"
+     inkscape:cy="369.08172"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
-     inkscape:window-width="1678"
-     inkscape:window-height="1039"
-     inkscape:window-x="1366"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
+     inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
      fit-margin-top="0"
@@ -43,7 +43,7 @@
      inkscape:guide-bbox="true">
     <sodipodi:guide
        orientation="1,0"
-       position="461.9695,189.17118"
+       position="491.51149,189.17117"
        id="guide4173" />
   </sodipodi:namedview>
   <defs
@@ -356,7 +356,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(169.27307,-706.51969)"
+     transform="translate(198.81506,-706.51969)"
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
@@ -443,13 +443,13 @@
            width="21.428572"
            id="rect3163" /></flowRegion><flowPara
          id="flowPara3165" /></flowRoot>    <image
-       sodipodi:absref="/dev/shm/gentoo/home/martin/revise/vector/../raster/bleach-overview.jpg"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/bleach-overview.jpg"
        xlink:href="../raster/bleach-overview.jpg"
-       width="377.74603"
-       height="254.79164"
-       id="image3120"
+       y="728.44751"
        x="-166.34845"
-       y="728.44751" />
+       id="image3120"
+       height="254.79164"
+       width="377.74603" />
     <path
        style="fill:#5dff7b;fill-opacity:0.70588235;fill-rule:nonzero;stroke:#000000;stroke-width:0.1;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 286.73058,902.82556 26.26397,0 -6,6.64721 -26.26397,0 z"
@@ -825,29 +825,29 @@
        d="m 282.32619,931.84011 c 8.12056,-12.31305 -0.24306,-10.26153 5.85559,-20.3694"
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <image
-       sodipodi:absref="/dev/shm/gentoo/home/martin/revise/vector/../raster/bleach3d-000.jpg"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/bleach3d-000.jpg"
        xlink:href="../raster/bleach3d-000.jpg"
-       y="978.58472"
-       x="53.592888"
-       id="image7426"
+       width="115.6455"
        height="130.47961"
-       width="115.6455" />
+       id="image7426"
+       x="53.592888"
+       y="978.58472" />
     <image
-       sodipodi:absref="/dev/shm/gentoo/home/martin/revise/vector/../raster/bleach3d_full.jpg"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/bleach3d_full.jpg"
        xlink:href="../raster/bleach3d_full.jpg"
-       y="987.3866"
-       x="-84.642792"
-       id="image7270"
+       width="98.916603"
        height="99.177589"
-       width="98.916603" />
+       id="image7270"
+       x="-84.642792"
+       y="987.3866" />
     <image
-       sodipodi:absref="/dev/shm/gentoo/home/martin/revise/vector/../raster/bleach3d_180.jpg"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/bleach3d_180.jpg"
        xlink:href="../raster/bleach3d_180.jpg"
-       y="990.63538"
-       x="205.24841"
-       id="image7364"
+       width="109.03014"
        height="88.428864"
-       width="109.03014" />
+       id="image7364"
+       x="205.24841"
+       y="990.63538" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero"
        id="rect3166"
@@ -1538,5 +1538,42 @@
            x="-127.77307"
            y="752.01544">1</tspan></text>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="-199.94006"
+       y="828.10187"
+       id="text6861-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6863-8"
+         x="-199.94006"
+         y="828.10187"
+         style="font-size:9px">{\scriptsize bubble}</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -180.33537,831.73636 c -2.9911,14.65446 35.96241,-9.13763 37.18056,2.55815"
+       id="path7164-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff8080;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="169.78282"
+       y="721.99835"
+       id="text6861-7-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6863-8-6"
+         x="169.78282"
+         y="721.99835"
+         style="font-size:9px;fill:#ff8080;fill-opacity:1">{\scriptsize orientation marks}</tspan></text>
+    <path
+       style="fill:none;stroke:#ff8080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 387.4945,18.936259 c -8.37971,17.112422 -0.35355,21.743532 -3.18198,31.819803"
+       id="path3277"
+       inkscape:connector-curvature="0"
+       transform="translate(-198.81506,706.51969)"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>

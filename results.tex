@@ -65,8 +65,8 @@ microscope objective as a function of the embedding medium.
 \end{figure}
 
 For the measurement, a thin layer of fluorophores was applied with a
-marker pen on three microscope slides. As a spacer, a surrounding
-circle was painted with nail polish. After drying, a drop of a liquid
+marker pen (Stanger, yellow-green) on three microscope slides. 
+After drying, a drop of a liquid
 embedding medium was added to two of the samples (immersion oil
 ($n=1.52$) and water ($n=1.33$)). Then cover slips were added to all
 three samples and sealed with nail polish.
@@ -78,7 +78,7 @@ $15\times 15$ pixels (equivalent to 1/17th of the pupil diameter) over
 the pupil plane SLM.
 
 For each angle, the sum of all fluorescence light reaching the camera
-is recorded. The data is depicted in the three images in
+is recorded. The fluorescence intensity for each window position on the pupil plane SLM are depicted in the three images in
 \figref{fig:tirf-exp}.  These images contain a bright disk whose
 diameter $d_\textrm{crit}$ is growing with the index of the embedding
 medium. The center of the disk corresponds to the optical axis of the
@@ -90,7 +90,7 @@ diameter of the pupil. The measurement is compared with the pupil
 diameter for the objective with magnification $63\times$ and numerical
 aperture 1.47 that was used in the experiment.
 \begin{align}
-  d^\textrm{(measure)}_\textrm{pupil} &= d^{(oil)}_\textrm{crit}\Lambda = (242\pm7)\cdot\unit[16]{\mu m}=\unit[(3.88\pm0.08)]{mm}\\
+  d^\textrm{(measure)}_\textrm{pupil} &= d^{(oil)}_\textrm{crit}\Lambda = (242\pm7)\cdot\unit[16]{\mu m}=\unit[3.88]{mm}\pm\unit[0.08]{mm}\\
   d^\textrm{(theory)}_\textrm{pupil} &=
   \textrm{NA}\cdot f_\textrm{TL}/63=1.47\cdot\underbrace{\unit[164.5]{mm}/63}_{f_\textrm{obj}}=\unit[3.84]{mm}
 \end{align}
@@ -107,7 +107,7 @@ If the index of the embedding medium is less than the index of the
 immersion medium, then total internal reflection occurs on the
 interface between cover slip and embedding medium for high incidence
 angles. The excitation light can then no longer reach the
-sample. Therefore, the disks in the plots for water and air are
+sample. Therefore, the disks in the brightness maps for water and air are
 smaller.
 
 The relationship between the diameter $d_\textrm{crit}$ of the bright
@@ -121,7 +121,7 @@ medium ($n_\textrm{emb}$) is as follows:
   \frac{n_\textrm{emb}}{n_{oil}}
 \end{align}
 A comparison between the ratios of the measured diameters and the
-ratios of the refractive indeces in Table \ref{ref:acceptance} shows
+ratios of the refractive indices in Table \ref{tab:acceptance} shows
 that the measurement is in good agreement with the theory.
 \begin{table}[!hbt]
   \centering
@@ -137,7 +137,7 @@ that the measurement is in good agreement with the theory.
 \end{table}
 
 
-\section{Measuring light distribution by bleaching a fluorescent gel}
+\section{Measuring the light distribution by bleaching a fluorescent gel}
 The above-described experiment allows only an indirect measurement of the
 effects of angular control in our microscope. Now I describe an
 experiment where fluorophores in a slab of several microns thickness
@@ -157,13 +157,14 @@ During the experiment, the focal plane SLM displays three different
 patterns (all dark, all bright, bright vertical bar) and the pupil
 plane SLM displays eight different patterns (all dark, all bright, and
 6 circular windows). The focal plane SLM was projected as far into the
-gel layer as the working distance of the objective would allow and an
-exposure series was produced overnight. Utilizing a XY-stage, the
+gel layer as the working distance of the objective would allow and combinations
+of the pupil plane SLM and focal plane SLM patterns were bleached into the sample
+with various exposure times overnight. Utilizing a XY-stage, the
 sample was moved by \unit[0.4]{mm} between exposures.
 
 % https://github.com/plops/cl-web-ui/commit/79ad04c61116b34aaf5f2422a3122a1d75ece890
 
-The \cma{overall light efficiency of our illumination system} laser delivers a continuous beam of
+The \cma{overall light efficiency of our illumination system} \label{sec:light-efficiency} laser delivers a continuous beam of
 \unit[473]{nm} wavelength with \unit[400]{mW} power. It is modulated
 using an acousto-optic modulator (AOM) so that only during the camera
 integration time (\unit[20]{ms}), and when the two SLM are in a
@@ -196,7 +197,7 @@ that in hindsight it would have been better to use the fibre bundle.
   \label{fig:overview-bleach}
 \end{figure}
 
-\figref{fig:overview-bleach}~a) is a mosaic of confocal images in the
+\figref{fig:overview-bleach}~a) is a mosaic of confocal images (LSM700, Zeiss) in the
 vicinity of the plane in the bleached gel where the focal plane SLM
 was focused. The bleached areas form a pattern of $11\times 6$
 exposures. The bleaching dose varies with the vertical direction as
@@ -207,7 +208,7 @@ corresponding to a light dose above $\unit[40]{J/cm^2}$ in the focal
 plane.
 %17e-6 W * 30s /	(pi (20e-6 m)^2)
 
-Along the horizontal direction, different SLM patterns were
+Along the horizontal mosaic direction, different SLM patterns were
 displayed. The two areas at both outer borders (column 0 and 10) were
 bleached with full angular and spatial exposure. The next columns 1
 and 9 give an indication of how well both the SLMs can produce black as no
@@ -226,7 +227,7 @@ are not rotationally symmetric with respect to the optical axis, the
 bundles propagate at slightly different angles.
 
 The images in \figref{fig:overview-bleach}~c) and d) show confocal
-measurements of illumination with restricted angles (columns 3 and
+measurements of the area bleached under restricted angles (columns 3 and
 6). For this, a circular window with radius $r=0.3$ was displayed on
 the pupil plane SLM, where the coordinates $\rho$ and $r$ are given
 relative to the pupil radius. For $\rho=1$ the window would be
@@ -431,4 +432,6 @@ possible and finish within reasonable time.
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "kielhorn_memi"
+%%% eval: (reftex-mode)
+%%% eval: (flyspell-mode)
 %%% End: 

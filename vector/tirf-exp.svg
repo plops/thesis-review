@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="258.02698"
-     inkscape:cy="80.0947"
+     inkscape:zoom="2.8"
+     inkscape:cx="308.20608"
+     inkscape:cy="195.45184"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -33,8 +33,8 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1678"
-     inkscape:window-height="1039"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
      inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
@@ -623,66 +623,40 @@
        id="path3053-3"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
-    <image
-       y="287.83255"
-       x="288.2749"
-       id="image3209"
-       xlink:href="../raster/air-surf.png"
-       height="66.721138"
-       width="70.866142" />
-    <image
-       y="287.83255"
-       x="471.72165"
-       id="image3271"
-       xlink:href="../raster/oil-surf.png"
-       height="66.721138"
-       width="70.866142" />
-    <image
-       y="287.83255"
-       x="379.99832"
-       id="image3333"
-       xlink:href="../raster/water-surf.png"
-       height="66.721138"
-       width="70.866142" />
     <text
        xml:space="preserve"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="247.84036"
-       y="291.70392"
+       x="289.65509"
+       y="334.63541"
        id="text3841"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3843"
-         x="247.84036"
-         y="291.70392">immersion oil </tspan></text>
+         x="289.65509"
+         y="334.63541">immersion oil </tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 267.24246,296.27496 c -3.68073,12.80304 -5.0781,12.80879 -17.06671,22.81329"
+       d="m 288.67142,330.62015 c -10.7518,0.17613 -21.4563,-11.43487 -38.49567,-11.5319"
        id="path3875"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
-    <g
-       id="g3107"
-       transform="translate(-174.75639,71.720827)">
-      <text
-         sodipodi:linespacing="125%"
-         id="text3837"
-         y="314.54257"
-         x="435.03366"
-         style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-         xml:space="preserve"><tspan
-           y="314.54257"
-           x="435.03366"
-           id="tspan3839"
-           sodipodi:role="line">coverslip</tspan></text>
-      <path
-         sodipodi:nodetypes="cc"
-         transform="translate(78.449824,100.91102)"
-         inkscape:connector-curvature="0"
-         id="path3877"
-         d="m 374.07859,199.77477 c -5.07186,-9.61319 -5.44065,-48.99887 -16.49945,-48.44093"
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="290.1629"
+       y="354.38098"
+       id="text3837"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3839"
+         x="290.1629"
+         y="354.38098">coverslip</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 288.67142,350.68833 c -12.14293,2.00357 -16.84513,-27.28058 -27.90393,-26.72264"
+       id="path3877"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 162.27101,282.96334 -1.05387,2.6864"
@@ -846,17 +820,17 @@
     <text
        xml:space="preserve"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="113.80515"
-       y="392.30396"
+       x="290.58185"
+       y="376.64658"
        id="text3849"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3851"
-         x="113.80515"
-         y="392.30396">fluorescent plane</tspan></text>
+         x="290.58185"
+         y="376.64658">fluorescent plane</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 141.98701,378.54457 c -2.29363,-31.66213 11.43023,-24.97816 25.26957,-44.45196"
+       d="M 288.67142,371.97858 C 264.15442,370.11595 270.08985,348.01057 256.15,335.60784"
        id="path3879"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -883,59 +857,62 @@
          x="496.99506"
          y="60.622604" /></text>
     <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/oil.jpg"
+       xlink:href="../raster/oil.jpg"
        y="201.22078"
        x="467.72165"
        id="image3711"
-       xlink:href="../raster/oil.jpg"
        height="74.409447"
        width="74.409447" />
     <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/water.jpg"
+       xlink:href="../raster/water.jpg"
        y="201.22078"
        x="375.99832"
        id="image3773"
-       xlink:href="../raster/water.jpg"
        height="74.409447"
        width="74.409447" />
     <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/air.jpg"
+       xlink:href="../raster/air.jpg"
        y="201.22078"
        x="284.2749"
        id="image3835"
-       xlink:href="../raster/air.jpg"
        height="74.409447"
        width="74.409447" />
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="293.5304"
-       y="361.25607"
+       y="309.25607"
        id="text3862"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3864"
          x="293.5304"
-         y="361.25607">$n_\textrm{air}=1$</tspan></text>
+         y="309.25607">$n_\textrm{air}=1$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="377.30414"
-       y="360.88156"
+       x="371.30414"
+       y="308.88156"
        id="text3866"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3868"
-         x="377.30414"
-         y="360.88156">$n_\textrm{water}=1.33$</tspan></text>
+         x="371.30414"
+         y="308.88156">$n_\textrm{water}=1.33$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="472.49847"
-       y="361.25607"
+       y="309.25607"
        id="text3870"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3872"
          x="472.49847"
-         y="361.25607">$n_\textrm{oil}=1.52$</tspan></text>
+         y="309.25607">$n_\textrm{oil}=1.52$</tspan></text>
     <path
        style="fill:none;stroke:#ff5555;stroke-width:1.99999964;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mendd)"
        d="m 349.972,186.37049 -15.34009,25.42804"
@@ -964,6 +941,14 @@
        id="path4203-2-3"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero"
+       id="rect3172"
+       width="120.35714"
+       height="14.642858"
+       x="305.35715"
+       y="3.4316974"
+       transform="translate(32.317567,172.94366)" />
     <path
        style="fill:none;stroke:#ff5555;stroke-width:1.99999976;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 433.31587,210.08246 -6.34996,-3.90287"
@@ -1006,34 +991,66 @@
        xml:space="preserve"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        x="247.1958"
-       y="196.35681"
+       y="292.35681"
        id="text3144"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3146"
          x="247.1958"
-         y="196.35681">$d_\textrm{crit}=160\pm7$</tspan></text>
+         y="292.35681">$d_\textrm{crit}/\textrm{px}=160\pm7$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="380.91922"
-       y="196.35681"
+       x="400.91922"
+       y="292.35681"
        id="text3144-9"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3146-7"
-         x="380.91922"
-         y="196.35681">$222\pm7$</tspan></text>
+         x="400.91922"
+         y="292.35681">$222\pm7$</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="472.64255"
-       y="196.35681"
+       x="492.64255"
+       y="292.35681"
        id="text3144-9-1"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3146-7-6"
-         x="472.64255"
-         y="196.35681">$242\pm7$</tspan></text>
+         x="492.64255"
+         y="292.35681">$242\pm7$</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 219.60145,333.88124 -1.05387,2.68641"
+       id="path3881-08-8"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 221.08755,333.68307 -1.05385,2.6864"
+       id="path3881-7-4-9"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 243.70859,334.23838 -1.05387,2.68641"
+       id="path3881-08-7"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99999988px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 245.19469,334.04021 -1.05385,2.6864"
+       id="path3881-7-4-2"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="234.75705"
+       y="187.86465"
+       id="text3841-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3843-5"
+         x="234.75705"
+         y="187.86465"
+         style="font-size:10px">{\bf \scriptsize brightness maps in the pupil plane for different immersion media:} </tspan></text>
   </g>
 </svg>

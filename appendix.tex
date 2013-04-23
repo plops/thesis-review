@@ -62,8 +62,8 @@ EM-CCD with as little user interaction as possible. More detail is
 given in the main text in section \ref{sec:ccd-intro} on page
 \pageref{sec:ccd-intro}.
 
-The program is written in a dialect of Basic and can be executed in
-the Andor Solis software. Before use, a picture resembling
+The program is written in a dialect of Basic and automates the Andor Solis software.
+Before use, a picture resembling
 \figref{fig:shot-noise} on page \pageref{fig:shot-noise} should be
 imaged onto the sensor, e.g.\ a defocused fluorescent sample. The
 acquired data can later be processed using either the Matlab/DIPimage
@@ -81,11 +81,12 @@ it could easily be adopted to analyze other parameters as well.
 The camera that I have used in the development of this program
 comprises an internal mechanical shutter. This is useful because it is
 important that for each parameter setting at least one dark image is
-acquired. Ultimately, dark images are necessary to quantify the
-readout noise.
+acquired (but it is better to acquire two dark images and use the
+second). Ultimately, dark images are necessary to quantify the readout
+noise.
 
 The code listings in this section are supposed to be in this sequence
-in a single source file.% which is also available on github link FIXME.
+in a single source file.
 
 For this program I assume that the camera is illuminated with a
 continuous flux of photons. The program is designed to acquire images
@@ -108,8 +109,8 @@ return
 \end{lstlisting}
 The following code listing selects the conventional readout register
 of the sensor (a register without EM multiplication), acquires 20
-images without and then with light and stores the data in a TIF image
-file.
+images without and then with light by calling the function
+\verb!run()! and stores the data in a TIF image file.
 \begin{lstlisting}[style=mybasic]
 name$ = "C:\Users\work\Desktop\martin\20111111\scan-em3\ixon_"
 print("start")
@@ -384,6 +385,7 @@ fig.savefig(cam+'_'+gain+'.png')
 
 
 \chapter{Optical sectioning by structured illumination}
+\label{sec:sectioning}
 \comment{
 \jpginput{}{m_phase}{}
 }
@@ -680,7 +682,7 @@ for i=0:102
   a(:,:,i) = 2^15 + readim(sprintf('o%03d.fits',i));
 end
 \end{lstlisting}
-Unfortunately DIPimage's \verb!readim! function seems to have a bug
+Unfortunately, DIPimage's \verb!readim! function seems to have a bug
 and loads the data as negative values. I manually correct this.
 
 In this particular experiment, the first ten spots on the focal plane
@@ -786,4 +788,6 @@ plot(mapped(11:end,1),mapped(11:end,2),'r+');
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "kielhorn_memi"
+%%% eval: (reftex-mode)
+%%% eval: (flyspell-mode)
 %%% End: 

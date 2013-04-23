@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="252.76568"
-     inkscape:cy="128.11389"
+     inkscape:zoom="1.979899"
+     inkscape:cx="217.34784"
+     inkscape:cy="105.46893"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -33,9 +33,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1678"
-     inkscape:window-height="1039"
-     inkscape:window-x="1366"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
+     inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
      units="mm">
@@ -184,19 +184,21 @@
          id="tspan4351"
          sodipodi:role="line" /></text>
     <image
-       width="283.46457"
-       height="141.73228"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/m_ang.jpg"
        xlink:href="../raster/m_ang.jpg"
+       y="62.924892"
+       x="242.40845"
        id="image4790"
-       x="242.40845"
-       y="62.924892" />
-    <image
-       width="283.46457"
        height="141.73228"
+       width="283.46457" />
+    <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/m_bfp_co.jpg"
        xlink:href="../raster/m_bfp_co.jpg"
-       id="image4868"
+       y="210.35347"
        x="242.40845"
-       y="210.35347" />
+       id="image4868"
+       height="141.73228"
+       width="283.46457" />
     <g
        transform="translate(35.714286,32.857143)"
        id="g5649">
@@ -208,12 +210,13 @@
          x="73.321785"
          y="74.2938" />
       <image
-         y="75.870987"
-         x="74.837021"
-         id="image4930"
+         sodipodi:absref="/dev/shm/revise/vector/../raster/model.jpg"
          xlink:href="../raster/model.jpg"
+         width="159.44882"
          height="113.42904"
-         width="159.44882" />
+         id="image4930"
+         x="74.837021"
+         y="75.870987" />
     </g>
     <text
        sodipodi:linespacing="125%"
@@ -357,5 +360,37 @@
          x="420.28"
          id="tspan4959-3-0"
          sodipodi:role="line">6</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 495.26654,301.90768 17.23908,0"
+       id="path3032"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="491.73285"
+       y="314.91748"
+       id="text3034"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3036"
+         x="491.73285"
+         y="314.91748">{\scriptsize \unit[2]{mm}}</tspan></text>
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 421.93191,174.29891 11.69278,0"
+       id="path3038"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="413.85364"
+       y="188.2394"
+       id="text3034-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3036-3"
+         x="413.85364"
+         y="188.2394">{\scriptsize $\unit[10]{\mu m}$}</tspan></text>
   </g>
 </svg>

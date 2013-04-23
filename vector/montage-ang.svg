@@ -24,15 +24,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284272"
-     inkscape:cx="136.50128"
-     inkscape:cy="169.62219"
+     inkscape:cx="530.75456"
+     inkscape:cy="96.31606"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
-     inkscape:window-width="1678"
-     inkscape:window-height="1039"
-     inkscape:window-x="1366"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
+     inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
      fit-margin-top="0"
@@ -538,23 +538,26 @@
          id="tspan7443"
          sodipodi:role="line" /></text>
     <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/montage-ang.jpg"
+       xlink:href="../raster/montage-ang.jpg"
        width="403.99005"
        height="318.89764"
-       xlink:href="../raster/montage-ang.jpg"
        id="image3279"
        x="-7.7992373"
        y="738.51709" />
     <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/00wide.jpg"
+       xlink:href="../raster/00wide.jpg"
        width="121.19701"
        height="127.55905"
-       xlink:href="../raster/00wide.jpg"
        id="image3327"
        x="-142.64923"
        y="738.51709" />
     <image
+       sodipodi:absref="/dev/shm/revise/vector/../raster/01clem-all.jpg"
+       xlink:href="../raster/01clem-all.jpg"
        width="121.19701"
        height="127.55905"
-       xlink:href="../raster/01clem-all.jpg"
        id="image3389"
        x="-142.64923"
        y="894.91064" />
@@ -764,5 +767,56 @@
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
     </g>
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 311.99481,1031.9589 21.26441,0"
+       id="path3095-5"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3404-5-3"
+       y="1049.6259"
+       x="301.89636"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"><tspan
+         y="1049.6259"
+         x="301.89636"
+         id="tspan3406-7-7"
+         sodipodi:role="line"
+         style="fill:#ffffff">$\unit[10]{\mu m}$</tspan></text>
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -127.25779,991.70267 21.26441,0"
+       id="path3095-5-1"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3404-5-3-4"
+       y="1009.3696"
+       x="-137.35623"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"><tspan
+         y="1009.3696"
+         x="-137.35623"
+         id="tspan3406-7-7-3"
+         sodipodi:role="line"
+         style="fill:#ffffff">$\unit[10]{\mu m}$</tspan></text>
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -127.25778,836.49273 21.26441,0"
+       id="path3095-5-3"
+       inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3404-5-3-5"
+       y="854.15967"
+       x="-137.35625"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       xml:space="preserve"><tspan
+         y="854.15967"
+         x="-137.35625"
+         id="tspan3406-7-7-8"
+         sodipodi:role="line"
+         style="fill:#ffffff">$\unit[10]{\mu m}$</tspan></text>
   </g>
 </svg>

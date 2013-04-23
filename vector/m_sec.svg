@@ -54,9 +54,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="-154.19572"
-     inkscape:cy="142.72312"
+     inkscape:zoom="3.959798"
+     inkscape:cx="347.49282"
+     inkscape:cy="29.584759"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -64,10 +64,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1396"
-     inkscape:window-height="941"
-     inkscape:window-x="1479"
-     inkscape:window-y="107"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
+     inkscape:window-x="0"
+     inkscape:window-y="9"
      inkscape:window-maximized="0"
      units="mm">
     <inkscape:grid
@@ -130,12 +130,13 @@
            x="-24.642857"
            y="-25.316792" /></flowRegion><flowPara
          id="flowPara3314" /></flowRoot>    <image
-       y="61.603199"
-       x="100.26559"
-       id="image4280"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/m_sec.jpg"
        xlink:href="../raster/m_sec.jpg"
+       width="425.19684"
        height="425.19684"
-       width="425.19684" />
+       id="image4280"
+       x="100.26559"
+       y="61.603199" />
     <text
        xml:space="preserve"
        style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff2a2a;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
@@ -332,12 +333,29 @@
        x="-162.99022"
        y="307.15872" />
     <image
-       y="308.42972"
-       x="-161.51677"
-       id="image5120"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/model.jpg"
        xlink:href="../raster/model.jpg"
+       width="208.52997"
        height="148.3445"
-       width="208.52997" />
+       id="image5120"
+       x="-161.51677"
+       y="308.42972" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 414.80559,452.64945 18.58875,0"
+       id="path3038"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="406.25217"
+       y="472.14575"
+       id="text3034-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3036-3"
+         x="406.25217"
+         y="472.14575">{\scriptsize $\unit[10]{\mu m}$}</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"

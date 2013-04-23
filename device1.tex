@@ -16,7 +16,7 @@
   % FIXME more on mma?
 \end{summary}
 \section{Description of the optical components}
-In chapter \ref{sec:concept} I have shown the beam path for
+In the preceding chapter I have shown the beam path for
 transmissive displays (in \figref{fig:memi-simple}). Such SLM have a
 very low transmission in practice. Therefore we use reflective
 displays in our prototype.
@@ -80,7 +80,7 @@ smaller active area but those are hard to find.
  %  optical alignment (FIXME siehe spaetere ref section).}.
 
 Unlike an LED, a laser delivers light of considerably higher spectral
-radiance ($\unit[]{W/(sr\, m^2 m)}$). Thus it is in principle possible
+radiance ($\unit[]{W/(sr\, m^2 nm)}$). Thus it is in principle possible
 to use the laser as a highly efficient light source for our
 system. Unfortunately, the high spectral and spatial coherence of a
 laser often leads to high-contrast fluctuations of the irradiance and
@@ -128,13 +128,11 @@ better will be the uniformity of the illumination.  Assuming $N$
 subregions were overlaid and their contributions were statistically
 independent, then according to the central limit theorem the standard
 deviation of the irradiance is proportional to $1/\sqrt{N}$
-\citep{Koshel2012}. {\color{red} FIXME ondrej says this comes directly
-  from poisson distribution but i don't think so}
-
+\citep{Koshel2012}.
 We also align the source distribution to be rotationally symmetric
 about the optical axis and obtain an even more uniform output because
 positive and negative slopes from different subregions compensate in
-the superposition (also \cite{Koshel2012}).
+the superposition.
 
 The dimensionis of the integration tunnel in our sytem is
 $\unit[2.5]{mm}\times\unit[2.5]{mm}\times\unit[250]{mm}$ and ensures
@@ -166,16 +164,18 @@ homogeneous illumination of focal and pupil plane with the tunnel:
   (centering and angle).
 \item The focal length of the microlenses should be chosen shorter
   than predicted by pure etendue calculation in order to compensate
-  microchipping (FIXME better word) on the edges of the cemented glass
+  microchipping %(FIXME better word) 
+  on the edges of the cemented glass
   mirrors.
 \end{itemize}
 
 \subsection{Fourier optical filter for contrast generation on pupil
   plane SLM}
-\label{ref:mma}
-The micromirror array, which we use as a pupil plane SLM consists of
+\label{sec:mma}
+The micromirror array consists of
 torsion mirrors that modulate the phase of the light (see
-\figref{fig:mma} for images of the device). In order to modulate the
+\figref{fig:mma} for images of the device). It is used as a pupil plane SLM.
+In order to modulate the
 intensity we use the Fourier optical filter denoted as
 'schlierenoptics' in \figref{fig:memi-real}~B.
 
@@ -192,7 +192,7 @@ calibration of the deflection angle using a white light interferometer
   microscope image of the MMA. {\bf right:} Rendering of how a 8x8
   checker board pattern would be displayed on the device. The
   deflection angles are exaggerated.  Electron and optical micrograph
-  by Fraunhofer IPMS Dresden (Germany)}
+  by Fraunhofer IPMS Dresden, Germany}
 
 The lens L1 has two purposes: First, it images the field mask B0 into % FIXME is it capital F after colon?
 the Fourier stop B1. Second, the plane $\textrm{P}''$ with the phase
@@ -390,7 +390,7 @@ Peaks um jede Ordnung ( wie in der roten Linie in
   \svginput{.6}{mma-fft}
   \caption{{\bf left:} Measurement of the deflection of micro-mirrors
     using a white-light interferometer (provided by Fraunhofer IPMS
-    Dresden (Germany)). {\bf right:} Simulation of the Fraunhofer
+    Dresden, Germany). {\bf right:} Simulation of the Fraunhofer
     diffraction pattern of the micro-mirror array for coherent,
     monochromatic light (kindly provided by Joel Seligson). The
     circles with radius $d_\textrm{max}$ indicate the maximum size of
@@ -454,12 +454,12 @@ magnification 2 and image $\textrm{F}''$ onto the focal plane SLM in
 $\textrm{F}'$. At the same time these lenses make sure that the pupil
 plane SLM is imaged to infinity.
  
-The relay system ensures that the pixels of the focal plane SLM (see
+The relay system ensures that the focal plane SLM pixels with a pitch of $\unit[13.62]{\mu m}$ (see
 \figref{fig:memi-real}) are at the resolution limit, while the pupil
 plane SLM fills the pupil.  In addition, the relay system enables a
 simpler mechanical realization and good contrast. It would be
 difficult to accommodate the focal plane SLM and polarization beam
-splitter in $\textrm{F}''$. Attaching an adjustable aperture would
+splitter in $\textrm{F}''$. Attaching an adjustable schlieren aperture would
 probably not be feasible at all.
 
 
@@ -467,9 +467,9 @@ probably not be feasible at all.
   polarization}
 The SLM we use to control the focal plane illumination is a \cma{Why
   fLCoS and not DMD?}  ferroelectric liquid crystal on silicon device
-(fLCoS, ForthDD WXGA R3, UK). If a pixel is off the returning light
-retains its polarization. If a pixel is on, the polarization of the
-light is rotated by 90 degrees \citep{Martinez-Garcia2009}.  From
+(fLCoS, ForthDD WXGA R3, UK). If a pixel is in the off-state the returning light
+retains its polarization. If a pixel is in the on-state, the polarization of the
+light is rotated by 60 degrees \citep{Martinez-Garcia2009}.  From
 this, a polarization beam splitter generates a binary intensity
 contrast (see \figref{fig:memi-real}~C).
 
@@ -491,11 +491,11 @@ splitter cube.
 
 The s-polarized component of the incoming light is reflected towards
 the SLM. Active pixels of the SLM rotate the polarization of light by
-90 degrees. The light then passes through the beam splitter as
+60 degrees. The light then passes through the beam splitter as
 p-polarization in the direction of the microscope. There is a
 supplementary cleanup analyzer in the beam path.
 
-It would also be conceivable to arrange SLM and beam splitter
+It would also be conceivable to arrange SLM and the polarization beam splitter (PBS)
 differently, so that the light coming from the SLM is \emph{reflected}
 towards the microscope. In this case, however, unwanted bending of the
 beam splitter's surface would deteriorate the image quality of the
@@ -551,20 +551,18 @@ of the interconnections.
 The camera (Clara, Andor PLC, Belfast, Northern Ireland) is the
 \cma{camera is master} slowest device and therefore is chosen as the
 master. It provides two TTL outputs. The output ``fire'' is high while
-the camera is integrating. The output ``shutter'' is programmed to go
+the camera is integrating. The output ``shutter'' is programmed to reach
 high \unit[1]{ms} before ``fire''.
 
 This allows an Arduino microcontroller to initiate a time-delayed
-trigger for both SLM, so that they show their patterns exactly while
+trigger for both SLMs, so that they show their patterns exactly while
 the camera is integrating. I determined the necessary delays using a
 photodiode and an oscilloscope in order to measure when a dark image
 is established on each device. The delay is \unit[$840$]{$\mu$s} for
 pupil plane and \unit[$396$]{$\mu$s} for focal plane SLM. The Arduino
 microcontroller activates a laser by an acousto-optic modulator (AOM)
 so that the system is only illuminated when the camera is integrating
-and both SLM are showing a defined pattern.  The ``fire'' output of
-the camera was useful to find these settings, but in the final system
-it remains unused.
+and both SLM are showing a defined pattern.  
 
 % source code:
 % https://github.com/plops/ledtlc/blob/master/ledtlc.ino
@@ -582,16 +580,9 @@ supplied by the manufacturer and it is not straightforward to change
 them via USB interface. Therefore we always work with a fixed LCoS
 display time of \unit[20]{ms}.
 
-This disadvantage of the LCoS controller is quite inconvenient as the
-only way to acquire images from dim specimen is to accumulate several
-camera readouts.  The pupil plane SLM and camera would allow a
-variable integration time. In particular a Texas Instruments DMD
-instead of the LCoS would support variable integration times
-\citep{Guide2012}.
-
 The \cma{synchronization with stage} camera acquisitions are stopped
 by the control software, whenever the XYZ-stage is moved. Hardware
-tirggering could accelerate the acquisition of $z-$stacks, but has not
+triggering could accelerate the acquisition of $z-$stacks, but has not
 been implemented so far.
 
 \begin{figure}[H]
@@ -643,7 +634,7 @@ been implemented so far.
 A basic prerequisite for measurement with our system is that the
 mapping between SLM and camera pixels is known. Only then, the sample
 can be irradiated as planned. To measure the mapping, I use a
-fluorescent plane sample, turn on individual pixels at position $\r^d$
+fluorescent plane sample placed at the focal plane of the objective, turn on individual pixels at position $\r^d$
 of the focal plane SLM and acquire camera images, which have bright
 spots centered on a camera coordinate $\r^c$.
 
@@ -732,7 +723,7 @@ For \cma{scanning SLM pixel grid} the calibration I usually do not
 only enable individual SLM pixels as this would give very dim images
 with \unit[20]{ms} integration time. Instead, I enable pixels in a
 circular area around the centre. This results in images as depicted in
-\figref{fig:rigid-pics}~right. I acquire 100 such camera images while
+\figref{fig:rigid-pics}~right. I acquired 100 such camera images while
 moving the circular mask on the focal plane SLM over a $10\times 10$
 grid (a disk of 24 focal plane SLM pixels diameter at the positions
 $\r^d_{i+j}=(400+50i,500+50j)\ \forall i,j\in [0,99]$). Accidentally a
@@ -746,7 +737,7 @@ areas in the sample is bigger than the diffraction limit and
 inhomogeneities of the fluorescent layer therefore will be visible in
 the image, the image data must be corrected by dividing the pixel
 values by the data of a uniformly illuminated image of the identical
-region. Otherwise sample non-uniformities would bias the results of
+region after background subtraction. Otherwise, sample non-uniformities would bias the results of
 the localization algorithm.
 
 
@@ -825,4 +816,6 @@ effort. I give example code in Appendix \ref{sec:map_opengl}.
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "kielhorn_memi"
+%%% eval: (reftex-mode)
+%%% eval: (flyspell-mode)
 %%% End: 

@@ -30,8 +30,8 @@ have anti-reflex coating for wavelengths in the range from
 The system successively illuminates the pupil plane SLM --- a greyscale
 micro mirror array developed by our project partner Fraunhofer IPMS
 Dresden --- and the focal plane SLM, a commercial binary liquid crystal
-on silicon display.
- 
+on silicon display. \nomenclature{DBS}{Dichromatic beam splitter}
+
 \begin{figure}[!htbp]
   \centering
   \svginput{2}{memi-real}
@@ -225,7 +225,7 @@ can be described by the following equation:
 \end{align}
 The convolution with the $\delta-$distribution shifts the pixel to the
 position $x_p$ and $k_{px}$ describes the torsion angle of the $p-$th
-mirror.  With the Fourier transform
+mirror.  With the Fourier transform 
 \begin{align}
   \frac{1}{w}\int_{-w/2}^{w/2} e^{ikx} \textrm{d}x =
   \frac{\sin(kw/2)}{kw/2} =: \sinc(kw/2)
@@ -468,7 +468,8 @@ $D^\textrm{blue}_\textrm{field}=\unit[70]{\mu m}$ and for
 \unit[700]{nm} wavelength it is
 $D^\textrm{red}_\textrm{field}=\unit[125]{\mu m}$, opposed to
 $\unit[400]{\mu m}$, that the microscope objective would permit.
-
+\nomenclature{$D_\textrm{field}$}{Diameter in the field of the
+  objective. The size of the illuminated area in the specimen.}
 % NA:1.4; eps:0.0079; sqrt(eps/(NA^2*%pi/4)),numer;
 % NA:1.4; eps:0.024; sqrt(eps/(NA^2*%pi/4)),numer;
 

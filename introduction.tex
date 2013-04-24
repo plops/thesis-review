@@ -59,7 +59,7 @@ There are a number of techniques that can reduce phototoxicity: Two
 photon excitation, controlled light exposure, selective plane
 illumination, highly inclined and laminated optical sheet, and oblique
 plane microscopy. I introduce them in
-chapter \ref{sec:illum-patterns}. These techniques have different
+chapter \ref{sec:approaches}. These techniques have different
 pros and cons and not all are equally suited for a specific problem,
 e.g.\ selective plane illumination is very effective, but it needs two
 perpendicular lenses and can not be used for multiwell plates or to
@@ -379,6 +379,7 @@ double-telecentric configuration, i.e.\ the sample is located in the
 front focal plane of the objective, the tube lens is at distance
 $f_\textrm{TL}$ behind the pupil (i.e.\ the back focal plane of the
 objective) and the camera is in the focal plane behind the tube lens.
+\nomenclature{TL}{Tube lens}
 
 %FIXME our microscope is only telecentric with respect to the object side
 
@@ -587,7 +588,7 @@ complex values on the Ewald sphere \citep{McCutchen1964}:
 \begin{align}
   \widetilde a(\vnu)&=\exp\left(2\pi i \frac{ n}{\lambda_0} 
     W(\vnu_t)\right)
-  \delta\left(\frac{n}{\lambda_0}-|\vnu|\right)  \step\left(|\vnu|cos(\alpha)-\nu_z\right),\\ \label{eq:mccutchen}
+  \delta\left(\frac{n}{\lambda_0}-|\vnu|\right)  \step\left(|\vnu|cos(\alpha)-\nu_z\right), \label{eq:mccutchen} \\
   \step(x)&=
   \begin{cases} 
     1 & x\ge 0 \\
@@ -860,6 +861,7 @@ $D_\textrm{field}=\unit[0.4]{mm}$ and an etendue of
 $\mathcal{E}=\unit[0.27]{mm^2/sr}$, where '\unit[]{sr}' denotes
 steradian, the SI unit of solid angle.
 
+\nomenclature{NA}{Numerical aperture}
 
 \subsection{Phototoxicity in conventional microscopes}
 When imaging living specimen we should distinguish between useful and
@@ -1107,7 +1109,7 @@ $\unit[]{e^-/px}$) can only produce a worse signal-to-noise ratio:
 This equation can be adapted for the electron-multiplying CCD. There,
 the readout noise is reduced because of the gain $M$ but the influence
 of the shot noise is doubled due to the excess noise factor
-$F_n=\sqrt{2}$.
+$F_n=\sqrt{2}$. \nomenclature{$F_n$}{Excess noise factor}
 \begin{align}
   \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}} \label{eq:snr}
 \end{align}

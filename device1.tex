@@ -207,16 +207,17 @@ i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.
 
 Since the torsion angles of the micro mirrors are quite small, the
-contrast generation in our Fourier filtering device is somewhat
-complicated. In the following I will describe the effect of the MMA
-phase function on a plane monochromatic wave. In particular, I will
-investigate the amount of light in the zeroth diffraction order
-depending on the torsion angle. Furthermore, the structure of the
-diffraction image permits to find bounds for the maximum acceptance
-angle of the system. I will show, that the acceptance angle is just
-barely sufficient for our experiments.
+contrast generation in our Fourier filtering device (denoted as
+schlierenoptics in \figref{fig:memi-real}) is somewhat complicated. In
+the following I will describe the effect of the MMA phase function on
+a plane monochromatic wave. In particular, I will investigate the
+amount of light in the zeroth diffraction order depending on the
+torsion angle. Furthermore, the structure of the diffraction image
+permits to find bounds for the maximum acceptance angle of the
+system. I will show, that the acceptance angle is just barely
+sufficient for our experiments.
 
-To describe the Fourier pattern I first consider a single pixel with
+To describe the Fourier pattern, I first consider a single pixel with
 index $p$ and width $w=\unit[16]{\mu m}$. In one dimension its shape
 can be described by the following equation:
 \begin{align}
@@ -239,16 +240,16 @@ k-space depending on the deflection of the mirror.  Now I will derive
 the relationship between the direction of the reflected phase front,
 described by $k_{px}$, and the deflection $l$ of the mirrors from the
 equilibrium position. For that I consider the term $e^{i k_{px} x}$ in
-equation (\ref{eq:tp}) at the point $x=w/2$. The distance $l$ is
+equation (\ref{eq:tp}) at the point $x=-w/2$. The distance $l$ is
 traversed twice during the reflection (see
 \figref{fig:diffraction}~left). This can be expressed in the following
 equation.
 \begin{align}
-  e^{ik_{px} \frac{w}{2}} = e^{\frac{2\pi i}{\lambda} 2l} 
+  e^{-ik_{px} \frac{w}{2}} = e^{\frac{2\pi i}{\lambda} 2l} 
 \end{align}
 Solving for $k_{px}$ results in:
 \begin{align}
-  k_{px} &= \frac{2\pi}{\lambda} \frac{4l}{w}
+  k_{px} &= -\frac{2\pi}{\lambda} \frac{4l}{w}
 \end{align}
 
 
@@ -258,10 +259,9 @@ Solving for $k_{px}$ results in:
   \svginput{1}{deflection-kp}
   \quad\quad\quad\quad
   \svginput{1}{diffraction-orders}
-  \caption{{\bf left:} FIXME translate: Zusammenhang zwischen deflection $l$ und dem
-    reflektierten Wellenzahlvektor $\k_p$. {\bf right:}
-    Veranschaulichung der durch die Pixelperiode erzeugten
-    Beugungsordnungen.}
+  \caption{{\bf left:} Schematic indicating the deflection $l$ of a
+    micro mirror. {\bf right:} Illustration of diffraction orders of
+    the micro mirror array.}
   \label{fig:diffraction}
 \end{figure}
 Now I \cma{1D diffraction problem} investigate a line of $N$ pixels in
@@ -272,7 +272,7 @@ N/2\rfloor,\dots,\lfloor N/2\rfloor+1$ where $\lfloor N/2\rfloor$
 denotes the biggest integer below $N/2$. For simplicity I neglect gaps
 between the mirrors and the surface deformations at the central
 attachment point (see \figref{fig:mma}).  Therefore, in the following
-derivations I consider pixel pitch to be identical with the pixel
+derivations I consider the pixel pitch to be identical with the pixel
 width: $\Lambda=w=\unit[16]{\mu m}$.  The Fourier spectrum $\widetilde
 T_\textrm{line}$ of a line of $N$ pixels is (positioned in the plane
 $F''$ in \figref{fig:memi-real}):
@@ -281,18 +281,18 @@ $F''$ in \figref{fig:memi-real}):
   = w \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x \Lambda p} \sinc\left(\frac{w}{2}(k_x+k_{px})\right) \label{eq:tline}
 \end{align}
 
-The sum over the first exponential term in this expression
-corresponds to a grating of $N$ lines with a period equal to the pixel
+The sum over the first exponential term in this expression corresponds
+to a grating of $N$ lines with a period equal to the pixel
 pitch. Depending on the torsion angle of individual mirrors the terms
 are modulated with a correspondingly shifted sinc-function.  In the
 first diagram in \figref{fig:maxima-diffraction}~left the intensity
 $|\sum_p \exp(ik_x \Lambda p)|^2$ of the sum over the phase factor is
 displayed for $N=1$, $N=4$ and $N=20$. With an increasing number of
-mirrors $N$ the diffraction peaks become more pronounced. The mirror
-used by us has $N=256$, that is to say the sum over the phase factors
-corresponds to a train of fine diffraction orders at wave vectors
-$k_x^{(m)}$ described by the grating equation (see
-\figref{fig:diffraction}~right):
+mirrors $N$ the diffraction peaks become more pronounced. The micro
+mirror device that was built for our prototype has $N=256$, that is to
+say the sum over the phase factors corresponds to a train of fine
+diffraction orders at wave vectors $k_x^{(m)}$ described by the
+grating equation (see \figref{fig:diffraction}~right):
 \begin{align}
   \sin\theta = \frac{m \lambda}{\Lambda}, \qquad k_x^{(m)} =
   \frac{2\pi}{\lambda} \sin\theta = m \frac{2\pi}{\Lambda}
@@ -307,7 +307,7 @@ $k_x^{(m)}$ described by the grating equation (see
 
   \caption{{\bf left:} Intensity of the diffraction pattern of a line
     grating $|\sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1}
-    e^{ik_x \Lambda p}|^2$ for an increasing number $N$ of lines. {\bf
+    e^{ik_x \Lambda p}|^2$ for an increasing number of lines $N$. {\bf
       right:} Intensity of the diffraction pattern $|\widetilde
     T_\textrm{line}(k_x)|^2$ according to equation (\ref{eq:tline})
     for four different mirror deflections. The diagrams on the right
@@ -336,7 +336,7 @@ $\lambda/4$ permits to gradually modulate the intensity in the zero
 order. In our system this means that the intensity at any point in the
 plane $P'$ (see \figref{fig:memi-real}) depends on the deflection of
 the mirror that is conjugate to this image point. Up to now, all the
-calculations were done for a single plane wave corresponding light
+calculations were done for a single plane wave corresponding to light
 emanating from a single point in $F'''$ (see \figref{fig:memi-real}).
 
 However, for the application in the spatio-angular microscope it is
@@ -347,12 +347,12 @@ corresponds to a convolution of the diffraction pattern in $F''$ with
 an image of the source (a circle with the diameter of the aperture
 B0). In order to achieve intensity modulation with high contrast in
 the plane $P'$, the Fourier filter aperture B1 in $F''$ may only
-transmit light of the zero order of the diffraction spectrum of the
-micro mirror array and must exclude higher orders. We choose the radius
-$d_\textrm{max}$ of the apertures B0 and B1 to be smaller than half
-the distance between two consecutive diffraction orders. Therefore,
-the acceptance angle of the micro mirror array in the schlierenoptical
-system is $|k_x^{(0)}-k_x^{(1)}|/2$.
+transmit zero order light of the diffraction spectrum and must exclude
+any higher orders. We choose the radius $d_\textrm{max}$ of the
+apertures B0 and B1 to be smaller than half the distance between two
+consecutive diffraction orders. Therefore, the acceptance angle of the
+micro mirror array in the schlierenoptical system is
+$|k_x^{(0)}-k_x^{(1)}|/2$.
 
 For historical reasons mirrors in adjacent rows of the micro mirror
 array tilt in opposite directions. Apparently, for other applications
@@ -377,43 +377,37 @@ device with $q$ and the columns with $p$.
 The convolution with respect to $y'$ in equation (\ref{eq:tarray})
 replicates $N$ mirror rows with width $w$ and pitch $\Lambda$.  The
 value of $k_{(pq)x}$ permits to control each individual mirror
-tilt. The constraints on the tilt angles are:
+tilt. The constraints on these tilts are:
 \begin{align}
 k_{(pq)x} \in
 \begin{cases}
-  [0,k_x^\textrm{max} ] & q\ \textrm{odd}\\
-  [-k_x^\textrm{max} ,0] & q\ \textrm{even}
+  [0,k_x^\textrm{max} ] & q\ \textrm{even}\\
+  [-k_x^\textrm{max} ,0] & q\ \textrm{odd}
 \end{cases}
 \quad \textrm{with}\ k_x^\textrm{max} = \frac{2\pi}{\lambda} \frac{4l^\textrm{max}}{w}
 \end{align}
-and the maximum deflection $l^{max}=\unit[250]{nm}$.
+and the maximum deflection $l^{max}=\unit[250]{nm}$.  The tilt pattern
+to deflect all mirrors into the blaze condition and to darken the
+entire image in $P'$ is $k_{(pq)x}^\textrm{dark} = (-1)^q \cdot
+k_x^\textrm{max}$.
 
-
-% case. The drawn image in the circles show the maximum allowed size of
-% the opening of the apertures B0 and B1 (see \ figref { fig: memi -real
-% }). When the signal is band- limited , i.e. the tilt angles vary only
-% slowly from mirror to mirror , then avoid this aperture size , that
-% the light of the higher order image in $ P '$ CONTRIBUTES . A
-% checkerboard pattern can not be represented this way (but that is not
-% necessary for our application as a pupil plane SLM) . In this case,
-% the high frequency signal produced additional peaks at each order (as
-% in the red line in \ figref { fig: maximum diffraction } ~ shown right
-% ) .
-
-
-Die im Bild eingezeichneten Kreise zeigen die maximal erlaubte Groesse
-der Oeffnung der Aperturen B0 und B1 (siehe \figref{fig:memi-real}).
-Wenn das Signal bandlimitiert ist, d.h. die Kippwinkel variieren nur
-langsam von Spiegel zu Spiegel, dann verhindern Blenden dieser
-Groesse, dass die Licht der hoehern Ordnung zum Bild in $P'$
-beitraegt.
-
-Ein Schachbrettmuster kann auf diese Weise nicht dargestellt werden
-(das ist aber auch nicht notwendig fuer unser Anwendung als pupil
-plane SLM). In diesem Fall erzeugt das Hochfrequenzsignal zusaetzliche
-Peaks um jede Ordnung ( wie in der roten Linie in
-\figref{fig:maxima-diffraction}~right dargestellt).
-
+\figref{fig:mma-fft}~right shows the diffraction pattern of the
+two-dimensional micro mirror array for tilt angles that are close to,
+but not exactly fulfilling the blaze-condition. Therefore, most light
+is deflected into higher orders. The circles with radius
+$d_\textrm{max}$ in this image indicate the maximum size of the
+apertures B0 and B1 at which the device can achieve high
+contrast. Note that this is only true for moderately smooth variations
+of the pixel tilts $k_{(pq)x}$. Displaying a checkerboard pattern with
+two pixel period, i.e.\ $k_{(pq)x} = k_{(pq)x}^\textrm{dark} \cdot
+((-1)^{p+q}+1)/2$, would require a smaller radius than
+$d_\textrm{max}$ for the illumination aperture B0 because of
+additional ``orders'' that appear in the diffraction pattern (similar
+to the additional order at $k_x=0.2\cdot 2\pi/\lambda$ of the red
+curve in \figref{fig:maxima-diffraction}~right).  In all my
+experiments I usually put more emphasize on a large acceptance angle
+than on contrast or pattern resolution in the back focal plane. I
+always used moderately varying pupil plane patterns.
 \begin{figure}[!hbt]
   \centering
   \svginput{.6}{mma-fft}
@@ -429,32 +423,28 @@ Peaks um jede Ordnung ( wie in der roten Linie in
 \end{figure}
 
 
-% In the following I Determine the acceptance angle for the pupil plane
-% with the Fourier SLM filters and aperture can go from the assumption
-% that only a strong band- limited image should be displayed.
-
-
-Im folgenden Bestimme ich den Akzeptanzwinkel fuer das pupil plane SLM
-mit der Fourier filter apertur und gehe dabei davon aus, dass nur ein
-stark bandlimitiertes Bild dargestellt werden soll.
-
 The smallest distance between the orders in
-\figref{fig:mma-fft}~right \label{sec:etendue-mma} corresponds to a
-size $\Lambda$ of two mirror pitches: $\Lambda=\unit[32]{\mu
-  m}$. Therefore, the diffraction angle $\theta$ is:
+\figref{fig:mma-fft}~right \label{sec:etendue-mma} corresponds to
+diffraction at a grating with a period of two mirror
+pitches. Therefore, the diffraction angle $\theta$ is:
 \begin{align}
-  \sin\theta&=\lambda/\Lambda
+  \sin\theta&=\lambda/(2 \Lambda)
 \end{align}
-Therefore, we can express the maximum radius:
+and the maximum radius can be express as:
 \begin{align}
-  d_\textrm{max} &= f_\textrm{L1} \tan\theta \approx \frac{f\lambda}{\Lambda}
+  d_\textrm{max} &= f_\textrm{L1} \tan\theta \approx \frac{f\lambda}{ 2 \Lambda}
 \end{align}
+
+%d = f l / (2 L)
+%N = f / (2 d)    = f / ( 2 f l / (2 L)) = L / l 
+%E = pi A / (4 * N^2) = pi A l^2 / (4 L^2)
+
 Here, $f_\textrm{L1}$ is the focal length of lens L1. With the
-F-number $\#=f_\textrm{L1}/(2d_\textrm{max})$ we can find the maximum
-etendue of the Fourier optical system:
+F-number $\#=f_\textrm{L1}/(2d_\textrm{max})$ one can calculate the
+maximum etendue of the schlierenoptical system:
 % f/(2*f l/L) = L/(2*l)
 \begin{align}
-\mathcal{E} = \frac{\pi A}{4 \#^2} = \frac{\pi A\lambda^2}{\Lambda^2},  
+\mathcal{E} = \frac{\pi A}{4 \#^2} = \frac{\pi A\lambda^2}{4\Lambda^2},  
 \end{align}
 with the area $A=(\unit[4]{mm})^2$ of the micro-mirror array.
 
@@ -465,26 +455,19 @@ with the area $A=(\unit[4]{mm})^2$ of the micro-mirror array.
 % (%o2)                         .02405281875404685
 
 For our system the maximal etendue is between $\unit[0.0079]{mm^2/sr}$
-and $\unit[0.024]{mm^2/sr}$, depending on the wavelength. This is much
-smaller than the etendue of a typical microscope objective
-($\unit[0.27]{mm^2/sr}$, see section \ref{sec:etendue}) and
-
-FIXME translate:
-Der Durchmesser im Feld kann mit der folgenden Gleichung ermittelt werden:
-wobei NA die numerische Apertur des Objektivs ist.
-% The diameter of the field can be determined with the following
-% equation: where NA is the numerical aperture of the lens.
-
-
+(for \unit[400]{nm} wavelength) and $\unit[0.024]{mm^2/sr}$ (for
+\unit[700]{nm} wavelength). This is much smaller than the etendue of a
+typical microscope objective ($\unit[0.27]{mm^2/sr}$, see section
+\ref{sec:etendue}).  With the following equation the more intuitive
+diameter of the illuminated field in the sample can be determined:
 \begin{align}
   D_\textrm{field}=\frac{2}{\textrm{NA}}\sqrt{\frac{\mathcal{E}}{\pi}},
 \end{align}
-
-
-FIXME FIXME
-corresponds to a field diameter $D_\textrm{field}$ in the specimen
-between $\unit[70]{\mu m}$ for a wavelength $\lambda$ of
-\unit[400]{nm} and $\unit[125]{\mu m}$ for \unit[700]{nm}, with
+For a wavelength of $\lambda=\unit[400]{nm}$ the maximum diameter is
+$D^\textrm{blue}_\textrm{field}=\unit[70]{\mu m}$ and for
+\unit[700]{nm} wavelength it is
+$D^\textrm{red}_\textrm{field}=\unit[125]{\mu m}$, opposed to
+$\unit[400]{\mu m}$, that the microscope objective would permit.
 
 % NA:1.4; eps:0.0079; sqrt(eps/(NA^2*%pi/4)),numer;
 % NA:1.4; eps:0.024; sqrt(eps/(NA^2*%pi/4)),numer;
@@ -679,9 +662,10 @@ been implemented so far.
 A basic prerequisite for measurement with our system is that the
 mapping between SLM and camera pixels is known. Only then, the sample
 can be irradiated as planned. To measure the mapping, I use a
-fluorescent plane sample placed at the focal plane of the objective, turn on individual pixels at position $\r^d$
-of the focal plane SLM and acquire camera images, which have bright
-spots centered on a camera coordinate $\r^c$.
+fluorescent plane sample placed at the focal plane of the objective,
+turn on individual pixels at position $\r^d$ of the focal plane SLM
+and acquire camera images, which have bright spots centered on a
+camera coordinate $\r^c$.
 
 The fluorescent plane is attached directly to the underside of the
 cover slip, ensuring good image quality and no (or negligibly small)

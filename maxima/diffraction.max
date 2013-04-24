@@ -41,7 +41,7 @@ plot2d([[discrete,secondmap(lambda([y],2.3+y),int_small)],
   [style,[lines,6]],
   [color,black],
   [y,0,3.4],
-  [xlabel,"k_x"],
+  [xlabel,"k_x/(2{/Symbol p}/{/Symbol l})"],
   [ylabel,"intensity"])$
 
 /* N mirrors of width and pitch dx, with tilt k_p estimate fourier spectrum at kx */
@@ -83,7 +83,7 @@ plot2d([[discrete,secondmap(lambda([y],2.3+y),m_flat)],
   [discrete,secondmap(lambda([y],-1.1+y),m_hifreq)]], 
   [style,[lines,6]],
   [color,black,black,black,red],
-  [xlabel,"k_x"],
+  [xlabel,"k_x/(2{/Symbol p}/{/Symbol l})"],
   [ylabel,"intensity"])$
 
 
@@ -94,7 +94,7 @@ map(set_plot_option,
   [gnuplot_preamble,"set border 3 lw 2;set grid;unset key;"]])$
 
 plot2d(sinc(float(%pi)*kp)^2,[kp,-3.5,3.5], [style,[lines,6]], [color,black],
-  [y,0,1], [xlabel,"l/{/Symbol l}/4"], [ylabel,"intensity"])$
+  [y,0,1], [xlabel,"l/({/Symbol l}/4)"], [ylabel,"intensity"])$
 
 /*
 four1(N,k,dx):=cabs(sum(exp(%i*k*p*dx),p,-floor(N/2),floor(N/2)+1))^2;

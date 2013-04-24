@@ -28,7 +28,7 @@ have anti-reflex coating for wavelengths in the range from
 \unit[400]{nm} to \unit[700]{nm}.
 
 The system successively illuminates the pupil plane SLM --- a greyscale
-micromirror array developed by our project partner Fraunhofer IPMS
+micro mirror array developed by our project partner Fraunhofer IPMS
 Dresden --- and the focal plane SLM, a commercial binary liquid crystal
 on silicon display.
  
@@ -169,7 +169,7 @@ homogeneous illumination of focal and pupil plane with the tunnel:
 \subsection{Fourier optical filter for contrast generation on pupil
   plane SLM}
 \label{sec:mma}
-The micromirror array consists of
+The micro mirror array consists of
 torsion mirrors that modulate the phase of the light (see
 \figref{fig:mma} for images of the device). It is used as a pupil plane SLM.
 In order to modulate the
@@ -195,18 +195,18 @@ The lens L1 has two purposes: First, it images the field mask B0 into
 the Fourier stop B1. Second, the plane $\textrm{P}''$ with the phase
 SLM is imaged to infinity.
 
-With undeflected micromirrors, the SLM has no signifcant effect and
+With undeflected micro mirrors, the SLM has no signifcant effect and
 works like a plane mirror. Both planes $\textrm{F}''$ and
 $\textrm{P}'$ are then homogeneously illuminated.
 
-If the left half of the micromirrors are tilted, then they direct the
+If the left half of the micro mirrors are tilted, then they direct the
 light along the dashed line in \figref{fig:memi-real}. This light is
 absorbed by the field stop B1 and therefore missing in $\textrm{P}'$,
 i.e.\ the right side in $\textrm{P}'$ is dark. The total radiant flux
 ($\unit[]{W}$) through the beam stop in $\textrm{F}''$ decreases while
 the transmitted irradiance ($\unit[]{W/m^2}$) remains homogeneous.
 
-Since the torsion angles of the micromirrors are quite small, the
+Since the torsion angles of the micro mirrors are quite small, the
 contrast generation in our Fourier filtering device is somewhat
 complicated. In the following I will describe the effect of the MMA
 phase function on a plane monochromatic wave. In particular, I will
@@ -264,17 +264,18 @@ Solving for $k_{px}$ results in:
     Beugungsordnungen.}
   \label{fig:diffraction}
 \end{figure}
-Now I \cma{1D diffraction problem} investigate a line of $N$
-pixels. The $N$ pixels are distributed with a pitch of $\Lambda$,
-i.e.\ the $p-$th pixel is centered at $x_p=\Lambda\cdot p$ with the
-index $p=-\lfloor N/2\rfloor,\dots,\lfloor N/2\rfloor+1$ where
-$\lfloor N/2\rfloor$ denotes the biggest integer below $N/2$. For
-simplicity I neglect gaps between the mirrors and the surface
-deformations at the central attachment point (see \figref{fig:mma}).
-Therefore, in the following derivations I consider pixel pitch to be
-identical with the pixel width: $\Lambda=w=\unit[16]{\mu m}$.  The
-Fourier spectrum $\widetilde T_\textrm{line}$ of a line of $N$ pixels
-is:
+Now I \cma{1D diffraction problem} investigate a line of $N$ pixels in
+the plane $P''$ in \figref{fig:memi-real}. The $N$ pixels are
+distributed with a pitch of $\Lambda$, i.e.\ the $p-$th pixel is
+centered at $x_p=\Lambda\cdot p$ with the index $p=-\lfloor
+N/2\rfloor,\dots,\lfloor N/2\rfloor+1$ where $\lfloor N/2\rfloor$
+denotes the biggest integer below $N/2$. For simplicity I neglect gaps
+between the mirrors and the surface deformations at the central
+attachment point (see \figref{fig:mma}).  Therefore, in the following
+derivations I consider pixel pitch to be identical with the pixel
+width: $\Lambda=w=\unit[16]{\mu m}$.  The Fourier spectrum $\widetilde
+T_\textrm{line}$ of a line of $N$ pixels is (positioned in the plane
+$F''$ in \figref{fig:memi-real}):
 \begin{align}
   \widetilde T_\textrm{line}(k_x) & = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} T_p(k_x) 
   = w \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x \Lambda p} \sinc\left(\frac{w}{2}(k_x+k_{px})\right) \label{eq:tline}
@@ -330,86 +331,64 @@ intensity in the zero order for varying mirror deflections:
 \begin{align}
   |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(4 \pi l/\lambda)^2
 \end{align}
-% I.e. a tilt of the mirror with deflections between 0 and $ \ lambda /
-% 4 $ allows the intensity of the zero order gradually and monotonically
-% to modulate . In our system, this means that the intensity at any
-% point in the plane $ P '$ (see \ figref { fig: memi -real } ) depend
-% on the element conjugate to tilt the mirror. In order to allow a high
-% contrast , but the Beleuchtungsaperture B0 and B1 , the Fourier
-% aperture have to be selected so small that no light from the higher
-% diffraction orders of $ P '$ can achieve. Note that an opening of B0
-% means that the pupil plane SLM instead of a plane wave as in ref
-% equation $ \ : $ is by assuming an extended source illuminates eq { tp
-% } . Accordingly \ cma } { partial coherence is the zeroth order in the
-% real system from the convolution of the light distribution in B0 \
-% figref { fig: maximum diffraction } ~ left . A cross-talk of the
-% orders must be excluded ( in the one-dimensional problem) the maximum
-% radius $ d_ \ textrm { max } $ of B0 and B1 are more than half the
-% distance of the orders . Well , sadly , that the MMA was built for
-% historical reasons so that the mirror adjacent rows are tilted in
-% opposite directions. Obviously for other applications it involves
-% advantages when the Fourier spectrum is symmetrical. In our
-% application , however, this fact leads to a reduction of the already
-% limiting etendue by a factor of 2
-
 According to the diagram a deflection of the mirrors between 0 and
 $\lambda/4$ permits to gradually modulate the intensity in the zero
 order. In our system this means that the intensity at any point in the
 plane $P'$ (see \figref{fig:memi-real}) depends on the deflection of
 the mirror that is conjugate to this image point. Up to now, all the
-calculations were based on a single plane wave for illumination. 
+calculations were done for a single plane wave corresponding light
+emanating from a single point in $F'''$ (see \figref{fig:memi-real}).
 
-D.h. eine Kippung der Spiegel mit deflektionen zwischen 0 und
-$\lambda/4$ erlaubt es die Intensitaet der Nullten Ordnung graduell
-und monoton zu modulieren. In unserem System bedeutet das, dass die
-Intensitaet in jedem Punkt der Ebene $P'$ (siehe
-\figref{fig:memi-real}) von der Kippung des dazu konjugierten Spiegels
-abhaengt. Um einen hohen Kontrast zu gewaehrleisten, muessen jedoch
-die Beleuchtungsaperture B0 und die Fourierblende B1 so klein gewaehlt
-werden, dass kein Licht der hoeheren Beugungsordnungen $P'$ erreichen
-kann. Bemerke dass eine Oeffnung von B0 bedeutet dass das pupil plane
-SLM statt mit einer Ebenen Welle wie in Gleichung $\ref{eq:tp}$
-vorrausgesetzt durch eine ausgedehnte Quelle beleuchtet
-wird. Dementsprechend \cma{partial coherence} ist die Nullte Ordnung
-im realen System aus der Faltung von B0 mit der Lichtverteilung in
-\figref{fig:maxima-diffraction}~left. Um ein Uebersprechen der
-Ordnungen (im eindimensionalen Problem) auszuschliessen darf der
-maximale Radius $d_\textrm{max}$ von B0 und B1 hoechstens die Haelfte
-des Abstands der Ordnungen betragen.
+However, for the application in the spatio-angular microscope it is
+necessary to consider an extended light source with a diameter
+controlled by the aperture B0 in $F'''$. Illuminating with an extended
+incoherent \cma{extended source and partial coherence} source
+corresponds to a convolution of the diffraction pattern in $F''$ with
+an image of the source (a circle with the diameter of the aperture
+B0). In order to achieve intensity modulation with high contrast in
+the plane $P'$, the Fourier filter aperture B1 in $F''$ may only
+transmit light of the zero order of the diffraction spectrum of the
+micro mirror array and must exclude higher orders. We choose the radius
+$d_\textrm{max}$ of the apertures B0 and B1 to be smaller than half
+the distance between two consecutive diffraction orders. Therefore,
+the acceptance angle of the micro mirror array in the schlierenoptical
+system is $|k_x^{(0)}-k_x^{(1)}|/2$.
 
-Nun ist es leider so, dass der MMA aus historischen Gruenden so gebaut
-wurde, dass die Spiegel benachbarter Reihen in entgegengesetzte
-Richtungen gekippt werden. Offenbar birgt es fuer andere Anwendungen
-Vorteile, wenn das Fourierspektrum symmetrisch ist. In unserer
-Anwendung fuehrt dieser Umstand jedoch zu einer Verkleinerung der
-ohnehin limitierenden Etendue um einen Faktor 2.
+For historical reasons mirrors in adjacent rows of the micro mirror
+array tilt in opposite directions. Apparently, for other applications
+a symmetric Fourier spectrum is advantageous. However, in our
+application this design decision leads to an additional reduction of
+the acceptance angle by a factor of two.
 
-
-% To \ cma } { 2D diffraction to substantiate this statement I give now
-% the two-dimensional Oberflaechenfunktion the MMA . The pixels are
-% square and adjacent lines can only be deflected in the opposite
-% direction (see \ figref { fig: mma fft } ~ left ) . I index the pixels
-% of the lines , the tilt in the same direction with $ p $ . The columns
-% I index with $ q $ .
-
-Um \cma{2D Beugung} diese Aussage zu begruenden gebe ich nun die
-zweidimensionale Oberflaechenfunktion des MMA. Die Pixel sind
-quadratisch und benachbarte Zeilen koennen nur in entgegengesetzte
-Richtung ausgelenkt werden (siehe \figref{fig:mma-fft}~left).  Ich
-indiziere die Pixel der Zeilen die in die gleiche Richtung kippen mit
-$p$. Die Spalten indiziere ich mit $q$.
+In order to \cma{2D diffraction pattern} substantiate this statement I
+will now derive the two-dimensional surface profile of the micro
+mirror array. Individual mirrors are square and adjacent rows of them
+can only be deflected in the opposite direction. A measured profile is
+depicted in \figref{fig:mma-fft}~left. I index the pixel rows of the
+device with $q$ and the columns with $p$.
 \begin{align}
   T_\textrm{array}(x,y) &= \left(\rect(y'/w)\otimes_{y'} \sum_{q=-\lfloor
-      N/2\rfloor}^{\lfloor N/2\rfloor+1} (-1)^q \delta(y'-q\Lambda)
-    T^{(q)}_\textrm{line}(x) \right)(x,y)\\
-  &= \sum_q\sum_p (-1)^q  e^{i k_{(pq)x} x}
+      N/2\rfloor}^{\lfloor N/2\rfloor+1} \delta(y'-q\Lambda)
+    T^{(q)}_\textrm{line}(x) \right)(x,y) \label{eq:tarray}\\
+  &= \sum_q\sum_p e^{i k_{(pq)x} x}
   \rect\left(\frac{y+\Lambda q}{w}\right) \rect\left(\frac{x+\Lambda
-      p}{w}\right)
+      p}{w}\right) \label{eq:tarray2}
 \end{align}
+The convolution with respect to $y'$ in equation (\ref{eq:tarray})
+replicates $N$ mirror rows with width $w$ and pitch $\Lambda$.  The
+value of $k_{(pq)x}$ permits to control each individual mirror
+tilt. The constraints on the tilt angles are:
+\begin{align}
+k_{(pq)x} \in
+\begin{cases}
+  [0,k_x^\textrm{max} ] & q\ \textrm{odd}\\
+  [-k_x^\textrm{max} ,0] & q\ \textrm{even}
+\end{cases}
+\quad \textrm{with}\ k_x^\textrm{max} = \frac{2\pi}{\lambda} \frac{4l^\textrm{max}}{w}
+\end{align}
+and the maximum deflection $l^{max}=\unit[250]{nm}$.
 
-% The term ^ q $ -1 $ ensures that adjacent rows in opposite direction
-% on tilt . \ figref { fig: mma fft } ~ right shows the Fourier
-% transform that all mirrors are tilted to the blaze angle for the
+
 % case. The drawn image in the circles show the maximum allowed size of
 % the opening of the apertures B0 and B1 (see \ figref { fig: memi -real
 % }). When the signal is band- limited , i.e. the tilt angles vary only
@@ -421,10 +400,6 @@ $p$. Die Spalten indiziere ich mit $q$.
 % in the red line in \ figref { fig: maximum diffraction } ~ shown right
 % ) .
 
-Der Term $-1^q$ sorgt dafuer das benachbarte Zeilen in
-entgegengesetzte Richtung tilten.  \figref{fig:mma-fft}~right zeigt
-die Fouriertransformation fuer den Fall dass alle Spiegel in den
-Blazewinkel gekippt werden.
 
 Die im Bild eingezeichneten Kreise zeigen die maximal erlaubte Groesse
 der Oeffnung der Aperturen B0 und B1 (siehe \figref{fig:memi-real}).
@@ -580,7 +555,7 @@ focal plane SLM. Therefore, we use the beam splitter in transmission.
  	
 \jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
   microscope with attached illumination head. The positions of the two
-  spatial light modulators (pupil plane SLM: micromirror array (MMA)
+  spatial light modulators (pupil plane SLM: micro mirror array (MMA)
   and focal plane SLM: liquid crystal on silicon display (LCoS)) are
   indicated. Drawing by Josef Wenisch (In-Vision, Austria).}
 	  	

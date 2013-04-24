@@ -343,7 +343,7 @@ for:
   using USB
 \item estimating the parameters of a rigid transformation between
   camera and LCoS display (see Appendix \ref{sec:rigid}),
-\item controlling the micromirror array by Fraunhofer IPMS using
+\item controlling the micro mirror array by Fraunhofer IPMS using
   their SDK
 \item some specific image processing tools:
   \begin{itemize}
@@ -468,7 +468,7 @@ chapter \ref{sec:concept}, in particular section
 emphasis on high speed.
 
 The fastest commercially available SLMs are ferroelectric liquid
-crystal on silicon devices (fLCoS) and digital micromirror devices
+crystal on silicon devices (fLCoS) and digital micro mirror devices
 (DMD), both of which can only do binary modulation. However, in our
 case binary intensity modulation is disadvantageous. Sharp edges lead
 to high diffraction losses and strong oscillations of the field in the
@@ -479,7 +479,7 @@ Fraunhofer diffraction pattern.
   crystals between two bistable states. It is a particularly fast
   technology.}
 
-The pupil \cma{Why Fraunhofer micromirror array?} plane SLM, that
+The pupil \cma{Why Fraunhofer micro mirror array?} plane SLM, that
 controls the illumination angles should ideally not be a binary
 device, otherwise oscillations of excitation intensity would occur in
 the specimen and appear on the camera image. For this reason, we use a
@@ -523,7 +523,7 @@ application \citep{Heintzmann2010a}. The approach is derived from
 reflective Nomarski differential interference contrast microscopy. A
 birefringent prism separates the illumination bundle into bundles that
 have a small offset (shear).  If the shear distance corresponds to the
-pixel pitch $\Lambda=\unit[16]{\mu m}$ of the micromirrors then this
+pixel pitch $\Lambda=\unit[16]{\mu m}$ of the micro mirrors then this
 device converts height differences between adjacent mirrors into
 intensity contrast. My experiments with a set of Nomarski prisms that
 were available in our lab showed that this method can work. However,
@@ -537,7 +537,7 @@ is still a very promising method and has the potential for good
 contrast at large acceptance angles when prisms with larger shear
 angles are used. Additionally, it should be noted that this
 interferometric method will work better when using piston-type
-micromirrors as compared to torsion micromirrors.
+micro mirrors as compared to torsion micro mirrors.
 
 Given \cma{priority of the control algorithm} the \emph{low
   light efficiency} of our prototype (0.004\%, $\unit[17]{\mu W}$ using a \unit[400]{mW} laser, see section \ref{sec:light-efficiency} on page \pageref{sec:light-efficiency}), which could be just barely enough to
@@ -632,8 +632,8 @@ mature \citep{Guide2012}, contains open source software and high
 quality documentation explaining even the control registers of
 individual chips.
 
-Unlike the Fraunhofe micromirror array (as described in section
-\ref{sec:mma}), the Texas Instruments digital micromirrors tilt around
+Unlike the Fraunhofe micro mirror array (as described in section
+\ref{sec:mma}), the Texas Instruments digital micro mirrors tilt around
 their diagonals. For the 0.3~WVGA DMD, that is used in my development
 kit, the pixels are addressed as a grid that is rotated by $45^\circ$ but can be
 illuminated parallel to one of the edges of the device. This
@@ -708,7 +708,7 @@ likely require a more accurate understanding of the excitation light
 distribution in the sample. In this regard, it would be helpful to
 \cma{partial coherent simulation} to simulate the wave-optical image
 formation of the prototype with partial coherence. This would answer
-the question how important the grey levels of the micromirror array in
+the question how important the grey levels of the micro mirror array in
 the pupil-plane really are, and whether or not we can replace it with
 a binary DMD.
 

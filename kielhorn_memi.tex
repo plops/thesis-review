@@ -276,60 +276,38 @@ pdfsubject={PhD thesis}]{hyperref}
 %\setcounter{tocdepth}{3}
 
 \chapter*{Preface}
-%\section*{Preface}
+This thesis describes my work that I performed in the EU funded
+seventh framework program project Micro mirror enhanced micro-imaging
+(project number 2115597) at King's College London between June 2008
+until April 2013.
 
-The work described in this thesis was carried out between June 2008
-and April 2013.
+The project was a collaboration of the following five institutions:
+In-Vision (Guntramsdorf, Austria) Institut Pasteur (Paris, France)
+Fraunhofer IPMS (Dresden, Germany) KLA-Tencor Corporation (Migdal
+Haemek, Israel) King's College London (London, United Kingdom).
 
-In chapter \ref{sec:intro}, we introduce photophysics of fluorescence
-and emphasize the importance of oxygen for phototoxicity. Furthermore,
-we also explain conventional microscopes and CCD cameras.
-
-In chapter \ref{sec:approaches}, we compare some state-of-the-art
-techniques for illumination control in microscopes.  Particularly in
-section \ref{sec:light-field-microscopy}, we discuss the micro-lens
-based light field microscope by Levoy's computational photography
-group, which imaged the toy soldier in 2003.
-
-In chapter \ref{sec:setup}, we describe our microscope and in chapter
-\ref{sec:experiments}, we show some images, taken with illumination
-control in our prototype.
-
-- ccd measurment
-
-- mapping lcos camera
-
-In the appendix, we also describe a completely different approach for
-spatio--angular illumination based on holography (Appendix
-\ref{sec:app_holo}) and we document an interferometric attempt to
-convert our precise programmable phase mask into a spatial intensity
-modulator (Appendix \ref{sec:app_dic}).
-
-Note that the Appendix \ref{sec:dvi} describes a modification of our
-prototype with a spatial light modulator that receives data from a
-graphics card. A higher bandwidth makes this approach more useful than
-the prototype described in the main text and we tried to implement
-this first. However eventually, it proved too difficult to trigger the
-components in this configuration and we switched to the more
-predictable USB-controlled display as described in the main body of
-the text.
- 
-The appendix also contains some theoretical explanations of
-raytracing (Appendix \ref{sec:raytrace}), computational optical
-sectioning (Appendix \ref{sec:app_hilo}) and the wave-optics based
-simulation of our microscope (Appendix \ref{sec:sim-angle}).
+With Fraunhofer taking over the most intricate task of developing a
+MEMS display for the visual spectrum whose properties I discuss in
+section \ref{sec:mma}. The company KLA-Tencor investigated this device
+for an application in semiconductor manufacture. Pasteur and King's
+developed a concept for an application in life sciences which I
+motivate in \ref{sec:intro-phototoxicity} and introduce in chapter
+\ref{sec:concept}. The company In-Vision designed and built custom
+optics for a prototype device. My task at King's College London was to
+develop the control software for the prototype and to prepare the
+device for life science fluorescence imaging.
 
 \subsection*{Source Code Availability}
-
 Source code that has been developed during this project is available
 on \url{https://github.com/plops/mma}.  It contains implementations
 for:
 \begin{itemize}
-\item illumination planning based on raytraces (see Appendix
-  \ref{sec:raytrace})
+\item illumination planning based on a raytrace algorithm (see
+  sections \ref{sec:illum-opt} and chapter \ref{sec:raytrace})
 \item moving the $z-$stage of a Zeiss Axiovert 200M microscope body
-\item controlling an Andor Clara camera using the Andor SDK version
-  2. For the other cameras following below, control software was written:
+\item controlling an Andor Clara camera using the Andor SDK
+  version~2. For the other cameras following below, control software
+  was written:
   \begin{itemize}
   \item Photometrics Cascade~II (interface to unsupported
     closed-source driver, only works on very old 32-bit Linux kernels)
@@ -338,11 +316,12 @@ for:
   \item Andor sCMOS using Andor SDK version 3
   \end{itemize}
 \item displaying patterns using a graphics card that supports OpenGL
-  on a ForthDD SXGA ferroelectric LCoS display
-\item controlling a stand-alone ForthDD WXGA 3DM display controller
-  using USB
+  on a ForthDD SXGA ferroelectric LCoS spatial light modulator with DVI video input
+\item controlling a stand-alone ForthDD WXGA 3DM spatial light
+  modulator controller using USB
 \item estimating the parameters of a rigid transformation between
-  camera and LCoS display (see Appendix \ref{sec:rigid}),
+  camera and a spatial light modulator (see section \ref{sec:map} and appendix
+  \ref{sec:map_maxima}),
 \item controlling the micro mirror array by Fraunhofer IPMS using
   their SDK
 \item some specific image processing tools:
@@ -376,14 +355,15 @@ Institute of Photonic Technology in Jena.
 
 I owe my sincere thanks to Kai Wicker, Jakub Nedbal, Susan Cox, Daniel
 Appelt, Ond\v rej Mandula, Ronny F\"orster, Ivana \v Sumanovac,
-Eckhard Birkner, Kathrin Klehs and all the other members of our group
-for valuable discussions, support and review of the manuscript.
+Eckhard Birkner, Kathrin Klehs, Sapna Shukla, Walter M\"uller and all
+the other members of our group for valuable discussions, support and
+review of the manuscript.
 
-My sincere thanks to the European Union Framework Programme 7 (project
-number 2115597) for the studentship on this project.  I also thank
-Erhard Ipp, G\"unter Z\"ochling, Vincent Galy, QueeLim Ch'ng, J\"org
-Heber, Mark Eckert, Dirk Berndt, Joel Seligson, Jean-Yves Tinevez and
-Florian R\"uckerl for helpful collaboration.
+My sincere thanks to the European Union Framework Programme 7 for the
+studentship on this project.  I also thank Erhard Ipp, G\"unter
+Z\"ochling, Vincent Galy, QueeLim Ch'ng, J\"org Heber, Mark Eckert,
+Dirk Berndt, Joel Seligson, Jean-Yves Tinevez and Florian R\"uckerl
+for helpful collaboration.
 
 Furthermore, I highly appreciate the input of Herbert Gross, Miroslav
 Grajcar, Edward Rosten, Christophe Rhodes, Paul Khuong, Nikodemus
@@ -464,7 +444,7 @@ pattern of light. Our goal for was to acquire one stack, consisting of
 twenty slices, per minute. For this, partial recordings of slices
 should be acquired in sequence and later composed into one image (see
 chapter \ref{sec:concept}, in particular section
-\ref{sec:illum-opt}). Therefore we selected the SLM devices with an
+\ref{sec:illum-opt}). Therefore, we selected the SLM devices with an
 emphasis on high speed.
 
 The fastest commercially available SLMs are ferroelectric liquid
@@ -487,29 +467,39 @@ specifically developed SLM, which resembles a DMD in terms of mode of
 operation and speed but can display gray scale values.  A $256\times
 256$ mirror array suffices for angular control. This facilitated the
 development of the mirror and fast control electronics at Fraunhofer
-IPMS.
+IPMS. The controller can store 1023 image frames locally. For many
+applications of angular illumination control it is sufficient to
+select from this set of patterns a suitable candidate.
 
-The focal plane SLM, on the other hand, should have a high resolution
-\cma{choice for focal plane SLM} and it should be possible to update
-its patterns very fast, so that the illumination can be adapted to the
-specimen during acquisition with low latency. Initially, I opted for a
-SLM that is connected to the graphics card of a computer. We chose a
-fLCoS SLM because its pixel borders are less sharp than those of the
-DMD and we expected a better efficiency for our
+The focal plane SLM should have a high resolution \cma{choice for
+  focal plane SLM} and it should be possible to update its patterns
+very fast, so that the illumination can be adapted to the specimen
+during acquisition with low latency. Initially, I opted for a SLM that
+is connected to the graphics card of a computer. We chose a
+ferroelectric LCoS SLM because its pixel borders are less sharp than
+those of the DMD and we expected a better efficiency for our
 application. Unfortunately, there were difficulties with the
 synchronization between the graphics card and the other
-devices. Therefore, relatively late into the project, I had to replace the SLM
-controller with another one that contains internal memory and is
-linked to a computer via USB.  \nomenclature{USB}{Universal Serial
+devices. Therefore, relatively late into the project, I had to replace
+the SLM controller with another one that contains internal memory and
+is linked to a computer via USB.  \nomenclature{USB}{Universal Serial
   Bus.}  Unfortunately, the USB connection is very slow and fast
-update of image patterns is no longer possible. In retrospect, it
-would have been easier to use two of the custom-made grey value SLMs
-from Fraunhofer. Note that Institut Pasteur and Fraunhofer IPMS
-continue this work and do just that under the Joint-Programme Inter
-Carnot Fraunhofer PICF 2011, ``Micromirror Enhanced Microscopic
-Imaging for high-speed angular and spatial light control in spectral
-Optogenetics and Photomanipulation applications in biological
-applications'' (MEMI-OP).
+update of image patterns is no longer possible.
+
+The ForthDD USB controller of the focal plane SLM can store 200 images
+and replacing them all takes several minutes. This makes it very
+difficult to perform a technique similar to controlled light exposure
+microscopy with the current setup because the set of 200 images are
+not enough images to allow for the fine-grained spatial control one
+would need to implement CLEM.
+
+In retrospect, it would have been easier to use two of the custom-made
+grey value SLMs from Fraunhofer. Note that Institut Pasteur and
+Fraunhofer IPMS continue this work and do just that under the
+Joint-Programme Inter Carnot Fraunhofer PICF 2011, ``Micromirror
+Enhanced Microscopic Imaging for high-speed angular and spatial light
+control in spectral Optogenetics and Photomanipulation applications in
+biological applications'' (MEMI-OP).
 
 A \cma{remedy against low acceptance angle} serious disadvantage of
 the Fraunhofer SLM in combination with the Fourier optical filter
@@ -539,8 +529,10 @@ angles are used. Additionally, it should be noted that this
 interferometric method will work better when using piston-type
 micro mirrors as compared to torsion micro mirrors.
 
-Given \cma{priority of the control algorithm} the \emph{low
-  light efficiency} of our prototype (0.004\%, $\unit[17]{\mu W}$ using a \unit[400]{mW} laser, see section \ref{sec:light-efficiency} on page \pageref{sec:light-efficiency}), which could be just barely enough to
+Given \cma{priority of the control algorithm} the \emph{low light
+  efficiency} of our prototype (0.004\%, $\unit[17]{\mu W}$ using a
+\unit[400]{mW} laser, see section \ref{sec:light-efficiency} on page
+\pageref{sec:light-efficiency}), which could be just barely enough to
 investigate the biological test system of \celegans\ embryos, the
 disproportionally high effort that went into synchronizing the two
 fast SLMs which can only run at a \emph{reduced duty cycle}, and the
@@ -567,24 +559,24 @@ local irradiance is controlled with the grating contrast.
   %   die dargestellt werden koennen, da das system off-axis betrieben
   %   werden muss, wird die ettendue geviertelt)
 
-Unfortunately, the phase-only SLM (Holoeye Plato, Berlin, Germany) that I used for the experiments
-suffers from cross-talk between pixels, a non-linear transfer function
-and temporal fluctuations of the displayed phase pattern. It was
-uncertain whether these problems could be circumvented. Especially
-higher orders which are generated by the device's non-linearity are a
-problem when they reach the sample. This makes it particularly
-difficult to project a grating with small period into the sample
-because this requires the superposition of two phase gratings on the
-SLM.
+Unfortunately, the phase-only SLM (Holoeye Plato, Berlin, Germany)
+that I used for the experiments suffers from cross-talk between
+pixels, a non-linear transfer function and temporal fluctuations of
+the displayed phase pattern. It was uncertain whether these problems
+could be circumvented. Especially higher orders which are generated by
+the device's non-linearity are a problem when they reach the
+sample. This makes it particularly difficult to project a grating with
+small period into the sample because this requires the superposition
+of two phase gratings on the SLM.
 
 Projecting grating patterns is necessary, because for my illumination
 algorithm I need a reasonably good measurement of the
 three-dimensional fluorophore distribution. For many specimen
 structured illumination is necessary to remove out-of-focus light from
-the raw images and obtain optical sections. Another phase SLM (X10468 series, Hamamatsu) 
-became available more recently have a much better performance and
-could presumably be used to construct a holographic spatio-angular
-illumination device.
+the raw images and obtain optical sections. Another phase SLM (X10468
+series, Hamamatsu) became available more recently have a much better
+performance and could presumably be used to construct a holographic
+spatio-angular illumination device.
 
 The \cma{sectioning by structured illumination} main prototype of our
 project with two SLM, as described in chapter \ref{sec:dev1}, is more
@@ -598,9 +590,8 @@ exposures per slice are necessary. Since images in our system are
 taken in rapid succession and movement artifacts are unlikely, we
 developed a variant of the HiLo method. In contrast to the original,
 which uses one uniformly illuminated image and one with structured
-illumination, we use two structured illumination images with a relative shift of $\pi$
-leading to an
-improved signal-to-noise ratio.
+illumination, we use two structured illumination images with a
+relative shift of $\pi$ leading to an improved signal-to-noise ratio.
 
 During my work on the project \cma{sCMOS --- new camera technology} a
 much improved camera technology (sCMOS) came to market. No such camera
@@ -642,14 +633,14 @@ complicated software control. The larger DMD devices can be addressed
 more easily but must be illuminated in an angle of $45\degree$
 relative to the device.
 
-While working with the kit I was able to implement
-features within three days, for which I spent several months of
-reverse engineering and trial and error on devices of other
-manufacturers --- most notably, controlling individual frames at the
-fastest possible update rate (1440 frames per second) using digital video output (HDMI)
-from a consumer grade graphics card. If I
-had known this before, I would have designed the prototype differently
-and I would have accepted some drawback regarding optical performance.
+While working with the kit I was able to implement features within
+three days, for which I spent several months of reverse engineering
+and trial and error on devices of other manufacturers --- most
+notably, controlling individual frames at the fastest possible update
+rate (1440 frames per second) using digital video output (HDMI) from a
+consumer grade graphics card. If I had known this before, I would have
+designed the prototype differently and I would have accepted some
+drawback regarding optical performance.
 
 
 I \cma{Open hardware is a good thing} am not content with the current

@@ -223,7 +223,7 @@ can be described by the following equation:
   T_p(x)=\delta(x-x_p)\otimes\left(\rect(x/w)\cdot e^{i k_{px} x}\right)\quad\textrm{with}\ \rect(x):=\begin{cases} 1 & |x|<1/2 \\ 0 & \textrm{else} \end{cases} \label{eq:tp}
 \end{align}
 The convolution with the $\delta-$distribution shifts the pixel to the
-position $x_p$ and $k_{px}$ describes the torsion angle of the $p$th
+position $x_p$ and $k_{px}$ describes the torsion angle of the $p-$th
 mirror.  With the Fourier transform
 \begin{align}
   \frac{1}{w}\int_{-w/2}^{w/2} e^{ikx} \textrm{d}x =
@@ -258,125 +258,75 @@ Solving for $k_{px}$ results in:
   \svginput{1}{deflection-kp}
   \quad\quad\quad\quad
   \svginput{1}{diffraction-orders}
-  \caption{{\bf left:} Zusammenhang zwischen deflection $l$ und dem
+  \caption{{\bf left:} FIXME translate: Zusammenhang zwischen deflection $l$ und dem
     reflektierten Wellenzahlvektor $\k_p$. {\bf right:}
     Veranschaulichung der durch die Pixelperiode erzeugten
     Beugungsordnungen.}
   \label{fig:diffraction}
 \end{figure}
-
-% The \ cma { 1D diffraction problem } $ N $ pixels are along a line
-% with a pitch $ \ lambda $ so distributed $ x_p = \ lambda \ cdot p $
-% with $ p = - \ lfloor N / 2 \ rfloor , \ dots , \ lfloor N / 2 \
-% rfloor +1 U.S. dollars where $ \ lfloor N / 2 \ rfloor $ the largest
-% integer describes the smaller N / second For simplicity, I neglect the
-% gaps between the mirrors and Oberflaechenunebenheit in the center of
-% the mirror (see \ figref { fig: } mma ) . In further consideration, ie
-% the pixel pitch and the pixel width are the same: $ \ lambda = w = \
-% unit [ 16] {\ mu } m $ . The Fourier spectrum widetilde T_ \ textrm
-% {line } $ \ $ this line is:
-
-
-Die \cma{1D Beugungsproblem} $N$ Pixel sind entlang einer Zeile mit
-einem Pitch $\Lambda$ verteilt also $x_p=\Lambda\cdot p$ mit
-$p=-\lfloor N/2\rfloor,\dots,\lfloor N/2\rfloor+1$ wobei $\lfloor
-N/2\rfloor$ die groesste ganze Zahl beschreibt, die kleiner N/2 ist.
-Der Einfachheit halber vernachlaessige ich die Spalte zwischen den
-Spiegeln und Oberflaechenunebenheit in der Mitte der Spiegel (siehe
-\figref{fig:mma}). In der weiteren Betrachtung sind also der
-Pixelpitch und die Pixelbreite identisch: $\Lambda=w=\unit[16]{\mu
-  m}$.  Das Fourierspektrum $\widetilde T_\textrm{line}$ dieser Zeile
-ist:
+Now I \cma{1D diffraction problem} investigate a line of $N$
+pixels. The $N$ pixels are distributed with a pitch of $\Lambda$,
+i.e.\ the $p-$th pixel is centered at $x_p=\Lambda\cdot p$ with the
+index $p=-\lfloor N/2\rfloor,\dots,\lfloor N/2\rfloor+1$ where
+$\lfloor N/2\rfloor$ denotes the biggest integer below $N/2$. For
+simplicity I neglect gaps between the mirrors and the surface
+deformations at the central attachment point (see \figref{fig:mma}).
+Therefore, in the following derivations I consider pixel pitch to be
+identical with the pixel width: $\Lambda=w=\unit[16]{\mu m}$.  The
+Fourier spectrum $\widetilde T_\textrm{line}$ of a line of $N$ pixels
+is:
 \begin{align}
   \widetilde T_\textrm{line}(k_x) & = \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} T_p(k_x) 
   = w \sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x \Lambda p} \sinc\left(\frac{w}{2}(k_x+k_{px})\right) \label{eq:tline}
 \end{align}
 
-% This expression is the Fourier transform of a line grid with a pixel
-% pitch period , depending on the tilt angle of the individual mirror
-% modulated with the appropriate sinc function. In the first diagram \
-% figref { fig: maximum diffraction } ~ left only the absolute square of
-% the sum over the phase factor $ \ sum_p \ exp ( ik_x \ lambda p) $ for
-% $ n = 1.4 $ and $ N = $ 20 is shown . As you can see , the diffraction
-% peaks with increasing number sharper mirror . The mirror used by us
-% has $ N = 256 $, that is to say the sum of supplies by constructive
-% interference a train of very fine diffraction orders to the equation
-% described by the lattice wave number vectors k_x $ ^ { (m) } $ (see \
-% figref { fig: diffraction } ~ right) :
-
-
-Dieser Ausdruck ist die Fouriertransformation eines Liniengitters mit
-dem Pixelpitch als Periode, je nach Kippwinkel des individuellen
-Spiegels moduliert mit der entsprechenden sinc Funktion. Im ersten
-Diagramm \figref{fig:maxima-diffraction}~left ist nur der
-Absolutsquare der Summe ueber den Phasenfaktor $\sum_p \exp(ik_x \Lambda p)$
-fuer $N=1,4$ und $N=20$ dargestellt. Wie man sieht werden die
-Beugungsmaxima mit zunehmender Anzahl Spiegel schaerfer.  Der von uns
-verwendete Spiegel hat $N=256$, d.h. die Summe liefert durch
-konstruktive Interferenz einen Zug sehr feiner Beugungsordnungen an
-den durch die Gittergleichung beschriebenen Wellenzahlvektoren
-$k_x^{(m)}$ (siehe \figref{fig:diffraction}~right):
+The sum over the first exponential term in this expression
+corresponds to a grating of $N$ lines with a period equal to the pixel
+pitch. Depending on the torsion angle of individual mirrors the terms
+are modulated with a correspondingly shifted sinc-function.  In the
+first diagram in \figref{fig:maxima-diffraction}~left the intensity
+$|\sum_p \exp(ik_x \Lambda p)|^2$ of the sum over the phase factor is
+displayed for $N=1$, $N=4$ and $N=20$. With an increasing number of
+mirrors $N$ the diffraction peaks become more pronounced. The mirror
+used by us has $N=256$, that is to say the sum over the phase factors
+corresponds to a train of fine diffraction orders at wave vectors
+$k_x^{(m)}$ described by the grating equation (see
+\figref{fig:diffraction}~right):
 \begin{align}
- \sin\theta = \frac{m \lambda}{\Lambda}, \qquad  k_x^{(m)} = \frac{2\pi}{\lambda} \sin\theta = m \frac{2\pi}{\Lambda} 
+  \sin\theta = \frac{m \lambda}{\Lambda}, \qquad k_x^{(m)} =
+  \frac{2\pi}{\lambda} \sin\theta = m \frac{2\pi}{\Lambda}
 \end{align}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
   \centering
   \includegraphics{diffraction_lines}
   \includegraphics{diffraction_rects}
   \svginput{1}{mirror-tilt}
   \includegraphics{diffraction_kp}
-% {\ bf left: } representation of the intensity of the diffraction
-% pattern of an increasing number of columns $ | \ sum_ {p = - \ lfloor
-% N / 2 \ rfloor } ^ {\ lfloor N / 2 \ rfloor +1 } e ^ { ik_x \ lambda
-% p} | ^ 2 $ . {\ bf right: } representation of the diffraction orders
-% of $ | \ widetilde T_ \ textrm {line } ( k_x ) | ^ 2 $ from the
-% formula ( \ ref { eq: tline } ) for four different deflections of the
-% mirror. The icons on the right symbolize the Spiegelkippung . For the
-% red curve , every second pixel remains untilted . {\ bf bottom: }
-% intensity in the zeroth diffraction order $ | \ widetilde T_ \ textrm
-% {line } ( k_x = 0) | ^ 2 $ for $ l $ Deflection simultaneously varying
-% all levels.
 
-  \caption{{\bf left:} Darstellung der Intensitaet der Beugungsbilder
-    einer zunehmenden Anzahl von Spalten $|\sum_{p=-\lfloor
-      N/2\rfloor}^{\lfloor N/2\rfloor+1} e^{ik_x \Lambda p}|^2$. {\bf
-      right:} Darstellung der Beugungsordnungen $|\widetilde
-    T_\textrm{line}(k_x)|^2$ aus Formel (\ref{eq:tline}) fuer vier
-    verschiedene Deflektionen der Spiegel. Die Piktogramme auf der
-    rechten Seite symbolisieren die Spiegelkippung. Fuer die rote
-    Kurve bleibt jeder zweite Pixel ungekippt.  {\bf bottom:} Intensitaet
-    in der nullten Beugungsordnung $|\widetilde
-    T_\textrm{line}(k_x=0)|^2$ fuer simultan variierende Deflection
-    $l$ aller Spiegel.}
+  \caption{{\bf left:} Intensity of the diffraction pattern of a line
+    grating $|\sum_{p=-\lfloor N/2\rfloor}^{\lfloor N/2\rfloor+1}
+    e^{ik_x \Lambda p}|^2$ for an increasing number $N$ of lines. {\bf
+      right:} Intensity of the diffraction pattern $|\widetilde
+    T_\textrm{line}(k_x)|^2$ according to equation (\ref{eq:tline})
+    for four different mirror deflections. The diagrams on the right
+    indicate the mirror shapes. For the red curve every second pixel
+    remains in the equilibrium position. {\bf bottom:} Intensity in
+    the zeroth diffraction order $|\widetilde
+    T_\textrm{line}(k_x=0)|^2$ for various deflections $l$ (all
+    mirrors deflected to the same angle).}
   \label{fig:maxima-diffraction}
 \end{figure}
 
-% In the picture \ figref { fig: maximum diffraction } ~ right is the
-% full expression $ | \ widetilde T_ \ textrm {line } ( k_x ) | ^
-% represented $ 2 ( with $ N = $ 20). And I have the Spiegeldeflectionen
-% with $ k_ { px } $ varied. In the case $ l = 0 $, all mirrors are
-% undeflected and all the light remains in the zero order . A
-% particularly interesting case occurs for $ l = \ lambda / 4 $ . This
-% corresponds to the blaze condition . Each individual mirror reflects a
-% part of the plane wave are offset by exactly one wavelength, and
-% reflects all light in the first order . In the lower diagram in \
-% figref { fig: } the maximum diffraction intensity in the zero order is
-% dargstellt for varying Spiegelkippung .
+\figref{fig:maxima-diffraction}~right displays numerical evaluations
+of the full expression $|\widetilde T_\textrm{line}(k_x)|^2$ for
+$N=20$ and varying mirror deflections $l$.  In the case of $l=0$, all
+mirrors are undeflected and all the light remains in the zeroth
+order. A particularly interesting case occurs for $l=\lambda/4$ (blaze
+condition) where all the light is reflected into the first order.
 
-Im Bild \figref{fig:maxima-diffraction}~right ist der volle Ausdruck
-$|\widetilde T_\textrm{line}(k_x)|^2$ dargestellt (mit $N=20$).  Dabei
-habe ich die Spiegeldeflectionen mittels $k_{px}$ variiert. Im Falle
-$l=0$ sind alle Spiegel unausgelenkt und alles Licht bleibt in der
-nullten Ordnung. Ein besonders interessanter Fall tritt fuer
-$l=\lambda/4$ auf. Dies entspricht der Blazekondition. Dabei
-reflektiert jeder einzelne Spiegel einen Teile der ebenen Welle die
-genau um eine Wellenlaenge versetzt sind und alles Licht in die erste
-Ordnung reflektiert.
-
-Im unteren Diagramm in \figref{fig:maxima-diffraction} ist die
-Intensitaet in der nullten Ordnung fuer variierende Spiegelkippung
-dargstellt. 
+The bottom diagram in \figref{fig:maxima-diffraction} shows the
+intensity in the zero order for varying mirror deflections:
 \begin{align}
   |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(4 \pi l/\lambda)^2
 \end{align}
@@ -401,6 +351,13 @@ dargstellt.
 % advantages when the Fourier spectrum is symmetrical. In our
 % application , however, this fact leads to a reduction of the already
 % limiting etendue by a factor of 2
+
+According to the diagram a deflection of the mirrors between 0 and
+$\lambda/4$ permits to gradually modulate the intensity in the zero
+order. In our system this means that the intensity at any point in the
+plane $P'$ (see \figref{fig:memi-real}) depends on the deflection of
+the mirror that is conjugate to this image point. Up to now, all the
+calculations were based on a single plane wave for illumination. 
 
 D.h. eine Kippung der Spiegel mit deflektionen zwischen 0 und
 $\lambda/4$ erlaubt es die Intensitaet der Nullten Ordnung graduell

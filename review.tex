@@ -13,7 +13,7 @@
 \begin{summary}
   This chapter provides an overview of current methods of fluorescence
   microscopy that allow to produce a controlled distribution of the
-  excitation light. I focus in particular on techniques that prevent
+  excitation light. I focus in particular on the techniques that prevent
   unnecessary illumination of out-of-focus structures and reduce
   phototoxicity.
 \end{summary}
@@ -23,10 +23,9 @@
   Light sheets can be directly created with separate optics to
   illuminate the sample from an orthogonal direction. Another
   promising method to create a sheet is to use a high numerical
-  aperture objective near the total internal reflection
-  angle. Diffraction couples the minimum width of the sheet and the
-  extent of the area, where the sheet's width is constant. There is a
-  trade-off between sheet width and field of view.
+  aperture objective near the total internal reflection angle. There
+  is a trade-off between the sheet width and the field of view because
+  both of these things are interrelated due to diffraction.
 \end{summary}
 The idea of illuminating a sample from the side dates back quite far
 into the history of microscopy. Already one hundred years ago, an
@@ -36,8 +35,8 @@ specimen. This dark field technique was used to characterize gold nano
 particles in gold ruby glass \citep{Siedentopf1903}.
 
 Eventually, this illumination method was also applied for fluorescence
-microscopy. First, to analyze cochlea specimen \citep{Voie1993} and,
-more recently, for the development of embryos
+microscopy. First, it was used to analyze cochlea specimen
+\citep{Voie1993} and, more recently, for the development of embryos
 \citep{Huisken2004}. Results in the latter paper have sparked interest
 in the technique at many labs \citep{Santi2011}.
 \subsection{Light sheet generation with cylindrical lens}
@@ -59,7 +58,7 @@ dipping objective with long working distance (\unit[1\ldots 2]{mm})
 and comparatively low NA for detection. A $10\times$ objective with
 $\unit[660]{\mu m}$ field of view diameter is used with a sheet
 thickness that varies less than $42\%$ ($\unit[6\ldots 8]{\mu
-  m}$). The light sheet not only improves sectioning and contrast but
+  m}$). The light sheet not only improves sectioning and contrast, but
 also increases the axial resolution from originally $\unit[14]{\mu m}$
 by nearly a factor of two.
 
@@ -121,7 +120,7 @@ additional objectives.
     lower optical density than the immersion medium. For a very high
     illumination angle --- corresponding to a point on the periphery
     of the back focal plane --- the light would be reflected at the
-    ``cover slip-medium'' interface due to total internal reflection
+    ``cover slip-medium'' interface due to the total internal reflection
     (TIR). For HILO, a point on the back focal plane slightly closer
     to the optic axis is illuminated. The light enters the embedding
     medium at a highly inclined angle and only a thin sheet in the
@@ -161,8 +160,8 @@ lenses.
   phototoxicity during the observation.
 
   Here I present two methods that can mitigate this effect. The first
-  ist the two-photon microscop, in which the excitation is limited to
-  the focal plane.
+  method is two-photon microscopy, in which the excitation is limited
+  to the focal plane.
 
   Furthermore, there is controlled light exposure microscopy that
   selectively illuminates the sample depending on its structure. It
@@ -208,7 +207,7 @@ integration time at the detector defines horizontal sampling.
 \begin{figure}[hbtp]
   \centering
   \svginput{1}{clem-sketch}
-  \caption{ Schematic representation of a typical fluorescence image
+  \caption{Illustration of a typical fluorescence image
     of a neuronal cell and histograms for three different regions. In
     the conventional confocal microscope areas without fluorophores
     (A) and the areas with many fluorophores (C) are subjected to an
@@ -357,8 +356,8 @@ reflected by any of the other DMD mirrors and ends up on camera 2.
     \citep[inspired from][]{Verveer1998}. A digital micro mirror
     device (DMD) containing an array of tiltable mirrors is imaged
     into the focal plane of the objective. Returning fluorescent light
-    from out-of-focus fluorophores is distributed onto both the
-    cameras. In-focus fluorescence is only imaged onto camera 1.}
+    from out-of-focus fluorophores is distributed onto both
+    cameras. In-focus fluorescence is only imaged onto the camera 1.}
   \label{fig:pam-sketch}
 \end{figure}
 
@@ -369,10 +368,10 @@ cameras~1 and 2 integrate for a long time while the DMD displays many
 patterns. The pattern sequence could for example be a single pixel
 which scans the entire field. This would be very slow, so instead,
 patterns of a pseudorandom sequence are presented which significantly
-accelerates data acquisition because each individual pattern excites
+accelerates data acquisition, because each individual pattern excites
 more in-focus information. However, at the same time crosstalk is
 increased, i.e.\ additional light from out-of-focus fluorophores is
-collected on camera 1.  The images from both cameras for z-stack
+collected in camera 1.  The images from both cameras for z-stack
 acquisitions are reconstructed using a maximum likelihood
 deconvolution.
 
@@ -381,7 +380,7 @@ section \ref{sec:CLEM}) has been implemented in a programmable array
 microscope (PAM) \citep{Caarls2011}. 
 
 
-There are a few drawbacks with the programmable array microscope:
+There are a few drawbacks with the programmable array microscope.
 First, diffraction losses at the DMD reduce detection
 efficiency. Second, if excitation light causes fluorescence or Raman
 scattering at the DMD surface, it is impossible to distinguish this
@@ -437,11 +436,11 @@ and emit at a wavelength of $\unit[(470\pm22)]{nm}$.
 Currently it is not clear whether direct illumination will ever
 replace the more flexible spatial light modulators. Manufacturers of
 direct illumination devices will optimize their technology for
-consumer applications such as mobile phone displays where neither fill
+consumer applications such as mobile phone displays, where neither fill
 factor nor extreme radiant intensity (\unit[]{W/sr}) are very
 important.  Arrays of Vertical-cavity surface-emitting lasers (VCSEL)
 may become interesting alternatives to LED-arrays because they can
-provide high radiant intensity but currently they are not readily
+provide high radiant intensity, but currently they are not readily
 available in the interesting wavelength ranges.
 
 
@@ -526,7 +525,15 @@ the next section.
 
 \subsection{Phase modulation}
 \subsubsection{Digital holography}
-\begin{figure}[!hbt]
+Certain types of liquid crystal spatial light modulators can be used
+to modify the phase of light. When such a device is placed into the
+back focal plane of a lens, it is possible to control the light
+distribution in its front focal plane. An iterative algorithm
+(iterative Fourier transform algorithm, IFTA) can be used to establish
+a phase image on the liquid crystal display that will result in an
+intensity distribution in front of the lens.
+
+\begin{figure}[htbp]
   \centering
   \includegraphics{myholo}\quad
   \svginput{1}{phase-holo_my} 
@@ -536,13 +543,7 @@ the next section.
     \citetext{inspired by slide from V. Emiliani}.}
   \label{fig:phase-holo}
 \end{figure}
-Certain types of liquid crystal spatial light modulators can be used
-to modify the phase of light. When such a device is placed into the
-back focal plane of a lens, it is possible to control the light
-distribution in its front focal plane. An iterative algorithm
-(iterative Fourier transform algorithm, IFTA) can be used to establish
-a phase image on the liquid crystal display that will result in an
-intensity distribution in front of the lens.
+
 
 \nomenclature{IFTA}{Iterative Fourier transform algorithm}
 
@@ -569,9 +570,9 @@ Holographic control can be used with 2-photon excitation as well
 \citep{Nikolenko2008}, % two photon
 but this exacerbates the effect of speckles.
 \subsubsection{Generalized phase contrast (GPC)}
-\begin{figure}[!hbt]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=14cm]{phase} % FIXME redraw
+  \includegraphics[width=12cm]{phase} % FIXME redraw
   \caption{Schematic of generalized phase contrast
     \citep[from][]{Rodrigo2008}.}
   \label{fig:phase}
@@ -597,9 +598,9 @@ allows spatially controlled illumination of in-focus areas
 results in high light efficiency compared to intensity modulation.
 Splitting and recombination of the spectral components of the pulse
 reduce speckle noise considerably.
-\begin{figure}[!hbt]
+\begin{figure}[htbp]
   \centering
-  \includegraphics[width=11cm]{tf-gpc} 
+  \includegraphics[width=10cm]{tf-gpc} 
   \caption{Schematic of phase contrast with temporal focusing (TF-GPC)
     \citep[from][]{Papagiakoumou2010}, PCF is a phase contrast filter.}
   \label{fig:tf-gpc}

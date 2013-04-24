@@ -439,17 +439,7 @@ Now I explain how to select good points on the periphery of
 out-of-focus nuclei in order to allow this calculation. I utilize the
 geometry in \figref{fig:touch-cone}~A).
 
-The tangents of an out-of-focus sphere
-{\color[rgb]{0.06666667,0.50196078,0}$S^\s_r$} centred at $\s$ with
-radius $r$ that pass through the target $\c$ form a double cone
-(assuming $\c$ is outside of $S^\s_r$). The tangents touch the surface
-of the sphere $S^\s_r$ in the circle
-{\color[rgb]{0.66666667,0,0}{$C$}}. We will find a parametric
-expression for the points on the circle $C$ by intersecting the sphere
-$S^\s_r$ and the sphere {\color[rgb]{0.28235294,0.24313725,0.21568627}$S^\c_R$}
-centred at $\c$ with radius $R=\abs{\c-\s}$ which is the distance from
-the target to the centre of the out-of-focus sphere.
-\begin{figure}[!htbp]
+\begin{figure}[htbp]
   \centering
   \svginput{1}{touch-cone}
   \caption{{\bf (A)} Schematic of how an out-of-focus nucleus and a
@@ -463,6 +453,18 @@ the target to the centre of the out-of-focus sphere.
     using the performance improvement as described in this section.}
   \label{fig:touch-cone}
 \end{figure}
+
+
+The tangents of an out-of-focus sphere
+{\color[rgb]{0.06666667,0.50196078,0}$S^\s_r$} centred at $\s$ with
+radius $r$ that pass through the target $\c$ form a double cone
+(assuming $\c$ is outside of $S^\s_r$). The tangents touch the surface
+of the sphere $S^\s_r$ in the circle
+{\color[rgb]{0.66666667,0,0}{$C$}}. We will find a parametric
+expression for the points on the circle $C$ by intersecting the sphere
+$S^\s_r$ and the sphere {\color[rgb]{0.28235294,0.24313725,0.21568627}$S^\c_R$}
+centred at $\c$ with radius $R=\abs{\c-\s}$ which is the distance from
+the target to the centre of the out-of-focus sphere.
 
 In order to find a point $\e$ where a tangent touches the out-of-focus
 sphere, it is sufficient to solve the following equation in a
@@ -493,13 +495,11 @@ value of their scalar product equals the square of the length
 $\abs{\q\x}=\x^2$.
 \begin{align}
   \x&=\c-\s\\
-  \q&=\begin{cases}
+  \y&=\x\times\q \quad \textrm{with}\ \q=\begin{cases}
     (0,0,1)^T & \textrm{when}\ \abs{x_z}<\frac{2}{3}\abs{\x}\\
     (0,1,0)^T & \textrm{else}
   \end{cases}\\
-  \y&=\x\times\q \\
-  \hx&=\x/\abs{\x}\\
-  \hy&=\y/\abs{\y}
+  \hx&=\x/\abs{\x}, \quad \hy=\y/\abs{\y}
 \end{align}
 Now I can sample the intersection circle $C$ in order to create
 viable starting points $\e$ for tangential rays.  Let $M_\phi^\hc$ be

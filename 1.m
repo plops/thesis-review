@@ -98,8 +98,29 @@ hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4);
 
 S = 12 * lineseg + 4 * rectangle + hollow_sphere;
 
-dbquit
 
+SPAD = extract(S,sp+size(S));
+sSp = size(SPAD);
+kSPAD = ft(SPAD);
+
+% schaue grating im fourier raum
+kSPAD(:,floor(sSp(2)/2),floor(sSp(3)/2))
+
+
+WF = ift(kSPAD * extract(otf,size(SPAD)));
+
+% jetzt die strukturierte beleuchtung
+% kopiere gitter in die zu bestimmende fokusebene
+% suche die stellen im objekt, die daten enthalten
+slices = squeeze(find(squeeze(sum(S,[],[1 2]))));
+slices_n = size(slices);
+slices(floor(slices_n(2)/2))
+
+Ssmall = S(:,:,slices(1):slices(slices_n(2)));
+
+Usmall = newim
+
+% dbquit Super-S-c schliesst fenster
 
 
 %% Local Variables:

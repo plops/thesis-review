@@ -1669,21 +1669,21 @@
        y="1097.2433"
        x="-100.17168"
        id="image3449"
-       xlink:href="file:///dev/shm/revise/raster/bleach_r2_theta000.jpg"
+       xlink:href="../raster/bleach_r2_theta000.jpg"
        height="54.5"
        width="129.5" />
     <image
        y="1082.1012"
        x="193.31483"
        id="image3511"
-       xlink:href="file:///dev/shm/revise/raster/bleach_r05_theta180.jpg"
+       xlink:href="../raster/bleach_r05_theta180.jpg"
        height="86.5"
        width="128" />
     <image
        y="1096.5553"
        x="51.393497"
        id="image3573"
-       xlink:href="file:///dev/shm/revise/raster/bleach_r05_theta000.jpg"
+       xlink:href="../raster/bleach_r05_theta000.jpg"
        height="58.5"
        width="129" />
     <path

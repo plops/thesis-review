@@ -48,7 +48,7 @@ otf = ift(psf);  so=size(otf); log(otf(:,floor(so(2)/2),:))
 sp = size(psf);
 GX = 64;
 grating = newim(GX,GX,1);
-grating = .5*(1+sin(xx(grating,'freq')*pi*20));
+grating = .5*(1+sin(xx(grating,'freq')*pi*24));
 
 % haenge aussen einen ausreichend grossen rand von nullen dran
 
@@ -59,13 +59,13 @@ kgratingPAD = ft(gratingPAD);
 % schaue grating im fourier raum
 kgratingPAD(:,floor(sgp(2)/2),floor(sgp(3)/2))
 % und verleiche mit in z projezierter otf 
-sum(squeeze(otfPAD(:,floor(sgp(2)/2),:)),[],2)
+% sum(squeeze(otfPAD(:,floor(sgp(2)/2),:)),[],2)
 
 
 otfPAD = extract(otf,size(gratingPAD));
 illum = ift(kgratingPAD * otfPAD);
 
-illum(:,floor(sgp(2)/2),:)
+%illum(:,floor(sgp(2)/2),:)
 
 % point spread function in real space
 h = abs(ft(a))^2;
@@ -74,4 +74,34 @@ X = 129; % this should be
 g = newim(X,X);
 a = ft(besselj(0,sqrt(xx(g,'true')^2+yy(g,'true')^2)*pi))
 
+
+g2 = newim(GX,GX,GX); % make empty 3d image
+
+%% objects: line, rectangle arranged in two planes and a hollow
+%% sphere as a 3d object
+line_x=floor(.3*GX);
+line_y0=floor(.1*GX);
+line_y1=floor(.9*GX);
+line_z=floor(GX/2)-3;
+lineseg = newim(g2);
+lineseg(line_x:line_x,line_y0:line_y1,line_z) = 1;
+
+rect_x0 = floor(.2*GX);
+rect_x1 = floor(.9*GX);
+rect_y0 = floor(.2*GX);
+rect_y1 = floor(.5*GX);
+rect_z = floor(GX/2)+3;
+rectangle = newim(g2);
+rectangle(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
+
+hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
+
+S = 12 * lineseg + 4 * rectangle + hollow_sphere;
+
 dbquit
+
+
+
+%% Local Variables:
+%% mode: Octave
+%% End:

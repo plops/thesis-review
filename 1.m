@@ -102,9 +102,10 @@ G=newim(S);
 G2=G;
 sizeS = size(S);
 G_z = 28;
-G(:,:,G_z) = .5*(1+sin(xx(sizeS(1),sizeS(2),'freq')*pi*24));
-G2(:,:,G_z) = .5*(1-sin(xx(sizeS(1),sizeS(2),'freq')*pi*24));
+G(:,:,G_z) = .5*(1+sin(xx(sizeS(1),sizeS(2))/64*12*2*pi));
+G2(:,:,G_z) = .5*(1-sin(xx(sizeS(1),sizeS(2))/64*12*2*pi));
 
+tic
 
 SPAD = extract(S,sp+size(S));
 sSp = size(SPAD);
@@ -119,16 +120,29 @@ kGPAD = ft(GPAD);
 
 otfPAD = extract(otf,size(SPAD));
 WF = ift(kSPAD * otfPAD);
+WF_z = floor(sp(3)/2)+G_z;
+WF_slice = WF(:,:,WF_z);
 
 Ill1 = ift(kGPAD * otfPAD);
 Ill2 = ift(ft(G2PAD) * otfPAD);
 
-Struc1 = ift(ft(Ill*SPAD) * otfPAD);
+Struc1 = ift(ft(Ill1*SPAD) * otfPAD);
+Struc1 = Struc1(:,:,WF_z);
 Struc2 = ift(ft(Ill2 * SPAD) * otfPAD);
+Struc2 = Struc2(:,:,WF_z);
 
+toc
+
+%dipshow(sum(ft(Struc1 - Struc2),[],3),'percentile')
+%dipshow(sum(ft(Struc1 + Struc2),[],3),'percentile')
 % dbquit Super-S-c schliesst fenster
 
+%EDU>> fig=dipshow(cat(3,Struc1,Struc2,WF_slice))
+% dipshow(fig,'ch_globalstretch','off')
+% ch_slicing
 
+dipshow(1,'ch_mappingmode','log')
+ 
 %% Local Variables:
 %% mode: Octave
 %% End:

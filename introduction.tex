@@ -1,8 +1,10 @@
 \chapter{Introduction}
 \label{sec:intro}
 \begin{summary}
-  In this work I discuss a modification of a fluorescence microscope    \cma{my device}
-  that minimizes the toxic effects of the excitation light.
+  In this work I discuss a modification of a fluorescence microscope
+  that minimizes the toxic effects of the excitation light by
+  utilizing two spatial light modulators to control the angle and
+  position of the excitation light in the specimen.
 
   In the following introductory chapter I describe what phototoxicity   \cma{phototoxicity}
   is and how it comes about. Then I give an example of how it
@@ -22,48 +24,40 @@ Regardless of whether it is the picture of earth captured by an
 orbiting satellite, the x-ray motion picture of a running dog or the
 time-lapse recording of a blooming flower. Images capture our
 imagination and they are a good starting point to develop new models
-and theories.
-
-This is particularly true for microscopy.  Only after people became
-aware of microorganisms by direct observation, medieval quack could
-finally be overcome and modern medicine based on the scientific
-method flourished instead.
+and theories. This is particularly true for microscopy.  Only after
+people became aware of microorganisms by direct observation, medieval
+quack could finally be overcome and modern medicine based on the
+scientific method flourished instead.
 
 Even today --- with electron microscopes, magnetic resonance
 tomography and sequencing machines --- optical microscopy still is an
-indispensable tool for research of living organisms.
-
-Fluorescence microscopy is of particular importance: It enables the     \cma{labelling, switching}
-scientist to selectively label a particular type of molecule in living cells
-and observe how they perform their biological function.
-
-Besides localizing molecules it is possible to measure physical
-quantities inside of the sample. There are, for example, fluorescent
-labels that report membrane potentials or viscosity inside of cells.
-
-Finally, it is even possible to exert a controlling function with the
-excitation light: There are compounds that locally release chemicals
-when illuminated and there are  genetically encoded ion channels that can be
-switched by light \citep{Boyden2005}.
-
-However, the excitation light introduces unnatural and potentially
-deleterious energy into the specimen. If the exogenous light harms the
+indispensable tool for research of living organisms.  Fluorescence
+microscopy is of particular importance because it enables the
+\cma{labeling, switching} scientist to selectively label a particular
+type of molecule in living cells and observe how they perform their
+biological function.  Besides localizing molecules it permits to
+measure physical quantities inside of the sample. Fluorescent labels
+can be used to report membrane potentials or viscosity inside of
+cells.  Furthermore, light can exert a controlling function by
+exciting compounds that locally release chemicals with a biological
+function, e.g.\ a double-caged glutamate \citep{Pettit1997}, or
+triggering genetically encoded ion channels, e.g.\ the protein
+Channelrhodopsin-2 \citep{Boyden2005}. However, the excitation light
+may introduce unnaturally large amounts of energy into the specimen
+which is potentially deleterious. If the exogenous light harms the
 observed organism in any way, this effect is called phototoxicity.
-
 % dennoch: from photophysical prospective of single- and multi-photon
 % microcopy, probably the most disheartening reality is the occurrence
 % of photobleaching and photodamage
 % \citep{diaspro2009nanoscopy}
-
-There are a number of techniques that can reduce phototoxicity: Two
-photon excitation, controlled light exposure, selective plane
-illumination, highly inclined and laminated optical sheet, and oblique
-plane microscopy. I introduce them in
-chapter \ref{sec:approaches}. These techniques have different
-pros and cons and not all are equally suited for a specific problem,
-e.g.\ selective plane illumination is very effective, but it needs two
-perpendicular lenses and can not be used for multiwell plates or to
-observe the liver of a living, adult mouse.
+A number of techniques can reduce phototoxicity: Two photon
+excitation, controlled light exposure, selective plane illumination,
+highly inclined and laminated optical sheet, and oblique plane
+microscopy. I introduce them in chapter \ref{sec:approaches}. These
+techniques have different pros and cons and not all are equally suited
+for a specific problem, e.g.\ selective plane illumination is very
+effective, but it needs two perpendicular lenses and can not be used
+for multiwell plates or to observe the liver of a living, adult mouse.
 
 In this work I present an approach that makes use of modern display
 and camera technology. We only modify the microscope's illumination
@@ -94,22 +88,16 @@ animals come to harm, this screening experiment is an impeccable
 method to systematically understand and hopefully heal certain
 diseases. However, this experiment does not work very well, if the
 excitation light --- and not the drug --- kills the pathogens. The
-effect of phototoxicity should therefore be minimized.
-
-
-Now one would hardly develop a microscope and directly test it with
-dangerous pathogens. As part of our collaboration, the Institut
-Pasteur therefore developed a safe biological test system that is
-relatively easy to maintain \citep{Stiernagle2006} and allows to test
-the phototoxicity of various microscopes \citep{Tinevez2012}.
-
-
-
-
-The basis of the system is the embryo of the organism \celegans. These
-are small invertebrates. The adult form is approximately \unit[1]{mm}
-long.  Their anatomy and development are comparatively simple and have
-been well characterized \citep{Sulston1977,Durbin1987}.
+effect of phototoxicity should therefore be minimized.  One would
+hardly develop a microscope and directly test it with dangerous
+pathogens. As part of our collaboration, the Institut Pasteur
+therefore developed a safe biological test system that is relatively
+easy to maintain \citep{Stiernagle2006} and allows to test the
+phototoxicity of various microscopes \citep{Tinevez2012}. The basis of
+this system are embryos of the small invertebratem \celegans. The
+adult form is approximately \unit[1]{mm} long.  Their anatomy and
+development are comparatively simple and have been well characterized
+\citep{Sulston1977,Durbin1987}.
 
 \begin{figure}[hbtp]
   \centering
@@ -142,43 +130,36 @@ tagged histones (enhanced green fluorescent protein, excitation
 maximum \unit[488]{nm}, emission maximum \unit[509]{nm}). Histones are
 incorporated into the chromatin during cell divisions, i.e.\ the
 nuclei of our worms fluoresce green.  The mother worm passes a
-sufficient amount of these proteins into the cytoplasm of the
-embryo. In the beginning of its development the embryo entirely relies
-on this reserve of histones. Only in a much later stage --- certainly
-not during the first few hours, that we observe --- it will form its
-own histones.
+sufficient amount of these proteins into the egg. In the beginning of
+its development the embryo entirely relies on this reserve of
+histones. Only in a much later stage --- certainly not during the
+first few hours, that we observe --- it will form its own histones.
 
-\figref{fig:celegans-devel} compares time-lapse experiments on three \cma{embryo example} 
-different \celegans\ embryos with varying
-excitation intensities.
-
-The lineage tree of two developing \celegans\ embryos is the \cma{reproducible development}
-same.  With all other factors being equal, particularly if the
-temperature is constant at $\unit[21\pm
-1]{\degreeCelsius}$, two different embryos will develop at the
-same speed from egg to fertile adult in three and a half days.
-
-
+\figref{fig:celegans-devel} compares time-lapse experiments on three
+\cma{embryo example} different \celegans\ embryos with varying
+excitation intensities.  The lineage tree of two developing \celegans\
+embryos is the \cma{reproducible development} same.  With all other
+factors being equal, particularly if the temperature is constant at
+$\unit[21\pm 1]{\degreeCelsius}$, two different embryos will develop
+at the same speed from egg to fertile adult in three and a half days.
 At the beginning of the experiment, embryos are removed from their
 mothers at an identical stage, before any cellular divisions have
 occured. Then a $z-$stack of the egg with 41 slices and one micron
 $z-$sampling is obtained every two minutes.
 
-The columns in \figref{fig:celegans-devel} depict three different embryos
-whose development was imaged according to this protocol for two hours
-and 38 minutes with different excitation powers.
-
-The figure displays the maximum intensity projections of the
-$z-$stacks.  In order to make the cell nuclei visible in all images, I
-normalized the data to the same range. As can be guessed from the
-photon shot noise, the upper left image contains the least number of
-fluorescence photons, and the upper right the most.
+The columns in \figref{fig:celegans-devel} depict three different
+embryos whose development was imaged according to this protocol for
+two hours and 38 minutes with different excitation powers.  The figure
+displays the maximum intensity projections of the $z-$stacks.  In
+order to make the cell nuclei visible in all images, I normalized the
+data to the same range. As can be guessed from the photon shot noise,
+the upper left image contains the least number of fluorescence
+photons, and the upper right the most.
 
 An analysis of the time-lapse data show that one hour into the
 experiment the embryo with the highest excitation dose (right) has
 stopped developing and its fluorophores are strongly bleached.  Some
 cells even turned apoptotic and went into programmed cell death.
-
 After two hours and 38 minutes the experiment was stopped and the
 embryo which was exposed to the lowest dose (left) has developed the
 largest number of cells. The middle embryo ceased developing while the
@@ -772,7 +753,7 @@ Light from the focal plane interferes constructively on the detector,
 light emitted at $\lambda/4$ distance away from the focal plane
 interferes destructively, light that is emitted at several wavelengths
 distance from the focal plane contributes as an incoherent sum to the
-detected signal. Therefore a $z-$stack of a fluorescent plane captured
+detected signal. Therefore, a $z-$stack of a fluorescent plane captured
 with two opposing lenses compared to just one lens will give a signal
 that is four times as bright in focus, shows damped oscillations
 (because of the finite spectral band emitted by the fluorophores) when
@@ -782,13 +763,13 @@ I${}^2$M but there is still background signal \citep{Gustafsson1995}.
 
 The reason for this background signal is conservation of energy from
 plane to plane. A light ray that started in a certain object point
-does not stop in the corresponding image point. Therefore most
+does not stop in the corresponding image point. Therefore, most
 out-of-focus light is added incoherently as a background to the
 detected signal.
 
 Structured \cma{optical sectioning with confocal microscope}
-illumination can be used to remove this out-of-focus light.  There are
-two major incarnations of this technique in current use.  On the one
+illumination can be used to remove this out-of-focus light. 
+Two major incarnations of this technique are in current use.  On the one
 hand there is the confocal microscope\label{sec:confocal} in which
 mechanically scans a single point spread function over the focal
 plane. This approach allows to block out-of-focus light optically. The
@@ -813,7 +794,7 @@ systems, although this difference disappears when avalanche
 photodiodes are used. A significant disadvantage, however, is that the
 out-of-focus light is always measured with the detector. Its
 accompanying photon shot noise reduces the quality of the signal (see
-section \ref{sec:photon-noise}). Therefore this method is particularly
+section \ref{sec:photon-noise}). Therefore, this method is particularly
 problematic in thick fluorescent samples with much more out-of-focus
 than in-focus light. The confocal microscope is in this sense the
 better tool because its picture quality is independent on the
@@ -935,7 +916,7 @@ running over the surface. Such detectors are called 'back-thinned' and
 can achieve a quantum efficiency of up to $95\%$ for green light.
 
 There are basically two different technologies to measure and digitize
-the charge that was collected in the photodiodes:
+the charge that was collected in the photodiodes of focal plane arrays:
 
 In the passive-pixel sensor columns of diodes form a linear row of
 \cma{Charge-coupled devices (CCD)} capacitors. By applying a sequence

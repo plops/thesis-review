@@ -97,28 +97,34 @@ rectangle(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
 hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
 
 S = 12 * lineseg + 4 * rectangle + hollow_sphere;
+[rubbish,rubbish2,S] = bbox(S>0,S);
+G=newim(S);
+G2=G;
+sizeS = size(S);
+G_z = 28;
+G(:,:,G_z) = .5*(1+sin(xx(sizeS(1),sizeS(2),'freq')*pi*24));
+G2(:,:,G_z) = .5*(1-sin(xx(sizeS(1),sizeS(2),'freq')*pi*24));
 
 
 SPAD = extract(S,sp+size(S));
 sSp = size(SPAD);
 kSPAD = ft(SPAD);
 
+GPAD = extract(G,sp+size(S));
+G2PAD = extract(G2,sp+size(S));
+kGPAD = ft(GPAD);
+
 % schaue grating im fourier raum
-kSPAD(:,floor(sSp(2)/2),floor(sSp(3)/2))
+% kSPAD(:,floor(sSp(2)/2),floor(sSp(3)/2))
 
+otfPAD = extract(otf,size(SPAD));
+WF = ift(kSPAD * otfPAD);
 
-WF = ift(kSPAD * extract(otf,size(SPAD)));
+Ill1 = ift(kGPAD * otfPAD);
+Ill2 = ift(ft(G2PAD) * otfPAD);
 
-% jetzt die strukturierte beleuchtung
-% kopiere gitter in die zu bestimmende fokusebene
-% suche die stellen im objekt, die daten enthalten
-slices = squeeze(find(squeeze(sum(S,[],[1 2]))));
-slices_n = size(slices);
-slices(floor(slices_n(2)/2))
-
-Ssmall = S(:,:,slices(1):slices(slices_n(2)));
-
-Usmall = newim
+Struc1 = ift(ft(Ill*SPAD) * otfPAD);
+Struc2 = ift(ft(Ill2 * SPAD) * otfPAD);
 
 % dbquit Super-S-c schliesst fenster
 

@@ -97,8 +97,9 @@ G=newim(S);
 G2=G;
 sizeS = size(S);
 G_z = 28;
-G(:,:,G_z) = .5*(1+sin(xx(sizeS(1),sizeS(2))/64*12*2*pi));
-G2(:,:,G_z) = .5*(1-sin(xx(sizeS(1),sizeS(2))/64*12*2*pi));
+G(:,:,G_z) = .5*(1+sin((xx(sizeS(1),sizeS(2))+yy(sizeS(1),sizeS(2)))/sqrt(2)/64*12*2*pi));
+G2(:,:,G_z) = .5*(1-sin((xx(sizeS(1),sizeS(2))+yy(sizeS(1),sizeS(2)))/sqrt(2)/64*12*2*pi));
+
 
 tic
 
@@ -159,16 +160,17 @@ peak bei 83
 60+12/64*121 = 82.6875
 
 ft((Struc1-Struc2))
-ft((Struc1-Struc2)*exp(2*pi*i*12/64*xx(Struc1)))
+ft((Struc1-Struc2)*exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1))))
 
 tic
 size_Struc = size(Struc1);
-rad_scan = newim(size_Struc(1),size_Struc(2),100,'complex');
+rad_scan = newim(size_Struc(1),size_Struc(2)*3,100);
 for rad = 1:100
   lowpass = gaussf(rr(Struc1,'freq')<(rad/100.0) ,2);
- % foo = real(ift(lowpass * ft(SPAD(:,:,WF_z))));
-%  bar = imag(ift(lowpass * ft((Struc1-Struc2)*exp(2*pi*i*12/64*xx(Struc1)))));
-  rad_scan(:,:,rad-1) =lowpass * ft((Struc1-Struc2)*exp(2*pi*i*12/64*xx(Struc1))) ; %cat(2,lowpass,foo/max(foo),bar/max(bar));
+  foo = real(ift(lowpass * ft(SPAD(:,:,WF_z))));
+  tilt = exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1)));
+  bar = imag(ift(lowpass * ft((Struc1-Struc2)*tilt)));
+  rad_scan(:,:,rad-1) =cat(2,lowpass,foo/max(foo),bar/max(bar));
 end
 toc
 

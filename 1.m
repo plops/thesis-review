@@ -75,8 +75,8 @@ g2 = newim(GX,GX,GX); % make empty 3d image
 %% objects: line, rectangle arranged in two planes and a hollow
 %% sphere as a 3d object
 line_x=floor(.3*GX);
-line_y0=floor(.1*GX);
-line_y1=floor(.9*GX);
+line_y0=floor(0*GX);
+line_y1=floor(1*(GX-1));
 line_z=floor(GX/2)-3;
 lineseg = newim(g2);
 lineseg(line_x:line_x,line_y0:line_y1,line_z) = 1;
@@ -164,15 +164,27 @@ ft((Struc1-Struc2)*exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1))))
 
 tic
 size_Struc = size(Struc1);
-rad_scan = newim(size_Struc(1),size_Struc(2)*3,100);
-for rad = 1:100
+rad_scan = newim(size_Struc(1),size_Struc(2)*4,60);
+for rad = 1:60
   lowpass = gaussf(rr(Struc1,'freq')<(rad/100.0) ,2);
+  hipass = 1 - lowpass;
+  ring = real(ft(besselj(0,rad/100.0*2*sqrt(xx(Struc1)^2+yy(Struc1)^2)*pi)));
   foo = real(ift(lowpass * ft(SPAD(:,:,WF_z))));
   tilt = exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1)));
   bar = imag(ift(lowpass * ft((Struc1-Struc2)*tilt)));
-  rad_scan(:,:,rad-1) =cat(2,lowpass,foo/max(foo),bar/max(bar));
+  baz = real(ift(hipass * ft(Struc1+Struc2)));
+  sec = bar/max(bar)+baz/max(baz);
+  rad_scan(:,:,rad-1) =cat(2,lowpass,ring/max(ring),bar/max(bar),baz/max(baz));
 end
 toc
+rad_scan
+
+
+rr(Struc1,'freq')<.5
+
+ft(besselj(0,rad/100.0*.5*sqrt(xx(g)^2+yy(g)^2)*pi))
+
+eta ist mittelwert ueber hochpass betrags quadrat im ring / mittelwert low pass desselben
 
 sum(rad_scan^2,[],[1 2])
 %% Local Variables:

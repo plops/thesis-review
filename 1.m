@@ -164,23 +164,32 @@ ft((Struc1-Struc2)*exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1))))
 
 tic
 size_Struc = size(Struc1);
-rad_scan = newim(size_Struc(1),size_Struc(2)*4,60);
-for rad = 1:60
-  lowpass = gaussf(rr(Struc1,'freq')<(rad/100.0) ,2);
+rad_scan = newim(size_Struc(1),size_Struc(2)*4,100);
+etas = newim(100);
+for rad = 1:100
+  lowpass = gaussf(rr(Struc1,'freq')<(rad/500.0) ,2);
   hipass = 1 - lowpass;
-  ring = real(ft(besselj(0,rad/100.0*2*sqrt(xx(Struc1)^2+yy(Struc1)^2)*pi)));
+  ring = bdilation(rr(Struc1,'freq')<rad/500.0)- (rr(Struc1,'freq')<rad/500.0);
+  %real(ft(besselj(0,rad/100.0*2*sqrt(xx(Struc1)^2+yy(Struc1)^2)*pi)));
   foo = real(ift(lowpass * ft(SPAD(:,:,WF_z))));
   tilt = exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1)));
-  bar = imag(ift(lowpass * ft((Struc1-Struc2)*tilt)));
-  baz = real(ift(hipass * ft(Struc1+Struc2)));
-  sec = bar/max(bar)+baz/max(baz);
-  rad_scan(:,:,rad-1) =cat(2,lowpass,ring/max(ring),bar/max(bar),baz/max(baz));
+  nonuni = ft((Struc1-Struc2)*tilt);
+  uni = ft(Struc1+Struc2);
+
+  etauni = mean(ring*abs(uni)^2);
+  etanon = mean(ring*abs(nonuni)^2);
+  eta = etauni/etanon;
+ etas(rad) = eta;
+  bar = imag(ift(lowpass * nonuni));
+  baz = real(ift(hipass * uni));
+  sec = bar+baz*eta;
+  rad_scan(:,:,rad-1) =cat(2,lowpass,sec/max(sec),bar/max(bar),baz/max(baz));
 end
 toc
 rad_scan
 
 
-rr(Struc1,'freq')<.5
+
 
 ft(besselj(0,rad/100.0*.5*sqrt(xx(g)^2+yy(g)^2)*pi))
 

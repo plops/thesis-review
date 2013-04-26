@@ -158,7 +158,19 @@ ft(.5*(1-sin(xx(121)/64*12*2*pi)))
 peak bei 83
 60+12/64*121 = 82.6875
 
+ft((Struc1-Struc2))
+ft((Struc1-Struc2)*exp(2*pi*i*12/64*xx(Struc1)))
 
+tic
+size_Struc = size(Struc1);
+rad_scan = newim(size_Struc(1),size_Struc(2)*3,100);
+for rad = 1:100
+  lowpass = gaussf(rr(Struc1,'freq')<(rad/100.0) ,2);
+  foo = real(ift(lowpass * ft(WF_slice)));
+  bar = imag(ift(lowpass * ft((Struc1-Struc2)*exp(2*pi*i*12/64*xx(Struc1)))));
+  rad_scan(:,:,rad-1) = cat(2,lowpass,foo/max(foo),bar/max(bar));
+end
+toc
 
 
 %% Local Variables:

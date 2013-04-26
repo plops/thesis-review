@@ -162,33 +162,48 @@ peak bei 83
 ft((Struc1-Struc2))
 ft((Struc1-Struc2)*exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1))))
 
-tic
-size_Struc = size(Struc1);
-rad_scan = newim(size_Struc(1),size_Struc(2)*4,100);
-etas = newim(100);
-for rad = 1:100
-  lowpass = gaussf(rr(Struc1,'freq')<(rad/500.0) ,2);
-  hipass = 1 - lowpass;
-  ring = bdilation(rr(Struc1,'freq')<rad/500.0)- (rr(Struc1,'freq')<rad/500.0);
-  %real(ft(besselj(0,rad/100.0*2*sqrt(xx(Struc1)^2+yy(Struc1)^2)*pi)));
-  foo = real(ift(lowpass * ft(SPAD(:,:,WF_z))));
-  tilt = exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1)));
-  nonuni = ft((Struc1-Struc2)*tilt);
-  uni = ft(Struc1+Struc2);
+% eigentlich muesste man bei der 2d behandlung vignetting
+% beruecksichtigen
 
+otf2d = sum(real(otfPAD),[],3);
+otf2d = otf2d/max(otf2d);
+otfcorr = (otf2d>0)/otf2d;
+otfmask = otf2d>0.001;
+otfcorr(not(otfmask))=1;
+otfcorr = otfcorr * gaussf(berosion(otfmask,8),3);
+otfcorr
+
+%cat(3,real(ift(otfcorr * ft(WF_slice))),WF_slice)
+
+normalize = @(in) (in-min(in))/(max(in)-min(in))
+
+tic
+
+Slice = SPAD(:,:,WF_z);
+kSlice = ft(Slice);
+tilt = exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1)));
+uni = ft(Struc1+Struc2);
+nonuni_unshifted = otfcorr*ft(Struc1-Struc2);
+nonuni = ft(ift(nonuni_unshifted)*tilt);
+
+size_Struc = size(Struc1);
+rad_scan = newim(size_Struc(1),size_Struc(2)*4,60);
+for rad = 1:60
+  mask = rr(Struc1,'freq')<(rad/100.0);
+  lowpass = gaussf(mask ,2);
+  hipass = 1 - lowpass;
+  ring = bdilation(mask)-mask;
+  foo = real(ift(lowpass * kSlice));
   etauni = mean(ring*abs(uni)^2);
   etanon = mean(ring*abs(nonuni)^2);
   eta = etauni/etanon;
- etas(rad) = eta;
   bar = imag(ift(lowpass * nonuni));
   baz = real(ift(hipass * uni));
   sec = bar+baz*eta;
-  rad_scan(:,:,rad-1) =cat(2,lowpass,sec/max(sec),bar/max(bar),baz/max(baz));
+  rad_scan(:,:,rad-1) =cat(2,normalize(abs(ring*1e-7+lowpass*nonuni+.1*nonuni)),normalize(sec),normalize(bar),normalize(baz));
 end
 toc
 rad_scan
-
-
 
 
 ft(besselj(0,rad/100.0*.5*sqrt(xx(g)^2+yy(g)^2)*pi))

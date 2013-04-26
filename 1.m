@@ -6,15 +6,10 @@ nu = n/lambda0;  % diameter of the ewald sphere
 NA = 1.4; % numerical aperture of the lens
 alpha = asin(NA/n);  % acceptance half-angle of lens
 
-delta_nux = 4*nu*sin(alpha);
-delta_nuz = 2*nu*(1-cos(alpha));
-
 % cut segment from sphere shell as given by numerical aperture
 % FIXME this implements \ref{eq:mccutchen}
 % a = nu<rr(g) & rr(g)<nu+1 & zz(g)>nu*cos(alpha);  
-X = 77; % muss ungerade sein, fuer perfektes zentrum
-Z=floor(X*delta_nuz/delta_nux);
-Z =  floor(X/2)+.5*X*delta_nuz/delta_nux 
+X = 37; % muss ungerade sein, fuer perfektes zentrum
 g = newim(X,X,X);
 
 % das beruehrt genau alle raender, (bei 'freq' ists 200 fuer z und 400
@@ -70,9 +65,9 @@ illum = ift(kgratingPAD * otfPAD);
 % point spread function in real space
 h = abs(ft(a))^2;
 
-X = 129; % this should be 
-g = newim(X,X);
-a = ft(besselj(0,sqrt(xx(g,'true')^2+yy(g,'true')^2)*pi))
+%X = 129; % this should be 
+%g = newim(X,X);
+%a = ft(besselj(0,sqrt(xx(g,'true')^2+yy(g,'true')^2)*pi))
 
 
 g2 = newim(GX,GX,GX); % make empty 3d image
@@ -142,7 +137,30 @@ toc
 % ch_slicing
 
 dipshow(1,'ch_mappingmode','log')
- 
+dipshow(1,'ch_mappingmode','percentile')
+
+ft(Ill1(:,64,WF_z))   
+83 von 121
+mitt ist bei 60
+also ist peak bei 23 relativ zur mitte
+
+sp = 70
+size(S) = 51
+
+G hat grating so, dass es 12 perioden enthalten wuerde, wenn groesse 64 waere
+ft(.5*(1-sin(xx(64)/64*12*2*pi)))
+mitte 32 peak 44
+32+12 = 44
+
+d.h. bei einer groesse von 121 hat das grating
+
+ft(.5*(1-sin(xx(121)/64*12*2*pi)))
+peak bei 83
+60+12/64*121 = 82.6875
+
+
+
+
 %% Local Variables:
 %% mode: Octave
 %% End:

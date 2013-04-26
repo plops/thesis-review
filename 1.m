@@ -35,7 +35,7 @@ c=extract(calotte,size(calotte)*2);
 kc = ft(c);
 psf = kc*conj(kc);
 
-otf = ift(psf);  so=size(otf); log(otf(:,floor(so(2)/2),:))
+otf = ift(psf); so=size(otf); log(otf(:,floor(so(2)/2),:))
 
 
 % jetzt muss ich die psf mit dem gitter falten:
@@ -187,8 +187,9 @@ nonuni_unshifted = otfcorr*ft(Struc1-Struc2);
 nonuni = ft(ift(nonuni_unshifted)*tilt);
 
 size_Struc = size(Struc1);
-rad_scan = newim(size_Struc(1),size_Struc(2)*4,60);
-for rad = 1:60
+rad_scan = newim(size_Struc(1),size_Struc(2)*2,60);
+%for rad = 1:60
+rad =3
   mask = rr(Struc1,'freq')<(rad/100.0);
   lowpass = gaussf(mask ,2);
   hipass = 1 - lowpass;
@@ -200,7 +201,14 @@ for rad = 1:60
   bar = imag(ift(lowpass * nonuni));
   baz = real(ift(hipass * uni));
   sec = bar+baz*eta;
-  rad_scan(:,:,rad-1) =cat(2,normalize(abs(ring*1e-7+lowpass*nonuni+.1*nonuni)),normalize(sec),normalize(bar),normalize(baz));
+%  rad_scan(:,:,rad-1) =cat(2,normalize(abs(ring*1e-7+lowpass*nonuni+.1*nonuni)),normalize(sec),normalize(bar),normalize(baz));
+%end
+Slice_view = normalize(real(ift(otf2d*ft(Slice))));
+for eta = 1:60
+  v = eta/60;
+  v = v^.1;
+  sec = bar*v+baz*(1-v);
+  rad_scan(:,:,eta-1) = cat(2,normalize(Slice_view-normalize(sec)),normalize(sec));
 end
 toc
 rad_scan

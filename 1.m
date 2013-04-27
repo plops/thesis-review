@@ -1,3 +1,31 @@
+% berechne erstmal ein objekt
+GX = 64;
+g2 = newim(GX,GX,GX); % make empty 3d image
+
+%% objects: line, rectangle arranged in two planes and a hollow
+%% sphere as a 3d object
+line_x=floor(.3*GX);
+line_y0=floor(0*GX);
+line_y1=floor(1*(GX-1));
+line_z=floor(GX/2)-3;
+lineseg = newim(g2);
+lineseg(line_x:line_x,line_y0:line_y1,line_z) = 1;
+
+rect_x0 = floor(.2*GX);
+rect_x1 = floor(.9*GX);
+rect_y0 = floor(.2*GX);
+rect_y1 = floor(.5*GX);
+rect_z = floor(GX/2)+3;
+rectangle = newim(g2);
+rectangle(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
+
+hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
+
+S = 12 * lineseg + 4 * rectangle + hollow_sphere;
+[rubbish,rubbish2,S] = bbox(S>0,S);
+
+
+
 
 %% incoherent 3d point spread function
 lambda0 = 5; % vacuum wavelength of the light (in pixels)
@@ -27,107 +55,40 @@ zpos = floor(X/2) + round(.5*X*cos(alpha));
 xpos1 = floor(X/2) - round(.5*X*sin(alpha));
 xpos2 = floor(X/2) + round(.5*X*sin(alpha));
 calotte = a(xpos1:xpos2,xpos1:xpos2,zpos:end);
-sc = size(calotte);
-calotte(:,floor(sc(2)/2),:)
 
-% increase by a factor of two
-c=extract(calotte,size(calotte)*2);
-kc = ft(c);
-psf = kc*conj(kc);
+% um die psf zu berechnen muss die groesse mindestens um einen faktor
+% zwei erhoeht werden. ich weiss aber auch wie gross die
+% fluorophorverteilung ist. 1d erklaerung: als erstes hatte ich
+% calotte X breit und fuer psf 2*X breit gesetzt. wenn objekt breite
+% GX hat habe ich die psf dann nochmals um GX vergroessert auf
+% insgesamt 2*X+GX. das ist aber zuviel. es reicht bereits eine
+% groesse von max(X+GX,2*X). fuer mehrere dimensionen koennen beide
+% faelle gleichzeitig auftreten. das sollte aber kein problem sein.
+otf=extract(calotte,max(size(calotte)+size(S),size(calotte)*2));
+psf = ift(otf);
+psf = psf*conj(psf);
+% norm so dass faltung mit 2d psf die intensitaet nicht aendert
+psf = psf/sum(psf(:,:,floor(size(psf,3)/2)));
+otf = ft(psf);
 
-otf = ift(psf); so=size(otf); log(otf(:,floor(so(2)/2),:))
-
-
-% jetzt muss ich die psf mit dem gitter falten:
-
-sp = size(psf);
-GX = 64;
-grating = newim(GX,GX,1);
-grating = .5*(1+sin(xx(grating,'freq')*pi*24));
-
-% haenge aussen einen ausreichend grossen rand von nullen dran
-
-gratingPAD = extract(grating,sp+size(grating));
-sgp = size(gratingPAD);
-kgratingPAD = ft(gratingPAD);
-
-% schaue grating im fourier raum
-kgratingPAD(:,floor(sgp(2)/2),floor(sgp(3)/2))
-% und verleiche mit in z projezierter otf 
-% sum(squeeze(otfPAD(:,floor(sgp(2)/2),:)),[],2)
-
-
-otfPAD = extract(otf,size(gratingPAD));
-illum = ift(kgratingPAD * otfPAD);
-
-%illum(:,floor(sgp(2)/2),:)
-
-% point spread function in real space
-h = abs(ft(a))^2;
-
-%X = 129; % this should be 
-%g = newim(X,X);
-%a = ft(besselj(0,sqrt(xx(g,'true')^2+yy(g,'true')^2)*pi))
-
-
-g2 = newim(GX,GX,GX); % make empty 3d image
-
-%% objects: line, rectangle arranged in two planes and a hollow
-%% sphere as a 3d object
-line_x=floor(.3*GX);
-line_y0=floor(0*GX);
-line_y1=floor(1*(GX-1));
-line_z=floor(GX/2)-3;
-lineseg = newim(g2);
-lineseg(line_x:line_x,line_y0:line_y1,line_z) = 1;
-
-rect_x0 = floor(.2*GX);
-rect_x1 = floor(.9*GX);
-rect_y0 = floor(.2*GX);
-rect_y1 = floor(.5*GX);
-rect_z = floor(GX/2)+3;
-rectangle = newim(g2);
-rectangle(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
-
-hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
-
-S = 12 * lineseg + 4 * rectangle + hollow_sphere;
-[rubbish,rubbish2,S] = bbox(S>0,S);
-G=newim(S);
-G2=G;
-sizeS = size(S);
+% ich brauche drei oder vier nichtuniforme sinus beleuchtungen
+phases = 4; % muss gerade sein, so dass pi dabei ist
+G=newim([size(S) phases]); 
+tilt = 2*pi*xx(size(S,1),size(S,2))/64*12;
 G_z = 28;
-G(:,:,G_z) = .5*(1+sin((xx(sizeS(1),sizeS(2))+yy(sizeS(1),sizeS(2)))/sqrt(2)/64*12*2*pi));
-G2(:,:,G_z) = .5*(1-sin((xx(sizeS(1),sizeS(2))+yy(sizeS(1),sizeS(2)))/sqrt(2)/64*12*2*pi));
+G(:,:,G_z,:) = .5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1,phases],4)*2*pi/phases));
 
-
-tic
-
-SPAD = extract(S,sp+size(S));
-sSp = size(SPAD);
-kSPAD = ft(SPAD);
-
-GPAD = extract(G,sp+size(S));
-G2PAD = extract(G2,sp+size(S));
-kGPAD = ft(GPAD);
-
-% schaue grating im fourier raum
-% kSPAD(:,floor(sSp(2)/2),floor(sSp(3)/2))
-
-otfPAD = extract(otf,size(SPAD));
-WF = ift(kSPAD * otfPAD);
+WF = ft(ft(extract(S,size(otf))) * otf);
 WF_z = floor(sp(3)/2)+G_z;
 WF_slice = WF(:,:,WF_z);
 
 Ill1 = ift(kGPAD * otfPAD);
 Ill2 = ift(ft(G2PAD) * otfPAD);
-
+ 
 Struc1 = ift(ft(Ill1*SPAD) * otfPAD);
 Struc1 = Struc1(:,:,WF_z);
 Struc2 = ift(ft(Ill2 * SPAD) * otfPAD);
 Struc2 = Struc2(:,:,WF_z);
-
-toc
 
 %dipshow(sum(ft(Struc1 - Struc2),[],3),'percentile')
 %dipshow(sum(ft(Struc1 + Struc2),[],3),'percentile')
@@ -137,47 +98,27 @@ toc
 % dipshow(fig,'ch_globalstretch','off')
 % ch_slicing
 
-dipshow(1,'ch_mappingmode','log')
-dipshow(1,'ch_mappingmode','percentile')
+%    dipshow(1,'ch_mappingmode','log')
+%    dipshow(1,'ch_mappingmode','percentile')
 
-ft(Ill1(:,64,WF_z))   
-83 von 121
-mitt ist bei 60
-also ist peak bei 23 relativ zur mitte
-
-sp = 70
-size(S) = 51
-
-G hat grating so, dass es 12 perioden enthalten wuerde, wenn groesse 64 waere
-ft(.5*(1-sin(xx(64)/64*12*2*pi)))
-mitte 32 peak 44
-32+12 = 44
-
-d.h. bei einer groesse von 121 hat das grating
-
-ft(.5*(1-sin(xx(121)/64*12*2*pi)))
-peak bei 83
-60+12/64*121 = 82.6875
-
-ft((Struc1-Struc2))
-ft((Struc1-Struc2)*exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1))))
 
 % eigentlich muesste man bei der 2d behandlung vignetting
 % beruecksichtigen
 
 otf2d = sum(real(otfPAD),[],3);
-otf2d = otf2d/max(otf2d);
+otf2d = otf2d/sum(real(ift(otf2d)));
 otfcorr = (otf2d>0)/otf2d;
-otfmask = otf2d>0.001;
+otfmask = (otf2d/max(otf2d))>0.001;
 otfcorr(not(otfmask))=1;
 otfcorr = otfcorr * gaussf(berosion(otfmask,8),3);
-otfcorr
+otfcorr = otfcorr/sum(real(ift(otfcorr)));
+
+% otf2d und otfcorr sind so normiert, dass die intensitaet im bild nicht geandert wird
+
 
 %cat(3,real(ift(otfcorr * ft(WF_slice))),WF_slice)
 
 normalize = @(in) (in-min(in))/(max(in)-min(in))
-
-tic
 
 Slice = SPAD(:,:,WF_z);
 kSlice = ft(Slice);
@@ -203,12 +144,12 @@ rad =3
   sec = bar+baz*eta;
 %  rad_scan(:,:,rad-1) =cat(2,normalize(abs(ring*1e-7+lowpass*nonuni+.1*nonuni)),normalize(sec),normalize(bar),normalize(baz));
 %end
-Slice_view = normalize(real(ift(otf2d*ft(Slice))));
+Slice_view = real(ift(otf2d*ft(Slice)));
 for eta = 1:60
   v = eta/60;
   v = v^.1;
   sec = bar*v+baz*(1-v);
-  rad_scan(:,:,eta-1) = cat(2,normalize(Slice_view-normalize(sec)),normalize(sec));
+  rad_scan(:,:,eta-1) = cat(2,normalize(Slice_view-sec),normalize(sec));
 end
 toc
 rad_scan

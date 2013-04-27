@@ -89,8 +89,6 @@ tilt = 2*pi*xx(size(S,1),size(S,2))/64*12;
 G_z = 28;
 G(:,:,G_z,:) = DampEdge(.5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1,phases],4)*2*pi/phases)),.18,2);
 
-max(size(calotte)+size(S),size(calotte)*2)
-
 % G_z 28 -> 34 in WF
 
 % psf_z = max(calotte_z+S_z,calotte_z*2)
@@ -106,49 +104,32 @@ WF_slice = WF(:,:,WF_z);
 kG = dip_fouriertransform(extract(G,size(psf)),'forward',[1 1 1 0]);
 kG = kG*repmat(otf,[1 1 1 phases]);
 Ill = dip_fouriertransform(kG,'inverse',[1 1 1 0]);
-Ill = Ill(:,:,WF_z,:);
 
-% kG ist nur hilfsvariable, loeschen
- 
-%dipshow(sum(ft(Struc1 - Struc2),[],3),'percentile')
-%dipshow(sum(ft(Struc1 + Struc2),[],3),'percentile')
+% multipliziere mit beleuchtung
+kG = Ill * repmat(extract(S,size(psf)),[1 1 1 phases]);
+kG = dip_fouriertransform(kG,'forward',[1 1 1 0]);
+kG = kG * repmat(otf,[1 1 1 phases]);
+kG = dip_fouriertransform(kG,'inverse',[1 1 1 0]);
+Struc = kG(:,:,WF_z,:);
+
 % dbquit Super-S-c schliesst fenster
-
-%EDU>> fig=dipshow(cat(3,Struc1,Struc2,WF_slice))
-% dipshow(fig,'ch_globalstretch','off')
-% ch_slicing
-
+%    dipshow(1,'ch_globalstretch','off')
+%    dipshow(1,'ch_slicing','xz')
 %    dipshow(1,'ch_mappingmode','log')
 %    dipshow(1,'ch_mappingmode','percentile')
 
 
-% eigentlich muesste man bei der 2d behandlung vignetting
-% beruecksichtigen
-
-otf2d = sum(real(otf),[],3);
-otf2d = otf2d/sum(real(ift(otf2d)));
-otfcorr = (otf2d>0)/otf2d;
-otfmask = (otf2d/max(otf2d))>0.001;
-otfcorr(not(otfmask))=1;
-otfcorr = otfcorr * gaussf(berosion(otfmask,8),3);
-otfcorr = otfcorr/sum(real(ift(otfcorr)));
-
-% otf2d und otfcorr sind so normiert, dass die intensitaet im bild nicht geandert wird
-
-
-%cat(3,real(ift(otfcorr * ft(WF_slice))),WF_slice)
 
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
-Slice = SPAD(:,:,WF_z);
-kSlice = ft(Slice);
-tilt = exp(2*pi*i*12/64/sqrt(2)*(xx(Struc1)+yy(Struc1)));
-uni = ft(Struc1+Struc2);
-nonuni_unshifted = otfcorr*ft(Struc1-Struc2);
-nonuni = ft(ift(nonuni_unshifted)*tilt);
+S_slice = S(:,:,WF_z);
 
-size_Struc = size(Struc1);
-rad_scan = newim(size_Struc(1),size_Struc(2)*2,60);
+uni = squeeze(ft(Struc(:,:,0,0)+Struc(:,:,0,2)));
+nonuni_unshifted = squeeze(ft(extract(ift(otf2dcorr),size(WF_slice))))*squeeze(ft(Struc(:,:,0,0)-Struc(:,:,0,2)));
+tiltbig = 2*pi*xx(size(uni,1),size(uni,2))/64*12;
+nonuni = ft(ift(nonuni_unshifted)*exp(i*tiltbig));
+
+rad_scan = newim(size(uni,1),size(uni,2)*2,60);
 %for rad = 1:60
 rad =3
   mask = rr(Struc1,'freq')<(rad/100.0);

@@ -4,12 +4,8 @@ g2 = newim(GX,GX,GX); % make empty 3d image
 
 %% objects: line, rectangle arranged in two planes and a hollow
 %% sphere as a 3d object
-line_x=floor(.3*GX);
-line_y0=floor(0*GX);
-line_y1=floor(1*(GX-1));
 line_z=floor(GX/2)-3;
-lineseg = newim(g2);
-lineseg(line_x:line_x,line_y0:line_y1,line_z) = 1;
+lineseg = drawline(g2,floor([.3*GX 0 line_z]),floor([.8*GX .9*GX line_z]),1)
 
 rect_x0 = floor(.2*GX);
 rect_x1 = floor(.9*GX);
@@ -19,9 +15,17 @@ rect_z = floor(GX/2)+3;
 rectangle = newim(g2);
 rectangle(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
 
+rect_x0 = floor(.6*GX);
+rect_x1 = floor(.8*GX);
+rect_y0 = floor(.0*GX);
+rect_y1 = floor(.9*GX);
+rect_z = floor(GX/2)+9;
+rectangle2 = newim(g2);
+rectangle2(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
+
 hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
 
-S = 12 * lineseg + 4 * rectangle + hollow_sphere;
+S = 12 * lineseg + 4 * (rectangle +rectangle2) + hollow_sphere;
 [rubbish,rubbish2,S] = bbox(S>0,S);
 
 
@@ -72,15 +76,22 @@ psf = psf/sum(psf(:,:,floor(size(psf,3)/2)));
 otf = ft(psf);
 
 % ich brauche drei oder vier nichtuniforme sinus beleuchtungen
+% damit die ft besser aussieht benutze ich dampedge
 phases = 4; % muss gerade sein, so dass pi dabei ist
 G=newim([size(S) phases]); 
 tilt = 2*pi*xx(size(S,1),size(S,2))/64*12;
 G_z = 28;
-G(:,:,G_z,:) = .5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1,phases],4)*2*pi/phases));
+G(:,:,G_z,:) = DampEdge(.5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1,phases],4)*2*pi/phases)),.18,2);
 
-WF = ft(ft(extract(S,size(otf))) * otf);
-WF_z = floor(sp(3)/2)+G_z;
+% vergroesser in ortsraum, so dass psfs nicht uberlappen
+WF = ift(ft(extract(S,size(psf))) * otf);
+WF_z = floor(size(psf,3)/2)+G_z;
 WF_slice = WF(:,:,WF_z);
+
+% vergroessere G
+dip_fouriertransform(extract(G,size(psf)),'forward',[1 1 1 0])
+
+Ill = ift(ft(extract(G,size(psf)))*otf);
 
 Ill1 = ift(kGPAD * otfPAD);
 Ill2 = ift(ft(G2PAD) * otfPAD);

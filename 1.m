@@ -75,7 +75,13 @@ psf = psf*conj(psf);
 psf = psf/sum(psf(:,:,floor(size(psf,3)/2)));
 otf = ft(psf);
 
-% ich brauche drei oder vier nichtuniforme sinus beleuchtungen
+psf2d = abs(ft(extract(calotte,size(calotte)*2)))^2;
+psf2d = psf2d(:,:,floor(size(psf2d,3)/2));
+otf2d = ft(psf2d);
+otf2dcorr = DampEdge(rr(otf2d,'freq')<.47,.13,2,0);
+otf2dcorr = otf2dcorr/otf2d;
+
+% ich brauche vier nichtuniforme sinus beleuchtungen
 % damit die ft besser aussieht benutze ich dampedge
 phases = 4; % muss gerade sein, so dass pi dabei ist
 G=newim([size(S) phases]); 
@@ -83,24 +89,27 @@ tilt = 2*pi*xx(size(S,1),size(S,2))/64*12;
 G_z = 28;
 G(:,:,G_z,:) = DampEdge(.5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1,phases],4)*2*pi/phases)),.18,2);
 
+max(size(calotte)+size(S),size(calotte)*2)
+
+% G_z 28 -> 34 in WF
+
+% psf_z = max(calotte_z+S_z,calotte_z*2)
+% zur zeit tritt erster fall ein
+
 % vergroesser in ortsraum, so dass psfs nicht uberlappen
 WF = ift(ft(extract(S,size(psf))) * otf);
-WF_z = floor(size(psf,3)/2)+G_z;
+WF_z = size(psf,3)-G_z;
 WF_slice = WF(:,:,WF_z);
 
 % vergroessere G
-dip_fouriertransform(extract(G,size(psf)),'forward',[1 1 1 0])
 
-Ill = ift(ft(extract(G,size(psf)))*otf);
+kG = dip_fouriertransform(extract(G,size(psf)),'forward',[1 1 1 0]);
+kG = kG*repmat(otf,[1 1 1 phases]);
+Ill = dip_fouriertransform(kG,'inverse',[1 1 1 0]);
+Ill = Ill(:,:,WF_z,:);
 
-Ill1 = ift(kGPAD * otfPAD);
-Ill2 = ift(ft(G2PAD) * otfPAD);
+% kG ist nur hilfsvariable, loeschen
  
-Struc1 = ift(ft(Ill1*SPAD) * otfPAD);
-Struc1 = Struc1(:,:,WF_z);
-Struc2 = ift(ft(Ill2 * SPAD) * otfPAD);
-Struc2 = Struc2(:,:,WF_z);
-
 %dipshow(sum(ft(Struc1 - Struc2),[],3),'percentile')
 %dipshow(sum(ft(Struc1 + Struc2),[],3),'percentile')
 % dbquit Super-S-c schliesst fenster
@@ -116,7 +125,7 @@ Struc2 = Struc2(:,:,WF_z);
 % eigentlich muesste man bei der 2d behandlung vignetting
 % beruecksichtigen
 
-otf2d = sum(real(otfPAD),[],3);
+otf2d = sum(real(otf),[],3);
 otf2d = otf2d/sum(real(ift(otf2d)));
 otfcorr = (otf2d>0)/otf2d;
 otfmask = (otf2d/max(otf2d))>0.001;

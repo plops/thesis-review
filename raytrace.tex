@@ -424,35 +424,40 @@ this section is very technical and relates to the specific problem to
 represent a fluorophore distribution as a model of spheres and
 simulate it with as few rays as possible.
 
-\figref{fig:touch-cone}~D) shows a representations of the length of
-the section between out-of-focus nuclei and rays starting from all
-points in the pupil and going through the target point $\c$. Creating
-such an image in the illumination direction requires to trace a lot of
-rays (at least $50\times 50$). In order to reduce the computational
-effort, I reverse the calculation direction and trace rays starting
-from the periphery of out-of-focus nuclei through the target point
-$\c$ in order to determine appropriate ``shadow masks'' in the pupil
-plane (as depicted in \figref{fig:touch-cone}~E)). Already with six
-rays per nucleus, this approach can determine very  good masks.
-
-Now I explain how to select good points on the periphery of
-out-of-focus nuclei in order to allow this calculation. I utilize the
-geometry in \figref{fig:touch-cone}~A).
 
 \begin{figure}[htbp]
   \centering
   \svginput{1}{touch-cone}
-  \caption{{\bf (A)} Schematic of how an out-of-focus nucleus and a
-    target point $c$ (not necessarily in the centre of a target
-    nucleus) define a cone of tangential rays. {\bf (B)} Illustration
-    including the objective.  {\bf (C)} Sample distribution with six
-    fluorescent spheres as used for D and E.  {\bf (D)} Diagram of the
-    pupil with precisely calculated intersection length with
-    out-of-focus nuclei of each ray starting in the pupil and passing
-    through the target point $\c$. {\bf (E)} Same diagram as D but
-    using the performance improvement as described in this section.}
+  \caption{{\bf (A,B,E)} Diagrams depicting the geometry of a sample
+    of spherical nuclei. The main text derives the rays on the cone
+    through the target point $\c$ that touches an out-of-focus nucleus
+    in the curve $C$. {\bf (C)} FIXME translate: Karte auf der Pupille
+    von Strahlen durch den Zielpunkt $\c$ in (B). Die Helligkeit gibt
+    die Laenge der Strahlensegmente an, die out-of-focus Nuclei
+    schneiden. {\bf (D)} Approximation der Karte aus (B) mit einer
+    minimalen Anzahl von Strahlen. }
   \label{fig:touch-cone}
 \end{figure}
+
+
+FIXME translate: In \figref{fig:touch-cone}~A) sind von der Pupille
+ausgehende Strahlen dargestellt, die einen Targetpunkt $\c$
+beleuchten. \figref{fig:touch-cone}~C) zeigt die Karte der Pupille und
+traegt in jedem Punkt als Helligkeit die Laenge der Segmente von
+Strahlen auf, die out-of-focus Nuclei schneiden.
+
+Creating such an image in the illumination direction requires to trace
+a lot of rays (at least $50\times 50$). In order to reduce the
+computational effort, I reverse the calculation direction and trace
+rays starting from the periphery of out-of-focus nuclei through the
+target point $\c$ in order to determine appropriate ``shadow masks''
+in the pupil plane (as depicted in
+\figref{fig:touch-cone}~D)). Already with six rays per nucleus, this
+approach can determine very good masks.
+
+Now I explain how to select good points on the periphery of
+out-of-focus nuclei in order to allow this calculation. I utilize the
+geometry in \figref{fig:touch-cone}~E).
 
 
 The tangents of an out-of-focus sphere
@@ -484,18 +489,19 @@ target, obviating the reason to do the projection in the first
 place. In the more useful case of $R>r$ there are two solutions but
 either one of them is sufficient to define the circle $C$.
 
-I construct two vectors $\hx$ and $\hy$ that span the coordinate
-system, in order to transform the solution from 2D into 3D. The
-direction of $\hx$ is given by the difference vector between target
-$\c$ and nucleus centre $\s$. The direction $\hy$ must be
-perpendicular to $\x$ and is obtained by calculating the cross product
-with another vector $\q$.  I ensure that $\q$ and $\x$ are not
-colinear. The vectors $\q$ and $\x$ are colinear, when the absolute
-value of their scalar product equals the square of the length
-$\abs{\q\x}=\x^2$.
+I construct two normalized vectors $\hx$ and $\hy$ that span the
+coordinate system, in order to transform the solution from 2D into
+3D. The direction of $\hx$ is given by the difference vector between
+target $\c$ and nucleus centre $\s$. The direction $\hy$ must be
+perpendicular to $\x$ and I ensure this by calculating the cross
+product of $\x$ with an arbitrary vector $\vzeta$.  The only
+constraint on the vector $\vzeta$ is that it must not be colinear with
+$\x$. Therefore I choose $\vzeta$ to be a vector along the $z-$axis,
+except when $x$ comes close to the $z-$axis. Then I choose $\vzeta$ to
+be along the $y-$axis.
 \begin{align}
   \x&=\c-\s\\
-  \y&=\x\times\q \quad \textrm{with}\ \q=\begin{cases}
+  \y&=\x\times\vzeta \quad \textrm{with}\ \vzeta=\begin{cases}
     (0,0,1)^T & \textrm{when}\ \abs{x_z}<\frac{2}{3}\abs{\x}\\
     (0,1,0)^T & \textrm{else}
   \end{cases}\\
@@ -505,7 +511,7 @@ Now I can sample the intersection circle $C$ in order to create
 viable starting points $\e$ for tangential rays.  Let $M_\phi^\hc$ be
 a rotation matrix that rotates a vector by angle $\phi$ around an axis
 $\hc$. A point $\e$ on the circle is then defined using one solution
-from equations \ref{eqn:x1} and \ref{eqn:y1}. The ray direction $\f$
+from equations (\ref{eqn:x1}) and (\ref{eqn:y1}). The ray direction $\f$
 is then easily obtained:
 \begin{align}
   \e(\phi)&=\s+x_1\hx+y_1M_\phi^\hx\,\hy\\

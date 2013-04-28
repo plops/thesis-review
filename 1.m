@@ -78,6 +78,12 @@ otf = ft(psf);
 psf2d = abs(ft(extract(calotte,size(calotte)*2)))^2;
 psf2d = psf2d(:,:,floor(size(psf2d,3)/2));
 otf2d = ft(psf2d);
+% maxima code fuer den analytischen ausdruck (aus stokseth 1969)
+% s ist reduzierte ortsfrequenz s=(lambda/n sin(alpha)) f
+% ich glaube die klammern wurden falsch gesetzt in dem paper
+% ausserdem gilt das glaube ich nur fuer kleine NA
+% f(s):=(2*acos(s/2)-sin(2*acos(s/2)))/%pi ist 1 fuer s=0
+% integrate(s^2*f(s),s,0,2); = 64/(45*pi)
 otf2dcorr = DampEdge(rr(otf2d,'freq')<.47,.13,2,0);
 otf2dcorr = otf2dcorr/otf2d;
 
@@ -123,17 +129,17 @@ Struc = kG(:,:,WF_z,:);
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
 S_slice = S(:,:,WF_z);
-
-uni = squeeze(ft(Struc(:,:,0,0)+Struc(:,:,0,2)));
-nonuni_unshifted = squeeze(ft(extract(ift(otf2dcorr),size(WF_slice))))*squeeze(ft(Struc(:,:,0,0)-Struc(:,:,0,2)));
+otf2dcorrpad = squeeze(ft(extract(ift(otf2dcorr),size(WF_slice))));
+uni = otf2dcorrpad * squeeze(ft(Struc(:,:,0,0)+Struc(:,:,0,2)));
+nonuni_unshifted = otf2dcorrpad*squeeze(ft(Struc(:,:,0,0)-Struc(:,:,0,2)));
 tiltbig = 2*pi*xx(size(uni,1),size(uni,2))/64*12;
-nonuni = ft(ift(nonuni_unshifted)*exp(i*tiltbig));
+nonuni = ft(ift(nonuni_unshifted)*exp(-i*tiltbig));
 
 rad_scan = newim(size(uni,1),size(uni,2)*2,60);
 %for rad = 1:60
 rad =3
-  mask = rr(Struc1,'freq')<(rad/100.0);
-  lowpass = gaussf(mask ,2);
+  mask = rr(uni,'freq')<(rad/100.0);
+  lowpass = mask ; %gaussf(mask ,2);
   hipass = 1 - lowpass;
   ring = bdilation(mask)-mask;
   foo = real(ift(lowpass * kSlice));

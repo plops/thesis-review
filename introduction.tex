@@ -75,28 +75,47 @@ on infectious diseases.
 
 In order to motivate the importance of phototoxicity, I would like to
 portray an elegant drug screening experiment which I have seen on one
-of my visits in Paris: An automatic microscope continuously images a
-cell culture in multiwell plates. These cells carry a pathogen. The
-pathogen, the nuclei of the cultured cells and the membranes of the
-cells are each stained with a different fluorophore. The cells in each
-well of the plates are exposed to a different chemical.
+of my visits in Paris \citep{Aulner2013}.
 
-A chemical is considered a hit and will be investigated during further
-trials, when the time lapse images show that the culture cells stay
-healthy and the number of pathogens decrease. As neither people nor
-animals come to harm, this screening experiment is an impeccable
-method to systematically understand and hopefully heal certain
-diseases. However, this experiment does not work very well, if the
-excitation light --- and not the drug --- kills the pathogens. The
-effect of phototoxicity should therefore be minimized.  One would
-hardly develop a microscope and directly test it with dangerous
-pathogens. As part of our collaboration, the Institut Pasteur
-therefore developed a safe biological test system that is relatively
-easy to maintain \citep{Stiernagle2006} and allows to test the
-phototoxicity of various microscopes \citep{Tinevez2012}. The basis of
-this system are embryos of the small invertebratem \celegans. The
-adult form is approximately \unit[1]{mm} long.  Their anatomy and
-development are comparatively simple and have been well characterized
+FIXME translate: Fuer diese Studie wurden Zellen in multiwell plates
+mit einem Erreger einer bisher schlecht heilbaren Tropenkrankheit
+infiziert. Normalerweise bilden sich in infizierten Zellen grosse
+Vakuolen in denen sich der Erreger vermehrt. Dem Naehrmedium in den
+einzelnen wells wird jedoch jeweils ein chemical compound aus einer
+library zugegeben der potentiell den Erreger abtoetet.  Nach einer
+Inkubationszeit von wenigen Tagen werden die Zellkerne und Vakuolen
+mit Farbstoffen markiert und Bilder jeder einzelnen Zelle und der
+lebenden Erreger in einem automatischen spinning-disk Mikroskop (Opera
+QEHS, PerkinElmer Technologies) aufgenommen.  Durch automatische
+Bildauswertung werden die Erreger gezaehlt und damit potentiell
+wirksame Heilmittel entdeckt. Die Form der Zellkerne in den Bilddaten
+ermoeglicht es tote Wirtszellen zu identifizieren, so dass dieser
+Essay es ermoeglicht compounds zu identifizieren, die auch die
+Wirtszelle schaedigen und nicht als Medizin in Frage kommen.
+
+Diese Technologie steckt noch in den Kinderschuhen aber sie hat das
+Potential dass drug screening essays zu verbilligen, so dass auch
+Tropenkrankheiten untersucht werden koennen fuer die bisher kein Markt
+sichtbar war um grosse Investitionen von Pharmaunternehmen zu
+rechtfertigen. Ausserdem muessen potentiell deutlich weniger Tiere
+leiden, denn die Zellen eines Individuums koennen zur Untersuchung
+vieler compounds eingesetzt werden.
+
+In der beschriebenen Studie wurden die Bilder nur einmalig nach dem
+Experiment erzeugt.  Noch bessere Einsichten kann man sich von
+realtime monitoring und kinetic studies versprechen. In diesem Fall
+muss man jedoch auch die Phototoxicitaet
+beruecksichtigen. Schliesslich will man nicht dass sowohl Zellen als
+auch Erreger durch das Licht zugrundegehen bevor irgendeine Wirkung
+der Chemikalien sichtbar wird.
+
+As part of our collaboration, the Institut Pasteur developed a safe
+biological test system that is relatively easy to maintain
+\citep{Stiernagle2006} and allows to test the phototoxicity of various
+microscopes \citep{Tinevez2012}. The basis of this system are embryos
+of the small invertebrate \celegans. The adult form is approximately
+\unit[1]{mm} long.  Their anatomy and development are comparatively
+simple and have been well characterized
 \citep{Sulston1977,Durbin1987}.
 
 \begin{figure}[hbtp]
@@ -125,7 +144,7 @@ development are comparatively simple and have been well characterized
   
 
 We use embryos of a genetically modified strain\footnote{Our strain
-  has WormBase ID AZ212 \citep{Praitis2001}.} that expresses eGFP
+  has WormBase ID AZ212 \citep{Praitis2001,Gallo2008}.} that expresses eGFP
 tagged histones (enhanced green fluorescent protein, excitation
 maximum \unit[488]{nm}, emission maximum \unit[509]{nm}). Histones are
 incorporated into the chromatin during cell divisions, i.e.\ the
@@ -1016,7 +1035,7 @@ intensity variance of each bin is then plotted against the intensity
 straight line. From its slope we calculate the gain to convert the
 arbitrary analog-to-digital units into the number of effective
 photoelectrons. If the data is plotted in this unit, the slope of the
-line is one, according to equation \eqref{eq:variance}. The smooth
+line is one, according to equation (\ref{eq:variance}). The smooth
 light distribution in the input images ensures a good coverage for
 each data point in the variance-intensity plot and a bit of protection
 against drift.

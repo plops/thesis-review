@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="308.20608"
-     inkscape:cy="195.45184"
+     inkscape:cx="224.09894"
+     inkscape:cy="142.5947"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -33,8 +33,8 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1364"
-     inkscape:window-height="757"
+     inkscape:window-width="1678"
+     inkscape:window-height="1039"
      inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
@@ -541,7 +541,7 @@
          sodipodi:role="line"
          id="tspan5317"
          x="206.0386"
-         y="218.06525">$\unit[210]{\mu m}$</tspan></text>
+         y="218.06525">$\unit[0.45]{mm}$</tspan></text>
     <g
        id="g3128"
        transform="translate(65.659916,96.469568)">
@@ -859,27 +859,27 @@
     <image
        sodipodi:absref="/dev/shm/revise/vector/../raster/oil.jpg"
        xlink:href="../raster/oil.jpg"
-       y="201.22078"
-       x="467.72165"
-       id="image3711"
+       width="74.409447"
        height="74.409447"
-       width="74.409447" />
+       id="image3711"
+       x="467.72165"
+       y="201.22078" />
     <image
        sodipodi:absref="/dev/shm/revise/vector/../raster/water.jpg"
        xlink:href="../raster/water.jpg"
-       y="201.22078"
-       x="375.99832"
-       id="image3773"
+       width="74.409447"
        height="74.409447"
-       width="74.409447" />
+       id="image3773"
+       x="375.99832"
+       y="201.22078" />
     <image
        sodipodi:absref="/dev/shm/revise/vector/../raster/air.jpg"
        xlink:href="../raster/air.jpg"
-       y="201.22078"
-       x="284.2749"
-       id="image3835"
+       width="74.409447"
        height="74.409447"
-       width="74.409447" />
+       id="image3835"
+       x="284.2749"
+       y="201.22078" />
     <text
        xml:space="preserve"
        style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
@@ -1052,5 +1052,21 @@
          x="234.75705"
          y="187.86465"
          style="font-size:10px">{\bf \scriptsize brightness maps in the pupil plane for different immersion media:} </tspan></text>
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:2.20000005;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 331.19596,258.87536 c 17.30771,0 17.22489,0 17.22489,0"
+       id="path3154"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:9.69312096px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="316.61957"
+       y="272.12433"
+       id="text5315-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5317-1"
+         x="316.61957"
+         y="272.12433">${\scriptsize\unit[20]{mm}}$</tspan></text>
   </g>
 </svg>

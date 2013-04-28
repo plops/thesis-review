@@ -25,7 +25,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
      inkscape:cx="64.34215"
-     inkscape:cy="239.65263"
+     inkscape:cy="118.43433"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -35,7 +35,7 @@
      fit-margin-bottom="0"
      inkscape:window-width="1678"
      inkscape:window-height="1039"
-     inkscape:window-x="1366"
+     inkscape:window-x="0"
      inkscape:window-y="9"
      inkscape:window-maximized="0"
      units="mm">
@@ -144,12 +144,13 @@
            width="78.571426"
            id="rect3312" /></flowRegion><flowPara
          id="flowPara3314" /></flowRoot>    <image
-       width="425.19684"
-       height="425.19684"
+       sodipodi:absref="/dev/shm/revise/vector/../raster/m_wf.jpg"
        xlink:href="../raster/m_wf.jpg"
-       id="image3107"
+       y="61.603199"
        x="100.26559"
-       y="61.603199" />
+       id="image3107"
+       height="425.19684"
+       width="425.19684" />
     <text
        sodipodi:linespacing="125%"
        id="text4345"
@@ -316,24 +317,6 @@
          x="204.41934"
          id="tspan4375-82"
          sodipodi:role="line">6</tspan></text>
-    <rect
-       y="446.52893"
-       x="115.58668"
-       height="2.7779145"
-       width="46.747528"
-       id="rect3152"
-       style="fill:#ff5555;fill-opacity:1;fill-rule:nonzero;stroke:none" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text3154"
-       y="472.08368"
-       x="113.21973"
-       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ff5555;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       xml:space="preserve"><tspan
-         y="472.08368"
-         x="113.21973"
-         id="tspan3156"
-         sodipodi:role="line">$\unit[10]{\mu m}$</tspan></text>
     <path
        transform="translate(100.26559,61.603199)"
        inkscape:connector-curvature="0"
@@ -351,5 +334,21 @@
          x="169.58978"
          id="tspan4367-3"
          sodipodi:role="line">$z$</tspan></text>
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 121.49283,448.16557 18.58875,0"
+       id="path3038"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="112.93941"
+       y="467.66187"
+       id="text3034-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3036-3"
+         x="112.93941"
+         y="467.66187">{\scriptsize $\unit[10]{\mu m}$}</tspan></text>
   </g>
 </svg>

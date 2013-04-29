@@ -3,6 +3,9 @@ center_ref = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2),floor(size(a,3)/2));
 center_ref2 = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2));
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
+global store
+store = @(scale,in,fn) writeim(min(255,floor(scale*squeeze(in))),fn,'JPEG')
+
 
 % berechne erstmal ein objekt
 GX = 64;
@@ -12,12 +15,7 @@ g2 = newim(GX,GX,GX); % make empty 3d image
 %% sphere as a 3d object
 
 lineseg = drawline(g2,floor([.3*GX 0 line_z]),floor([.8*GX .9*GX line_z]),1);
-r = floor([.2 .2; .9 .5] .* (GX-1));
-rz=floor(GX/2)-3;
-rec=drawrect(newim(g2,'bin'),r(1,1),r(1,2),r(2,1),r(2,2),floor(GX/2)-3);
-~bpropagation([floor(mean(r)) rz],rec,0,1,1)
-rectangle=drawpolygon(g2,[r(1,1) r(1,2) rz; r(2,1) r(1,2) rz;  r(2,1) r(1,2) rz;  r(2,1) r(1,2) rz;]);;
-clear r;
+
 rect_x0 = floor(.2*GX);
 rect_x1 = floor(.9*GX);
 rect_y0 = floor(.2*GX);
@@ -39,6 +37,8 @@ hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4);
 S = 12 * lineseg + 4 * (rectangle +rectangle2) + hollow_sphere;
 S_mask = S>0;
 [rubbish1,S_bbox,S] = bbox(S_mask,S);
+
+% writeim(S,'/mnt/tmp/S.ics');
 
 
 %% incoherent 3d point spread function
@@ -87,6 +87,12 @@ otf = real(ft(psf));
 otf = otf / center_ref(otf);
 psf = psf / center_ref(otf); 
 
+writeim(min(255,floor(1500*normalize(squeeze((abs(otf(:,floor(size(otf,2)/2),:))))))),'/mnt/tmp/otf.jpg','JPEG')
+
+store(1500,abs(otf(:,floor(size(otf,2)/2),:)),'/mnt/tmp/otf.jpg');
+store(4e6,abs(psf(:,floor(size(psf,2)/2),:)),'/mnt/tmp/psf.jpg');
+
+
 
 psf2d = abs(ft(extract(calotte,size(calotte)*2)))^2;
 psf2d = psf2d(:,:,floor(size(psf2d,3)/2));
@@ -115,6 +121,9 @@ for slice = 0:size(S,3)-1
     toc
 end
 toc % takes 4.7s per slice times 51 slices
+
+create_structured_slice(S,otf,phases,floor(size(S,3)/2));
+
 
 % writeim(struc,'/mnt/tmp/struc_XYZ_phase.ics');
 

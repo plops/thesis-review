@@ -167,8 +167,9 @@ nonuni = ft(ift(nonuni_unshifted)*exp(-i*tiltbig));
 
 
 % different sectioning methods
+% check in rainers chapter in pawley handbook (abbe platz bibo)
 section_max_min = @(a) max(a,[],4)-min(a,[],4)
-section_max_mean = @(a) max(a,[],4)-mean(a,[],4)
+section_max_mean = @(a) max(a,[],4)+min(a,[],4)-2*mean(a,[],4)
 section_homodyne = @(a) abs(a(:,:,:,0)+a(:,:,:,1)*exp(i*2*pi*1/4)+a(:,:,:,2)*exp(i*2*pi*2/4)+a(:,:,:,3)*exp(i*2*pi*3/4))
 
 % compare reconstructions of noisy images
@@ -176,6 +177,9 @@ maxmin=section_max_min(noise(struc/max(struc)*6000,'poisson'))
 maxavg=section_max_mean(noise(struc/max(struc)*6000,'poisson'))
 homody=section_homodyne(noise(struc/max(struc)*6000,'poisson'))
 diplink(1,[2 3])
+
+section_max_mean(struc)
+max(struc,[],4)+min(struc,[],4)-mean(struc,[],4)
 
 rad_scan = newim(size(uni,1),size(uni,2)*2,60);
 %for rad = 1:60

@@ -154,6 +154,8 @@ for slice = 0:size(S)-1
 end
 toc % takes 4.7s per slice times 51 slices
 
+% writeim(struc,'/mnt/tmp/struc_XYZ_phase.ics');
+
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
 S_slice = S(:,:,WF_z);
@@ -162,15 +164,18 @@ nonuni_unshifted = otf2dcorr*squeeze(ft(Struc(:,:,0,0)-Struc(:,:,0,2)));
 tiltbig = 2*pi*xx(size(uni,1),size(uni,2))/64*12;
 nonuni = ft(ift(nonuni_unshifted)*exp(-i*tiltbig));
 
-% max-min
-max(Struc,[],4)-min(Struc,[],4)
 
-% max-mean
-max(Struc,[],4)-mean(Struc,[],4)
 
-% wilson method
-abs(Struc(:,:,0,0)+Struc(:,:,0,1)*exp(i*2*pi*1/4)+Struc(:,:,0,2)*exp(i*2*pi*2/4)+Struc(:,:,0,3)*exp(i*2*pi*3/4))
+% different sectioning methods
+section_max_min = @(a) max(a,[],4)-min(a,[],4)
+section_max_mean = @(a) max(a,[],4)-mean(a,[],4)
+section_homodyne = @(a) abs(a(:,:,:,0)+a(:,:,:,1)*exp(i*2*pi*1/4)+a(:,:,:,2)*exp(i*2*pi*2/4)+a(:,:,:,3)*exp(i*2*pi*3/4))
 
+% compare reconstructions of noisy images
+maxmin=section_max_min(noise(struc/max(struc)*6000,'poisson'))
+maxavg=section_max_mean(noise(struc/max(struc)*6000,'poisson'))
+homody=section_homodyne(noise(struc/max(struc)*6000,'poisson'))
+diplink(1,[2 3])
 
 rad_scan = newim(size(uni,1),size(uni,2)*2,60);
 %for rad = 1:60

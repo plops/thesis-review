@@ -1,4 +1,7 @@
 function Struc = create_structured_slice(S,otf,phases,slice)
+
+  % ich brauche vier nichtuniforme sinus beleuchtungen
+  % damit die ft besser aussieht benutze ich dampedge
   % erzeuge ebene mit gitterstruktur
   clear G;
   G=newim([size(S) phases]); 

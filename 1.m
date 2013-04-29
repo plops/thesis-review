@@ -1,3 +1,8 @@
+% funktion um auf die mitte eines 3d arrays zuzugreifen
+center_ref = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2),floor(size(a,3)/2));
+center_ref2 = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2));
+normalize = @(in) (in-min(in))/(max(in)-min(in))
+
 % berechne erstmal ein objekt
 GX = 64;
 g2 = newim(GX,GX,GX); % make empty 3d image
@@ -28,11 +33,6 @@ hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4);
 S = 12 * lineseg + 4 * (rectangle +rectangle2) + hollow_sphere;
 S_mask = S>0;
 [rubbish1,S_bbox,S] = bbox(S_mask,S);
-
-% prepare single plane with same size
-%S(:,:,:)=0;
-%[rubbish2,rubbish3,S]=bbox(S_mask,rectangle);
-
 
 
 %% incoherent 3d point spread function
@@ -73,9 +73,6 @@ calotte = a(xpos1:xpos2,xpos1:xpos2,zpos:end);
 % groesse von max(X+GX,2*X). fuer mehrere dimensionen koennen beide
 % faelle gleichzeitig auftreten. das sollte aber kein problem sein.
 
-% funktion um auf die mitte eines 3d arrays zuzugreifen
-center_ref = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2),floor(size(a,3)/2));
-center_ref2 = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2));
 
 otf=extract(calotte,max(size(calotte)+size(S),size(calotte)*2));
 psf = ift(otf);
@@ -88,63 +85,22 @@ psf = psf / center_ref(otf);
 psf2d = abs(ft(extract(calotte,size(calotte)*2)))^2;
 psf2d = psf2d(:,:,floor(size(psf2d,3)/2));
 otf2d = real(ft(psf2d));
-% maxima code fuer den analytischen ausdruck (aus stokseth 1969)
-% s ist reduzierte ortsfrequenz s=(lambda/n sin(alpha)) f
-% ich glaube die klammern wurden falsch gesetzt in dem paper
-% ausserdem gilt das glaube ich nur fuer kleine NA
-% f(s):=(2*acos(s/2)-sin(2*acos(s/2)))/%pi ist 1 fuer s=0
-% integrate(s^2*f(s),s,0,2); = 64/(45*pi)
-otf2dcorr = DampEdge(rr(otf2d,'freq')<.47,.13,2,0);
+
+otf2dcorr = DampEdge(rr(otf2d,'freq')<.49,.03,2,0);
 otf2dcorr = otf2dcorr/otf2d;
 otf2dcorr = otf2dcorr / center_ref(otf2dcorr);
 % bringe auf dieselbe groesse wie psf
 otf2dcorr = squeeze(extract(otf2dcorr,[size(psf,1) size(psf,2)]));
 
-% ich brauche vier nichtuniforme sinus beleuchtungen
-% damit die ft besser aussieht benutze ich dampedge
 phases = 4; % muss gerade sein, so dass pi dabei ist
-G=newim([size(S) phases]); 
-tilt = 2*pi*xx(size(S,1),size(S,2))/64*12;
-G_z = 28;
-G(:,:,G_z,:) = DampEdge(.5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1,phases],4)*2*pi/phases)),.18,2);
-
-% G_z 28 -> 34 in WF
 
 % psf_z = max(calotte_z+S_z,calotte_z*2)
 % zur zeit tritt erster fall ein
 
-% vergroesser in ortsraum, so dass psfs nicht uberlappen
+% vergroesser in ortsraum, so dass psfs am rand nicht uberlappen
 WF = real(ift(ft(extract(S,size(psf))) * otf));
 WF_z = size(psf,3)-G_z-1;
 WF_slice = WF(:,:,WF_z);
-
-%S_blownup = extract(S,size(psf));
-%plot(799.8*double(squeeze(WF(47,40,:))));hold on;
-%plot(double(squeeze(S_blownup(47,40,:)));hold off
-
-%psf_blownup = extract(psf2d,[size(psf,1) size(psf,2)]);
-%otf_blownup = ft(psf_blownup);
-%real(ift(ft(psf_blownup)*ft(S_blownup(:,:,WF_z))))/otf_blownup(floor(size(otf_blownup,1)/2),floor(size(otf_blownup,2)/2),0)
-
-% vergroessere G
-
-kG = dip_fouriertransform(extract(G,size(psf)),'forward',[1 1 1 0]);
-kG = kG*repmat(otf,[1 1 1 phases]);
-Ill = real(dip_fouriertransform(kG,'inverse',[1 1 1 0]));
-
-% multipliziere mit beleuchtung
-kG = Ill * repmat(extract(S,size(psf)),[1 1 1 phases]);
-kG = dip_fouriertransform(kG,'forward',[1 1 1 0]);
-kG = kG * repmat(otf,[1 1 1 phases]);
-kG = dip_fouriertransform(kG,'inverse',[1 1 1 0]);
-Struc = real(kG(:,:,WF_z,:));
-clear kG;
-
-% dbquit Super-S-c schliesst fenster
-%    dipshow(1,'ch_globalstretch','off')
-%    dipshow(1,'ch_slicing','xz')
-%    dipshow(1,'ch_mappingmode','log')
-%    dipshow(1,'ch_mappingmode','percentile')
 
 tic
 struc = newim(size(otf,1),size(otf,2),size(S,3),phases);
@@ -156,31 +112,23 @@ toc % takes 4.7s per slice times 51 slices
 
 % writeim(struc,'/mnt/tmp/struc_XYZ_phase.ics');
 
-normalize = @(in) (in-min(in))/(max(in)-min(in))
-
-S_slice = S(:,:,WF_z);
-
-
-
-
 % different sectioning methods
 % benedetti 1996
 section_max_min = @(a) squeeze(max(a,[],4)-min(a,[],4))
 % neil 1997 und ben-levy, peleg 1995
 section_homodyne = @(a) squeeze(abs(a(:,:,:,0)+a(:,:,:,1)*exp(i*2*pi*1/4)+a(:,:,:,2)*exp(i*2*pi*2/4)+a(:,:,:,3)*exp(i*2*pi*3/4)))
 
-section_homodyne2 = @(a) squeeze(abs(a(:,:,:,0)+a(:,:,:,2)*exp(i*2*pi*2/4)))
-
 % compare reconstructions of noisy images
 tic
-noise_struc=struc; %noise(struc/max(struc)*6000,'poisson');
+noise_struc=noise(struc/max(struc)*60000,'poisson');
 maxmin=section_max_min(noise_struc);
 homody=section_homodyne(noise_struc);
-homody2=section_homodyne2(noise_struc);
 hilo=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
 toc
 %diplink(1,[2 3 4])
-cat(4,noise_struc/10,maxmin,homody,hilo,WF(:,:,floor(size(otf,3)/2)-floor(size(S,3)/2)+(0:size(S,3)-1))/1000)
+%cat(4,noise_struc/10,maxmin,homody,hilo,WF(:,:,floor(size(otf,3)/2)-floor(size(S,3)/2)+(0:size(S,3)-1))/1000);
+
+noise_wf=squeeze(mean(noise_struc,[],4));
 
 plot(double(squeeze(hilo(42,39,:))),'b');
 hold on
@@ -188,7 +136,7 @@ plot(double(squeeze(homody(42,39,:))),'g');
 hold on
 plot(double(squeeze(maxmin(42,39,:))),'r');
 hold on
-plot(double(squeeze(WF(42,39,floor(size(otf,3)/2)-floor(size(S,3)/2)+(0:size(S,3)-1))))/1000,'c');
+plot(double(squeeze(noise_wf(42,39,:))),'black');
 hold off
 
 

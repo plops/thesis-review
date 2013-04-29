@@ -146,7 +146,13 @@ clear kG;
 %    dipshow(1,'ch_mappingmode','log')
 %    dipshow(1,'ch_mappingmode','percentile')
 
-
+tic
+struc = newim(size(otf,1),size(otf,2),size(S,3),phases);
+for slice = 0:size(S)-1
+    struc(:,:,slice,:) = create_structured_slice(S,otf,phases,slice);
+    toc
+end
+toc % takes 4.7s per slice times 51 slices
 
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 

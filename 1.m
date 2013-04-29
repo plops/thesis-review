@@ -167,23 +167,37 @@ nonuni = ft(ift(nonuni_unshifted)*exp(-i*tiltbig));
 
 
 % different sectioning methods
-% check in rainers chapter in pawley handbook (abbe platz bibo)
+% benedetti 1996
 section_max_min = @(a) max(a,[],4)-min(a,[],4)
-section_max_mean = @(a) max(a,[],4)+min(a,[],4)-2*mean(a,[],4)
+% neil 1997 und ben-levy, peleg 1995
 section_homodyne = @(a) abs(a(:,:,:,0)+a(:,:,:,1)*exp(i*2*pi*1/4)+a(:,:,:,2)*exp(i*2*pi*2/4)+a(:,:,:,3)*exp(i*2*pi*3/4))
 
 % compare reconstructions of noisy images
 maxmin=section_max_min(noise(struc/max(struc)*6000,'poisson'))
-maxavg=section_max_mean(noise(struc/max(struc)*6000,'poisson'))
 homody=section_homodyne(noise(struc/max(struc)*6000,'poisson'))
-diplink(1,[2 3])
+diplink(1,[2])
 
-section_max_mean(struc)
-max(struc,[],4)+min(struc,[],4)-mean(struc,[],4)
+exp(-rr(otf2d,'freq')^2/.1^2)
+
+% erzeuge einen filter der im fourier raum rund ist
+% beziehe ihn auf die groesse der otf2d
+filter_fwhm = .08;
+% wo ist fwhm fuer gauss:
+% solve(exp(-x^2/sigma^2)=.5,x);
+% x=sqrt(log(2))*sigma=0.8326 sigma
+filter_sigma= filter_fwhm/sqrt(log(2));
+lowpass = extract(DampEdge(exp(-rr(otf2d)^2/(filter_sigma*size(otf2d,1))^2),.2,2,0),size(uni));
+hipass = 1-lowpass;
+
+ring = rr(otf2d)< filter_fwhm*size(otf2d,1);
+ring = extract(bdilation(ring)-ring,size(uni));
+
+% check position of ring, it sits exactly on FWHM:
+% abs(lowpass-.5)+ring
 
 rad_scan = newim(size(uni,1),size(uni,2)*2,60);
 %for rad = 1:60
-rad =3
+ rad =3
   mask = rr(uni,'freq')<(rad/100.0);
   lowpass = gaussf(mask ,2);
   lowpass = lowpass / center_ref2(lowpass);

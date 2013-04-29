@@ -98,6 +98,8 @@ psf2d = abs(ft(extract(calotte,size(calotte)*2)))^2;
 psf2d = psf2d(:,:,floor(size(psf2d,3)/2));
 otf2d = real(ft(psf2d));
 
+double(otf2d(:,floor(size(otf2d,2)/2),0))
+
 otf2dcorr = DampEdge(rr(otf2d,'freq')<.49,.03,2,0);
 otf2dcorr = otf2dcorr/otf2d;
 otf2dcorr = otf2dcorr / center_ref(otf2dcorr);

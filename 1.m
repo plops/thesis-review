@@ -3,15 +3,21 @@ center_ref = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2),floor(size(a,3)/2));
 center_ref2 = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2));
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
+
 % berechne erstmal ein objekt
 GX = 64;
 g2 = newim(GX,GX,GX); % make empty 3d image
 
 %% objects: line, rectangle arranged in two planes and a hollow
 %% sphere as a 3d object
-line_z=floor(GX/2)-3;
-lineseg = drawline(g2,floor([.3*GX 0 line_z]),floor([.8*GX .9*GX line_z]),1)
 
+lineseg = drawline(g2,floor([.3*GX 0 line_z]),floor([.8*GX .9*GX line_z]),1);
+r = floor([.2 .2; .9 .5] .* (GX-1));
+rz=floor(GX/2)-3;
+rec=drawrect(newim(g2,'bin'),r(1,1),r(1,2),r(2,1),r(2,2),floor(GX/2)-3);
+~bpropagation([floor(mean(r)) rz],rec,0,1,1)
+rectangle=drawpolygon(g2,[r(1,1) r(1,2) rz; r(2,1) r(1,2) rz;  r(2,1) r(1,2) rz;  r(2,1) r(1,2) rz;]);;
+clear r;
 rect_x0 = floor(.2*GX);
 rect_x1 = floor(.9*GX);
 rect_y0 = floor(.2*GX);

@@ -4,7 +4,7 @@ center_ref2 = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2));
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
 global store
-store = @(scale,in,fn) writeim(min(255,floor(scale*squeeze(in))),fn,'JPEG')
+store = @(scale,in,fn) writeim(max(0,min(255,floor(scale*squeeze(in)))),fn,'JPEG')
 
 
 % berechne erstmal ein objekt
@@ -13,16 +13,16 @@ g2 = newim(GX,GX,GX); % make empty 3d image
 
 %% objects: line, rectangle arranged in two planes and a hollow
 %% sphere as a 3d object
-
+line_z=floor(size(g2,3)/2)-3;
 lineseg = drawline(g2,floor([.3*GX 0 line_z]),floor([.8*GX .9*GX line_z]),1);
 
 rect_x0 = floor(.2*GX);
 rect_x1 = floor(.9*GX);
 rect_y0 = floor(.2*GX);
 rect_y1 = floor(.5*GX);
-rect_z = floor(GX/2)+3;
-rectangle = newim(g2);
-rectangle(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
+rect_z1 = floor(GX/2)+3;
+rectangle1 = newim(g2);
+rectangle1(rect_x0:rect_x1,rect_y0:rect_y1,rect_z1) = 1;
 
 rect_x0 = floor(.6*GX);
 rect_x1 = floor(.8*GX);
@@ -34,7 +34,7 @@ rectangle2(rect_x0:rect_x1,rect_y0:rect_y1,rect_z2) = 1;
 
 hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
 
-S = 12 * lineseg + 4 * (rectangle +rectangle2) + hollow_sphere;
+S = 12 * lineseg + 4 * (rectangle1 +rectangle2) + hollow_sphere;
 S_mask = S>0;
 [rubbish1,S_bbox,S] = bbox(S_mask,S);
 
@@ -113,8 +113,11 @@ phases = 4; % muss gerade sein, so dass pi dabei ist
 
 % vergroesser in ortsraum, so dass psfs am rand nicht uberlappen
 WF = real(ift(ft(extract(S,size(psf))) * otf));
-WF_z = size(psf,3)-G_z-1;
-WF_slice = WF(:,:,WF_z);
+
+
+store(755,WF(:,:,line_z),'/mnt/tmp/S_line.jpg');
+store(755,WF(:,:,rect_z1),'/mnt/tmp/S_rect1.jpg');
+store(755,WF(:,:,rect_z2),'/mnt/tmp/S_rect2.jpg');
 
 tic
 struc = newim(size(otf,1),size(otf,2),size(S,3),phases);
@@ -124,6 +127,7 @@ for slice = 0:size(S,3)-1
 end
 toc % takes 4.7s per slice times 51 slices
 
+% create the pictures
 create_structured_slice(S,otf,phases,floor(size(S,3)/2));
 
 
@@ -145,19 +149,35 @@ toc
 %diplink(1,[2 3 4])
 %cat(4,noise_struc/10,maxmin,homody,hilo,WF(:,:,floor(size(otf,3)/2)-floor(size(S,3)/2)+(0:size(S,3)-1))/1000);
 
+get_bbox = @(slice) floor(size(otf,3)/2)-floor(size(S,3)/2)+slice;
+
+store(1/40,hilo(:,:,28),'/mnt/tmp/sec_rect1_hilo.jpg');
+store(1/40,homody(:,:,28),'/mnt/tmp/sec_rect1_homo.jpg');
+store(1/40,maxmin(:,:,28),'/mnt/tmp/sec_rect1_mm.jpg');
+
+
 noise_wf=squeeze(mean(noise_struc,[],4));
 
-plot(double(squeeze(hilo(42,39,:))),'b');
+plot(0:size(hilo,3)-1,double(squeeze(hilo(42,39,:))),'b');
 hold on
-plot(double(squeeze(homody(42,39,:))),'g');
+plot(0:size(hilo,3)-1,double(squeeze(homody(42,39,:))),'g');
 hold on
-plot(double(squeeze(maxmin(42,39,:))),'r');
+plot(0:size(hilo,3)-1,double(squeeze(maxmin(42,39,:))),'r');
 hold on
-plot(double(squeeze(noise_wf(42,39,:))),'black');
+plot(0:size(hilo,3)-1,double(squeeze(noise_wf(42,39,:))),'black');
+hold on
+hS = floor(size(hilo)/2)-floor(size(S)/2);
+plot(hS(3):size(S,3)-1,1e4*double(squeeze(S(42-hS(1),39-hS(2),:))),'c+');
 hold off
 
+% sampling in z richtung ist ungefaehr lambda
+% dz=.5/(n*(1-cos(alpha)))
+% dx=lambda0/(2*NA)
 
-
+x breite von illum bild
+86*.5/(2*NA)
+z hoehe von illum bild
+63*.5/(n*(1-cos(alpha)))
 %% Local Variables:
 %% mode: Octave
 %% End:

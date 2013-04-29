@@ -18,7 +18,8 @@ function Struc = create_structured_slice(S,otf,phases,slice)
   if slice == floor(size(S,3)/2) % speichere ein bild des gratings ab
     global store
     store(255,G(:,:,slice,0),'/mnt/tmp/G.jpg');
-    store(24000,abs(Illum(:,floor(size(Illum,1)/2),:,0)),'/mnt/tmp/Illum.jpg');
+    store(24000,abs(Illum(:,:,floor(size(Illum,3)/2),0)),'/mnt/tmp/Illumxy.jpg');
+    store(24000,abs(Illum(:,floor(size(Illum,2)/2),:,0)),'/mnt/tmp/Illum.jpg');
   end
 
 

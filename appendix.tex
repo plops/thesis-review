@@ -398,11 +398,26 @@ fig.savefig(cam+'_'+gain+'.png')
   \label{fig:m_phase}
 \end{figure}
 
+\begin{figure}[H]
+  \centering
+  \svginput{1}{hilo-sec}
+  \caption{}
+  \label{fig:hilo-sec}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+
+  \caption{}
+  \label{fig:hilo-sec}
+\end{figure}
+
 \section{HiLo}
 FIXME translate:
 In diesem Kapitel simuliere ich ein Verfahren, um optische Schnitte
 aus nur zwei Rohbildern zu errechnen. Dafuer nutze ich das
 wellenoptische Modell der Bildformung.
+
 
 Ich werde eine beispielhafte 3D Fluorophorverteilung konstruieren,
 die ich anstelle eines Samples verwende. Dann errechne ich eine 3D
@@ -430,7 +445,6 @@ abstand zum Pixel im Mittelpunkt enthaelt. Die Vergleichsoperationen
 ergeben Daten mit Booleschen Datentyp und ich wandle sie implizit
 wieder in Zahlen indem ich eine Null addiere.
 
-\cma{Matlab/DIPimage}
 \begin{lstlisting}[style=mymatlab]
 n = 128;    % number of pixels 
 g = newim(n,n,n); % make empty 3d image
@@ -447,8 +461,10 @@ rectangle(83:114,23:43,floor(n/2)+3) = 1;
 hollow_sphere = 0.0 + (30<rr(g) & rr(g)<50); 
 
 S = 12 * lineseg + 4 * rectangle + hollow_sphere;
-\end{lstlisting}
+\end{lstlisting}  %3.33cm hoch
+\vspace{-5.33cm}\hspace{9cm}\svginput{1}{hilo-sec-S}
 
+\vspace{2cm}
 Mit dem folgenden Code berechne ich zunaechst die generalisiert
 McCutchen Apertur a fuer ein Objektiv mit gegebener numerischer
 Apertur. An dieser Stelle wird die Wellenlaenge der Simulation
@@ -467,7 +483,7 @@ dem in (eqref 1.18 eq:resolution) durchgefuehrt werden.  In diesem
 Beispielcode verzichte ich jedoch auf diese Optimierung, um die
 Lesbarkeit zu erhoehen.
 
-
+\newpage
 \begin{lstlisting}[style=mymatlab]
 %% incoherent 3d point spread function
 lambda0 = 5; % vacuum wavelength of the light (in pixels)
@@ -481,13 +497,18 @@ a = q<rr(g) & rr(g)<q+1 & zz(g)>nu*cos(alpha);
 
 % point spread function in real space
 h = abs(ft(a))^2;
-\end{lstlisting}
+\end{lstlisting}  %2.43cm hoch
+\vspace{-4.43cm}\hspace{12cm}
+\svginput{1}{hilo-sec-psfotf} 
 
+\vspace{1cm}
 Das Bild auf der Kamera erhaelt man gemaess Gleichung 1.14 durch
 Faltung der 3D PSF h und der Fluorophordistribution S. Dabei
 beobachtet die Kamera zwar pro Aufnahme nur einen einzelnen Slice,
 wenn man einen Stack erzeugt, indem das Sample axial verfahren wird
 bekommt man dann jedoch die z-stack Daten in cam.
+
+\svginput{1}{hilo-sec-Illum} 
 
 \begin{lstlisting}[style=mymatlab]
 %% image of the 3d fluorophore distribution

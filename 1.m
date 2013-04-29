@@ -159,10 +159,7 @@ toc % takes 4.7s per slice times 51 slices
 normalize = @(in) (in-min(in))/(max(in)-min(in))
 
 S_slice = S(:,:,WF_z);
-uni = otf2dcorr * squeeze(ft(Struc(:,:,0,0)+Struc(:,:,0,2)));
-nonuni_unshifted = otf2dcorr*squeeze(ft(Struc(:,:,0,0)-Struc(:,:,0,2)));
-tiltbig = 2*pi*xx(size(uni,1),size(uni,2))/64*12;
-nonuni = ft(ift(nonuni_unshifted)*exp(-i*tiltbig));
+
 
 
 
@@ -181,53 +178,41 @@ exp(-rr(otf2d,'freq')^2/.1^2)
 
 % erzeuge einen filter der im fourier raum rund ist
 % beziehe ihn auf die groesse der otf2d
-filter_fwhm = .08;
+filter_fwhm = .13;
 % wo ist fwhm fuer gauss:
 % solve(exp(-x^2/sigma^2)=.5,x);
 % x=sqrt(log(2))*sigma=0.8326 sigma
 filter_sigma= filter_fwhm/sqrt(log(2));
-lowpass = extract(DampEdge(exp(-rr(otf2d)^2/(filter_sigma*size(otf2d,1))^2),.2,2,0),size(uni));
+lowpass = extract(DampEdge(exp(-rr(otf2d)^2/(filter_sigma*size(otf2d,1))^2),.2,2,0),[size(uni,1) size(uni,2)]);
 hipass = 1-lowpass;
 
 ring = rr(otf2d)< filter_fwhm*size(otf2d,1);
-ring = extract(bdilation(ring)-ring,size(uni));
+ring = extract(bdilation(ring)-ring,[size(uni,1) size(uni,2)]);
 
-% check position of ring, it sits exactly on FWHM:
-% abs(lowpass-.5)+ring
+uni = repmat(otf2dcorr,[1 1 size(struc,3)])*squeeze(dip_fouriertransform(struc(:,:,:,0)+struc(:,:,:,2),'forward',[1 1 0 0]));
 
-rad_scan = newim(size(uni,1),size(uni,2)*2,60);
-%for rad = 1:60
- rad =3
-  mask = rr(uni,'freq')<(rad/100.0);
-  lowpass = gaussf(mask ,2);
-  lowpass = lowpass / center_ref2(lowpass);
-  hipass = 1 - lowpass;
-  ring = bdilation(mask)-mask;
-  foo = real(ift(lowpass * kSlice));
-  etauni = mean(ring*abs(uni)^2);
-  etanon = mean(ring*abs(nonuni)^2);
-  eta = etauni/etanon;
-  bar = imag(ift(lowpass * nonuni));
-  baz = real(ift(hipass * uni));
-  sec = bar+baz*eta;
-%  rad_scan(:,:,rad-1) =cat(2,normalize(abs(ring*1e-7+lowpass*nonuni+.1*nonuni)),normalize(sec),normalize(bar),normalize(baz));
-%end
-Slice_view = real(ift(otf2d*ft(Slice)));
-for eta = 1:60
-  v = eta/60;
-  v = v^.1;
-  sec = bar*v+baz*(1-v);
-  rad_scan(:,:,eta-1) = cat(2,normalize(Slice_view-sec),normalize(sec));
-end
-toc
-rad_scan
+nonuni_unshifted = repmat(otf2dcorr,[1 1 size(struc,3)])*squeeze(dip_fouriertransform(struc(:,:,:,0)-struc(:,:,:,2),'forward',[1 1 0 0]));
 
+tiltbig = 2*pi*xx(size(uni,1),size(uni,2))/64*12;
 
-ft(besselj(0,rad/100.0*.5*sqrt(xx(g)^2+yy(g)^2)*pi))
+nonuni = dip_fouriertransform(repmat(exp(-i*tiltbig),[1 1 size(struc,3)])*dip_fouriertransform(nonuni_unshifted,'inverse',[1 1 0]),'forward',[1 1 0]);
 
-eta ist mittelwert ueber hochpass betrags quadrat im ring / mittelwert low pass desselben
+% erweitere auf 3d
+ring3= repmat(ring,[1 1 size(uni,3)]);
+lowpass3 = repmat(lowpass,[1 1 size(uni,3)]);
+hipass3 = repmat(hipass,[1 1 size(uni,3)]);
 
-sum(rad_scan^2,[],[1 2])
+ringhi = mean(ring3*abs(hipass3*uni)^2,[],[1 2]);
+ringlo = mean(ring3*abs(lowpass3*nonuni)^2,[],[1 2]);
+
+eta = ringhi/ringlo;
+
+eta_median=median(eta);
+      
+image_lo = imag(dip_fouriertransform(lowpass3 * nonuni,'inverse',[1 1 0]));
+image_hi = real(dip_fouriertransform(hipass3 * uni,'inverse',[1 1 0]));
+sec = image_lo*eta_median+image_hi;
+
 %% Local Variables:
 %% mode: Octave
 %% End:

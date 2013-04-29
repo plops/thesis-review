@@ -169,16 +169,20 @@ section_max_min = @(a) squeeze(max(a,[],4)-min(a,[],4))
 % neil 1997 und ben-levy, peleg 1995
 section_homodyne = @(a) squeeze(abs(a(:,:,:,0)+a(:,:,:,1)*exp(i*2*pi*1/4)+a(:,:,:,2)*exp(i*2*pi*2/4)+a(:,:,:,3)*exp(i*2*pi*3/4)))
 
+section_homodyne2 = @(a) squeeze(abs(a(:,:,:,0)+a(:,:,:,2)*exp(i*2*pi*2/4)))
+
 % compare reconstructions of noisy images
 tic
 noise_struc=struc; %noise(struc/max(struc)*6000,'poisson');
-maxmin=section_max_min(noise_struc)
+maxmin=section_max_min(noise_struc);
 homody=section_homodyne(noise_struc);
-hilo=section_hilo(noise_struc,.13,otf2d,otf2dcorr)
+homody2=section_homodyne2(noise_struc);
+hilo=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
 toc
-diplink(1,[2 3])
+%diplink(1,[2 3 4])
+cat(4,noise_struc/10,maxmin,homody,hilo,WF(:,:,floor(size(otf,3)/2)-floor(size(S,3)/2)+(0:size(S,3)-1))/1000)
 
-plot(double(squeeze(hilo(42,39,:))/100),'b');
+plot(double(squeeze(hilo(42,39,:))),'b');
 hold on
 plot(double(squeeze(homody(42,39,:))),'g');
 hold on

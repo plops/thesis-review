@@ -36,4 +36,5 @@ eta_median=median(eta);
       
 image_lo = imag(dip_fouriertransform(lowpass3 * nonuni,'inverse',[1 1 0]));
 image_hi = real(dip_fouriertransform(hipass3 * uni,'inverse',[1 1 0]));
-sec = image_lo*eta_median+image_hi;
+sec = image_lo+image_hi/eta_median;
+

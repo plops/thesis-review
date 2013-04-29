@@ -19,15 +19,19 @@ rect_x0 = floor(.6*GX);
 rect_x1 = floor(.8*GX);
 rect_y0 = floor(.0*GX);
 rect_y1 = floor(.9*GX);
-rect_z = floor(GX/2)+9;
+rect_z2 = floor(GX/2)+9;
 rectangle2 = newim(g2);
-rectangle2(rect_x0:rect_x1,rect_y0:rect_y1,rect_z) = 1;
+rectangle2(rect_x0:rect_x1,rect_y0:rect_y1,rect_z2) = 1;
 
 hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
 
 S = 12 * lineseg + 4 * (rectangle +rectangle2) + hollow_sphere;
-[rubbish,rubbish2,S] = bbox(S>0,S);
+S_mask = S>0;
+[rubbish1,S_bbox,S] = bbox(S_mask,S);
 
+% prepare single plane with same size
+S(:,:,:)=0;
+[rubbish2,rubbish3,S]=bbox(S_mask,rectangle);
 
 
 
@@ -73,7 +77,7 @@ psf = ift(otf);
 psf = psf*conj(psf);
 % norm so dass faltung mit 2d psf die intensitaet nicht aendert
 psf = psf/sum(psf(:,:,floor(size(psf,3)/2)));
-otf = ft(psf);
+otf = real(ft(psf));
 
 psf2d = abs(ft(extract(calotte,size(calotte)*2)))^2;
 psf2d = psf2d(:,:,floor(size(psf2d,3)/2));
@@ -101,9 +105,17 @@ G(:,:,G_z,:) = DampEdge(.5*(1+sin(repmat(tilt,[1 1 1 phases])+ramp([size(tilt),1
 % zur zeit tritt erster fall ein
 
 % vergroesser in ortsraum, so dass psfs nicht uberlappen
-WF = ift(ft(extract(S,size(psf))) * otf);
-WF_z = size(psf,3)-G_z;
+WF = real(ift(ft(extract(S,size(psf))) * otf));
+WF_z = size(psf,3)-G_z-1;
 WF_slice = WF(:,:,WF_z);
+
+%S_blownup = extract(S,size(psf));
+%plot(799.8*double(squeeze(WF(47,40,:))));hold on;
+%plot(double(squeeze(S_blownup(47,40,:)));hold off
+
+%psf_blownup = extract(psf2d,[size(psf,1) size(psf,2)]);
+%otf_blownup = ft(psf_blownup);
+%real(ift(ft(psf_blownup)*ft(S_blownup(:,:,WF_z))))/otf_blownup(floor(size(otf_blownup,1)/2),floor(size(otf_blownup,2)/2),0)
 
 % vergroessere G
 

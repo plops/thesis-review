@@ -886,7 +886,9 @@ subtrahiert den Hintergrund
 \end{align}
 
 Eine weitere Methode ist die homodyne Demodulation
-\citep{Neil1997}. Dafuer sollte eine Sinusfoermiges Gitter in die Probe abgebildet werden.
+\citep{Neil1997}. Sie erlaubt die Trennung von modulierten und
+unmodulierten Signal wenn mindestens 3 Rohbilder mit aequidistanten
+Phasensteps vorliegen, die Zusammen ein Widefeldbild ergeben.
 \begin{align}
   I_\textrm{homodyne}(x,y) = \sum_{n=1\ldots N}\left| I_n(x,y)\ e^{2\pi i n/N}\right|
 \end{align}
@@ -927,7 +929,9 @@ otf breite kz-Ausdehnung aufweise (siehe \figref{fig:missing-cone}).
 Die niedrigen Ortsfrequenzen koennen aus dem Modulierten Bild
 rekonstruiert werden, in dem die entsprechende Fourierordnung in die
 Mitte geschoben wird und hoehere Ordnungen durch einen Tiefpass
-abgeschnitten.
+abgeschnitten. Bei der praktischen Umsetzung bedeutet das, dass die
+Gitterfrequenz im Bild bekannt sein muss und beispielsweise an einer
+fluoreszenten Ebene gemessen werden sollte.
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-method-description} 
@@ -935,8 +939,21 @@ abgeschnitten.
   \label{fig:hilo-method-description}
 \end{figure}
 
+\subsection{Discussion and Outlook}
+In der Simulation wie auch im Prototypen werden feine Gitter durch 3
+Ordnungen abgebildet. Dabei werden die 1st orders durch die OTF
+abgeschwaecht, verglichen mit der nullten Ordnung (siehe
+\figref{fig:hilo-sec-Illum2}~right).  Beleuchtungskontrast ist hier
+verhaeltnismaessig gering aber simulation waere schwieriger
+geworden. Im realen System kann mit pupil plane SLM der kontrast
+optimiert werden. Am besten waere jedoch, wenn der focal plane SLM als
+Phasen SLM genutzt werden wuerde um Zweistrahlinterferenz im Sample zu
+erzeugen. Dies ist mit dem aktuellen Protypen jedoch nicht realisiert.
 
-
+Mit dem Code im Appendix koennten die Methoden hinsichtlich ihres
+Verhaltens bei verrauschten Signalen analysiert werden. Der Code
+existiert zwar schon, ich habe jedoch im Rahmen dieser Arbeit keinen
+Vergleich gemacht.
 
 
 

@@ -196,6 +196,8 @@ print -depsc2 /mnt/tmp/cross-section-z.eps
 store(1/1e2,abs(uni_nonoise(:,:,22)),'/mnt/tmp/hilo-method-uni.jpg');
 store(1/40,abs(nonuni_nonoise(:,:,22)),'/mnt/tmp/hilo-method-nonuni.jpg');
 store(.05,hilo_nonoise(:,:,22),'/mnt/tmp/hilo-method-rec.jpg');
+store(1.1*256/2.6e-3,struc(:,:,22,0),'/mnt/tmp/hilo-method-struc.jpg');
+store(1/10,abs(ft(hilo_nonoise(:,:,22))),'/mnt/tmp/hilo-method-recft.jpg');
 
 otfline = squeeze(otf2d(:,floor(size(otf2d,2)/2),0));
 otfline = otfline / otfline(floor(size(otfline)/2));

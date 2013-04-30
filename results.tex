@@ -275,20 +275,29 @@ is no longer possible.
       three-dimensional distribution of yellow-green beads in agarose
       gel. Sampling in $z$ is $\unit[1]{\mu m}$. {\bf left:}
       Computationally sectioned images of the same sample. The
-      corresponding raw images are shown in \figref{fig:m_phase} on
-      page \pageref{fig:m_phase}.}
+      corresponding raw images are shown in \figref{fig:m_phase}.}
   \label{fig:m_wf}
 \end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  %\includegraphics[height=.6\textheight]{m_phase}
+  \svginput{1}{m_phase}
+  \caption{Focal stack with structured illumination of the same sample
+    as \figref{fig:m_wf}. For each $z-$slice (rows) four exposures with
+    different grating phase (columns) were acquired.}
+  \label{fig:m_phase}
+\end{figure}
+
 
 In those cases \cma{optical sectioning} it is useful to utilize
 structured illumination to separate out-of-focus and in-focus
 fluorescence. The mosaic on the right of \figref{fig:m_wf} shows the
 computed optical sections from four raw images per slice. The raw
-images are displayed in \figref{fig:m_phase} on page
-\pageref{fig:m_phase}.  The optical sections contain relatively distinct
-vertical reconstruction artifacts. These can be avoided by using the HiLo
-reconstruction method which has the additional advantage of only
-needing two raw images per slice.
+images are displayed in \figref{fig:m_phase}.  The optical sections
+contain relatively distinct vertical reconstruction artifacts. These
+can be avoided by using the HiLo reconstruction method which has the
+additional advantage of only needing two raw images per slice.
 
 However, \cma{bead localization} the HiLo method needs considerably
 more programming. Also, the artifacts have no effect on the localization

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297.42859"
+   height="193.00002"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="hilo-method-description.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="113.44657"
+     inkscape:cy="131.50746"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1364"
+     inkscape:window-height="757"
+     inkscape:window-x="0"
+     inkscape:window-y="9"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs4">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path4780"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mendj"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mendj">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#ff7f2a;fill-rule:evenodd;stroke:#ff7f2a;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path5217"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mendj-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mendj">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:#ff7f2a;fill-rule:evenodd;stroke:#ff7f2a;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path5217-4" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     transform="translate(-54.142857,-40.147907)">
+    <image
+       width="86"
+       height="93"
+       xlink:href="file:///dev/shm/revise/raster/S_line.jpg"
+       id="image3300"
+       x="54.142857"
+       y="40.147907" />
+    <image
+       width="86"
+       height="93"
+       xlink:href="file:///dev/shm/revise/raster/hilo-method-uni.jpg"
+       id="image3458"
+       x="54.142857"
+       y="140.14792" />
+    <image
+       width="86"
+       height="93"
+       xlink:href="file:///dev/shm/revise/raster/hilo-method-nonuni.jpg"
+       id="image3536"
+       x="154.14284"
+       y="140.14792" />
+    <image
+       width="86"
+       height="93"
+       xlink:href="file:///dev/shm/revise/raster/hilo-method-rec.jpg"
+       id="image3614"
+       x="265.57144"
+       y="40.147907" />
+    <image
+       width="86"
+       height="93"
+       xlink:href="file:///dev/shm/revise/raster/hilo-method-struc.jpg"
+       id="image3692"
+       x="154.14284"
+       y="40.147907" />
+    <image
+       width="86"
+       height="93"
+       xlink:href="file:///dev/shm/revise/raster/hilo-method-recft.jpg"
+       id="image3770"
+       x="265.57144"
+       y="140.14792" />
+    <path
+       transform="translate(213.03526,-3.6624728)"
+       d="m 110,190.57646 c 0,7.69254 -6.23604,13.92857 -13.928574,13.92857 -7.692537,0 -13.928571,-6.23603 -13.928571,-13.92857 0,-7.69254 6.236034,-13.92857 13.928571,-13.92857 7.692534,0 13.928574,6.23603 13.928574,13.92857 z"
+       sodipodi:ry="13.928572"
+       sodipodi:rx="13.928572"
+       sodipodi:cy="190.57646"
+       sodipodi:cx="96.071426"
+       id="path4543-4"
+       style="fill:none;stroke:#c97627;stroke-width:1.20000005;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.4, 4.8;stroke-dashoffset:0"
+       sodipodi:type="arc" />
+    <path
+       transform="translate(1.5765065,-3.9285431)"
+       d="m 110,190.57646 c 0,7.69254 -6.23604,13.92857 -13.928574,13.92857 -7.692537,0 -13.928571,-6.23603 -13.928571,-13.92857 0,-7.69254 6.236034,-13.92857 13.928571,-13.92857 7.692534,0 13.928574,6.23603 13.928574,13.92857 z"
+       sodipodi:ry="13.928572"
+       sodipodi:rx="13.928572"
+       sodipodi:cy="190.57646"
+       sodipodi:cx="96.071426"
+       id="path4543"
+       style="fill:#c97627;fill-opacity:0.64942527;stroke:#c97627;stroke-width:3;stroke-linecap:square;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 3;stroke-dashoffset:0"
+       sodipodi:type="arc" />
+    <path
+       id="path4563-7"
+       d="m 197.5,151.9375 c -19.17753,0 -34.75,15.54121 -34.75,34.71875 0,19.17754 15.57247,34.71875 34.75,34.71875 19.17754,0 34.71875,-15.54121 34.71875,-34.71875 0,-19.17754 -15.54121,-34.71875 -34.71875,-34.71875 z m 0,20.78125 c 7.69253,0 13.90625,6.24496 13.90625,13.9375 0,7.69254 -6.21372,13.9375 -13.90625,13.9375 -7.69254,0 -13.9375,-6.24496 -13.9375,-13.9375 0,-7.69254 6.24496,-13.9375 13.9375,-13.9375 z"
+       style="fill:#c97627;fill-opacity:0.29310346;stroke:#c97627;stroke-width:3.00000023999999987;stroke-linecap:square;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.00000006000000008, 3.00000006000000008;stroke-dashoffset:0"
+       inkscape:connector-curvature="0" />
+    <path
+       transform="matrix(1.122449,0,0,1.122449,-8.2248111,-29.531376)"
+       d="m 125.25891,192.5961 c 0,17.08544 -13.85048,30.93592 -30.93592,30.93592 -17.085438,0 -30.935922,-13.85048 -30.935922,-30.93592 0,-17.08544 13.850484,-30.93592 30.935922,-30.93592 17.08544,0 30.93592,13.85048 30.93592,30.93592 z"
+       sodipodi:ry="30.935923"
+       sodipodi:rx="30.935923"
+       sodipodi:cy="192.5961"
+       sodipodi:cx="94.32299"
+       id="path4563"
+       style="fill:none;stroke:#c97627;stroke-width:2.67272735;stroke-linecap:square;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.67272728, 2.67272728;stroke-dashoffset:0"
+       sodipodi:type="arc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4586"
+       d="M 98.994949,162.92287 C 148.90793,148.49069 196.00906,129.23018 297.48992,162.41779"
+       style="fill:none;stroke:#ff7f2a;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mendj)"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4586-9"
+       d="m 198.2019,192.03322 c 22.13378,31.52976 53.57755,34.49261 105.05586,0"
+       style="fill:none;stroke:#ff7f2a;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mendj)"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="64.285721"
+       y="55.933613"
+       id="text5291"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5293"
+         x="64.285721"
+         y="55.933613"
+         style="font-size:13px;fill:#f9f9f9">widefield</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="161.71428"
+       y="49.505039"
+       id="text5295"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5297"
+         x="161.71428"
+         y="49.505039">{\scriptsize structured}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="175.28572"
+       y="60.362183"
+       id="text5299"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5301"
+         x="175.28572"
+         y="60.362183">{\scriptsize illumination}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="275"
+       y="52.362183"
+       id="text5303"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5305"
+         x="275"
+         y="52.362183">{\scriptsize HiLo}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="272.42856"
+       y="128.6479"
+       id="text5307"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5309"
+         x="272.42856"
+         y="128.6479">{\scriptsize reconstruction}</tspan></text>
+  </g>
+</svg>

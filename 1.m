@@ -144,7 +144,7 @@ tic
 noise_struc=noise(struc/max(struc)*60000,'poisson');
 maxmin=section_max_min(noise_struc);
 homody=section_homodyne(noise_struc);
-hilo=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
+[hilo uni_noise nonuni_noise]=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
 toc
 %diplink(1,[2 3 4])
 %cat(4,noise_struc/10,maxmin,homody,hilo,WF(:,:,floor(size(otf,3)/2)-floor(size(S,3)/2)+(0:size(S,3)-1))/1000);
@@ -157,6 +157,8 @@ store(1/40,maxmin(:,:,28),'/mnt/tmp/sec_rect1_mm.jpg');
 
 
 noise_wf=squeeze(mean(noise_struc,[],4));
+
+
 
 
 % sampling in z richtung ist ungefaehr lambda (ich nehme 500nm licht)
@@ -187,6 +189,17 @@ set(gcf, 'PaperPositionMode', 'manual');
 set(gcf, 'PaperUnits', 'inches');
 set(gcf, 'PaperPosition', [0 0 7 3.2]);
 print -depsc2 /mnt/tmp/cross-section-z.eps
+
+[hilo_nonoise uni_nonoise nonuni_nonoise]=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
+% slice 22 ist die linie
+
+store(1/1e2,abs(uni_nonoise(:,:,22)),'/mnt/tmp/hilo-method-uni.jpg');
+store(1/40,abs(nonuni_nonoise(:,:,22)),'/mnt/tmp/hilo-method-nonuni.jpg');
+store(.05,hilo_nonoise(:,:,22),'/mnt/tmp/hilo-method-rec.jpg');
+
+% slice 29 hat linie in WF bild
+kWF=dip_fouriertransform(WF,'forward',[1 1 0]);
+store(26*176,abs(otf2dcorr*squeeze(kWF(:,:,29))),'/mnt/tmp/hilo-method-wf.jpg');
 
 %% Local Variables:
 %% mode: Octave

@@ -1,4 +1,4 @@
-function sec = section_hilo(struc,filter_fwhm,otf2d,otf2dcorr)
+function [sec uni nonuni] = section_hilo(struc,filter_fwhm,otf2d,otf2dcorr)
 uni = repmat(otf2dcorr,[1 1 size(struc,3)])*squeeze(dip_fouriertransform(struc(:,:,:,0)+struc(:,:,:,2),'forward',[1 1 0 0]));
 
 nonuni_unshifted = repmat(otf2dcorr,[1 1 size(struc,3)])*squeeze(dip_fouriertransform(struc(:,:,:,0)-struc(:,:,:,2),'forward',[1 1 0 0]));
@@ -6,7 +6,6 @@ nonuni_unshifted = repmat(otf2dcorr,[1 1 size(struc,3)])*squeeze(dip_fouriertran
 tiltbig = 2*pi*xx(size(uni,1),size(uni,2))/64*12;
 
 nonuni = dip_fouriertransform(repmat(exp(-i*tiltbig),[1 1 size(struc,3)])*dip_fouriertransform(nonuni_unshifted,'inverse',[1 1 0]),'forward',[1 1 0]);
-
 
 % erzeuge einen filter der im fourier raum rund ist
 % beziehe ihn auf die groesse der otf2d

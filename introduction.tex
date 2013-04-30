@@ -468,6 +468,7 @@ widefield fluorescence microscope with a laser. A dichromatic beam
 splitter (BS) separates illumination and returning fluorescence light.
 
 \subsection{Wave-optical theory for image formation in a fluorescence microscope}
+\label{sec:wave-image-formation}
 In the following sectoin I will describe how the image on the camera
 \cma{wave optics} is formed. For this one has to use wave theory
 because close to the image rays intersect, invalidating ray-optical
@@ -598,7 +599,7 @@ complex values on the Ewald sphere \citep{McCutchen1964}:
 \begin{align}
   \widetilde a(\vnu)&=\exp\left(2\pi i \frac{ n}{\lambda_0} 
     W(\vnu_t)\right)
-  \delta\left(\frac{n}{\lambda_0}-|\vnu|\right)  \step\left(|\vnu|cos(\alpha)-\nu_z\right), \label{eq:mccutchen} \\
+  \delta\left(\frac{n}{\lambda_0}-|\vnu|\right)  \step\left(|\vnu|cos(\alpha)-\nu_z\right), \label{eq:mccutchen}  \label{eq:asf} \\
   \step(x)&=
   \begin{cases} 
     1 & x\ge 0 \\
@@ -659,7 +660,7 @@ depends non-linearly on the amplitude of the field $u'$.  However, the
 fluorophores act as independent sources and their phases vary randomly
 with respect to each other. Each fluorophore gives rise to its
 coherent image $h(\r')$  \citep{goodman1968}:
-\begin{align}
+\begin{align} \label{eq:psf}
   h(\r')=|a(\r')|^2.
 \end{align}
 The three-dimensional intensity distribution $I'(\r')$ in image space

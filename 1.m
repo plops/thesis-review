@@ -162,7 +162,7 @@ noise_wf=squeeze(mean(noise_struc,[],4));
 
 
 % sampling in z richtung ist ungefaehr lambda (ich nehme 500nm licht)
-dz=.5/(n*(1-cos(alpha)))
+dz=.5/(n*(1-cos(alpha)))*(size(calotte,3)*2)/size(psf,3)
 % dx=lambda0/(2*NA)
 
 %x breite von illum bild (fuer 500nm licht) hier war was falsch:
@@ -171,18 +171,21 @@ dz=.5/(n*(1-cos(alpha)))
 % ich muesste die skalen in den bildern auf 87/70 vergroessern
 
 % z hoehe von illum bild
-%63*.5/(n*(1-cos(alpha)))
+% hier muss es auf 63/51 vergroessert werden
+%51/63*.5/(n*(1-cos(alpha)))
 
 
+xp = 34; 
+yp=27;
 zpos = dz*((0:size(hilo,3)-1)-28);
-hilo_p = double(squeeze(hilo(42,39,:)));
-homo_p = double(squeeze(homody(42,39,:)));
-maxm_p = double(squeeze(maxmin(42,39,:)));
-wide_p = double(squeeze(noise_wf(42,39,:)));
+hilo_p = double(squeeze(hilo(xp,yp,:)));
+homo_p = double(squeeze(homody(xp,yp,:)));
+maxm_p = double(squeeze(maxmin(xp,yp,:)));
+wide_p = double(squeeze(noise_wf(xp,yp,:)));
 % zeige original sample hat arbitrary scale
 hS = floor(size(hilo)/2)-floor(size(S)/2);
 zpos_big=dz*((hS(3):size(S,3)-1)-28);
-s_p = 60e3/100*double(squeeze(S(42-hS(1),39-hS(2),:)));
+s_p = 60e3/100*double(squeeze(S(xp-hS(1),yp-hS(2),:)));
 plot(zpos,hilo_p,zpos,homo_p,zpos,maxm_p,zpos,wide_p,zpos_big,s_p);
 xlabel('z/\mum');
 ylabel('intensity/photons');

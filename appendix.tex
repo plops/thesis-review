@@ -387,17 +387,16 @@ fig.savefig(cam+'_'+gain+'.png')
 \comment{
 \jpginput{}{m_phase}{}
 \pdfinput{1cm}{cross-section-z}
-\pdfinput{1cm}{otfline}
 }
 
 
 
-\begin{figure}[H]
-  \centering
-  \svginput{1}{hilo-sec}
-  \caption{}
-  \label{fig:hilo-sec}
-\end{figure}
+% \begin{figure}[H]
+%   \centering
+%   \svginput{1}{hilo-sec}
+%   \caption{}
+%   \label{fig:hilo-sec}
+% \end{figure}
 
 \begin{figure}[htbp]
   \centering
@@ -405,12 +404,7 @@ fig.savefig(cam+'_'+gain+'.png')
   \caption{ldaksf}
   \label{fig:cross-section-z}
 \end{figure}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics{otfline_vector}
-  \caption{ldaksf}
-  \label{fig:otfline}
-\end{figure}
+
 
 
 
@@ -513,7 +507,6 @@ bekommt man dann jedoch die z-stack Daten in cam.
 
   \svginput{1}{hilo-sec-Illum} 
 
-  \svginput{1}{hilo-sec-comparison} 
 
 
 \begin{lstlisting}[style=mymatlab]

@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="113.44657"
+     inkscape:cx="-2.6248586"
      inkscape:cy="131.50746"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -91,7 +91,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -186,7 +186,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path4586-9"
-       d="m 198.2019,192.03322 c 22.13378,31.52976 53.57755,34.49261 105.05586,0"
+       d="m 198.2019,192.03322 c 24.07086,33.38989 75.06835,64.32099 106.48443,6.42857"
        style="fill:none;stroke:#ff7f2a;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Mendj)"
        sodipodi:nodetypes="cc" />
     <text
@@ -237,13 +237,79 @@
     <text
        xml:space="preserve"
        style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       x="272.42856"
+       x="284.42856"
        y="128.6479"
        id="text5307"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5309"
-         x="272.42856"
+         x="284.42856"
          y="128.6479">{\scriptsize reconstruction}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="58.42857"
+       y="127.79456"
+       id="text5889"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5891"
+         x="58.42857"
+         y="127.79456">a)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="157.36028"
+       y="127.8009"
+       id="text5889-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5891-4"
+         x="157.36028"
+         y="127.8009">b)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="268.50314"
+       y="127.79456"
+       id="text5889-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5891-48"
+         x="268.50314"
+         y="127.79456">c)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="57.074566"
+       y="227.22311"
+       id="text5889-05"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5891-0"
+         x="57.074566"
+         y="227.22311">d)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="156.36028"
+       y="227.21677"
+       id="text5889-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5891-1"
+         x="156.36028"
+         y="227.21677">e)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="268.50314"
+       y="227.22311"
+       id="text5889-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5891-8"
+         x="268.50314"
+         y="227.22311">f)</tspan></text>
   </g>
 </svg>

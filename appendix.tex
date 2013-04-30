@@ -386,6 +386,7 @@ fig.savefig(cam+'_'+gain+'.png')
 \label{sec:sectioning}
 \comment{
 \jpginput{}{m_phase}{}
+\pdfinput{1cm}{cross-section-z}
 }
 
 
@@ -405,12 +406,14 @@ fig.savefig(cam+'_'+gain+'.png')
   \label{fig:hilo-sec}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
-
-  \caption{}
-  \label{fig:hilo-sec}
+  \includegraphics{cross-section-z_vector}
+  \caption{ldaksf}
+  \label{fig:cross-section-z}
 \end{figure}
+
+
 
 \section{HiLo}
 FIXME translate:
@@ -462,7 +465,8 @@ hollow_sphere = 0.0 + (30<rr(g) & rr(g)<50);
 
 S = 12 * lineseg + 4 * rectangle + hollow_sphere;
 \end{lstlisting}  %3.33cm hoch
-\vspace{-5.33cm}\hspace{9cm}\svginput{1}{hilo-sec-S}
+\vspace{-5.33cm}\hspace{9cm}
+\svginput{1}{hilo-sec-S}
 
 \vspace{2cm}
 Mit dem folgenden Code berechne ich zunaechst die generalisiert
@@ -499,7 +503,7 @@ a = q<rr(g) & rr(g)<q+1 & zz(g)>nu*cos(alpha);
 h = abs(ft(a))^2;
 \end{lstlisting}  %2.43cm hoch
 \vspace{-4.43cm}\hspace{12cm}
-\svginput{1}{hilo-sec-psfotf} 
+  \svginput{1}{hilo-sec-psfotf} 
 
 \vspace{1cm}
 Das Bild auf der Kamera erhaelt man gemaess Gleichung 1.14 durch
@@ -508,7 +512,10 @@ beobachtet die Kamera zwar pro Aufnahme nur einen einzelnen Slice,
 wenn man einen Stack erzeugt, indem das Sample axial verfahren wird
 bekommt man dann jedoch die z-stack Daten in cam.
 
-\svginput{1}{hilo-sec-Illum} 
+  \svginput{1}{hilo-sec-Illum} 
+
+  \svginput{1}{hilo-sec-comparison} 
+
 
 \begin{lstlisting}[style=mymatlab]
 %% image of the 3d fluorophore distribution
@@ -540,6 +547,7 @@ noise_series = newim(n,n,n,3,2);
 noise_series(:,:,:,:,0) = noise(focus_series*10,'poisson');
 noise_series(:,:,:,:,1) = noise(focus_series*100,'poisson');
 \end{lstlisting}
+
 
 eigentlich muesste man die periode exakt messen (entweder
 fluorescent plane sample oder korrelationsmethode aus kai's paper?)

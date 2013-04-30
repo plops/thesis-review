@@ -158,26 +158,36 @@ store(1/40,maxmin(:,:,28),'/mnt/tmp/sec_rect1_mm.jpg');
 
 noise_wf=squeeze(mean(noise_struc,[],4));
 
-plot(0:size(hilo,3)-1,double(squeeze(hilo(42,39,:))),'b');
-hold on
-plot(0:size(hilo,3)-1,double(squeeze(homody(42,39,:))),'g');
-hold on
-plot(0:size(hilo,3)-1,double(squeeze(maxmin(42,39,:))),'r');
-hold on
-plot(0:size(hilo,3)-1,double(squeeze(noise_wf(42,39,:))),'black');
-hold on
-hS = floor(size(hilo)/2)-floor(size(S)/2);
-plot(hS(3):size(S,3)-1,1e4*double(squeeze(S(42-hS(1),39-hS(2),:))),'c+');
-hold off
 
-% sampling in z richtung ist ungefaehr lambda
-% dz=.5/(n*(1-cos(alpha)))
+% sampling in z richtung ist ungefaehr lambda (ich nehme 500nm licht)
+dz=.5/(n*(1-cos(alpha)))
 % dx=lambda0/(2*NA)
 
-x breite von illum bild
-86*.5/(2*NA)
-z hoehe von illum bild
-63*.5/(n*(1-cos(alpha)))
+%x breite von illum bild (fuer 500nm licht)
+%86*.5/(2*NA)
+%z hoehe von illum bild
+%63*.5/(n*(1-cos(alpha)))
+
+
+zpos = dz*((0:size(hilo,3)-1)-28);
+hilo_p = double(squeeze(hilo(42,39,:)));
+homo_p = double(squeeze(homody(42,39,:)));
+maxm_p = double(squeeze(maxmin(42,39,:)));
+wide_p = double(squeeze(noise_wf(42,39,:)));
+% zeige original sample hat arbitrary scale
+hS = floor(size(hilo)/2)-floor(size(S)/2);
+zpos_big=dz*((hS(3):size(S,3)-1)-28);
+s_p = 60e3/100*double(squeeze(S(42-hS(1),39-hS(2),:)));
+plot(zpos,hilo_p,zpos,homo_p,zpos,maxm_p,zpos,wide_p,zpos_big,s_p);
+xlabel('z/\mum');
+ylabel('intensity/photons');
+legend('hilo','homodyne','maxmin','widefield','sample','Location','EastOutSide');
+grid on;
+set(gcf, 'PaperPositionMode', 'manual');
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperPosition', [0 0 7 3.2]);
+print -depsc2 /mnt/tmp/cross-section-z.eps
+
 %% Local Variables:
 %% mode: Octave
 %% End:

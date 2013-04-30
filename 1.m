@@ -165,9 +165,12 @@ noise_wf=squeeze(mean(noise_struc,[],4));
 dz=.5/(n*(1-cos(alpha)))
 % dx=lambda0/(2*NA)
 
-%x breite von illum bild (fuer 500nm licht)
-%86*.5/(2*NA)
-%z hoehe von illum bild
+%x breite von illum bild (fuer 500nm licht) hier war was falsch:
+%size(psf,1) ist 70, d.h. alle pixel sind etwas kleiner und ein pixel
+%hat die groesse: 70/87*.5/(2*NA)
+% ich muesste die skalen in den bildern auf 87/70 vergroessern
+
+% z hoehe von illum bild
 %63*.5/(n*(1-cos(alpha)))
 
 

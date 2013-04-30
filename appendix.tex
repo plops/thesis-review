@@ -430,50 +430,37 @@ abstand zum Pixel im Mittelpunkt enthaelt. Die Vergleichsoperationen
 ergeben Daten mit Booleschen Datentyp und ich wandle sie implizit
 wieder in Zahlen indem ich eine Null addiere.
 
+
+Berechne ein Objekt bestehend aus eine Linie, zwei Rechtecken in
+unterschiedlichen Z-Positionen und einer grossen 3D Kugelschale.
 \begin{lstlisting}[style=mymatlab]
 center_ref = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2),floor(size(a,3)/2));
-center_ref2 = @(a) a(floor(size(a,1)/2),floor(size(a,2)/2));
-normalize = @(in) (in-min(in))/(max(in)-min(in))
 
-global store
-store = @(scale,in,fn) writeim(max(0,min(255,floor(scale*squeeze(in)))),fn,'JPEG')
-
-
-% berechne erstmal ein objekt
-GX = 64;
-g2 = newim(GX,GX,GX); % make empty 3d image
-
-%% objects: line, rectangle arranged in two planes and a hollow
-%% sphere as a 3d object
+GX = 64; g2 = newim(GX,GX,GX); % make empty 3d image
 line_z=floor(size(g2,3)/2)-3;
 lineseg = drawline(g2,floor([.3*GX 0 line_z]),floor([.8*GX .9*GX line_z]),1);
 
-rect_x0 = floor(.2*GX);
-rect_x1 = floor(.9*GX);
-rect_y0 = floor(.2*GX);
-rect_y1 = floor(.5*GX);
+rect_x0 = floor(.2*GX); rect_x1 = floor(.9*GX);
+rect_y0 = floor(.2*GX); rect_y1 = floor(.5*GX);
 rect_z1 = floor(GX/2)+3;
 rectangle1 = newim(g2);
-rectangle1(rect_x0:rect_x1,rect_y0:rect_y1,rect_z1) = 1;
+rectangle1(rect_x0:rect_x1,rect_y0:rect_y1,rect_z1)=1;
 
-rect_x0 = floor(.6*GX);
-rect_x1 = floor(.8*GX);
-rect_y0 = floor(.0*GX);
-rect_y1 = floor(.9*GX);
+rect_x0 = floor(.6*GX); rect_x1 = floor(.8*GX);
+rect_y0 = floor(.0*GX); rect_y1 = floor(.9*GX);
 rect_z2 = floor(GX/2)+9;
 rectangle2 = newim(g2);
-rectangle2(rect_x0:rect_x1,rect_y0:rect_y1,rect_z2) = 1;
+rectangle2(rect_x0:rect_x1,rect_y0:rect_y1,rect_z2)=1;
 
 hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4); 
 
 S = 12 * lineseg + 4 * (rectangle1 +rectangle2) + hollow_sphere;
-S_mask = S>0;
-[rubbish1,S_bbox,S] = bbox(S_mask,S);
+[unused1,unused2,S] = bbox(S>0,S); clear g2;
 \end{lstlisting}  %3.33cm hoch
-\vspace{-5.33cm}\hspace{9cm}
+\vspace{-6.33cm}\hspace{9cm}
 \svginput{1}{hilo-sec-S}
 
-\vspace{2cm}
+\vspace{3cm}
 Mit dem folgenden Code berechne ich zunaechst die generalisiert
 McCutchen Apertur a fuer ein Objektiv mit gegebener numerischer
 Apertur. An dieser Stelle wird die Wellenlaenge der Simulation
@@ -494,22 +481,19 @@ Lesbarkeit zu erhoehen.
 
 \citep{Vembu1961}
 
+
+Groesse des Arrays 
 \begin{lstlisting}[style=mymatlab]
-lambda0 = 5; % vacuum wavelength of the light (in pixels)
 n = 1.52; % refractive index
-nu = n/lambda0;  % diameter of the ewald sphere 
 NA = 1.4; % numerical aperture of the lens
 alpha = asin(NA/n);  % acceptance half-angle of lens
-
-X = 37; % muss ungerade sein, fuer perfektes zentrum
-g = newim(X,X,X);
-
-a=ft(sinc(rr(g)*pi)); 
-
+X = 37; g = newim(X,X,X); % X should be odd, so that g has a center pixel
+a=ft(sinc(rr(g)*pi)); % draw sphere that fills g exactly
 zpos = floor(X/2) + round(.5*X*cos(alpha));
 xpos1 = floor(X/2) - round(.5*X*sin(alpha));
-xpos2 = floor(X/2) + round(.5*X*sin(alpha));
-calotte = a(xpos1:xpos2,xpos1:xpos2,zpos:end);
+xpos2 = floor(X/2) + round(.5*X*sin(alpha))
+% cut out part of the sphere depending on lenses aperture:
+calotte = a(xpos1:xpos2,xpos1:xpos2,zpos:end); 
 
 otf=extract(calotte,max(size(calotte)+size(S),size(calotte)*2));
 psf = ift(otf);

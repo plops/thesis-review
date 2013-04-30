@@ -197,9 +197,17 @@ store(1/1e2,abs(uni_nonoise(:,:,22)),'/mnt/tmp/hilo-method-uni.jpg');
 store(1/40,abs(nonuni_nonoise(:,:,22)),'/mnt/tmp/hilo-method-nonuni.jpg');
 store(.05,hilo_nonoise(:,:,22),'/mnt/tmp/hilo-method-rec.jpg');
 
-% slice 29 hat linie in WF bild
-kWF=dip_fouriertransform(WF,'forward',[1 1 0]);
-store(26*176,abs(otf2dcorr*squeeze(kWF(:,:,29))),'/mnt/tmp/hilo-method-wf.jpg');
+otfline = squeeze(otf2d(:,floor(size(otf2d,2)/2),0));
+otfline = otfline / otfline(floor(size(otfline)/2));
+otfline_x = xx(otfline,'freq')*4;
+plot(double(otfline_x),double(otfline))
+grid on;
+set(gcf, 'PaperPositionMode', 'manual');
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperPosition', [0 0 5 2]);
+xlabel('\nu_x / (NA/\lambda_0)');
+ylabel('OTF');
+print /mnt/tmp/otfline.eps
 
 %% Local Variables:
 %% mode: Octave

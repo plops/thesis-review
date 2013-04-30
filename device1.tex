@@ -824,7 +824,7 @@ superposition of the camera image and the outline of the circles.
   possible to selectively illuminate even small structures using the
   focal plane SLM.}
 
-\subsection{Conclusion}
+\subsection{Conclusion on the mapping transformation}
 I have shown the simplest possible transformation to map between the
 pixel grid of the camera and the focal plane SLM.
 
@@ -881,7 +881,7 @@ Rohbildern zu ermitteln. Drei davon werde ich nun vorstellen.
 Der einfachste Algorithmus \citep{Benedetti1997} geht davon aus, dass
 die in-focus Information den Hauptanteil am Bildsignal erzeugt und
 subtrahiert den Hintergrund
-\begin{align}
+\begin{align} \label{eq:Iminmax}
   I_\textrm{minmax}(x,y) = \max_{n=1\ldots N}(I_n(x,y))- \min_{n=1\ldots N}(I_n(x,y))
 \end{align}
 
@@ -889,7 +889,7 @@ Eine weitere Methode ist die homodyne Demodulation
 \citep{Neil1997}. Sie erlaubt die Trennung von modulierten und
 unmodulierten Signal wenn mindestens 3 Rohbilder mit aequidistanten
 Phasensteps vorliegen, die Zusammen ein Widefeldbild ergeben.
-\begin{align}
+\begin{align} \label{eq:Ihomodyne}
   I_\textrm{homodyne}(x,y) = \sum_{n=1\ldots N}\left| I_n(x,y)\ e^{2\pi i n/N}\right|
 \end{align}
 
@@ -954,6 +954,18 @@ Mit dem Code im Appendix koennten die Methoden hinsichtlich ihres
 Verhaltens bei verrauschten Signalen analysiert werden. Der Code
 existiert zwar schon, ich habe jedoch im Rahmen dieser Arbeit keinen
 Vergleich gemacht.
+
+
+
+
+eigentlich muesste man die periode exakt messen (entweder
+fluorescent plane sample oder korrelationsmethode aus kai's paper?)
+aber fuer diese simulation ist beleuchtungsperiode P bekannt. wir
+verschieben die erste ordnung in die mitte und benutzen einen
+tiefpass filter um die anderen ordnungen zu unterdruecken
+
+bemerkung: ueberlapp fuehrt zu artefakten, high res sim, wiener
+filter 
 
 
 

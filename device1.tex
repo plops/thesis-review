@@ -852,11 +852,11 @@ effort. I give example code in Appendix \ref{sec:map_opengl}.
 \end{summary}
 In order to provide maximum imaging speeds with our system, I
 investigated techniques to obtain optically sectioned images with as
-few exposures per slice as possible. Excitation with a sinusoidal
+few exposures per slice as possible. Illuminating with a sinusoidal
 grating has proved to be particularly advantageous because then the
 necessary image processing can be expressed elegantly with linear
-operations in Fourier space. Using the HiLo method, already two
-acquisitions allow to calculate an optical section.
+operations in Fourier space. Using the HiLo method \citep{Mertz2010},
+already two acquisitions allow to calculate an optical section.
 
 When a sinusoidal grating is imaged into the focal plane of a
 microscope objective using incoherent light then the three-dimensional
@@ -920,7 +920,8 @@ and e) reject significant amounts of out-of-focus light in point 2.
   \centering
   \svginput{1}{hilo-sec-comparison} 
   \caption{{\bf a)} Distribution of fluorophores for the simulations
-    in this section. {\bf b)} Widefield image in the slice with
+    in this section. Two rectangles and a line intersecting a hollow
+    sphere shell. {\bf b)} Widefield image in the slice with
     rectangle~1. {\bf c,d,e)} Optical sections of this slice using
     three different methods.  The brightest points of the raw images
     were set to contain 60000 photons and their photon shot noise was
@@ -932,7 +933,7 @@ and e) reject significant amounts of out-of-focus light in point 2.
 The reconstruction methods can all separate the rectangle from
 background fluorescence. The simple 'max-min' method, however, causes
 artifacts in the reconstruction. The spurious stripes would only
-disappear when significantly more images were recorded. The homodyne
+disappear if significantly more images were recorded. The homodyne
 method gives a very good result but requires at least three images (I
 used four to obtain \figref{fig:hilo-sec-comparison}~d).
 

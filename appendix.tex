@@ -453,8 +453,7 @@ hollow_sphere = 0.0 + (.3<rr(g2,'freq') & rr(g2,'freq')<.4);
 S = 12 * lineseg + 4 * (rectangle1 +rectangle2) + hollow_sphere;
 [unused1,unused2,S] = bbox(S>0,S); clear g2;
 \end{lstlisting}  %3.33cm hoch
-\vspace{-6.33cm}\hspace{9cm}
-\svginput{1}{hilo-sec-S}
+\vspace{-6.33cm}\hspace{9cm} \svginput{1}{hilo-sec-S}
 
 \vspace{3cm} With the following code I determine the generalized
 McCutchen aperture for a lens with a given numerical aperture
@@ -509,8 +508,7 @@ otf2dcorr = otf2dcorr / center_ref(otf2dcorr);
 % ensure the array the same 2d extent as the 3d otf
 otf2dcorr = squeeze(extract(otf2dcorr,[size(psf,1) size(psf,2)]));
 \end{lstlisting}  %2.43cm hoch
-\vspace{-6.43cm}\hspace{12cm}
-\svginput{1}{hilo-sec-psfotf} 
+\vspace{-6.43cm}\hspace{12cm} \svginput{1}{hilo-sec-psfotf} 
 \vspace{3cm}
 
 Images on the camera are obtained according to equation
@@ -588,6 +586,9 @@ homody=section_homodyne(noise_struc);
 hilo=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
 \end{lstlisting}
 
+\comment{
+\pdfinput{}{cross-section-z}
+}
 \begin{figure}[htbp]
   \centering
   \includegraphics{cross-section-z_vector}

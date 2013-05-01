@@ -990,32 +990,31 @@ therefore gives biased results in the presence of photon shot noise.
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-method-description} 
-  \caption{Anwendung des HiLo Algorithmus an einem slice der
-    simulierten Fluorophorverteilung aus
+  \caption{Application of my HiLo algorithm variant to a slice in the
+    simulated fluorophore distribution from
     \figref{fig:hilo-sec-comparison}~a.}
   \label{fig:hilo-method-description}
 \end{figure}
 
-\subsection{Discussion and Outlook on optical sectioning}
-In diesem Abschnitt habe ich einen Ueberblick ueber verschiedene
-Methoden fuer optical sectioning gegeben. Insbesondere zeige ich eine
-fuer unser Instrument optimierte Variante des HiLo
-Rekonstruktionsalgorithmus, der mit nur zwei Belichtungen auskommt.
+\subsection{Discussion and outlook on optical sectioning}
+In this section, I have given an overview of different methods for
+optical sectioning. In particular, I described a variant of the HiLo
+reconstruction algorithm which requires only two exposures per slice
+and is optimized for application in our instrument.
 
-Ein genauerer Vergleich der Algorithmen bei verrauschten Daten steht
-noch aus. Ausserdem waere es interessant zu untersuchen, bei welcher
-projezierten Gitterfrequenz die besten Ergebnisse zu erwarten
-sind. Die hier gezeigten Beispiele hatten ein sehr hochfrequentes
-Gitter mit der ersten Ordnung bei $\nu_x\approx 1.3
-\textrm{NA}/\lambda_0$ (siehe orange line in
-\figref{fig:hilo-sec-Illum2}~right). Die beste z-Aufloesung waere fuer
-$\nu_x= 1 \textrm{NA}/\lambda_0$ zu erwarten, denn dort ist die
-groesste z-Ausdehnung des support der 3D OTF (siehe
-\figref{fig:missing-cone}), bei kleineren Ortsfrequenzen nimmt der
-Modulationskontrast $m$ zu, gleichzeitig erhoeht sich jedoch der
-Ueberlapp benachbarter Ordnungen.  Der Code in Appendix
-\ref{sec:sectioning} ist ein guter Anfangspunkt um diese
-Fragestellungen zu loesen.
+A thorough comparison of different algorithms in the presence of noise
+is still pending. Furthermore, it would be helpful to examine which
+projected grating frequencies will give the best sectioning
+results. In the examples of this section a grating pattern of high
+spatial frequency (with the first order at $\nu_x\approx 1.3
+\textrm{NA}/\lambda_0$ (see orange line in
+\figref{fig:hilo-sec-Illum2}~right).  The best $z-$resolution would be
+expected for $\nu_x= 1 \textrm{NA}/\lambda_0$, since there the support
+along $z$ of the three-dimensional optical transfer function is widest
+(see \figref{fig:missing-cone}), with smaller spatial frequencies the
+modulation contrast $m$ increases but so does the overlap with
+adjacent orders.  The source code in appendix \ref{sec:sectioning}
+should be a good starting point to investigate these questions.
 
 %%% Local Variables: 
 %%% mode: latex

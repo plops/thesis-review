@@ -405,10 +405,14 @@ First, I will construct a three-dimensional fluorophore
 distribution. Then I will calculate the three-dimensional point spread
 function $h(\r)$ of a high-aperture immersion objective with
 $\textrm{NA}=1.4$ and $n=1.52$ using equations (\ref{eq:psf}) and
-(\ref{eq:mccutchen}) on page \pageref{eq:mccutchen}. Using this three-dimensional
-array (denoted by \verb!psf(:,:,:)! in the code), the
-three-dimensional light distribution in the sample, as well as images
-on the camera can be calculated by a convolution operation.
+(\ref{eq:mccutchen}) on page \pageref{eq:mccutchen}. Using this
+three-dimensional array (denoted by \verb!psf(:,:,:)! in the code),
+the three-dimensional light distribution in the sample, as well as
+images on the camera can be calculated by a convolution
+operation\footnote{I use the same point spread function for excitation
+  and detection. More realistic results can be obtained when the point
+  spread functions are scaled according to excitation and emission
+  wavelengths.}.
 
 For the numerical simulation I use the DIPimage Toolbox for Matlab
 \citep{dipimage} as it permits to express the required image
@@ -420,16 +424,21 @@ and a sphere shell. The function \verb!newim(GX,GX,GX)! creates a new
 DIPimage data object. In general, DIPimage functions can receive their
 arguments either explicitly, as in this case, or implicitly by calling
 with another DIPimage data object, e.g.\ when calling \verb!rr(g2)!
-when constructing the hollow sphere. This function returns an array
-where each element contains the distance to the central pixel. The
-comparison operation results in a Boolean data type which I implicitly
-turn back into a floating point number by adding a zero.
+for constructing the hollow sphere. The function \verb!rr()! returns
+an array where each element contains the distance to the central
+pixel. The comparison operation results in a Boolean data type which I
+implicitly turn back into a floating point number by adding a zero.
 
-To save computing time when applying the section algorithms, I cut
+To save computation time when applying the section algorithms, I cut
 \verb!S! to the smallest dimensions, so that it still contains the
-complete object.  The figure next to the code shows the geometry of
-the three-dimensional fluorophore distribution and three small images
-on the right are simulated widefield images of the planar objects.
+complete object. I implement all convolution operations with Fourier
+transforms. Therefore the data should be padded with zeros to prevent
+overlap of the image information at the borders. I used padding for
+all images that I show here.
+
+The figure next to the code shows the geometry of the
+three-dimensional fluorophore distribution and three simulated
+widefield images of the planar objects.
 
 \begin{lstlisting}[style=mymatlab]
 global GX; GX = 64; g2 = newim(GX,GX,GX); % make empty 3d image
@@ -473,9 +482,9 @@ on page \pageref{eq:resolution} the $z-$sampling is
 \begin{align}
   \delta z &= \frac{\lambda_0}{n(1-\cos\alpha)}\kappa
 \end{align}
-with $\kappa=$ \verb!2*size(calotte,3)/size(psf,3)!. Image a) on the
-side shows a $xz-$cross section through the three-dimensional point
-spread function, and image b) is the cross section through the
+with $\kappa=$ \verb!2*size(calotte,3)/size(psf,3)!. Figure a) shows a
+$xz-$cross section through the three-dimensional point spread
+function, and Figure b) is the cross section through the
 three-dimensional optical transfer function.
 \begin{lstlisting}[style=mymatlab]
 n = 1.52; % refractive index
@@ -509,7 +518,7 @@ otf2dcorr = otf2dcorr / center_ref(otf2dcorr);
 otf2dcorr = squeeze(extract(otf2dcorr,[size(psf,1) size(psf,2)]));
 \end{lstlisting}  %2.43cm hoch
 \vspace{-6.43cm}\hspace{12cm} \svginput{1}{hilo-sec-psfotf} 
-\vspace{3cm}
+\vspace{2.5cm}
 
 Images on the camera are obtained according to equation
 (\ref{eq:image-convolution}) on page \pageref{eq:image-convolution} by
@@ -529,10 +538,10 @@ For structured illumination, four three-dimensional Fourier transforms
 are necessary for each slice and phase of the projected grating. The
 following function calculates images of one slice for all grating
 phases. I use \verb!dip_fouriertransform! to exclude the array
-dimension with the phase from the transformation.  With a $70\times
-70\times 51$ sized point spread function, a single call to the
-following function takes \unit[1.4]{s} per slice on one Intel i5-2430M
-core.
+dimension containing the phase from the transformation.  With a
+$70\times 70\times 51$ sized point spread function, a single call to
+the following function takes \unit[1.4]{s} per slice on one Intel
+i5-2430M core.
 
 Figure a) shows the sinusoidal grating before imaging by the
 lens. Figure b) shows the simulated in-focus light distribution for
@@ -599,7 +608,7 @@ hilo=section_hilo(noise_struc,.13,otf2d,otf2dcorr);
   \label{fig:cross-section-z}
 \end{figure}
 The following function implements the HiLo algorithm as described on
-page \pageref{fig:hilo-method-description}. Variables with the digit 3
+page \pageref{fig:hilo-method-description}. Variables with the digit '3'
 at the end are two-dimensional array that have been extended to three
 dimensions by copying.
 \begin{lstlisting}[style=mymatlab]

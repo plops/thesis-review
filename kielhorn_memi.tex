@@ -249,7 +249,7 @@ pdfsubject={PhD thesis}]{hyperref}
   \hspace{4cm}\textsf{\Large Martin Kielhorn}
   
   \vspace{1cm}
-  \hspace{4cm}\textsf{\Large April 2013}
+  \hspace{4cm}\textsf{\Large May 2013}
 \end{titlepage}
 \newpage
 \section*{Abstract}
@@ -280,7 +280,7 @@ pdfsubject={PhD thesis}]{hyperref}
 This thesis describes my work that I performed in the EU funded
 seventh framework program project Micro mirror enhanced micro-imaging
 (project number 2115597) at King's College London between June 2008
-until April 2013.
+until May 2013.
 
 The project was a collaboration of the following five institutions:
 In-Vision (Guntramsdorf, Austria) Institut Pasteur (Paris, France)
@@ -392,7 +392,7 @@ reference.
 Jena, Germany
 
 \noindent
-April 2013
+May 2013
 \newpage
 \tableofcontents
 \printnomenclature
@@ -410,7 +410,7 @@ April 2013
 \include{results}
 \chapter{Discussion}
 \label{sec:discussion}
-The aim of this thesis has been the development of a wide-field
+The aim of this thesis has been the development of a widefield
 fluorescence microscope system that can control the irradiance in the
 specimen as well as the illumination angles with the aim of decreasing
 phototoxicity.
@@ -429,10 +429,10 @@ microscope to work, fine structures must be imaged into the
 specimen. This, however, has the consequence that several diffraction
 orders instead of just one bundle of rays must traverse the
 sample. For most specimens this will bring no advantage compared to a
-wide-field microscope.
+widefield microscope.
 
 We opted instead for a modification of the excitation path in a
-wide-field microscope. My assumption was that given an estimate of the
+widefield microscope. My assumption was that given an estimate of the
 three-dimensional fluorophore distribution, and perhaps additional
 information about the expected movement of cells, pathogens or organs;
 a sufficiently accurate prediction of the expected out-of-focus light
@@ -441,7 +441,7 @@ can be made.
 Using \cma{description of the hardware} two spatial light modulators
 (SLM), we can project appropriate distributions of excitation light
 into the sample. One SLM controls the angle and the other the in-focus
-pattern of light. Our goal for was to acquire one stack, consisting of
+pattern of light. Our goal was to acquire one stack, consisting of
 twenty slices, per minute. For this, partial recordings of slices
 should be acquired in sequence and later composed into one image (see
 chapter \ref{sec:concept}, in particular section
@@ -464,13 +464,14 @@ The pupil \cma{Why Fraunhofer micro mirror array?} plane SLM, that
 controls the illumination angles should ideally not be a binary
 device, otherwise oscillations of excitation intensity would occur in
 the specimen and appear on the camera image. For this reason, we use a
-specifically developed SLM, which resembles a DMD in terms of mode of
-operation and speed but can display gray scale values.  A $256\times
-256$ mirror array suffices for angular control. This facilitated the
-development of the mirror and fast control electronics at Fraunhofer
-IPMS. The controller can store 1023 image frames locally. For many
-applications of angular illumination control it is sufficient to
-select from this set of patterns a suitable candidate.
+specifically developed SLM, whose mode of operation and speed
+resembles that of a DMD but can display gray scale values. A mirror
+array of size $256\times 256$ pixels is sufficient for angular
+control. This facilitated the development of the mirror and fast
+control electronics at Fraunhofer IPMS. The controller can store 1023
+image frames locally. For many applications of angular illumination
+control it is sufficient to select from this set of patterns a
+suitable candidate.
 
 The focal plane SLM should have a high resolution \cma{choice for
   focal plane SLM} and it should be possible to update its patterns
@@ -488,11 +489,11 @@ is linked to a computer via USB.  \nomenclature{USB}{Universal Serial
 update of image patterns is no longer possible.
 
 The ForthDD USB controller of the focal plane SLM can store 200 images
-and replacing them all takes several minutes. This makes it very
-difficult to perform a technique similar to controlled light exposure
-microscopy with the current setup because the set of 200 images are
-not enough images to allow for the fine-grained spatial control one
-would need to implement CLEM.
+and replacing them takes several minutes. This makes it very difficult
+to perform a technique similar to controlled light exposure microscopy
+with the current setup because the set of 200 images are not enough to
+allow for the fine-grained spatial control one would need to implement
+CLEM.
 
 In retrospect, it would have been easier to use two of the custom-made
 grey value SLMs from Fraunhofer. Note that Institut Pasteur and
@@ -520,15 +521,15 @@ intensity contrast. My experiments with a set of Nomarski prisms that
 were available in our lab showed that this method can work. However,
 the prisms had too small a shear angle and returning diffraction
 orders were cut off. Meanwhile planning for the original, and with
-respect to acceptance slightly flawed, prototype had advanced so far
-that the change of the contrast method no longer seemed possible and
-the project consortium decided to abandon the development of this
+respect to acceptance angle slightly flawed, prototype had advanced so
+far that the change of the contrast method no longer seemed possible
+and the project consortium decided to abandon the development of this
 alternative contrast method. However, the common path interferometer
 is still a very promising method and has the potential for good
 contrast at large acceptance angles when prisms with larger shear
 angles are used. Additionally, it should be noted that this
-interferometric method will work better when using piston-type
-micro mirrors as compared to torsion micro mirrors.
+interferometric method will work better when using piston-type micro
+mirrors as compared to torsion micro mirrors.
 
 Given \cma{priority of the control algorithm} the \emph{low light
   efficiency} of our prototype (0.004\%, $\unit[17]{\mu W}$ using a
@@ -575,7 +576,7 @@ algorithm I need a reasonably good measurement of the
 three-dimensional fluorophore distribution. For many specimen
 structured illumination is necessary to remove out-of-focus light from
 the raw images and obtain optical sections. Another phase SLM (X10468
-series, Hamamatsu) became available more recently have a much better
+series, Hamamatsu) became available more recently has a much better
 performance and could presumably be used to construct a holographic
 spatio-angular illumination device.
 
@@ -648,10 +649,12 @@ I \cma{Open hardware is a good thing} am not content with the current
 state of scientific cameras because all of them gave me problems with
 incompatible or unstable drivers. Therefore, I hope that there will be
 more projects that open their resources to the public, such as Marc
-Levoy's Franken Camera \citep{Adams2010}; or that the manufacturers of
-the ever-improving consumer cameras document and disclose the
-protocols for disabling automatic image processing and accessing raw
-sensor data for their devices (as with the Logitech Pro 9000).
+Levoy's Franken Camera \citep{Adams2010} which is based on an open
+sensor frontend by Andrey Filippov (\url{http://elphel.com}); or that
+the manufacturers of the ever-improving consumer cameras document and
+disclose the protocols for disabling automatic image processing and
+accessing raw sensor data for their devices (as with the Logitech Pro
+9000).
 
 
 %Fu2011

@@ -8,5 +8,5 @@ checklist
 * grep Warning build/*.log, check that no references are unresolved
 * check that the nomenclature has been generated
 * run bibtex and look at errors, no journal names should be missing
-
+* check that there are no 'error' question marks in pdf
 * widefield, search for occurances of wide\nfield

@@ -852,22 +852,21 @@ effort. I give example code in Appendix \ref{sec:map_opengl}.
 \end{summary}
 In order to provide maximum imaging speeds with our system, I
 investigated techniques to obtain optically sectioned images with as
-few raw images per slice as possible. Excitation with sinusoidal
+few exposures per slice as possible. Excitation with a sinusoidal
 grating has proved to be particularly advantageous because then the
 necessary image processing can be expressed elegantly with linear
 operations in Fourier space. Using the HiLo method, already two
 acquisitions allow to calculate an optical section.
 
 When a sinusoidal grating is imaged into the focal plane of a
-microscope objective using incoherent light, then the
-three-dimensional light distribution in the sample corresponds to the
-$xz-$cross section shown in \figref{fig:hilo-sec-Illum2}~left.  I
-generated this image by a convolution of a sinusoidal transmission
-grating with the three-dimensional point spread function of a
-$63\times$ oil immersion lens and $\textrm{NA}=1.4$.  The
-Matlab/DIPimage source code that I used to generate the images in this
-section is listed in appendix \ref{sec:sectioning} on page
-\pageref{sec:sectioning}.
+microscope objective using incoherent light then the three-dimensional
+light distribution in the sample has the $xz-$cross section shown in
+\figref{fig:hilo-sec-Illum2}~left.  I generated this image by a
+convolution of a sinusoidal transmission grating with the
+three-dimensional point spread function of a $63\times$ oil ($n=1.52$)
+immersion lens and $\textrm{NA}=1.4$.  The Matlab/DIPimage source code
+that I used to generate the images in this section is listed in
+appendix \ref{sec:sectioning} on page \pageref{sec:sectioning}.
 
 For optical sectioning the essential effect that allows separation of
 in-focus and out-of-focus light is that according to
@@ -875,23 +874,24 @@ in-focus and out-of-focus light is that according to
 experiences a change in excitation intensity when the grating phase is
 shifted. An out-of-focus fluorophore at point (b), however, is always
 exposed to equal amounts of excitation light. There are many
-possibilities to determine the degree of modulation in some acquired
+possibilities to determine the degree of modulation in the acquired
 images. Three of them I will introduce now.
 
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-sec-Illum2} 
-  \caption{{\bf left:} Lichtverteilung im Sample mit Anregung durch
-    ein Gitter leicht unterhalb der halben maximalen Aufloesung. {\bf
-      right:} Cross-section der in-focus OTF fuer die links verwendete
-    Simulation und Schnitt durch das Ortsfrequenzspektrum der in-focus
-    Beleuchtungsverteilung.}
+  \caption{{\bf left:} Light distribution in the sample for a
+    $63\times$ objective with $NA=1.4$ and immersion index $n=1.52$
+    using a grating pattern and incoherent illumination of wavelength
+    $\lambda_0=\unit[500]{nm}$. {\bf right:} Cross-section of the
+    in-focus optical transfer function (OTF) of this objective and
+    spatial frequency spectrum of the in-focus light distribution.}
   \label{fig:hilo-sec-Illum2}
 \end{figure}
 
 For the simplest algorithm \citep{Benedetti1997} one assumes that the
-in-focus information causes the major part of the image signal.  One
-can recover an approximation of the in-focus information by
+in-focus information is responsible for the majority of the signal.
+One can recover an approximation of the in-focus information by
 calculating the maximum of a pixel value in the images $I_n$. Where
 $n=1,\ldots,N$ denotes the phase of the pattern in each image.  The
 out-of-focus background remains the same in each pixel of the raw
@@ -899,10 +899,10 @@ images and can be approximated by the minimum of each pixel value:
 \begin{align} \label{eq:Iminmax}
   I_\textrm{max-min}(x,y) = \max_{n=1\ldots N}(I_n(x,y))- \min_{n=1\ldots N}(I_n(x,y))
 \end{align}
-However, this method has the disadvantage that the noise that is
-observed in the reconstructed image does not decrease with an
-increasing number of acquisitions $N$.  The method related to homodyne
-detection \citep{Neil1997} allows the separation of the modulated
+However, this method has the disadvantage that the noise of the
+reconstructed image does not decrease with an increasing number of
+acquisitions $N$.  Another method, which is related to homodyne
+detection \citep{Neil1997}, allows the separation of the modulated
 signal if at least three raw images are available:
 \begin{align} \label{eq:Ihomodyne}
   I_\textrm{homodyne}(x,y) = \left| \sum_{n=1\ldots N} I_n(x,y)\ e^{2\pi i n/N}\right|,\ \textrm{and}\ N\ge 3
@@ -923,8 +923,9 @@ and e) reject significant amounts of out-of-focus light in point 2.
     in this section. {\bf b)} Widefield image in the slice with
     rectangle~1. {\bf c,d,e)} Optical sections of this slice using
     three different methods.  The brightest points of the raw images
-    were set to contain 60000 photons and photon shot noise was
-    included in these simulations.}
+    were set to contain 60000 photons and their photon shot noise was
+    included in these simulations. The scalebars correspond to a
+    wavelength of $\lambda_0=\unit[500]{nm}$.}
   \label{fig:hilo-sec-comparison}
 \end{figure}
 
@@ -932,8 +933,8 @@ The reconstruction methods can all separate the rectangle from
 background fluorescence. The simple 'max-min' method, however, causes
 artifacts in the reconstruction. The spurious stripes would only
 disappear when significantly more images were recorded. The homodyne
-method gives a very good result but requires at least three images
-(but I used four to obtain \figref{fig:hilo-sec-comparison}~d).
+method gives a very good result but requires at least three images (I
+used four to obtain \figref{fig:hilo-sec-comparison}~d).
 
 In contrast, the HiLo method requires only two acquisitions (and I
 used only two for \figref{fig:hilo-sec-comparison}~e). I will now
@@ -943,11 +944,10 @@ developed for speckle illumination
 structured illumination with grating patterns
 \citep{Bozinovic2008a,Mertz2010}.
 
-Assuming the grating varies in the $x-$direction, the information in
-the two raw images can then be expressed as a superposition of
-modulated in-focus information $I_\textrm{in}$ and out-of-focus
-information $I_\textrm{out}$ that is the same in all raw images
-\citep{Mertz2010}:
+Assuming the grating varies in the $x-$direction then the information
+in the two raw images can be expressed as a superposition of modulated
+in-focus information $I_\textrm{in}$ and out-of-focus information
+$I_\textrm{out}$ that is the same in all raw images \citep{Mertz2010}:
 \begin{align}
   I_n(x) = \left(1+m\sin(k_g x + n\pi)\right) I_\textrm{in}(x) + I_\textrm{out}(x),\
   \textrm{with}\ n=0,1
@@ -963,7 +963,7 @@ to form two new images:
 %i1:(1+m*sin(x+%pi))*a+b;
 %expand(i0+i1);
 %expand(i0-i1)
-Where the sum of the raw images corresponds to a widefield image with
+The sum of the raw images corresponds to a widefield image with
 uniform illumination, containing sectioned sample information only for
 higher spatial frequencies (see \figref{fig:missing-cone} on page
 \pageref{fig:missing-cone}). The image $I_\textrm{demod}$ allows to
@@ -976,17 +976,19 @@ image $I_\textrm{hilo}(x)$:
   I_\textrm{hilo}(x) = \eta\ \textrm{HP}(I_\textrm{wf}(x)) + \textrm{LP}\left(\textrm{FT}^{-1}\left[\frac{\widetilde I_\textrm{demod}(k-k_g)}{\textrm{OTF}(k)}\right](x)\right)
 \end{align}
 With the low-pass filter $\textrm{LP}$, whose cutoff frequency is
-quite small, so that other order of the spatial frequency spectrum of
+quite small, so that other orders of the spatial frequency spectrum of
 $I_\textrm{demod}$ do not contribute to the signal (see
 \figref{fig:hilo-method-description}~e).  \textrm{HP} is a the
 complementary high-pass filter and the factor $\eta$ is introduced to
 compensate for the modulation contrast $m$.  I divide by the optical
 transfer function (see \figref{fig:hilo-sec-Illum2}) in order to
-re-weight the anisotropic sample information surrounding the first
-order in $I_\textrm{demod}$.  Both $\eta$ and $k_g$ must be determined
-for each experiment.  The algorithm in \citet{Mertz2010} does not
-require to specify $k_g$ but their algorithm is non-linear and
-therefore gives biased results in the presence of photon shot noise.
+re-weight the sample information surrounding the first order in
+$I_\textrm{demod}$. This is necessary because sample information on
+different sides of the order were filtered differently by the optical
+transfer function. Both $\eta$ and $k_g$ must be determined for each
+experiment.  The algorithm in \citet{Mertz2010} does not require to
+specify $k_g$ but their algorithm is non-linear and therefore gives
+biased results in the presence of photon shot noise.
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-method-description} 
@@ -1005,16 +1007,17 @@ and is optimized for application in our instrument.
 A thorough comparison of different algorithms in the presence of noise
 is still pending. Furthermore, it would be helpful to examine which
 projected grating frequencies will give the best sectioning
-results. In the examples of this section a grating pattern of high
-spatial frequency (with the first order at $\nu_x\approx 1.3
-\textrm{NA}/\lambda_0$ (see orange line in
-\figref{fig:hilo-sec-Illum2}~right).  The best $z-$resolution would be
-expected for $\nu_x= 1 \textrm{NA}/\lambda_0$, since there the support
-along $z$ of the three-dimensional optical transfer function is widest
-(see \figref{fig:missing-cone}), with smaller spatial frequencies the
-modulation contrast $m$ increases but so does the overlap with
-adjacent orders.  The source code in appendix \ref{sec:sectioning}
-should be a good starting point to investigate these questions.
+results. In the examples, which were shown here, a grating pattern of
+high spatial frequency with the first order at $\nu_x\approx 1.3
+\textrm{NA}/\lambda_0$ (see orange graph in
+\figref{fig:hilo-sec-Illum2}~right) was used.  The best $z-$resolution
+would be expected for $\nu_x= 1 \textrm{NA}/\lambda_0$ since there,
+the support along $z$ of the three-dimensional optical transfer
+function is widest (see \figref{fig:missing-cone}), with smaller
+spatial frequencies the modulation contrast $m$ increases but so does
+the overlap with adjacent orders.  The source code in appendix
+\ref{sec:sectioning} should be a good starting point to investigate
+these questions.
 
 %%% Local Variables: 
 %%% mode: latex

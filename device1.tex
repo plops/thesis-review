@@ -850,32 +850,33 @@ effort. I give example code in Appendix \ref{sec:map_opengl}.
   how in-focus and out-of-focus information can be separated by
   structured illumination.
 \end{summary}
+In order to provide maximum imaging speeds with our system, I
+investigated techniques to obtain optically sectioned images with as
+few raw images per slice as possible. Excitation with sinusoidal
+grating has proved to be particularly advantageous because then the
+necessary image processing can be expressed elegantly with linear
+operations in Fourier space. Using the HiLo method, already two
+acquisitions allow to calculate an optical section.
 
-Um die Geschwindigkeit der Bildaufnahme in unserem Beleuchtungssystem
-zu erhoehen, lege ich Wert darauf, mit moeglichst wenigen strukturiert
-beleuchteten Rohbildern pro Slice auszukommen. Besonders vorteilhaft
-hat sich dabei eine Beleuchtung mit einem sinusfoermigen Gitter
-erwiesen. Bei bekannter Gitterperiode lassen sich viele der
-Bildverarbeitungsprobleme elegant im Fourierraum ausdruecken. Mit der
-HiLo Methode genuegen bereits zwei Aufnahmen mit Gitterbeleuchtung,
-zwischen denen das Gitter um eine halbe Gitterperiode verschoben wird,
-um eine optische section zu zu Berechnen.
+When a sinusoidal grating is imaged into the focal plane of a
+microscope objective using incoherent light, then the
+three-dimensional light distribution in the sample corresponds to the
+$xz-$cross section shown in \figref{fig:hilo-sec-Illum2}~left.  I
+generated this image by a convolution of a sinusoidal transmission
+grating with the three-dimensional point spread function of a
+$63\times$ oil immersion lens and $\textrm{NA}=1.4$.  The
+Matlab/DIPimage source code that I used to generate the images in this
+section is listed in appendix \ref{sec:sectioning} on page
+\pageref{sec:sectioning}.
 
-Wenn ein Sinusgitter mit hilfe eines Mikrokops durch inkoheraentes
-Licht in ein Sample abgebildet wird, dann entspricht die
-dreidimensionale Lichtverteilung der in Abbildung
-\ref{fig:hilo-sec-Illum2} dargestellten xz-cross section. Dafuer habe
-ich die sinusfoermige Verteilung eines reinen Transmissionsgitters mit
-der dreidimensionalen PSF eines $63\times$ Objektivs mit $NA=1.47$
-gefaltet. Der Matlab/DIPimage Code ist in Appendix
-\ref{sec:sectioning} auf Seite \pageref{sec:sectioning} gelistet.
-Wesentlich ist, dass ein in-focus Fluorophor (a) in Bild
-\ref{fig:hilo-sec-Illum2} links eine aenderung der
-Anregungsintensitaet erfaehrt, wenn das Gitter verschoben wird. 
-Ein out-of-focus Fluorophor am Punkt (b) verspuert hindgegen
-durchgehend die gleiche Anregungsintensitaet. 
-Es gibt viele Moeglichkeiten den Modulationsgrad aus einigen
-Rohbildern zu ermitteln. Drei davon werde ich nun vorstellen.
+For optical sectioning the essential effect that allows separation of
+in-focus and out-of-focus light is that according to
+\figref{fig:hilo-sec-Illum2} an in-focus fluorophore at point (a)
+experiences a change in excitation intensity when the grating phase is
+shifted. An out-of-focus fluorophore at point (b), however, is always
+exposed to equal amounts of excitation light. There are many
+possibilities to determine the degree of modulation in some acquired
+images. Three of them I will introduce now.
 
 \begin{figure}[htbp]
   \centering

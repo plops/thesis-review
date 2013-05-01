@@ -537,7 +537,7 @@ focal plane SLM. Therefore, we use the beam splitter in transmission.
 % remains diffraction limited.
 
  	
-\jpginput{14cm}{setup-photo-blueprint}{The wide field epi-fluorescence
+\jpginput{14cm}{setup-photo-blueprint}{The widefield epi-fluorescence
   microscope with attached illumination head. The positions of the two
   spatial light modulators (pupil plane SLM: micro mirror array (MMA)
   and focal plane SLM: liquid crystal on silicon display (LCoS)) are
@@ -889,52 +889,60 @@ images. Three of them I will introduce now.
   \label{fig:hilo-sec-Illum2}
 \end{figure}
 
-Der einfachste Algorithmus \citep{Benedetti1997} geht davon aus, dass
-die in-focus Information den Hauptanteil am Bildsignal erzeugt und
-daher als Maximum der $N$ strukturiert beleuchteten Bilder $I_n$
-zugaenglich ist, wobei $n$ die fuer die Phase des Gitters steht. Der
-out-of-focus Hintergrund bleibt in allen Rohbilder gleich und kann
-demnach mit dem Minimum der Phasenbilder approximiert werden.
+For the simplest algorithm \citep{Benedetti1997} one assumes that the
+in-focus information causes the major part of the image signal.  One
+can recover an approximation of the in-focus information by
+calculating the maximum of a pixel value in the images $I_n$. Where
+$n=1,\ldots,N$ denotes the phase of the pattern in each image.  The
+out-of-focus background remains the same in each pixel of the raw
+images and can be approximated by the minimum of each pixel value:
 \begin{align} \label{eq:Iminmax}
-  I_\textrm{min-max}(x,y) = \max_{n=1\ldots N}(I_n(x,y))- \min_{n=1\ldots N}(I_n(x,y))
+  I_\textrm{max-min}(x,y) = \max_{n=1\ldots N}(I_n(x,y))- \min_{n=1\ldots N}(I_n(x,y))
 \end{align}
-Diese Methode hat jedoch den Nachteil, dass eine Vergroesserung der
-Anzahl ausgelesener Rohbilder $N$, nicht das Rauschen im
-rekonstruierten Bild mindert.  Die Methode der homodynen Demodulation
-\citep{Neil1997} erlaubt die Trennung von modulierten und
-unmodulierten Signal wenn mindestens 3 Rohbilder verfuegbar sind:
+However, this method has the disadvantage that the noise that is
+observed in the reconstructed image does not decrease with an
+increasing number of acquisitions $N$.  The method related to homodyne
+detection \citep{Neil1997} allows the separation of the modulated
+signal if at least three raw images are available:
 \begin{align} \label{eq:Ihomodyne}
-  I_\textrm{homodyne}(x,y) = \left| \sum_{n=1\ldots N} I_n(x,y)\ e^{2\pi i n/N}\right|
+  I_\textrm{homodyne}(x,y) = \left| \sum_{n=1\ldots N} I_n(x,y)\ e^{2\pi i n/N}\right|,\ \textrm{and}\ N\ge 3
 \end{align}
-Insbesondere tragen bei diesem Ansatz die Messdaten aller Rohbilder
-zum Signal der bei und mindern das Photonenrauschen in der optischen
-Section.
-
-In \figref{fig:hilo-sec-comparison} habe ich diese
-Rekonstruktionsmethoden verglichen. Dabei habe ich $N=4$ simulierte
-Rohbilder fuer minmax und die homodyne Methode verwendet. Als Objekt
-habe ich die in \figref{fig:hilo-sec-comparison} dargestellten Im
-widefeld bild ist die Intensitaet in den Punkten 1 und 2 nahezu gleich
-und das in-focus Rechteck kaum im Hintergrund zu erkennen.
-
+In particular, with this approach each acquisition contributes to the
+reconstructed optical section, resulting in a better noise performance
+than the 'max-min' method.  In \figref{fig:hilo-sec-comparison}~c) and
+d) I compared these reconstruction methods for $N=4$ using a simulated
+fluorophore distribution as depicted in
+\figref{fig:hilo-sec-comparison}~a).  In the simulated widefield image
+\figref{fig:hilo-sec-comparison}~b) the intensity in the points 1 and
+2 is similar, while the results of the sectioning algorithms in c), d)
+and e) reject significant amounts of out-of-focus light in point 2.
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-sec-comparison} 
-  \caption{{\bf a)} Objektverteilung {\bf b)} Widefield image in der
-    Ebene von rectangle~1. {\bf c,d,e)} Optische Sections dieser Ebene
-    mit verschiedenen Methoden}
+  \caption{{\bf a)} Distribution of fluorophores for the simulations
+    in this section. {\bf b)} Widefield image in the slice with
+    rectangle~1. {\bf c,d,e)} Optical sections of this slice using
+    three different methods.  The brightest points of the raw images
+    were set to contain 60000 photons and photon shot noise was
+    included in these simulations.}
   \label{fig:hilo-sec-comparison}
 \end{figure}
 
-Die Rekonstruktionsmethoden koennen alle das Rechteck vom hintergrund
-separieren. Bei der einfachen 'min-max' entstehen jedoch
-Streifenartefakte. Diese wuerden erst verschwinden, wenn deutlich mehr
-Rohbilder aufgenommen wuerden. Homodyne sieht sehr gut aus braucht
-aber mindestens 3 Bilder. Die HiLo Methode kommt im Gegensatz mit nur
-zwei Aufnahmen aus und ich erklaere den Algorithmus folgenden.  Die
-HiLo Methode wurde urpruenglich fuer Speckle illumination entwickelt
-\citep{Ventalon2005,Ventalon2007,Lim2011} kann jedoch auch fuer
-Gitterbeleuchtung eingesetzt werden \citep{Bozinovic2008a,Mertz2010}.
+The reconstruction methods can all separate the rectangle from
+background fluorescence. The simple 'max-min' method, however, causes
+artifacts in the reconstruction. The spurious stripes would only
+disappear when significantly more images were recorded. The homodyne
+method gives a very good result but requires at least three images
+(but I used four to obtain \figref{fig:hilo-sec-comparison}~d).
+
+In contrast, the HiLo method requires only two acquisitions (and I
+used only two for \figref{fig:hilo-sec-comparison}~e). I will now
+describe my version of the algorithm. The HiLo method was originally
+developed for speckle illumination
+\citep{Ventalon2005,Ventalon2007,Lim2011} but has also been used for
+structured illumination with grating patterns
+\citep{Bozinovic2008a,Mertz2010}.
+
 
 
 Angenommen das Gitter variiert in die x-Richtung.  Die Information in

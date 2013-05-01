@@ -943,19 +943,18 @@ developed for speckle illumination
 structured illumination with grating patterns
 \citep{Bozinovic2008a,Mertz2010}.
 
-
-
-Angenommen das Gitter variiert in die x-Richtung.  Die Information in
-den zwei Rohbildern kann aufgeteilt werden in  die
-modulierte in-focus Information und einen Konstanten out-of-focus
-Anteil \citep{Mertz2010}:
+Assuming the grating varies in the $x-$direction, the information in
+the two raw images can then be expressed as a superposition of
+modulated in-focus information $I_\textrm{in}$ and out-of-focus
+information $I_\textrm{out}$ that is the same in all raw images
+\citep{Mertz2010}:
 \begin{align}
   I_n(x) = \left(1+m\sin(k_g x + n\pi)\right) I_\textrm{in}(x) + I_\textrm{out}(x),\
   \textrm{with}\ n=0,1
 \end{align}
-Hier beschreibt $m$ den Modulationskontrast und $k_g$ die Ortsfrequenz
-des Beleuchtungsgitters. Diese beiden Rohbilder werden zu zwei neuen
-Bildern kombiniert:
+Here, $m$ is the modulation contrast and $k_g$ the spatial frequency
+of the excitation pattern. For HiLo, the two raw images are combined
+to form two new images:
 \begin{align}
   I_\textrm{wf}(x) &= I_0(x)+I_1(x) = 2\left(I_\textrm{in} + I_\textrm{out}(x)\right) \\ 
   I_\textrm{demod}(x) &= I_0(x)-I_1(x) = 2 m \sin(k_g x) I_\textrm{in}  
@@ -964,30 +963,30 @@ Bildern kombiniert:
 %i1:(1+m*sin(x+%pi))*a+b;
 %expand(i0+i1);
 %expand(i0-i1)
-Wobei die Summe der Rohbilder einem Widefeldbild mit uniformer
-Beleuchtung entspricht und fuer die groesseren Ortsfrequenzen bereits
-Sectioning aufweist (siehe \figref{fig:missing-cone} on page
-\pageref{fig:missing-cone}) und das Bild $I_\textrm{demod}$ erlaubt
-die Extraktion der in-focus Information fuer kleine
-Ortsfrequenzen. Die namensgebende Idee bei HiLo ist, die gesectionete
-Information aus dem Frequenzraum der beiden Bilder zu extrahieren und
-zu einem neuen Bild $I_\textrm{hilo}(x)$ zusammenzufassen:
+Where the sum of the raw images corresponds to a widefield image with
+uniform illumination, containing sectioned sample information only for
+higher spatial frequencies (see \figref{fig:missing-cone} on page
+\pageref{fig:missing-cone}). The image $I_\textrm{demod}$ allows to
+extract in-focus information for low spatial frequencies of the
+fluorophore distribution. For HiLo, in-focus information from
+different parts of the spatial frequency spectra of the images
+$I_\textrm{wf}$ and $I_\textrm{demod}$ are combined to form the new
+image $I_\textrm{hilo}(x)$:
 \begin{align}
   I_\textrm{hilo}(x) = \eta\ \textrm{HP}(I_\textrm{wf}(x)) + \textrm{LP}\left(\textrm{FT}^{-1}\left[\frac{\widetilde I_\textrm{demod}(k-k_g)}{\textrm{OTF}(k)}\right](x)\right)
 \end{align}
-Wobei $\textrm{LP}$ ein low pass filter ist, dessen cut off Frequenz
-so gewaehlt wird, dass spurious orders aus $I_\textrm{demod}$ nicht zu
-stark zum Signal beitragen (siehe
-\figref{fig:hilo-method-description}~e). \textrm{HP} ist der
-komplementaere hochpass Filter und $\eta$ ein Faktor um den
-Modulationskontrast $m$ zu kompensieren. Ich teile durch die optical
-transfer function (siehe \figref{fig:hilo-sec-Illum2}) um die
-Anisotrope Verteilung der Sampleinformation um die erste Ordnung zu
-kompensieren. Sowohl $\eta$ als auch $k_g$ muessen fuer jedes
-Experiment bestimmt werden.  In der Methode von \citet{Mertz2010} wird
-ist es nicht notwendig, $k_g$ anzugeben, dafuer ist deren Algorithmus
-jedoch nichtlinear und liefert biased results depending on photon
-shot noise in the raw images.
+With the low-pass filter $\textrm{LP}$, whose cutoff frequency is
+quite small, so that other order of the spatial frequency spectrum of
+$I_\textrm{demod}$ do not contribute to the signal (see
+\figref{fig:hilo-method-description}~e).  \textrm{HP} is a the
+complementary high-pass filter and the factor $\eta$ is introduced to
+compensate for the modulation contrast $m$.  I divide by the optical
+transfer function (see \figref{fig:hilo-sec-Illum2}) in order to
+re-weight the anisotropic sample information surrounding the first
+order in $I_\textrm{demod}$.  Both $\eta$ and $k_g$ must be determined
+for each experiment.  The algorithm in \citet{Mertz2010} does not
+require to specify $k_g$ but their algorithm is non-linear and
+therefore gives biased results in the presence of photon shot noise.
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-method-description} 

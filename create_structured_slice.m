@@ -1,4 +1,4 @@
-function Struc = create_structured_slice(S,otf,phases,slice)
+function [Struc Illum G] = create_structured_slice(S,otf,phases,slice)
   % generate 'phases' different sine gratings 
   % I use DampEdge to ensure a smooth transition to zero at the edges
   G=newim([size(S) phases]); 

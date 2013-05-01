@@ -217,6 +217,33 @@ xlabel('\nu_x / (NA/\lambda_0)');
 ylabel('OTF');
 print /mnt/tmp/otfline.eps
 
+% ich brauche einen schnitt durch die fouriertransformation der
+% beleuchtung
+
+otfbig=extract(otf,size(otf)+size(S));
+[Struc Illum G] = create_structured_slice(S,otfbig,1,floor((size(otf,3))/2));
+
+Illumz = squeeze(Illum(:,floor(size(Illum,2)/2),:,0));
+Illumxy = squeeze(Illum(:,:,floor(size(Illum,3)/2),0));
+kIllum = ft(squeeze(Illumxy));
+illumline = squeeze(abs(kIllum(:,floor(size(kIllum,2)/2))));
+illumline = illumline / illumline(floor(size(illumline,1)/2));
+
+otfbigsum = squeeze(sum(otfbig,[],3));
+otfline2 = squeeze(otfbigsum(:,floor(size(otfbigsum,2)/2)));
+otfline2 = otfline2 / otfline2(floor(size(otfline2,1)/2));
+
+otfline_x2 = xx(illumline)/size(otf,1)*4;
+plot(double(otfline_x2),double(abs(illumline)),double(otfline_x2),double(otfline2))
+grid on;
+axis([double(otfline_x2(0)) double(otfline_x2(end)) 0 1]);
+set(gcf, 'PaperPositionMode', 'manual');
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperPosition', [0 0 4 2]);
+xlabel('\nu_x / (NA/\lambda_0)');
+print /mnt/tmp/otfline-illum.eps
+
+
 %% Local Variables:
 %% mode: Octave
 %% End:

@@ -851,6 +851,16 @@ effort. I give example code in Appendix \ref{sec:map_opengl}.
   structured illumination.
 \end{summary}
 
+Um die Geschwindigkeit der Bildaufnahme in unserem Beleuchtungssystem
+zu erhoehen, lege ich Wert darauf, mit moeglichst wenigen strukturiert
+beleuchteten Rohbildern pro Slice auszukommen. Besonders vorteilhaft
+hat sich dabei eine Beleuchtung mit einem sinusfoermigen Gitter
+erwiesen. Bei bekannter Gitterperiode lassen sich viele der
+Bildverarbeitungsprobleme elegant im Fourierraum ausdruecken. Mit der
+HiLo Methode genuegen bereits zwei Aufnahmen mit Gitterbeleuchtung,
+zwischen denen das Gitter um eine halbe Gitterperiode verschoben wird,
+um eine optische section zu zu Berechnen.
+
 Wenn ein Sinusgitter mit hilfe eines Mikrokops durch inkoheraentes
 Licht in ein Sample abgebildet wird, dann entspricht die
 dreidimensionale Lichtverteilung der in Abbildung
@@ -862,36 +872,42 @@ gefaltet. Der Matlab/DIPimage Code ist in Appendix
 Wesentlich ist, dass ein in-focus Fluorophor (a) in Bild
 \ref{fig:hilo-sec-Illum2} links eine aenderung der
 Anregungsintensitaet erfaehrt, wenn das Gitter verschoben wird. 
+Ein out-of-focus Fluorophor am Punkt (b) verspuert hindgegen
+durchgehend die gleiche Anregungsintensitaet. 
+Es gibt viele Moeglichkeiten den Modulationsgrad aus einigen
+Rohbildern zu ermitteln. Drei davon werde ich nun vorstellen.
+
 \begin{figure}[htbp]
   \centering
   \svginput{1}{hilo-sec-Illum2} 
   \caption{{\bf left:} Lichtverteilung im Sample mit Anregung durch
     ein Gitter leicht unterhalb der halben maximalen Aufloesung. {\bf
-      right:} Cross-section der OTF fuer die links verwendete
-    Simulation.}
+      right:} Cross-section der in-focus OTF fuer die links verwendete
+    Simulation und Schnitt durch das Ortsfrequenzspektrum der in-focus
+    Beleuchtungsverteilung.}
   \label{fig:hilo-sec-Illum2}
 \end{figure}
 
-Ein out-of-focus Fluorophor am Punkt (b) verspuert hindgegen
-durchgehend die gleiche Anregungsintensitaet. 
-
-Es gibt viele Moeglichkeiten den Modulationsgrad aus einigen
-Rohbildern zu ermitteln. Drei davon werde ich nun vorstellen.
-
 Der einfachste Algorithmus \citep{Benedetti1997} geht davon aus, dass
 die in-focus Information den Hauptanteil am Bildsignal erzeugt und
-subtrahiert den Hintergrund
+daher als Maximum der $N$ strukturiert beleuchteten Bilder $I_n$
+zugaenglich ist, wobei $n$ die fuer die Phase des Gitters steht. Der
+out-of-focus Hintergrund bleibt in allen Rohbilder gleich und kann
+demnach mit dem Minimum der Phasenbilder approximiert werden.
 \begin{align} \label{eq:Iminmax}
-  I_\textrm{minmax}(x,y) = \max_{n=1\ldots N}(I_n(x,y))- \min_{n=1\ldots N}(I_n(x,y))
+  I_\textrm{min-max}(x,y) = \max_{n=1\ldots N}(I_n(x,y))- \min_{n=1\ldots N}(I_n(x,y))
 \end{align}
-
-Eine weitere Methode ist die homodyne Demodulation
-\citep{Neil1997}. Sie erlaubt die Trennung von modulierten und
-unmodulierten Signal wenn mindestens 3 Rohbilder mit aequidistanten
-Phasensteps vorliegen, die Zusammen ein Widefeldbild ergeben.
+Diese Methode hat jedoch den Nachteil, dass eine Vergroesserung der
+Anzahl ausgelesener Rohbilder $N$, nicht das Rauschen im
+rekonstruierten Bild mindert.  Die Methode der homodynen Demodulation
+\citep{Neil1997} erlaubt die Trennung von modulierten und
+unmodulierten Signal wenn mindestens 3 Rohbilder verfuegbar sind:
 \begin{align} \label{eq:Ihomodyne}
-  I_\textrm{homodyne}(x,y) = \sum_{n=1\ldots N}\left| I_n(x,y)\ e^{2\pi i n/N}\right|
+  I_\textrm{homodyne}(x,y) = \left| \sum_{n=1\ldots N} I_n(x,y)\ e^{2\pi i n/N}\right|
 \end{align}
+Insbesondere tragen bei diesem Ansatz die Messdaten aller Rohbilder
+zum Signal der bei und mindern das Photonenrauschen in der optischen
+Section.
 
 In \figref{fig:hilo-sec-comparison} habe ich diese
 Rekonstruktionsmethoden verglichen. Dabei habe ich $N=4$ simulierte
@@ -910,14 +926,50 @@ und das in-focus Rechteck kaum im Hintergrund zu erkennen.
 \end{figure}
 
 Die Rekonstruktionsmethoden koennen alle das Rechteck vom hintergrund
-separieren. Bei minmax entstehen jedoch Streifenartefakte. Diese
-wuerden verschwinden, wenn deutlich groesseres N. Homodyne sieht sehr
-gut aus braucht aber mindestens 3 Bilder. Im gegensatz dazu kommt HiLo
-mit nur zwei Aufnahmen aus.
+separieren. Bei der einfachen 'min-max' entstehen jedoch
+Streifenartefakte. Diese wuerden erst verschwinden, wenn deutlich mehr
+Rohbilder aufgenommen wuerden. Homodyne sieht sehr gut aus braucht
+aber mindestens 3 Bilder. Die HiLo Methode kommt im Gegensatz mit nur
+zwei Aufnahmen aus und ich erklaere den Algorithmus folgenden.  Die
+HiLo Methode wurde urpruenglich fuer Speckle illumination entwickelt
+\citep{Ventalon2005,Ventalon2007,Lim2011} kann jedoch auch fuer
+Gitterbeleuchtung eingesetzt werden \citep{Bozinovic2008a,Mertz2010}.
 
-Dafuer berechne ich zwei Sinusgitter mit phasenunterschied $\pi$. Die
+
+Angenommen das Gitter variiert in die x-Richtung.  Die Information in
+den zwei Rohbildern kann aufgeteilt werden in \citep{Mertz2010} die
+modulierte in-focus Information und einen Konstanten out-of-focus
+Anteil:
+\begin{align}
+  I_n(x) = \left(1+m\sin(k_g x + n\pi)\right) I_\textrm{in}(x) + I_\textrm{out}(x),\
+  \textrm{with}\ n=0,1
+\end{align}
+Hier beschreibt $m$ den Modulationskontrast und $k_g$ die Ortsfrequenz
+des Beleuchtungsgitters. Diese beiden Rohbilder werden zu zwei neuen
+Bildern kombiniert:
+\begin{align}
+  I_\textrm{wf}(x) &= I_0(x)+I_1(x) = 2\left(I_\textrm{in} + I_\textrm{out}(x)\right) \\ 
+  I_\textrm{demod}(x) &= I_0(x)-I_1(x) = 2 m \sin(k_g x) I_\textrm{in}  
+\end{align}
+%i0:(1+m*sin(x))*a+b;
+%i1:(1+m*sin(x+%pi))*a+b;
+%expand(i0+i1);
+%expand(i0-i1)
+Wobei die Summe der Rohbilder einem Widefeldbild mit uniformer
+Beleuchtung entspricht und fuer die groesseren Ortsfrequenzen bereits
+Sectioning aufweist (siehe \figref{fig:missing-cone} on page
+\pageref{fig:missing-cone}) und das Bild $I_\textrm{demod}$ erlaubt
+die Extraktion der in-focus Information fuer kleine
+Ortsfrequenzen. Die namensgebende Idee bei HiLo ist, die gesectionete
+Information aus dem Frequenzraum der beiden Bilder zu extrahieren und
+zu einem neuen Bild $I_\textrm{hilo}(x)$ zusammenzufassen:
+
 Summe beider Bilder entspricht einem Widefeld bild und die Subtraktion
 erhoeht den Modulationskontrast. 
+
+
+
+
 
 Die HiLo Methode besteht nun darin beide Bilder so zu kombinieren,
 dass der out-of-focus Hintergrund unterdrueckt wird und die in-focus
@@ -955,7 +1007,8 @@ Verhaltens bei verrauschten Signalen analysiert werden. Der Code
 existiert zwar schon, ich habe jedoch im Rahmen dieser Arbeit keinen
 Vergleich gemacht.
 
-
+Ortsfrequenz fuer bestes Sectioning
+mit unserem Prototypen sind wir da nicht voellig frei
 
 
 eigentlich muesste man die periode exakt messen (entweder
@@ -967,6 +1020,7 @@ tiefpass filter um die anderen ordnungen zu unterdruecken
 bemerkung: ueberlapp fuehrt zu artefakten, high res sim, wiener
 filter 
 
+nonlinear algorithms shot noise biases results
 
 
 %%% Local Variables: 

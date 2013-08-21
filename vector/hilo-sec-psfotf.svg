@@ -62,7 +62,7 @@
        y="424.50504"
        x="319.85715"
        id="image3547"
-       xlink:href="file:///dev/shm/revise/raster/psf.jpg"
+       xlink:href="../raster/psf.jpg"
        height="63"
        width="86"
        style="fill:#ff8080" />
@@ -70,7 +70,7 @@
        y="491.50504"
        x="319.85715"
        id="image3609"
-       xlink:href="file:///dev/shm/revise/raster/otf.jpg"
+       xlink:href="../raster/otf.jpg"
        height="63"
        width="86"
        style="fill:#ff8080" />

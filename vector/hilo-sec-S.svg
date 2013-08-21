@@ -61,14 +61,14 @@
        y="284.67932"
        x="21.618395"
        id="image3324"
-       xlink:href="file:///dev/shm/revise/raster/S_volume-axis.jpg"
+       xlink:href="../raster/S_volume-axis.jpg"
        height="117.76634"
        width="117.76634" />
     <image
        y="284.67932"
        x="21.618395"
        id="image3485"
-       xlink:href="file:///dev/shm/revise/raster/S_pure-volume.jpg"
+       xlink:href="/raster/S_pure-volume.jpg"
        height="117.76634"
        width="117.76634" />
     <path
@@ -235,21 +235,21 @@
        y="354.91052"
        x="188.06133"
        id="image4038"
-       xlink:href="file:///dev/shm/revise/raster/S_line.jpg"
+       xlink:href="../raster/S_line.jpg"
        height="47.586449"
        width="44.004673" />
     <image
        y="319.95883"
        x="173.13525"
        id="image4100"
-       xlink:href="file:///dev/shm/revise/raster/S_rect1.jpg"
+       xlink:href="../raster/S_rect1.jpg"
        height="47.586449"
        width="44.004673" />
     <image
        y="285.00714"
        x="153.1553"
        id="image4146"
-       xlink:href="file:///dev/shm/revise/raster/S_rect2.jpg"
+       xlink:href="../raster/S_rect2.jpg"
        height="47.586449"
        width="44.004673" />
   </g>

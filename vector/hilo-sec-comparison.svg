@@ -61,7 +61,7 @@
        y="104.42192"
        x="349.13623"
        id="image6315"
-       xlink:href="file:///dev/shm/revise/raster/S_rect1.jpg"
+       xlink:href="../raster/S_rect1.jpg"
        height="93"
        width="86" />
     <path
@@ -98,7 +98,7 @@
       <image
          width="86"
          height="93"
-         xlink:href="file:///dev/shm/revise/raster/sec_rect1_mm.jpg"
+         xlink:href="../raster/sec_rect1_mm.jpg"
          id="image6412"
          x="349.13623"
          y="208.98636" />
@@ -121,7 +121,7 @@
       <image
          width="86"
          height="93"
-         xlink:href="file:///dev/shm/revise/raster/sec_rect1_homo.jpg"
+         xlink:href="../raster/sec_rect1_homo.jpg"
          id="image6474"
          x="349.13623"
          y="314.91837" />
@@ -144,7 +144,7 @@
       <image
          width="86"
          height="93"
-         xlink:href="file:///dev/shm/revise/raster/sec_rect1_hilo.jpg"
+         xlink:href="../raster/sec_rect1_hilo.jpg"
          id="image6536"
          x="349.13623"
          y="420.85049" />
@@ -177,14 +177,14 @@
        y="83.370232"
        x="200.04306"
        id="image3324"
-       xlink:href="file:///dev/shm/revise/raster/S_volume-axis.jpg"
+       xlink:href="../raster/S_volume-axis.jpg"
        height="117.76634"
        width="117.76634" />
     <image
        y="83.370232"
        x="200.04306"
        id="image3485"
-       xlink:href="file:///dev/shm/revise/raster/S_pure-volume.jpg"
+       xlink:href="../raster/S_pure-volume.jpg"
        height="117.76634"
        width="117.76634" />
     <path

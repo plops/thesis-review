@@ -552,7 +552,7 @@
        y="883.91473"
        x="-18.649237"
        id="image3671"
-       xlink:href="file:///dev/shm/revise/raster/Illumxy.jpg"
+       xlink:href="../raster/Illumxy.jpg"
        height="93"
        width="86"
        clip-path="url(#clipPath5283)"
@@ -561,7 +561,7 @@
        y="969.51093"
        x="-11.565744"
        id="image3733"
-       xlink:href="file:///dev/shm/revise/raster/Illum.jpg"
+       xlink:href="../raster/Illum.jpg"
        height="63"
        width="86" />
     <g
@@ -577,7 +577,7 @@
       <image
          width="51"
          height="58"
-         xlink:href="file:///dev/shm/revise/raster/G.jpg"
+         xlink:href="../raster/G.jpg"
          id="image3827"
          x="-0.42970526"
          y="838.05939" />

@@ -103,42 +103,42 @@
     <image
        width="86"
        height="93"
-       xlink:href="file:///dev/shm/revise/raster/S_line.jpg"
+       xlink:href="../raster/S_line.jpg"
        id="image3300"
        x="54.142857"
        y="40.147907" />
     <image
        width="86"
        height="93"
-       xlink:href="file:///dev/shm/revise/raster/hilo-method-uni.jpg"
+       xlink:href="../raster/hilo-method-uni.jpg"
        id="image3458"
        x="54.142857"
        y="140.14792" />
     <image
        width="86"
        height="93"
-       xlink:href="file:///dev/shm/revise/raster/hilo-method-nonuni.jpg"
+       xlink:href="../raster/hilo-method-nonuni.jpg"
        id="image3536"
        x="154.14284"
        y="140.14792" />
     <image
        width="86"
        height="93"
-       xlink:href="file:///dev/shm/revise/raster/hilo-method-rec.jpg"
+       xlink:href="../raster/hilo-method-rec.jpg"
        id="image3614"
        x="265.57144"
        y="40.147907" />
     <image
        width="86"
        height="93"
-       xlink:href="file:///dev/shm/revise/raster/hilo-method-struc.jpg"
+       xlink:href="../raster/hilo-method-struc.jpg"
        id="image3692"
        x="154.14284"
        y="40.147907" />
     <image
        width="86"
        height="93"
-       xlink:href="file:///dev/shm/revise/raster/hilo-method-recft.jpg"
+       xlink:href="../raster/hilo-method-recft.jpg"
        id="image3770"
        x="265.57144"
        y="140.14792" />

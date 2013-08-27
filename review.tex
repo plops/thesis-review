@@ -3,8 +3,8 @@
 \jpginput{}{myholo}{}
 \jpginput{}{phase}{}
 \jpginput{}{tf-gpc}{}
-\jpginput{}{dunsby}{}
-\jpginput{}{aod}{}
+%\jpginput{}{dunsby}{}
+%\jpginput{}{aod}{}
 }
 
 \chapter{Methods for controlling illumination patterns}
@@ -49,7 +49,7 @@ in the technique at many labs \citep{Santi2011}.
     objective. Rotating the sample and/or moving it along the axis
     allows to reconstruct a sectioned three-dimensional volume of the
     fluorophore concentration with improved light utilization compared
-    to conventional microscopes \citep[inspired from][]{Huisken2004}.}
+    to conventional microscopes \citep[inspired by][]{Huisken2004}.}
   \label{fig:spim}
 \end{figure}
 \figref{fig:spim} shows how the light sheet can be focused into the
@@ -85,14 +85,15 @@ fixed in a liquid--filled chamber.
 \label{sec:hilo}
 \begin{figure}[!hbt]
   \centering
-  \includegraphics[width=12cm]{dunsby}
+%  \includegraphics[width=12cm]{dunsby}
+  \svginput{1}{dunsby-redraw}
   \caption{Schematic of oblique plane microscopy (OPM). An index
     matched sample is excited using an oblique plane of light. The
-    illuminated plane is tilted relative to the focal
-    plane. Therefore, out-of-focus fluorophores on the periphery of
-    the field of view are excited as well. Two additional objectives
-    in the detection path are used to reconstruct an aberration free
-    image of all the excited fluorophores (drawing from
+    illuminated plane is tilted relative to the focal plane
+    FP1. Therefore, out-of-focus fluorophores on the periphery of the
+    field of view are excited as well. Two additional objectives in
+    the detection path are used to reconstruct an aberration free
+    image of all the excited fluorophores (drawing inspired by
     \cite{Dunsby2008}).}
   \label{fig:dunsby}
 \end{figure}
@@ -124,7 +125,7 @@ additional objectives.
     (TIR). For HILO, a point on the back focal plane slightly closer
     to the optic axis is illuminated. The light enters the embedding
     medium at a highly inclined angle and only a thin sheet in the
-    focal plane is illuminated \citep[inspired from][]{Tokunaga2008}.}
+    focal plane is illuminated \citep[inspired by][]{Tokunaga2008}.}
   \label{fig:hilo}
   % FIXME the construction of the rays is not correct, they should go
   % to the principal plane and then should be just axially shifted
@@ -295,9 +296,9 @@ two-photon microscope, where descanning is not strictly necessary.  In
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=12cm]{aod} 
+  \svginput{1}{reddy-redraw}
   \caption{Schematic of an acousto-optic deflector (AOD) illumination
-     system with $z-$focusing. Figure taken from \citet{Reddy2008}}
+    system with $z-$focusing. Drawing inspired by \citet{Reddy2008}}
 % in focusing single s highly preferred http://www.future-perfect.co.uk/grammartips/grammar-tip-focussed-focused.asp
   \label{fig:aod}
 \end{figure}
@@ -306,16 +307,15 @@ two-photon microscope, where descanning is not strictly necessary.  In
 \nomenclature{AOM}{Acousto-optic modulator}
 
 The system in \cite{Reddy2008} even uses an acousto optic technique to
-focus the excitation beam of a two-photon microscope (see \figref{fig:aod}). The authors
-exploit the fact that the excitation light consists of laser
-pulses. The ultrasound transducer is synchronized to the laser pulses
-and generates an acoustic waveform that resembles an one-dimensional
-Fresnel zone --- high frequencies on the outside and low frequencies
-towards the center. The synchronization ensures that each pulse
-encounters a diffraction grating that is symmetric with regards to the
-optical axis. Two such elements in a row but rotated by 90 degrees
-allow to focus the beam, similar to how two cylindrical lenses would
-(see \figref{fig:aod}).
+focus the excitation beam of a two-photon microscope (see
+\figref{fig:aod}). A pair of two ultrasound transducers (e.g. X1 and
+XZ in the figure) produce two counter-propagating waves with
+continuously changing frequency. The resulting diffraction pattern
+resembles an one-dimensional Fresnel zone --- oscillations of high
+frequency on the outside and low frequencies towards the center. A
+combination of two such elements but rotated by 90 degrees allows to
+focus the beam, similar to how two cylindrical lenses would (see
+\figref{fig:aod}).
 
 \subsubsection{Aberration-free optical refocusing}
 Achieving the resolution limit of modern microscope objectives using
@@ -353,7 +353,7 @@ reflected by any of the other DMD mirrors and ends up on camera 2.
   \centering
   \svginput{1}{pam-sketch}
   \caption{Schematic of a programmable array microscope (PAM)
-    \citep[inspired from][]{Verveer1998}. A digital micro mirror
+    \citep[inspired by][]{Verveer1998}. A digital micro mirror
     device (DMD) containing an array of tiltable mirrors is imaged
     into the focal plane of the objective. Returning fluorescent light
     from out-of-focus fluorophores is distributed onto both
@@ -408,10 +408,10 @@ An obvious method for doing spatial control is to image a
 two-dimensional array of high-power micro-LEDs into the specimen.
 \begin{figure}[hbtp]
   \centering
-  \includegraphics[width=7cm]{led-array} 
-  \caption{An overlay combining widefield micro-LED illumination and
-    fluorescence imaging YFP tag expressed in neurons, taken from
-    \citet{grossman2010}.}
+ % \includegraphics[width=7cm]{led-array} 
+  \svginput{1}{cell-drawing}
+  \caption{Schematic of a micro-LED illumination array and the outline
+    of a neuronal cell, inspired by \citet{grossman2010}.}
   \label{fig:led-array}
 \end{figure}
 However, the problem is to achieve sufficient \emph{irradiance} and
@@ -456,7 +456,7 @@ imaging through an array of microlenses.
   \centering
   \svginput{1}{microlens-levoy-sketch}
   \caption{Schematic of microlenses in the intermediate image plane
-    \citep[inspired from][]{Levoy2006}. A spatial intensity modulator
+    \citep[inspired by][]{Levoy2006}. A spatial intensity modulator
     is illuminated from the right with an extended light
     source. Groups of neighboring pixels downstream of individual
     microlenses are imaged into the pupil. Therefore these pixels
@@ -495,7 +495,7 @@ SLM is used. % FIXME rainer fragen
   \centering
   \svginput{1}{temporal-focus-sketch}
   \caption{Schematic of temporal focusing \citep[inspired
-    from][]{Oron2005}. A grating in the intermediate image plane
+    by][]{Oron2005}. A grating in the intermediate image plane
     separates the pulse into its spectral components. The out-of-focus
     areas of the specimen are illuminated with a longer pulse. Only in
     the focal plane, all spectral components interfere coherently and
@@ -572,7 +572,8 @@ but this exacerbates the effect of speckles.
 \subsubsection{Generalized phase contrast (GPC)}
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=12cm]{phase} % FIXME redraw
+%  \includegraphics[width=12cm]{phase} % FIXME redraw
+  \svginput{1}{rodrigo}
   \caption{Schematic of generalized phase contrast
     \citep[from][]{Rodrigo2008}.}
   \label{fig:phase}
@@ -600,9 +601,10 @@ Splitting and recombination of the spectral components of the pulse
 reduce speckle noise considerably.
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=10cm]{tf-gpc} 
+%  \includegraphics[width=10cm]{tf-gpc} 
+  \svginput{1}{papa}
   \caption{Schematic of phase contrast with temporal focusing (TF-GPC)
-    \citep[from][]{Papagiakoumou2010}, PCF is a phase contrast filter.}
+    \citep[inspired by][]{Papagiakoumou2010}, PCF is a phase contrast filter.}
   \label{fig:tf-gpc}
 \end{figure}
 \nomenclature{PCF}{Phase contrast filter}

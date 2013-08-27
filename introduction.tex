@@ -35,8 +35,8 @@ indispensable tool for research of living organisms.  Fluorescence
 microscopy is of particular importance because it enables the
 \cma{labeling, switching} scientist to selectively label a particular
 type of molecule in living cells and observe how they perform their
-biological function.  Besides localizing molecules it permits to
-measure physical quantities inside of the sample. Fluorescent labels
+biological function.  Besides localizing molecules it permits
+measurement of physical quantities inside of the sample. Fluorescent labels
 can be used to report membrane potentials or viscosity inside of
 cells.  Furthermore, light can exert a controlling function by
 exciting compounds that locally release chemicals with a biological
@@ -88,7 +88,7 @@ fluorescent protein DSRed2) and an automatic spinning disk microscope
 (Opera QEHS, PerkinElmer Technologies, MA, USA) acquires images of
 each cell. The pathogens are counted by automatic image analysis and
 potential remedies among the compounds can thus be identified. In
-addition, analyzing the shape of the host cell nuclei permits to
+addition, analyzing the shape of the host cell nuclei can help to
 identify compounds that harm the host cell.
 
 Such studies of diseases are still in their infancy, but they have the
@@ -105,12 +105,12 @@ excitation light before any effect of chemical compounds is visible.
 
 As part of our collaboration, the Institut Pasteur developed a
 biological test system that is relatively easy to maintain
-\citep{Stiernagle2006}, safe in use and allows to test the
-phototoxicity of various microscopes \citep{Tinevez2012}. The basis of
-this system are embryos of the small invertebrate \celegans. The adult
-form is approximately \unit[1]{mm} long.  Their anatomy and
-development are comparatively simple and have been well characterized
-\citep{Sulston1977,Durbin1987}.
+\citep{Stiernagle2006}, safe in use and allows the comparison of
+phototoxicity between different microscopes \citep{Tinevez2012}. The
+basis of this system are embryos of the small invertebrate
+\celegans. The adult form is approximately \unit[1]{mm} long.  Their
+anatomy and development are comparatively simple and have been well
+characterized \citep{Sulston1977,Durbin1987}.
 
 \begin{figure}[hbtp]
   \centering
@@ -429,19 +429,21 @@ resolution image. This is a fact I will support shortly using the
 wave-optical model. Unfortunately, the large ray angles in the
 objective prevent its simplified description using principal planes,
 but an analysis using the eikonal theory \citep{Haferkorn1984} shows % page 125 2.3.2 mikroobjektive65g ggggg g gg g v g      v  v--*
-
-
 that an optical system that fulfills the Abbe sine condition allows
 perfect imaging even for widespread ray bundles.
 \begin{align}
   \label{eq:sine-condition}
   \beta = \frac{n \sin\alpha}{n' \sin\alpha'} \qquad \textrm{(Abbe sine condition)}
 \end{align}
+with the object-sided collection half-angle $\alpha$ and refractive
+index $n$, the corresponding parameters $\alpha'$ and $n'$ on the
+image side and the magnification $\beta$.
+
 This condition ensures that the focal length, a quantity which is
 usually defined only for paraxial rays, is equal for all angles.  This
 in turn means that such a lens carries out a Fourier transform from
 the front to the back focal plane with linear scaling. Note that a
-lens with a non-linear distortion in the back focal plane, such as given by the concept of a thin lense used at large angles, will fail to
+lens with a non-linear distortion in the back focal plane, such as given by the concept of a thin lens used at large angles, will fail to
 produce an image that is similar to the object.
 
 It turns out that ray bending\label{aplanatic} in a high-aperture lens
@@ -460,8 +462,8 @@ corrected for spherical aberration and linear coma \citep{Gross2005}.
 Then the coma rays are symmetric around the chief ray, the wavefront
 and point spread function are approximately invariant for small field
 sizes (in first order).  This ensures that the imaging conditions are
-invariant for small regions of the field plane and allows to express
-image formation with linear systems theory.
+invariant for small regions of the field plane and allows expression
+of the image formation with linear systems theory.
 
 \figref{fig:widefield-microscope}~c) shows the illumination of a
 widefield fluorescence microscope with a laser. A dichromatic beam
@@ -485,8 +487,8 @@ $\k$:
   u(\r,t)=u\,\exp(i(\k\r-\omega t)),\quad \r=(r_x,r_y,r_z),\
   \k=(k_x,k_y,k_z),\ |\k|=2\pi \underbrace{n/\lambda_0}_{1/\lambda},
 \end{align}
-with vacuum wavelength $\lambda_0$, refractive index $n$ and
-wavelength $\lambda$ in the immersion medium.
+with the coordinate $\r$, vacuum wavelength $\lambda_0$, refractive
+index $n$ and wavelength $\lambda$ in the immersion medium.
 
 The accurate treatment of high-aperture optics would in fact require a
 vectorial calculation of the image for a fluorophore with a particular
@@ -781,15 +783,16 @@ does not stop in the corresponding image point. Therefore, most
 out-of-focus light is added incoherently as a background to the
 detected signal.
 
-Structured \cma{optical sectioning with confocal microscope} \label{sec:sectioning-intro}
-illumination can be used to remove this out-of-focus light. 
-Two major incarnations of this technique are in current use.  On the one
-hand there is the confocal microscope\label{sec:confocal} in which
-mechanically scans a single point spread function over the focal
-plane. This approach allows to block out-of-focus light optically. The
-concept was invented by Minsky in the late fifties \citep{Minsky1961},
-the first confocal microscope with a laser was built in the early
-seventies \citep{davidovits1971scanning} and was commercialized after
+Structured \cma{optical sectioning with confocal
+  microscope} \label{sec:sectioning-intro} illumination can be used to
+remove this out-of-focus light.  Two major incarnations of this
+technique are in current use.  On the one hand there is the confocal
+microscope\label{sec:confocal} in which mechanically scans a single
+point spread function over the focal plane. This approach allows
+blocking out-of-focus light optically. The concept was invented by
+Minsky in the late fifties \citep{Minsky1961}, the first confocal
+microscope with a laser was built in the early seventies
+\citep{davidovits1971scanning} and was commercialized after
 breakthroughs regarding the scanning mechanics in the late eighties
 \cite{Amos1987}. Due to the excellent quality of its images and the
 ease of use the confocal microscope became a standard tool for biology
@@ -966,10 +969,10 @@ the performance of cameras from different manufacturers or to
 determine the optimal parameter settings for one particular
 experiment. Furthermore, it is possible to use the photon shot noise
 to calibrate cameras (or any other intensity detector) and convert
-their measurements to effective photoelectrons.  This allows to compare
-images of different microscope systems (confocal, spinning disk or
-widefield) or and facilitates the use off sophisticated noise
-reduction algorithms.
+their measurements to effective photoelectrons.  This allows the
+comparison of images of different microscope systems (confocal,
+spinning disk or widefield) or and facilitates the use off
+sophisticated noise reduction algorithms.
 
 \subsection{Photon shot noise and read noise}
 \label{sec:photon-noise}
@@ -1014,10 +1017,10 @@ $e^-$) is equal to the average intensity $\langle I\rangle$:
   \pdfinput{7.4cm, trim=0 0 30 20, clip}{andor_normal_preamp5_exp30}
   \caption{{\bf left:} Image of a defocused area on a fluorescent
     plane sample. This is used for calibrating the detector. {\bf
-      right:} Result of a detector calibration. The slope of the curve
-    allows to convert the arbitrary analog-to-digital units into
-    effective photoelectrons, the point of interception at the $y-$axis
-    gives the detector read noise.}
+      right:} Result of a detector calibration. Using the slope of the
+    curve the arbitrary analog-to-digital units are converted into
+    effective photoelectrons. The point of interception at the
+    $y-$axis gives the detector read noise.}
   \label{fig:shot-noise}
 \end{figure}
 For the calibration of a detector, twenty images of a \cma{detector
@@ -1124,7 +1127,7 @@ $F_n=\sqrt{2}$. \nomenclature{$F_n$}{Excess noise factor}
 \begin{align}
   \SNR = \frac{Q_E\cdot S}{\sqrt{F_n^2\cdot Q_E \cdot (S+I_b) + (N_r/M)^2}} \label{eq:snr}
 \end{align}
-This equation permits to compare all the cameras that I can
+This equation permits comparison between all the cameras that I can
 use for my experiments. Table \ref{tab:cam-param} lists parameters
 from their datasheets and the three diagrams in
 \figref{fig:camera-snr} shows curves of the relative signal-to-noise
@@ -1217,7 +1220,7 @@ Next, I discuss the curves of the active-pixel
 sensors. \cma{sCMOS in \figref{fig:camera-snr}}
 The device designated as global shutter sCMOS is a sensor with five
 transistors per pixel \citep{Vu2011}. Similar to a passive-pixel CCD
-sensor this permits to start exposure in all pixels simultaneously,
+sensor the global shutter can  start the exposure in all pixels simultaneously,
 but it has two major drawbacks. The additional two transistors cover
 space that would otherwise be available as light sensitive area and
 for quantitative data, a reference frame must be taken for each image,
@@ -1235,7 +1238,7 @@ succession but for our prototype it is crucial that all pixels
 integrate while the displays show patterns. Fortunately there is a
 mode called global exposure synchronization which initiates
 integration in the pixels line by line and generates a trigger output
-once all pixels have started capturing light. This allows to use the
+once all pixels have started capturing light. This allows using the
 camera as a master without further effort but the camera can also be
 run as a slave. In that case the only requirement is that the trigger
 comes early enough ($\unit[10]{ms}$, \cite{Hamamatsu2012}) to initiate exposure in all
@@ -1362,7 +1365,8 @@ explained photon shot noise, which follows from the quantum mechanical
 nature of light and so far constitutes a fundamental limit of light
 detection. Based on this, I explained a calibration method that helps
 to evaluate camera performance and, maybe more relevant for this work,
-allows to compare images that were created with different microscopes.
+allows comparison between images that were created with different
+microscopes.
 
 Since low-noise active-pixel cameras became available only late during
 my project, and the first models still had some issues --- unstable

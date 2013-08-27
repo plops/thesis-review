@@ -101,7 +101,7 @@ relay system contains a rotating microlens array\footnote{Array of
   \unit[6.9]{mm} (LIMO, Dortmund, DE).}. It is driven by a motor with
 the axis of rotation displaced from the optical axis. Integrating
 sufficiently long over the time-variations in the intensity pattern
-allows to reduce speckle.
+allows reduction of speckle.
 
 Both the fiber bundle and microlens array increase the etendue of the
 laser illumination to the optimum value, which is given by one of our
@@ -213,9 +213,8 @@ the following I will describe the effect of the MMA phase function on
 a plane monochromatic wave. In particular, I will investigate the
 amount of light in the zeroth diffraction order depending on the
 torsion angle. Furthermore, the structure of the diffraction image
-permits to find bounds for the maximum acceptance angle of the
-system. I will show, that the acceptance angle is just barely
-sufficient for our experiments.
+limits the maximum acceptance angle of the system. I will show, that
+the acceptance angle is just barely sufficient for our experiments.
 
 To describe the Fourier pattern, I first consider a single pixel with
 index $p$ and width $w=\unit[16]{\mu m}$. In one dimension its shape
@@ -331,9 +330,9 @@ intensity in the zero order for varying mirror deflections:
 \begin{align}
   |\widetilde T_\textrm{line}(k_x=0)|^2 = \sinc(4 \pi l/\lambda)^2
 \end{align}
-According to the diagram a deflection of the mirrors between 0 and
-$\lambda/4$ permits to gradually modulate the intensity in the zero
-order. In our system this means that the intensity at any point in the
+According to the diagram for a deflection of the mirrors between 0 and
+$\lambda/4$ intensity in the zero
+order is gradually modulated. In our system this means that the intensity at any point in the
 plane $P'$ (see \figref{fig:memi-real}) depends on the deflection of
 the mirror that is conjugate to this image point. Up to now, all the
 calculations were done for a single plane wave corresponding to light
@@ -376,7 +375,7 @@ device with $q$ and the columns with $p$.
 \end{align}
 The convolution with respect to $y'$ in equation (\ref{eq:tarray})
 replicates $N$ mirror rows with width $w$ and pitch $\Lambda$.  The
-value of $k_{(pq)x}$ permits to control each individual mirror
+value of $k_{(pq)x}$ controls each individual mirror
 tilt. The constraints on these tilts are:
 \begin{align}
 k_{(pq)x} \in
@@ -583,15 +582,16 @@ master. It provides two TTL outputs. The output ``fire'' is high while
 the camera is integrating. The output ``shutter'' is programmed to reach
 high \unit[1]{ms} before ``fire''.
 
-This allows an Arduino microcontroller to initiate a time-delayed
-trigger for both SLMs, so that they show their patterns exactly while
-the camera is integrating. I determined the necessary delays using a
-photodiode and an oscilloscope in order to measure when a dark image
-is established on each device. The delay is \unit[$840$]{$\mu$s} for
-pupil plane and \unit[$396$]{$\mu$s} for focal plane SLM. The Arduino
-microcontroller activates a laser by an acousto-optic modulator (AOM)
-so that the system is only illuminated when the camera is integrating
-and both SLM are showing a defined pattern.  
+This time period allows sufficient margin for an Arduino
+microcontroller to initiate a time-delayed trigger for both SLMs, so
+that they show their patterns exactly while the camera is
+integrating. I determined the necessary delays using a photodiode and
+an oscilloscope in order to measure when a dark image is established
+on each device. The delay is \unit[$840$]{$\mu$s} for pupil plane and
+\unit[$396$]{$\mu$s} for focal plane SLM. The Arduino microcontroller
+activates a laser by an acousto-optic modulator (AOM) so that the
+system is only illuminated when the camera is integrating and both SLM
+are showing a defined pattern.
 
 % source code:
 % https://github.com/plops/ledtlc/blob/master/ledtlc.ino
@@ -637,7 +637,7 @@ been implemented so far.
 %   \svginput{2}{memi-sketch}
 %   \caption{Schematic of the lenses in the MEMI system and their focal
 %     lengths. The focal length $f_\textrm{TL}$ of the tube lens can be
-%     varied. This allows to scale the second intermediate image
+%     varied. This allows scaling the second intermediate image
 %     $r''_\textrm{MMA}$ of the micro mirror array to fit the back
 %     focal plane of different objectives. Dimensions in mm.}
 %   \label{fig:memi-sketch}
@@ -967,8 +967,8 @@ to form two new images:
 The sum of the raw images corresponds to a widefield image with
 uniform illumination, containing sectioned sample information only for
 higher spatial frequencies (see \figref{fig:missing-cone} on page
-\pageref{fig:missing-cone}). The image $I_\textrm{demod}$ allows to
-extract in-focus information for low spatial frequencies of the
+\pageref{fig:missing-cone}). The image $I_\textrm{demod}$ allows
+extraction of in-focus information for low spatial frequencies of the
 fluorophore distribution. For HiLo, in-focus information from
 different parts of the spatial frequency spectra of the images
 $I_\textrm{wf}$ and $I_\textrm{demod}$ are combined to form the new

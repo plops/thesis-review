@@ -57,9 +57,9 @@
   style=myframe
 }
 
-The following code allows to record data for calibration of a Andor
-EM-CCD with as little user interaction as possible. More detail is
-given in the main text in section \ref{sec:ccd-intro} on page
+The following code will record calibration data for an Andor EM-CCD
+with as little user interaction as possible. More detail is given in
+the main text in section \ref{sec:ccd-intro} on page
 \pageref{sec:ccd-intro}.
 
 The program is written in a dialect of Basic and automates the Andor Solis software.
@@ -70,7 +70,7 @@ acquired data can later be processed using either the Matlab/DIPimage
 function \verb!cal_readnoise! or, equivalently, by using the Python
 script from the next section.
 
-A camera calibration allows to convert image data into the device
+A camera calibration allows conversion of image data into the device
 independent unit of effective photoelectrons but this only works as
 long as data acquisition occurs at the same camera settings (pre-amp
 gain, EM-gain, sensor temperature, vertical shift speed, readout rate,
@@ -392,9 +392,9 @@ fig.savefig(cam+'_'+gain+'.png')
   stacks with structured illumination of a three-dimensional
   fluorophore distribution. 
 
-  The code in this chapter permits to simulate aberration-free imaging
-  and to compare the performance of sectioning algorithms at different
-  light levels, i.e.\ in the presence of photon shot noise.
+  The code in this chapter simulates aberration-free imaging and
+  compares the performance of sectioning algorithms at different light
+  levels, i.e.\ in the presence of photon shot noise.
 \end{summary}
 
 \comment{
@@ -415,8 +415,8 @@ operation\footnote{I use the same point spread function for excitation
   wavelengths.}.
 
 For the numerical simulation I use the DIPimage Toolbox for Matlab
-\citep{dipimage} as it permits to express the required image
-processing algorithms with a relatively elegant syntax.
+\citep{dipimage} as it permits expression of the required image
+processing algorithms with a relatively elegant and concise syntax.
 
 The \cma{syntax of DIPimage} following code listing fills a
 three-dimensional array with the geometric primitives line, rectangle

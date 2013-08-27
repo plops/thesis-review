@@ -176,7 +176,7 @@ in P, but we can always produce very fine, high-contrast structures in
 the sample F.
 
 The abiltity to achieve high resolution in the field is the main
-difference between our approach and Levoys light field microscope.  In
+difference between our approach and Levoy's light field microscope.  In
 the light field microscope, the density of the microlenses noticeably
 limits the resolution. As opposed to our system, the light field
 microscope allows control of the angle of incidence in all field
@@ -210,7 +210,7 @@ imaging. This procedure is explained\footnote{Note that
   \cite{Murray2006} describes an improvement of this protocol that
   prevents squeezing the embryos too much.} in \cite{Hope1999}. Of
 these embryos, the experimentor chooses a young specimen, that has not
-yet divided. We avoid to use fluorescence excitation for this step.
+yet divided. We avoid using fluorescence excitation for this step.
 The undivided embryos can be distinguished using the less phototoxic
 differential interference contrast (DIC) imaging mode.
 
@@ -237,11 +237,11 @@ reconstruction of laser illuminated images contained artifacts.
 % angezeigt und Wir verglichen einen 70mW 473nm DPSS laser mit 470nm LED
 % Beleuchtung (CoolLED).}
 
-Therefore, we decided to implement HiLo (see Appendix \label{ref:sectioning}). With
+Therefore, we decided to implement the HiLo algorithm for optical sectioning (see Appendix \ref{sec:sectioning}). With
 this algorithm, we obtain artifact-free optical sections, regardless
 of the illumination source. As another advantage the HiLo method
 increases acquisition speed, because only two raw images per slice are
-necessary.
+necessary. Please note, that this algorithm should not be confused with Tokunaga's HILO illumination technique from section \ref{sec:hilo}.
 
 \nomenclature{HiLo}{An image processing method to obtain optical sections
   from widefield fluorescence images with structured illumination.}
@@ -321,10 +321,10 @@ http://fiji.sc/wiki/index.php/TrackMate) developed a more
 sophisticated plug-in for ImageJ, that provides the lineage tree and
 snapshots of the developing cells (see \figref{fig:trackmate}).
 \begin{figure}[!hbt] \centering
-  \pdfinput{6cm}{TrackMate_Celegans_lineage}
+  \pdfinput{12cm}{TrackMate_Celegans_lineage}
   % trim=left bottom right top
   \qquad
-  \includegraphics[trim=25cm 0cm 84cm 87cm, clip, height=5cm]{TrackMate_Celegans_lineage_vector} 
+  \includegraphics[trim=25cm 0cm 84cm 87cm, clip, height=10cm]{TrackMate_Celegans_lineage_vector} 
   \caption{Lineage tree of a developing \celegans\ embryo, visualized
     in TrackScheme. An image of each nucleus is shown in each time
     step. Note the elongated structure of the nucleus before the cell
